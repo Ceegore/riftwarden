@@ -96,21 +96,39 @@ def log_jsonl(path: Path, obj: dict) -> None:
 
 # ---------------------------------------------------------------------------
 # Secret redaction (doc 08.4)
+# Two tiers:
+#   - _WRITE_BLOCK_PATTERNS: strict, high-entropy credential shapes only.
+#     Used to BLOCK writes/edits that would commit real secrets. Low false-positive.
+#   - _LOG_REDACT_PATTERNS: broad, includes generic key=value prose. Used ONLY
+#     to redact logs/tool-output (lossy by design). NOT used for write-blocking,
+#     because game/design prose legitimately contains words like "token"/"key".
 # ---------------------------------------------------------------------------
-_SECRET_PATTERNS = [
+_WRITE_BLOCK_PATTERNS = [
+    re.compile(rb"(sk-[A-Za-z0-9_\-]{20,})"),
+    re.compile(rb"(AKIA[0-9A-Z]{16})"),
+    re.compile(rb"(ghp_[A-Za-z0-9]{36,})"),
+    re.compile(rb"(Bearer [A-Za-z0-9_\-\.]{20,})"),
+    re.compile(rb"-----BEGIN (RSA |EC |OPENSSH |)PRIVATE KEY-----"),
+]
+_LOG_REDACT_PATTERNS = _WRITE_BLOCK_PATTERNS + [
+    # broader: redacts lookalikes in logs (lossy; NOT used to block writes)
     re.compile(rb"(sk-[A-Za-z0-9_\-]{8})[A-Za-z0-9_\-]*"),
     re.compile(rb"(AKIA[0-9A-Z]{4})[0-9A-Z]*"),
     re.compile(rb"(ghp_[A-Za-z0-9]{4})[A-Za-z0-9]*"),
     re.compile(rb"(Bearer [A-Za-z0-9_\-\.]{4})[A-Za-z0-9_\-\.]*"),
-    # common key=... assignments
     re.compile(rb"(?i)(api[_-]?key|token|secret|password)\s*[=:]\s*([^\s\"'&]{4})[^\s\"'&]*"),
 ]
 _SECRET_COUNT = {"n": 0}
 
 
+def _contains_blocked_secret(b: bytes) -> bool:
+    """True only if bytes match a strict high-entropy credential pattern."""
+    return any(pat.search(b) for pat in _WRITE_BLOCK_PATTERNS)
+
+
 def redact_bytes(b: bytes) -> bytes:
     out = b
-    for pat in _SECRET_PATTERNS:
+    for pat in _LOG_REDACT_PATTERNS:
         def _sub(m: re.Match) -> bytes:
             if m.lastindex:
                 return m.group(1) + b"<REDACTED>"
@@ -551,10 +569,9 @@ class ToolSet:
         p = _resolve(path)
         self.pp.assert_can_write(p)
         p.parent.mkdir(parents=True, exist_ok=True)
-        # block secrets from being written
-        check = content.encode("utf-8", "replace")
-        if redact_bytes(check) != check:
-            raise PermissionError("SECRET_DETECTED_IN_WRITE: refusing to write content containing secrets")
+        # block real secrets (strict, high-entropy credentials only — not prose)
+        if _contains_blocked_secret(content.encode("utf-8", "replace")):
+            raise PermissionError("SECRET_DETECTED_IN_WRITE: content contains a credential pattern")
         was = p.exists()
         p.write_text(content, encoding="utf-8")
         self._record_change(p, "modified" if was else "added")
@@ -570,8 +587,8 @@ class ToolSet:
         if text.count(old_string) > 1:
             raise ValueError(f"old_string not unique in {path} ({text.count(old_string)} matches)")
         new = text.replace(old_string, new_string, 1)
-        if redact_bytes(new.encode("utf-8", "replace")) != new.encode("utf-8", "replace"):
-            raise PermissionError("SECRET_DETECTED_IN_EDIT")
+        if _contains_blocked_secret(new.encode("utf-8", "replace")):
+            raise PermissionError("SECRET_DETECTED_IN_EDIT: content contains a credential pattern")
         p.write_text(new, encoding="utf-8")
         self._record_change(p, "modified")
         return f"edited {p.relative_to(REPO_ROOT)}"
