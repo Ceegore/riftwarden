@@ -1,0 +1,23 @@
+{
+  "fromPhase": "PHASE-00",
+  "gate": {
+    "decision": "BLOCKED",
+    "id": "G00",
+    "report": "docs/reports/phase-00.json",
+    "validationReport": "docs/reports/phase-00-validation-gate.json"
+  },
+  "handoffVersion": 1,
+  "knownRisks": [],
+  "openDecisionRequests": [],
+  "openDefects": [],
+  "requiredArtifacts": [
+    "docs/requirements/source-manifest.json",
+    "docs/requirements/requirements/index.json",
+    "docs/requirements/normalization-ledger.json",
+    "docs/requirements/external-decisions.json",
+    "docs/requirements/tests.json",
+    "docs/requirements/traceability.json"
+  ],
+  "sourceRevision": "REPLACE_WITH_GIT_COMMIT",
+  "toPhase": "PHASE-01"
+}

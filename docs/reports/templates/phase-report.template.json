@@ -1,0 +1,51 @@
+{
+  "branch": "feat/00-autorit-t-requirements-und-traceability",
+  "changedFiles": [],
+  "commands": [],
+  "completedAt": null,
+  "contractsAndAdrs": [],
+  "defects": [],
+  "gateDecision": "BLOCKED",
+  "gateId": "G00",
+  "gateItems": [
+    {
+      "evidenceLinks": [],
+      "id": "G00-SOURCE",
+      "statement": "GDD hash, chapters 1-87 and approval status are reproducible.",
+      "status": "BLOCKED"
+    },
+    {
+      "evidenceLinks": [],
+      "id": "G00-REQUIREMENTS",
+      "statement": "Every hard requirement has a stable ID, owner phase and planned evidence.",
+      "status": "BLOCKED"
+    },
+    {
+      "evidenceLinks": [],
+      "id": "G00-LEDGERS",
+      "statement": "NORM and EXT ledgers are complete and release placeholders are machine-blockable.",
+      "status": "BLOCKED"
+    },
+    {
+      "evidenceLinks": [],
+      "id": "G00-REPORT",
+      "statement": "The phase-report contract prevents an unevidenced PASS.",
+      "status": "BLOCKED"
+    }
+  ],
+  "inputs": [],
+  "manualTests": [],
+  "phaseId": "PHASE-00",
+  "risks": [],
+  "schemaVersion": 1,
+  "sourceRevision": "REPLACE_WITH_GIT_COMMIT",
+  "startedAt": "REPLACE_WITH_ISO_8601",
+  "tickets": [
+    "P00-T01",
+    "P00-T02",
+    "P00-T03",
+    "P00-T04",
+    "P00-T05",
+    "P00-T06"
+  ]
+}

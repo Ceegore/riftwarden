@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://riftwarden.local/schemas/phase-report.schema.json",
+  "title": "Riftwarden Phase Evidence Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "phaseId", "gateId", "sourceRevision", "branch", "startedAt", "completedAt", "inputs", "tickets", "changedFiles", "contractsAndAdrs", "commands", "manualTests", "defects", "risks", "gateItems", "gateDecision"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "phaseId": {"type": "string", "pattern": "^PHASE-(0[0-9]|[1-4][0-9])$"},
+    "gateId": {"type": "string", "pattern": "^G(0[0-9]|[1-4][0-9])$"},
+    "sourceRevision": {"type": "string", "minLength": 7},
+    "branch": {"type": "string", "minLength": 1},
+    "startedAt": {"type": "string", "format": "date-time"},
+    "completedAt": {"type": ["string", "null"], "format": "date-time"},
+    "inputs": {"type": "array", "items": {"type": "object"}},
+    "tickets": {"type": "array", "items": {"type": "string"}},
+    "changedFiles": {"type": "array", "items": {"type": "object"}},
+    "contractsAndAdrs": {"type": "array", "items": {"type": "object"}},
+    "commands": {"type": "array", "items": {"type": "object"}},
+    "manualTests": {"type": "array", "items": {"type": "object"}},
+    "defects": {"type": "array", "items": {"type": "object"}},
+    "risks": {"type": "array", "items": {"type": "object"}},
+    "gateItems": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+    "gateDecision": {"enum": ["PASS", "BLOCKED"]}
+  }
+}

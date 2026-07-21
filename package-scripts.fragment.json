@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "test:requirements": "node --test tools/requirements/tests/validator.test.mjs",
+    "validate:requirements:draft": "node tools/requirements/validate.mjs --mode=draft --json docs/reports/phase-00-validation-draft.json",
+    "validate:requirements:gate": "node tools/requirements/validate.mjs --mode=gate --json docs/reports/phase-00-validation-gate.json",
+    "validate:phase00-report": "node tools/requirements/check-phase-report.mjs docs/reports/phase-00.json .",
+    "build:requirements-reports": "node tools/requirements/build-reports.mjs .",
+    "validate:external:g43": "node tools/requirements/check-external-decisions.mjs --gate=G43"
+  }
+}

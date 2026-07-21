@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "gdd-v5",
+  "product": "riftwarden",
+  "authorityStatus": "pending_verification",
+  "publisherConfirmation": {
+    "status": "pending",
+    "confirmedBy": null,
+    "confirmedAt": null,
+    "statement": "Publisher confirms that GDD V5.0 is the latest approved design specification."
+  },
+  "files": [
+    {
+      "role": "authoritative_editable",
+      "path": "docs/source/Riftwarden_GDD_V5_0.docx",
+      "fileName": "Riftwarden_GDD_V5_0.docx",
+      "format": "docx",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "byteSize": 0,
+      "reportedPageCount": null,
+      "documentVersion": "5.0",
+      "releaseDate": null,
+      "renderedWith": null
+    }
+  ],
+  "chapterAudit": {
+    "expectedFirst": 1,
+    "expectedLast": 87,
+    "expectedCount": 87,
+    "headingsFile": "docs/requirements/source-headings.json",
+    "findingsFile": "docs/requirements/source-findings.json",
+    "structureFile": "docs/requirements/generated/source-structure.json",
+    "status": "pending"
+  },
+  "supersedes": [
+    {
+      "sourceId": "development-plan-v1",
+      "role": "replaced_planning_only",
+      "authority": "none_for_product_design"
+    }
+  ],
+  "frozenAt": null,
+  "frozenBy": null
+}

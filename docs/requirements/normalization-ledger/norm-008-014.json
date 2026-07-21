@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "id": "NORM-008",
+      "topic": "Saveexport",
+      "canonicalRule": ".riftwarden-save; separater .riftwarden-diagnostic. Keine ältere .rwsave-Endung in V1.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-008",
+        "GDD chapter 83"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-009",
+      "topic": "Textscale",
+      "canonicalRule": "100/125/150/175/200 Prozent.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-009",
+        "GDD chapter 83"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-010",
+      "topic": "Contentpfad",
+      "canonicalRule": "/content/source, /content/schemas, /content/generated. Runtime-Index unter src/game/content; keine manuellen Datenobjekte im UI-Code.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-010",
+        "GDD chapter 72/74/87 authority review required"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-011",
+      "topic": "Installationsbudget",
+      "canonicalRule": "250 MiB Ziel, 350 MiB harter Releaseblocker ohne ADR.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-011",
+        "GDD chapter 84"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-012",
+      "topic": "Coverage",
+      "canonicalRule": ">=95% Branch-Coverage in game/sim und storage/migrations; kritische Regeln vollständig abgedeckt.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-012",
+        "GDD chapter 85"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-013",
+      "topic": "Massensimulation",
+      "canonicalRule": "Mindestens 100.000 Kämpfe pro RC. Zusätzlich mindestens 1.000 generierte Fälle pro definierter Property-Invariante.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-013",
+        "GDD chapter 85"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-014",
+      "topic": "Dungeon-QA",
+      "canonicalRule": "100.000 Karten über Missions-/Modusprofile; null Sackgassen, Pflichtknoten- oder Längenverletzungen.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-014",
+        "GDD chapter 85"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    }
+  ]
+}

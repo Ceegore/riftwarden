@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "id": "NORM-001",
+      "topic": "Repository",
+      "canonicalRule": "Ein einzelnes pnpm-Repository ohne Workspace-Packages und ohne Monorepo-Tooling. /src/game/sim bleibt ein normales internes Modul.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-001",
+        "GDD chapter 72/87 authority review required"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-002",
+      "topic": "Screenzustand",
+      "canonicalRule": "Kanonischer technischer Enum: loading, ready, empty, recoverable_error, fatal_error. blocked wird als ready plus typed BlockReason modelliert.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-002",
+        "GDD chapter 54/83 authority review required"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-003",
+      "topic": "First Boot",
+      "canonicalRule": "Screen-IDs folgen dem konkreten Kapitel-54-Katalog: S00 Splash, S01 Bootstrap/Recovery, S02 Erststart, S03 Titel, S04 Neues Spiel. Flows verwenden semantische ScreenIds.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-003",
+        "GDD chapter 54 authority review required"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-004",
+      "topic": "Renderer",
+      "canonicalRule": "PixiJS 8 WebGL/WebGL2. WebGPU in V1 aus. Kein CanvasRenderer. Ohne WebGL: Compatibility/Recovery-Screen; Menüs und Saveexport bleiben bedienbar.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-004",
+        "GDD chapter 81/83 authority review required"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-005",
+      "topic": "Atlas",
+      "canonicalRule": "4096x4096 ist harter Maximalwert, 2048 bevorzugt auf Minimumgeräten, 2 px Extrude/Padding.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-005",
+        "GDD chapter 81"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-006",
+      "topic": "Audioformate",
+      "canonicalRule": "OGG Vorbis für Web/Android; AAC-LC/M4A für iOS; gleiche Cue-ID und Loopmarker.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-006",
+        "GDD chapter 81"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-007",
+      "topic": "Audiobusse",
+      "canonicalRule": "master, music, sfx, voice, ui, ambient.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-007",
+        "GDD chapter 82"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    }
+  ]
+}

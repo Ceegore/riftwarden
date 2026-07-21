@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://riftwarden.local/schemas/tests.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "tests"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "status", "ownerPhase", "method"],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string", "minLength": 3},
+          "status": {"enum": ["planned", "implemented", "verified", "blocked", "deferred_by_spec"]},
+          "ownerPhase": {"type": "string"},
+          "method": {"enum": ["unit", "property", "golden", "integration", "e2e", "visual", "native", "manual", "review", "static"]}
+        }
+      }
+    }
+  }
+}

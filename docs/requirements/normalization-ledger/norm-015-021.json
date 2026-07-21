@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "id": "NORM-015",
+      "topic": "Settings",
+      "canonicalRule": "settings.json ist autoritativ. Capacitor Preferences enthält nur nichtautoritative Boot-Hinweise, etwa zuletzt bekannte Sprache.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-015",
+        "GDD chapter 83 authority review required"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-016",
+      "topic": "Zeitlimit",
+      "canonicalRule": "90 s normal/elite, 120 s Boss, 15 s Kollaps, 180 s absoluter Failsafe; spätere Tie-Break-Reihenfolge.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-016",
+        "GDD chapters 73/76 and dataset-specific rules"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-017",
+      "topic": "Low-End",
+      "canonicalRule": "Simulation bleibt immer 30 TPS. Low/Minimum darf 30 Render-FPS und kosmetisch reduzierte Qualität nutzen, niemals Tickskip oder Telegraphieverlust.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-017",
+        "GDD chapter 84 authority review required"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-018",
+      "topic": "Voice",
+      "canonicalRule": "DE- und EN-Sprachausgabe ist für den in Kapitel 82.4 beschriebenen Pflichtscope Releaseinhalt, kein optionales Nice-to-have.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-018",
+        "GDD chapter 82.4"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-019",
+      "topic": "Dependency",
+      "canonicalRule": "Nur die V5-Allowlist. Neues Runtime-Paket benötigt Security-/Lizenz-/Bundleprüfung und ADR; Designfunktion zusätzlich neue GDD-Version.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-019",
+        "GDD chapters 72-87 authority review required"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-020",
+      "topic": "Contentreihenfolge",
+      "canonicalRule": "Vollständige GDD-Inhalte werden früh strukturell extrahiert und validiert. Produktionsassets, vollständige Balance und Politur werden erst nach bestandenem Vertical Slice skaliert.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-020",
+        "GDD chapter 87 authority review required"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "id": "NORM-021",
+      "topic": "Externe Restwerte",
+      "canonicalRule": "Legal Name, Support/Privacy URLs, Preisstufe und finale IDs blockieren Entwicklung nicht, aber Closed Test/TestFlight beziehungsweise Submission über Buildvalidatoren.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-021",
+        "GDD chapters 86/87 authority review required"
+      ],
+      "affectedRequirementIds": [],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "requires_review",
+      "reviewedBy": null,
+      "reviewedAt": null
+    }
+  ]
+}

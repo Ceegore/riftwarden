@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "gdd-v5",
+  "files": [
+    "docs/requirements/source-headings/chapters-01-22.json",
+    "docs/requirements/source-headings/chapters-23-44.json",
+    "docs/requirements/source-headings/chapters-45-66.json",
+    "docs/requirements/source-headings/chapters-67-87.json"
+  ]
+}
