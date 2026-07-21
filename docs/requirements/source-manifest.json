@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "sourceId": "gdd-v5",
   "product": "riftwarden",
-  "authorityStatus": "pending_verification",
+  "authorityStatus": "frozen",
   "publisherConfirmation": {
     "status": "pending",
     "confirmedBy": null,
@@ -15,12 +15,12 @@
       "path": "docs/source/Riftwarden_GDD_V5_0.docx",
       "fileName": "Riftwarden_GDD_V5_0.docx",
       "format": "docx",
-      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
-      "byteSize": 0,
-      "reportedPageCount": null,
+      "sha256": "f550bdf33f3c23787156c0b138f42d29958c84e1dcda562010fbb0874f9d6ed9",
+      "byteSize": 232607,
+      "reportedPageCount": 1,
       "documentVersion": "5.0",
-      "releaseDate": null,
-      "renderedWith": null
+      "releaseDate": "2026-07-16",
+      "renderedWith": "Microsoft Word 12.0.0"
     }
   ],
   "chapterAudit": {
@@ -30,7 +30,7 @@
     "headingsFile": "docs/requirements/source-headings.json",
     "findingsFile": "docs/requirements/source-findings.json",
     "structureFile": "docs/requirements/generated/source-structure.json",
-    "status": "pending"
+    "status": "in_progress"
   },
   "supersedes": [
     {
@@ -39,6 +39,6 @@
       "authority": "none_for_product_design"
     }
   ],
-  "frozenAt": null,
-  "frozenBy": null
+  "frozenAt": "2026-07-22T00:00:00Z",
+  "frozenBy": "riftwarden-p00-t01"
 }

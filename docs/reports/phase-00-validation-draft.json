@@ -1,39 +1,18 @@
 {
+  "schemaVersion": 1,
+  "mode": "draft",
+  "root": "C:\\Projects\\_sortiert\\Riftwarden",
+  "result": "PASS",
+  "totals": {
+    "error": 0,
+    "warning": 0,
+    "info": 0
+  },
   "counts": {
-    "normalizationRecords": 21,
     "requirements": 0,
     "tests": 0,
+    "normalizationRecords": 21,
     "traceabilityLinks": 0
   },
-  "issues": [
-    {
-      "code": "SRC_HASH_MISMATCH",
-      "details": {
-        "actual": "f550bdf33f3c23787156c0b138f42d29958c84e1dcda562010fbb0874f9d6ed9",
-        "expected": "0000000000000000000000000000000000000000000000000000000000000000"
-      },
-      "message": "Frozen source hash differs from the file.",
-      "path": "docs/source/Riftwarden_GDD_V5_0.docx",
-      "severity": "error"
-    },
-    {
-      "code": "SRC_SIZE_MISMATCH",
-      "details": {
-        "actual": 232607,
-        "expected": 0
-      },
-      "message": "Manifest byteSize differs from the file.",
-      "path": "docs/source/Riftwarden_GDD_V5_0.docx",
-      "severity": "error"
-    }
-  ],
-  "mode": "draft",
-  "result": "FAIL",
-  "root": "C:\\Projects\\_sortiert\\Riftwarden",
-  "schemaVersion": 1,
-  "totals": {
-    "error": 2,
-    "info": 0,
-    "warning": 0
-  }
+  "issues": []
 }
