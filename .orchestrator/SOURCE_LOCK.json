@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "project_id": "riftwarden",
+  "context_version": "phase00-setup-2026-07-22",
+  "authority_manifest_sha256": "da875ed24121f475c6b9647424ac304b4c9ac41b6b4de6993f3c64a32b818fc3",
+  "created_at": "2026-07-22T00:51:00Z",
+  "created_by": "GLM_ORCHESTRATOR",
+  "entries": [
+    {
+      "path": "docs/source/Riftwarden_GDD_V5_0.docx",
+      "size_bytes": 232607,
+      "sha256": "f550bdf33f3c23787156c0b138f42d29958c84e1dcda562010fbb0874f9d6ed9",
+      "classification": "authoritative",
+      "authority_rank": 40,
+      "approval_status": "not_applicable",
+      "notes": "GDD V5.0 - primary product-design authority. Publisher confirmation still pending (GAP-PUBLISHER-CONFIRMATION)."
+    },
+    {
+      "path": "docs/source/Riftwarden_Entwicklungsplan_V2_0.docx",
+      "size_bytes": 335310,
+      "sha256": "69bcb6aab1d82a319331e3ec446ec3918502bee5f1ff19d74598ed40c107c4e6",
+      "classification": "supporting",
+      "authority_rank": 50,
+      "approval_status": "not_applicable",
+      "notes": "Development Plan V2.0 - supporting only (sequence/policy), NOT a design authority."
+    }
+  ],
+  "repository_baseline": {
+    "branch": "main",
+    "commit": "9f1c39fd67f3c9f20499dd60b91a49d932de4c54",
+    "tree_hash": "32d36c9e82367f0c5fcc95831843ba554cdc0771",
+    "dirty": false
+  },
+  "lock_sha256": "2ede1007f46d932456ab220f767906f6aeb5b1a2abbf5078ce5982fc2e058acb"
+}

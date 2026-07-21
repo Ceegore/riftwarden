@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BLOCKER_REPORT.schema.json",
+  "title": "Executor Blocker Report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "blocker_id",
+    "project_id",
+    "phase_id",
+    "work_package_id",
+    "type",
+    "severity",
+    "requirement",
+    "observed_evidence",
+    "attempts",
+    "why_stopped",
+    "decision_needed",
+    "options",
+    "repository_state",
+    "rollback_safe",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "blocker_id": {
+      "type": "string"
+    },
+    "project_id": {
+      "type": "string"
+    },
+    "phase_id": {
+      "type": "string"
+    },
+    "work_package_id": {
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "AUTHORITY_CONFLICT",
+        "MISSING_REQUIREMENT",
+        "SCOPE_EXPANSION",
+        "PUBLIC_CONTRACT_CHANGE",
+        "DEPENDENCY_REQUIRED",
+        "MIGRATION_REQUIRED",
+        "SECURITY_PRIVACY",
+        "ENVIRONMENT",
+        "REPOSITORY_DRIFT",
+        "TEST_INFRASTRUCTURE",
+        "RETRY_EXHAUSTED",
+        "CONTEXT_BUDGET",
+        "CREDENTIAL_REQUIRED",
+        "OTHER"
+      ]
+    },
+    "severity": {
+      "enum": [
+        "P0",
+        "P1",
+        "P2",
+        "P3"
+      ]
+    },
+    "requirement": {
+      "type": "string"
+    },
+    "observed_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "attempts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "action",
+          "result"
+        ],
+        "properties": {
+          "action": {
+            "type": "string"
+          },
+          "result": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "why_stopped": {
+      "type": "string"
+    },
+    "decision_needed": {
+      "type": "string"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "option",
+          "tradeoffs"
+        ],
+        "properties": {
+          "option": {
+            "type": "string"
+          },
+          "tradeoffs": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "repository_state": {
+      "type": "object",
+      "required": [
+        "branch",
+        "commit",
+        "tree_hash",
+        "dirty"
+      ],
+      "properties": {
+        "branch": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        },
+        "tree_hash": {
+          "type": "string"
+        },
+        "dirty": {
+          "type": "boolean"
+        }
+      }
+    },
+    "rollback_safe": {
+      "type": "boolean"
+    },
+    "created_at": {
+      "type": "string"
+    }
+  }
+}

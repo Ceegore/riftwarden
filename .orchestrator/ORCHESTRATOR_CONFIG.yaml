@@ -1,0 +1,80 @@
+# Riftwarden — Orchestrator Configuration
+# Derived from templates/ORCHESTRATOR_CONFIG.template.yaml (bundle v1.0.0)
+config_version: "1.0"
+project_id: "riftwarden"
+
+# Integration mode: API-to-API supervisor (proven: M3 OpenAI-compatible API works,
+# native subagent cannot pin MiniMax model). See ENVIRONMENT_AND_ADAPTER_CAPABILITY_REPORT.md
+mode: "api-supervisor"
+
+models:
+  orchestrator:
+    provider: "zai"
+    model: "glm-5.2"
+    thinking_default: "medium"
+  executor:
+    provider: "minimax"
+    model: "MiniMax-M3"
+    base_url: "https://api.minimax.io/v1"
+    api_key_env: "MINIMAX_API_KEY"
+
+state:
+  root: ".orchestrator"
+  format: "json-jsonl"
+  sqlite_optional: true
+
+execution:
+  max_concurrent_work_packages: 3
+  heartbeat_seconds: 120
+  hang_threshold_seconds: 900
+  package_timeout_seconds: 28800
+  autonomous_repair_rounds_per_error_class: 3
+  require_clean_worktree: true
+  branch_per_work_package: true
+  auto_merge: false
+
+# GLM call gates. true = GLM must decide at this event. routine_checkpoint off = don't spam GLM.
+glm_gates:
+  phase_plan: true
+  contract_approval: true
+  routine_checkpoint: false
+  completion_review: true
+  blocker: true
+  architecture_change: true
+  dependency_change: true
+  security_event: true
+  phase_acceptance: true
+
+audit_sampler:
+  enabled: true
+  routine_checkpoint_probability: 0.05
+
+context:
+  routine_review_soft_input_tokens: 20000
+  architecture_review_soft_input_tokens: 60000
+  full_context_requires_explicit_gate: true
+  stable_prefix_hash_required: true
+  preserve_provider_thinking_when_required: true
+
+budget:
+  glm_share_soft_percent: 15
+  glm_share_hard_percent: 25
+  stop_on_missing_usage_telemetry: false
+  warn_on_cache_hit_below_percent: 40
+
+retry:
+  provider_transient_max: 3
+  schema_repair_max: 1
+  tool_timeout_diagnostic_max: 1
+
+security:
+  path_policy_file: "PATH_ALLOWLIST.json"
+  command_policy_file: "COMMAND_POLICY.yaml"
+  network_default: "deny"
+  destructive_actions: "human_gate"
+  external_writes: "human_gate"
+  redact_secrets: true
+
+fallback:
+  allow_mailbox_mode: true
+  mailbox_root: ".orchestrator/mailbox"

@@ -1,0 +1,98 @@
+# Riftwarden — Project Authority Manifest
+# Derived from templates/PROJECT_AUTHORITY_MANIFEST.template.yaml (bundle v1.0.0)
+manifest_version: "1.0"
+
+project:
+  id: "riftwarden"
+  name: "Riftwarden"
+  context_version: "phase00-setup-2026-07-22"
+  repository_root: "C:/Projects/_sortiert/Riftwarden"
+  source_root: "docs/source"
+  target_platforms:
+    - "android"
+    - "ios"
+
+# Authority hierarchy. Lower rank = higher authority.
+authority_order:
+  - id: "approved_clarifications"
+    rank: 10
+    paths: []  # none yet
+    approval_rule: "must be a signed/approved addendum with explicit APPROVED status"
+  - id: "source_lock"
+    rank: 20
+    paths: [".orchestrator/SOURCE_LOCK.json"]
+  - id: "architecture"
+    rank: 30
+    paths: []  # Phase 02 freezes toolchain/architecture
+  - id: "gdd"
+    rank: 40
+    paths: ["docs/source/Riftwarden_GDD_V5_0.docx"]
+    note: "GDD V5 chapters 72-87 carry primary design authority"
+  - id: "development_plan"
+    rank: 50
+    paths: ["docs/source/Riftwarden_Entwicklungsplan_V2_0.docx"]
+    note: "Supporting only: sequence, ticket sizing, file/git/test policy. NOT a design authority."
+
+required_read_order:
+  - "docs/source/Riftwarden_GDD_V5_0.docx"
+  - "docs/source/Riftwarden_Entwicklungsplan_V2_0.docx"
+  - "Phasen/Phase_00/RIFTWARDEN_PHASE_00_UMSETZUNGSHANDBUCH.md"
+  - ".orchestration_source/GLM52_M3_ORCHESTRATION_PACKAGE_v1.0.0/00_README_FIRST.md"
+
+excluded_sources:
+  - path: "Phasen/"
+    reason: "Planning archives (87 phase packages) - authoritative handbooks read on demand, ZIPs are scaffolding only; excluded from git history"
+  - path: "backup/"
+    reason: "Duplicate historical copies of planning docs"
+  - path: ".orchestration_source/"
+    reason: "Framework package - read-only reference, not project authority"
+
+known_conflicts: []
+
+known_gaps:
+  - id: "GAP-PHASE-17-STARTERKIT"
+    description: "Phase 17 starter-kit ZIP missing (handbook present and authoritative)"
+    resolution_policy: "First WP of Phase 17 rebuilds scaffolding (contracts/schemas/fixtures/tools) from the handbook spec as a declared deviation before substantive WPs run"
+    blocks_now: false
+  - id: "GAP-PHASE-30-STARTERKIT"
+    description: "Phase 30 starter-kit ZIP is 0-byte/corrupt (handbook present and authoritative)"
+    resolution_policy: "First WP of Phase 30 rebuilds scaffolding from the handbook spec as a declared deviation before substantive WPs run"
+    blocks_now: false
+  - id: "GAP-PUBLISHER-CONFIRMATION"
+    description: "No publisher confirmation artifact exists that V5 is the final design spec"
+    resolution_policy: "Operator must provide a confirmation artifact; G00 cannot PASS without it (validator hard-requires publisherConfirmation.status=confirmed). Phase 00 may proceed in draft mode only."
+    blocks_now: true
+    blocks_gate: "G00"
+
+non_assumptions:
+  - "Do not infer implementation from planning docs"
+  - "Do not invent approvals, commits, tests, builds, or platform smokes"
+  - "Do not treat the Development Plan as a product-design authority"
+  - "Do not fabricate publisher confirmation or external decision values"
+  - "Repository code is the current state, not automatically the required spec"
+
+commands:
+  install: "not-applicable-phase00"  # Phase 00 forbids new runtime deps
+  lint: "not-applicable-phase00"
+  typecheck: "not-applicable-phase00"
+  unit: "node --test tools/requirements/tests/validator.test.mjs"
+  integration: "node tools/requirements/validate.mjs --mode=draft --json docs/reports/phase-00-validation-draft.json"
+  build: "not-applicable-phase00"
+
+definition_of_done:
+  - "Requirements implemented against authoritative GDD source"
+  - "Public contracts correct"
+  - "Tests written and passing with evidence"
+  - "Regression covered"
+  - "No unauthorized dependency"
+  - "No secret in repo"
+  - "Evidence report schema-valid and commit-bound"
+  - "Phase handoff produced"
+
+security:
+  secrets_roots:
+    - ".env"
+    - "*.pem"
+    - "*.key"
+  network_default: "deny"
+  external_writes: "human_gate"

@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "read_roots": [
+    "C:/Projects/_sortiert/Riftwarden",
+    "C:/Projects/_sortiert/Riftwarden/.orchestration_source"
+  ],
+  "write_roots": [
+    "C:/Projects/_sortiert/Riftwarden/docs",
+    "C:/Projects/_sortiert/Riftwarden/tools",
+    "C:/Projects/_sortiert/Riftwarden/src",
+    "C:/Projects/_sortiert/Riftwarden/tests",
+    "C:/Projects/_sortiert/Riftwarden/.orchestrator"
+  ],
+  "forbidden_roots": [
+    "C:/Projects/_sortiert/Riftwarden/.git",
+    "C:/Users/ceewi/.ssh",
+    "C:/Users/ceewi/.config",
+    "C:/Projects/_sortiert/Riftwarden/.orchestration_source"
+  ],
+  "generated_roots": [
+    "C:/Projects/_sortiert/Riftwarden/docs/requirements/generated",
+    "C:/Projects/_sortiert/Riftwarden/dist",
+    "C:/Projects/_sortiert/Riftwarden/coverage"
+  ],
+  "allowed_extensions": ["*"],
+  "max_single_file_bytes": 10485760,
+  "symlink_policy": "deny_write_through",
+  "binary_write_policy": "contract_only",
+  "notes": "forbidden: .git (history integrity), .ssh/.config (secrets), .orchestration_source (read-only framework). write_roots are the only areas M3 may mutate."
+}

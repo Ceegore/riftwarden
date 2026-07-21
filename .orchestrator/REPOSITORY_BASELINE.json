@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "project_id": "riftwarden",
+  "repository_root": "C:/Projects/_sortiert/Riftwarden",
+  "captured_at": "2026-07-22T00:52:00Z",
+  "git": {
+    "is_repository": true,
+    "branch": "main",
+    "commit": "9f1c39fd67f3c9f20499dd60b91a49d932de4c54",
+    "tree_hash": "32d36c9e82367f0c5fcc95831843ba554cdc0771",
+    "dirty": false,
+    "tracked_changes": [],
+    "untracked_files": [],
+    "submodules": []
+  },
+  "toolchain": [
+    {
+      "name": "node",
+      "version": "v25.8.0",
+      "path": "node"
+    },
+    {
+      "name": "python",
+      "version": "3.12.10",
+      "path": "python"
+    },
+    {
+      "name": "git",
+      "version": "2.53.0.windows.1",
+      "path": "git"
+    }
+  ],
+  "baseline_commands": [
+    {
+      "id": "node-test-starterkit",
+      "command": "node --test tools/requirements/tests/validator.test.mjs",
+      "working_directory": ".",
+      "exit_code": null,
+      "status": "not_yet_run",
+      "note": "starter-kit not yet copied; will be run by P00-T01",
+      "artifact_path": null,
+      "artifact_sha256": null
+    }
+  ],
+  "known_failures": [],
+  "ports_and_processes": [],
+  "environment_notes": [
+    "Windows 10.0.26200 x64; Git Bash shell; CRLF normalization warnings expected (harmless).",
+    "Greenfield repo - no pre-existing failures attributable to anyone."
+  ],
+  "baseline_sha256": "5e6be08698cfcb2ebab61162cc4d89e371e7484bd468f2a015f31ece90718f29"
+}
