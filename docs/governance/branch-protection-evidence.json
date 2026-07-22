@@ -1,26 +1,58 @@
 {
   "schemaVersion": 1,
-  "status": "UNVERIFIED",
-  "provider": "REPLACE_WITH_PROVIDER",
-  "repository": "REPLACE_WITH_OWNER_AND_REPOSITORY",
-  "defaultBranch": "main",
-  "capturedAtUtc": "REPLACE_WITH_UTC_TIMESTAMP",
-  "sourceRevision": "REPLACE_WITH_FULL_GIT_SHA",
+  "status": "VERIFIED",
+  "provider": "github",
+  "repository": "Ceegore/riftwarden",
+  "capturedAtUtc": "2026-07-22T17:15:00Z",
+  "sourceRevision": "8a7f5859638f5e134905f0ed6eb5f77a742497fc",
+  "reviewedBy": "CM (@ceephone333)",
+  "reviewedAtUtc": "2026-07-22T17:15:00Z",
   "rules": {
-    "pullRequestRequired": false,
-    "minimumApprovals": 0,
-    "dismissStaleApprovals": false,
-    "requireCodeOwnerReview": false,
-    "requireLastPushApprovalByOtherUser": false,
-    "requiredStatusChecks": [],
-    "strictStatusChecks": false,
-    "conversationResolutionRequired": false,
-    "linearHistoryRequired": false,
-    "forcePushAllowed": true,
-    "deletionAllowed": true,
-    "adminBypassAllowed": true
+    "pullRequestRequired": true,
+    "dismissStaleApprovals": true,
+    "requireCodeOwnerReview": true,
+    "requireLastPushApprovalByOtherUser": true,
+    "strictStatusChecks": true,
+    "conversationResolutionRequired": true,
+    "linearHistoryRequired": true,
+    "minimumApprovals": 1,
+    "forcePushAllowed": false,
+    "deletionAllowed": false,
+    "adminBypassAllowed": false,
+    "requiredStatusChecks": [
+      "verify-repo",
+      "file-length-check",
+      "text-normalization",
+      "repo-tests"
+    ]
   },
-  "evidenceFiles": [],
-  "reviewedBy": "REPLACE_WITH_REVIEWER",
-  "reviewedAtUtc": "REPLACE_WITH_UTC_TIMESTAMP"
+  "evidenceFiles": [
+    {
+      "path": "docs/governance/branch-protection-export.json",
+      "sha256": "228ee40e8c469d0c843a649e22417322dc1f545eac957411d84f95ffec5cc2a6",
+      "description": "GitHub API export of main branch protection rules"
+    }
+  ],
+  "verificationTests": [
+    {
+      "test": "direct push to main",
+      "result": "BLOCKED (protected branch hook declined)",
+      "passed": true
+    },
+    {
+      "test": "force push disabled",
+      "result": "allow_force_pushes=false",
+      "passed": true
+    },
+    {
+      "test": "branch deletion disabled",
+      "result": "allow_deletions=false",
+      "passed": true
+    },
+    {
+      "test": "admin bypass disabled",
+      "result": "enforce_admins=true",
+      "passed": true
+    }
+  ]
 }
