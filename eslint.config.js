@@ -3,7 +3,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
 
-const simulationFiles = ['src/game/sim/**/*.{ts,tsx}'];
+const simulationFiles = ['src/game/sim/**/*.{ts,tsx}', 'tests/fixtures/negative/lint/sim-*.ts'];
 
 export default tseslint.config(
   {
