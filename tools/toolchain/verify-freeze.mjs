@@ -23,7 +23,7 @@ for (const section of ['dependencies', 'devDependencies']) {
 for (const name of allowed.keys()) {
   if (!(name in (pkg.dependencies ?? {})) && !(name in (pkg.devDependencies ?? {}))) errors.push(`Allowed required package missing: ${name}`);
 }
-for (const forbidden of ['package-lock.json','yarn.lock','bun.lock','bun.lockb','pnpm-workspace.yaml']) {
+for (const forbidden of ['package-lock.json', 'yarn.lock', 'bun.lock', 'bun.lockb', 'pnpm-workspace.yaml']) {
   if (fs.existsSync(path.join(repositoryRoot, forbidden))) errors.push(`Forbidden root file exists: ${forbidden}`);
 }
 if (!fs.existsSync(path.join(repositoryRoot, 'pnpm-lock.yaml'))) errors.push('pnpm-lock.yaml is missing.');

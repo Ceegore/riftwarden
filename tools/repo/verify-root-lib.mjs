@@ -11,6 +11,24 @@ import {
 } from './contracts.mjs';
 import { gitRoot, listGitVisibleFiles, listTrackedFiles } from './git-files.mjs';
 
+/**
+ * @typedef {{
+ *   schemaVersion: number,
+ *   check: string,
+ *   root: string,
+ *   passed: boolean,
+ *   summary: { errors: number, warnings: number, total: number },
+ *   findings: Array<{ code: string, severity: string, path: string|null, message: string, repair: string }>
+ * }} VerifyRootReport
+ */
+
+/**
+ * Reads JSON from disk and reports failures via findings.
+ * @param {string} path File path.
+ * @param {Array<{code: string, severity: string, path: string|null, message: string, repair: string}>} findings Findings accumulator.
+ * @param {string} label Human label used in errors.
+ * @returns {unknown|null}
+ */
 function readJson(path, findings, label) {
   try {
     return JSON.parse(readFileSync(path, 'utf8'));
@@ -20,6 +38,11 @@ function readJson(path, findings, label) {
   }
 }
 
+/**
+ * Validates the root package.json content.
+ * @param {string} root Repository root.
+ * @param {Array<{code: string, severity: string, path: string|null, message: string, repair: string}>} findings Findings accumulator.
+ */
 function validatePackage(root, findings) {
   const path = resolve(root, 'package.json');
   const packageJson = readJson(path, findings, 'package.json');
@@ -47,6 +70,11 @@ function validatePackage(root, findings) {
   }
 }
 
+/**
+ * Validates the repository profile JSON contract.
+ * @param {string} root Repository root.
+ * @param {Array<{code: string, severity: string, path: string|null, message: string, repair: string}>} findings Findings accumulator.
+ */
 function validateProfile(root, findings) {
   const profilePath = resolve(root, 'docs/governance/repository-profile.json');
   const profile = readJson(profilePath, findings, 'repository profile');
@@ -59,6 +87,11 @@ function validateProfile(root, findings) {
   }
 }
 
+/**
+ * Validates required/forbidden paths under the repository root.
+ * @param {string} root Repository root.
+ * @param {Array<{code: string, severity: string, path: string|null, message: string, repair: string}>} findings Findings accumulator.
+ */
 function validatePaths(root, findings) {
   for (const relative of REQUIRED_FILES) {
     const absolute = resolve(root, relative);
@@ -79,6 +112,11 @@ function validatePaths(root, findings) {
   }
 }
 
+/**
+ * Validates that the repository root is a single Git repository.
+ * @param {string} root Repository root.
+ * @param {Array<{code: string, severity: string, path: string|null, message: string, repair: string}>} findings Findings accumulator.
+ */
 function validateGit(root, findings) {
   const discovered = gitRoot(root);
   if (!discovered) {
@@ -93,6 +131,11 @@ function validateGit(root, findings) {
   }
 }
 
+/**
+ * Validates that no sensitive or signed artifacts are Git-visible.
+ * @param {string} root Repository root.
+ * @param {Array<{code: string, severity: string, path: string|null, message: string, repair: string}>} findings Findings accumulator.
+ */
 function validateSensitiveFiles(root, findings) {
   const visible = listGitVisibleFiles(root);
   const tracked = new Set(listTrackedFiles(root));
@@ -109,6 +152,11 @@ function validateSensitiveFiles(root, findings) {
   }
 }
 
+/**
+ * Validates that placeholders are absent in routable files.
+ * @param {string} root Repository root.
+ * @param {Array<{code: string, severity: string, path: string|null, message: string, repair: string}>} findings Findings accumulator.
+ */
 function validatePlaceholders(root, findings) {
   for (const relative of ['.github/CODEOWNERS']) {
     const absolute = resolve(root, relative);
@@ -120,6 +168,11 @@ function validatePlaceholders(root, findings) {
   }
 }
 
+/**
+ * Runs the full Phase-01 root validation.
+ * @param {string} [root] Repository root.
+ * @returns {VerifyRootReport}
+ */
 export function verifyRoot(root = process.cwd()) {
   const findings = [];
   validateGit(root, findings);

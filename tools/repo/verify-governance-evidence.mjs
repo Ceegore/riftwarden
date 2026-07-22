@@ -9,7 +9,19 @@ const evidencePath = resolve(root, 'docs/governance/branch-protection-evidence.j
 const checksPath = resolve(root, 'docs/governance/required-checks.phase01.json');
 const codeownersPath = resolve(root, '.github/CODEOWNERS');
 const findings = [];
+const booleansThatMustBeTrue = [
+  'pullRequestRequired', 'dismissStaleApprovals', 'requireCodeOwnerReview',
+  'requireLastPushApprovalByOtherUser', 'strictStatusChecks',
+  'conversationResolutionRequired', 'linearHistoryRequired',
+];
+const criticalCodeownerPaths = ['/src/game/sim/', '/src/storage/', '/android/', '/ios/', '/content/', '/docs/release/', '/store/'];
 
+/**
+ * Loads a JSON file and pushes a finding on failure.
+ * @param {string} path File path.
+ * @param {string} label Human label.
+ * @returns {unknown|null}
+ */
 function loadJson(path, label) {
   try {
     return JSON.parse(readFileSync(path, 'utf8'));
@@ -28,11 +40,6 @@ if (evidence && required) {
   }
   if (!/^[0-9a-f]{40}$/i.test(evidence.sourceRevision ?? '')) findings.push('sourceRevision must be a full 40-character Git SHA.');
   const rules = evidence.rules ?? {};
-  const booleansThatMustBeTrue = [
-    'pullRequestRequired', 'dismissStaleApprovals', 'requireCodeOwnerReview',
-    'requireLastPushApprovalByOtherUser', 'strictStatusChecks',
-    'conversationResolutionRequired', 'linearHistoryRequired',
-  ];
   for (const field of booleansThatMustBeTrue) if (rules[field] !== true) findings.push(`Branch rule must enable ${field}.`);
   if ((rules.minimumApprovals ?? 0) < 1) findings.push('At least one approval is required.');
   if (rules.forcePushAllowed !== false) findings.push('Force pushes must be disabled.');
@@ -59,7 +66,7 @@ if (evidence && required) {
 if (existsSync(codeownersPath)) {
   const codeowners = readFileSync(codeownersPath, 'utf8');
   if (PLACEHOLDER_PATTERN.test(codeowners)) findings.push('CODEOWNERS contains unresolved placeholders.');
-  for (const path of ['/src/game/sim/', '/src/storage/', '/android/', '/ios/', '/content/', '/docs/release/', '/store/']) {
+  for (const path of criticalCodeownerPaths) {
     if (!codeowners.includes(path)) findings.push(`CODEOWNERS lacks critical path: ${path}.`);
   }
 } else {

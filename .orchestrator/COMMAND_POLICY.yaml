@@ -1,84 +1,117 @@
-# Riftwarden — Command Policy (deny-by-default, per operator choice)
-# Derived from templates/COMMAND_POLICY.template.yaml (bundle v1.0.0)
-version: "1.0"
-default: "deny"
-
 commands:
-  # READ_ONLY - always safe
-  - id: "git-status"
-    category: "READ_ONLY"
-    executable: "git"
-    allowed_args_prefixes: [["status"], ["diff"], ["log"], ["rev-parse"], ["ls-files"], ["show"], ["branch"]]
-  - id: "node-test"
-    category: "BUILD_TEST"
-    executable: "node"
-    allowed_args_prefixes: [["--test"], ["tools/requirements"]]
-  - id: "node-validate-draft"
-    category: "BUILD_TEST"
-    executable: "node"
-    allowed_args_prefixes: [["tools/requirements/validate.mjs", "--mode=draft"]]
-  - id: "node-validate-gate"
-    category: "BUILD_TEST"
-    executable: "node"
-    allowed_args_prefixes: [["tools/requirements/validate.mjs", "--mode=gate"]]
-  - id: "node-audit-headings"
-    category: "BUILD_TEST"
-    executable: "node"
-    allowed_args_prefixes: [["tools/requirements/audit-headings.mjs"]]
-  - id: "node-build-reports"
-    category: "BUILD_TEST"
-    executable: "node"
-    allowed_args_prefixes: [["tools/requirements/build-reports.mjs"]]
-  - id: "node-check-external"
-    category: "BUILD_TEST"
-    executable: "node"
-    allowed_args_prefixes: [["tools/requirements/check-external-decisions.mjs"]]
-  - id: "node-check-phase-report"
-    category: "BUILD_TEST"
-    executable: "node"
-    allowed_args_prefixes: [["tools/requirements/check-phase-report.mjs"]]
-  - id: "node-hash-source"
-    category: "BUILD_TEST"
-    executable: "node"
-    allowed_args_prefixes: [["tools/requirements/hash-source.mjs"]]
-  - id: "node-canonicalize"
-    category: "MUTATING_LOCAL"
-    executable: "node"
-    allowed_args_prefixes: [["tools/requirements/canonicalize-json.mjs"]]
-  - id: "python-extract-docx"
-    category: "BUILD_TEST"
-    executable: "python"
-    allowed_args_prefixes: [["tools/requirements/python/extract_docx_structure.py"]]
-  - id: "python-find-markers"
-    category: "BUILD_TEST"
-    executable: "python"
-    allowed_args_prefixes: [["tools/requirements/python/find_source_markers.py"]]
-  - id: "git-add"
-    category: "MUTATING_LOCAL"
-    executable: "git"
-    allowed_args_prefixes: [["add"]]
-    note: "local git add on phase branch"
-  - id: "git-commit"
-    category: "MUTATING_LOCAL"
-    executable: "git"
-    allowed_args_prefixes: [["commit"]]
-    note: "local commits allowed on phase branch; NO push/merge without human gate"
-  - id: "sha256sum"
-    category: "READ_ONLY"
-    executable: "sha256sum"
-    allowed_args_prefixes: [["docs"], ["tools"], ["src"], ["tests"]]
-
+- allowed_args_prefixes:
+  - - status
+  - - diff
+  - - log
+  - - rev-parse
+  - - ls-files
+  - - show
+  - - branch
+  category: READ_ONLY
+  executable: git
+  id: git-status
+- allowed_args_prefixes:
+  - - --test
+  - - tools/requirements
+  category: BUILD_TEST
+  executable: node
+  id: node-test
+- allowed_args_prefixes:
+  - - tools/requirements/validate.mjs
+    - --mode=draft
+  category: BUILD_TEST
+  executable: node
+  id: node-validate-draft
+- allowed_args_prefixes:
+  - - tools/requirements/validate.mjs
+    - --mode=gate
+  category: BUILD_TEST
+  executable: node
+  id: node-validate-gate
+- allowed_args_prefixes:
+  - - tools/requirements/audit-headings.mjs
+  category: BUILD_TEST
+  executable: node
+  id: node-audit-headings
+- allowed_args_prefixes:
+  - - tools/requirements/build-reports.mjs
+  category: BUILD_TEST
+  executable: node
+  id: node-build-reports
+- allowed_args_prefixes:
+  - - tools/requirements/check-external-decisions.mjs
+  category: BUILD_TEST
+  executable: node
+  id: node-check-external
+- allowed_args_prefixes:
+  - - tools/requirements/check-phase-report.mjs
+  category: BUILD_TEST
+  executable: node
+  id: node-check-phase-report
+- allowed_args_prefixes:
+  - - tools/requirements/hash-source.mjs
+  category: BUILD_TEST
+  executable: node
+  id: node-hash-source
+- allowed_args_prefixes:
+  - - tools/requirements/canonicalize-json.mjs
+  category: MUTATING_LOCAL
+  executable: node
+  id: node-canonicalize
+- allowed_args_prefixes:
+  - - tools/requirements/python/extract_docx_structure.py
+  category: BUILD_TEST
+  executable: python
+  id: python-extract-docx
+- allowed_args_prefixes:
+  - - tools/requirements/python/find_source_markers.py
+  category: BUILD_TEST
+  executable: python
+  id: python-find-markers
+- allowed_args_prefixes:
+  - - add
+  category: MUTATING_LOCAL
+  executable: git
+  id: git-add
+  note: local git add on phase branch
+- allowed_args_prefixes:
+  - - commit
+  category: MUTATING_LOCAL
+  executable: git
+  id: git-commit
+  note: local commits allowed on phase branch; NO push/merge without human gate
+- allowed_args_prefixes:
+  - - docs
+  - - tools
+  - - src
+  - - tests
+  category: READ_ONLY
+  executable: sha256sum
+  id: sha256sum
+- allowed_args_prefixes:
+  - - tsc
+    - -p
+    - tsconfig.node.json
+    - --noEmit
+  category: BUILD_TEST
+  executable: npx
+  id: node-validate-types
+- allowed_args_prefixes:
+  - - tsc
+  category: BUILD_TEST
+  executable: npx
+  id: npx-tsc
+default: deny
 human_gate_categories:
-  - "DEPENDENCY_CHANGE"
-  - "DESTRUCTIVE"
-  - "EXTERNAL_WRITE"
-
+- DEPENDENCY_CHANGE
+- DESTRUCTIVE
+- EXTERNAL_WRITE
 network:
-  default: "deny"
   allowed_hosts:
-    - "api.minimax.io"  # the adapter itself calls M3; child run_command is still network-denied
-
+  - api.minimax.io
+  default: deny
 shell:
   allow_chaining: false
-  allow_redirection: false
   allow_powershell_encoded_command: false
+  allow_redirection: false
+version: '1.0'

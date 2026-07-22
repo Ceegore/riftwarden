@@ -1,3 +1,29 @@
+/**
+ * @typedef {{
+ *   level: 'error'|'warning',
+ *   code: string,
+ *   path: string|null,
+ *   lines: number|null,
+ *   message: string
+ * }} FileLengthFinding
+ *
+ * @typedef {{
+ *   schemaVersion: number,
+ *   check: string,
+ *   root: string,
+ *   passed: boolean,
+ *   thresholds: { warning: number, failure: number },
+ *   summary: { scanned: number, errors: number, warnings: number },
+ *   findings: FileLengthFinding[],
+ *   top20: Array<{path: string, lines: number, generated: boolean}>
+ * }} FileLengthReport
+ */
+
+/**
+ * Renders the report as a human-readable string.
+ * @param {FileLengthReport} report Report to render.
+ * @returns {string}
+ */
 export function humanReport(report) {
   const lines = [`File-length check: ${report.passed ? 'PASS' : 'FAIL'}`];
   for (const finding of report.findings) {
@@ -11,6 +37,11 @@ export function humanReport(report) {
   return `${lines.join('\n')}\n`;
 }
 
+/**
+ * Renders the report as a SARIF 2.1.0 document.
+ * @param {FileLengthReport} report Report to render.
+ * @returns {object}
+ */
 export function sarifReport(report) {
   const rules = [
     { id: 'LENGTH_WARN', shortDescription: { text: 'Human-maintained file is 301-500 lines.' } },

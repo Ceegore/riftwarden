@@ -7,11 +7,15 @@ const policy = readJson(path.join(repositoryRoot, 'reference/license-policy.json
 const pnpmRoot = path.join(repositoryRoot, 'node_modules/.pnpm');
 if (!fs.existsSync(pnpmRoot)) throw new Error('node_modules/.pnpm is missing; perform the audited install first.');
 
+/**
+ * @type {Array<{name: string, version: string|null, license: string|null, source: unknown, classification: string}>}
+ */
 const packages = [];
 for (const entry of fs.readdirSync(pnpmRoot, { withFileTypes: true })) {
   if (!entry.isDirectory()) continue;
   const modulesRoot = path.join(pnpmRoot, entry.name, 'node_modules');
   if (!fs.existsSync(modulesRoot)) continue;
+  /** @type {string[]} */
   const candidates = [];
   for (const name of fs.readdirSync(modulesRoot)) {
     if (name.startsWith('@')) {

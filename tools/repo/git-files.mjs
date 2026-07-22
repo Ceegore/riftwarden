@@ -15,6 +15,11 @@ const EXCLUDED_DIRECTORIES = new Set([
   'DerivedData',
 ]);
 
+/**
+ * Returns the Git toplevel for `root`, or null if not in a repo.
+ * @param {string} [root] Start directory.
+ * @returns {string|null}
+ */
 export function gitRoot(root = process.cwd()) {
   try {
     return execFileSync('git', ['rev-parse', '--show-toplevel'], {
@@ -27,6 +32,11 @@ export function gitRoot(root = process.cwd()) {
   }
 }
 
+/**
+ * Returns the visible files tracked or untracked but not ignored by Git.
+ * @param {string} root Search root.
+ * @returns {string[]}
+ */
 export function listGitVisibleFiles(root) {
   try {
     const output = execFileSync('git', ['ls-files', '-co', '--exclude-standard', '-z'], {
@@ -40,6 +50,11 @@ export function listGitVisibleFiles(root) {
   }
 }
 
+/**
+ * Returns the tracked files in the Git repository.
+ * @param {string} root Search root.
+ * @returns {string[]}
+ */
 export function listTrackedFiles(root) {
   try {
     const output = execFileSync('git', ['ls-files', '-z'], {
@@ -53,8 +68,14 @@ export function listTrackedFiles(root) {
   }
 }
 
+/**
+ * Recursively walks the directory tree and returns POSIX-encoded paths.
+ * @param {string} root Search root.
+ * @returns {string[]}
+ */
 export function listFilesRecursively(root) {
   const result = [];
+  /** @param {string} directory */
   function walk(directory) {
     for (const entry of readdirSync(directory, { withFileTypes: true })) {
       if (entry.isDirectory() && EXCLUDED_DIRECTORIES.has(entry.name)) continue;

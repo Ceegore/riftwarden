@@ -4,19 +4,31 @@ import { dirname, resolve } from 'node:path';
 import { humanReport, sarifReport } from './file-length/reporters.mjs';
 import { scanFileLengths } from './file-length/scan.mjs';
 
+/**
+ * @typedef {Object} FileLengthOptions
+ * @property {string} root Repository root.
+ * @property {'human'|'json'|'sarif'} format Output format.
+ * @property {string|null} output Optional output file path.
+ */
+
+/**
+ * Parses CLI arguments for the file-length checker.
+ * @param {string[]} argv Process argv slice.
+ * @returns {FileLengthOptions}
+ */
 function parseArgs(argv) {
   const options = { root: process.cwd(), format: 'human', output: null };
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
-    if (arg === '--root') options.root = resolve(argv[++index]);
+    if (arg === '--root') options.root = resolve(argv[++index] ?? '');
     else if (arg.startsWith('--root=')) options.root = resolve(arg.slice(7));
-    else if (arg === '--format') options.format = argv[++index];
+    else if (arg === '--format') options.format = argv[++index] ?? '';
     else if (arg.startsWith('--format=')) options.format = arg.slice(9);
-    else if (arg === '--output') options.output = resolve(argv[++index]);
+    else if (arg === '--output') options.output = resolve(argv[++index] ?? '');
     else if (arg.startsWith('--output=')) options.output = resolve(arg.slice(9));
     else throw new Error(`Unknown argument: ${arg}`);
   }
-  if (!['human', 'json', 'sarif'].includes(options.format)) throw new Error(`Unsupported format: ${options.format}`);
+  if (!['human', 'json', 'sarif'].includes(/** @type {string} */ (options.format))) throw new Error(`Unsupported format: ${options.format}`);
   return options;
 }
 

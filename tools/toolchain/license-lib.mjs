@@ -1,3 +1,17 @@
+/**
+ * @typedef {{
+ *   autoAllow: string[],
+ *   manualReview: string[],
+ *   deny: string[]
+ * }} LicensePolicy
+ */
+
+/**
+ * Classifies a license expression against the active policy.
+ * @param {unknown} expression License expression.
+ * @param {LicensePolicy} policy License policy.
+ * @returns {'allow'|'manual-review'|'block'}
+ */
 export function classifyLicense(expression, policy) {
   if (typeof expression !== 'string' || expression.trim() === '') return 'block';
   const normalized = expression.trim();

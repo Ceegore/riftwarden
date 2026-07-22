@@ -4,6 +4,24 @@ import { contractPath, freezePath, readJson, repositoryRoot, writeJson } from '.
 import { fetchPackageMetadata, selectHighestStable } from './registry-client.mjs';
 
 const contract = readJson(contractPath);
+/**
+ * @type {Array<{
+ *   name: string,
+ *   classification: string,
+ *   requestedMajor: number|null,
+ *   versionGroup: string|null,
+ *   resolvedVersion: string,
+ *   license: string|null,
+ *   engines: Record<string, string>,
+ *   peerDependencies: Record<string, string>,
+ *   deprecated: string|null,
+ *   integrity: string|null,
+ *   tarball: string|null,
+ *   repository: unknown,
+ *   homepage: string|null,
+ *   registrySource: string
+ * }>}
+ */
 const resolved = [];
 
 for (const item of [...contract.runtime, ...contract.development]) {

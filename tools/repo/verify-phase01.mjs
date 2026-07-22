@@ -3,6 +3,14 @@ import { spawnSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 
+/**
+ * @typedef {Object} CheckStep
+ * @property {string} name
+ * @property {string[]} command
+ * @property {{shell?: boolean}} [options]
+ */
+
+/** @type {CheckStep[]} */
 const checks = [
   ['verify-repo', ['node', 'tools/repo/verify-root.mjs']],
   ['file-length-check', ['node', 'tools/check-file-length.mjs']],
@@ -11,6 +19,7 @@ const checks = [
   ['governance-evidence', ['node', 'tools/repo/verify-governance-evidence.mjs']],
 ];
 
+/** @type {Array<{name: string, command: string, exitCode: number, stdout: string, stderr: string, passed: boolean}>} */
 const results = [];
 for (const [name, command, options = {}] of checks) {
   const result = spawnSync(command[0], command.slice(1), {
