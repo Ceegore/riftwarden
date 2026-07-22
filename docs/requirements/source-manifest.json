@@ -4,10 +4,12 @@
   "product": "riftwarden",
   "authorityStatus": "frozen",
   "publisherConfirmation": {
-    "status": "pending",
-    "confirmedBy": null,
-    "confirmedAt": null,
-    "statement": "Publisher confirms that GDD V5.0 is the latest approved design specification."
+    "status": "confirmed",
+    "confirmedBy": "CM (project owner)",
+    "confirmedAt": "2026-07-22T00:00:00Z",
+    "statement": "GDD V5.0 is the final, approved design — build the game to this, not an older draft.",
+    "evidenceLink": "docs/source/publisher-confirmation.md",
+    "evidenceSha256": "01bb54a06e44335736e78fc6c9bd97a65c449a2c23ce9d9a6ed4870381e57850"
   },
   "files": [
     {
