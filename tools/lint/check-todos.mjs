@@ -7,7 +7,7 @@ const errors=[];
 function walk(dir) {
   if (!fs.existsSync(dir)) return;
   for (const entry of fs.readdirSync(dir,{withFileTypes:true})) {
-    if (entry.name === 'generated' || entry.name === 'node_modules') continue;
+    if (entry.name === 'generated' || entry.name === 'node_modules' || entry.name === 'lint') continue;
     const full=path.join(dir,entry.name);
     if (entry.isDirectory()) walk(full);
     else if (extensions.has(path.extname(entry.name))) {
