@@ -1,0 +1,21 @@
+# Replace every placeholder with a real GitHub user or team before Gate G01.
+# The root rule ensures that no path is ownerless.
+* @ceephone333
+
+/src/game/sim/ @ceephone333
+/src/game/rules/ @ceephone333
+/src/storage/ @ceephone333
+/src/platform/ @ceephone333
+/android/ @ceephone333
+/ios/ @ceephone333
+/content/ @ceephone333
+/src/game/content/ @ceephone333
+/docs/release/ @ceephone333
+/store/ @ceephone333
+/.github/ @ceephone333
+/tools/ @ceephone333
+
+# Single-owner project: CM (@ceephone333) holds all roles.
+# Independent review strategy for critical paths (sim, save, platform):
+# documented in docs/governance/repository-map.md per handbook §8.2.
+# Gate G01 governance evidence: see docs/governance/branch-protection-evidence.json.

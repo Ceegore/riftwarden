@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "mode": "clean",
+  "expectedDefaultBranch": "main",
+  "singleProject": true,
+  "phase": "01",
+  "allowDependenciesInPhase01": false,
+  "notes": "For an existing repository, document the migration preflight separately. Gate G01 still requires the final single-project contract."
+}

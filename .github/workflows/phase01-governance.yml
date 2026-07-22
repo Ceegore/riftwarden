@@ -1,0 +1,66 @@
+name: phase01-governance
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: phase01-governance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify-repo:
+    name: verify-repo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - run: node tools/repo/verify-root.mjs
+
+  file-length-check:
+    name: file-length-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - run: node tools/check-file-length.mjs
+
+  text-normalization:
+    name: text-normalization
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - run: node tools/repo/check-text-normalization.mjs
+
+  repo-tests:
+    name: repo-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - run: node --test tests/unit/repo/*.test.mjs

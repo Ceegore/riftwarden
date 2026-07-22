@@ -1,48 +1,93 @@
-# === Riftwarden repository gitignore ===
-# Scope: the game repo tracks only authoritative sources + game code + orchestration code.
-# Large planning archives and orchestration state are deliberately excluded.
+# Dependencies and package-manager caches
+node_modules/
+.pnpm-store/
+.npm/
 
-# --- Planning archives (kept on disk, not in git history) ---
+# Build and test output
+dist/
+build/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+
+# Generated runtime output
+content/generated/*
+!content/generated/README.md
+!content/generated/.gitkeep
+public/assets/generated/*
+!public/assets/generated/README.md
+!public/assets/generated/.gitkeep
+docs/reports/generated/*
+!docs/reports/generated/README.md
+!docs/reports/generated/.gitkeep
+
+# Local tools and editors
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.mobileprovision
+*.cer
+*.crt
+*.provisionprofile
+google-services.json
+GoogleService-Info.plist
+
+# Signed/store/native artifacts
+*.apk
+*.aab
+*.ipa
+*.xcarchive/
+*.dSYM/
+DerivedData/
+android/.gradle/
+android/local.properties
+ios/App/Pods/
+
+# Local reports and diagnostics
+*.log
+*.tmp
+*.bak
+*.orig
+riftwarden-*.diagnostic
+riftwarden-*.save
+
+# === Orchestration-specific (added during setup) ===
 /Phasen/
 /backup/
 /Meldungen/
 /.orchestration_source/
 /.zcode/
-
-# --- Duplicate/older source copies at repo root (canonical copies live in docs/source/) ---
 /Riftwarden_Auto_RPG_Roguelite_GDD_V*.docx
 /Riftwarden_Entwicklungsplan*.docx
-
-# --- Orchestrator runtime state (regenerated from files; large/mutable) ---
 /.orchestrator/logs/
 /.orchestrator/artifacts/
 /.orchestrator/checkpoints/
 /.orchestrator/locks/
 /.orchestrator/mailbox/
 /.orchestrator/sessions/
-# NOTE: top-level state JSON/YAML (.orchestrator/*.json, *.yaml) ARE tracked.
-
-# --- Secrets ---
-.env
-.env.*
-*.pem
-*.key
 secrets.json
 credentials.json
-
-# --- Node ---
-node_modules/
 npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-dist/
-build/
-coverage/
 .nyc_output/
-*.tsbuildinfo
-
-# --- Capacitor / mobile ---
 /ios/App/App/public
 /android/app/src/main/assets/public
 /android/app/build/
@@ -50,12 +95,6 @@ coverage/
 /android/.gradle/
 /ios/App/Pods/
 /ios/App/build/
-DerivedData/
-*.apk
-*.aab
-*.ipa
-
-# --- Python (orchestrator tooling) ---
 __pycache__/
 *.py[cod]
 .venv/
@@ -63,15 +102,7 @@ venv/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-
-# --- OS / editor ---
-.DS_Store
-Thumbs.db
 desktop.ini
-.idea/
 .vscode/
-*.swp
 *~
-
-# --- Generated artifacts (tracked explicitly when needed) #
 generated/README_DO_NOT_TRACK.txt
