@@ -1,0 +1,37 @@
+{
+  "handoffVersion": 1,
+  "fromPhase": "PHASE-00",
+  "toPhase": "PHASE-01",
+  "sourceRevision": "5150d41b531da20ca797daf73248f2383621e5a8",
+  "gate": {
+    "id": "G00",
+    "decision": "PASS",
+    "report": "docs/reports/phase-00.json",
+    "validationReport": "docs/reports/phase-00-validation-gate.json"
+  },
+  "requiredArtifacts": [
+    "docs/requirements/source-manifest.json",
+    "docs/requirements/requirements/index.json",
+    "docs/requirements/normalization-ledger.json",
+    "docs/requirements/external-decisions.json",
+    "docs/requirements/tests.json",
+    "docs/requirements/traceability.json"
+  ],
+  "openDefects": [
+    {
+      "id": "DEFECT-P3-0001",
+      "priority": "P3",
+      "description": "ch52 not extracted"
+    },
+    {
+      "id": "DEFECT-P3-0002",
+      "priority": "P3",
+      "description": "fixture test isolation issue"
+    }
+  ],
+  "openDecisionRequests": [],
+  "knownRisks": [
+    "norm-to-requirement links are keyword-based (refine later)",
+    "ownerPhases partly heuristic (adjust during implementation)"
+  ]
+}
