@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "channel": "dev",
+  "files": [
+    {
+      "path": "assets/generated/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "assets/generated/README.md",
+      "sha256": "acb7da49a7f38c01c90fdebcb84692b9b27af1a7b76b4682e668955d6a5dbdfc",
+      "bytes": 157
+    },
+    {
+      "path": "assets/index-7446A-TR.css",
+      "sha256": "dda6fb678b83e03933954283aba078af8d4358e1c380525d5b5c63ccb6a2b782",
+      "bytes": 4659
+    },
+    {
+      "path": "assets/index-eEhkohTm.js",
+      "sha256": "78bebce70273de3679f5ca62d226586235e5dbb86d49f0872c560cfefcd61d99",
+      "bytes": 190887
+    },
+    {
+      "path": "assets/index-eEhkohTm.js.map",
+      "sha256": "324d6ebe93215851b3ec590a04b484807fa498811d32052f8f50c1f8d57871a2",
+      "bytes": 842713
+    },
+    {
+      "path": "index.html",
+      "sha256": "c611bc70b6b15f43c3d86dc18e54d909895d22308e404b6c166169e13d8a3983",
+      "bytes": 706
+    }
+  ]
+}

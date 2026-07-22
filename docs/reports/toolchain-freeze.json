@@ -1,0 +1,674 @@
+{
+  "schemaVersion": 1,
+  "status": "CANDIDATE_REQUIRES_INSTALL_VALIDATION",
+  "resolvedAt": "2026-07-22T15:47:04.582Z",
+  "sourceRevision": "UNVERIFIED_LOCAL",
+  "nodeVersionObserved": "25.8.0",
+  "pnpmVersionObserved": null,
+  "contractSha256": null,
+  "packages": [
+    {
+      "name": "react",
+      "classification": "runtime",
+      "requestedMajor": 19,
+      "versionGroup": "react",
+      "resolvedVersion": "19.2.8",
+      "license": null,
+      "engines": {
+        "node": ">=0.10.0"
+      },
+      "peerDependencies": {},
+      "deprecated": null,
+      "integrity": "sha512-PWaYA1L/q9u2u7xYQi+Y3L3Yfnie7XyLeaJICV1MGD6LprsBxcAqGjYyr0eY3p+QdsA+x/Irkt4Qif8D63+Sbw==",
+      "tarball": "https://registry.npmjs.org/react/-/react-19.2.8.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/react"
+    },
+    {
+      "name": "react-dom",
+      "classification": "runtime",
+      "requestedMajor": 19,
+      "versionGroup": "react",
+      "resolvedVersion": "19.2.8",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {
+        "react": "^19.2.8"
+      },
+      "deprecated": null,
+      "integrity": "sha512-rVprimfGBG3DR+Tq0IQG2DT5PxKth1WIGDmj5yPmlzr4YBe7uyE+Du4oVqTDXZSHGGGXRtTJEGSSePyQCMBglQ==",
+      "tarball": "https://registry.npmjs.org/react-dom/-/react-dom-19.2.8.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/react-dom"
+    },
+    {
+      "name": "zustand",
+      "classification": "runtime",
+      "requestedMajor": null,
+      "versionGroup": null,
+      "resolvedVersion": "5.0.14",
+      "license": null,
+      "engines": {
+        "node": ">=12.20.0"
+      },
+      "peerDependencies": {
+        "@types/react": ">=18.0.0",
+        "immer": ">=9.0.6",
+        "react": ">=18.0.0",
+        "use-sync-external-store": ">=1.2.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-/8tAspM5LMPr28b3fwLYrtdj77ECpfZviaP75CMTnwO8ISyaE4GDIG/9rDDYq/cH9D2Xw2A2RXglLInmVBQB/g==",
+      "tarball": "https://registry.npmjs.org/zustand/-/zustand-5.0.14.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/zustand"
+    },
+    {
+      "name": "motion",
+      "classification": "runtime",
+      "requestedMajor": null,
+      "versionGroup": null,
+      "resolvedVersion": "12.42.2",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {
+        "@emotion/is-prop-valid": "*",
+        "react": "^18.0.0 || ^19.0.0",
+        "react-dom": "^18.0.0 || ^19.0.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-Atvv11yUKIid41cVrRBDVX5m8tF8kNpExRSlbpt6APClhDjtwQssgFHhQzejxw7/7YYbjHSPKBVbHo05BuJT5Q==",
+      "tarball": "https://registry.npmjs.org/motion/-/motion-12.42.2.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/motion"
+    },
+    {
+      "name": "pixi.js",
+      "classification": "runtime",
+      "requestedMajor": 8,
+      "versionGroup": null,
+      "resolvedVersion": "8.19.0",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {},
+      "deprecated": null,
+      "integrity": "sha512-pq1O6emA/GFjjeF+8d3Pb5t7knD8FsnfWGqQcRjYjsqFZ7QdzG1XgjLDUu0DFJRbafjV5+g8iNLFBx0b9649lg==",
+      "tarball": "https://registry.npmjs.org/pixi.js/-/pixi.js-8.19.0.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/pixi.js"
+    },
+    {
+      "name": "zod",
+      "classification": "runtime",
+      "requestedMajor": 4,
+      "versionGroup": null,
+      "resolvedVersion": "4.4.3",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {},
+      "deprecated": null,
+      "integrity": "sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==",
+      "tarball": "https://registry.npmjs.org/zod/-/zod-4.4.3.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/zod"
+    },
+    {
+      "name": "@capacitor/core",
+      "classification": "runtime",
+      "requestedMajor": 8,
+      "versionGroup": "capacitor-core",
+      "resolvedVersion": "8.4.2",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {},
+      "deprecated": null,
+      "integrity": "sha512-fQPRb3JXRaU2pnufDUvqOjhsrYxDQeFRZyaj/sHydIUxD2NxOGHKMpmKUdI+U4OOmKuGZyvRpi7TSJU+7Bjbmg==",
+      "tarball": "https://registry.npmjs.org/@capacitor/core/-/core-8.4.2.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@capacitor/core"
+    },
+    {
+      "name": "@capacitor/android",
+      "classification": "runtime",
+      "requestedMajor": 8,
+      "versionGroup": "capacitor-core",
+      "resolvedVersion": "8.4.2",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {
+        "@capacitor/core": "^8.4.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-bzf8XZ9C+ePgOQ+e+T0fnhHGH4aCNY494vvSQIF5w4AY07RwEmkFqZs1678DDSMH0hLSQpxEwXGFNUVcXO6bBA==",
+      "tarball": "https://registry.npmjs.org/@capacitor/android/-/android-8.4.2.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@capacitor/android"
+    },
+    {
+      "name": "@capacitor/ios",
+      "classification": "runtime",
+      "requestedMajor": 8,
+      "versionGroup": "capacitor-core",
+      "resolvedVersion": "8.4.2",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {
+        "@capacitor/core": "^8.4.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-ClVzIjK++yRjsRPOpdEzhsZfbHfoEc0f4M6vD0v7sWh0qcoF6NkxNAeHpWTn4OPJpJfpGGoYsq+IfEHrYyBiWA==",
+      "tarball": "https://registry.npmjs.org/@capacitor/ios/-/ios-8.4.2.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@capacitor/ios"
+    },
+    {
+      "name": "@capacitor/app",
+      "classification": "runtime",
+      "requestedMajor": 8,
+      "versionGroup": null,
+      "resolvedVersion": "8.1.1",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {
+        "@capacitor/core": ">=8.0.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-xM2ZTX5jK60tFtmjsmJv+Cdj1Qsb6NcavkqmdEnCPQBeya9oKhamZJxYOnQNj1ZvcJM7sWfG6BEtSLx42pisbA==",
+      "tarball": "https://registry.npmjs.org/@capacitor/app/-/app-8.1.1.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@capacitor/app"
+    },
+    {
+      "name": "@capacitor/filesystem",
+      "classification": "runtime",
+      "requestedMajor": 8,
+      "versionGroup": null,
+      "resolvedVersion": "8.1.2",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {
+        "@capacitor/core": ">=8.0.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-doaaMfGoFR2hWU6aV6u83I+5ZsGyJVq+Gz4r9lMpJzUKMm1eMu0hLnFdV1aXZlU9FlK/RndFrVD8oRZfNOqWgQ==",
+      "tarball": "https://registry.npmjs.org/@capacitor/filesystem/-/filesystem-8.1.2.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@capacitor/filesystem"
+    },
+    {
+      "name": "@capacitor/preferences",
+      "classification": "runtime",
+      "requestedMajor": 8,
+      "versionGroup": null,
+      "resolvedVersion": "8.0.1",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {
+        "@capacitor/core": ">=8.0.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-T6no3ebi79XJCk91U3Jp/liJUwgBdvHR+s6vhvPkPxSuch7z3zx5Rv1bdWM6sWruNx+pViuEGqZvbfCdyBvcHQ==",
+      "tarball": "https://registry.npmjs.org/@capacitor/preferences/-/preferences-8.0.1.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@capacitor/preferences"
+    },
+    {
+      "name": "@capacitor/haptics",
+      "classification": "runtime",
+      "requestedMajor": 8,
+      "versionGroup": null,
+      "resolvedVersion": "8.0.2",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {
+        "@capacitor/core": ">=8.0.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-c2hZzRR5Fk1tbTvhG1jhh2XBAf3EhnIerMIb2sl7Mt41Gxx1fhBJFDa0/BI1IbY4loVepyyuqNC9820/GZuoWQ==",
+      "tarball": "https://registry.npmjs.org/@capacitor/haptics/-/haptics-8.0.2.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@capacitor/haptics"
+    },
+    {
+      "name": "@capacitor/screen-orientation",
+      "classification": "runtime",
+      "requestedMajor": 8,
+      "versionGroup": null,
+      "resolvedVersion": "8.0.1",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {
+        "@capacitor/core": ">=8.0.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-DPz/1YGmlAUDMg2ON+AGJp1eFn9IfVNP9VKI5zIU+jD5xAZ4JGxUDlY9MDCvEPQs7UCD53NduJpqvqhcnb32Kw==",
+      "tarball": "https://registry.npmjs.org/@capacitor/screen-orientation/-/screen-orientation-8.0.1.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@capacitor/screen-orientation"
+    },
+    {
+      "name": "@capacitor/splash-screen",
+      "classification": "runtime",
+      "requestedMajor": 8,
+      "versionGroup": null,
+      "resolvedVersion": "8.0.2",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {
+        "@capacitor/core": ">=8.0.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-0C6rYScr13WfAE9nPl4ScOQynmjFv9NT3Th+RZkD4ezYHmER6mcl1/lDYsv7jg3Rj3FOvLrlTlmNkUrr83kZzQ==",
+      "tarball": "https://registry.npmjs.org/@capacitor/splash-screen/-/splash-screen-8.0.2.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@capacitor/splash-screen"
+    },
+    {
+      "name": "@capacitor/browser",
+      "classification": "runtime",
+      "requestedMajor": 8,
+      "versionGroup": null,
+      "resolvedVersion": "8.0.4",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {
+        "@capacitor/core": ">=8.0.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-ORZ4u/y+7aMuu6yVuk6SP529fUZyqcbnuHB1q5McpA3o2SYfVoi28iB8rsQjI2ad1qlKJd29ZUuGtspXLBDlWg==",
+      "tarball": "https://registry.npmjs.org/@capacitor/browser/-/browser-8.0.4.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@capacitor/browser"
+    },
+    {
+      "name": "@capacitor/cli",
+      "classification": "development",
+      "requestedMajor": 8,
+      "versionGroup": "capacitor-core",
+      "resolvedVersion": "8.4.2",
+      "license": null,
+      "engines": {
+        "node": ">=22.0.0"
+      },
+      "peerDependencies": {},
+      "deprecated": null,
+      "integrity": "sha512-hE4HmpMdr5T8eQ++kGa1BKkdG2JLEvo1y1cj1kmFK78VB9dBp538oe1EZvzwupNGOl0ZueALotzL5wcXRD9w1Q==",
+      "tarball": "https://registry.npmjs.org/@capacitor/cli/-/cli-8.4.2.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@capacitor/cli"
+    },
+    {
+      "name": "typescript",
+      "classification": "development",
+      "requestedMajor": null,
+      "versionGroup": null,
+      "resolvedVersion": "5.9.3",
+      "license": null,
+      "engines": {
+        "node": ">=16.20.0"
+      },
+      "peerDependencies": {},
+      "deprecated": null,
+      "integrity": "sha512-8FYau96o3NKOhbjKi/qNvG/W5jhzxkbdm5sj9AbZ/5T5sWqn3hJgLfGx27sRKZWTvyzCP8dLRBTf5tBTSRVUNA==",
+      "tarball": "https://registry.npmjs.org/typescript/-/typescript-7.0.2.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/typescript",
+      "compatibilityDecision": {
+        "rejectedVersion": "7.0.2",
+        "acceptedVersion": "5.9.3",
+        "reasonCode": "PEER_CONFLICT_WITH_TYPESCRIPT_ESLINT",
+        "evidence": [
+          "@typescript-eslint 8.65.0 requires typescript >=4.8.4 <6.1.0; TS 7.0.2 violates peer constraint"
+        ],
+        "crossedFixedMajor": false,
+        "approvedBy": "GLM_ORCHESTRATOR"
+      }
+    },
+    {
+      "name": "vite",
+      "classification": "development",
+      "requestedMajor": null,
+      "versionGroup": null,
+      "resolvedVersion": "8.1.5",
+      "license": null,
+      "engines": {
+        "node": "^20.19.0 || >=22.12.0"
+      },
+      "peerDependencies": {
+        "tsx": "^4.8.1",
+        "jiti": ">=1.21.0",
+        "less": "^4.0.0",
+        "sass": "^1.70.0",
+        "yaml": "^2.4.2",
+        "stylus": ">=0.54.8",
+        "terser": "^5.16.0",
+        "esbuild": "^0.27.0 || ^0.28.0",
+        "sugarss": "^5.0.0",
+        "@types/node": "^20.19.0 || >=22.12.0",
+        "sass-embedded": "^1.70.0",
+        "@vitejs/devtools": "^0.3.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-7ULLwsCdYx/nRyrpiEwvqb5TFHrMVZyBt+rg/OAXT7rgj/z+DtTDyKFeLAdDkubDVDKD8jOsndmy7m55XcfUsw==",
+      "tarball": "https://registry.npmjs.org/vite/-/vite-8.1.5.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/vite"
+    },
+    {
+      "name": "@vitejs/plugin-react",
+      "classification": "development",
+      "requestedMajor": null,
+      "versionGroup": null,
+      "resolvedVersion": "6.0.4",
+      "license": null,
+      "engines": {
+        "node": "^20.19.0 || >=22.12.0"
+      },
+      "peerDependencies": {
+        "@rolldown/plugin-babel": "^0.1.7 || ^0.2.0",
+        "babel-plugin-react-compiler": "^1.0.0",
+        "vite": "^8.0.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-XcCQz0TBpBgljhj0gMuuDj49i6Ytqh5q1osT/Gp5uAVJUCTWxyskk/l1jwYYiu2xcNHHipdMz40EGfM1VdamVg==",
+      "tarball": "https://registry.npmjs.org/@vitejs/plugin-react/-/plugin-react-6.0.4.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@vitejs/plugin-react"
+    },
+    {
+      "name": "tailwindcss",
+      "classification": "development",
+      "requestedMajor": 4,
+      "versionGroup": "tailwind",
+      "resolvedVersion": "4.3.3",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {},
+      "deprecated": null,
+      "integrity": "sha512-gOhV3P7ufE62QDGg1zVaTgCR+EtPv92k2nIhVcVKcLmxT1sUBsQGhnZj175j+MqRt4zLF7ic+sCYjfhxMxj7YQ==",
+      "tarball": "https://registry.npmjs.org/tailwindcss/-/tailwindcss-4.3.3.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/tailwindcss"
+    },
+    {
+      "name": "@tailwindcss/vite",
+      "classification": "development",
+      "requestedMajor": 4,
+      "versionGroup": "tailwind",
+      "resolvedVersion": "4.3.3",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {
+        "vite": "^5.2.0 || ^6 || ^7 || ^8"
+      },
+      "deprecated": null,
+      "integrity": "sha512-yYU8cogLeSh/ms2jh8Fj7jaba/EWa7Ja6GoUqYZaraEuCI5YS6ms6ObZgjjedm+jm6XZjdNRWBpPP6Z86oOxcw==",
+      "tarball": "https://registry.npmjs.org/@tailwindcss/vite/-/vite-4.3.3.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@tailwindcss/vite"
+    },
+    {
+      "name": "eslint",
+      "classification": "development",
+      "requestedMajor": null,
+      "versionGroup": null,
+      "resolvedVersion": "10.7.0",
+      "license": null,
+      "engines": {
+        "node": "^20.19.0 || ^22.13.0 || >=24"
+      },
+      "peerDependencies": {
+        "jiti": "*"
+      },
+      "deprecated": null,
+      "integrity": "sha512-GVTD7s1vdIl6UYvAfriOPeY1Df8LIZjfofLvHwde+erDHGGuHyuM6xoxRxmHiebhYuD2p1vN4wWh0XzPARSGDQ==",
+      "tarball": "https://registry.npmjs.org/eslint/-/eslint-10.7.0.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/eslint"
+    },
+    {
+      "name": "@eslint/js",
+      "classification": "development",
+      "requestedMajor": null,
+      "versionGroup": null,
+      "resolvedVersion": "10.0.1",
+      "license": null,
+      "engines": {
+        "node": "^20.19.0 || ^22.13.0 || >=24"
+      },
+      "peerDependencies": {
+        "eslint": "^10.0.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-zeR9k5pd4gxjZ0abRoIaxdc7I3nDktoXZk2qOv9gCNWx3mVwEn32VRhyLaRsDiJjTs0xq/T8mfPtyuXu7GWBcA==",
+      "tarball": "https://registry.npmjs.org/@eslint/js/-/js-10.0.1.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@eslint/js"
+    },
+    {
+      "name": "typescript-eslint",
+      "classification": "development",
+      "requestedMajor": null,
+      "versionGroup": null,
+      "resolvedVersion": "8.65.0",
+      "license": null,
+      "engines": {
+        "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
+      },
+      "peerDependencies": {
+        "eslint": "^8.57.0 || ^9.0.0 || ^10.0.0",
+        "typescript": ">=4.8.4 <6.1.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-/ggrHAwyjENDusvyxbuqxAC2dTnZg/Z8F+fgQtYIz+L6n/9HfSlEZcFGV/NsMNa6CkGk0xUjUAFwC0vHOflvIA==",
+      "tarball": "https://registry.npmjs.org/typescript-eslint/-/typescript-eslint-8.65.0.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/typescript-eslint"
+    },
+    {
+      "name": "eslint-plugin-react-hooks",
+      "classification": "development",
+      "requestedMajor": null,
+      "versionGroup": null,
+      "resolvedVersion": "7.1.1",
+      "license": null,
+      "engines": {
+        "node": ">=18"
+      },
+      "peerDependencies": {
+        "eslint": "^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0 || ^10.0.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-f2I7Gw6JbvCexzIInuSbZpfdQ44D7iqdWX01FKLvrPgqxoE7oMj8clOfto8U6vYiz4yd5oKu39rRSVOe1zRu0g==",
+      "tarball": "https://registry.npmjs.org/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-7.1.1.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/eslint-plugin-react-hooks"
+    },
+    {
+      "name": "eslint-plugin-react-refresh",
+      "classification": "development",
+      "requestedMajor": null,
+      "versionGroup": null,
+      "resolvedVersion": "0.5.3",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {
+        "eslint": "^9 || ^10"
+      },
+      "deprecated": null,
+      "integrity": "sha512-5EMmLCV98Pi4o/f/3DP/v/tNqLHMIc9I8LKClNDWhZ9JTho89/kQcitCXQBMG7sAfVRK0Ie3T2EDOzp1YXYiVA==",
+      "tarball": "https://registry.npmjs.org/eslint-plugin-react-refresh/-/eslint-plugin-react-refresh-0.5.3.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/eslint-plugin-react-refresh"
+    },
+    {
+      "name": "vitest",
+      "classification": "development",
+      "requestedMajor": null,
+      "versionGroup": null,
+      "resolvedVersion": "4.1.10",
+      "license": null,
+      "engines": {
+        "node": "^20.0.0 || ^22.0.0 || >=24.0.0"
+      },
+      "peerDependencies": {
+        "vite": "^6.0.0 || ^7.0.0 || ^8.0.0",
+        "jsdom": "*",
+        "happy-dom": "*",
+        "@vitest/ui": "4.1.10",
+        "@types/node": "^20.0.0 || ^22.0.0 || >=24.0.0",
+        "@edge-runtime/vm": "*",
+        "@opentelemetry/api": "^1.9.0",
+        "@vitest/coverage-v8": "4.1.10",
+        "@vitest/browser-preview": "4.1.10",
+        "@vitest/coverage-istanbul": "4.1.10",
+        "@vitest/browser-playwright": "4.1.10",
+        "@vitest/browser-webdriverio": "4.1.10"
+      },
+      "deprecated": null,
+      "integrity": "sha512-R9jUTe5S4Qb0HCd4TNqpC7oGcrMssMRGXLW80ubjWsW9VH5GF8y1Y0SFLY9AbqSk6nt0PnOx4H4WNJYZ13GUPw==",
+      "tarball": "https://registry.npmjs.org/vitest/-/vitest-4.1.10.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/vitest"
+    },
+    {
+      "name": "@vitest/coverage-v8",
+      "classification": "development",
+      "requestedMajor": null,
+      "versionGroup": null,
+      "resolvedVersion": "4.1.10",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {
+        "vitest": "4.1.10",
+        "@vitest/browser": "4.1.10"
+      },
+      "deprecated": null,
+      "integrity": "sha512-IM49HmthevbgAO4anp1hwtoT9wYe59w0LR00gr+eagHE+ZJ5lK4sLPeO0ubgoJcwLk6dehU3R24N+FbEEKDc8g==",
+      "tarball": "https://registry.npmjs.org/@vitest/coverage-v8/-/coverage-v8-4.1.10.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@vitest/coverage-v8"
+    },
+    {
+      "name": "@playwright/test",
+      "classification": "development",
+      "requestedMajor": null,
+      "versionGroup": null,
+      "resolvedVersion": "1.61.1",
+      "license": null,
+      "engines": {
+        "node": ">=18"
+      },
+      "peerDependencies": {},
+      "deprecated": null,
+      "integrity": "sha512-8nKv6+0RJSL9FE4jYOEGXnPeM/Hg12qZpmqzZjRh3qM0Y7c3z1mrOTfFLids72RDQYVh9WpLEfR5WdpNX4fkig==",
+      "tarball": "https://registry.npmjs.org/@playwright/test/-/test-1.61.1.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@playwright/test"
+    },
+    {
+      "name": "@types/react",
+      "classification": "development",
+      "requestedMajor": 19,
+      "versionGroup": null,
+      "resolvedVersion": "19.2.17",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {},
+      "deprecated": null,
+      "integrity": "sha512-MXfmqaVPEVgkBT/aY0aGCkRWWtByiYQXo3xdQ8r5RzuFrPiRn8Gar2tQdXSUQ2GKV3bkXckek89V8wQBY2Q/Aw==",
+      "tarball": "https://registry.npmjs.org/@types/react/-/react-19.2.17.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@types/react"
+    },
+    {
+      "name": "@types/react-dom",
+      "classification": "development",
+      "requestedMajor": 19,
+      "versionGroup": null,
+      "resolvedVersion": "19.2.3",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {
+        "@types/react": "^19.2.0"
+      },
+      "deprecated": null,
+      "integrity": "sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==",
+      "tarball": "https://registry.npmjs.org/@types/react-dom/-/react-dom-19.2.3.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@types/react-dom"
+    },
+    {
+      "name": "@types/node",
+      "classification": "development",
+      "requestedMajor": 22,
+      "versionGroup": null,
+      "resolvedVersion": "22.20.1",
+      "license": null,
+      "engines": {},
+      "peerDependencies": {},
+      "deprecated": null,
+      "integrity": "sha512-EANqOCF9QFyra+4pfxUcX9STKJpCLjMbObVzljIJomAWSnuSIEAvyzEU53GaajbXJEgdh0iEcPL+DGvpUd4k1Q==",
+      "tarball": "https://registry.npmjs.org/@types/node/-/node-22.20.1.tgz",
+      "repository": null,
+      "homepage": null,
+      "registrySource": "https://registry.npmjs.org/@types/node"
+    }
+  ],
+  "versionGroupErrors": [],
+  "requiredNextSteps": [
+    "Review every source, license, engines and peerDependencies field.",
+    "Select exact Node and pnpm versions and write them into this report.",
+    "Run apply-freeze, then pnpm install with scripts disabled and strict peers.",
+    "Do not mark APPROVED until clean install, license, postinstall and build gates pass."
+  ],
+  "nodeVersionApproved": "25.8.0",
+  "pnpmVersionApproved": "10.0.0",
+  "nodeSelectionRationale": "Node v25.8.0 is the installed LTS-compatible runtime; all resolved packages support Node >=22.",
+  "pnpmSelectionRationale": "pnpm 10.0.0 bootstrap anchor; Phase 02 freezes this exact version.",
+  "compatibilityDecisions": [
+    {
+      "package": "typescript",
+      "rejectedVersion": "7.0.2",
+      "acceptedVersion": "5.9.3",
+      "reasonCode": "PEER_CONFLICT_WITH_TYPESCRIPT_ESLINT",
+      "evidence": [
+        "@typescript-eslint 8.65.0 peerDependencies: typescript >=4.8.4 <6.1.0"
+      ],
+      "crossedFixedMajor": false,
+      "approvedBy": "GLM_ORCHESTRATOR"
+    }
+  ]
+}

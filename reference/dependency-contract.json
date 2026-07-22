@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 1,
+  "authority": {
+    "gddSha256": "f550bdf33f3c23787156c0b138f42d29958c84e1dcda562010fbb0874f9d6ed9",
+    "developmentPlanSha256": "69bcb6aab1d82a319331e3ec446ec3918502bee5f1ff19d74598ed40c107c4e6",
+    "gddChapters": [
+      49,
+      50,
+      61,
+      66,
+      69,
+      74
+    ]
+  },
+  "resolutionPolicy": {
+    "registry": "https://registry.npmjs.org",
+    "stableOnly": true,
+    "excludePrerelease": true,
+    "excludeDeprecated": true,
+    "fixedMajorPackages": "highest stable version within fixed major",
+    "unfixedMajorPackages": "highest stable version compatible with chosen Node major and all peer constraints; chosen major becomes frozen baseline",
+    "peerDependencyGate": "pnpm strict peer dependency install must pass",
+    "rangesForbidden": true,
+    "automaticUpgradeAfterFreeze": false
+  },
+  "systemBars": {
+    "provider": "@capacitor/core",
+    "extraPackage": null,
+    "note": "GDD 49.3 names the Capacitor 8 System Bars Core Plugin. Do not add @capacitor/status-bar merely by habit. Stop and document official evidence if the real Capacitor 8 API differs."
+  },
+  "runtime": [
+    {
+      "name": "react",
+      "group": "runtime",
+      "major": 19,
+      "versionGroup": "react",
+      "reason": "GDD 49.1 React 19"
+    },
+    {
+      "name": "react-dom",
+      "group": "runtime",
+      "major": 19,
+      "versionGroup": "react",
+      "reason": "GDD 49.1 React 19"
+    },
+    {
+      "name": "zustand",
+      "group": "runtime",
+      "major": null,
+      "reason": "GDD 74.5 UI/Runtime allowlist"
+    },
+    {
+      "name": "motion",
+      "group": "runtime",
+      "major": null,
+      "reason": "GDD 49.1/74.5 menu and overlay motion"
+    },
+    {
+      "name": "pixi.js",
+      "group": "runtime",
+      "major": 8,
+      "reason": "GDD 49.1 PixiJS 8"
+    },
+    {
+      "name": "zod",
+      "group": "runtime",
+      "major": 4,
+      "reason": "GDD 49.1 Zod 4"
+    },
+    {
+      "name": "@capacitor/core",
+      "group": "runtime",
+      "major": 8,
+      "versionGroup": "capacitor-core",
+      "reason": "GDD 49.1 Capacitor 8"
+    },
+    {
+      "name": "@capacitor/android",
+      "group": "runtime",
+      "major": 8,
+      "versionGroup": "capacitor-core",
+      "reason": "GDD 49.1 Android platform package"
+    },
+    {
+      "name": "@capacitor/ios",
+      "group": "runtime",
+      "major": 8,
+      "versionGroup": "capacitor-core",
+      "reason": "GDD 49.1 iOS platform package"
+    },
+    {
+      "name": "@capacitor/app",
+      "group": "runtime",
+      "major": 8,
+      "reason": "GDD 49.3 required plugin"
+    },
+    {
+      "name": "@capacitor/filesystem",
+      "group": "runtime",
+      "major": 8,
+      "reason": "GDD 49.3 required non-authoritative filesystem plugin"
+    },
+    {
+      "name": "@capacitor/preferences",
+      "group": "runtime",
+      "major": 8,
+      "reason": "GDD 49.3 required bootstrap hints plugin"
+    },
+    {
+      "name": "@capacitor/haptics",
+      "group": "runtime",
+      "major": 8,
+      "reason": "GDD 49.3 required optional haptics"
+    },
+    {
+      "name": "@capacitor/screen-orientation",
+      "group": "runtime",
+      "major": 8,
+      "reason": "GDD 49.3 required orientation plugin"
+    },
+    {
+      "name": "@capacitor/splash-screen",
+      "group": "runtime",
+      "major": 8,
+      "reason": "GDD 49.3 required splash plugin"
+    },
+    {
+      "name": "@capacitor/browser",
+      "group": "runtime",
+      "major": 8,
+      "reason": "GDD 49.3 required system-browser plugin"
+    }
+  ],
+  "development": [
+    {
+      "name": "@capacitor/cli",
+      "group": "development",
+      "major": 8,
+      "versionGroup": "capacitor-core",
+      "reason": "Official Capacitor CLI for GDD 49/74"
+    },
+    {
+      "name": "typescript",
+      "group": "development",
+      "major": null,
+      "reason": "GDD 49.1 strict TypeScript"
+    },
+    {
+      "name": "vite",
+      "group": "development",
+      "major": null,
+      "reason": "GDD 49.1 Vite build"
+    },
+    {
+      "name": "@vitejs/plugin-react",
+      "group": "development",
+      "major": null,
+      "reason": "Official Vite React adapter"
+    },
+    {
+      "name": "tailwindcss",
+      "group": "development",
+      "major": 4,
+      "versionGroup": "tailwind",
+      "reason": "GDD 49.1 Tailwind CSS 4"
+    },
+    {
+      "name": "@tailwindcss/vite",
+      "group": "development",
+      "major": 4,
+      "versionGroup": "tailwind",
+      "reason": "Official Tailwind 4 Vite adapter"
+    },
+    {
+      "name": "eslint",
+      "group": "development",
+      "major": null,
+      "reason": "GDD 50.3/74.5 ESLint"
+    },
+    {
+      "name": "@eslint/js",
+      "group": "development",
+      "major": null,
+      "reason": "Official ESLint JavaScript config"
+    },
+    {
+      "name": "typescript-eslint",
+      "group": "development",
+      "major": null,
+      "reason": "Official TypeScript ESLint adapter"
+    },
+    {
+      "name": "eslint-plugin-react-hooks",
+      "group": "development",
+      "major": null,
+      "reason": "Official React hooks lint rules"
+    },
+    {
+      "name": "eslint-plugin-react-refresh",
+      "group": "development",
+      "major": null,
+      "reason": "Official Vite React refresh lint rules"
+    },
+    {
+      "name": "vitest",
+      "group": "development",
+      "major": null,
+      "reason": "GDD 49.1/74.5 Vitest"
+    },
+    {
+      "name": "@vitest/coverage-v8",
+      "group": "development",
+      "major": null,
+      "reason": "Official Vitest coverage provider"
+    },
+    {
+      "name": "@playwright/test",
+      "group": "development",
+      "major": null,
+      "reason": "GDD 49.1/74.5 Playwright"
+    },
+    {
+      "name": "@types/react",
+      "group": "development",
+      "major": 19,
+      "reason": "Official React 19 types"
+    },
+    {
+      "name": "@types/react-dom",
+      "group": "development",
+      "major": 19,
+      "reason": "Official React DOM 19 types"
+    },
+    {
+      "name": "@types/node",
+      "group": "development",
+      "major": 22,
+      "reason": "Official Node 22 type declarations; update only if the approved Node LTS major is raised with a documented compatibility decision"
+    }
+  ],
+  "forbiddenExamples": [
+    "firebase",
+    "@sentry/*",
+    "@capacitor/network",
+    "axios",
+    "socket.io-client",
+    "workbox-*",
+    "@capacitor/push-notifications",
+    "@capacitor/camera",
+    "@capacitor/geolocation"
+  ]
+}
