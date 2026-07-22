@@ -10,7 +10,11 @@ import { dirname, resolve } from 'node:path';
  * @property {{shell?: boolean}} [options]
  */
 
-/** @type {CheckStep[]} */
+/**
+ * @typedef {[string, string[], {shell?: boolean}?]} CheckStepTuple
+ */
+
+/** @type {CheckStepTuple[]} */
 const checks = [
   ['verify-repo', ['node', 'tools/repo/verify-root.mjs']],
   ['file-length-check', ['node', 'tools/check-file-length.mjs']],
@@ -19,9 +23,16 @@ const checks = [
   ['governance-evidence', ['node', 'tools/repo/verify-governance-evidence.mjs']],
 ];
 
-/** @type {Array<{name: string, command: string, exitCode: number, stdout: string, stderr: string, passed: boolean}>} */
+/**
+ * @typedef {{name: string, command: string, exitCode: number, stdout: string, stderr: string, passed: boolean}} CheckResult
+ */
+
+/** @type {CheckResult[]} */
 const results = [];
-for (const [name, command, options = {}] of checks) {
+for (const tuple of checks) {
+  const name = tuple[0];
+  const command = tuple[1];
+  const options = tuple[2] ?? {};
   const result = spawnSync(command[0], command.slice(1), {
     cwd: process.cwd(),
     encoding: 'utf8',

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "project_id": "riftwarden",
-  "updated_at": "2026-07-22T16:30:15Z",
+  "updated_at": "2026-07-22T16:38:57Z",
   "sessions": [
     {
       "session_id": "sess_0c600ef1cb924e43",
@@ -17,6 +17,22 @@
       "request_hash": "e04b8e81add31a3d57d738b73275e00a10c706d3d50726290c7444d7f9acbe08",
       "started_at": "2026-07-22T16:22:21Z",
       "last_heartbeat_at": "2026-07-22T16:30:15Z",
+      "usage": {}
+    },
+    {
+      "session_id": "sess_d908df61ce1f4996",
+      "actor": "M3_EXECUTOR",
+      "provider": "minimax",
+      "model": "MiniMax-M3",
+      "integration_mode": "api-supervisor",
+      "phase_id": "PHASE-00",
+      "work_package_id": "P02-TYPES",
+      "status": "RUNNING",
+      "process_id": 44692,
+      "idempotency_key": "rw-p02-types-v2-67c953ac",
+      "request_hash": "338387f4ba730dd498ff500a13a3a14aa40e55bf6bdc2ed6e01f50720ef84817",
+      "started_at": "2026-07-22T16:33:46Z",
+      "last_heartbeat_at": "2026-07-22T16:38:57Z",
       "usage": {}
     }
   ]

@@ -74,6 +74,7 @@ export function listTrackedFiles(root) {
  * @returns {string[]}
  */
 export function listFilesRecursively(root) {
+  /** @type {string[]} */
   const result = [];
   /** @param {string} directory */
   function walk(directory) {

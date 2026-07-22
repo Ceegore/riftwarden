@@ -21,9 +21,15 @@ function loadDotEnv(filePath) {
 }
 const channelIndex = process.argv.indexOf('--channel');
 const expected = channelIndex >= 0 ? process.argv[channelIndex + 1] : undefined;
+/** @type {Record<string, string>} */
+const viteEnv = {};
+for (const [key, value] of Object.entries(process.env)) {
+  if (key.startsWith('VITE_') && typeof value === 'string') viteEnv[key] = value;
+}
+/** @type {Record<string, string>} */
 const raw = {
   ...loadDotEnv(path.resolve(`.env.${expected ?? 'dev'}`)),
-  ...Object.fromEntries(Object.entries(process.env).filter(([key, value]) => key.startsWith('VITE_') && typeof value === 'string')),
+  ...viteEnv,
 };
 const result = validateEnvironment(raw, expected);
 if (!result.ok) {

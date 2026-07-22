@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const roots = ['src', 'tests', 'tools', 'docs'];
 const extensions = new Set(['.ts', '.tsx', '.js', '.mjs', '.md', '.css', '.json']);
+/** @type {string[]} */
 const errors = [];
 /**
  * Walks the directory tree and gathers TODO/FIXME/HACK violations.

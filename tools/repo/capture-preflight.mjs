@@ -10,12 +10,33 @@ import { dirname, resolve } from 'node:path';
  * @returns {string|null}
  */
 function command(args, fallback = null) {
+  const executable = args[0];
+  if (executable === undefined) return fallback;
   try {
-    return execFileSync(args[0], args.slice(1), { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
+    return execFileSync(executable, args.slice(1), { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
   } catch {
     return fallback;
   }
 }
+
+/**
+ * @typedef {{
+ *   schemaVersion: number,
+ *   capturedAtUtc: string,
+ *   sourceRevision: string|null,
+ *   branch: string|null,
+ *   gitRoot: string|null,
+ *   workingTreePorcelainV2: string,
+ *   nodeVersion: string,
+ *   pnpmVersion: string|null,
+ *   corepackVersion: string|null,
+ *   platform: string,
+ *   architecture: string,
+ *   gateG00Status: string,
+ *   gateG00EvidencePaths: string[],
+ *   openDefects: unknown[]
+ * }} PreflightReport
+ */
 
 const report = {
   schemaVersion: 1,

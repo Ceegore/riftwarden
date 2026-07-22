@@ -12,20 +12,47 @@ import {
 import { gitRoot, listGitVisibleFiles, listTrackedFiles } from './git-files.mjs';
 
 /**
+ * @typedef {{ code: string, severity: string, path: string|null, message: string, repair: string }} RepoFinding
+ */
+
+/**
  * @typedef {{
  *   schemaVersion: number,
  *   check: string,
  *   root: string,
  *   passed: boolean,
  *   summary: { errors: number, warnings: number, total: number },
- *   findings: Array<{ code: string, severity: string, path: string|null, message: string, repair: string }>
+ *   findings: RepoFinding[]
  * }} VerifyRootReport
+ */
+
+/**
+ * @typedef {{
+ *   name?: string,
+ *   private?: boolean,
+ *   workspaces?: unknown,
+ *   packageManager?: string,
+ *   engines?: {node?: string, pnpm?: string},
+ *   dependencies?: Record<string, string>,
+ *   devDependencies?: Record<string, string>,
+ *   optionalDependencies?: Record<string, string>,
+ *   peerDependencies?: Record<string, string>
+ * }} PackageJson
+ */
+
+/**
+ * @typedef {{
+ *   schemaVersion?: number,
+ *   phase?: string,
+ *   singleProject?: boolean,
+ *   mode?: string
+ * }} RepositoryProfile
  */
 
 /**
  * Reads JSON from disk and reports failures via findings.
  * @param {string} path File path.
- * @param {Array<{code: string, severity: string, path: string|null, message: string, repair: string}>} findings Findings accumulator.
+ * @param {RepoFinding[]} findings Findings accumulator.
  * @param {string} label Human label used in errors.
  * @returns {unknown|null}
  */
@@ -33,7 +60,9 @@ function readJson(path, findings, label) {
   try {
     return JSON.parse(readFileSync(path, 'utf8'));
   } catch (error) {
-    findings.push(issue('REPO_INVALID_JSON', `${label} is not valid JSON: ${error.message}`, `Repair ${label} and rerun the validator.`, toPosix(path)));
+    /** @type {{message?: string}} */
+    const err = error;
+    findings.push(issue('REPO_INVALID_JSON', `${label} is not valid JSON: ${err.message ?? String(error)}`, `Repair ${label} and rerun the validator.`, toPosix(path)));
     return null;
   }
 }
@@ -41,11 +70,11 @@ function readJson(path, findings, label) {
 /**
  * Validates the root package.json content.
  * @param {string} root Repository root.
- * @param {Array<{code: string, severity: string, path: string|null, message: string, repair: string}>} findings Findings accumulator.
+ * @param {RepoFinding[]} findings Findings accumulator.
  */
 function validatePackage(root, findings) {
   const path = resolve(root, 'package.json');
-  const packageJson = readJson(path, findings, 'package.json');
+  const packageJson = /** @type {PackageJson|null} */ (readJson(path, findings, 'package.json'));
   if (!packageJson) return;
 
   if (packageJson.name !== 'riftwarden-auto-rpg-roguelite') {
@@ -64,7 +93,8 @@ function validatePackage(root, findings) {
     findings.push(issue('REPO_ENGINES', 'Node/pnpm bootstrap engine ranges differ from Phase-01 contract.', 'Use node >=22 <23 and pnpm >=10 <11.', 'package.json'));
   }
   for (const field of ['dependencies', 'devDependencies', 'optionalDependencies', 'peerDependencies']) {
-    if (packageJson[field] && Object.keys(packageJson[field]).length > 0) {
+    const candidate = /** @type {Record<string, unknown>} */ (/** @type {unknown} */ (packageJson))[field];
+    if (candidate && Object.keys(candidate).length > 0) {
       findings.push(issue('REPO_PHASE01_DEPENDENCY', `${field} must be empty in a clean Phase-01 bootstrap.`, 'Move dependency resolution to Phase 02 or document a migration blocker before Gate G01.', 'package.json'));
     }
   }
@@ -73,16 +103,16 @@ function validatePackage(root, findings) {
 /**
  * Validates the repository profile JSON contract.
  * @param {string} root Repository root.
- * @param {Array<{code: string, severity: string, path: string|null, message: string, repair: string}>} findings Findings accumulator.
+ * @param {RepoFinding[]} findings Findings accumulator.
  */
 function validateProfile(root, findings) {
   const profilePath = resolve(root, 'docs/governance/repository-profile.json');
-  const profile = readJson(profilePath, findings, 'repository profile');
+  const profile = /** @type {RepositoryProfile|null} */ (readJson(profilePath, findings, 'repository profile'));
   if (!profile) return;
   if (profile.schemaVersion !== 1 || profile.phase !== '01' || profile.singleProject !== true) {
     findings.push(issue('REPO_PROFILE_CONTRACT', 'Repository profile is missing the Phase-01 single-project contract.', 'Use schemaVersion 1, phase 01 and singleProject true.', 'docs/governance/repository-profile.json'));
   }
-  if (!['clean', 'migration'].includes(profile.mode)) {
+  if (!['clean', 'migration'].includes(profile.mode ?? '')) {
     findings.push(issue('REPO_PROFILE_MODE', 'Repository profile mode must be clean or migration.', 'Choose the verified preflight mode.', 'docs/governance/repository-profile.json'));
   }
 }
@@ -90,7 +120,7 @@ function validateProfile(root, findings) {
 /**
  * Validates required/forbidden paths under the repository root.
  * @param {string} root Repository root.
- * @param {Array<{code: string, severity: string, path: string|null, message: string, repair: string}>} findings Findings accumulator.
+ * @param {RepoFinding[]} findings Findings accumulator.
  */
 function validatePaths(root, findings) {
   for (const relative of REQUIRED_FILES) {
@@ -115,7 +145,7 @@ function validatePaths(root, findings) {
 /**
  * Validates that the repository root is a single Git repository.
  * @param {string} root Repository root.
- * @param {Array<{code: string, severity: string, path: string|null, message: string, repair: string}>} findings Findings accumulator.
+ * @param {RepoFinding[]} findings Findings accumulator.
  */
 function validateGit(root, findings) {
   const discovered = gitRoot(root);
@@ -134,7 +164,7 @@ function validateGit(root, findings) {
 /**
  * Validates that no sensitive or signed artifacts are Git-visible.
  * @param {string} root Repository root.
- * @param {Array<{code: string, severity: string, path: string|null, message: string, repair: string}>} findings Findings accumulator.
+ * @param {RepoFinding[]} findings Findings accumulator.
  */
 function validateSensitiveFiles(root, findings) {
   const visible = listGitVisibleFiles(root);
@@ -155,7 +185,7 @@ function validateSensitiveFiles(root, findings) {
 /**
  * Validates that placeholders are absent in routable files.
  * @param {string} root Repository root.
- * @param {Array<{code: string, severity: string, path: string|null, message: string, repair: string}>} findings Findings accumulator.
+ * @param {RepoFinding[]} findings Findings accumulator.
  */
 function validatePlaceholders(root, findings) {
   for (const relative of ['.github/CODEOWNERS']) {
@@ -174,6 +204,7 @@ function validatePlaceholders(root, findings) {
  * @returns {VerifyRootReport}
  */
 export function verifyRoot(root = process.cwd()) {
+  /** @type {RepoFinding[]} */
   const findings = [];
   validateGit(root, findings);
   validatePaths(root, findings);

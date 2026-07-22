@@ -4,10 +4,46 @@ import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { PLACEHOLDER_PATTERN } from './contracts.mjs';
 
+/**
+ * @typedef {{
+ *   pullRequestRequired?: boolean,
+ *   dismissStaleApprovals?: boolean,
+ *   requireCodeOwnerReview?: boolean,
+ *   requireLastPushApprovalByOtherUser?: boolean,
+ *   strictStatusChecks?: boolean,
+ *   conversationResolutionRequired?: boolean,
+ *   linearHistoryRequired?: boolean,
+ *   minimumApprovals?: number,
+ *   forcePushAllowed?: boolean,
+ *   deletionAllowed?: boolean,
+ *   adminBypassAllowed?: boolean,
+ *   requiredStatusChecks?: string[]
+ * }} BranchRules
+ */
+
+/**
+ * @typedef {{
+ *   status?: string,
+ *   provider?: string,
+ *   repository?: string,
+ *   capturedAtUtc?: string,
+ *   sourceRevision?: string,
+ *   reviewedBy?: string,
+ *   reviewedAtUtc?: string,
+ *   rules?: BranchRules,
+ *   evidenceFiles?: Array<{path?: string, sha256?: string}>
+ * }} EvidenceRecord
+ */
+
+/**
+ * @typedef {{requiredChecks?: string[]}} RequiredChecks
+ */
+
 const root = process.cwd();
 const evidencePath = resolve(root, 'docs/governance/branch-protection-evidence.json');
 const checksPath = resolve(root, 'docs/governance/required-checks.phase01.json');
 const codeownersPath = resolve(root, '.github/CODEOWNERS');
+/** @type {string[]} */
 const findings = [];
 const booleansThatMustBeTrue = [
   'pullRequestRequired', 'dismissStaleApprovals', 'requireCodeOwnerReview',
@@ -26,21 +62,24 @@ function loadJson(path, label) {
   try {
     return JSON.parse(readFileSync(path, 'utf8'));
   } catch (error) {
-    findings.push(`${label} is unreadable/invalid: ${error.message}`);
+    /** @type {{message?: string}} */
+    const err = error;
+    findings.push(`${label} is unreadable/invalid: ${err.message ?? String(error)}`);
     return null;
   }
 }
 
-const evidence = loadJson(evidencePath, 'branch protection evidence');
-const required = loadJson(checksPath, 'required checks');
+const evidence = /** @type {EvidenceRecord|null} */ (loadJson(evidencePath, 'branch protection evidence'));
+const required = /** @type {RequiredChecks|null} */ (loadJson(checksPath, 'required checks'));
 if (evidence && required) {
   if (evidence.status !== 'VERIFIED') findings.push('Evidence status must be VERIFIED.');
   for (const field of ['provider', 'repository', 'capturedAtUtc', 'sourceRevision', 'reviewedBy', 'reviewedAtUtc']) {
-    if (!evidence[field] || PLACEHOLDER_PATTERN.test(String(evidence[field]))) findings.push(`Unresolved evidence field: ${field}.`);
+    const candidate = /** @type {Record<string, unknown>} */ (/** @type {unknown} */ (evidence))[field];
+    if (!candidate || PLACEHOLDER_PATTERN.test(String(candidate))) findings.push(`Unresolved evidence field: ${field}.`);
   }
   if (!/^[0-9a-f]{40}$/i.test(evidence.sourceRevision ?? '')) findings.push('sourceRevision must be a full 40-character Git SHA.');
   const rules = evidence.rules ?? {};
-  for (const field of booleansThatMustBeTrue) if (rules[field] !== true) findings.push(`Branch rule must enable ${field}.`);
+  for (const field of booleansThatMustBeTrue) if (/** @type {Record<string, unknown>} */ (/** @type {unknown} */ (rules))[field] !== true) findings.push(`Branch rule must enable ${field}.`);
   if ((rules.minimumApprovals ?? 0) < 1) findings.push('At least one approval is required.');
   if (rules.forcePushAllowed !== false) findings.push('Force pushes must be disabled.');
   if (rules.deletionAllowed !== false) findings.push('Branch deletion must be disabled.');

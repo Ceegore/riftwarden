@@ -83,7 +83,9 @@ export function scanFileLengths(root = process.cwd()) {
     try {
       text = readFileSync(absolute, 'utf8');
     } catch (error) {
-      findings.push({ level: 'error', code: 'LENGTH_READ_ERROR', path: relative, lines: null, message: error.message });
+      /** @type {{message?: string}} */
+      const err = error;
+      findings.push({ level: 'error', code: 'LENGTH_READ_ERROR', path: relative, lines: null, message: err.message ?? String(error) });
       continue;
     }
     const lines = countPhysicalLines(text);

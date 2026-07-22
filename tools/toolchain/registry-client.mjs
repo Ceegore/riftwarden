@@ -28,10 +28,14 @@ export async function fetchPackageMetadata(name, fetchImpl = fetch) {
 }
 
 /**
+ * @typedef {{deprecated?: string|null, license?: string}} VersionMetadata
+ */
+
+/**
  * Returns the list of stable, non-deprecated candidates for the given major.
- * @param {{versions?: Record<string, {deprecated?: string|null}>}} metadata Package metadata.
+ * @param {{versions?: Record<string, VersionMetadata>}} metadata Package metadata.
  * @param {number|null} [allowedMajor] Optional pinned major.
- * @returns {Array<{version: string, value: {deprecated?: string|null}}>}
+ * @returns {Array<{version: string, value: VersionMetadata}>}
  */
 export function stableCandidates(metadata, allowedMajor) {
   return Object.entries(metadata.versions ?? {})
@@ -45,9 +49,9 @@ export function stableCandidates(metadata, allowedMajor) {
 
 /**
  * Selects the highest stable, non-deprecated candidate for a given major.
- * @param {{versions?: Record<string, {deprecated?: string|null}>}} metadata Package metadata.
+ * @param {{versions?: Record<string, VersionMetadata>}} metadata Package metadata.
  * @param {number|null} allowedMajor Optionally pinned major.
- * @returns {{version: string, value: {deprecated?: string|null}}}
+ * @returns {{version: string, value: VersionMetadata}}
  */
 export function selectHighestStable(metadata, allowedMajor) {
   const [candidate] = stableCandidates(metadata, allowedMajor);
