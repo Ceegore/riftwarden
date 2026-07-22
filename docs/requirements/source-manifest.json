@@ -32,7 +32,7 @@
     "headingsFile": "docs/requirements/source-headings.json",
     "findingsFile": "docs/requirements/source-findings.json",
     "structureFile": "docs/requirements/generated/source-structure.json",
-    "status": "in_progress"
+    "status": "complete"
   },
   "supersedes": [
     {
