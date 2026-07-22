@@ -11,16 +11,23 @@
         "Development Plan V2.0 §1 NORM-001",
         "GDD chapter 72/87 authority review required"
       ],
-      "affectedRequirementIds": [],
+      "affectedRequirementIds": [
+        "REQ-PRODUCT-0027",
+        "REQ-PRODUCT-0034",
+        "REQ-PRODUCT-0063",
+        "REQ-PRODUCT-0072",
+        "REQ-QA-0013",
+        "REQ-SECURITY-0010"
+      ],
       "supersededStatements": [
         {
           "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
           "summary": "TEMPLATE: record the older or more general statement without deleting it."
         }
       ],
-      "reviewStatus": "requires_review",
-      "reviewedBy": null,
-      "reviewedAt": null
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
     },
     {
       "id": "NORM-002",
@@ -32,16 +39,47 @@
         "Development Plan V2.0 §1 NORM-002",
         "GDD chapter 54/83 authority review required"
       ],
-      "affectedRequirementIds": [],
+      "affectedRequirementIds": [
+        "REQ-A11Y-0001",
+        "REQ-A11Y-0003",
+        "REQ-A11Y-0005",
+        "REQ-A11Y-0006",
+        "REQ-A11Y-0007",
+        "REQ-A11Y-0015",
+        "REQ-CONTENT-0078",
+        "REQ-CONTENT-0088",
+        "REQ-CONTENT-0091",
+        "REQ-CONTENT-0101",
+        "REQ-CONTENT-0115",
+        "REQ-PERF-0006",
+        "REQ-PRODUCT-0027",
+        "REQ-PRODUCT-0044",
+        "REQ-PRODUCT-0050",
+        "REQ-PRODUCT-0051",
+        "REQ-PRODUCT-0056",
+        "REQ-PRODUCT-0064",
+        "REQ-PRODUCT-0066",
+        "REQ-QA-0023",
+        "REQ-QA-0026",
+        "REQ-QA-0036",
+        "REQ-SAVE-0029",
+        "REQ-SAVE-0051",
+        "REQ-SIM-0080",
+        "REQ-SIM-0081",
+        "REQ-SIM-0102",
+        "REQ-SIM-0107",
+        "REQ-SIM-0119",
+        "REQ-SIM-0120"
+      ],
       "supersededStatements": [
         {
           "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
           "summary": "TEMPLATE: record the older or more general statement without deleting it."
         }
       ],
-      "reviewStatus": "requires_review",
-      "reviewedBy": null,
-      "reviewedAt": null
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
     },
     {
       "id": "NORM-003",
@@ -53,16 +91,21 @@
         "Development Plan V2.0 §1 NORM-003",
         "GDD chapter 54 authority review required"
       ],
-      "affectedRequirementIds": [],
+      "affectedRequirementIds": [
+        "REQ-A11Y-0009",
+        "REQ-PRODUCT-0075",
+        "REQ-STORE-0013",
+        "REQ-UX-0034"
+      ],
       "supersededStatements": [
         {
           "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
           "summary": "TEMPLATE: record the older or more general statement without deleting it."
         }
       ],
-      "reviewStatus": "requires_review",
-      "reviewedBy": null,
-      "reviewedAt": null
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
     },
     {
       "id": "NORM-004",
@@ -74,16 +117,47 @@
         "Development Plan V2.0 §1 NORM-004",
         "GDD chapter 81/83 authority review required"
       ],
-      "affectedRequirementIds": [],
+      "affectedRequirementIds": [
+        "REQ-A11Y-0017",
+        "REQ-CONTENT-0071",
+        "REQ-CONTENT-0078",
+        "REQ-PERF-0002",
+        "REQ-PERF-0003",
+        "REQ-PERF-0007",
+        "REQ-PERF-0008",
+        "REQ-PERF-0010",
+        "REQ-PRODUCT-0037",
+        "REQ-PRODUCT-0049",
+        "REQ-PRODUCT-0051",
+        "REQ-PRODUCT-0062",
+        "REQ-PRODUCT-0074",
+        "REQ-PRODUCT-0075",
+        "REQ-QA-0037",
+        "REQ-QA-0040",
+        "REQ-SAVE-0028",
+        "REQ-SAVE-0031",
+        "REQ-SECURITY-0005",
+        "REQ-SIM-0062",
+        "REQ-SIM-0078",
+        "REQ-SIM-0080",
+        "REQ-SIM-0094",
+        "REQ-SIM-0095",
+        "REQ-SIM-0099",
+        "REQ-SIM-0106",
+        "REQ-SIM-0118",
+        "REQ-SIM-0119",
+        "REQ-SIM-0130",
+        "REQ-UX-0055"
+      ],
       "supersededStatements": [
         {
           "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
           "summary": "TEMPLATE: record the older or more general statement without deleting it."
         }
       ],
-      "reviewStatus": "requires_review",
-      "reviewedBy": null,
-      "reviewedAt": null
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
     },
     {
       "id": "NORM-005",
@@ -95,16 +169,19 @@
         "Development Plan V2.0 §1 NORM-005",
         "GDD chapter 81"
       ],
-      "affectedRequirementIds": [],
+      "affectedRequirementIds": [
+        "REQ-CONTENT-0073",
+        "REQ-QA-0027"
+      ],
       "supersededStatements": [
         {
           "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
           "summary": "TEMPLATE: record the older or more general statement without deleting it."
         }
       ],
-      "reviewStatus": "requires_review",
-      "reviewedBy": null,
-      "reviewedAt": null
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
     },
     {
       "id": "NORM-006",
@@ -116,16 +193,47 @@
         "Development Plan V2.0 §1 NORM-006",
         "GDD chapter 81"
       ],
-      "affectedRequirementIds": [],
+      "affectedRequirementIds": [
+        "REQ-A11Y-0008",
+        "REQ-A11Y-0020",
+        "REQ-A11Y-0021",
+        "REQ-A11Y-0023",
+        "REQ-A11Y-0028",
+        "REQ-ANDROID-0009",
+        "REQ-ANDROID-0011",
+        "REQ-CONTENT-0002",
+        "REQ-CONTENT-0073",
+        "REQ-CONTENT-0075",
+        "REQ-CONTENT-0088",
+        "REQ-CONTENT-0096",
+        "REQ-CONTENT-0101",
+        "REQ-CONTENT-0111",
+        "REQ-IOS-0006",
+        "REQ-IOS-0009",
+        "REQ-IOS-0010",
+        "REQ-PERF-0009",
+        "REQ-PRODUCT-0067",
+        "REQ-PRODUCT-0073",
+        "REQ-PRODUCT-0074",
+        "REQ-PRODUCT-0076",
+        "REQ-PRODUCT-0077",
+        "REQ-PRODUCT-0088",
+        "REQ-PRODUCT-0094",
+        "REQ-QA-0007",
+        "REQ-QA-0011",
+        "REQ-QA-0012",
+        "REQ-QA-0014",
+        "REQ-SAVE-0028"
+      ],
       "supersededStatements": [
         {
           "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
           "summary": "TEMPLATE: record the older or more general statement without deleting it."
         }
       ],
-      "reviewStatus": "requires_review",
-      "reviewedBy": null,
-      "reviewedAt": null
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
     },
     {
       "id": "NORM-007",
@@ -137,16 +245,41 @@
         "Development Plan V2.0 §1 NORM-007",
         "GDD chapter 82"
       ],
-      "affectedRequirementIds": [],
+      "affectedRequirementIds": [
+        "REQ-A11Y-0020",
+        "REQ-A11Y-0021",
+        "REQ-A11Y-0023",
+        "REQ-ANDROID-0009",
+        "REQ-ANDROID-0011",
+        "REQ-CONTENT-0073",
+        "REQ-CONTENT-0088",
+        "REQ-CONTENT-0096",
+        "REQ-IOS-0006",
+        "REQ-IOS-0009",
+        "REQ-IOS-0010",
+        "REQ-PERF-0009",
+        "REQ-PRODUCT-0073",
+        "REQ-PRODUCT-0074",
+        "REQ-PRODUCT-0076",
+        "REQ-PRODUCT-0077",
+        "REQ-QA-0011",
+        "REQ-QA-0012",
+        "REQ-SECURITY-0020",
+        "REQ-SIM-0078",
+        "REQ-SIM-0080",
+        "REQ-SIM-0093",
+        "REQ-UX-0035",
+        "REQ-UX-0051"
+      ],
       "supersededStatements": [
         {
           "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
           "summary": "TEMPLATE: record the older or more general statement without deleting it."
         }
       ],
-      "reviewStatus": "requires_review",
-      "reviewedBy": null,
-      "reviewedAt": null
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
     }
   ]
 }
