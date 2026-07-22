@@ -1,0 +1,10 @@
+import { readFileSync } from 'node:fs';
+const txt = readFileSync('docs/requirements/requirements/_staging/chunk-j.json','utf8');
+const d = JSON.parse(txt);
+console.log('chapters seen:', [...new Set(d.requirements.map(r=>r.source.chapter))].sort());
+console.log('ids count:', d.requirements.length);
+console.log('first id:', d.requirements[0].id);
+console.log('last id:', d.requirements[d.requirements.length-1].id);
+console.log('schemaVersion:', d.schemaVersion);
+console.log('chunk:', d.chunk);
+console.log('chapterRange:', JSON.stringify(d.chapterRange));

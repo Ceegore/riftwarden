@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0",
+  "chunk": "l",
+  "chapterRange": {
+    "lo": 52,
+    "hi": 52
+  },
+  "requirements": [
+    {
+      "id": "REQ-TEMP-L-0001",
+      "title": "Hintergrund-Layer 0 bewegt sich langsam und steht bei Reduce Motion still.",
+      "statement": "Der Hintergrund-Layer (0) enthält Region, Parallaxen und entfernte Partikel, bewegt sich langsam und steht bei Reduce Motion vollständig still.",
+      "norm": "MUST",
+      "category": "Perf",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 52,
+        "section": "52.1",
+        "locator": "block:1651",
+        "quoteHash": "sha256:PLACEHOLDER",
+        "originalExcerpt": "0 Background | Region, Parallaxen, entfernte Partikel | Langsame Bewegung; bei Reduce Motion statisch."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PERF-LAYER0-REDUCEMOTION-052"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "request_id": "REQ-P00-T02f-v1-94c1f122",
+  "project_id": "riftwarden",
+  "phase_id": "PHASE-00",
+  "work_package_id": "P00-T02f",
+  "work_package_version": 1,
+  "idempotency_key": "rw-p00-t02f-v1-dbbb41d6",
+  "phase_contract_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "work_package_contract_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "repository": {
+    "root": "C:\\Projects\\_sortiert\\Riftwarden",
+    "branch": "feat/00-autorit-t-requirements-und-traceability",
+    "commit": "e1be20ccb305a62b07774464bd3fa1a837052c6f",
+    "tree_hash": "f17ddfc9fb3001c4837be7de614fbe3e07188ce0"
+  },
+  "goal": "Extract ALL normative requirements from GDD V5 chapters 79..87 into atomic REQ\nrecords, per T02 umbrella + handbook §7. Write ONLY to your staging file.\n\nFULL CONTRACT:\n# WP P00-T02f – Requirements Fill-in Chunk (chapters 79-87)\n\n## Identity\n- Version: 1\n- Phase: PHASE-00\n- Idempotency Key: rw-p00-t02f-v1-20260722\n- Branch: feat/00-autorit-t-requirements-und-traceability\n- Risk Class: medium\n- Status: APPROVED\n- Parallel group: T02 fill-in (disjunct write target)\n- Note: smaller chunk (79-87) to fit the round budget. Previous wider chunks\n  (b: 30-58, c: 59-87) only covered their first ~6 chapters before exhausting rounds.\n\n## Goal\nExtract ALL normative requirements from GDD V5 chapters 79..87 into atomic REQ\nrecords, per T02 umbrella + handbook §7. Write ONLY to your staging file.\n\n## Sole Write Target (DISJUNCT)\ndocs/requirements/requirements/_staging/chunk-f.json\n(shape: {\"schemaVersion\":\"1.0\",\"chunk\":\"f\",\"chapterRange\":{\"lo\":79,\"hi\":87},\"requirements\":[...],\"contextOnly\":[...]})\n\n## Read Inputs (SMALL, FOCUSED per-chapter files)\n- docs/requirements/generated/chapters/chapter-79.txt ... chapter-87.txt (one small file per chapter)\n- docs/requirements/generated/chapter-index.json (chapter->file map)\n- Phase 00 handbook §5.4, §7\n\n## Method (be EFFICIENT with rounds)\n- read each chapter text file (they are SMALL: 5-133 lines each).\n- extract normative statements as atomic REQs (split compound clauses).\n- TEMP id REQ-TEMP-F-0001.. per record.\n- fields: statement, norm(MUST|MUST_NOT|SHOULD|MAY), category, source{sourceId:'gdd-v5',chapter,locator:'block:N',quoteHash:'sha256:'+sha256(excerpt),originalExcerpt}, ownerPhases[], verification[]{type,plannedPhase,testIds[]}, numericConstraints[], status:'planned'.\n- context-only entry if a chapter has no normative content (reason >=20 chars).\n- write the staging file ONCE when all chapters processed; do NOT write incrementally.\n- Call finalize_report when done.\n\n## Out of Scope: chapters outside 79-87. Final IDs (merge). Category files.\n\n## Acceptance: chunk file valid JSON; every chapter 79-87 has req or context-only; quoteHash correct.\n\n## Budgets: max_changed_files 2, timeout 3000s, repair rounds 3.\n",
+  "contract_path": ".orchestrator/contracts/WORK_PACKAGE_P00-T02f.md"
+}

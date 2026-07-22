@@ -1,0 +1,1294 @@
+[
+  {
+    "chapter": 79,
+    "block": 2089,
+    "statement": "Pro Screen existiert genau eine primäre Handlung; Sekundäraktionen sind visuell leiser und gefährliche Aktionen stehen nie direkt neben der primären Aktion ohne Abstand oder Bestätigung.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-PRIMARY-ACTION-079"
+        ]
+      }
+    ],
+    "numericConstraints": [
+      {
+        "kind": "max",
+        "name": "primaryActionsPerScreen",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "chapter": 79,
+    "block": 2090,
+    "statement": "Ein Screen verwendet maximal drei Paneele gleichzeitig auf Telefon und vier auf Tablet; zusätzliche Details liegen in Tabs, Drawer oder Vollbilddetail.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-PANEL-LIMIT-079"
+        ]
+      }
+    ],
+    "numericConstraints": [
+      {
+        "kind": "max",
+        "name": "panelsPhoneConcurrent",
+        "value": 3
+      },
+      {
+        "kind": "max",
+        "name": "panelsTabletConcurrent",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "chapter": 79,
+    "block": 2091,
+    "statement": "Farbbedeutung folgt festen Kategorien: Gold für Fortschritt/Primäraktion, Violett für Auswahl/Rift, Cyan für Information/Magie, Rot ausschließlich für Gefahr/Verlust; Farbe wird immer durch Form, Icon oder Text ergänzt.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-COLOR-MEANING-079"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 79,
+    "block": 2092,
+    "statement": "Dekoration darf keine Hitbox imitieren, keinen Textkontrast verschlechtern und keine strategisch relevante Silhouette verdecken.",
+    "norm": "MUST_NOT",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-DECO-RESTRICTIONS-079"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 79,
+    "block": 2096,
+    "statement": "Buttons zeigen den Pressed-Zustand innerhalb von 80 ms; während Loading wird das Label nicht vollständig ersetzt, sondern das Verb beibehalten und ein Indikator ergänzt.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-BUTTON-PRESS-079"
+        ]
+      }
+    ],
+    "numericConstraints": [
+      {
+        "kind": "max",
+        "name": "buttonPressedMs",
+        "value": 80,
+        "unit": "ms"
+      }
+    ]
+  },
+  {
+    "chapter": 79,
+    "block": 2097,
+    "statement": "GameCard-Auswahl ist nicht identisch mit Aktivierung: der erste Tap selektiert oder zeigt Details, ein expliziter Button oder ein zweiter klarer Schritt bestätigt.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-GAMECARD-SELECT-079"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 79,
+    "block": 2098,
+    "statement": "Slider sind ausschließlich für kontinuierliche Audio- oder Textskala erlaubt; Gameplaywerte, Qualität und Geschwindigkeit nutzen diskrete Segmented Controls.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-SLIDER-RESTRICTION-079"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 79,
+    "block": 2099,
+    "statement": "Scrollbars sind auf Desktop sichtbar gestylt und auf Touch systemnah; horizontales Scrollen ist für Fließtext nicht erlaubt.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-SCROLLBAR-079"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 79,
+    "block": 2100,
+    "statement": "Tooltips öffnen bei Fokus oder Tap und schließen über explizites X, Back/Escape oder Tap außerhalb; kritische Information steht zusätzlich im Detailscreen.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-TOOLTIP-079"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 79,
+    "block": 2103,
+    "statement": "Es existieren mindestens Golden-Screenshot-Zustände für: Titel, HQ nach jedem Akt, Missionsdetails, Formation normal und boss, Helden-/Trupp-/Itemdetail, Dungeonkarte, Ereignis, Händler, Pre-Battle, Kampf normal und boss, Ergebnis, Niederlage, Ascension, Endless Checkpoint, Settings und Recovery.",
+    "norm": "MUST",
+    "category": "Content",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-GOLDEN-STATES-CATALOG-079"
+        ]
+      }
+    ],
+    "numericConstraints": [
+      {
+        "kind": "min",
+        "name": "goldenStates",
+        "value": 17
+      }
+    ]
+  },
+  {
+    "chapter": 79,
+    "block": 2104,
+    "statement": "Jeder Golden State existiert in DE, EN und Pseudo sowie auf Telefon Compact, Telefon Standard und Tablet; kritische Screens zusätzlich bei 200% Text und Reduce Motion.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-GOLDEN-VARIANTS-079"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 79,
+    "block": 2105,
+    "statement": "Testdaten für Golden Screens nutzen feste Seed- und Savefixtures und vermeiden Uhrzeit, Zufallsanimation oder OS-spezifische Schriftglättung als Vergleichsinhalt.",
+    "norm": "MUST",
+    "category": "QA",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "QA-GOLDEN-FIXTURE-079"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 80,
+    "block": 2111,
+    "statement": "Die App erfüllt für ihre Web- und Mobile-Oberfläche WCAG-2.2-AA-Prinzipien, soweit auf ein lokales Spiel anwendbar, sowie die Plattformkonventionen von Android und iOS; Accessibility ist ein Release-Gate.",
+    "norm": "MUST",
+    "category": "A11y",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "A11Y-WCAG-22-AA-080"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 80,
+    "block": 2113,
+    "statement": "Im laufenden Kampf meldet die Screenreader-Live-Region ausschließlich Phasewechsel, eigene reguläre Verluste, Bosswarnungen und Kampfende; Schadenszahlen werden nicht live vorgelesen.",
+    "norm": "MUST",
+    "category": "A11y",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "A11Y-LIVEREGION-080"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 80,
+    "block": 2114,
+    "statement": "Beim Pausieren wird eine semantische Liste aufgebaut mit oberer, mittlerer und unterer Bahn; je Einheit werden Name, Seite, Rolle, LP-Prozent, Schild, Ziel, Signaturladung und Status vorgelesen.",
+    "norm": "MUST",
+    "category": "A11y",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "A11Y-PAUSE-LIST-080"
+        ]
+      }
+    ],
+    "numericConstraints": [
+      {
+        "kind": "count",
+        "name": "entityFieldsReadout",
+        "value": 8
+      }
+    ]
+  },
+  {
+    "chapter": 80,
+    "block": 2115,
+    "statement": "Die Einheitenreihenfolge für Screenreader ist: Seite Spieler vor Gegner, Bahn top/middle/bottom, X-Position Richtung Front, stabile Entity-ID.",
+    "norm": "MUST",
+    "category": "A11y",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "A11Y-ENTITY-ORDER-080"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 80,
+    "block": 2116,
+    "statement": "Die Screenreader-Timeline listet bekannte nächste Ereignisse als \"in N Sekunden\" auf Basis der Simulationsticks; verdeckte nicht-strategische Zufallsdetails werden nicht erfunden.",
+    "norm": "MUST",
+    "category": "A11y",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "A11Y-TIMELINE-080"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 80,
+    "block": 2117,
+    "statement": "Beim Fortsetzen erhält den Fokus der pausierte Eintrag oder der Fortsetzenbutton; der Kampf startet nicht automatisch durch Screenreader-Navigation.",
+    "norm": "MUST",
+    "category": "A11y",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "A11Y-FOCUS-RESUME-080"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 80,
+    "block": 2120,
+    "statement": "Mit TalkBack und VoiceOver sind die Flows Erststart bis erster Kampf, Kauf, Formation, Ergebnis, Saveexport und Settings vollständig bedienbar.",
+    "norm": "MUST",
+    "category": "A11y",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "A11Y-TB-VO-FLOWS-080"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 80,
+    "block": 2121,
+    "statement": "Bei 200% Text sind alle S00-S65 und O01-O07 auf kleinster unterstützter Breite darstellbar; keine Primäraktion darf verdeckt sein.",
+    "norm": "MUST",
+    "category": "A11y",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "A11Y-TEXT-200-080"
+        ]
+      }
+    ],
+    "numericConstraints": [
+      {
+        "kind": "pct",
+        "name": "textScalePercent",
+        "value": 200
+      }
+    ]
+  },
+  {
+    "chapter": 80,
+    "block": 2122,
+    "statement": "Mit gleichzeitig aktiviertem Reduce Motion, Reduced Flash und Low Quality bleibt die vollständige Kampagne technisch spielbar und keine Telegraphie fehlt.",
+    "norm": "MUST",
+    "category": "A11y",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "e2e",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "A11Y-LOW-A11Y-CAMPAIGN-080"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 80,
+    "block": 2123,
+    "statement": "Für Deuteranopie, Protanopie und Tritanopie sind Status, Bahnwarnung, Seltenheit und positive/negative Deltas auch ohne Farbunterscheidung erkennbar.",
+    "norm": "MUST",
+    "category": "A11y",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "A11Y-CVD-080"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 80,
+    "block": 2124,
+    "statement": "Über alle primären Flows bestehen mit Keyboard oder Gamepad weder Fokusfalle noch Fokusverlust noch unerreichbare Aktionen.",
+    "norm": "MUST_NOT",
+    "category": "A11y",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "A11Y-KB-GP-080"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 81,
+    "block": 2134,
+    "statement": "Jede gefährliche Bodenfläche besitzt Vorwarnform, Countdown- oder Füllrichtung sowie Impact; Farbe allein reicht als Warnung nicht aus.",
+    "norm": "MUST",
+    "category": "Content",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "CONTENT-TELEGRAPH-AOE-081"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 81,
+    "block": 2135,
+    "statement": "Die Telegraphiedauer entspricht Ability.castTicks und darf durch Quality nicht verkürzt werden; Reduce Motion ersetzt Bewegung, aber niemals Dauer oder Information.",
+    "norm": "MUST",
+    "category": "Sim",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "SIM-TELEGRAPH-DURATION-081"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 81,
+    "block": 2136,
+    "statement": "Trefferfeedback: maximal 80 ms Hitstop für Boss- oder Level3-Momente, 20 bis 40 ms schwerer Treffer, ohne Simulationspause; der Renderer kompensiert.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-HITSTOP-081"
+        ]
+      }
+    ],
+    "numericConstraints": [
+      {
+        "kind": "max",
+        "name": "hitstopBossMs",
+        "value": 80,
+        "unit": "ms"
+      },
+      {
+        "kind": "range",
+        "name": "hitstopHeavyMs",
+        "min": 20,
+        "max": 40,
+        "unit": "ms"
+      }
+    ]
+  },
+  {
+    "chapter": 81,
+    "block": 2137,
+    "statement": "Kameraschütteln maximal 10 px in 180 ms normal und 18 px in 260 ms für Boss; Nutzerstärke in Stufen 0/25/50/75/100 %, Default 50 %, Reduce Motion 0 %.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-CAMSHAKE-081"
+        ]
+      }
+    ],
+    "numericConstraints": [
+      {
+        "kind": "max",
+        "name": "camShakeNormalPx",
+        "value": 10,
+        "unit": "px/180ms"
+      },
+      {
+        "kind": "max",
+        "name": "camShakeBossPx",
+        "value": 18,
+        "unit": "px/260ms"
+      },
+      {
+        "kind": "enum",
+        "name": "cameraShakePercent",
+        "values": [
+          0,
+          25,
+          50,
+          75,
+          100
+        ]
+      },
+      {
+        "kind": "pct",
+        "name": "cameraShakeDefaultPercent",
+        "value": 50
+      },
+      {
+        "kind": "pct",
+        "name": "cameraShakeReduceMotionPercent",
+        "value": 0
+      }
+    ]
+  },
+  {
+    "chapter": 81,
+    "block": 2138,
+    "statement": "Partikelobergrenzen pro Qualitätsstufe werden gemäß Kapitel 84 gemessen; bei Budgetüberschreitung werden kosmetische Partikel verworfen, niemals Telegraphie.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-PARTIKEL-BUDGET-081"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 81,
+    "block": 2140,
+    "statement": "Transparente Sprites besitzen keine Halo- oder Fringing-Kanten; premultiplied Alpha wird durch Pipeline und Testbild geprüft.",
+    "norm": "MUST_NOT",
+    "category": "QA",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "QA-ALPHA-EDGE-081"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 81,
+    "block": 2141,
+    "statement": "Gameplaygrafiken enthalten außer universellen Symbolen keine eingebetteten Texte; lokalisierbarer Text bleibt in der UI.",
+    "norm": "MUST_NOT",
+    "category": "Content",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "CONTENT-EMBEDDED-TEXT-081"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 81,
+    "block": 2142,
+    "statement": "Alle Asset-Quellen besitzen einen Lizenz- und Provenienzdatensatz; KI-generierte Assets werden mit Tool, Modell, Datum, Prompt-ID und kommerzieller Rechteprüfung dokumentiert.",
+    "norm": "MUST",
+    "category": "Content",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "CONTENT-ASSET-PROVENANCE-081"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 81,
+    "block": 2143,
+    "statement": "Der Assetbuild erzeugt Kontaktbogen, Größenreport, Liste unreferenzierter Assets und fehlende Varianten als CI-Artefakt.",
+    "norm": "MUST",
+    "category": "QA",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "QA-ASSETBUILDS-081"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 82,
+    "block": 2150,
+    "statement": "Music Masterziel ist -16 LUFS integrated mit True Peak <= -1 dBTP; SFX werden nach Wahrnehmungsgruppe normalisiert und kein Einzelclip clippt.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-AUDIO-LUFS-082"
+        ]
+      }
+    ],
+    "numericConstraints": [
+      {
+        "kind": "max",
+        "name": "musicLufsIntegrated",
+        "value": -16,
+        "unit": "LUFS"
+      },
+      {
+        "kind": "max",
+        "name": "musicTruePeakDbtp",
+        "value": -1,
+        "unit": "dBTP"
+      }
+    ]
+  },
+  {
+    "chapter": 82,
+    "block": 2151,
+    "statement": "Höchstens 24 gleichzeitige SFX-Voices in High, 16 in Medium und 10 in Low; dieselbe Cue-ID besitzt eine Retrigger-Sperre von 60 ms, sofern sie nicht ausdrücklich als Burst markiert ist.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-AUDIO-VOICES-082"
+        ]
+      }
+    ],
+    "numericConstraints": [
+      {
+        "kind": "max",
+        "name": "sfxVoicesHigh",
+        "value": 24
+      },
+      {
+        "kind": "max",
+        "name": "sfxVoicesMedium",
+        "value": 16
+      },
+      {
+        "kind": "max",
+        "name": "sfxVoicesLow",
+        "value": 10
+      },
+      {
+        "kind": "min",
+        "name": "retriggerLockoutMs",
+        "value": 60,
+        "unit": "ms"
+      }
+    ]
+  },
+  {
+    "chapter": 82,
+    "block": 2152,
+    "statement": "Bei Bosswarnung oder Sprache duckt Music um 3 dB und Ambient um 5 dB für die Cue-Dauer plus 200 ms; SFX bleiben erhalten, sofern nicht eine Warnpriorität Sidechain definiert.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-AUDIO-DUCKING-082"
+        ]
+      }
+    ],
+    "numericConstraints": [
+      {
+        "kind": "min",
+        "name": "musicDuckDb",
+        "value": 3,
+        "unit": "dB"
+      },
+      {
+        "kind": "min",
+        "name": "ambientDuckDb",
+        "value": 5,
+        "unit": "dB"
+      },
+      {
+        "kind": "min",
+        "name": "duckTailMs",
+        "value": 200,
+        "unit": "ms"
+      }
+    ]
+  },
+  {
+    "chapter": 82,
+    "block": 2153,
+    "statement": "Die Audioengine trifft keine zufälligen Gameplayentscheidungen; Pitch- und Variantenauswahl stammen aus combatCosmetic und beeinflussen Replays nicht.",
+    "norm": "MUST_NOT",
+    "category": "Sim",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "SIM-AUDIO-DETERMINISM-082"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 82,
+    "block": 2158,
+    "statement": "Pip spricht Tutorial-, Unlock-, Niederlagen- und Storykurztexte mit maximal zwei Sätzen; Untertitel sind immer vorhanden.",
+    "norm": "MUST",
+    "category": "Content",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "CONTENT-VOICE-PIP-082"
+        ]
+      }
+    ],
+    "numericConstraints": [
+      {
+        "kind": "max",
+        "name": "pipSentences",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "chapter": 82,
+    "block": 2159,
+    "statement": "Helden besitzen Voice-Cues für Einmarsch, Signatur, Level3, niedrige LP und Sieg mit 2 bis 4 Varianten je Kategorie und einem Wiederholungscooldown von 20 s.",
+    "norm": "MUST",
+    "category": "Content",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "CONTENT-VOICE-HERO-082"
+        ]
+      }
+    ],
+    "numericConstraints": [
+      {
+        "kind": "range",
+        "name": "heroVoiceVariantsPerCategory",
+        "min": 2,
+        "max": 4
+      },
+      {
+        "kind": "min",
+        "name": "heroVoiceCooldownSec",
+        "value": 20,
+        "unit": "s"
+      }
+    ]
+  },
+  {
+    "chapter": 82,
+    "block": 2160,
+    "statement": "Bosse besitzen Voice-Cues für Intro, Phase und Niederlage; strategisch relevante Warnungen werden zusätzlich in UI und Text angezeigt, niemals nur per Sprache.",
+    "norm": "MUST",
+    "category": "Content",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "CONTENT-VOICE-BOSS-082"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 82,
+    "block": 2161,
+    "statement": "Der Release besitzt eine begrenzte, aber verbindliche DE- und EN-Sprachausgabe nach dem definierten Pflichtumfang für Pip, Helden und Bosse; Ereignisse, Kodex, Händlertexte, HQ-Banter und längere Storyeinträge bleiben Text; jeder semantische Voice-Cue besitzt wortgleichen Untertitel und strategische Warnungen erscheinen zusätzlich als Icon und lokalisierter Warntext.",
+    "norm": "MUST",
+    "category": "Content",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "CONTENT-VOICE-RELEASE-CATALOG-082"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 82,
+    "block": 2161,
+    "statement": "Auf Android pausiert oder duckt Audio bei transient loss gemäß Fokusart; loss pausiert ohne Positionsreset und Resume erfolgt nur nach gain und wenn die App im Vordergrund ist.",
+    "norm": "MUST",
+    "category": "Android",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "ANDROID-AUDIO-FOCUS-082"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 82,
+    "block": 2162,
+    "statement": "Auf iOS wird AVAudioSession ambient verwendet; der Hardware-Silent-Switch stummschaltet das Spielaudio und andere Audioquellen dürfen entsprechend ambient weiterlaufen oder mixen.",
+    "norm": "MUST",
+    "category": "iOS",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "IOS-AUDIO-SESSION-082"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 82,
+    "block": 2163,
+    "statement": "Kopfhörerabzug pausiert einen laufenden Kampf automatisch und zeigt einen Hinweis; ein Wechsel der Bluetooth-Routen darf keinen doppelten Cue auslösen.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-HEADPHONE-DETACH-082"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 82,
+    "block": 2164,
+    "statement": "Im App-Background werden SFX und Voice gestoppt und die Musikposition pausiert; die Simulation ist bereits pausiert oder gesnapshottet.",
+    "norm": "MUST",
+    "category": "UX",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "UX-BACKGROUND-AUDIO-082"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 83,
+    "block": 2172,
+    "statement": "Für atomare Rename- und fsync-Semantik wird ein eigener NativeSaveStore-Adapter verwendet; @capacitor/filesystem allein ist keine Autorität für die Atomizitätsgarantie.",
+    "norm": "MUST",
+    "category": "Save",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "SAVE-NATIVE-STORE-083"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 83,
+    "block": 2176,
+    "statement": "Kanonische Serialisierung: UTF-8 ohne BOM, LF-Zeilenenden, sortierte Objektschlüssel, keine NaN/Infinity/-0-Werte und keine Kommentare; Arrays behalten fachliche Reihenfolge.",
+    "norm": "MUST",
+    "category": "Save",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "SAVE-CANONICAL-083"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 83,
+    "block": 2177,
+    "statement": "payloadSha256 wird über die kanonische Serialisierung des payload berechnet; Envelopemetadaten sind nicht Teil des Payloadhashes.",
+    "norm": "MUST",
+    "category": "Save",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "SAVE-PAYLOAD-HASH-083"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 83,
+    "block": 2178,
+    "statement": "commitId ist monoton pro Profil; Zeitstempel dient ausschließlich Anzeige und Diagnose und niemals als Tie-Break bei Recovery.",
+    "norm": "MUST",
+    "category": "Save",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "SAVE-COMMIT-ID-083"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 83,
+    "block": 2179,
+    "statement": "NativeSaveStore schreibt tmp, führt flush/fsync durch, liest zurück, prüft den Hash, führt atomares rename durch, flusht Verzeichnis-Metadaten soweit von der Plattform unterstützt und führt das Manifest analog aus.",
+    "norm": "MUST",
+    "category": "Save",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "SAVE-ATOMIC-COMMIT-083"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 83,
+    "block": 2182,
+    "statement": "Export-Dateiendung ist .riftwarden-save; das ZIP enthält keinen ausführbaren Inhalt und besteht aus export-manifest.json, profile.json, optional settings.json und checksums.txt.",
+    "norm": "MUST",
+    "category": "Save",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "SAVE-EXPORT-FORMAT-083"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 83,
+    "block": 2183,
+    "statement": "Der Standard-Export enthält keine Logs oder Replays; der Diagnoseexport verwendet die separate Endung .riftwarden-diagnostic und zeigt vor dem Systemdialog eine Inhaltsliste an.",
+    "norm": "MUST",
+    "category": "Save",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "SAVE-DIAGNOSTIC-EXPORT-083"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 83,
+    "block": 2184,
+    "statement": "Beim Import werden ausschließlich bekannte Dateinamen entpackt; maximale Gesamtgröße 10 MiB, maximale Einzeldatei 8 MiB, keine Pfadsegmente, Symlinks oder verschachtelten Archive.",
+    "norm": "MUST",
+    "category": "Save",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "SAVE-IMPORT-LIMITS-083"
+        ]
+      }
+    ],
+    "numericConstraints": [
+      {
+        "kind": "max",
+        "name": "importTotalBytes",
+        "value": 10485760,
+        "unit": "B"
+      },
+      {
+        "kind": "max",
+        "name": "importSingleFileBytes",
+        "value": 8388608,
+        "unit": "B"
+      }
+    ]
+  },
+  {
+    "chapter": 83,
+    "block": 2185,
+    "statement": "Der Import wird vollständig im Staging validiert und migriert; erst nach Nutzerbestätigung ersetzt ein atomarer Commit das aktive Profil und ein automatisches Backup wird vorher erstellt.",
+    "norm": "MUST",
+    "category": "Save",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "SAVE-STAGED-IMPORT-083"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 83,
+    "block": 2188,
+    "statement": "Es existieren maximal fünf rotierende Sessionslogs mit jeweils 512 KiB und insgesamt höchstens 2,5 MiB; Logs enthalten keine freie Nutzereingabe, Dateipfade außerhalb des Appbereichs, Geräte-IDs, IPs oder personenbezogene Daten.",
+    "norm": "MUST",
+    "category": "Security",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "SEC-LOG-PRIVACY-083"
+        ]
+      }
+    ],
+    "numericConstraints": [
+      {
+        "kind": "max",
+        "name": "sessionLogFiles",
+        "value": 5
+      },
+      {
+        "kind": "max",
+        "name": "sessionLogSizeKiB",
+        "value": 512,
+        "unit": "KiB"
+      },
+      {
+        "kind": "max",
+        "name": "sessionLogTotalKiB",
+        "value": 2560,
+        "unit": "KiB"
+      }
+    ]
+  },
+  {
+    "chapter": 83,
+    "block": 2189,
+    "statement": "Logfelder umfassen UTC-Zeit, appVersion, buildChannel, platform/osVersion, errorCode, module, safeContext und in QA den Stack; im Release ist der Stack lokal erlaubt, wird aber niemals übertragen.",
+    "norm": "MUST",
+    "category": "Security",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "SEC-LOG-FIELDS-083"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 83,
+    "block": 2190,
+    "statement": "Der Diagnoseexport listet App-, Content- und Simulationversion, Saveintegrität, Rendererinformationen, Speicher- und Qualitätsstatus sowie letzte Fehler; Savepayload und Replays nur per separater Checkbox.",
+    "norm": "MUST",
+    "category": "Save",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "SAVE-DIAGNOSTIC-CONTENT-083"
+        ]
+      }
+    ]
+  },
+  {
+    "chapter": 83,
+    "block": 2191,
+    "statement": "Logs werden niemals automatisch versendet; der Supporttext erklärt, dass ein Export vom Nutzer selbst geteilt werden muss.",
+    "norm": "MUST_NOT",
+    "category": "Security",
+    "ownerPhases": [
+      "PHASE-08"
+    ],
+    "verification": [
+      {
+        "type": "review",
+        "plannedPhase": "PHASE-08",
+        "testIds": [
+          "SEC-NO-AUTO-UPLOAD-083"
+        ]
+      }
+    ]
+  }
+]

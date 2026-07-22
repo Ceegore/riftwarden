@@ -1,0 +1,1024 @@
+
+===== CHAPTER 59 (blocks 1777..1788) - Content-Pipeline, Schemas und Buildvalidierung =====
+[1777] Heading2: 59. Content-Pipeline, Schemas und Buildvalidierung
+[1778] Heading3: 59.1 Datenformat
+[1779] Compact: Alle Gameplayinhalte liegen als UTF-8 JSON ohne Kommentare unter src/game/content/data. Eine Datei pro Entitätskategorie, große Pools nach Region geteilt.
+[1780] Compact: Zod-Schemas sind SSOT. Aus ihnen werden TypeScript-Typen, JSON Schemas und Dokumentationsreports generiert.
+[1781] Compact: Der Build erzeugt immutable ContentIndex-Maps nach ID. Runtime-Suche über frei formulierte Namen ist verboten.
+[1782] Compact: Alle Sekundenwerte in Autorendaten dürfen Dezimalzahlen sein; Loader wandelt sie einmal in ganze Ticks und protokolliert Rundung > 0,01 s als Warnung.
+[1783] Compact: Localization Keys müssen in de und en existieren. Pseudo-Localization muss jedes Layout ohne unersetzte Schlüssel rendern.
+[1784] Heading3: 59.2 Build-Validatoren
+[1785] TABLE (rows=11):
+   | Validator | Harter Fehler bei
+   | Referenzen | Unbekannter Held, Effekt, Fähigkeit, Lootpool, Mission oder Localization Key.
+   | IDs | Duplikat, Großbuchstabe, Leerzeichen, nachträglich entfernte veröffentlichte ID ohne Migration.
+   | Kampf | Negative LP, Cooldown < 0,45 s ohne Ausnahme, ungültige Phase, unendliche Triggerkette.
+   | Formation | Mehr als Plätze/Kopien/Helden, identische Startfelder, nicht erreichbare Pflichtbahn.
+   | Beschwörung | Mehr als sechs ohne Ersatzregel, Rekursion ohne Safety Cap.
+   | Dungeon | Nicht erreichbarer Boss, kein Anker, keine Vorbereitung, >13 sichtbare oder >8 besuchte Knoten ohne Modusausnahme.
+   | Loot | Leerer Pool, Erstbelohnung ohne Ersatz, nicht besitzbares Item.
+   | Text | Fehlende Sprache, Kurztooltip >220 Zeichen, Buttonlabel >30 Zeichen ohne approved compact variant.
+   | Assets | Fehlendes Manifest, Atlas >2048, unbekannter Audio Cue, nicht lizenziertes Asset.
+   | Store | Produktionsbuild enthält server.url, INTERNET-Permission, Debuggable, Remote Script oder verbotenen SDK-Identifier.
+[1786] null: 
+[1787] Heading3: 59.3 Referenzschnittstellen
+[1788] CodeBlock: interface ContentHeader { schemaVersion: number; contentVersion: string; generatedAt: string; } interface BattleSnapshot { simulationVersion: number; tick: number; rngStreams: RngStateMap; entities: EntitySnapshot[]; scheduledEvents: ScheduledEvent[]; phase: BattlePhase; sequence: number; checksum: string; } interface ScreenContract { screenId: ScreenId; entryReason: string; backTarget: ScreenId | 'EXIT'; requiredData: string[]; restoreKey?: string; }
+
+===== CHAPTER 60 (blocks 1789..1797) - Lokalisierung, Copy und Textproduktion =====
+[1789] Heading2: 60. Lokalisierung, Copy und Textproduktion
+[1790] Compact: Release-Sprachen sind Deutsch und Englisch. Deutsch ist narrative Autorensprache; Englisch ist vollständig geprüfte Parität, keine maschinelle Rohübersetzung im Release.
+[1791] Compact: Alle sichtbaren Strings liegen außerhalb des Codes. ICU MessageFormat wird für Plural, Zahl und grammatische Varianten verwendet.
+[1792] Compact: Richtungsbegriffe links/rechts werden in Gameplaytexten vermieden; Spieler/Gegner, oben/Mitte/unten bleiben eindeutig bei Spiegelung.
+[1793] Compact: UI-Labels besitzen eine kurze und optional compact Variante. Kein Agent darf Text durch kleinere Schrift passend machen, solange eine Reflow-/Compact-Lösung möglich ist.
+[1794] Compact: Fehlende Übersetzung zeigt im Development den Key in Magenta und ist im Release ein Buildfehler.
+[1795] Compact: Pseudo-Locale erweitert Texte um 35%, setzt Akzente und markiert Start/Ende. Alle Screens werden damit im visuellen Test gerendert.
+[1796] TABLE (rows=9):
+   | Texttyp | Maximalumfang
+   | Primärbutton | 30 Zeichen DE; 24 EN oder Compact Key.
+   | Kurztooltip | 220 Zeichen inklusive Leerzeichen.
+   | Kartentext | Titel 34; Unterzeile 60; Effekt 180 Zeichen.
+   | Ereignisintro | 480 Zeichen, max. zwei Absätze.
+   | Ereignisoption | Titel 46; Folge 180 Zeichen.
+   | Pip-Hinweis | Zwei Sätze, zusammen <= 180 Zeichen.
+   | Bossvorschau | Vier Kernbullets je <= 120 Zeichen plus Details.
+   | Untertitel | Max. 42 Zeichen pro Zeile, zwei Zeilen; Lesedauer min. 1,2 s.
+[1797] null: 
+
+===== CHAPTER 61 (blocks 1798..1816) - Datenschutz, Sicherheit und Netzwerkfreiheit =====
+[1798] Heading2: 61. Datenschutz, Sicherheit und Netzwerkfreiheit
+[1799] Heading3: 61.1 Datenpraxis
+[1800] Compact: Die Release-App sammelt, überträgt oder teilt keine Nutzer-, Geräte-, Werbe-, Standort-, Nutzungs- oder Diagnosedaten. Es existiert kein Backend.
+[1801] Compact: Alle Statistiken, Replays und Logs bleiben lokal. Diagnoseexport erfolgt nur nach expliziter Nutzeraktion und zeigt vor dem Systemdialog den enthaltenen Umfang.
+[1802] Compact: Keine Advertising ID, IDFV, Android ID, Install Referrer, IP-Logging, Fingerprinting oder Geräteidentifier werden gelesen.
+[1803] Compact: Die Datenschutzseite und die Store-Deklarationen müssen „keine Datenerhebung/-weitergabe“ widerspruchsfrei abbilden. Drittbibliotheken werden vor Release auf Netzwerk- und Identifierzugriff geprüft.
+[1804] Compact: Externe Datenschutz-, Support- und Lizenzlinks öffnen im Systembrowser. Die App lädt deren Inhalte nicht in einen kontrollierten WebView.
+[1805] Heading3: 61.2 Produktions-CSP und WebView-Härtung
+[1806] CodeBlock: default-src 'self'; img-src 'self' data: blob:; media-src 'self' blob:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'
+[1807] Compact: connect-src none ist im Produktionsbuild Pflicht. Jeder unbeabsichtigte fetch/WebSocket/EventSource schlägt sichtbar im Test fehl.
+[1808] Compact: capacitor.config enthält im Release keine server.url, cleartext, allowNavigation oder mixed content. WebView-Debugging ist deaktiviert.
+[1809] Compact: Android INTERNET-Permission wird im finalen Manifest entfernt. VIBRATE ist die einzige optionale normale Permission; keine Runtime-Permissions.
+[1810] Compact: iOS besitzt keine unnötigen Entitlements. PrivacyInfo.xcprivacy nennt nur tatsächlich genutzte Required-Reason APIs aus Capacitor/Plugins.
+[1811] Compact: Keine eval/new Function/dynamische Scriptinjektion. Sourcemaps werden intern archiviert, nicht öffentlich mitgeliefert.
+[1812] Heading3: 61.3 Dependency- und Supply-Chain-Regeln
+[1813] Compact: Nur direkte Dependencies mit klarer Funktion. Neue Dependency benötigt Lizenz-, Größe-, Netzwerk-, Permission- und Maintenance-Prüfung.
+[1814] Compact: CI führt pnpm audit oder gleichwertigen Advisory-Scan aus. Kritische/hohe ausnutzbare Findings blockieren Release.
+[1815] Compact: Alle Store-Artefakte werden aus clean checkout mit frozen lockfile gebaut. Buildprovenienz, Commit und Dependencyliste werden archiviert.
+[1816] Compact: Drittanbieterassets benötigen Lizenzdatei, Quelle, Autor und kommerzielle Nutzungsfreigabe im Assetmanifest.
+
+===== CHAPTER 62 (blocks 1817..1833) - Android-Konfiguration und Google-Play-Abnahme =====
+[1817] Heading2: 62. Android-Konfiguration und Google-Play-Abnahme
+[1818] Heading3: 62.1 Native Baseline
+[1819] TABLE (rows=11):
+   | Feld | Festlegung
+   | minSdk | 24 (Android 7.0), entsprechend Capacitor-8-Minimum.
+   | compile/target | 36; vor Storeupload auf aktuell von Play verlangte oder höhere stabile API prüfen.
+   | Packaging | Android App Bundle .aab; Play App Signing aktiv; kein APK als Produktionsupload.
+   | ABI | Release-AAB enthält arm64-v8a und armeabi-v7a, sofern Native-Code ABI-Slices erzeugt; beide müssen 16-KB-seitensicher sein. x86_64 ist ausschließlich für Emulator-/QA-Builds und wird nicht als Production-Slice ausgeliefert.
+   | 16-KB-Seiten | Alle Native-Libs kompatibel; bundletool/APK Analyzer und 16-KB-Testgerät/Emulator als Gate.
+   | Edge-to-edge | SystemBars + CSS safe areas; keine abgeschnittenen Buttons unter Status-/Navigationsbar.
+   | Orientierung | Landscape-Präferenz auf Telefon; resizable/adaptive für Tablets, Foldables, Desktop Windows. Kein dauerhaftes Opt-out.
+   | Back | Predictive/gesture back durch Capacitor App Adapter und Navigationsstack; keine App-interne Fake-Systemgeste.
+   | Backup | android:allowBackup=false und DataExtractionRules schließen Saves aus Cloud-/Device-Transfer aus; manueller Export vorhanden.
+   | Permissions | Keine gefährlichen Permissions; INTERNET im Production Manifest entfernt.
+[1820] null: 
+[1821] Heading3: 62.2 Play-Console-Deklarationen
+[1822] TABLE (rows=11):
+   | Deklaration | Antwort/Baseline
+   | App oder Spiel | Spiel
+   | Preis | Einmaliger Kauf; keine IAP, keine Werbung.
+   | Data Safety | Keine Datenerhebung/Weitergabe; Formular dennoch vollständig, Privacy-Policy-Link Pflicht.
+   | Ads | Nein.
+   | App access | Alle Funktionen ohne Login; keine Zugangsdaten.
+   | Content rating | Fantasygewalt stilisiert, kein Blut; Fragebogen wahrheitsgemäß. Nicht als Kids-App positionieren.
+   | Target audience | Allgemeines Publikum; niedrigste passende Altersgruppen nur nach finalem IARC-Ergebnis.
+   | Permissions declaration | Keine eingeschränkten Permissions.
+   | News/Health/Finance | Nicht zutreffend.
+   | DSA/EU | Traderstatus des Publishers vor EU-Vertrieb vollständig verifizieren.
+[1823] null: 
+[1824] Heading3: 62.3 Android Store-Cert-Testmatrix
+[1825] TABLE (rows=13):
+   | Test | Passkriterium
+   | Install/Update | Clean install, Update von letzter RC, Downgrade klar abgelehnt; Save migriert.
+   | Launch/Resume | Cold/warm start, Recents, Sleep, Lock, Prozesskill, Low Memory ohne Verlust.
+   | Back/Gesture | Jeder Screen nach Kapitel 53; kein Exit/Verlust durch eine Geste.
+   | Rotation/Fold/Resize | Schnelle Wechsel, Multiwindow, Fold/unfold; Layout und Zustand bleiben.
+   | Notch/System Bars | Mindestens Cutout links/rechts, gestural und 3-button nav.
+   | Offline | Flugmodus ab Installation; kein Dialog/Spinner/Fehler durch Netzwerk.
+   | Audio | Anruf, Assistant, Kopfhörer, Bluetooth, Lautlos, Fokuskonkurrenz.
+   | Performance | Mindestgerät, maximaler Kampf, 30 min Run; Gates Kapitel 52.
+   | Accessibility | TalkBack, 200% Font, Kontrast, Farbprofile, Switch/Keyboard.
+   | 16 KB | Native Binary/Emulator-Test bestanden.
+   | Pre-launch report | Keine Crashes, ANRs, Security- oder Accessibility-Blocker.
+   | Android vitals Ziel | Internes Ziel Crash <0,2%, ANR <0,1%; deutlich unter öffentlichen Schwellen.
+[1826] null: 
+[1827] Heading3: 62.4 Veröffentlichungsschritte
+[1828] Compact: 1. Play-Developerkonto, Identität und ggf. Gerät verifizieren; Package-ID reservieren.
+[1829] Compact: 2. Interner Track mit signiertem AAB; Pre-launch Report und automatisierte Geräteprüfung auswerten.
+[1830] Compact: 3. Falls neues persönliches Konto: geschlossener Test mit mindestens 12 dauerhaft opt-in Testern über mindestens 14 Tage und dokumentiertem Feedback durchführen.
+[1831] Compact: 4. Data Safety, Privacy Policy, Content Rating, Store Listing, Screenshots und Supportkontakt vollständig machen.
+[1832] Compact: 5. Production Access beantragen, Review Notes mit Offline-/No-Account-Hinweis und Testpfad einreichen.
+[1833] Compact: 6. Gestaffelter Rollout 10% -> 25% -> 50% -> 100%, nur wenn Vitals und Bewertungen keine Blocker zeigen.
+
+===== CHAPTER 63 (blocks 1834..1843) - iOS/iPadOS-Konfiguration und App-Store-Abnahme =====
+[1834] Heading2: 63. iOS/iPadOS-Konfiguration und App-Store-Abnahme
+[1835] Heading3: 63.1 Native Baseline
+[1836] TABLE (rows=10):
+   | Feld | Festlegung
+   | Toolchain | Xcode 26 oder höher, iOS/iPadOS 26 SDK für Upload; Capacitor 8 SPM-Projekt.
+   | Deployment Target | iOS 15.0.
+   | Devices | iPhone und iPad Universal App; Landscape primär, adaptive Split/Stage-Manager-Layouts.
+   | Bundle | com.ceegore.riftwarden; Version/Build strikt aufsteigend.
+   | Audio | AVAudioSession ambient, Background Audio Capability aus.
+   | Files | Application Support für Saves, excludeFromBackup=true; UIDocumentPicker für Transfer.
+   | Privacy Manifest | PrivacyInfo.xcprivacy im App-Target und alle SDK-Manifeste prüfen; Approved Reasons dokumentieren.
+   | Network | Keine ATS-Ausnahmen, keine Remote Endpoints, keine Tracking-Domains.
+   | Entitlements | Keine Game Center, iCloud, Push, Sign in with Apple oder Background Modes in V1.
+[1837] null: 
+[1838] Heading3: 63.2 App-Store-Connect-Deklarationen
+[1839] TABLE (rows=10):
+   | Feld | Baseline
+   | App Privacy | Data Not Collected, nur wenn finaler Binary-/SDK-Audit dies bestätigt.
+   | Age Rating | Fantasy Violence: infrequent/mild nach tatsächlicher Darstellung; neue Fragebögen vollständig.
+   | Category | Games / Role Playing, sekundär Strategy.
+   | Business Model | Paid App; keine In-App Purchases.
+   | Review Access | Kein Account, keine Server; vollständige App nach Kauf verfügbar.
+   | Review Notes | Navigation zum ersten Kampf, Offlinefunktion, Landscape/Adaptive Verhalten, Saveimport optional.
+   | Support URL | Funktionierende öffentliche Supportseite mit Kontakt.
+   | Privacy URL | Öffentliche Datenschutzseite, auch bei Data Not Collected.
+   | EU Distribution | DSA-Traderstatus und Kontaktdaten vor Veröffentlichung bestätigt.
+[1840] null: 
+[1841] Heading3: 63.3 iOS Store-Cert-Testmatrix
+[1842] TABLE (rows=10):
+   | Test | Passkriterium
+   | Install/Upgrade | TestFlight clean/update; Save und Settings erhalten.
+   | Lifecycle | Home, Lock, App Switcher, Memory Warning, Termination, Restore.
+   | Orientation/Multitasking | iPhone Landscape, iPad Split View/Stage Manager/Resize ohne Featureverlust.
+   | Safe Areas | Notch, Dynamic Island, Home Indicator, iPad rounded corners.
+   | Audio | Silent Switch respektiert, Call/Siri/AirPods route change, andere Audio-App.
+   | Accessibility | VoiceOver, Larger Text 200%, Bold Text, Reduce Motion, Increase Contrast.
+   | Review Completeness | Keine Platzhalter, kaputten Links, Debugscreens oder versteckten Features.
+   | Privacy | App Privacy, Manifest, Binary, Netzwerkbeobachtung konsistent.
+   | Energy | 30 Minuten Kampf ohne unangemessene Wärme/Akku-/Hintergrundaktivität.
+[1843] null: 
+
+===== CHAPTER 64 (blocks 1844..1857) - Storegrafiken, App-Icon, Splash und Metadaten =====
+[1844] Heading2: 64. Storegrafiken, App-Icon, Splash und Metadaten
+[1845] Heading3: 64.1 Icon- und Splash-Vertrag
+[1846] Compact: App-Icon zeigt ein einzelnes Riftwarden-Siegel: goldener gebrochener Ring um violetten Riftkern. Keine Schrift, keine kleine Figur, keine Transparenz im finalen Store-Icon.
+[1847] Compact: Das Motiv muss bei 32 px erkennbar, in Schwarzweiß unterscheidbar und ohne plattformspezifische Masken vollständig sein. Android Adaptive Icon besitzt getrennten Vorder-/Hintergrund mit Safe Zone.
+[1848] Compact: Native Splash verwendet bg-void, zentriertes Siegel und optional sehr subtile statische Glut. Kein langer Logo-Film und kein „Loading 100%“ ohne echten Fortschritt.
+[1849] Compact: Alle Storebilder zeigen echte In-Game-Screens. Compositing darf Rahmen/Text ergänzen, aber keine nicht vorhandenen Funktionen oder Qualitätsstufen vortäuschen.
+[1850] Heading3: 64.2 Screenshotset
+[1851] TABLE (rows=8):
+   | Reihenfolge | Motiv | Botschaft
+   | 1 | Kampfbild mit 3 Bahnen und Boss | Your plan fights for you / Dein Plan kämpft für dich.
+   | 2 | Formationsscreen mit vollständiger Vorschau | Read the enemy. Build the answer.
+   | 3 | HQ/Helden und Ausrüstung | 10 heroes, 18 troops, countless builds.
+   | 4 | Dungeonkarte und Routenwahl | Every route changes the expedition.
+   | 5 | Bossphasen | Four handcrafted bosses, fully readable.
+   | 6 | Ascension/Endless | A complete campaign with a deep endgame.
+   | 7 | Offline/No Ads | One purchase. No ads. No energy. Fully offline.
+[1852] null: 
+[1853] Heading3: 64.3 Metadatenregeln
+[1854] Compact: Der Storetitel bleibt innerhalb der jeweiligen 30-Zeichen-Grenze; falls ein Store den vollständigen Namen nicht akzeptiert, lautet die Storeform „Riftwarden: Auto RPG“ und der vollständige Untertitel erscheint in Beschreibung/Grafik.
+[1855] Compact: Keine Preisangabe, Konkurrenznamen, „best“, „AAA“ oder unbelegbare Leistungsversprechen in Titel/Keywords.
+[1856] Compact: Beschreibung nennt klar: automatische Kämpfe, Premiumkauf, Offline, keine Werbung/IAP, Kampagne und Endgame.
+[1857] Compact: What’s New nennt funktionale Änderungen konkret; keine ausschließliche Floskel bei großen Updates.
+
+===== CHAPTER 65 (blocks 1858..1875) - Teststrategie, QA und automatisierte Gates =====
+[1858] Heading2: 65. Teststrategie, QA und automatisierte Gates
+[1859] Heading3: 65.1 Testpyramide
+[1860] TABLE (rows=9):
+   | Ebene | Umfang | Gate
+   | Unit | Formeln, Sortierung, Stores, Migrationen, Validatoren | 100% der kritischen Regeln; >=90% Branch Coverage in sim/storage/rewards.
+   | Property-based | Seeds, Formationen, Effektkombinationen | Mind. 50.000 generierte Kämpfe pro RC ohne Invariantverletzung.
+   | Golden Replay | Kuratiertes Set aller Helden/Bosse/Phasen | Checksum und Ergebnis unverändert, außer simulationVersion bewusst steigt.
+   | Integration | Content -> Sim -> Result -> Save | Alle Kernflows und Fehlerpfade.
+   | Web E2E | Playwright, drei Layoutklassen, DE/EN/Pseudo | Alle Screens, Käufe, Run, Recovery, Accessibility-Smokes.
+   | Visual | Screenshotdiff | Keine ungeprüfte Abweichung an 60 Referenzscreens.
+   | Native Smoke | Android/iOS reale Container | Lifecycle, Back, Audio, Files, Safe Area, Release config.
+   | Manual FQA | Gerätematrix und Exploratory | Keine P0/P1; P2 nur mit Releaseentscheidung.
+[1861] null: 
+[1862] Heading3: 65.2 Simulationsinvarianten
+[1863] Compact: LP und Schild nie negativ; keine Entity gleichzeitig ACTIVE und DEFEATED.
+[1864] Compact: Maximal sieben reguläre Einheiten, drei Helden, drei gleiche Truppen und sechs Beschwörungen pro Seite.
+[1865] Compact: Jede geplante Aktion endet, wird unterbrochen oder verfällt innerhalb ihres Safety Caps.
+[1866] Compact: Keine Fähigkeit kann sich im selben Tick unbegrenzt selbst triggern; globale Eventobergrenze 10.000 je Kampf, danach harter Testfehler.
+[1867] Compact: Gleicher Startsnapshot + Entscheidungen + Version erzeugt identischen Endchecksum, Eventcount und Ergebnis.
+[1868] Compact: Jeder Kampf endet bis Tick 5400; jeder Dungeon-Generator endet bis Versuch 50.
+[1869] Compact: Belohnung kann genau einmal committed werden; commitId ist monoton.
+[1870] Heading3: 65.3 Geräte- und Browsermatrix
+[1871] TABLE (rows=8):
+   | Klasse | Pflichtgeräte/Umgebung
+   | Android Minimum | Android 7/8 WebView aktuell, 4 GB RAM, 720p Landscape; zusätzlich echtes API-24-Gerät oder belastbarer Emulator.
+   | Android Mainstream | Android 12-16, Snapdragon 730/778/8xx, Samsung/Pixel/OnePlus, Gesten und 3-Button.
+   | Android Large | 10-13 Zoll Tablet, Foldable, Chromebook/Resizable Window.
+   | iOS Minimum | iPhone 8 oder vergleichbar, iOS 15/16 sofern Xcode/Testgerät verfügbar.
+   | iOS Mainstream | Aktuelle iPhone-Generationen, Notch/Dynamic Island, iOS 18-26.
+   | iPad | iPad 9th gen oder vergleichbar, Split View und Stage Manager auf unterstütztem Modell.
+   | Web Dev | Chromium, Safari/WebKit, Firefox für UI-Fallback; Storeziel bleibt native WebView.
+[1872] null: 
+[1873] Heading3: 65.4 Fehlerprioritäten
+[1874] TABLE (rows=5):
+   | Priorität | Definition | Release
+   | P0 | Saveverlust, Kauf-/Progressionsduplikat, Startcrash, unspielbarer Kernflow, Sicherheits-/Privacybruch. | Sofort blockiert.
+   | P1 | Häufiger Crash/ANR, Boss nicht abschließbar, falsche Belohnung, erheblicher Accessibilityblocker. | Blockiert.
+   | P2 | Deutlicher UI-/Gameplayfehler mit Workaround, Performance unter Gate auf Teilgeräten. | Nur dokumentierte Ausnahme mit Ownerfreigabe.
+   | P3 | Kosmetik, seltene Text-/Animationsabweichung ohne Informationsverlust. | Darf geplant werden.
+[1875] null: 
+
+===== CHAPTER 66 (blocks 1876..1894) - CI/CD, Buildvarianten und Releaseprozess =====
+[1876] Heading2: 66. CI/CD, Buildvarianten und Releaseprozess
+[1877] Heading3: 66.1 Buildvarianten
+[1878] TABLE (rows=4):
+   | Variante | Merkmale
+   | dev | HMR, Debugpanel, Content-Warnungen, WebView-Debugging, keine Store-Signatur.
+   | qa | Produktionsoptimierung plus Diagnoseexport, Seed-/Replayeingabe, Screenshotmodi; klar als QA gebrandet.
+   | release | Keine Debugrouten, keine server.url, keine Netzpermission, minifiziert, signiert, CSP connect-src none.
+[1879] null: 
+[1880] Heading3: 66.2 Pflichtpipeline
+[1881] Compact: 1. Clean checkout, Node/pnpm-Version prüfen, pnpm install --frozen-lockfile.
+[1882] Compact: 2. Format/Lint/Typecheck und Lizenz-/Dependencyaudit.
+[1883] Compact: 3. Content-, Localization-, Asset- und Store-Manifestvalidatoren.
+[1884] Compact: 4. Unit-, Property-, Golden-Replay- und Integrationstests.
+[1885] Compact: 5. Web-Productionbuild, Bundlegrößen- und CSP-Prüfung.
+[1886] Compact: 6. Playwright E2E und visuelle Referenztests in DE, EN und Pseudo.
+[1887] Compact: 7. npx cap sync, Native-Config-Diff und unerlaubte Permission-/Endpointprüfung.
+[1888] Compact: 8. Android release AAB und iOS Archive bauen; Signatur/Entitlements/Privacy Manifest prüfen.
+[1889] Compact: 9. Native-Smokes auf mindestens einem Android- und iOS-Gerät; Artefakte, Checksums, SBOM und Testreport archivieren.
+[1890] Heading3: 66.3 Secrets und Signierung
+[1891] Compact: Keystore, Passwörter, App Store Connect Keys und Provisioning Profiles liegen ausschließlich im Secret Store/geschützten lokalen Setup.
+[1892] Compact: Entwicklerdebugsignatur darf niemals einen Release-Track erreichen. CI prüft Zertifikat/Fingerprint.
+[1893] Compact: Play App Signing wird verwendet; Upload Key besitzt offline gesichertes Backup und dokumentierten Recoveryprozess.
+[1894] Compact: iOS Distribution über App Store Connect/TestFlight; keine Ad-hoc-Binaries als öffentliche Releasequelle.
+
+===== CHAPTER 67 (blocks 1895..1900) - Produktionsphasen und sofortige Implementierungsreihenfolge =====
+[1895] Heading2: 67. Produktionsphasen und sofortige Implementierungsreihenfolge
+[1896] TABLE (rows=13):
+   | Phase | Ergebnis | Exit-Gate
+   | 0 Bootstrap | Repo, Stack, CI, Capacitor Android/iOS, Releaseconfig, Design Tokens. | Beide Native-Apps starten offline; keine unerlaubte Permission.
+   | 1 Content Kern | Schemas, Loader, Validatoren, IDs, Localization. | Alle V3-Inhalte maschinenlesbar und validiert.
+   | 2 Simulation | Ticks, RNG, Events, Formeln, Zielwahl, Status. | Golden-Replays und Invarianten grün.
+   | 3 Battle Renderer | Pixi Stage, Einheit, Projektile, HUD, Pause/Speed. | 60-FPS-Prototyp, Ergebnis identisch 0.5-3x.
+   | 4 Vertical Slice | 4 Helden, 6 Truppen, Akt-I-Gegner, Aschenkönig, Dungeon. | V3 Kapitel 44 Gates erfüllt.
+   | 5 App Shell/HQ | Navigation, HQ, Mission, Halle, Kaserne, Werkstatt. | Alle Screencontracts und Back-Verhalten.
+   | 6 Full Campaign | 20 Missionen, 4 Regionen/Bosse, Events/Items. | Inhaltliche Completeness und Campaign QA.
+   | 7 Save/Recovery | Rotation, Migration, Battle resume, Export/Import. | Kill-/Corruption-Matrix ohne Verlust.
+   | 8 Endgame | Ascension, Konstellation, Endless, Jenseits, Mastery. | Alle Modusregeln und Meilensteine.
+   | 9 Polish/Accessibility | Final UI, Audio, Haptik, Screenreader, adaptive Layouts. | Design-/Accessibility-Gates.
+   | 10 Store Hardening | Icons, Privacy, manifests, 16 KB, screenshots, metadata. | Interne/Closed/TestFlight Builds bestanden.
+   | 11 Release Candidate | Full regression, device FQA, staged release plan. | Keine P0/P1, P2 freigegeben, Artefakte reproduzierbar.
+[1897] null: 
+[1898] Compact: Ein Agent beginnt nicht mit vollständiger Inhaltsproduktion, bevor Phase 4 beweist, dass Simulation und Beobachtbarkeit funktionieren.
+[1899] Compact: Jede Phase baut auf produktionsnahen Daten und Komponenten; keine zweite Wegwerfarchitektur für Prototyp und Release.
+[1900] Compact: Bei Blockern wird Scope nach V3 Kapitel 46 gekürzt, nicht Save-, Lesbarkeits-, Accessibility- oder Storequalität.
+
+===== CHAPTER 68 (blocks 1901..1919) - Store- und Release-Checklisten als harte Gates =====
+[1901] Heading2: 68. Store- und Release-Checklisten als harte Gates
+[1902] Heading3: 68.1 Gemeinsamer Binary-Preflight
+[1903] Compact: Appname, Version, Package/Bundle ID, Icons, Splash, Copyright und Supportkontakt korrekt.
+[1904] Compact: Kein Debugmenü, Testseed, Platzhaltertext, ungenutzter Button, leere Sammlung oder Entwickler-URL sichtbar.
+[1905] Compact: Alle Inhalte offline; Trafficmonitor zeigt während vollständigem Durchlauf keinen App-Netzwerkverkehr.
+[1906] Compact: Alle Assets lizenziert und Credits/Lizenzen vollständig.
+[1907] Compact: Neues Spiel bis Kampagnenende, Update-Migration, Import, Reset und Endgame-Smoke erfolgreich.
+[1908] Compact: Privacy-/Data-Safety-/App-Privacy-Antworten stimmen mit Binary, Plugins und Permissions überein.
+[1909] Compact: Release Notes und Review Notes nennen nicht offensichtliche Funktionen und Testweg.
+[1910] Heading3: 68.2 Store-Screenshot- und Metadaten-QA
+[1911] Compact: Jeder Screenshot ist auf tatsächlich unterstützter Gerätegröße aufgenommen und zeigt echten UI-Stand.
+[1912] Compact: Keine irreführenden Währungen, Käufe, Onlinefunktionen, Controllerpflicht oder nicht enthaltene Sprache.
+[1913] Compact: Texte sind in Zielstore lokalisiert, lesbar und nicht durch Store-Crops abgeschnitten.
+[1914] Compact: Icon und Screenshots vermeiden grausame Gewaltdarstellung und bleiben für das deklarierte Rating passend.
+[1915] Heading3: 68.3 Post-Launch ohne Live-Service
+[1916] Compact: Es gibt keine tägliche Betriebsverpflichtung, Server oder Contentkalender. Wartung betrifft OS/Store-Kompatibilität, kritische Fehler und optionale Qualitätsupdates.
+[1917] Compact: Android Vitals, Play Reviews, App Store Crashes und Supportmails werden manuell geprüft; keine App-Telemetrie wird nachgerüstet, ohne Produkt-/Datenschutzentscheidung.
+[1918] Compact: Ein Update darf Saves nie absichtlich zurücksetzen. Jede schemaVersion besitzt Migrationstests aus allen veröffentlichten Versionen.
+[1919] Compact: Wird eine Plattformversion nicht mehr unterstützt, muss dies in Storemetadata und Release Notes angekündigt werden; bestehende Offlinefunktion darf nicht künstlich deaktiviert werden.
+
+===== CHAPTER 69 (blocks 1920..1934) - Quellen- und Anforderungsstand der Plattformregeln =====
+[1920] Heading2: 69. Quellen- und Anforderungsstand der Plattformregeln
+[1921] FirstParagraph: Die folgenden externen Regeln sind der dokumentierte Prüfstand vom 16. Juli 2026. Storeanforderungen ändern sich. Spätestens 14 Tage vor jedem Produktionsupload müssen die offiziellen Seiten erneut geprüft und die Release-Checkliste aktualisiert werden. Eine neuere Plattformpflicht überschreibt nur den technischen Mindestwert, nicht die Produktidentität oder Datenschutzgrenzen.
+[1922] Compact: Capacitor 8 Documentation
+[1923] Compact: Capacitor: Updating to 8.0
+[1924] Compact: Google Play Target API Requirements
+[1925] Compact: Android 16 KB Page Sizes
+[1926] Compact: Android Edge-to-Edge
+[1927] Compact: Android App Bundles
+[1928] Compact: Android Core App Quality
+[1929] Compact: Android Vitals for Games
+[1930] Compact: Google Play Data Safety
+[1931] Compact: Google Play Testing Requirements
+[1932] Compact: Apple App Review Guidelines
+[1933] Compact: Apple Upcoming Requirements
+[1934] Compact: Apple Privacy Manifests
+
+===== CHAPTER 70 (blocks 1935..1944) - V3-Inhaltserhaltungs- und Abweichungsaudit =====
+[1935] Heading2: 70. V3-Inhaltserhaltungs- und Abweichungsaudit
+[1936] FirstParagraph: Version 4 wurde nicht aus einer verkürzten Zusammenfassung neu aufgebaut, sondern direkt auf der vollständigen DOCX-Version 3 ergänzt. Sämtliche Kapitel 2 bis 46, alle zehn Helden, 18 Truppen, 14 Beschwörungen, Gegner, Elites, Champions, Zwischen- und Hauptbosse, 18 Modifikatoren, 30 Ereignisse, 42 permanente Gegenstände, 36 Relikte, 20 Missionen, Ascension, Konstellation, Jenseits, Endlose Rift, Meisterschaften, Kodex, Erfolge, UX-, Audio-, Save-, Balancing- und Release-Regeln bleiben enthalten.
+[1937] Heading3: 70.1 Explizit ersetzte V3-Aussagen
+[1938] TABLE (rows=7):
+   | V3-Aussage | V4-Änderung | Grund
+   | Technische Architektur nicht festgelegt | Stack, Module, Build, Native-Konfiguration und Pipeline verbindlich festgelegt. | Expliziter Nutzerauftrag.
+   | Assetformate/Dateinamen nicht festgelegt | Formate, Atlanten, Budgets, Manifest und Namensverträge ergänzt. | Sofortige Produktion.
+   | UI nur als Layoutregeln | Designsystem, Tokens, Screenkatalog und responsive Klassen ergänzt. | Polished Mobile-GUI und Storetests.
+   | Textskalierung bis 150% | Bis 200% plus adaptive Karten/Screenreader-Ansicht erweitert. | Aktuelle Mobile-Accessibility.
+   | Technische Speicherform offen | Versioniertes JSON, Zod, atomare Dateisaves und Migration festgelegt. | Save-/Implementierungsreife.
+   | Kapitel 47 „finale Zielversion“ | Als vollständige inhaltliche Zielversion präzisiert; technische Finaldefinition folgt in Kapitel 71. | Keine Inhaltsverwerfung.
+[1939] null: 
+[1940] Heading3: 70.2 Nicht verworfene Inhalte
+[1941] Compact: Kein Held, Trupp, Gegner, Boss, Item, Relikt, Ereignis, Mission, Modus, Meisterschaftsziel oder Erfolg wurde entfernt.
+[1942] Compact: Keine V3-Obergrenze wurde erhöht: sieben reguläre Einheiten, drei Helden, drei gleiche Truppen, sechs Beschwörungen, drei Heldenlevel und drei Ascension-Startgegenstände bleiben verbindlich.
+[1943] Compact: Das Premium-Einmalkaufmodell, vollständige Offlinefunktion, keine Werbung/IAP/Accounts/Server und keine manuelle Kampfsteuerung bleiben unverändert.
+[1944] Compact: Die V4-Technik implementiert die bestehenden Inhaltsregeln; sie ersetzt keine Bossmechanik, Synergie, Belohnungslogik oder Kampagnenstruktur.
+
+===== CHAPTER 71 (blocks 1945..1952) - Definition der finalen produktionsreifen Zielversion =====
+[1945] Heading2: 71. Definition der finalen produktionsreifen Zielversion
+[1946] FirstParagraph: Riftwarden: Auto RPG Roguelite ist produktionsreif spezifiziert, wenn ein Implementierungsagent aus diesem Dokument Repository, Datenmodelle, deterministische Simulation, Mobile-App-Shell, sämtliche Screens, responsive GUIs, Save- und Recoverylogik, Android-/iOS-Projekte, Tests und Storeartefakte erstellen kann, ohne eine inhaltliche oder technische Grundsatzentscheidung zu erfinden. Die vollständige V3-Spieldefinition bleibt die Autorität für Inhalt und Balance; die Kapitel 48 bis 70 sind die Autorität für Restklarstellungen, Technik, UX, Plattformen und Release.
+[1947] Compact: Der erste ausführbare Meilenstein ist nicht ein Mockup, sondern Phase 0-2 mit validiertem Content, reproduzierbarer Simulation und beiden startbaren Capacitor-Containern.
+[1948] Compact: Der erste spielbare Qualitätsbeweis ist der vertikale Slice mit dem vollständig definierten Aschenkönig und finalnaher Vorschau, Lesbarkeit, Audio- und Savequalität.
+[1949] Compact: Ein Storebuild ist erst zulässig, wenn gemeinsame, Android- und iOS-Gates bestanden, Datenschutzdeklarationen mit dem Binary identisch und keine P0/P1-Fehler offen sind.
+[1950] Compact: Kein Agent darf zur Beschleunigung Remote-Code, Analytics, Werbung, manuelle Fähigkeiten, Accountzwang, ungesicherte Saves oder nicht adaptive Webview-Hacks einführen.
+[1951] BodyText: Die abschließende Qualitätsfrage lautet nun zweistufig: „Kann der Spieler erkennen, welche Vorbereitung zu welchem Kampfverhalten und Ergebnis geführt hat?“ und „Kann die App diesen Zustand auf unterstützten Geräten sicher, flüssig, zugänglich, offline und storekonform ausführen und wiederherstellen?“ Nur wenn beide Antworten eindeutig Ja sind, entspricht die Umsetzung Version 4.
+[1952] null: 
+
+===== CHAPTER 72 (blocks 1953..1966) - V5-Autorität, Null-Unklarheits-Protokoll und externe Restwerte =====
+[1953] Heading2: 72. V5-Autorität, Null-Unklarheits-Protokoll und externe Restwerte
+[1954] FirstParagraph: Version 5 ist die letzte Designspezifikation vor der Erstellung eines getrennten Entwicklungsplans. Sie ist keine Ideensammlung und kein unverbindliches Briefing. Ein Implementierungsagent verwendet sie als Source of Truth für Produkt, Inhalt, Simulation, UX, Daten, Native-Container, Qualität und Release. Der spätere Entwicklungsplan darf Reihenfolge, Arbeitspakete, Verantwortliche und Schätzungen festlegen, aber keine hier definierte Produktentscheidung neu treffen.
+[1955] Heading3: 72.1 Verbindliche Konflikt- und Auslegungsreihenfolge
+[1956] TABLE (rows=7):
+   | Priorität | Regel | Konsequenz
+   | 1 | Kapitel 72-87 der V5 | Schließen oder korrigieren ältere technische und auslegungsbezogene Aussagen.
+   | 2 | Konkreter Inhaltsdatensatz | Ein benannter Held, Boss, Gegenstand, Encounter oder Screen schlägt eine allgemeinere Standardregel.
+   | 3 | Explizite harte Grenze | Maxima, Minima, Sicherheits-, Save-, Datenschutz- und Store-Gates schlagen Komfort und visuelle Präferenz.
+   | 4 | Numerische Baseline | Wird implementiert, sofern kein engerer datensatzspezifischer Wert existiert.
+   | 5 | Deterministischer V5-Default | Wird verwendet, wenn eine erlaubte Variante nicht aktiv konfiguriert wurde.
+   | 6 | Fehler statt Erfindung | Fehlt ein Pflichtwert trotz Schema, schlägt Build/Content-Load fehl; der Agent erfindet keinen Inhalt.
+[1957] Heading3: 72.2 Bedeutung normativer Begriffe
+[1958] TABLE (rows=9):
+   | Begriff | Exakte Bedeutung
+   | MUSS / MUSS NICHT | Harte Implementierungs- oder Releasebedingung. Abweichung ist ein Defekt oder benötigt eine neue Dokumentversion.
+   | SOLL | Verbindlicher Zielzustand. Abweichung nur bei nachgewiesenem Plattform- oder Performancekonflikt; V5-Fallback anwenden und ADR schreiben.
+   | DARF | Erlaubte Option, niemals zusätzliche Pflicht. Ohne explizite Aktivierung gilt der genannte Default.
+   | Baseline | Erster produktionsfähiger Wert. Er wird implementiert und nur innerhalb des angegebenen Korridors getunt.
+   | Tuning-Korridor | Numerischer Bereich, der ohne Designänderung nach Simulation/Playtest angepasst werden darf.
+   | Release-Blocker | Verhindert RC- oder Storefreigabe unabhängig von Zeitdruck.
+   | Implementierungsfrage | Frage nach Codeausführung innerhalb festgelegter Regeln; der Agent darf eine fachlich übliche Lösung wählen.
+   | Designfrage | Ändert Spielverhalten, Umfang, Datenpraxis, UX-Grundsatz oder Plattformvertrag; darf nicht vom Agenten entschieden werden.
+[1959] Heading3: 72.3 Erlaubte technische Eigenentscheidungen des Agents
+[1960] Compact: Der Agent darf lokale Funktionsnamen, private Hilfsfunktionen, interne Dateiaufteilung innerhalb der festgelegten Module und äquivalente reine Algorithmen wählen.
+[1961] Compact: Der Agent darf keine Dependency hinzufügen, kein Schemafeld umdeuten, keine Währung/Einheit/Fähigkeit ergänzen und keine UI-Funktion verstecken, um Aufwand zu sparen.
+[1962] Compact: Bei mehreren technisch gleichwertigen Lösungen gilt in dieser Reihenfolge: deterministisch, testbar, ohne Native-Zusatzpermission, ohne Netzwerk, kleineres Bundle, einfacher zu warten.
+[1963] Compact: Ein Fallback darf niemals Progression verlieren, Gameplay verändern oder still eine schlechtere Datenquelle verwenden. Jeder Recovery-Pfad ist sichtbar und testbar.
+[1964] Heading3: 72.4 Externe Restwerte, die Entwicklung nicht blockieren
+[1965] TABLE (rows=8):
+   | Schlüssel | Entwicklungswert | Release-Gate
+   | PUBLISHER_LEGAL_NAME | [PUBLISHER] | Muss vor Store-Metadaten, Datenschutzseite und Copyright ersetzt sein.
+   | SUPPORT_EMAIL | support@example.invalid | Muss vor Closed Test/TestFlight durch erreichbare Adresse ersetzt und getestet sein.
+   | SUPPORT_URL | https://example.invalid/riftwarden/support | Muss öffentlich per HTTPS erreichbar sein; App öffnet im Systembrowser.
+   | PRIVACY_URL | https://example.invalid/riftwarden/privacy | Muss öffentlich sein und exakt No-Data/Offline-Binary widerspiegeln.
+   | COPYRIGHT_YEAR | 2026 | Beim Release auf korrektes Jahr/Publisher prüfen.
+   | STORE_PRICE | ca. 2,99 EUR | Publisher wählt regionale Preisstufe; Spielbalance ist unabhängig.
+   | PACKAGE_IDS | com.ceegore.riftwarden | Vor erstem Storeeintrag einmalig bestätigen; danach unveränderlich.
+[1966] TechnicalNote: Die Platzhalter oben sind keine offenen Produktfragen. Sie sind Publisher-/Storekonfiguration und müssen im Buildsystem als klar sichtbare Release-Blocker validiert werden.
+
+===== CHAPTER 73 (blocks 1967..1980) - Kanonische Konstanten, Einheiten, Enums und ID-Regeln =====
+[1967] Heading2: 73. Kanonische Konstanten, Einheiten, Enums und ID-Regeln
+[1968] Heading3: 73.1 Einzige Quelle globaler Regeln
+[1969] FirstParagraph: Alle globalen Gameplay-, Save-, UI- und technischen Konstanten liegen in versionierten, typisierten Konfigurationsmodulen. Kein Magic Number darf außerhalb der jeweils autorisierten Datei dupliziert werden.
+[1970] CodeBlock: // src/game/rules/gameRules.ts export const GAME_RULES = { simulationTicksPerSecond: 30, formationLanes: 3, formationDepths: 3, maxRegularUnitsPerSide: 7, maxHeroesPerPlayerGroup: 3, maxCopiesPerTroopType: 3, maxActiveSummonsPerSide: 6, baseActiveRelics: 6, deepEndlessActiveRelics: 8, absoluteMaxActiveRelics: 8, heroLevelMin: 1, heroLevelMax: 3, permanentEquipmentSlotsPerHero: 2, formationPresetCount: 4, normalRiftCollapseStartTicks: 90 * 30, eliteRiftCollapseStartTicks: 90 * 30, bossRiftCollapseStartTicks: 120 * 30, riftCollapseDurationTicks: 15 * 30, absoluteBattleAbortTicks: 180 * 30, autosaveRotationSlots: 3, supportedLocales: ['de', 'en'] as const, } as const;
+[1971] Heading3: 73.2 Autoritative Einheiten und Rundung
+[1972] TABLE (rows=9):
+   | Domäne | Interne Einheit | Regel
+   | Zeit | ganze Simulationsticks | 1 Sekunde = 30 Ticks. UI-Sekunden sind Anzeige; kein Floattimer im Simulationszustand.
+   | Position | 1/100 X-Einheit als Integer | 0..10000. Bahnen sind Enum 0..2; keine Y-Physik in der Simulation.
+   | Werte | Milliwerte | 1000 intern = 1 sichtbarer Punkt. LP/Schaden/Schilde bleiben Integer.
+   | Prozent | Basispunkte | 10000 = 100%; zulässiger Normalbereich 0..50000, datensatzspezifisch enger.
+   | Währung | ganze Einheiten | Keine Dezimalwährung und keine negative Bilanz.
+   | IDs | lower_snake_case ASCII | Unveränderlich nach Release; Anzeige kommt ausschließlich über Localization Key.
+   | Sortierung | Unicode-freie stabile Schlüssel | Gameplay nutzt ID/Index, nicht lokalisierte Namen.
+   | Rundung | half-away-from-zero | Nur an ausdrücklich markierten Formelschritten; UI rundet separat.
+[1973] Heading3: 73.3 Vollständige Kern-Enums
+[1974] TABLE (rows=16):
+   | Enum | Erlaubte Werte
+   | Side | player, enemy
+   | Lane | top, middle, bottom
+   | Depth | front, middle, back
+   | UnitCategory | hero, troop, summon, enemy, boss, boss_object
+   | RoleTag | defender, fighter, breaker, duelist, marksman, mage, healer, support, summoner, controller, constructor
+   | DamageType | physical, magical, true
+   | TargetKind | enemy_unit, allied_unit, self, ground_position, summon_slot, boss_object
+   | AbilityKind | passive, basic_attack, signature, level3_once, boss, modifier, item
+   | StatusKind | shield, attack_up, attack_speed_up, move_speed_up, resistance_up, regeneration, burn, poison, slow, weaken, silence, stun, mark, confusion
+   | StackPolicy | replace_if_stronger, refresh_duration, extend_duration_capped, independent_by_source, no_reapply
+   | Difficulty | explorer, normal, veteran
+   | RunMode | campaign, campaign_replay, ascension, beyond, endless
+   | QualityTier | auto, high, medium, low
+   | SaveCommitReason | profile_change, node_entered, decision_committed, battle_started, battle_snapshot, battle_finished, reward_committed, run_finished, settings_changed, manual_backup
+   | RecoveryReason | none, newest_slot_invalid, run_invalid, content_mismatch, migration_failed, renderer_unavailable, insufficient_storage
+[1975] Heading3: 73.4 ID-Namensräume und Referenzregeln
+[1976] Compact: Präfixe: hero_, troop_, summon_, enemy_, boss_, ability_, attack_, status_, trait_, synergy_, item_, talisman_, kit_, banner_, relic_, mission_, encounter_, event_, modifier_, achievement_, mastery_, screen_, audio_, visual_.
+[1977] Compact: Eine ID darf nur einem Inhaltstyp gehören. Buildvalidierung verwirft doppelte IDs auch über unterschiedliche Dateien.
+[1978] Compact: Referenzen werden niemals über Arrayposition oder Anzeigenamen gespeichert. Savegames speichern ausschließlich stabile IDs und schemaVersion/contentVersion.
+[1979] Compact: Entfernen oder Umdeuten einer veröffentlichten ID ist verboten. Nicht mehr genutzte Inhalte werden deprecated und durch Migration/Replacement-ID behandelt.
+[1980] Compact: Lokalisierungskeys folgen content.<type>.<id>.<field> beziehungsweise ui.<screen>.<element>. Fehlende Keys sind Release-Buildfehler.
+
+===== CHAPTER 74 (blocks 1981..1999) - Exakter Repository-Bootstrap, Befehle und Konfigurationsbaseline =====
+[1981] Heading2: 74. Exakter Repository-Bootstrap, Befehle und Konfigurationsbaseline
+[1982] Heading3: 74.1 Verbindliche Paket- und Workspace-Struktur
+[1983] FirstParagraph: Das Projekt ist verbindlich ein einzelnes pnpm-Repository ohne Workspace-Packages und ohne Monorepo-Tooling. Die reine Simulation liegt unter /src/game/sim, wird über normale TypeScript-Pfadaliase importiert und niemals als separates Package veröffentlicht.
+[1984] CodeBlock: / package.json pnpm-lock.yaml tsconfig.json tsconfig.node.json vite.config.ts capacitor.config.ts eslint.config.js playwright.config.ts vitest.config.ts /src ... (Kapitel 50) /content/source /content/schemas /content/generated /public/assets/generated /android /ios /tools /tests /docs/adr /docs/reports /store/android /store/ios
+[1985] Heading3: 74.2 Pflichtbefehle
+[1986] TABLE (rows=16):
+   | Befehl | Wirkung | Exit-Code-Gate
+   | pnpm dev | Vite Development Server mit Web-Mocks und Developer Overlay. | 0 nur wenn Content geladen und Schema gültig.
+   | pnpm build | Production-Webbundle ohne Sourcemaps im ausgelieferten Paket. | 0 nur bei Bundle-, CSP-, Localization- und Content-Gates.
+   | pnpm typecheck | tsc --noEmit für App, Tools und Tests. | Keine Fehler/Warnungsunterdrückung.
+   | pnpm lint | ESLint plus verbotene APIs, Imports, Netzwerk- und Random-Regeln. | Keine Fehler.
+   | pnpm content:validate | Schemas, Referenzen, Counts, Balancinggrenzen, Textbudgets. | Jeder Befund ist Fehler oder explizit allowlisted.
+   | pnpm content:build | Kompiliert Source-JSON in deterministische Indizes/Manifest. | Byte-identisch bei gleichem Input.
+   | pnpm assets:build | Atlanten, Kompression, Hashmanifest, Lizenzreport. | Budgets und Referenzen eingehalten.
+   | pnpm test:unit | Vitest Unit-/Schema-/Service-Tests. | 100% grün.
+   | pnpm test:sim | Property-, Golden-Replay- und Massensimulationen. | Alle Invarianten/Hashes grün.
+   | pnpm test:e2e | Playwright primäre Flows DE/EN/Pseudo. | Keine Flakes nach einem Retry; Retry wird berichtet.
+   | pnpm test:visual | Referenzscreens mit festen Seeds/Viewports. | Nur genehmigte Diffs.
+   | pnpm cap:sync | Productionbuild plus npx cap sync. | Native-Diff enthält keine unerlaubte Permission/URL.
+   | pnpm android:release | Signierbares AAB aus clean state. | AAB, SBOM, Checksums, 16-KB-Prüfung.
+   | pnpm ios:archive | Release Archive/xcarchive. | Entitlements/Privacy/SDK-Gates.
+   | pnpm verify:release | Gesamter gemeinsamer Preflight. | Einziger zulässiger Eingang in RC-Build.
+[1987] Heading3: 74.3 Konfigurationsregeln
+[1988] Compact: capacitor.config.ts verwendet webDir=dist, bundledWebRuntime=false, kein server.url und keine allowNavigation-Einträge im Release.
+[1989] Compact: Vite base ist ./ für den Capacitor-Build. Asset-URLs werden ausschließlich über den generierten Manifestresolver aufgebaut.
+[1990] Compact: Production definiert process.env/Import-Meta nur zur Buildzeit. Es existieren keine geheimen Clientwerte; unbekannte Umgebungsvariablen brechen die Validierung.
+[1991] Compact: Debugtools, Seedpicker, Replayinspektor und FPS-HUD sind compile-time aus Release entfernt, nicht nur per verstecktem Schalter deaktiviert.
+[1992] Compact: Native Projekte bleiben committed. npx cap sync darf keine handgeschriebenen Native-Dateien überschreiben; Custom Plugins besitzen eigene Tests.
+[1993] Heading3: 74.4 Zulässige Buildvariablen
+[1994] TABLE (rows=7):
+   | Variable | dev/qa | release
+   | VITE_BUILD_CHANNEL | dev oder qa | release
+   | VITE_CONTENT_VERSION | generierter Hash | generierter Hash, Pflicht
+   | VITE_ENABLE_DEVTOOLS | true erlaubt | muss false sein
+   | VITE_FIXED_TEST_SEED | optional | muss fehlen
+   | VITE_SUPPORT_URL | Placeholder erlaubt | gültige HTTPS-URL Pflicht
+   | VITE_PRIVACY_URL | Placeholder erlaubt | gültige HTTPS-URL Pflicht
+[1995] Heading3: 74.5 Verbindliche Dependency-Allowlist und Versionsfreeze
+[1996] TABLE (rows=6):
+   | Gruppe | Erlaubte produktive Pakete | Regel
+   | UI/Runtime | react, react-dom, zustand, motion, pixi.js, zod | Nur die in Kapitel 49.1 festgelegten Major-Linien; Installation mit --save-exact, pnpm-lock.yaml ist danach autoritativ.
+   | Capacitor | @capacitor/core, android, ios, app, filesystem, preferences, haptics, screen-orientation, splash-screen, browser sowie der für Capacitor 8 offizielle System-Bars-Adapter | Alle offiziellen Capacitor-Pakete besitzen exakt dieselbe Major-Version. Browser ist Pflicht; keine Release-Netzwerkfunktion entsteht daraus.
+   | Native Custom | NativeSaveStore, SaveTransfer, GameAudioSession | Eigener Android-/iOS-Code mit Web-Mock, Unit-, Instrumentation-/XCTest- und Lifecycle-Tests.
+   | Development | typescript, vite, eslint, vitest, playwright, tailwindcss und notwendige offizielle Adapter/Typen | Nur Build-, Test- und Typwerkzeuge. Keine Runtime-Telemetrie, kein Remote-Code, kein CDN.
+   | Verbot | Jedes nicht in dieser Allowlist oder Kapitel 49.2 genannte Runtime-Paket | Hinzufügen benötigt Security-/Bundle-/Lizenzprüfung und ADR; eine Designfunktion benötigt zusätzlich neue Dokumentversion.
+[1997] Compact: Bootstrap löst einmalig die neueste stabile Patchversion innerhalb der freigegebenen Major-Linie am Implementierungsstart auf und schreibt jede Dependency exakt ohne Caret/Tilde in package.json sowie ins Lockfile.
+[1998] Compact: Danach erfolgen Upgrades ausschließlich als eigene PR mit Changelog-, Native-Build-, Bundle-, Determinismus- und Regressionprüfung. Automatische Major-/Minor-Upgrades sind deaktiviert.
+[1999] Compact: Lizenzreport muss für jede direkte und transitive Dependency Name, Version, Lizenz und Quell-URL enthalten; unbekannte, copyleft-inkompatible oder nicht redistributierbare Lizenz blockiert den Build.
+
+===== CHAPTER 75 (blocks 2000..2019) - Konkrete Datenmodelle, Schemas und Inhaltskompilierung =====
+[2000] Heading2: 75. Konkrete Datenmodelle, Schemas und Inhaltskompilierung
+[2001] Heading3: 75.1 Null-/Optional-Semantik
+[2002] Compact: Ein Pflichtfeld fehlt niemals. undefined ist ausschließlich für technisch optionale, nicht serialisierte Funktionsparameter zulässig.
+[2003] Compact: JSON verwendet null nur, wenn „bewusst kein Wert“ eine fachliche Aussage ist. Leere Arrays bedeuten „gültig, aber keine Einträge“.
+[2004] Compact: Defaults werden beim Source-Content nicht still ergänzt. Der Compiler materialisiert explizite Defaults in generated content, damit Runtime und Tests denselben Wert sehen.
+[2005] Compact: Unbekannte Felder sind in Source-, Save- und Importdaten Fehler. Forward Compatibility erfolgt über schemaVersion und Migration, nicht durch Ignorieren.
+[2006] Heading3: 75.2 Zentrale Typen
+[2007] CodeBlock: type ContentId = string; type LocalizationKey = string; type Tick = number; type MilliValue = number; type BasisPoints = number; interface ContentManifest { schemaVersion: number; contentVersion: string; // SHA-256 of canonical generated content simulationVersion: number; localeVersions: Record<'de' | 'en', string>; counts: Record<string, number>; files: Array<{ path: string; sha256: string; byteLength: number }>; } interface UnitStats { maxHp: MilliValue; armor: MilliValue; resistance: MilliValue; attackPower: MilliValue; attackIntervalTicks: Tick; preparationTicks: Tick; rangeX100: number; movementX100PerSecond: number; controlResistanceBps: BasisPoints; } interface UnitDefinition { id: ContentId; category: 'hero' | 'troop' | 'summon' | 'enemy' | 'boss' | 'boss_object'; displayNameKey: LocalizationKey; roleTags: RoleTag[]; traitIds: ContentId[]; // 0..2 baseStats: UnitStats; collisionRadiusX100: number; preferredDepths: Depth[]; basicAttackId: ContentId; passiveAbilityIds: ContentId[]; activeAbilityIds: ContentId[]; targetProfileId: ContentId; visualId: ContentId; audioId: ContentId; codexId: ContentId; } interface AbilityDefinition { id: ContentId; kind: AbilityKind; trigger: TriggerDefinition; target: TargetQuery; chargeTicks: Tick | null; cooldownTicks: Tick | null; castTicks: Tick; recoveryTicks: Tick; interruptPolicy: 'interruptible' | 'cast_committed' | 'uninterruptible'; usesPerBattle: number | null; effects: EffectDefinition[]; telegraphId: ContentId; invalidTargetPolicy: 'wait' | 'retarget' | 'consume_without_effect'; } interface StatusDefinition { id: ContentId; kind: StatusKind; stackPolicy: StackPolicy; maxStacks: number; durationCapTicks: Tick | null; dispelCategory: 'positive' | 'negative' | 'control' | 'none'; bossPolicy: 'normal' | 'duration_reduced' | 'convert_to_interrupt' | 'immune'; statModifiers: StatModifier[]; periodicEffects: PeriodicEffect[]; }
+[2008] Heading3: 75.3 Encounter-, Mission- und Ereignisverträge
+[2009] CodeBlock: interface EncounterDefinition { id: ContentId; regionId: ContentId; kind: 'normal' | 'elite' | 'boss' | 'survival' | 'reinforcement'; enemySlots: Array<{ unitId: ContentId; lane: Lane; depth: Depth; eliteId?: ContentId }>; modifierIds: ContentId[]; reinforcementWaves: ReinforcementWave[]; objective: CombatObjective; rewardTableId: ContentId; previewDisclosure: PreviewDisclosure; allowedModes: RunMode[]; } interface MissionDefinition { id: ContentId; act: 1 | 2 | 3 | 4; sequence: number; titleKey: LocalizationKey; objective: MissionObjective; mapProfileId: ContentId; mandatoryNodeRules: NodeRule[]; encounterPoolIds: ContentId[]; firstCompletionRewards: RewardDefinition[]; repeatRewards: RewardDefinition[]; unlockFlags: string[]; storyEntryKeys: LocalizationKey[]; } interface EventDefinition { id: ContentId; regionTags: ContentId[]; riskTier: 0 | 1 | 2 | 3; titleKey: LocalizationKey; bodyKey: LocalizationKey; prerequisites: PredicateDefinition[]; options: EventOptionDefinition[]; deterministicRollSlots: string[]; repeatPolicy: 'once_per_run' | 'history_limited'; }
+[2010] Heading3: 75.4 Compiler- und Laufzeitpipeline
+[2011] TABLE (rows=9):
+   | Schritt | Eingabe | Ausgabe/Gate
+   | 1 Source parse | UTF-8 JSON, Localization ICU, Assetmanifest | Syntaxfehler, Duplikatkeys und verbotene Unicode-Steuerzeichen blockieren.
+   | 2 Schema validation | Zod strict schemas | Kein unbekanntes oder fehlendes Feld.
+   | 3 Cross-reference | Alle IDs/Keys/Assets | Jede Referenz existiert und besitzt passenden Typ.
+   | 4 Semantic validation | Regeln/Counts/Kompatibilität | Obergrenzen, Trigger, Pools, Bossphasen und Screenlinks gültig.
+   | 5 Canonicalization | Sortierte Source-Daten | Stabile Schlüsselreihenfolge, normalisierte Zahlen, keine Kommentare.
+   | 6 Index build | Canonical content | Maps nach ID, Poolindizes, Such-/Kodexindizes.
+   | 7 Hashing | Alle generated files | contentVersion und file SHA-256.
+   | 8 Runtime load | Manifest + generated content | Hash/Schema prüfen; bei Fehler S02 Recovery statt Teilstart.
+[2012] Heading3: 75.5 Semantische Pflichtvalidatoren
+[2013] Compact: Exakte Releasecounts gemäß Kapitel 2.1; eine Abweichung blockiert release, außer eine neue Dokumentversion ändert den Umfang.
+[2014] Compact: Jede reguläre Einheit besitzt genau einen Standardangriff, mindestens ein Zielprofil, vollständige Visual-/Audio-/Codexreferenzen und gültige Startzone.
+[2015] Compact: Jede automatisch auslösende Fähigkeit besitzt Trigger, Ziel, Cast-/Recoveryzeit, InvalidTargetPolicy, Telegraphie und Effektliste.
+[2016] Compact: Jeder Boss besitzt vollständig abgedeckte LP-Phasen ohne Lücke/Überlappung, eine maximale Kampfdauer und Vorschau für alle strategisch relevanten Mechaniken.
+[2017] Compact: Jede Mission generiert 5-8 besuchte Knoten, garantiert ihre Pflichtknoten, hat mindestens drei gültige normale Encounter-Varianten pro Kampfslot und endet erreichbar.
+[2018] Compact: Jedes Ereignis besitzt zwei oder drei Optionen, sichtbare Kosten/Folgen, deterministische Randomslots und eine valide Ablehn-/Fallbackfolge.
+[2019] Compact: Jeder Screen verweist auf existierende Route, Localization Keys, Icons und mindestens einen Happy-Path-E2E-Test.
+
+===== CHAPTER 76 (blocks 2020..2047) - Vollständig geschlossene Simulations- und Ereignisreihenfolge =====
+[2020] Heading2: 76. Vollständig geschlossene Simulations- und Ereignisreihenfolge
+[2021] Heading3: 76.1 Tick-Pipeline
+[2022] FirstParagraph: Ein Tick wird exakt in der folgenden Reihenfolge verarbeitet. Innerhalb einer Phase gilt die stabile Sortierung scheduledTick, eventPriority, sourceEntityId, abilityId, eventSequence. Kein Renderer- oder Arrayindex darf die Reihenfolge beeinflussen.
+[2023] TABLE (rows=14):
+   | Phase | Priorität | Verarbeitung
+   | A | 0 | Vorherigen Tick abschließen, unveränderlichen Inputsnapshot übernehmen, Pausenstatus prüfen.
+   | B | 10 | Dauer-/Cooldown-/Charge-/Lebenszeit-Zähler dekrementieren; abgelaufene Effekte markieren, noch nicht entfernen.
+   | C | 20 | Periodische Statuswirkungen und feste Schlachtfeldereignisse fällig stellen.
+   | D | 30 | Phasen-, LP-Schwellen-, Once-per-battle- und Reaktionstrigger erkennen; nur Events planen.
+   | E | 40 | Ungültige Ziele lösen; Zielprofile neu bewerten; Target Locks respektieren.
+   | F | 50 | Bahnwechsel und horizontale Bewegung berechnen; Kollision/Stopdistanz auflösen.
+   | G | 60 | Angriffs-/Castvorbereitung fortschreiben; committed casts bleiben committed.
+   | H | 70 | Treffer, Projektilspawns, AoE-Samples, Heilung, Schilde, Kontrolle und Dispel in Eventqueue einreihen.
+   | I | 80 | Schaden/Heilung/Schilde/Status anwenden; keine Todeseffekte vor Abschluss dieser Phase.
+   | J | 90 | Null-LP, Todesverhinderung, Wiederbelebung, OnDefeated und RemoveEntity auflösen.
+   | K | 100 | Beschwörungen/Konstruktionen/Verstärkungen spawnen; Sechsergrenze und Ersatz anwenden.
+   | L | 110 | Bossphasenübergang, Missionsziel, Sieg/Niederlage/Doppelniederlage auswerten.
+   | M | 120 | Snapshot-/Hashdaten erzeugen, RenderEvents publizieren, Statistikakkumulator aktualisieren.
+[2024] Heading3: 76.2 Reichweite, Kollision und Treffergrenzen
+[2025] Compact: Reichweite ist inklusive: distance <= range gilt als in Reichweite. Distanz ist Abstand der Kollisionsränder, nicht Mittelpunktdistanz.
+[2026] Compact: Nahkämpfer stoppen bei targetRadius + ownRadius + attackStopGap. Baseline attackStopGap=0,10 X-Einheiten.
+[2027] Compact: Verbündete dürfen sich überlappen, wenn Spawn/Knockback dies kurz erzwingt; Separation löst maximal 0,25 X pro Tick, ohne die Gegnergrenze zu durchdringen.
+[2028] Compact: Projektile speichern Ziel-ID und Zielposition beim Abschuss. Homing=false trifft die gespeicherte Position; homing=true verfolgt bis maxTurn/expiry. Ist das Ziel entfernt, folgt die definierte lostTargetPolicy.
+[2029] Compact: AoE nutzt einen einmaligen Samplepunkt beim Impact. Einheit gilt getroffen, wenn Kollisionskreis die AoE-Grenze berührt. Eine Fähigkeit trifft dieselbe Entity pro EffectIndex höchstens einmal.
+[2030] Compact: True Damage ignoriert Rüstung/Widerstand, aber nicht Schilde oder explizite Unverwundbarkeit. Negative Endschäden werden auf 0 geklemmt.
+[2031] Heading3: 76.3 Cast, Unterbrechung und Zielverlust
+[2032] TABLE (rows=4):
+   | Policy | Vor Commit | Nach Commit
+   | interruptible | Stun/Silence/definierte Unterbrechung setzt Cast auf 0; Ladung bleibt gemäß ability.resetOnInterrupt. | Nicht anwendbar; Commit liegt am Ende des Casts.
+   | cast_committed | Bis commitTick interruptible. | Effekt/Projektil wird ausgeführt, auch wenn Quelle danach stirbt; sourceSnapshot liefert Werte.
+   | uninterruptible | Nur Tod, Phasenregel oder Kampfende stoppt. | Effekt wird ausgeführt, außer Kampf ist beendet.
+[2033] Compact: invalidTargetPolicy=wait: Fähigkeit bleibt vollständig geladen und prüft jeden Tick, verbraucht keine Nutzung.
+[2034] Compact: invalidTargetPolicy=retarget: Zielquery wird im selben Tick genau einmal neu ausgeführt; ohne Ziel verhält sie sich wie wait.
+[2035] Compact: invalidTargetPolicy=consume_without_effect ist nur für ausdrücklich designte zufällige/risikobehaftete Fähigkeiten erlaubt und muss in Vorschau stehen.
+[2036] Compact: Standardangriffe retargeten nach Zielverlust frühestens im nächsten Tick. Kein sofortiger Doppelangriff durch Retarget.
+[2037] Heading3: 76.4 Statusstacking und periodische Effekte
+[2038] TABLE (rows=6):
+   | StackPolicy | Anwendung
+   | replace_if_stronger | Vergleicht Effektstärke; stärker ersetzt Stärke und Dauer, gleich stark erneuert Dauer; schwächer wird ignoriert.
+   | refresh_duration | Stärke bleibt höchste aktive; Dauer wird auf neue Basisdauer gesetzt, nicht addiert.
+   | extend_duration_capped | Restdauer + Basisdauer, maximal durationCapTicks.
+   | independent_by_source | Je sourceEntityId eigener Stack bis maxStacks; gleiche Quelle erneuert ihren Stack.
+   | no_reapply | Neue Anwendung wird ignoriert, solange aktiv.
+[2039] Compact: Periodische Effekte ticken erstmals nach ihrem intervalTicks, niemals sofort beim Auftragen, außer initialTick=true ist ausdrücklich gesetzt.
+[2040] Compact: Dispel entfernt nach Priorität: harte Kontrolle, stärkster negativer Effekt, längste Restdauer, Status-ID. Bannung positiver Effekte nutzt analog stärkster Buff zuerst.
+[2041] Compact: Schilde bilden eine FIFO-Liste nach Auftragssequenz, außer shieldPriority ist gesetzt. Schaden verbraucht zuerst höchsten shieldPriority, dann ältesten Schild.
+[2042] Compact: Überheilung erzeugt nur dann Schild, wenn eine Fähigkeit dies ausdrücklich definiert. Der erzeugte Schild ist ein neuer Effekt und übernimmt keine Heilmodifikatoren doppelt.
+[2043] Heading3: 76.5 Kampfende und nachlaufende Ereignisse
+[2044] Compact: Sobald Phase L ein endgültiges Kampfende setzt, werden keine neuen Gameplayevents geplant. Bereits geplante Ereignisse späterer Ticks werden verworfen.
+[2045] Compact: Render-/Audioevents dürfen ihre kurze Abschlussanimation abspielen, besitzen aber keine Gameplayautorität.
+[2046] Compact: Bei Zeitlimit gewinnt die Seite mit höherem Verhältnis Summe aktuelle LP+Schilde / Summe maximale LP der regulären Einheiten. Gleichstand: mehr reguläre Einheiten, dann mehr Boss-/Zielschaden; sonst Doppelniederlage.
+[2047] Compact: Ein Replayhash wird alle 30 Ticks und beim Kampfende erzeugt. Hash umfasst autoritativen Zustand, nicht Render-, Audio- oder Statistikformatierung.
+
+===== CHAPTER 77 (blocks 2048..2067) - Verbindliche Einheiten-KI, Navigation und Anti-Stuck-Regeln =====
+[2048] Heading2: 77. Verbindliche Einheiten-KI, Navigation und Anti-Stuck-Regeln
+[2049] Heading3: 77.1 Gemeinsame Zustandsmaschine
+[2050] CodeBlock: SPAWNING -> ACQUIRE_TARGET -> MOVE_OR_POSITION -> PREPARE_ATTACK -> EXECUTE_ATTACK -> RECOVERY -> ACQUIRE_TARGET Any active state -> CONTROLLED -> previous legal state Any active state -> CAST_ABILITY -> RECOVERY Any active state -> DEFEATED -> REMOVED Boss only: Any active state -> PHASE_TRANSITION -> ACQUIRE_TARGET
+[2051] Compact: Eine Einheit führt pro Tick höchstens eine autoritative Zustandsänderung aus, außer DEFEATED/PHASE_TRANSITION besitzt höhere Priorität.
+[2052] Compact: Zielwahl findet beim Eintritt in ACQUIRE_TARGET, bei ungültigem Ziel und bei explizitem Reevaluate-Trigger statt; nicht permanent jeden Tick.
+[2053] Compact: Target Lock baseline: Standardangriff bis Treffer/Abbruch; Signaturfähigkeit bis Castende; Duellanten dürfen nach kill/unerreichbar sofort neu bewerten.
+[2054] Heading3: 77.2 Rollenverhalten
+[2055] TABLE (rows=10):
+   | Rolle | Positionierung | Ziel-/Fallbackverhalten
+   | Verteidiger | Hält 0-4 X vor nächstem geschützten Verbündeten; verfolgt nicht >8 X. | Nahe Angreifer, dann Bedroher der eigenen Bahn; bei leerer Bahn langsam zur bedrohtesten Nachbarbahn.
+   | Kämpfer | Schließt zur Front auf, darf 8 X vor Support. | Nächstes erreichbares Ziel, Rollenbonus gemäß Zielprofil.
+   | Brecher | Wie Kämpfer, aber kein unnötiger Bahnwechsel während Schild-/Konstruktionsziel erreichbar. | Schild > Rüstung > Konstruktion > Bossobjekt > normales Ziel.
+   | Duellant | Darf nach Fähigkeit Bahn wechseln und Backline erreichen; kehrt nicht automatisch sofort zurück. | Ungeschützter Support/Schütze, low-HP Ziel; sonst nächstes Ziel.
+   | Schütze | Hält preferredRange 70-90% der Maxreichweite; weicht nur per definierter Fähigkeit zurück. | Unbedecktes Ziel, Fokusziel, ansonsten nächstes gültiges.
+   | Magier/Controller | Hinter/Mitte; bewegt nur bis gültige Gruppe/Fläche erreichbar. | Höchster erwarteter Mehrzielnutzen, Tie-Break Zielscore.
+   | Heiler | Bleibt hinter nächster Front und innerhalb Healrange. | Niedrigstes effektives LP-Verhältnis; Überheilung vermeiden; ohne Heilziel eigener schwacher Angriff.
+   | Support/Bann | Positioniert zu größtem betroffenen Verbündetencluster. | Buff-/Bannziel gemäß Effektwert; kein Buff auf ablaufendes/sterbendes Ziel.
+   | Beschwörer/Konstrukteur | Meidet direkte Front; sucht freien Spawn-/Konstruktionsslot. | Eigener Angriff nächstes Ziel; Spawnposition gemäß Kapitel 77.4.
+[2056] Heading3: 77.3 Bahnwechsel und Anti-Ping-Pong
+[2057] Compact: Ein normaler Bahnwechsel ist frühestens 90 Ticks nach dem letzten normalen Wechsel erlaubt. Fähigkeitswechsel ignorieren den Cooldown, setzen ihn danach aber neu.
+[2058] Compact: Bedrohungswert einer Nachbarbahn muss mindestens 20% höher sein als der aktuellen Bahn, bevor Schutzformation/Verteidiger freiwillig wechseln.
+[2059] Compact: Eine Einheit bricht einen begonnenen Bahnwechsel nur durch Tod, harte Kontrolle oder explizite Fähigkeit ab. Neue Zielwerte werden erst nach Abschluss geprüft.
+[2060] Compact: Top<->Bottom direkter Wechsel ist verboten; er erfolgt über Mitte und benötigt zwei vollständige Wechsel.
+[2061] Heading3: 77.4 Spawn- und Konstruktionspositionen
+[2062] Compact: Beschwörung mit targetLane spawnt 1,0 X hinter der vordersten verbündeten regulären Einheit dieser Bahn; mindestens 0,5 X innerhalb eigener Seite des nächsten Gegners.
+[2063] Compact: Ohne Verbündeten in der Bahn spawnt sie an der eigenen Front-Startzone. Ist Position blockiert, werden Offsets 0,5 X nach hinten bis maximal 4 X geprüft.
+[2064] Compact: Stationäre Konstruktionen spawnen am definierten Slot. Ist belegt, gilt Ersatzpolicy oder Spawn scheitert sichtbar; kein automatisches Stapeln.
+[2065] Compact: Große Beschwörung darf kleine Einheiten kurz verdrängen, aber niemals gegnerische Körper oder Arenaobjekte überlappen.
+[2066] Heading3: 77.5 Anti-Stuck und Deadlock
+[2067] TABLE (rows=5):
+   | Erkennung | Schwelle | Deterministischer Fix
+   | Kein Positionsfortschritt trotz MOVE | 30 Ticks, Sollbewegung >0, Ziel gültig | Separation neu berechnen, Stopdistanz +0,1 X; Ereignis stuck_repath.
+   | Wiederholtes Repath | 3-mal innerhalb 120 Ticks | Einmaliger Bahnwechsel zur niedrigsten gültigen Nachbarbahn nach Zielscore.
+   | Beide Fronten blockieren ohne Angriff | 60 Ticks kein Schaden/Cast/Positionsfortschritt | Beide nächstgelegenen regulären Einheiten erhalten temporär +0,5 Nahkampfreichweite bis erster Treffer.
+   | Kein Gameplayfortschritt global | 300 Ticks ohne Schaden, Heilung, Spawn, Tod oder Phasenfortschritt | Riftkollaps-Timer startet; sichtbare Warnung, nach 300 weiteren Ticks Zeitlimitauflösung.
+
+===== CHAPTER 78 (blocks 2068..2086) - Navigations-, Screen-, Modal- und Wiederherstellungsverträge =====
+[2068] Heading2: 78. Navigations-, Screen-, Modal- und Wiederherstellungsverträge
+[2069] Heading3: 78.1 Route als serialisierbarer Zustand
+[2070] CodeBlock: interface AppRoute { screenId: ScreenId; params: Record<string, string | number | boolean>; returnRoute?: AppRoute; restoreToken?: string; } interface ScreenState<TData> { status: 'loading' | 'ready' | 'empty' | 'recoverable_error' | 'fatal_error'; data: TData | null; errorCode: string | null; pendingTransactionId: string | null; }
+[2071] Compact: Nur ready erlaubt primäre irreversible Aktionen. Loading/Fehlerzustände deaktivieren Commitbuttons und bewahren Back/Recovery.
+[2072] Compact: Jeder Routeparameter wird validiert. Ungültige ID führt zu definierter Rückroute plus lokalem Diagnoseeintrag, niemals zu leerem Detailbildschirm.
+[2073] Compact: ReturnRoute ist maximal acht Ebenen tief. Bei Überschreitung wird deterministisch auf den nächstgelegenen Hauptbereich reduziert.
+[2074] Compact: Browser-History ist innerhalb Capacitor nicht Gameplay-SSOT. Der AppNavigator spiegelt Navigation, Android-Back und Deep Links kontrolliert.
+[2075] Heading3: 78.2 First-Boot- und Resume-Flows
+[2076] TABLE (rows=7):
+   | Ausgang | Exakte Folge
+   | Erster Start | S00 Native Splash -> S01 Bootstrap -> S03 Sprache -> S04 Accessibility Quick Setup -> S05 Titel -> S06 Neues Spiel -> S08 Prolog/Tutorial.
+   | Gültiges Profil, kein Run | S00 -> S01 -> S05; Fortsetzen führt S10 Hauptquartier.
+   | Gültiger Run am Knoten | S00 -> S01 -> S05; Fortsetzen lädt S40 Dungeonkarte exakt am committed Knoten.
+   | Gültiger Kampf-Snapshot | S00 -> S01 -> S05; Fortsetzen zeigt einmalige Meldung und lädt S51 pausiert bei letztem bestätigten Snapshot.
+   | Recovery nötig | S00 -> S01 -> S02 Recovery; nach Auswahl Zielroute aus validem Save.
+   | Kein WebGL | S00 -> S01 -> S02 Kompatibilität; Diagnose, Mindestanforderung, Retry nach App-Neustart; keine unbedienbare Kampfansicht.
+[2077] Heading3: 78.3 Standardzustände jedes Screens
+[2078] TABLE (rows=7):
+   | Zustand | Pflichtdarstellung | Erlaubte Aktionen
+   | loading <150 ms | Kein Spinner; bestehende Shell bleibt stabil. | Back nur wenn vorheriger Screen sicher ist.
+   | loading 150 ms-2 s | Skeleton/ruhiger Indikator ohne Layoutsprung. | Back/Cancel wenn Operation abbrechbar.
+   | loading >2 s | Text mit aktueller Phase; kein Fake-Prozent. | Abbrechen nur wenn atomar sicher.
+   | empty | Erklärung, warum leer, und genau eine sinnvolle nächste Aktion. | Navigation/Unlockhinweis; kein toter Screen.
+   | recoverable_error | Menschlicher Fehlertext, Fehlercode im Detail, Zustand bleibt erhalten. | Retry, alternative Aktion, Back.
+   | fatal_error | S02 Recovery mit Exportdiagnose und sicherem Neustart. | Recovery, Export, neues Profil nur nach Bestätigung.
+[2079] Heading3: 78.4 Modal- und Transaktionsregeln
+[2080] Compact: Maximal ein blockierendes Modal. Tooltips/Toasts zählen nicht, dürfen aber bei Modalöffnung schließen.
+[2081] Compact: Irreversible Aktionen nennen Objekt, Folge und Nicht-Rückgängigkeit. Primärbutton verwendet konkrete Verben, nicht „OK“.
+[2082] Compact: Käufe und Belohnungen erzeugen transactionId. UI sperrt nur betroffene Aktion, wartet auf Save-Commit und zeigt Ergebnis erst danach.
+[2083] Compact: Android-Back/Escape schließt Tooltip -> nichtkritisches Overlay -> Modal (wenn sicher) -> Screen. Ein laufender Commit ist nicht durch Back abbrechbar.
+[2084] Compact: Fokus kehrt nach Modal exakt zum auslösenden Element zurück; existiert es nicht mehr, zum nächsten logischen Geschwister oder Screenheading.
+[2085] Heading3: 78.5 Screen-spezifische Persistenz
+[2086] TABLE (rows=6):
+   | Bereich | Persistiert | Nicht persistiert
+   | Listen/Kodex | Filter, Sortierung, Scrollanker je Screen/pro Profil. | Offene Tooltipposition.
+   | Formation | Entwurf lokal sofort, final erst bei Apply/Start; letzter ausgewählter Slot. | Drag-Zwischenposition.
+   | Händler/Belohnung | Angebot/Optionen im Run-Save, gewählte Transaktion atomar. | Hover-/Vergleichstab.
+   | Kampf | Autoritativer Snapshot, Geschwindigkeit, Pause bei Resume. | Renderinterpolation, Partikel, Kameraoffset.
+   | Settings | Nach Apply sofort settings.json; Vorschauwerte im Modal separat. | Abgebrochene Vorschau.
+
+===== CHAPTER 79 (blocks 2087..2108) - Finales GUI-, Komponenten- und Visual-Polish-System =====
+[2087] Heading2: 79. Finales GUI-, Komponenten- und Visual-Polish-System
+[2088] Heading3: 79.1 Verbindliche visuelle Hierarchie
+[2089] Compact: Pro Screen existiert genau eine primäre Handlung. Sekundäraktionen sind visuell leiser; gefährliche Aktionen stehen nie direkt neben primär ohne Abstand/Bestätigung.
+[2090] Compact: Ein Screen verwendet maximal drei Paneele gleichzeitig auf Telefon und vier auf Tablet. Zusätzliche Details liegen in Tabs, Drawer oder Vollbilddetail.
+[2091] Compact: Gold markiert Fortschritt/Primäraktion, Violett Auswahl/Rift, Cyan Information/Magie, Rot ausschließlich Gefahr/Verlust. Farbe wird immer durch Form/Icon/Text ergänzt.
+[2092] Compact: Dekoration darf keine Hitbox imitieren, keinen Textkontrast verschlechtern und keine strategisch relevante Silhouette verdecken.
+[2093] Heading3: 79.2 Z-Index- und Overlayebenen
+[2094] TABLE (rows=9):
+   | Ebene | Token | Inhalt
+   | 0 | z-scene | HQ-/Kampf-Hintergrund, nicht interaktiv.
+   | 10 | z-content | Primäre Screeninhalte und Pixi-Canvas.
+   | 20 | z-hud | HUD, Bottom Action Bar, feste Ressourcen.
+   | 30 | z-popover | Tooltip, Dropdown, Kontextdetail.
+   | 40 | z-modal-backdrop | Modalabdunklung.
+   | 50 | z-modal | Blockierendes Modal.
+   | 60 | z-toast | Toasts/Live-Region, blockieren nicht.
+   | 70 | z-system | Recovery/Update-/fataler Fehlerlayer.
+[2095] Heading3: 79.3 Screen-Kompositionsdefaults
+[2096] TABLE (rows=7):
+   | Screenklasse | Telefon Landscape | Tablet/Large
+   | Sammlung | Header + Filterdrawer + 2-spaltige Karten oder 1-spaltig bei 200% Text. | Masterliste links 30%, Detail rechts 70%.
+   | Detail | Scrollende Detailfläche, fixe Bottom Action Bar. | Portrait/Preview links, Stats/Aktionen rechts.
+   | Formation | Eigene Formation 55%, Gegnerpreview 45%; Details als Drawer. | Beide Formationen plus permanentes Detailpanel.
+   | Dungeonkarte | Karte vollflächig, Knotendetail als Bottom Sheet bis 60% Höhe. | Karte 70%, Knotendetail 30%.
+   | Kampf | 16:9 Bühne maximal, HUD außerhalb Safe Area; Inspector Vollbild/Sheet pausiert. | Bühne plus Inspector-Seitenpanel möglich.
+   | Ereignis | Illustration 35%, Text/Optionen 65%; bei Textscale Illustration kleiner. | Illustration und Text nebeneinander.
+[2097] Heading3: 79.4 Komponenteninteraktion
+[2098] Compact: Buttons zeigen Pressed innerhalb 80 ms; Loading ersetzt Label nicht vollständig, sondern behält Verb und ergänzt Indikator.
+[2099] Compact: GameCard-Auswahl ist nicht identisch mit Aktivierung: erster Tap selektiert/zeigt Details, expliziter Button oder zweiter klarer Schritt bestätigt.
+[2100] Compact: Slider sind nur für kontinuierliche Audio-/Textskala erlaubt. Gameplaywerte, Qualität und Geschwindigkeit nutzen diskrete Segmented Controls.
+[2101] Compact: Scrollbars sind auf Desktop sichtbar gestylt; auf Touch systemnah. Kein horizontales Scrollen für Fließtext.
+[2102] Compact: Tooltips öffnen bei Fokus/Tap, schließen über explizites X, Back/Escape oder Tap außerhalb. Kritische Information steht zusätzlich im Detailscreen.
+[2103] Heading3: 79.5 Polish-Definition pro Screen
+[2104] TABLE (rows=9):
+   | Dimension | Passkriterium
+   | Layout | Keine Überlappung/Clipping bei allen Referenzviewports, DE/EN/Pseudo und 100/150/200% Text.
+   | States | Default, Hover, Focus, Pressed, Disabled, Loading, Selected, Error und New sind implementiert, soweit relevant.
+   | Motion | Übergänge entsprechen Tokens, sind unterbrechbar, Reduce Motion vollständig und verursachen keinen Stateverlust.
+   | Feedback | Jede Aktion reagiert visuell innerhalb eines Frames; Commitaktionen bestätigen erst nach Persistenz.
+   | Audio/Haptik | Relevante Aktionen besitzen optionale Cue-Mappings; kein Cue ist alleinige Information.
+   | Copy | Kein Platzhalter, kein abgeschnittener Text, keine unübersetzte ID, eindeutige Verben.
+   | Performance | Screen erfüllt Kapitel 84 ohne Long Tasks >50 ms bei normaler Interaktion.
+   | Regression | Golden Screenshot und funktionaler E2E-Test vorhanden.
+[2105] Heading3: 79.6 Golden-Screenshot-Zustände
+[2106] Compact: Mindestens: Titel, HQ nach jedem Akt, Missionsdetails, Formation normal/boss, Helden-/Trupp-/Itemdetail, Dungeonkarte, Ereignis, Händler, Pre-Battle, Kampf normal/boss, Ergebnis, Niederlage, Ascension, Endless Checkpoint, Settings, Recovery.
+[2107] Compact: Jeder Golden State existiert in DE, EN und Pseudo; Telefon Compact, Telefon Standard und Tablet. Kritische Screens zusätzlich bei 200% Text und Reduce Motion.
+[2108] Compact: Testdaten nutzen feste Seed-/Savefixtures und keine Uhrzeit, Zufallsanimation oder OS-spezifische Schriftglättung als Vergleichsinhalt.
+
+===== CHAPTER 80 (blocks 2109..2126) - Vollständige Accessibility- und Eingabe-Abnahmematrix =====
+[2109] Heading2: 80. Vollständige Accessibility- und Eingabe-Abnahmematrix
+[2110] Heading3: 80.1 Allgemeiner Zielstandard
+[2111] FirstParagraph: Die App erfüllt für ihre Web-/Mobile-Oberfläche WCAG-2.2-AA-Prinzipien, soweit auf ein lokales Spiel anwendbar, sowie die Plattformkonventionen von Android und iOS. Accessibility ist ein Release-Gate und kein optionaler Nachpolish.
+[2112] TABLE (rows=11):
+   | Bereich | Harte Mindestregel
+   | Kontrast | Normaltext mindestens 4,5:1, großer Text 3:1, UI-Komponenten/Fokus 3:1; Golden-Audit automatisiert.
+   | Touch | Mindestens 48x48 CSS px, gefährliche Nachbarn 12 px Abstand.
+   | Textscale | 100-200%; kein Informationsverlust, horizontales Textscrollen oder abgeschnittener Button.
+   | Fokus | Logische DOM-Reihenfolge, sichtbarer Fokus, Modal-Fokusfalle, Restore Focus.
+   | Semantik | Headinghierarchie, Buttons/Links korrekt, Namen-Rolle-Wert, Live-Regions sparsam.
+   | Farbe | Keine Information nur durch Farbe; Statusicons haben Form/Muster/Text.
+   | Bewegung | Reduce Motion entfernt Parallax, Zoom, Shake und lange Übergänge; Gameplaytiming unverändert.
+   | Blitze | Kein Effekt überschreitet drei starke Blitze pro Sekunde; Reduced Flash ersetzt durch Glow/Fade.
+   | Audio | Untertitel/Textalternative für Sprache/Warnung; Lautstärkebusse separat.
+   | Kampf | Pausierbare taktische Textansicht mit Bahnen, Einheiten, Zielen, Effekten und angekündigten Gefahren.
+[2113] Heading3: 80.2 Screenreader-Kampfmodell
+[2114] Compact: Im laufenden Kampf meldet die Live-Region ausschließlich Phasewechsel, eigene reguläre Verluste, Bosswarnungen und Kampfende. Schadenszahlen werden nicht live vorgelesen.
+[2115] Compact: Beim Pausieren wird eine semantische Liste aufgebaut: obere/mittlere/untere Bahn; je Einheit Name, Seite, Rolle, LP%, Schild, Ziel, Signaturladung, Status.
+[2116] Compact: Einheitenreihenfolge: Seite Spieler vor Gegner, Bahn top/middle/bottom, X-Position Richtung Front, stabile Entity-ID.
+[2117] Compact: Timeline listet bekannte nächste Ereignisse als „in N Sekunden“, basierend auf Simulationsticks. Verdeckte nicht strategische Zufallsdetails werden nicht erfunden.
+[2118] Compact: Fortsetzen erhält den Fokus auf dem pausierten Eintrag oder dem Fortsetzenbutton; Kampf startet nicht automatisch durch Screenreader-Navigation.
+[2119] Heading3: 80.3 Eingabemodalitäten
+[2120] TABLE (rows=6):
+   | Modalität | Pflichtabdeckung
+   | Touch | Alle Flows ohne Hover/Long Press/Doppeltap; alternative Bedienung für Drag.
+   | Maus | Hovertooltips zusätzlich, Scrollrad, Linksklick; Rechtsklick keine Pflicht.
+   | Tastatur | Jede Aktion, Formation, Tabs, Listen, Modals und Kampfsteuerung ohne Maus.
+   | Gamepad | Vollständiger Hauptflow, Fokusgraph pro Screen, Reconnect; keine freie Remap-Pflicht in V1.
+   | Switch/Assistive | Semantische Fokusnavigation und ausreichend große Targets; keine zeitkritische Eingabe.
+[2121] Heading3: 80.4 Accessibility-Releasefälle
+[2122] Compact: TalkBack und VoiceOver: Erststart bis erster Kampf, Kauf, Formation, Ergebnis, Saveexport und Settings vollständig.
+[2123] Compact: 200% Text: alle S00-S65 und O01-O07 auf kleinster unterstützter Breite; keine verdeckte Primäraktion.
+[2124] Compact: Reduce Motion + Reduced Flash + Low Quality gleichzeitig: vollständige Kampagne technisch spielbar, keine fehlenden Telegraphien.
+[2125] Compact: Deuteranopie/Protanopie/Tritanopie: Status, Bahnwarnung, Seltenheit und positive/negative Deltas ohne Farbraten unterscheidbar.
+[2126] Compact: Keyboard/Gamepad: keine Fokusfalle, Fokusverlust oder unerreichbare Aktion über alle primären Flows.
+
+===== CHAPTER 81 (blocks 2127..2146) - Asset-, Animation-, VFX- und Produktionspakete =====
+[2127] Heading2: 81. Asset-, Animation-, VFX- und Produktionspakete
+[2128] Heading3: 81.1 Assetmanifest
+[2129] CodeBlock: interface AssetManifestEntry { id: string; type: 'texture' | 'atlas' | 'font' | 'audio' | 'music' | 'video' | 'localization'; sourcePath: string; generatedPath: string; sha256: string; licenseId: string; colorSpace?: 'srgb'; alphaMode?: 'premultiplied' | 'opaque'; dimensions?: { width: number; height: number }; maxBytes: number; preloadGroup: 'bootstrap' | 'hq' | 'region_1' | 'region_2' | 'region_3' | 'region_4' | 'endgame' | 'on_demand'; }
+[2130] Heading3: 81.2 Dateinamen und technische Formate
+[2131] TABLE (rows=9):
+   | Asset | Source | Releaseformat/Regel
+   | UI-Illustration | PNG/PSD/Krita, sRGB | WebP lossless/quality 85-92; Alpha nur wenn nötig.
+   | Sprite/Animation | PNG-Sequenz oder autorisiertes Rig | TextureAtlas WebP/PNG; max 4096x4096 pro Atlas, 2 px Extrude/Padding.
+   | Icons | SVG Master | SVG lokal oder gerastert in festen DP-Größen; keine externen Fonts als Iconquelle.
+   | Hintergrund | Layered Source 1920x1080+ | WebP; Dekolayer getrennt für Parallax/Low Quality.
+   | VFX | PNG-Sequenz/Meshparameter | Atlas + datengetriebene Emitter; additive Effekte mit Reduced-Flash-Variante.
+   | Font | Lizenzierte OTF/TTF | WOFF2 lokal; Latin/German Glyphset, keine Remote Fonts.
+   | SFX | WAV 48 kHz/24 bit Master | Pipeline erzeugt immer OGG Vorbis für Web/Android und AAC-LC/M4A für iOS; Plattformmanifest lädt ausschließlich das eigene Format.
+   | Musik | WAV 48 kHz/24 bit Master | Pipeline erzeugt immer loopfähiges OGG Vorbis für Web/Android und AAC-LC/M4A für iOS; identische Loopmarker im Manifest.
+[2132] Heading3: 81.3 Einheitspaket
+[2133] TABLE (rows=8):
+   | Bestandteil | Pflicht
+   | Visual-ID | Eine eindeutige Silhouette, Palette, Portrait, Bodenmarker und Größenklasse.
+   | Animationszustände | idle, move, basic_prepare, basic_execute, hit, cast, controlled, defeated; hero/boss zusätzlich signature und phase/level3.
+   | Timingdaten | Frame-/Markerzeiten werden aus Simulationsereignissen abgeleitet; Trefferframe ist Visualmarker, nicht Autorität.
+   | Anchor | feetAnchor normalisiert 0..1; Kollisionsradius/Height separat im Content, nicht aus Pixeldimension abgeleitet.
+   | Varianten | Player/enemy facing gespiegelt, sofern asymmetrische Waffen/Runen keine eigene Textur verlangen.
+   | Accessibility | Silhouette bei 25% Zielgröße erkennbar; Rolle zusätzlich durch Pose/Equipment, nicht nur Farbe.
+   | Low Quality | Reduzierte Frames/Partikel, gleiche Telegraphie und Hitbox.
+[2134] Heading3: 81.4 Mindestanimationsbudgets
+[2135] TABLE (rows=5):
+   | Typ | Frames/Varianten | Max. unkomprimierte Fläche
+   | Normale Truppe/Grundgegner | 8-12 idle, 8-12 move, 6-10 attack, 4-6 hit, 8-12 defeated, 8-16 ability falls vorhanden | ca. 8 MiB pro Einheit vor Atlas-Sharing.
+   | Held | 12-18 idle/move, 8-16 basic, 12-24 signature, 12-24 level3, 6-10 hit, 12-20 defeated | ca. 16 MiB vor Sharing.
+   | Boss | 16-24 idle/move, 12-24 basic, 16-36 Mechanik, 20-40 Phase, 16-24 defeated | ca. 32 MiB pro Boss/Region, streaming.
+   | Beschwörung | 4-10 idle/move, 4-10 attack, 4-8 expire/defeated | ca. 4 MiB.
+[2136] Heading3: 81.5 VFX- und Telegraphievertrag
+[2137] Compact: Jede gefährliche Bodenfläche besitzt Vorwarnform, Countdown-/Füllrichtung und Impact. Farbe allein reicht nicht.
+[2138] Compact: Telegraphiedauer entspricht Ability.castTicks und darf durch Quality nicht verkürzt werden. Reduce Motion ersetzt Bewegung, nicht Dauer/Information.
+[2139] Compact: Trefferfeedback: maximal 80 ms Hitstop für Boss-/Level3-Momente, 20-40 ms schwerer Treffer, keine Simulationspause; Renderer kompensiert.
+[2140] Compact: Kameraschütteln maximal 10 px/180 ms normal, 18 px/260 ms Boss; Nutzerstärke 0/25/50/75/100%, Default 50%, Reduce Motion 0%.
+[2141] Compact: Partikelobergrenzen pro Qualitätsstufe werden in Kapitel 84 gemessen. Bei Budgetüberschreitung werden kosmetische Partikel verworfen, nie Telegraphie.
+[2142] Heading3: 81.6 Asset-Abnahme
+[2143] Compact: Keine Halo-/Fringing-Kanten auf transparenten Sprites; premultiplied Alpha wird durch Pipeline/Testbild geprüft.
+[2144] Compact: Keine eingebetteten Texte in Gameplaygrafiken außer universellen Symbolen; lokalisierbarer Text bleibt UI.
+[2145] Compact: Alle Quellen besitzen Lizenz-/Provenienzdatensatz. KI-generierte Assets werden mit Tool/Modell/Datum/Prompt-ID und kommerzieller Rechteprüfung dokumentiert.
+[2146] Compact: Assetbuild erzeugt Kontaktbogen, Größenreport, unreferenzierte Assets und fehlende Varianten als CI-Artefakt.
+
+===== CHAPTER 82 (blocks 2147..2168) - Audio-, Musik-, Sprach- und Haptik-Spezifikation =====
+[2147] Heading2: 82. Audio-, Musik-, Sprach- und Haptik-Spezifikation
+[2148] Heading3: 82.1 Audio-Busse und Defaults
+[2149] TABLE (rows=7):
+   | Bus | Default | Regel
+   | Master | 80% | Skaliert alle Busse; 0 ist vollständig stumm.
+   | Music | 65% | HQ/Region/Boss; 600-1000 ms Crossfade.
+   | SFX | 80% | Angriffe, UI, VFX; Voice Priority Ducking möglich.
+   | Voice | 80% | Verbindlicher zweisprachiger Sprachumfang aus 82.4; keine semantische Information ausschließlich per Audio.
+   | UI | 70% | Klick, Kauf, Unlock, Fehler; nie bei jedem Fokusmove laut.
+   | Ambient | 55% | HQ/Region; stoppt/ducked im Hintergrund.
+[2150] Heading3: 82.2 Lautheit und Mixing
+[2151] Compact: Music Masterziel -16 LUFS integrated, True Peak <= -1 dBTP. SFX werden nach Wahrnehmungsgruppe normalisiert; kein Einzelclip clippt.
+[2152] Compact: Maximal 24 gleichzeitige SFX-Voices High, 16 Medium, 10 Low. Gleiche Cue-ID besitzt 60 ms Retrigger-Sperre, sofern nicht ausdrücklich Burst.
+[2153] Compact: Bei Bosswarnung oder Sprache duckt Music um 3 dB und Ambient um 5 dB für Cue-Dauer +200 ms. SFX bleiben, außer Warnpriorität definiert Sidechain.
+[2154] Compact: Audioengine verwendet keine zufällige Gameplayentscheidung. Pitch-/Variantenauswahl stammt aus combatCosmetic und beeinflusst Replay nicht.
+[2155] Heading3: 82.3 Musikstruktur
+[2156] TABLE (rows=6):
+   | Kontext | Pflicht
+   | Titel/HQ | Ein Hauptthema mit ruhiger Loop und Fortschrittslayern je Akt.
+   | Region | Je Region Exploration/HQ-Variante und Battleloop; kein harter Neustart zwischen kurzen Kämpfen derselben Region.
+   | Boss | Eigene Fassung mit Phasenstems oder fest definierten Übergangspunkten; Phasewechsel synchronisiert innerhalb max. 1 Takt.
+   | Endgame | Riftmotiv kombiniert regionale Elemente; Endless variiert alle 5 Kämpfe/Checkpoint.
+   | Pause/Background | Musik weich duck/pause gemäß Plattform; Resume ohne doppelten Start.
+[2157] Heading3: 82.4 Sprachumfang
+[2158] Compact: Pip: Tutorial-, Unlock-, Niederlagen- und Storykurztexte. Maximal zwei Sätze; Untertitel immer vorhanden.
+[2159] Compact: Helden: Einmarsch, Signatur, Level3, niedrige LP, Sieg; pro Kategorie 2-4 Varianten, Wiederholungscooldown 20 s.
+[2160] Compact: Bosse: Intro, Phase, Niederlage; strategisch relevante Warnung zusätzlich UI/Text, nie nur Sprache.
+[2161] Compact: Der Release besitzt eine begrenzte, aber verbindliche DE-/EN-Sprachausgabe: Pip vertont alle Tutorialhinweise und zentralen Storyübergänge; jeder Held vertont Einmarsch, Signatur, Level-3, niedrige LP und Sieg mit mindestens zwei Varianten je Kategorie; jeder Haupt- und Zwischenboss vertont Intro, Phasenwechsel und Niederlage. Ereignisse, Kodex, Händlertexte, HQ-Banter und längere Storyeinträge bleiben Text. Jeder semantische Voice-Cue besitzt wortgleichen Untertitel; strategische Warnungen erscheinen zusätzlich als Icon und lokalisierter Warntext. Nonverbale Ausrufe dürfen weitere Varianten ergänzen, ersetzen aber keinen Pflichtsatz.
+[2162] Heading3: 82.5 Audiofokus und Silent Mode
+[2163] Compact: Android: transient loss pausiert/duckt gemäß Fokusart; loss pausiert und resettet keine Position. Resume nur nach gain und wenn App foreground.
+[2164] Compact: iOS: AVAudioSession ambient; Hardware-Silent-Switch stummschaltet Spielaudio. Andere Audioquellen dürfen weiterlaufen/mixen entsprechend ambient.
+[2165] Compact: Kopfhörerabzug pausiert laufenden Kampf automatisch und zeigt Hinweis. Bluetooth-Routenwechsel darf keinen doppelten Cue auslösen.
+[2166] Compact: App Background stoppt SFX/Voice und pausiert Musikposition. Simulation ist bereits pausiert/snapshotted.
+[2167] Heading3: 82.6 Haptikmatrix
+[2168] TABLE (rows=6):
+   | Ereignis | Muster | Grenze
+   | UI bestätigen | light impact | Max. 1 pro 200 ms.
+   | Kauf/Unlock | success notification | Nach Save-Commit.
+   | Ungültige Aktion | warning/light | Nicht bei jedem disabled tap mehrfach.
+   | Schwerer eigener Treffer/Bossphase | medium impact | Max. 1 pro 500 ms; Haptikstärke-Setting.
+   | Niederlage | warning sequence | Einmal; Reduce Haptics/Off respektieren.
+
+===== CHAPTER 83 (blocks 2169..2195) - Konkretes Save-, Settings-, Diagnose- und Recovery-Protokoll =====
+[2169] Heading2: 83. Konkretes Save-, Settings-, Diagnose- und Recovery-Protokoll
+[2170] Heading3: 83.1 Private Dateistruktur
+[2171] CodeBlock: Application Support / private app storage: /saves/manifest.json /saves/profile-A.json /saves/profile-B.json /saves/profile-C.json /saves/run-A.json /saves/run-B.json /saves/run-C.json /saves/battle.snapshot /saves/manual-backup.json /settings/settings.json /logs/session-0.log ... session-4.log /exports/.staging/ /content/installed-manifest.json
+[2172] TechnicalNote: Für atomare Rename-/fsync-Semantik wird ein eigener NativeSaveStore-Adapter verwendet. @capacitor/filesystem allein ist keine Autorität für die Atomizitätsgarantie.
+[2173] Heading3: 83.2 Save Envelope
+[2174] CodeBlock: interface SaveEnvelope<T> { magic: 'RIFTWARDEN_SAVE'; formatVersion: 1; schemaVersion: number; simulationVersion: number; contentVersion: string; appVersion: string; commitId: number; committedAtUtc: string; // informational; not used for gameplay ordering payloadSha256: string; payload: T; } interface SettingsSave { schemaVersion: number; locale: 'de' | 'en'; quality: 'auto' | 'high' | 'medium' | 'low'; textScalePercent: 100 | 125 | 150 | 175 | 200; masterVolume: number; musicVolume: number; sfxVolume: number; voiceVolume: number; uiVolume: number; ambientVolume: number; haptics: 'off' | 'low' | 'normal'; reduceMotion: boolean; reduceFlash: boolean; cameraShakePercent: 0 | 25 | 50 | 75 | 100; colorProfile: 'default' | 'deuteranopia' | 'protanopia' | 'tritanopia'; damageNumbers: 'off' | 'important' | 'all'; autoSlowImportantAbilities: boolean; battleSpeed: 50 | 100 | 200 | 300; }
+[2175] Heading3: 83.3 Kanonische JSON- und Hashregeln
+[2176] Compact: UTF-8 ohne BOM, LF, sortierte Objektschlüssel, keine NaN/Infinity/-0, keine Kommentare. Arrays behalten fachliche Reihenfolge.
+[2177] Compact: payloadSha256 wird über kanonische Serialisierung von payload berechnet. Envelopemetadaten sind nicht Teil des Payloadhashes.
+[2178] Compact: commitId ist monoton pro Profil. Zeitstempel ist Anzeige/Diagnose und niemals Tie-Break für Recovery.
+[2179] Compact: NativeSaveStore schreibt tmp, flush/fsync, liest zurück, prüft Hash, atomarer rename, Verzeichnis-Metadaten flush soweit Plattform unterstützt, dann Manifest analog.
+[2180] Heading3: 83.4 Commitfrequenz und Kampfsnapshot
+[2181] TABLE (rows=8):
+   | Ereignis | Commit
+   | Settings Apply | settings.json unmittelbar.
+   | Kauf/Politur/Vertrag/Unlock | Profile commit vor Erfolgsanimation.
+   | Knotenwahl/Ereignis/Händler | Run commit nach Entscheidung, vor Navigation.
+   | Kampfstart | Run + initialer Battle Snapshot.
+   | Laufender Kampf | Alle 150 Simulationsticks sowie bei App Background/Pause; maximal ein Savewrite gleichzeitig.
+   | Kampfende | Finaler Outcome in Run/Profile commit; Snapshot danach als abgeschlossen markieren.
+   | Expeditions-/Zyklusende | Profile commit und Run atomar als finished/cleared.
+[2182] Heading3: 83.5 Exportformat
+[2183] Compact: Dateiendung .riftwarden-save; ZIP ohne ausführbaren Inhalt mit export-manifest.json, profile.json, optional settings.json und checksums.txt.
+[2184] Compact: Export enthält keine Logs/Replays standardmäßig. Diagnoseexport ist separate .riftwarden-diagnostic und zeigt Inhaltsliste vor Systemdialog.
+[2185] Compact: Import entpackt ausschließlich bekannte Dateinamen, maximale Gesamtgröße 10 MiB, maximale Einzeldatei 8 MiB, keine Pfadsegmente, Symlinks oder verschachtelten Archive.
+[2186] Compact: Import wird vollständig in Staging validiert/migriert. Erst nach Nutzerbestätigung ersetzt ein atomarer Commit das aktive Profil; automatisches Backup wird vorher erstellt.
+[2187] Heading3: 83.6 Settings-Defaults
+[2188] TABLE (rows=11):
+   | Setting | Default | Hinweis
+   | Sprache | OS-Sprache DE -> de, sonst en | Danach Nutzerwahl persistiert.
+   | Qualität | auto | Benchmark in Kapitel 84; Nutzerwahl schlägt Auto.
+   | Text | 100% | Quick Setup bietet 125/150/200.
+   | Audio | Werte Kapitel 82 | iOS Silent Mode respektiert.
+   | Haptik | normal | Off/low verfügbar; nie alleinige Info.
+   | Reduce Motion/Flash | OS-Präferenz übernehmen, sonst false | Nutzerwahl persistiert.
+   | Kameraschütteln | 50% | Bei Reduce Motion effektiv 0.
+   | Schadenszahlen | important | All/Off möglich.
+   | Auto-Slow | true | Max. 1,2 reale Sekunden gemäß Kapitel 36.
+   | Kampfgeschwindigkeit | 100% | Letzte Wahl persistiert, Tutorial beginnt 100%.
+[2189] Heading3: 83.7 Lokale Logs und Diagnose
+[2190] Compact: Maximal fünf rotierende Sessions, je 512 KiB, insgesamt <=2,5 MiB. Keine freie Nutzereingabe, Dateipfade außerhalb Appbereich, Geräte-ID, IP oder personenbezogene Daten.
+[2191] Compact: Logfelder: UTC-Zeit, appVersion, buildChannel, platform/osVersion, errorCode, module, safeContext, stack in QA; Release stack lokal möglich, nie übertragen.
+[2192] Compact: Diagnoseexport listet App-/Content-/Simulationversion, Saveintegrität, Rendererinfo, Speicher-/Qualitätsstatus und letzte Fehler. Savepayload/Replays nur per separater Checkbox.
+[2193] Compact: Logs werden niemals automatisch versendet. Supporttext erklärt, dass Export vom Nutzer selbst geteilt werden muss.
+[2194] Heading3: 83.8 Recovery-Matrix
+[2195] TABLE (rows=7):
+   | Fehler | Automatik | Nutzeroberfläche
+   | Neuester Profilslot ungültig | Nächsthöherer gültiger commitId aus anderen Slots. | Einmalige Info, beschädigte Datei behalten, Backup/Diagnose anbieten.
+   | Run ungültig, Profil gültig | Run nicht laden; sicherer Run-Abbruch-Entwurf. | Zeigt potentielle ungesicherte Verluste; Bestätigung vor Abschluss.
+   | Migration fehlgeschlagen | Original unverändert; manuelles Backup. | S02 mit Retry nach Update, Export, altes Profil nicht löschen.
+   | Contentversion nicht kompatibel | Definierte CompatibilityMap/Migration; sonst blockieren. | Klare Versionsmeldung, kein Teilstart.
+   | Speicher voll | Keine alte gültige Save überschreiben; temporäre Datei löschen. | Platz schaffen/Retry; Spiel bleibt pausiert.
+   | WebGL context lost | Simulation pausieren, Snapshot commit, Renderer neu initialisieren. | Kurzer Recovery-Layer; nach 2 Fehlschlägen S02.
+
+===== CHAPTER 84 (blocks 2196..2216) - Performance-, Speicher-, GPU-, Akku- und Gerätebudgets =====
+[2196] Heading2: 84. Performance-, Speicher-, GPU-, Akku- und Gerätebudgets
+[2197] Heading3: 84.1 Verbindlicher Rendererpfad
+[2198] Compact: Version 1 initialisiert PixiJS explizit mit preference=webgl und preferWebGLVersion=2; WebGL1 darf nur als automatisch funktionierender Pixi-WebGL-Fallback verwendet werden, wenn alle visuellen Tests bestehen.
+[2199] Compact: WebGPU ist experimentell und in Release 1 deaktiviert. Aktivierung erfordert eigenes ADR, vollständige visuelle/device Regression und identisches Gameplay.
+[2200] Compact: Es existiert kein CanvasRenderer-Fallback. Wenn WebGL-Kontext nicht erstellt werden kann, wird S02 Kompatibilität angezeigt; Menüs/Saveexport bleiben bedienbar.
+[2201] Compact: contextlost pausiert Simulation sofort. contextrestored lädt Atlanten/Renderstate neu aus autoritativem Snapshot; kein Kampfneustart und keine Zufallsänderung.
+[2202] Heading3: 84.2 Geräteklassen
+[2203] TABLE (rows=6):
+   | Klasse | Referenz | Ziel
+   | Minimum Android | Android 7+, 4 GiB RAM, 64-bit SoC, WebGL2 oder validiertes WebGL1, 1280x720 effektiv | 30 Sim TPS, 30 gerenderte FPS Low ohne Gameplayverlust.
+   | Target Android | Android 11+, 6 GiB RAM, Mittelklasse 2020+ | 60 FPS Medium/High in regulären Kämpfen.
+   | Minimum iOS | iPhone 8 / iOS 15 bzw. vergleichbare iPad-Hardware | 30 FPS Low, vollständige Features.
+   | Target iOS | iPhone 11/iPad 9th gen oder neuer | 60 FPS Medium/High.
+   | Tablet/Foldable | >=600 dp shortest side | Adaptive Layouts, keine stretched Phone-UI.
+[2204] Heading3: 84.3 Laufzeitbudgets
+[2205] TABLE (rows=11):
+   | Metrik | High/Target | Low/Minimum
+   | Simulation | <=4 ms p95 pro 30-Hz-Tick im maximalen Kampf | <=10 ms p95; niemals Tickskip.
+   | Renderframe | <=16,7 ms p95, <=25 ms p99 | <=33,3 ms p95.
+   | Main-thread Long Task | Keine >50 ms während normaler UI; max. 100 ms bei Screenwechsel mit Loading. | Gleich.
+   | Draw Calls | <=180 maximaler Kampf | <=100 durch Batching/Partikelreduktion.
+   | Sichtbare Entities | 7+6 je Seite plus max. Bossobjekte/Projektile; Renderer cullt kosmetisch. | Gleiche Gameplayentities.
+   | GPU-Texturspeicher | <=192 MiB aktive Region/HQ | <=96 MiB.
+   | JS Heap | <=180 MiB p95 nach 30 min | <=130 MiB.
+   | Cold Start | <=3,0 s Targetgerät bis bedienbarer Titel; <=5,0 s Minimum | Gleiches Gate.
+   | Screenwechsel | <=300 ms ohne Assetload; <=1,5 s mit Regionload | Loadingstate ab 150 ms.
+   | Save Commit | <=100 ms p95 Profil, <=50 ms Settings | <=250 ms; UI bleibt responsive.
+[2206] Heading3: 84.4 Bundle- und Assetbudgets
+[2207] TABLE (rows=8):
+   | Budget | Maximum
+   | Installierte Basis ohne Store-Kompression | 250 MiB Ziel, 350 MiB harter Releaseblocker ohne ADR.
+   | Initial Webbundle JS gzip | 1,5 MiB Ziel, 2,5 MiB hart; Code Splitting nach Feature/Region.
+   | Bootstrapassets | 20 MiB; Titel/HQ/Fonts/UI bis bedienbar.
+   | Regionpaket aktiv | 60 MiB komprimiert je Region als Ziel; nur aktuelle + nächste benötigte Gruppe im Speicher.
+   | Einzeltexture | 4096x4096 max; 2048 bevorzugt auf Minimum.
+   | Audio gleichzeitig dekodiert | Musik 2 Streams + <=24 SFX High; Low <=10.
+   | Lokale Saves/Logs | <=20 MiB inklusive Backups, ohne Nutzerexporte.
+[2208] Heading3: 84.5 Auto-Quality-Entscheidung
+[2209] Compact: Beim ersten Start wird kein langer Benchmark gezeigt. Nach Rendererinitialisierung werden GPU limits, deviceMemory falls verfügbar und 120 Frames einer nicht sichtbaren standardisierten Szene gemessen.
+[2210] Compact: High wenn p95 <=15 ms und Texturspeicherindikatoren ausreichend; Medium <=25 ms; sonst Low. Ergebnis wird gespeichert, aber bei OS-/Appmajor oder wiederholten Context Loss neu bewertet.
+[2211] Compact: Während Kampf darf Auto nur stufenweise kosmetisch reduzieren: Partikel -> Schatten -> Hintergrundlayer -> Auflösung 1,0 bis 0,75. Keine Änderung von Telegraphiedauer, Entitysichtbarkeit oder Simulation.
+[2212] Compact: Qualität steigt nie mitten im Kampf. Sie kann nach drei stabilen Kämpfen beim nächsten Screenwechsel um eine Stufe steigen.
+[2213] Heading3: 84.6 Thermik und Akku
+[2214] Compact: Im Hintergrund 0 Renderframes und 0 Simulationsticks. Dekorative HQ-Loops pausieren nach 30 s Inaktivität oder bei Reduce Motion.
+[2215] Compact: Bei OS Thermal Warning oder dauerhaft p95 >33 ms wird sofort maximal Medium/Low kosmetisch gewählt und FPS-Ziel 30; Spieler erhält keine störende Warnung außer Funktionsproblem.
+[2216] Compact: 30-Minuten-Stresstest auf Targetgerät darf keinen Memorytrend >10% nach Warmup, keinen Context Loss und keine unkontrollierte Audio-/Timerakkumulation zeigen.
+
+===== CHAPTER 85 (blocks 2217..2240) - Testkatalog, Golden Seeds, Coverage und Go/No-Go =====
+[2217] Heading2: 85. Testkatalog, Golden Seeds, Coverage und Go/No-Go
+[2218] Heading3: 85.1 Testschichten und Mindestabdeckung
+[2219] TABLE (rows=9):
+   | Schicht | Mindestumfang
+   | Pure Units | Formeln, Rundung, Trigger, Zielscore, Status, Rewards, Migrationen; >=95% Branch in game/sim und storage/migrations.
+   | Property Tests | Mindestens 1000 generierte Fälle pro Invariante; Seeds bei Fehler persistieren.
+   | Golden Replay | Jeder Held/Trupp/Boss/Modifier/Status mindestens einmal; Hash bei 30-Tick-Intervallen und Ende.
+   | Massensimulation | Mindestens 100.000 Kämpfe pro RC über repräsentative Builds; keine Crash/Deadlock/Invarianzverletzung.
+   | Integration | Content->Sim->Reward->Save, App lifecycle, Native adapters und Recovery.
+   | E2E | Alle primären Screenflows, jeder Knoten-/Transaktionstyp, Kampagne-Smoke und Endgame-Smoke.
+   | Visual | Kapitel 79 Golden States über Viewports/Sprachen/Textscale.
+   | Native FQA | Kapitel 62/63 Testmatrizen auf echten Geräten plus Emulator/Simulator.
+[2220] Heading3: 85.2 Pflichtinvarianten der Simulation
+[2221] Compact: Keine Entity besitzt LP <0 oder >maxLP, negative Schilde, ungültige Bahn/Position, doppelte Entity-ID oder widersprüchlichen Alive/Removed-Status.
+[2222] Compact: Keine Seite überschreitet sieben reguläre Einheiten oder sechs zählende Beschwörungen; kein Spielerbuild überschreitet drei Helden/drei gleiche Truppen.
+[2223] Compact: Gleicher Seed, Content, Simulationversion, Entscheidungen und Startsnapshot erzeugen bit-identische Endhashes in Node, Chromium, Android WebView und iOS WKWebView.
+[2224] Compact: Kampfgeschwindigkeit, Render-FPS, Pause/Resume und Quality verändern niemals Ergebnis oder RNGverbrauch.
+[2225] Compact: Jeder Kampf endet spätestens am hardBattleLimit oder einer ausdrücklich kürzeren Missionsgrenze; kein Deadlock.
+[2226] Compact: Jede Rewardtransaktion ist idempotent; doppelte UI-/Lifecycleevents erzeugen keinen Doppelgewinn/-kauf.
+[2227] Heading3: 85.3 Kanonische Golden Seeds
+[2228] TABLE (rows=13):
+   | Seed-ID | Zweck
+   | golden_basic_001 | Eine Einheit je Seite; physischer Angriff, Rüstung, Tod/Kampfende.
+   | golden_lane_002 | Drei Bahnen, Bahnwechsel, leere Bahn und Schutzformation.
+   | golden_status_003 | Alle StackPolicies, Dispel/Bann, periodische Ticks.
+   | golden_summon_004 | Sechserslots, Multi-Spawn, Ersatz, expiration vs defeated.
+   | golden_revive_005 | Ilyra Wiederbelebung, gleichzeitiger Tod, Doppelniederlage.
+   | golden_projectile_006 | Zielverlust, homing/non-homing, Phasenwechsel.
+   | golden_boss_ash_101 | Alle Aschenkönigphasen Normal und Ascension 4/9/10.
+   | golden_boss_thorn_102 | Pflanzenslots, Schild-/Verwundbarkeitsfenster.
+   | golden_boss_smith_103 | Konstruktionen, vier Slots, Überhitzung.
+   | golden_boss_heart_104 | Vier Endbossphasen, Kuratorintervention, Rang 10.
+   | golden_timeout_201 | Globaler Stillstand, Riftkollaps, Zeitlimit-Tie-Break.
+   | golden_save_301 | Snapshot bei Cast/Projectile/Spawn; Resume identisch.
+[2229] Heading3: 85.4 Content- und Generator-QA
+[2230] Compact: 100.000 Dungeonkarten über Missions-/Modusprofile: 0 Sackgassen, 0 fehlende Pflichtknoten, 0 Besuchslängen außerhalb Regeln, 0 inkompatible Modifikatoren.
+[2231] Compact: Jeder Encounterpool wird über alle Freischaltzustände validiert; Fallbackprofil ist erreichbar und deterministisch.
+[2232] Compact: Automatischer Cross-System-Test erzeugt jede zulässige Einheit-Ausrüstung-Kit-Banner-Synergie-Doktrin-Kombination mindestens strukturell und prüft Referenzen/Maxima.
+[2233] Compact: Balanceberichte markieren Winrate <20% oder >80% für neutrale Referenzencounter, Time-to-First-Death, Kampfdauer, Rollenbeitrag und ungenutzte Inhalte. Markierung ist Tuninginput, kein automatischer Nerf.
+[2234] Heading3: 85.5 Defektpriorität und Releaseentscheidung
+[2235] TABLE (rows=5):
+   | Klasse | Beispiele | Release
+   | P0 | Saveverlust, Sicherheits-/Datenschutzverletzung, unstartbare App, Storebinary falsch signiert. | Sofort blockiert; kein Waiver.
+   | P1 | Crash/ANR, Softlock, falsches Kampfergebnis, unbedienbarer Pflichtscreen, fehlende strategische Vorschau. | Blockiert RC/Release; kein offener P1.
+   | P2 | Deutlicher UX-/Visual-/Audio-/Accessibility-Fehler mit Workaround, Balanceausreißer. | Nur explizite Publisherfreigabe mit dokumentiertem Risiko und Fixplan.
+   | P3 | Kosmetischer kleiner Fehler ohne Informations-/Bedienverlust. | Darf begrenzt offen sein; Liste in Release Notes intern.
+[2236] Heading3: 85.6 Finales Go/No-Go
+[2237] Compact: GO nur wenn verify:release grün, P0/P1=0, P2 ausdrücklich entschieden, alle Save-Migrationen/Recoverytests grün und beide Storebinaries aus demselben Tag/Commit stammen.
+[2238] Compact: GO nur wenn Android-/iOS-Deklarationen mit tatsächlich enthaltenen Plugins, Permissions, Entitlements und Netzwerkverhalten identisch sind.
+[2239] Compact: GO nur wenn vollständiger Kampagnenlauf, Ascension-Smoke, Endless-Tiefe-25-Smoke, Import/Export und Updatepfad auf RC erfolgreich sind.
+[2240] Compact: NO-GO bei nicht reproduzierbarem Build, ungeklärter Lizenz, Placeholder, fehlender Übersetzung, fehlendem Screenzustand oder ungetesteter Plattformänderung.
+
+===== CHAPTER 86 (blocks 2241..2256) - V4-Inhaltserhalt, Korrekturen und Vollständigkeitsaudit =====
+[2241] Heading2: 86. V4-Inhaltserhalt, Korrekturen und Vollständigkeitsaudit
+[2242] Heading3: 86.1 Erhaltungsprinzip
+[2243] FirstParagraph: V5 wurde direkt auf der vollständigen V4-DOCX aufgebaut. Kapitel 1-71, sämtliche Tabellen und alle nicht ausdrücklich unten ersetzten Regeln bleiben Bestandteil des Dokuments. Die neuen Kapitel 72-87 sind Ergänzung und autoritative Schließung, keine verkürzte Neuerzählung.
+[2244] TABLE (rows=9):
+   | Inhaltsgruppe | V4 | V5-Ergebnis
+   | Produkt/Scope | Premium, offline, keine Ads/IAP/Accounts, 4 Akte | Unverändert.
+   | Kampf | Auto-Battle, 3 Bahnen, Formeln, Zielwahl, Status | Unverändert; Tickpipeline/Edge Cases präzisiert.
+   | Roster | 10 Helden, 18 Truppen, 14 Beschwörungen, 28 Grundgegner | Vollständig erhalten.
+   | Bosse/Inhalte | 4 Hauptbosse, Zwischenbosse, Modifikatoren, 30 Events | Vollständig erhalten.
+   | Progression | 42 Items, 36 Relikte, 20 Missionen, Ascension/Endless | Vollständig erhalten.
+   | UX/Screens | S00-S65, O01-O07, Designsystem | Erhalten; Zustände, Routes, Persistenz und Golden States ergänzt.
+   | Technik | Capacitor/React/Pixi/Simulation/Save/CI | Erhalten; konkrete Contracts, Commands, Budgets, Native Atomizität ergänzt.
+   | Store/QA | Android/iOS-Gates, Privacy, 16 KB, Tests | Erhalten und als Go/No-Go geschlossen.
+[2245] Heading3: 86.2 Explizite V5-Korrekturen gegenüber V4
+[2246] TABLE (rows=10):
+   | V4-Stelle | V5-Korrektur | Auswirkung
+   | Kapitel 49.1 PixiJS | Canvas-Fallback entfernt. WebGL ist Produktion, WebGPU deaktiviert, fehlendes WebGL führt zu S02. | Technisch korrekter, testbarer Rendererpfad; Gameplay unverändert.
+   | Kapitel 58/Filesystem | NativeSaveStore mit atomarem Rename/Flush ist Autorität; Filesystemplugin allein reicht nicht als Garantie. | Save-Sicherheit präzisiert.
+   | Allgemeine Defaults | Enums, Units, Settings, Buildvariablen, Commands und Dateninterfaces materialisiert. | Keine neue Mechanik; Implementierungsfragen geschlossen.
+   | Screenkatalog | Loading/Empty/Error/Transaktion/Restore und Routeparameter verbindlich ergänzt. | Keine Screens entfernt.
+   | Performance | Messmethoden und harte Budgets ergänzt; Low Quality darf nur Kosmetik reduzieren. | Keine Inhalts- oder Telegraphieverluste.
+   | Kapitel 6/51 Zeitlimits | Riftkollaps startet regulär/Elite bei 90 s und Boss bei 120 s, dauert 15 s; 180 s bleibt ausschließlich absoluter Failsafe. | Widersprüchliche Soft-/Hard-Konstanten beseitigt; vorhandene Kampfregel erhalten.
+   | Reliktlimit | Sechs als Kampagne/Standard, acht ausschließlich Endlose Rift ab Tiefe 21; absolutes Maximum acht. | Bestehende Modusregel technisch materialisiert.
+   | Audio/Voice | DE-/EN-Pflichtscope und beide Plattform-Audioformate festgelegt. | Keine Budgetentscheidung während Implementierung nötig.
+   | Capacitor Plugins/ABI | Browser verpflichtend; Filesystem nicht Save-Autorität; Production-ABI-Slices verbindlich. | Native- und Storepfade geschlossen.
+[2247] Heading3: 86.3 Automatische V5-Vollständigkeitsgates
+[2248] Compact: Dokumentaudit vergleicht normalisierte V4-Absätze und Tabellenzellen gegen V5. Ausnahmen sind ausschließlich Cover-/Versionslabels, der dokumentierte Pixi-Fix und V5-Autoritätstexte.
+[2249] Compact: Contentvalidator bestätigt exakt 10/18/14/28/4/4/18/30/42/36/20/28/36 gemäß Releaseumfang.
+[2250] Compact: Headingaudit bestätigt lückenlose Kapitel 1-87 und statisches Inhaltsverzeichnis.
+[2251] Compact: Renderaudit prüft jede Seite auf Leerseite, Beschnitt, Tabellenüberlauf, beschädigte Glyphen und Footer/Header.
+[2252] Compact: DOCX-A11y-Audit und PDF-Preflight müssen ohne kritische Befunde abschließen.
+[2253] Heading3: 86.4 Bewusst weiterhin nicht im GDD
+[2254] Compact: Konkrete Sprint-/Taskzerlegung, Aufwandsschätzung, personelle Zuordnung und Kalendertermine: gehören in den nachfolgenden Entwicklungsplan.
+[2255] Compact: Publisheridentität, Signing-Secrets, endgültige Storepreisstufen und rechtsverbindliche Texte: externe Releaseinputs mit Gates aus Kapitel 72.4.
+[2256] Compact: Feintuning außerhalb der Baseline: erfolgt evidenzbasiert über Simulation/Playtest innerhalb der dokumentierten Korridore; keine neue Mechanik.
+
+===== CHAPTER 87 (blocks 2257..2271) - Finaler Handoff-Vertrag vor Entwicklungsplan und Implementierung =====
+[2257] Heading2: 87. Finaler Handoff-Vertrag vor Entwicklungsplan und Implementierung
+[2258] FirstParagraph: Nach V5 darf der Entwicklungsplan das Werk in Phasen, Epics, Tickets, Abhängigkeiten und Abnahmebündel zerlegen. Er darf keine neue Designentscheidung einführen. Ein mittlerer Implementierungsagent muss für jede Aufgabe auf eine konkrete Kapitel-, Datensatz-, Screen-, Interface- oder Gate-Referenz zeigen können.
+[2259] Heading3: 87.1 Der Entwicklungsplan darf entscheiden
+[2260] Compact: Reihenfolge innerhalb der bereits definierten Abhängigkeiten, Ticketgröße, Branch-/PR-Schnitt und parallele Arbeitspakete.
+[2261] Compact: Konkrete interne Algorithmen/Dateiaufteilung, sofern Schnittstellen, Determinismus, Performance und Tests eingehalten werden.
+[2262] Compact: Welche V5-Tests in welchem Implementierungsschritt zuerst grün werden, solange kein Gate übersprungen wird.
+[2263] Heading3: 87.2 Der Entwicklungsplan darf nicht entscheiden
+[2264] Compact: Neue oder entfernte Features, geänderte Obergrenzen, manuelle Kampfsteuerung, andere Währungen, Live-Service, Telemetrie, Accounts oder Netzwerkabhängigkeit.
+[2265] Compact: Andere Stack-Majors, Rendererautorität, nicht deterministische Simulation, schwächere Savegarantien oder nicht adaptive Mobile-UI.
+[2266] Compact: Weglassen von Screens/States/Accessibility/Storetests unter Verweis auf MVP, wenn V5 sie als Pflicht definiert.
+[2267] Heading3: 87.3 Implementierungsstart-Gate
+[2268] TABLE (rows=6):
+   | Gate | Erforderlicher Nachweis
+   | Dokument | V5 DOCX/PDF freigegeben; keine offenen Design-TODOs.
+   | Bootstrapwerte | Package IDs/Publisherplaceholder bestätigt, Toolchains installierbar, Lockfile kann erzeugt werden.
+   | Content | V5-Inhalte in übertragbarer Quelle verfügbar oder Extraktionsplan als erstes Arbeitspaket.
+   | Entwicklungsplan | Jedes Paket besitzt Inputs, Outputs, Tests, Abhängigkeiten und Done-Kriterien aus V5.
+   | Änderungsprozess | ADR-/Change-Control festgelegt; V5-Abweichungen werden nicht still implementiert.
+[2269] Heading3: 87.4 Finale Definition
+[2270] FirstParagraph: Riftwarden: Auto RPG Roguelite ist mit Version 5 ausreichend eindeutig spezifiziert, wenn die Implementierung aus den vorliegenden Regeln einen deterministischen, vollständig offline spielbaren, hochpolierten Mobile-Auto-RPG-Roguelite-Titel erzeugen kann; jeder Inhalt, Screen, Zustand, Datensatz, Savepfad, Rendererfall, Accessibilityflow und Store-Gate besitzt eine festgelegte fachliche Bedeutung; und keine nicht dokumentierte Produktentscheidung notwendig ist. Tritt während der Umsetzung dennoch eine echte Designlücke auf, wird sie nicht improvisiert, sondern als dokumentierte V5-Change-Request mit betroffenen Regeln, Alternativen, gewählter Entscheidung, Migration und Regression behandelt.
+[2271] TechnicalNote: Ende der finalen Pre-Implementation-Spezifikation. Nächster separater Artefaktschritt: Entwicklungsplan und Implementierungsphasen auf Basis dieser V5.

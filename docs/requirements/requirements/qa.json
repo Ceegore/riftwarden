@@ -1,5 +1,1409 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": "1.0",
   "category": "QA",
-  "requirements": []
+  "requirements": [
+    {
+      "id": "REQ-QA-0001",
+      "title": "Jede numerische Baseline muss eine klare Funktion besitzen und datengetrieben...",
+      "statement": "Jede numerische Baseline muss eine klare Funktion besitzen und datengetrieben anpassbar sein.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:8f9e44d939a4cc8f9e29942729f82760b960d684a011a209552bd33692ea0514",
+        "originalExcerpt": "Balancingfähig: Jede numerische Baseline besitzt eine klare Funktion und kann datengetrieben angepasst werden."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "GR-PHASE20-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0002",
+      "title": "Jedes kritische System muss beobachtbare Abnahmekriterien enthalten.",
+      "statement": "Jedes kritische System muss beobachtbare Abnahmekriterien enthalten.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:024b89f239be78ed784d1ece8e7967ab338fd94db59044110494a24a4b50c97d",
+        "originalExcerpt": "Testbar: Jedes kritische System enthält beobachtbare Abnahmekriterien."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "GR-PHASE20-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0003",
+      "title": "Die Endbalance muss nach deterministischen Simulationen und internen Playtest...",
+      "statement": "Die Endbalance muss nach deterministischen Simulationen und internen Playtests innerhalb der dokumentierten Korridore abgestimmt werden.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:25",
+        "quoteHash": "sha256:7bddc11f7930132ec34e4de7175f28e96fd447a8268efe2f317c5de1d602927e",
+        "originalExcerpt": "Unveränderliche Endbalance. Die Baseline ist implementierbar, muss aber nach deterministischen Simulationen und internen Playtests innerhalb der dokumentierten Korridore abgestimmt werden."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "GR-PHASE20-003"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0004",
+      "title": "Build-Validator Referenzen",
+      "statement": "Build-Validator „Referenzen\": harter Fehler bei unbekanntem Held, Effekt, Fähigkeit, Lootpool, Mission oder Localization Key.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:22c4f774a5ba967ef3669de6b1a4180bd1e894162e63b696560f9d0f6ccdc494",
+        "originalExcerpt": "Referenzen: Unbekannter Held, Effekt, Fähigkeit, Lootpool, Mission oder Localization Key."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-VALID-REF-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0005",
+      "title": "Build-Validator IDs",
+      "statement": "Build-Validator „IDs\": harter Fehler bei Duplikat, Großbuchstabe, Leerzeichen, nachträglich entfernter veröffentlichter ID ohne Migration.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:74eaeaa67db1a2a3e4a9804cc94935d3e9f3e955c51e572071ae159896addbd0",
+        "originalExcerpt": "IDs: Duplikat, Großbuchstabe, Leerzeichen, nachträglich entfernte veröffentlichte ID ohne Migration."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-VALID-IDS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0006",
+      "title": "Build-Validator Kampf",
+      "statement": "Build-Validator „Kampf\": harter Fehler bei negativer LP, Cooldown < 0,45 s ohne Ausnahme, ungültiger Phase, unendlicher Triggerkette.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:7d93ebff4250bd4a58946a636779d846f529aab6eee7ea7bf5100777e69f1efc",
+        "originalExcerpt": "Kampf: Negative LP, Cooldown < 0,45 s ohne Ausnahme, ungültige Phase, unendliche Triggerkette."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-VALID-COMBAT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "max": 0.45
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0007",
+      "title": "Build-Validator Formation",
+      "statement": "Build-Validator „Formation\": harter Fehler bei Überschreitung Plätze/Kopien/Helden, identischen Startfeldern, nicht erreichbarer Pflichtbahn.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:2dc5cec7e2d656e0656974904a42e6ca9b42d0249cc0d98d2b63b026f8eac599",
+        "originalExcerpt": "Formation: Mehr als Plätze/Kopien/Helden, identische Startfelder, nicht erreichbare Pflichtbahn."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-VALID-FORMATION-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0008",
+      "title": "Build-Validator Beschwörung",
+      "statement": "Build-Validator „Beschwörung\": harter Fehler bei mehr als sechs ohne Ersatzregel oder Rekursion ohne Safety Cap.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:827ce9a15e7008dcc6082f73d99aaa7a882113e35bb7f063bf5fb27bbb4b9202",
+        "originalExcerpt": "Beschwörung: Mehr als sechs ohne Ersatzregel, Rekursion ohne Safety Cap."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-VALID-SUMMON-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 6
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0009",
+      "title": "Build-Validator Dungeon",
+      "statement": "Build-Validator „Dungeon\": harter Fehler bei nicht erreichbarem Boss, fehlendem Anker, fehlender Vorbereitung, >13 sichtbaren oder >8 besuchten Knoten ohne Modusausnahme.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:280196344a5551c46f135d16d272844a803ee90dc3b4b8d91b6023f982f8fb6f",
+        "originalExcerpt": "Dungeon: Nicht erreichbarer Boss, kein Anker, keine Vorbereitung, >13 sichtbare oder >8 besuchte Knoten ohne Modusausnahme."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-VALID-DUNGEON-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 13
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0010",
+      "title": "Build-Validator Loot",
+      "statement": "Build-Validator „Loot\": harter Fehler bei leerem Pool, Erstbelohnung ohne Ersatz, nicht besitzbarem Item.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:de65a2b21b671034b051ccf24241b9e7e60dd7c24b8d39ad3c163f1338e01bc0",
+        "originalExcerpt": "Loot: Leerer Pool, Erstbelohnung ohne Ersatz, nicht besitzbares Item."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-VALID-LOOT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0011",
+      "title": "Android Store-Cert-Matrix",
+      "statement": "Android Store-Cert-Testmatrix wird vollständig durchlaufen: Install/Update, Launch/Resume, Back/Gesture, Rotation/Fold/Resize, Notch, Offline, Audio, Performance, Accessibility, 16 KB, Pre-launch, Vitals Ziel Crash <0,2% und ANR <0,1%.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1825",
+        "quoteHash": "sha256:aafc97d684f5134c98efcc50287724aaaa9f381aa898d23d681a3567b31903c2",
+        "originalExcerpt": "Android Store-Cert-Testmatrix: Install/Update, Launch/Resume, Back/Gesture, Rotation/Fold/Resize, Notch, Offline, Audio, Performance, Accessibility, 16 KB, Pre-launch, Vitals Ziel <0,2% Crash, <0,1% ANR."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-AND-CERTMATRIX-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "pct",
+          "max": 0.2
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0012",
+      "title": "iOS Store-Cert-Matrix",
+      "statement": "iOS Store-Cert-Testmatrix wird vollständig durchlaufen: Install/Upgrade, Lifecycle, Orientation/Multitasking, Safe Areas, Audio, Accessibility, Review Completeness, Privacy, Energy.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1842",
+        "quoteHash": "sha256:38ffb15195b1560b4f6b642af4da947c3d55a30fdb6abd3e6e4ab8075bec168f",
+        "originalExcerpt": "iOS Store-Cert-Testmatrix: Install/Upgrade, Lifecycle, Orientation/Multitasking, Safe Areas, Audio, Accessibility, Review Completeness, Privacy, Energy."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-IOS-CERTMATRIX-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0013",
+      "title": "CI Schritt 1 Clean checkout",
+      "statement": "Pipelineschritt 1: Clean checkout, Node/pnpm-Version prüfen, pnpm install --frozen-lockfile.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1878",
+        "quoteHash": "sha256:8955482848eb6a448b4fbb41c792aeb08d1fcb749c1aac81062fe60714b67e84",
+        "originalExcerpt": "1. Clean checkout, Node/pnpm-Version prüfen, pnpm install --frozen-lockfile."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-CLEAN-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0014",
+      "title": "CI Schritt 2 Lint/Audit",
+      "statement": "Pipelineschritt 2: Format/Lint/Typecheck und Lizenz-/Dependencyaudit.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1879",
+        "quoteHash": "sha256:f18cdd2971ec776b21cc69f25335944c8e9e3dc03a192e54c960d31189902aa5",
+        "originalExcerpt": "2. Format/Lint/Typecheck und Lizenz-/Dependencyaudit."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-LINT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0015",
+      "title": "CI Schritt 3 Validatoren",
+      "statement": "Pipelineschritt 3: Content-, Localization-, Asset- und Store-Manifestvalidatoren.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1880",
+        "quoteHash": "sha256:53f1790d727af7b0d2c2eb185b82a5990bbbdff57ff5be0cc9c95178b6194e3d",
+        "originalExcerpt": "3. Content-, Localization-, Asset- und Store-Manifestvalidatoren."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-VALID-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0016",
+      "title": "CI Schritt 4 Tests",
+      "statement": "Pipelineschritt 4: Unit-, Property-, Golden-Replay- und Integrationstests.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1881",
+        "quoteHash": "sha256:555a30b60eb45502eedf967972dd928545e339046e4aa58f4cacebef1510971c",
+        "originalExcerpt": "4. Unit-, Property-, Golden-Replay- und Integrationstests."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-TEST-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0017",
+      "title": "CI Schritt 5 Webbuild",
+      "statement": "Pipelineschritt 5: Web-Productionbuild, Bundlegrößen- und CSP-Prüfung.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1882",
+        "quoteHash": "sha256:0b130a59745a0311175a9004b399c616c0125c3acfca048b2a043d6d2f453a11",
+        "originalExcerpt": "5. Web-Productionbuild, Bundlegrößen- und CSP-Prüfung."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-BUILD-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0018",
+      "title": "CI Schritt 6 E2E",
+      "statement": "Pipelineschritt 6: Playwright E2E und visuelle Referenztests in DE, EN und Pseudo.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1883",
+        "quoteHash": "sha256:1dbfbf116f28c29b1f118e5c24b9e8e92efb99c3176d6607938e875c9130275a",
+        "originalExcerpt": "6. Playwright E2E und visuelle Referenztests in DE, EN und Pseudo."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-E2E-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0019",
+      "title": "CI Schritt 7 cap sync",
+      "statement": "Pipelineschritt 7: npx cap sync, Native-Config-Diff und Prüfung unerlaubter Permissions/Endpoints.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1884",
+        "quoteHash": "sha256:dff8c11e44452b526642eceeedccfc2ab6b68217e397c85434f7a17bba0310f2",
+        "originalExcerpt": "7. npx cap sync, Native-Config-Diff und unerlaubte Permission-/Endpointprüfung."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-CAPSYNC-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0020",
+      "title": "CI Schritt 8 Nativebuilds",
+      "statement": "Pipelineschritt 8: Android release AAB und iOS Archive bauen; Signatur, Entitlements und Privacy Manifest werden geprüft.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1885",
+        "quoteHash": "sha256:6a1c7a4a5513cbec656ee5baf5156b84eb96c745d1543ac5faaa8145f69bb58d",
+        "originalExcerpt": "8. Android release AAB und iOS Archive bauen; Signatur/Entitlements/Privacy Manifest prüfen."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-NATIVE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0021",
+      "title": "CI Schritt 9 Native-Smoke",
+      "statement": "Pipelineschritt 9: Native-Smokes auf mindestens einem Android- und iOS-Gerät; Artefakte, Checksums, SBOM und Testreport werden archiviert.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1886",
+        "quoteHash": "sha256:c1aedd963a8c2c53f7ea02a76c5f1bc6d49b568a0f01446bbe32a15c7b0a56c9",
+        "originalExcerpt": "9. Native-Smokes auf mindestens einem Android- und iOS-Gerät; Artefakte, Checksums, SBOM und Testreport archivieren."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-SMOKE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0022",
+      "title": "Smoke-Test Pflichtläufe",
+      "statement": "Smoke-Tests sind erfolgreich: neues Spiel bis Kampagnenende, Update-Migration, Import, Reset und Endgame.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1906",
+        "quoteHash": "sha256:039d04efc8efed7a06c6141203137ede8feff2f53b2696914b486300283ed547",
+        "originalExcerpt": "Neues Spiel bis Kampagnenende, Update-Migration, Import, Reset und Endgame-Smoke erfolgreich."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PREFLIGHT-SMOKE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0023",
+      "title": "Screenshots echter UI-Stand",
+      "statement": "Jeder Screenshot ist auf tatsächlich unterstützter Gerätegröße aufgenommen und zeigt echten UI-Stand.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1911",
+        "quoteHash": "sha256:b2d8cfc62d7debf4f49391f04759db964ab2d16967649a9ad5630c0efb49dcb2",
+        "originalExcerpt": "Jeder Screenshot ist auf tatsächlich unterstützter Gerätegröße aufgenommen und zeigt echten UI-Stand."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-STORESS-REAL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0024",
+      "title": "Lizenzreport Build-Gate",
+      "statement": "Lizenzreport enthält für jede direkte und transitive Dependency Name, Version, Lizenz und Quell-URL; unbekannte, copyleft-inkompatible oder nicht redistributierbare Lizenz blockiert den Build.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "74",
+        "section": null,
+        "locator": "block:1996",
+        "quoteHash": "sha256:7e2ec969208ed832fa0624454d696670c0786f85e92da32a3410c87b1083af45",
+        "originalExcerpt": "Lizenzreport muss für jede direkte und transitive Dependency Name, Version, Lizenz und Quell-URL enthalten; unbekannte, copyleft-inkompatible oder nicht redistributierbare Lizenz blockiert den Build."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-DEPS-LICENSE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0025",
+      "title": "Releasecounts Gate",
+      "statement": "Releasecontents müssen den exakten Counts gemäß Kapitel 2.1 entsprechen; eine Abweichung blockiert release, außer eine neue Dokumentversion ändert den Umfang.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "75",
+        "section": null,
+        "locator": "block:2020",
+        "quoteHash": "sha256:a4eb2901a37a89779574071ac298ddd101902de3ca33a8c1e1a259d20a095106",
+        "originalExcerpt": "Exakte Releasecounts gemäß Kapitel 2.1; eine Abweichung blockiert release, außer eine neue Dokumentversion ändert den Umfang."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-DATA-RELEASECOUNT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0026",
+      "title": "Testdaten für Golden Screens nutzen feste Seed- und Savefixtures und vermeiden Uhrzeit, Zufallsanimation oder OS-spezifische Schriftglättung als Vergleichsinhalt.",
+      "statement": "Testdaten für Golden Screens nutzen feste Seed- und Savefixtures und vermeiden Uhrzeit, Zufallsanimation oder OS-spezifische Schriftglättung als Vergleichsinhalt.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 79,
+        "section": null,
+        "locator": "block:2105",
+        "quoteHash": "sha256:77cd5bd89b499d12d706b717b0b10870d8b2d57ba11a8b02dec54296743f6cd0",
+        "originalExcerpt": "Testdaten nutzen feste Seed-/Savefixtures und keine Uhrzeit, Zufallsanimation oder OS-spezifische Schriftglättung als Vergleichsinhalt."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "QA-GOLDEN-FIXTURE-079"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0027",
+      "title": "Transparente Sprites besitzen keine Halo- oder Fringing-Kanten; premultiplied Alpha wird durch Pipeline und Testbild geprüft.",
+      "statement": "Transparente Sprites besitzen keine Halo- oder Fringing-Kanten; premultiplied Alpha wird durch Pipeline und Testbild geprüft.",
+      "norm": "MUST_NOT",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 81,
+        "section": null,
+        "locator": "block:2140",
+        "quoteHash": "sha256:86b7d8e1a5816167c29505348593abd1b230087584d692fbfdeff12a16c66d21",
+        "originalExcerpt": "Keine Halo-/Fringing-Kanten auf transparenten Sprites; premultiplied Alpha wird durch Pipeline/Testbild geprüft."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "QA-ALPHA-EDGE-081"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0028",
+      "title": "Der Assetbuild erzeugt Kontaktbogen, Größenreport, Liste unreferenzierter Assets und fehlende Varianten als CI-Artefakt.",
+      "statement": "Der Assetbuild erzeugt Kontaktbogen, Größenreport, Liste unreferenzierter Assets und fehlende Varianten als CI-Artefakt.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 81,
+        "section": null,
+        "locator": "block:2143",
+        "quoteHash": "sha256:dfbc253d695830a4d3d67fd3072c33b8a94234011edfd722e3df7ac18cf1b388",
+        "originalExcerpt": "Assetbuild erzeugt Kontaktbogen, Größenreport, unreferenzierte Assets und fehlende Varianten als CI-Artefakt."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "QA-ASSETBUILDS-081"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0029",
+      "title": "100.000 Dungeonkarten über Missions- und Modusprofile müssen 0 Sackgassen, 0 fehlende Pflichtknoten, 0 Besuchslängen außerhalb der Regeln und 0 inkompatible Modifikatoren aufweisen.",
+      "statement": "100.000 Dungeonkarten über Missions- und Modusprofile müssen 0 Sackgassen, 0 fehlende Pflichtknoten, 0 Besuchslängen außerhalb der Regeln und 0 inkompatible Modifikatoren aufweisen.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 85,
+        "section": null,
+        "locator": "block:2228",
+        "quoteHash": "sha256:22fccd131006cd627e9d2f36ad4f81fdff3a2183ecff7f89db1f3180d35cefaa",
+        "originalExcerpt": "100.000 Dungeonkarten über Missions-/Modusprofile: 0 Sackgassen, 0 fehlende Pflichtknoten, 0 Besuchslängen außerhalb Regeln, 0 inkompatible Modifikatoren."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "property",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "QA-DUNGEON-100K-085"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "dungeonMapsSampled",
+          "value": 100000
+        },
+        {
+          "kind": "max",
+          "name": "dungeonDeadEnds",
+          "value": 0
+        },
+        {
+          "kind": "max",
+          "name": "dungeonMissingRequiredNodes",
+          "value": 0
+        },
+        {
+          "kind": "max",
+          "name": "dungeonIncompatibleModifiers",
+          "value": 0
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0030",
+      "title": "Jeder Encounterpool wird über alle Freischaltzustände validiert; das Fallbackprofil ist erreichbar und deterministisch.",
+      "statement": "Jeder Encounterpool wird über alle Freischaltzustände validiert; das Fallbackprofil ist erreichbar und deterministisch.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 85,
+        "section": null,
+        "locator": "block:2229",
+        "quoteHash": "sha256:13155e4a3f3157f7432b96a9db865aa644173f239648bce5663a9febdfc0ce9e",
+        "originalExcerpt": "Jeder Encounterpool wird über alle Freischaltzustände validiert; Fallbackprofil ist erreichbar und deterministisch."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "property",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "QA-ENCOUNTER-POOL-085"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0031",
+      "title": "Ein automatischer Cross-System-Test erzeugt jede zulässige Einheit-Ausrüstung-Kit-Banner-Synergie-Doktrin-Kombination mindestens strukturell und prüft Referenzen und Maxima.",
+      "statement": "Ein automatischer Cross-System-Test erzeugt jede zulässige Einheit-Ausrüstung-Kit-Banner-Synergie-Doktrin-Kombination mindestens strukturell und prüft Referenzen und Maxima.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 85,
+        "section": null,
+        "locator": "block:2230",
+        "quoteHash": "sha256:be2b0c308fd5ea2d21f187fe4cecc5346b10035c9237fd7d4932a6dc63b3ce3e",
+        "originalExcerpt": "Automatischer Cross-System-Test erzeugt jede zulässige Einheit-Ausrüstung-Kit-Banner-Synergie-Doktrin-Kombination mindestens strukturell und prüft Referenzen/Maxima."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "property",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "QA-CROSS-SYSTEM-085"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0032",
+      "title": "Balanceberichte markieren Winrate <20% oder >80% für neutrale Referenzencounter, Time-to-First-Death, Kampfdauer, Rollenbeitrag und ungenutzte Inhalte; die Markierung ist Tuninginput, kein automatischer Nerf.",
+      "statement": "Balanceberichte markieren Winrate <20% oder >80% für neutrale Referenzencounter, Time-to-First-Death, Kampfdauer, Rollenbeitrag und ungenutzte Inhalte; die Markierung ist Tuninginput, kein automatischer Nerf.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 85,
+        "section": null,
+        "locator": "block:2231",
+        "quoteHash": "sha256:6013c0f895f1c9221a3ad10a3dcf86c8c1d9cc3f67502390cc3cde77d696f947",
+        "originalExcerpt": "Balanceberichte markieren Winrate <20% oder >80% für neutrale Referenzencounter, Time-to-First-Death, Kampfdauer, Rollenbeitrag und ungenutzte Inhalte. Markierung ist Tuninginput, kein automatischer Nerf."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "property",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "QA-BALANCE-REPORT-085"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "balanceWinrateLowPct",
+          "value": 20,
+          "unit": "%"
+        },
+        {
+          "kind": "min",
+          "name": "balanceWinrateHighPct",
+          "value": 80,
+          "unit": "%"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0033",
+      "title": "GO nur wenn verify:release grün, P0/P1=0, P2 ausdrücklich entschieden, alle Save-Migrationen und Recoverytests grün und beide Storebinaries aus demselben Tag/Commit stammen.",
+      "statement": "GO nur wenn verify:release grün, P0/P1=0, P2 ausdrücklich entschieden, alle Save-Migrationen und Recoverytests grün und beide Storebinaries aus demselben Tag/Commit stammen.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 85,
+        "section": null,
+        "locator": "block:2234",
+        "quoteHash": "sha256:c77c33e61cd73b0260aba311951736509ab8d4c2620a0b6d7099b780fcced17a",
+        "originalExcerpt": "GO nur wenn verify:release grün, P0/P1=0, P2 ausdrücklich entschieden, alle Save-Migrationen/Recoverytests grün und beide Storebinaries aus demselben Tag/Commit stammen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "QA-GO-CRITERIA-085"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "goP0Count",
+          "value": 0
+        },
+        {
+          "kind": "max",
+          "name": "goP1Count",
+          "value": 0
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0034",
+      "title": "GO nur wenn Android- und iOS-Deklarationen mit tatsächlich enthaltenen Plugins, Permissions, Entitlements und Netzwerkverhalten identisch sind.",
+      "statement": "GO nur wenn Android- und iOS-Deklarationen mit tatsächlich enthaltenen Plugins, Permissions, Entitlements und Netzwerkverhalten identisch sind.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 85,
+        "section": null,
+        "locator": "block:2235",
+        "quoteHash": "sha256:a0c622acd177fe112b8470e5de236fe2c15e89fa2b12794dab09be065e7e8ad5",
+        "originalExcerpt": "GO nur wenn Android-/iOS-Deklarationen mit tatsächlich enthaltenen Plugins, Permissions, Entitlements und Netzwerkverhalten identisch sind."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "QA-GO-DECL-MATCH-085"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0035",
+      "title": "GO nur wenn vollständiger Kampagnenlauf, Ascension-Smoke, Endless-Tiefe-25-Smoke, Import/Export und Updatepfad auf dem RC erfolgreich sind.",
+      "statement": "GO nur wenn vollständiger Kampagnenlauf, Ascension-Smoke, Endless-Tiefe-25-Smoke, Import/Export und Updatepfad auf dem RC erfolgreich sind.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 85,
+        "section": null,
+        "locator": "block:2236",
+        "quoteHash": "sha256:6eddbb808651b02bd4f28ee5a0be6d7f0daf94a1b3ee70851335e49f76261434",
+        "originalExcerpt": "GO nur wenn vollständiger Kampagnenlauf, Ascension-Smoke, Endless-Tiefe-25-Smoke, Import/Export und Updatepfad auf RC erfolgreich sind."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "QA-GO-RC-SMOKES-085"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0036",
+      "title": "NO-GO bei nicht reproduzierbarem Build, ungeklärter Lizenz, Placeholder, fehlender Übersetzung, fehlendem Screenzustand oder ungetesteter Plattformänderung.",
+      "statement": "NO-GO bei nicht reproduzierbarem Build, ungeklärter Lizenz, Placeholder, fehlender Übersetzung, fehlendem Screenzustand oder ungetesteter Plattformänderung.",
+      "norm": "MUST_NOT",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 85,
+        "section": null,
+        "locator": "block:2237",
+        "quoteHash": "sha256:e5d0919e469ea7f98e5caf1eab0e124e4813cf2cb0f7d0c511b0fd29b2bc3afe",
+        "originalExcerpt": "NO-GO bei nicht reproduzierbarem Build, ungeklärter Lizenz, Placeholder, fehlender Übersetzung, fehlendem Screenzustand oder ungetesteter Plattformänderung."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "QA-NOGO-TRIGGERS-085"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0037",
+      "title": "Das Dokumentaudit vergleicht normalisierte V4-Absätze und Tabellenzellen gegen V5; Ausnahmen sind ausschließlich Cover- und Versionslabels, der dokumentierte Pixi-Fix und V5-Autoritätstexte.",
+      "statement": "Das Dokumentaudit vergleicht normalisierte V4-Absätze und Tabellenzellen gegen V5; Ausnahmen sind ausschließlich Cover- und Versionslabels, der dokumentierte Pixi-Fix und V5-Autoritätstexte.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 86,
+        "section": null,
+        "locator": "block:2246",
+        "quoteHash": "sha256:c278572dac70a23804af8e6d956e85262434299baf04fb6b109ab344f9360aa7",
+        "originalExcerpt": "Dokumentaudit vergleicht normalisierte V4-Absätze und Tabellenzellen gegen V5. Ausnahmen sind ausschließlich Cover-/Versionslabels, der dokumentierte Pixi-Fix und V5-Autoritätstexte."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "property",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "QA-DOC-AUDIT-086"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0038",
+      "title": "Der Contentvalidator bestätigt exakt 10/18/14/28/4/4/18/30/42/36/20/28/36 gemäß Releaseumfang.",
+      "statement": "Der Contentvalidator bestätigt exakt 10/18/14/28/4/4/18/30/42/36/20/28/36 gemäß Releaseumfang.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 86,
+        "section": null,
+        "locator": "block:2247",
+        "quoteHash": "sha256:1f2a537bf5a4c70b195caac4baf4d5b43969846ece1964bf0846ddb92a5543d5",
+        "originalExcerpt": "Contentvalidator bestätigt exakt 10/18/14/28/4/4/18/30/42/36/20/28/36 gemäß Releaseumfang."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "property",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "QA-CONTENT-COUNTS-086"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "eq",
+          "name": "contentCountCatalog",
+          "values": [
+            10,
+            18,
+            14,
+            28,
+            4,
+            4,
+            18,
+            30,
+            42,
+            36,
+            20,
+            28,
+            36
+          ]
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0039",
+      "title": "Der Headingaudit bestätigt lückenlose Kapitel 1-87 und ein statisches Inhaltsverzeichnis.",
+      "statement": "Der Headingaudit bestätigt lückenlose Kapitel 1-87 und ein statisches Inhaltsverzeichnis.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 86,
+        "section": null,
+        "locator": "block:2248",
+        "quoteHash": "sha256:1cef5c419a5ff73c428fac398baa652b528d5ba8794af0655edf85537e142fa0",
+        "originalExcerpt": "Headingaudit bestätigt lückenlose Kapitel 1-87 und statisches Inhaltsverzeichnis."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "property",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "QA-HEADING-AUDIT-086"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "eq",
+          "name": "chaptersExpected",
+          "value": 87
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0040",
+      "title": "Das Renderaudit prüft jede Seite auf Leerseite, Beschnitt, Tabellenüberlauf, beschädigte Glyphen und Footer/Header.",
+      "statement": "Das Renderaudit prüft jede Seite auf Leerseite, Beschnitt, Tabellenüberlauf, beschädigte Glyphen und Footer/Header.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 86,
+        "section": null,
+        "locator": "block:2249",
+        "quoteHash": "sha256:8f151d08ccd8ea46e6986557245f249ad2b11f702e826693ab6bf0ed456208b8",
+        "originalExcerpt": "Renderaudit prüft jede Seite auf Leerseite, Beschnitt, Tabellenüberlauf, beschädigte Glyphen und Footer/Header."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "QA-RENDER-AUDIT-086"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-QA-0041",
+      "title": "DOCX-A11y-Audit und PDF-Preflight müssen ohne kritische Befunde abschließen.",
+      "statement": "DOCX-A11y-Audit und PDF-Preflight müssen ohne kritische Befunde abschließen.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 86,
+        "section": null,
+        "locator": "block:2250",
+        "quoteHash": "sha256:eda8d642fd4e8e8243a0ce96db982a29e1fb2928216ce0f6c77a122d7be3f7bd",
+        "originalExcerpt": "DOCX-A11y-Audit und PDF-Preflight müssen ohne kritische Befunde abschließen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "property",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "QA-A11Y-PDF-PREFLIGHT-086"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ]
 }

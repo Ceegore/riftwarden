@@ -1,0 +1,974 @@
+[
+  {
+    "chapter": 79,
+    "block": 2087,
+    "kind": "Heading 2",
+    "text": "79. Finales GUI-, Komponenten- und Visual-Polish-System"
+  },
+  {
+    "chapter": 79,
+    "block": 2088,
+    "kind": "Heading 3",
+    "text": "79.1 Verbindliche visuelle Hierarchie"
+  },
+  {
+    "chapter": 79,
+    "block": 2089,
+    "kind": "Compact",
+    "text": "Pro Screen existiert genau eine primäre Handlung. Sekundäraktionen sind visuell leiser; gefährliche Aktionen stehen nie direkt neben primär ohne Abstand/Bestätigung."
+  },
+  {
+    "chapter": 79,
+    "block": 2090,
+    "kind": "Compact",
+    "text": "Ein Screen verwendet maximal drei Paneele gleichzeitig auf Telefon und vier auf Tablet. Zusätzliche Details liegen in Tabs, Drawer oder Vollbilddetail."
+  },
+  {
+    "chapter": 79,
+    "block": 2091,
+    "kind": "Compact",
+    "text": "Gold markiert Fortschritt/Primäraktion, Violett Auswahl/Rift, Cyan Information/Magie, Rot ausschließlich Gefahr/Verlust. Farbe wird immer durch Form/Icon/Text ergänzt."
+  },
+  {
+    "chapter": 79,
+    "block": 2092,
+    "kind": "Compact",
+    "text": "Dekoration darf keine Hitbox imitieren, keinen Textkontrast verschlechtern und keine strategisch relevante Silhouette verdecken."
+  },
+  {
+    "chapter": 79,
+    "block": 2093,
+    "kind": "Heading 3",
+    "text": "79.2 Z-Index- und Overlayebenen"
+  },
+  {
+    "chapter": 79,
+    "block": 2094,
+    "kind": "Heading 3",
+    "text": "79.3 Screen-Kompositionsdefaults"
+  },
+  {
+    "chapter": 79,
+    "block": 2095,
+    "kind": "Heading 3",
+    "text": "79.4 Komponenteninteraktion"
+  },
+  {
+    "chapter": 79,
+    "block": 2096,
+    "kind": "Compact",
+    "text": "Buttons zeigen Pressed innerhalb 80 ms; Loading ersetzt Label nicht vollständig, sondern behält Verb und ergänzt Indikator."
+  },
+  {
+    "chapter": 79,
+    "block": 2097,
+    "kind": "Compact",
+    "text": "GameCard-Auswahl ist nicht identisch mit Aktivierung: erster Tap selektiert/zeigt Details, expliziter Button oder zweiter klarer Schritt bestätigt."
+  },
+  {
+    "chapter": 79,
+    "block": 2098,
+    "kind": "Compact",
+    "text": "Slider sind nur für kontinuierliche Audio-/Textskala erlaubt. Gameplaywerte, Qualität und Geschwindigkeit nutzen diskrete Segmented Controls."
+  },
+  {
+    "chapter": 79,
+    "block": 2099,
+    "kind": "Compact",
+    "text": "Scrollbars sind auf Desktop sichtbar gestylt; auf Touch systemnah. Kein horizontales Scrollen für Fließtext."
+  },
+  {
+    "chapter": 79,
+    "block": 2100,
+    "kind": "Compact",
+    "text": "Tooltips öffnen bei Fokus/Tap, schließen über explizites X, Back/Escape oder Tap außerhalb. Kritische Information steht zusätzlich im Detailscreen."
+  },
+  {
+    "chapter": 79,
+    "block": 2101,
+    "kind": "Heading 3",
+    "text": "79.5 Polish-Definition pro Screen"
+  },
+  {
+    "chapter": 79,
+    "block": 2102,
+    "kind": "Heading 3",
+    "text": "79.6 Golden-Screenshot-Zustände"
+  },
+  {
+    "chapter": 79,
+    "block": 2103,
+    "kind": "Compact",
+    "text": "Mindestens: Titel, HQ nach jedem Akt, Missionsdetails, Formation normal/boss, Helden-/Trupp-/Itemdetail, Dungeonkarte, Ereignis, Händler, Pre-Battle, Kampf normal/boss, Ergebnis, Niederlage, Ascension, Endless Checkpoint, Settings, Recovery."
+  },
+  {
+    "chapter": 79,
+    "block": 2104,
+    "kind": "Compact",
+    "text": "Jeder Golden State existiert in DE, EN und Pseudo; Telefon Compact, Telefon Standard und Tablet. Kritische Screens zusätzlich bei 200% Text und Reduce Motion."
+  },
+  {
+    "chapter": 79,
+    "block": 2105,
+    "kind": "Compact",
+    "text": "Testdaten nutzen feste Seed-/Savefixtures und keine Uhrzeit, Zufallsanimation oder OS-spezifische Schriftglättung als Vergleichsinhalt."
+  },
+  {
+    "chapter": 80,
+    "block": 2109,
+    "kind": "Heading 2",
+    "text": "80. Vollständige Accessibility- und Eingabe-Abnahmematrix"
+  },
+  {
+    "chapter": 80,
+    "block": 2110,
+    "kind": "Heading 3",
+    "text": "80.1 Allgemeiner Zielstandard"
+  },
+  {
+    "chapter": 80,
+    "block": 2111,
+    "kind": "First Paragraph",
+    "text": "Die App erfüllt für ihre Web-/Mobile-Oberfläche WCAG-2.2-AA-Prinzipien, soweit auf ein lokales Spiel anwendbar, sowie die Plattformkonventionen von Android und iOS. Accessibility ist ein Release-Gate und kein optionaler Nachpolish."
+  },
+  {
+    "chapter": 80,
+    "block": 2112,
+    "kind": "Heading 3",
+    "text": "80.2 Screenreader-Kampfmodell"
+  },
+  {
+    "chapter": 80,
+    "block": 2113,
+    "kind": "Compact",
+    "text": "Im laufenden Kampf meldet die Live-Region ausschließlich Phasewechsel, eigene reguläre Verluste, Bosswarnungen und Kampfende. Schadenszahlen werden nicht live vorgelesen."
+  },
+  {
+    "chapter": 80,
+    "block": 2114,
+    "kind": "Compact",
+    "text": "Beim Pausieren wird eine semantische Liste aufgebaut: obere/mittlere/untere Bahn; je Einheit Name, Seite, Rolle, LP%, Schild, Ziel, Signaturladung, Status."
+  },
+  {
+    "chapter": 80,
+    "block": 2115,
+    "kind": "Compact",
+    "text": "Einheitenreihenfolge: Seite Spieler vor Gegner, Bahn top/middle/bottom, X-Position Richtung Front, stabile Entity-ID."
+  },
+  {
+    "chapter": 80,
+    "block": 2116,
+    "kind": "Compact",
+    "text": "Timeline listet bekannte nächste Ereignisse als „in N Sekunden“, basierend auf Simulationsticks. Verdeckte nicht strategische Zufallsdetails werden nicht erfunden."
+  },
+  {
+    "chapter": 80,
+    "block": 2117,
+    "kind": "Compact",
+    "text": "Fortsetzen erhält den Fokus auf dem pausierten Eintrag oder dem Fortsetzenbutton; Kampf startet nicht automatisch durch Screenreader-Navigation."
+  },
+  {
+    "chapter": 80,
+    "block": 2118,
+    "kind": "Heading 3",
+    "text": "80.3 Eingabemodalitäten"
+  },
+  {
+    "chapter": 80,
+    "block": 2119,
+    "kind": "Heading 3",
+    "text": "80.4 Accessibility-Releasefälle"
+  },
+  {
+    "chapter": 80,
+    "block": 2120,
+    "kind": "Compact",
+    "text": "TalkBack und VoiceOver: Erststart bis erster Kampf, Kauf, Formation, Ergebnis, Saveexport und Settings vollständig."
+  },
+  {
+    "chapter": 80,
+    "block": 2121,
+    "kind": "Compact",
+    "text": "200% Text: alle S00-S65 und O01-O07 auf kleinster unterstützter Breite; keine verdeckte Primäraktion."
+  },
+  {
+    "chapter": 80,
+    "block": 2122,
+    "kind": "Compact",
+    "text": "Reduce Motion + Reduced Flash + Low Quality gleichzeitig: vollständige Kampagne technisch spielbar, keine fehlenden Telegraphien."
+  },
+  {
+    "chapter": 80,
+    "block": 2123,
+    "kind": "Compact",
+    "text": "Deuteranopie/Protanopie/Tritanopie: Status, Bahnwarnung, Seltenheit und positive/negative Deltas ohne Farbraten unterscheidbar."
+  },
+  {
+    "chapter": 80,
+    "block": 2124,
+    "kind": "Compact",
+    "text": "Keyboard/Gamepad: keine Fokusfalle, Fokusverlust oder unerreichbare Aktion über alle primären Flows."
+  },
+  {
+    "chapter": 81,
+    "block": 2127,
+    "kind": "Heading 2",
+    "text": "81. Asset-, Animation-, VFX- und Produktionspakete"
+  },
+  {
+    "chapter": 81,
+    "block": 2128,
+    "kind": "Heading 3",
+    "text": "81.1 Assetmanifest"
+  },
+  {
+    "chapter": 81,
+    "block": 2129,
+    "kind": "Code Block",
+    "text": "interface AssetManifestEntry {"
+  },
+  {
+    "chapter": 81,
+    "block": 2130,
+    "kind": "Heading 3",
+    "text": "81.2 Dateinamen und technische Formate"
+  },
+  {
+    "chapter": 81,
+    "block": 2131,
+    "kind": "Heading 3",
+    "text": "81.3 Einheitspaket"
+  },
+  {
+    "chapter": 81,
+    "block": 2132,
+    "kind": "Heading 3",
+    "text": "81.4 Mindestanimationsbudgets"
+  },
+  {
+    "chapter": 81,
+    "block": 2133,
+    "kind": "Heading 3",
+    "text": "81.5 VFX- und Telegraphievertrag"
+  },
+  {
+    "chapter": 81,
+    "block": 2134,
+    "kind": "Compact",
+    "text": "Jede gefährliche Bodenfläche besitzt Vorwarnform, Countdown-/Füllrichtung und Impact. Farbe allein reicht nicht."
+  },
+  {
+    "chapter": 81,
+    "block": 2135,
+    "kind": "Compact",
+    "text": "Telegraphiedauer entspricht Ability.castTicks und darf durch Quality nicht verkürzt werden. Reduce Motion ersetzt Bewegung, nicht Dauer/Information."
+  },
+  {
+    "chapter": 81,
+    "block": 2136,
+    "kind": "Compact",
+    "text": "Trefferfeedback: maximal 80 ms Hitstop für Boss-/Level3-Momente, 20-40 ms schwerer Treffer, keine Simulationspause; Renderer kompensiert."
+  },
+  {
+    "chapter": 81,
+    "block": 2137,
+    "kind": "Compact",
+    "text": "Kameraschütteln maximal 10 px/180 ms normal, 18 px/260 ms Boss; Nutzerstärke 0/25/50/75/100%, Default 50%, Reduce Motion 0%."
+  },
+  {
+    "chapter": 81,
+    "block": 2138,
+    "kind": "Compact",
+    "text": "Partikelobergrenzen pro Qualitätsstufe werden in Kapitel 84 gemessen. Bei Budgetüberschreitung werden kosmetische Partikel verworfen, nie Telegraphie."
+  },
+  {
+    "chapter": 81,
+    "block": 2139,
+    "kind": "Heading 3",
+    "text": "81.6 Asset-Abnahme"
+  },
+  {
+    "chapter": 81,
+    "block": 2140,
+    "kind": "Compact",
+    "text": "Keine Halo-/Fringing-Kanten auf transparenten Sprites; premultiplied Alpha wird durch Pipeline/Testbild geprüft."
+  },
+  {
+    "chapter": 81,
+    "block": 2141,
+    "kind": "Compact",
+    "text": "Keine eingebetteten Texte in Gameplaygrafiken außer universellen Symbolen; lokalisierbarer Text bleibt UI."
+  },
+  {
+    "chapter": 81,
+    "block": 2142,
+    "kind": "Compact",
+    "text": "Alle Quellen besitzen Lizenz-/Provenienzdatensatz. KI-generierte Assets werden mit Tool/Modell/Datum/Prompt-ID und kommerzieller Rechteprüfung dokumentiert."
+  },
+  {
+    "chapter": 81,
+    "block": 2143,
+    "kind": "Compact",
+    "text": "Assetbuild erzeugt Kontaktbogen, Größenreport, unreferenzierte Assets und fehlende Varianten als CI-Artefakt."
+  },
+  {
+    "chapter": 82,
+    "block": 2147,
+    "kind": "Heading 2",
+    "text": "82. Audio-, Musik-, Sprach- und Haptik-Spezifikation"
+  },
+  {
+    "chapter": 82,
+    "block": 2148,
+    "kind": "Heading 3",
+    "text": "82.1 Audio-Busse und Defaults"
+  },
+  {
+    "chapter": 82,
+    "block": 2149,
+    "kind": "Heading 3",
+    "text": "82.2 Lautheit und Mixing"
+  },
+  {
+    "chapter": 82,
+    "block": 2150,
+    "kind": "Compact",
+    "text": "Music Masterziel -16 LUFS integrated, True Peak <= -1 dBTP. SFX werden nach Wahrnehmungsgruppe normalisiert; kein Einzelclip clippt."
+  },
+  {
+    "chapter": 82,
+    "block": 2151,
+    "kind": "Compact",
+    "text": "Maximal 24 gleichzeitige SFX-Voices High, 16 Medium, 10 Low. Gleiche Cue-ID besitzt 60 ms Retrigger-Sperre, sofern nicht ausdrücklich Burst."
+  },
+  {
+    "chapter": 82,
+    "block": 2152,
+    "kind": "Compact",
+    "text": "Bei Bosswarnung oder Sprache duckt Music um 3 dB und Ambient um 5 dB für Cue-Dauer +200 ms. SFX bleiben, außer Warnpriorität definiert Sidechain."
+  },
+  {
+    "chapter": 82,
+    "block": 2153,
+    "kind": "Compact",
+    "text": "Audioengine verwendet keine zufällige Gameplayentscheidung. Pitch-/Variantenauswahl stammt aus combatCosmetic und beeinflusst Replay nicht."
+  },
+  {
+    "chapter": 82,
+    "block": 2154,
+    "kind": "Heading 3",
+    "text": "82.3 Musikstruktur"
+  },
+  {
+    "chapter": 82,
+    "block": 2155,
+    "kind": "Heading 3",
+    "text": "82.4 Sprachumfang"
+  },
+  {
+    "chapter": 82,
+    "block": 2156,
+    "kind": "Compact",
+    "text": "Pip: Tutorial-, Unlock-, Niederlagen- und Storykurztexte. Maximal zwei Sätze; Untertitel immer vorhanden."
+  },
+  {
+    "chapter": 82,
+    "block": 2157,
+    "kind": "Compact",
+    "text": "Helden: Einmarsch, Signatur, Level3, niedrige LP, Sieg; pro Kategorie 2-4 Varianten, Wiederholungscooldown 20 s."
+  },
+  {
+    "chapter": 82,
+    "block": 2158,
+    "kind": "Compact",
+    "text": "Bosse: Intro, Phase, Niederlage; strategisch relevante Warnung zusätzlich UI/Text, nie nur Sprache."
+  },
+  {
+    "chapter": 82,
+    "block": 2159,
+    "kind": "Compact",
+    "text": "Der Release besitzt eine begrenzte, aber verbindliche DE-/EN-Sprachausgabe: Pip vertont alle Tutorialhinweise und zentralen Storyübergänge; jeder Held vertont Einmarsch, Signatur, Level-3, niedrige LP und Sieg mit mindestens zwei Varianten je Kategorie; jeder Haupt- und Zwischenboss vertont Intro, Phasenwechsel und Niederlage. Ereignisse, Kodex, Händlertexte, HQ-Banter und längere Storyeinträge bleiben Text. Jeder semantische Voice-Cue besitzt wortgleichen Untertitel; strategische Warnungen erscheinen zusätzlich als Icon und lokalisierter Warntext. Nonverbale Ausrufe dürfen weitere Varianten ergänzen, ersetzen aber keinen Pflichtsatz."
+  },
+  {
+    "chapter": 82,
+    "block": 2160,
+    "kind": "Heading 3",
+    "text": "82.5 Audiofokus und Silent Mode"
+  },
+  {
+    "chapter": 82,
+    "block": 2161,
+    "kind": "Compact",
+    "text": "Android: transient loss pausiert/duckt gemäß Fokusart; loss pausiert und resettet keine Position. Resume nur nach gain und wenn App foreground."
+  },
+  {
+    "chapter": 82,
+    "block": 2162,
+    "kind": "Compact",
+    "text": "iOS: AVAudioSession ambient; Hardware-Silent-Switch stummschaltet Spielaudio. Andere Audioquellen dürfen weiterlaufen/mixen entsprechend ambient."
+  },
+  {
+    "chapter": 82,
+    "block": 2163,
+    "kind": "Compact",
+    "text": "Kopfhörerabzug pausiert laufenden Kampf automatisch und zeigt Hinweis. Bluetooth-Routenwechsel darf keinen doppelten Cue auslösen."
+  },
+  {
+    "chapter": 82,
+    "block": 2164,
+    "kind": "Compact",
+    "text": "App Background stoppt SFX/Voice und pausiert Musikposition. Simulation ist bereits pausiert/snapshotted."
+  },
+  {
+    "chapter": 82,
+    "block": 2165,
+    "kind": "Heading 3",
+    "text": "82.6 Haptikmatrix"
+  },
+  {
+    "chapter": 83,
+    "block": 2169,
+    "kind": "Heading 2",
+    "text": "83. Konkretes Save-, Settings-, Diagnose- und Recovery-Protokoll"
+  },
+  {
+    "chapter": 83,
+    "block": 2170,
+    "kind": "Heading 3",
+    "text": "83.1 Private Dateistruktur"
+  },
+  {
+    "chapter": 83,
+    "block": 2171,
+    "kind": "Code Block",
+    "text": "Application Support / private app storage:"
+  },
+  {
+    "chapter": 83,
+    "block": 2172,
+    "kind": "Technical Note",
+    "text": "Für atomare Rename-/fsync-Semantik wird ein eigener NativeSaveStore-Adapter verwendet. @capacitor/filesystem allein ist keine Autorität für die Atomizitätsgarantie."
+  },
+  {
+    "chapter": 83,
+    "block": 2173,
+    "kind": "Heading 3",
+    "text": "83.2 Save Envelope"
+  },
+  {
+    "chapter": 83,
+    "block": 2174,
+    "kind": "Code Block",
+    "text": "interface SaveEnvelope<T> {"
+  },
+  {
+    "chapter": 83,
+    "block": 2175,
+    "kind": "Heading 3",
+    "text": "83.3 Kanonische JSON- und Hashregeln"
+  },
+  {
+    "chapter": 83,
+    "block": 2176,
+    "kind": "Compact",
+    "text": "UTF-8 ohne BOM, LF, sortierte Objektschlüssel, keine NaN/Infinity/-0, keine Kommentare. Arrays behalten fachliche Reihenfolge."
+  },
+  {
+    "chapter": 83,
+    "block": 2177,
+    "kind": "Compact",
+    "text": "payloadSha256 wird über kanonische Serialisierung von payload berechnet. Envelopemetadaten sind nicht Teil des Payloadhashes."
+  },
+  {
+    "chapter": 83,
+    "block": 2178,
+    "kind": "Compact",
+    "text": "commitId ist monoton pro Profil. Zeitstempel ist Anzeige/Diagnose und niemals Tie-Break für Recovery."
+  },
+  {
+    "chapter": 83,
+    "block": 2179,
+    "kind": "Compact",
+    "text": "NativeSaveStore schreibt tmp, flush/fsync, liest zurück, prüft Hash, atomarer rename, Verzeichnis-Metadaten flush soweit Plattform unterstützt, dann Manifest analog."
+  },
+  {
+    "chapter": 83,
+    "block": 2180,
+    "kind": "Heading 3",
+    "text": "83.4 Commitfrequenz und Kampfsnapshot"
+  },
+  {
+    "chapter": 83,
+    "block": 2181,
+    "kind": "Heading 3",
+    "text": "83.5 Exportformat"
+  },
+  {
+    "chapter": 83,
+    "block": 2182,
+    "kind": "Compact",
+    "text": "Dateiendung .riftwarden-save; ZIP ohne ausführbaren Inhalt mit export-manifest.json, profile.json, optional settings.json und checksums.txt."
+  },
+  {
+    "chapter": 83,
+    "block": 2183,
+    "kind": "Compact",
+    "text": "Export enthält keine Logs/Replays standardmäßig. Diagnoseexport ist separate .riftwarden-diagnostic und zeigt Inhaltsliste vor Systemdialog."
+  },
+  {
+    "chapter": 83,
+    "block": 2184,
+    "kind": "Compact",
+    "text": "Import entpackt ausschließlich bekannte Dateinamen, maximale Gesamtgröße 10 MiB, maximale Einzeldatei 8 MiB, keine Pfadsegmente, Symlinks oder verschachtelten Archive."
+  },
+  {
+    "chapter": 83,
+    "block": 2185,
+    "kind": "Compact",
+    "text": "Import wird vollständig in Staging validiert/migriert. Erst nach Nutzerbestätigung ersetzt ein atomarer Commit das aktive Profil; automatisches Backup wird vorher erstellt."
+  },
+  {
+    "chapter": 83,
+    "block": 2186,
+    "kind": "Heading 3",
+    "text": "83.6 Settings-Defaults"
+  },
+  {
+    "chapter": 83,
+    "block": 2187,
+    "kind": "Heading 3",
+    "text": "83.7 Lokale Logs und Diagnose"
+  },
+  {
+    "chapter": 83,
+    "block": 2188,
+    "kind": "Compact",
+    "text": "Maximal fünf rotierende Sessions, je 512 KiB, insgesamt <=2,5 MiB. Keine freie Nutzereingabe, Dateipfade außerhalb Appbereich, Geräte-ID, IP oder personenbezogene Daten."
+  },
+  {
+    "chapter": 83,
+    "block": 2189,
+    "kind": "Compact",
+    "text": "Logfelder: UTC-Zeit, appVersion, buildChannel, platform/osVersion, errorCode, module, safeContext, stack in QA; Release stack lokal möglich, nie übertragen."
+  },
+  {
+    "chapter": 83,
+    "block": 2190,
+    "kind": "Compact",
+    "text": "Diagnoseexport listet App-/Content-/Simulationversion, Saveintegrität, Rendererinfo, Speicher-/Qualitätsstatus und letzte Fehler. Savepayload/Replays nur per separater Checkbox."
+  },
+  {
+    "chapter": 83,
+    "block": 2191,
+    "kind": "Compact",
+    "text": "Logs werden niemals automatisch versendet. Supporttext erklärt, dass Export vom Nutzer selbst geteilt werden muss."
+  },
+  {
+    "chapter": 83,
+    "block": 2192,
+    "kind": "Heading 3",
+    "text": "83.8 Recovery-Matrix"
+  },
+  {
+    "chapter": 84,
+    "block": 2196,
+    "kind": "Heading 2",
+    "text": "84. Performance-, Speicher-, GPU-, Akku- und Gerätebudgets"
+  },
+  {
+    "chapter": 84,
+    "block": 2197,
+    "kind": "Heading 3",
+    "text": "84.1 Verbindlicher Rendererpfad"
+  },
+  {
+    "chapter": 84,
+    "block": 2198,
+    "kind": "Compact",
+    "text": "Version 1 initialisiert PixiJS explizit mit preference=webgl und preferWebGLVersion=2; WebGL1 darf nur als automatisch funktionierender Pixi-WebGL-Fallback verwendet werden, wenn alle visuellen Tests bestehen."
+  },
+  {
+    "chapter": 84,
+    "block": 2199,
+    "kind": "Compact",
+    "text": "WebGPU ist experimentell und in Release 1 deaktiviert. Aktivierung erfordert eigenes ADR, vollständige visuelle/device Regression und identisches Gameplay."
+  },
+  {
+    "chapter": 84,
+    "block": 2200,
+    "kind": "Compact",
+    "text": "Es existiert kein CanvasRenderer-Fallback. Wenn WebGL-Kontext nicht erstellt werden kann, wird S02 Kompatibilität angezeigt; Menüs/Saveexport bleiben bedienbar."
+  },
+  {
+    "chapter": 84,
+    "block": 2201,
+    "kind": "Compact",
+    "text": "contextlost pausiert Simulation sofort. contextrestored lädt Atlanten/Renderstate neu aus autoritativem Snapshot; kein Kampfneustart und keine Zufallsänderung."
+  },
+  {
+    "chapter": 84,
+    "block": 2202,
+    "kind": "Heading 3",
+    "text": "84.2 Geräteklassen"
+  },
+  {
+    "chapter": 84,
+    "block": 2203,
+    "kind": "Heading 3",
+    "text": "84.3 Laufzeitbudgets"
+  },
+  {
+    "chapter": 84,
+    "block": 2204,
+    "kind": "Heading 3",
+    "text": "84.4 Bundle- und Assetbudgets"
+  },
+  {
+    "chapter": 84,
+    "block": 2205,
+    "kind": "Heading 3",
+    "text": "84.5 Auto-Quality-Entscheidung"
+  },
+  {
+    "chapter": 84,
+    "block": 2206,
+    "kind": "Compact",
+    "text": "Beim ersten Start wird kein langer Benchmark gezeigt. Nach Rendererinitialisierung werden GPU limits, deviceMemory falls verfügbar und 120 Frames einer nicht sichtbaren standardisierten Szene gemessen."
+  },
+  {
+    "chapter": 84,
+    "block": 2207,
+    "kind": "Compact",
+    "text": "High wenn p95 <=15 ms und Texturspeicherindikatoren ausreichend; Medium <=25 ms; sonst Low. Ergebnis wird gespeichert, aber bei OS-/Appmajor oder wiederholten Context Loss neu bewertet."
+  },
+  {
+    "chapter": 84,
+    "block": 2208,
+    "kind": "Compact",
+    "text": "Während Kampf darf Auto nur stufenweise kosmetisch reduzieren: Partikel -> Schatten -> Hintergrundlayer -> Auflösung 1,0 bis 0,75. Keine Änderung von Telegraphiedauer, Entitysichtbarkeit oder Simulation."
+  },
+  {
+    "chapter": 84,
+    "block": 2209,
+    "kind": "Compact",
+    "text": "Qualität steigt nie mitten im Kampf. Sie kann nach drei stabilen Kämpfen beim nächsten Screenwechsel um eine Stufe steigen."
+  },
+  {
+    "chapter": 84,
+    "block": 2210,
+    "kind": "Heading 3",
+    "text": "84.6 Thermik und Akku"
+  },
+  {
+    "chapter": 84,
+    "block": 2211,
+    "kind": "Compact",
+    "text": "Im Hintergrund 0 Renderframes und 0 Simulationsticks. Dekorative HQ-Loops pausieren nach 30 s Inaktivität oder bei Reduce Motion."
+  },
+  {
+    "chapter": 84,
+    "block": 2212,
+    "kind": "Compact",
+    "text": "Bei OS Thermal Warning oder dauerhaft p95 >33 ms wird sofort maximal Medium/Low kosmetisch gewählt und FPS-Ziel 30; Spieler erhält keine störende Warnung außer Funktionsproblem."
+  },
+  {
+    "chapter": 84,
+    "block": 2213,
+    "kind": "Compact",
+    "text": "30-Minuten-Stresstest auf Targetgerät darf keinen Memorytrend >10% nach Warmup, keinen Context Loss und keine unkontrollierte Audio-/Timerakkumulation zeigen."
+  },
+  {
+    "chapter": 85,
+    "block": 2217,
+    "kind": "Heading 2",
+    "text": "85. Testkatalog, Golden Seeds, Coverage und Go/No-Go"
+  },
+  {
+    "chapter": 85,
+    "block": 2218,
+    "kind": "Heading 3",
+    "text": "85.1 Testschichten und Mindestabdeckung"
+  },
+  {
+    "chapter": 85,
+    "block": 2219,
+    "kind": "Heading 3",
+    "text": "85.2 Pflichtinvarianten der Simulation"
+  },
+  {
+    "chapter": 85,
+    "block": 2220,
+    "kind": "Compact",
+    "text": "Keine Entity besitzt LP <0 oder >maxLP, negative Schilde, ungültige Bahn/Position, doppelte Entity-ID oder widersprüchlichen Alive/Removed-Status."
+  },
+  {
+    "chapter": 85,
+    "block": 2221,
+    "kind": "Compact",
+    "text": "Keine Seite überschreitet sieben reguläre Einheiten oder sechs zählende Beschwörungen; kein Spielerbuild überschreitet drei Helden/drei gleiche Truppen."
+  },
+  {
+    "chapter": 85,
+    "block": 2222,
+    "kind": "Compact",
+    "text": "Gleicher Seed, Content, Simulationversion, Entscheidungen und Startsnapshot erzeugen bit-identische Endhashes in Node, Chromium, Android WebView und iOS WKWebView."
+  },
+  {
+    "chapter": 85,
+    "block": 2223,
+    "kind": "Compact",
+    "text": "Kampfgeschwindigkeit, Render-FPS, Pause/Resume und Quality verändern niemals Ergebnis oder RNGverbrauch."
+  },
+  {
+    "chapter": 85,
+    "block": 2224,
+    "kind": "Compact",
+    "text": "Jeder Kampf endet spätestens am hardBattleLimit oder einer ausdrücklich kürzeren Missionsgrenze; kein Deadlock."
+  },
+  {
+    "chapter": 85,
+    "block": 2225,
+    "kind": "Compact",
+    "text": "Jede Rewardtransaktion ist idempotent; doppelte UI-/Lifecycleevents erzeugen keinen Doppelgewinn/-kauf."
+  },
+  {
+    "chapter": 85,
+    "block": 2226,
+    "kind": "Heading 3",
+    "text": "85.3 Kanonische Golden Seeds"
+  },
+  {
+    "chapter": 85,
+    "block": 2227,
+    "kind": "Heading 3",
+    "text": "85.4 Content- und Generator-QA"
+  },
+  {
+    "chapter": 85,
+    "block": 2228,
+    "kind": "Compact",
+    "text": "100.000 Dungeonkarten über Missions-/Modusprofile: 0 Sackgassen, 0 fehlende Pflichtknoten, 0 Besuchslängen außerhalb Regeln, 0 inkompatible Modifikatoren."
+  },
+  {
+    "chapter": 85,
+    "block": 2229,
+    "kind": "Compact",
+    "text": "Jeder Encounterpool wird über alle Freischaltzustände validiert; Fallbackprofil ist erreichbar und deterministisch."
+  },
+  {
+    "chapter": 85,
+    "block": 2230,
+    "kind": "Compact",
+    "text": "Automatischer Cross-System-Test erzeugt jede zulässige Einheit-Ausrüstung-Kit-Banner-Synergie-Doktrin-Kombination mindestens strukturell und prüft Referenzen/Maxima."
+  },
+  {
+    "chapter": 85,
+    "block": 2231,
+    "kind": "Compact",
+    "text": "Balanceberichte markieren Winrate <20% oder >80% für neutrale Referenzencounter, Time-to-First-Death, Kampfdauer, Rollenbeitrag und ungenutzte Inhalte. Markierung ist Tuninginput, kein automatischer Nerf."
+  },
+  {
+    "chapter": 85,
+    "block": 2232,
+    "kind": "Heading 3",
+    "text": "85.5 Defektpriorität und Releaseentscheidung"
+  },
+  {
+    "chapter": 85,
+    "block": 2233,
+    "kind": "Heading 3",
+    "text": "85.6 Finales Go/No-Go"
+  },
+  {
+    "chapter": 85,
+    "block": 2234,
+    "kind": "Compact",
+    "text": "GO nur wenn verify:release grün, P0/P1=0, P2 ausdrücklich entschieden, alle Save-Migrationen/Recoverytests grün und beide Storebinaries aus demselben Tag/Commit stammen."
+  },
+  {
+    "chapter": 85,
+    "block": 2235,
+    "kind": "Compact",
+    "text": "GO nur wenn Android-/iOS-Deklarationen mit tatsächlich enthaltenen Plugins, Permissions, Entitlements und Netzwerkverhalten identisch sind."
+  },
+  {
+    "chapter": 85,
+    "block": 2236,
+    "kind": "Compact",
+    "text": "GO nur wenn vollständiger Kampagnenlauf, Ascension-Smoke, Endless-Tiefe-25-Smoke, Import/Export und Updatepfad auf RC erfolgreich sind."
+  },
+  {
+    "chapter": 85,
+    "block": 2237,
+    "kind": "Compact",
+    "text": "NO-GO bei nicht reproduzierbarem Build, ungeklärter Lizenz, Placeholder, fehlender Übersetzung, fehlendem Screenzustand oder ungetesteter Plattformänderung."
+  },
+  {
+    "chapter": 86,
+    "block": 2241,
+    "kind": "Heading 2",
+    "text": "86. V4-Inhaltserhalt, Korrekturen und Vollständigkeitsaudit"
+  },
+  {
+    "chapter": 86,
+    "block": 2242,
+    "kind": "Heading 3",
+    "text": "86.1 Erhaltungsprinzip"
+  },
+  {
+    "chapter": 86,
+    "block": 2243,
+    "kind": "First Paragraph",
+    "text": "V5 wurde direkt auf der vollständigen V4-DOCX aufgebaut. Kapitel 1-71, sämtliche Tabellen und alle nicht ausdrücklich unten ersetzten Regeln bleiben Bestandteil des Dokuments. Die neuen Kapitel 72-87 sind Ergänzung und autoritative Schließung, keine verkürzte Neuerzählung."
+  },
+  {
+    "chapter": 86,
+    "block": 2244,
+    "kind": "Heading 3",
+    "text": "86.2 Explizite V5-Korrekturen gegenüber V4"
+  },
+  {
+    "chapter": 86,
+    "block": 2245,
+    "kind": "Heading 3",
+    "text": "86.3 Automatische V5-Vollständigkeitsgates"
+  },
+  {
+    "chapter": 86,
+    "block": 2246,
+    "kind": "Compact",
+    "text": "Dokumentaudit vergleicht normalisierte V4-Absätze und Tabellenzellen gegen V5. Ausnahmen sind ausschließlich Cover-/Versionslabels, der dokumentierte Pixi-Fix und V5-Autoritätstexte."
+  },
+  {
+    "chapter": 86,
+    "block": 2247,
+    "kind": "Compact",
+    "text": "Contentvalidator bestätigt exakt 10/18/14/28/4/4/18/30/42/36/20/28/36 gemäß Releaseumfang."
+  },
+  {
+    "chapter": 86,
+    "block": 2248,
+    "kind": "Compact",
+    "text": "Headingaudit bestätigt lückenlose Kapitel 1-87 und statisches Inhaltsverzeichnis."
+  },
+  {
+    "chapter": 86,
+    "block": 2249,
+    "kind": "Compact",
+    "text": "Renderaudit prüft jede Seite auf Leerseite, Beschnitt, Tabellenüberlauf, beschädigte Glyphen und Footer/Header."
+  },
+  {
+    "chapter": 86,
+    "block": 2250,
+    "kind": "Compact",
+    "text": "DOCX-A11y-Audit und PDF-Preflight müssen ohne kritische Befunde abschließen."
+  },
+  {
+    "chapter": 86,
+    "block": 2251,
+    "kind": "Heading 3",
+    "text": "86.4 Bewusst weiterhin nicht im GDD"
+  },
+  {
+    "chapter": 86,
+    "block": 2252,
+    "kind": "Compact",
+    "text": "Konkrete Sprint-/Taskzerlegung, Aufwandsschätzung, personelle Zuordnung und Kalendertermine: gehören in den nachfolgenden Entwicklungsplan."
+  },
+  {
+    "chapter": 86,
+    "block": 2253,
+    "kind": "Compact",
+    "text": "Publisheridentität, Signing-Secrets, endgültige Storepreisstufen und rechtsverbindliche Texte: externe Releaseinputs mit Gates aus Kapitel 72.4."
+  },
+  {
+    "chapter": 86,
+    "block": 2254,
+    "kind": "Compact",
+    "text": "Feintuning außerhalb der Baseline: erfolgt evidenzbasiert über Simulation/Playtest innerhalb der dokumentierten Korridore; keine neue Mechanik."
+  },
+  {
+    "chapter": 87,
+    "block": 2257,
+    "kind": "Heading 2",
+    "text": "87. Finaler Handoff-Vertrag vor Entwicklungsplan und Implementierung"
+  },
+  {
+    "chapter": 87,
+    "block": 2258,
+    "kind": "First Paragraph",
+    "text": "Nach V5 darf der Entwicklungsplan das Werk in Phasen, Epics, Tickets, Abhängigkeiten und Abnahmebündel zerlegen. Er darf keine neue Designentscheidung einführen. Ein mittlerer Implementierungsagent muss für jede Aufgabe auf eine konkrete Kapitel-, Datensatz-, Screen-, Interface- oder Gate-Referenz zeigen können."
+  },
+  {
+    "chapter": 87,
+    "block": 2259,
+    "kind": "Heading 3",
+    "text": "87.1 Der Entwicklungsplan darf entscheiden"
+  },
+  {
+    "chapter": 87,
+    "block": 2260,
+    "kind": "Compact",
+    "text": "Reihenfolge innerhalb der bereits definierten Abhängigkeiten, Ticketgröße, Branch-/PR-Schnitt und parallele Arbeitspakete."
+  },
+  {
+    "chapter": 87,
+    "block": 2261,
+    "kind": "Compact",
+    "text": "Konkrete interne Algorithmen/Dateiaufteilung, sofern Schnittstellen, Determinismus, Performance und Tests eingehalten werden."
+  },
+  {
+    "chapter": 87,
+    "block": 2262,
+    "kind": "Compact",
+    "text": "Welche V5-Tests in welchem Implementierungsschritt zuerst grün werden, solange kein Gate übersprungen wird."
+  },
+  {
+    "chapter": 87,
+    "block": 2263,
+    "kind": "Heading 3",
+    "text": "87.2 Der Entwicklungsplan darf nicht entscheiden"
+  },
+  {
+    "chapter": 87,
+    "block": 2264,
+    "kind": "Compact",
+    "text": "Neue oder entfernte Features, geänderte Obergrenzen, manuelle Kampfsteuerung, andere Währungen, Live-Service, Telemetrie, Accounts oder Netzwerkabhängigkeit."
+  },
+  {
+    "chapter": 87,
+    "block": 2265,
+    "kind": "Compact",
+    "text": "Andere Stack-Majors, Rendererautorität, nicht deterministische Simulation, schwächere Savegarantien oder nicht adaptive Mobile-UI."
+  },
+  {
+    "chapter": 87,
+    "block": 2266,
+    "kind": "Compact",
+    "text": "Weglassen von Screens/States/Accessibility/Storetests unter Verweis auf MVP, wenn V5 sie als Pflicht definiert."
+  },
+  {
+    "chapter": 87,
+    "block": 2267,
+    "kind": "Heading 3",
+    "text": "87.3 Implementierungsstart-Gate"
+  },
+  {
+    "chapter": 87,
+    "block": 2268,
+    "kind": "Heading 3",
+    "text": "87.4 Finale Definition"
+  },
+  {
+    "chapter": 87,
+    "block": 2269,
+    "kind": "First Paragraph",
+    "text": "Riftwarden: Auto RPG Roguelite ist mit Version 5 ausreichend eindeutig spezifiziert, wenn die Implementierung aus den vorliegenden Regeln einen deterministischen, vollständig offline spielbaren, hochpolierten Mobile-Auto-RPG-Roguelite-Titel erzeugen kann; jeder Inhalt, Screen, Zustand, Datensatz, Savepfad, Rendererfall, Accessibilityflow und Store-Gate besitzt eine festgelegte fachliche Bedeutung; und keine nicht dokumentierte Produktentscheidung notwendig ist. Tritt während der Umsetzung dennoch eine echte Designlücke auf, wird sie nicht improvisiert, sondern als dokumentierte V5-Change-Request mit betroffenen Regeln, Alternativen, gewählter Entscheidung, Migration und Regression behandelt."
+  },
+  {
+    "chapter": 87,
+    "block": 2270,
+    "kind": "Technical Note",
+    "text": "Ende der finalen Pre-Implementation-Spezifikation. Nächster separater Artefaktschritt: Entwicklungsplan und Implementierungsphasen auf Basis dieser V5."
+  }
+]

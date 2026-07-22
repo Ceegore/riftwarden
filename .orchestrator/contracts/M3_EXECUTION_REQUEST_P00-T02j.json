@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "request_id": "REQ-P00-T02j-v1-30a028d2",
+  "project_id": "riftwarden",
+  "phase_id": "PHASE-00",
+  "work_package_id": "P00-T02j",
+  "work_package_version": 1,
+  "idempotency_key": "rw-p00-t02j-v1-831a35ec",
+  "phase_contract_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "work_package_contract_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "repository": {
+    "root": "C:\\Projects\\_sortiert\\Riftwarden",
+    "branch": "feat/00-autorit-t-requirements-und-traceability",
+    "commit": "fb5490243e410ff4616dfc5fa7dc4032b37d3fce",
+    "tree_hash": "ccf643597537df7e960dc6908f85e8b6812e4a69"
+  },
+  "goal": "Implement the work package per its contract.\n\nFULL CONTRACT:\n# WP P00-T02j – Requirements (chapters 36-41)\n- Version: 1 | Phase: PHASE-00 | Idempotency Key: rw-p00-t02j-v1-20260722\n- Status: APPROVED | Write target: docs/requirements/requirements/_staging/chunk-j.json\n## Goal: Extract normative reqs from GDD ch36-41. Read docs/requirements/generated/chapters/chapter-36.txt..chapter-41.txt.\n## Method: read each chapter, extract MUST/MUST_NOT/SHOULD/MAY + hard numbers/counts/limits as atomic REQs.\nTEMP id REQ-TEMP-J-NNNN. quoteHash=sha256(excerpt). Write staging once done. finalize_report.\n## Budgets: max_changed_files 2, timeout 2400s, repair rounds 3.\n",
+  "contract_path": ".orchestrator/contracts/WORK_PACKAGE_P00-T02j.md"
+}

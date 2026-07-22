@@ -1,5 +1,400 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": "1.0",
   "category": "Perf",
-  "requirements": []
+  "requirements": [
+    {
+      "id": "REQ-PERF-0001",
+      "title": "WebGPU ist experimentell und in Release 1 deaktiviert; eine Aktivierung erfordert ein eigenes ADR, eine vollständige visuelle und Geräte-Regression sowie identisches Gameplay.",
+      "statement": "WebGPU ist experimentell und in Release 1 deaktiviert; eine Aktivierung erfordert ein eigenes ADR, eine vollständige visuelle und Geräte-Regression sowie identisches Gameplay.",
+      "norm": "MUST_NOT",
+      "category": "Perf",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 84,
+        "section": null,
+        "locator": "block:2199",
+        "quoteHash": "sha256:9121529c7036ae35fff8d3672d2d87cb8842ce5581e321c3aee95aaba7b02e86",
+        "originalExcerpt": "WebGPU ist experimentell und in Release 1 deaktiviert. Aktivierung erfordert eigenes ADR, vollständige visuelle/device Regression und identisches Gameplay."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PERF-NO-WEBGPU-084"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PERF-0002",
+      "title": "Es existiert kein CanvasRenderer-Fallback; wenn kein WebGL-Kontext erstellt werden kann, wird S02 Kompatibilität angezeigt und Menüs sowie Saveexport bleiben bedienbar.",
+      "statement": "Es existiert kein CanvasRenderer-Fallback; wenn kein WebGL-Kontext erstellt werden kann, wird S02 Kompatibilität angezeigt und Menüs sowie Saveexport bleiben bedienbar.",
+      "norm": "MUST_NOT",
+      "category": "Perf",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 84,
+        "section": null,
+        "locator": "block:2200",
+        "quoteHash": "sha256:3bc5da8d35c2a9eaf53eeba124b8d7e61fb7bd601add3c1b4510501b7a1929db",
+        "originalExcerpt": "Es existiert kein CanvasRenderer-Fallback. Wenn WebGL-Kontext nicht erstellt werden kann, wird S02 Kompatibilität angezeigt; Menüs/Saveexport bleiben bedienbar."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PERF-NO-CANVAS-084"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PERF-0003",
+      "title": "Beim ersten Start wird kein langer Benchmark gezeigt; nach Rendererinitialisierung werden GPU-Limits, falls verfügbar deviceMemory und 120 Frames einer nicht sichtbaren standardisierten Szene gemessen.",
+      "statement": "Beim ersten Start wird kein langer Benchmark gezeigt; nach Rendererinitialisierung werden GPU-Limits, falls verfügbar deviceMemory und 120 Frames einer nicht sichtbaren standardisierten Szene gemessen.",
+      "norm": "MUST",
+      "category": "Perf",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 84,
+        "section": null,
+        "locator": "block:2206",
+        "quoteHash": "sha256:303b092b82b423a9e31125482e5e4d28be20008188ab0ddfafe12adf7ee2bf15",
+        "originalExcerpt": "Beim ersten Start wird kein langer Benchmark gezeigt. Nach Rendererinitialisierung werden GPU limits, deviceMemory falls verfügbar und 120 Frames einer nicht sichtbaren standardisierten Szene gemessen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PERF-AUTOQ-MEASURE-084"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PERF-0004",
+      "title": "High wenn p95 <=15 ms und Texturspeicherindikatoren ausreichend; Medium <=25 ms; sonst Low; das Ergebnis wird gespeichert, aber bei OS-/Appmajor oder wiederholtem Context Loss neu bewertet.",
+      "statement": "High wenn p95 <=15 ms und Texturspeicherindikatoren ausreichend; Medium <=25 ms; sonst Low; das Ergebnis wird gespeichert, aber bei OS-/Appmajor oder wiederholtem Context Loss neu bewertet.",
+      "norm": "MUST",
+      "category": "Perf",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 84,
+        "section": null,
+        "locator": "block:2207",
+        "quoteHash": "sha256:098ac728599edf0aca3be176da7df802742b987ee942c0d5276fa638297ec831",
+        "originalExcerpt": "High wenn p95 <=15 ms und Texturspeicherindikatoren ausreichend; Medium <=25 ms; sonst Low. Ergebnis wird gespeichert, aber bei OS-/Appmajor oder wiederholten Context Loss neu bewertet."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PERF-AUTOQ-THRESHOLDS-084"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "autoQualityHighP95Ms",
+          "value": 15,
+          "unit": "ms"
+        },
+        {
+          "kind": "max",
+          "name": "autoQualityMediumP95Ms",
+          "value": 25,
+          "unit": "ms"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PERF-0005",
+      "title": "Während des Kampfs darf Auto nur stufenweise kosmetisch reduzieren: Partikel, Schatten, Hintergrundlayer, Auflösung 1,0 bis 0,75; keine Änderung von Telegraphiedauer, Entitysichtbarkeit oder Simulation.",
+      "statement": "Während des Kampfs darf Auto nur stufenweise kosmetisch reduzieren: Partikel, Schatten, Hintergrundlayer, Auflösung 1,0 bis 0,75; keine Änderung von Telegraphiedauer, Entitysichtbarkeit oder Simulation.",
+      "norm": "MUST",
+      "category": "Perf",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 84,
+        "section": null,
+        "locator": "block:2208",
+        "quoteHash": "sha256:33b902b5eefd74596f04f07ea72dd4b47e82b19fbca8bdfcf387411fd08bb0c6",
+        "originalExcerpt": "Während Kampf darf Auto nur stufenweise kosmetisch reduzieren: Partikel -> Schatten -> Hintergrundlayer -> Auflösung 1,0 bis 0,75. Keine Änderung von Telegraphiedauer, Entitysichtbarkeit oder Simulation."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PERF-AUTOQ-BATTLE-084"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "range",
+          "name": "autoQualityResolution",
+          "min": 0.75,
+          "max": 1
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PERF-0006",
+      "title": "Qualität steigt nie mitten im Kampf; sie kann nach drei stabilen Kämpfen beim nächsten Screenwechsel um eine Stufe steigen.",
+      "statement": "Qualität steigt nie mitten im Kampf; sie kann nach drei stabilen Kämpfen beim nächsten Screenwechsel um eine Stufe steigen.",
+      "norm": "MUST",
+      "category": "Perf",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 84,
+        "section": null,
+        "locator": "block:2209",
+        "quoteHash": "sha256:c05fcad2705164db3bcb7123d852214ab9189e2c44143090b43f08f31add597a",
+        "originalExcerpt": "Qualität steigt nie mitten im Kampf. Sie kann nach drei stabilen Kämpfen beim nächsten Screenwechsel um eine Stufe steigen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PERF-AUTOQ-NO-RAMP-UP-084"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PERF-0007",
+      "title": "Im Hintergrund gibt es 0 Renderframes und 0 Simulationsticks; dekorative HQ-Loops pausieren nach 30 s Inaktivität oder bei Reduce Motion.",
+      "statement": "Im Hintergrund gibt es 0 Renderframes und 0 Simulationsticks; dekorative HQ-Loops pausieren nach 30 s Inaktivität oder bei Reduce Motion.",
+      "norm": "MUST",
+      "category": "Perf",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 84,
+        "section": null,
+        "locator": "block:2211",
+        "quoteHash": "sha256:ef4b17c5090bc7b28a132bcb78c1a6660fd07bf2b5892a4739ce6f0fa43912d7",
+        "originalExcerpt": "Im Hintergrund 0 Renderframes und 0 Simulationsticks. Dekorative HQ-Loops pausieren nach 30 s Inaktivität oder bei Reduce Motion."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PERF-BACKGROUND-ZERO-084"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "hqLoopIdleSec",
+          "value": 30,
+          "unit": "s"
+        },
+        {
+          "kind": "max",
+          "name": "backgroundRenderFrames",
+          "value": 0
+        },
+        {
+          "kind": "max",
+          "name": "backgroundSimulationTicks",
+          "value": 0
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PERF-0008",
+      "title": "Bei OS-Thermal-Warning oder dauerhaft p95 >33 ms wird sofort maximal Medium/Low kosmetisch gewählt und FPS-Ziel 30; der Spieler erhält keine störende Warnung außer bei einem Funktionsproblem.",
+      "statement": "Bei OS-Thermal-Warning oder dauerhaft p95 >33 ms wird sofort maximal Medium/Low kosmetisch gewählt und FPS-Ziel 30; der Spieler erhält keine störende Warnung außer bei einem Funktionsproblem.",
+      "norm": "MUST",
+      "category": "Perf",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 84,
+        "section": null,
+        "locator": "block:2212",
+        "quoteHash": "sha256:a86b391d3ac78ae3a2a5f3b8d253b02f8b741efe80cd46b34a0295b4c9af0fe5",
+        "originalExcerpt": "Bei OS Thermal Warning oder dauerhaft p95 >33 ms wird sofort maximal Medium/Low kosmetisch gewählt und FPS-Ziel 30; Spieler erhält keine störende Warnung außer Funktionsproblem."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PERF-THERMAL-084"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "thermalP95Ms",
+          "value": 33,
+          "unit": "ms"
+        },
+        {
+          "kind": "max",
+          "name": "thermalFpsTarget",
+          "value": 30,
+          "unit": "fps"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PERF-0009",
+      "title": "Ein 30-Minuten-Stresstest auf dem Targetgerät darf keinen Memorytrend >10% nach Warmup, keinen Context Loss und keine unkontrollierte Audio- oder Timerakkumulation zeigen.",
+      "statement": "Ein 30-Minuten-Stresstest auf dem Targetgerät darf keinen Memorytrend >10% nach Warmup, keinen Context Loss und keine unkontrollierte Audio- oder Timerakkumulation zeigen.",
+      "norm": "MUST",
+      "category": "Perf",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 84,
+        "section": null,
+        "locator": "block:2213",
+        "quoteHash": "sha256:0830cf7bf0532efaddb3b95c0d238cba8d073c5e20d758ce505d2fb956461611",
+        "originalExcerpt": "30-Minuten-Stresstest auf Targetgerät darf keinen Memorytrend >10% nach Warmup, keinen Context Loss und keine unkontrollierte Audio-/Timerakkumulation zeigen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PERF-30MIN-STRESS-084"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "stressMemoryTrendPct",
+          "value": 10,
+          "unit": "%"
+        },
+        {
+          "kind": "min",
+          "name": "stressDurationMin",
+          "value": 30,
+          "unit": "min"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PERF-0010",
+      "title": "Mobile Zielhardware hält 60 FPS im Normalfall und mindestens 45 FPS bei maximaler Beschwörungs- oder Effektlast; Simulation darf keine Ticks verlieren.",
+      "statement": "Mobile Zielhardware hält 60 FPS im Normalfall und mindestens 45 FPS bei maximaler Beschwörungs- oder Effektlast; die Simulation darf keine Ticks verlieren.",
+      "norm": "MUST",
+      "category": "Perf",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 44,
+        "section": null,
+        "locator": "block:1488",
+        "quoteHash": "sha256:5aeaa7210ba877392c9885d60b3328a9694a73c511f894b60eb19fc162f63246",
+        "originalExcerpt": "Mobile Zielhardware hält 60 FPS im Normalfall und mindestens 45 FPS bei maximaler Beschwörungs-/Effektlast; Simulation darf keine Ticks verlieren."
+      },
+      "ownerPhases": [
+        "PHASE-21"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-21",
+          "testIds": [
+            "PERF-MOBILE-FPS-044"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "mobileFpsNormal",
+          "value": 60
+        },
+        {
+          "kind": "min",
+          "name": "mobileFpsMaxLoad",
+          "value": 45
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ]
 }

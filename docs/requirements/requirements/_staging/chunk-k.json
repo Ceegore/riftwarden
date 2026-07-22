@@ -691,7 +691,7 @@
       ],
       "verification": [
         {
-          "type": "performance",
+          "type": "integration",
           "plannedPhase": "PHASE-21",
           "testIds": [
             "PERF-MOBILE-FPS-044"

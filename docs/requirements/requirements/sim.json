@@ -1,5 +1,4720 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": "1.0",
   "category": "Sim",
-  "requirements": []
+  "requirements": [
+    {
+      "id": "REQ-SIM-0001",
+      "title": "Es darf keine manuelle Kampfsteuerung eingeführt werden.",
+      "statement": "Es darf keine manuelle Kampfsteuerung eingeführt werden.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:1b3cf489379516ebdd87d78af51616dc25a1a033cd2ef891a54ab2732514ba96",
+        "originalExcerpt": "Ein Agent darf keine nicht beschriebenen Kernmechaniken ergänzen, keine festgelegten Obergrenzen aufweichen, keine manuelle Kampfsteuerung einführen und keine technische Grundsatzentscheidung eigenmächtig austauschen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0002",
+      "title": "Trigger, Prioritäten, Dauer, Stapelung, Abbruch und Sonderfälle müssen für je...",
+      "statement": "Trigger, Prioritäten, Dauer, Stapelung, Abbruch und Sonderfälle müssen für jedes System definiert sein.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:606bf4dfea3351ef9a45d6eb7c64b35b14bf4680c5578a45c9ea0e1e80d415f4",
+        "originalExcerpt": "Systemisch vollständig: Trigger, Prioritäten, Dauer, Stapelung, Abbruch und Sonderfälle sind definiert."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0003",
+      "title": "Während eines Kampfes dürfen keine Fähigkeiten manuell ausgelöst und keine Ei...",
+      "statement": "Während eines Kampfes dürfen keine Fähigkeiten manuell ausgelöst und keine Einheiten bewegt werden.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:31",
+        "quoteHash": "sha256:3fd055e4a241f108a1b310a631d6052ae57524f00e4c7ce10c8da21a2ed84f11",
+        "originalExcerpt": "Während eines Kampfes werden keine Fähigkeiten manuell ausgelöst und keine Einheiten bewegt."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-003"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0004",
+      "title": "Ein regulärer Kampf dauert 20-45 Sekunden auf normaler Geschwindigkeit.",
+      "statement": "Ein regulärer Kampf dauert 20-45 Sekunden auf normaler Geschwindigkeit.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:32",
+        "quoteHash": "sha256:a1924a52917cbb901032c7945c65488e7b777dd4be6ae943c42a35a242e87580",
+        "originalExcerpt": "Ein regulärer Kampf dauert normalerweise 20-45 Sekunden, ein Elitekampf 35-60 Sekunden und ein Bosskampf 60-100 Sekunden auf normaler Geschwindigkeit."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-004"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "min": 20,
+          "max": 45,
+          "target": "regular_fight_duration"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0005",
+      "title": "Ein Elitekampf dauert 35-60 Sekunden auf normaler Geschwindigkeit.",
+      "statement": "Ein Elitekampf dauert 35-60 Sekunden auf normaler Geschwindigkeit.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:32",
+        "quoteHash": "sha256:a1924a52917cbb901032c7945c65488e7b777dd4be6ae943c42a35a242e87580",
+        "originalExcerpt": "Ein regulärer Kampf dauert normalerweise 20-45 Sekunden, ein Elitekampf 35-60 Sekunden und ein Bosskampf 60-100 Sekunden auf normaler Geschwindigkeit."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-005"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "min": 35,
+          "max": 60,
+          "target": "elite_fight_duration"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0006",
+      "title": "Ein Bosskampf dauert 60-100 Sekunden auf normaler Geschwindigkeit.",
+      "statement": "Ein Bosskampf dauert 60-100 Sekunden auf normaler Geschwindigkeit.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:32",
+        "quoteHash": "sha256:a1924a52917cbb901032c7945c65488e7b777dd4be6ae943c42a35a242e87580",
+        "originalExcerpt": "Ein regulärer Kampf dauert normalerweise 20-45 Sekunden, ein Elitekampf 35-60 Sekunden und ein Bosskampf 60-100 Sekunden auf normaler Geschwindigkeit."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-006"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "min": 60,
+          "max": 100,
+          "target": "boss_fight_duration"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0007",
+      "title": "Manuelle Kampffähigkeiten und aktives Zielen sind nicht Teil der Zielversion.",
+      "statement": "Manuelle Kampffähigkeiten und aktives Zielen sind nicht Teil der Zielversion.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 3,
+        "section": null,
+        "locator": "block:44",
+        "quoteHash": "sha256:6840b8ac0feb20c676daa84d72119f92d703ba700d4f729a7ecbba5dbfd9efc2",
+        "originalExcerpt": "Nicht Teil der Zielversion sind: manuelle Kampffähigkeiten, aktives Zielen, PvP, Online-Ranglisten, Accounts, Gilden, Chat, Cloud-Zwang, Live-Events, tägliche Aufgaben, saisonale Inhalte, Basisbau, offene Welt, frei begehbare Dungeons, weit verzweigte Dialogbäume, permanente Heldentode, Verletzungen zwischen Kämpfen, Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe, unbegrenzte Charakterlevel und Echtgeldshops."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-009"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0008",
+      "title": "Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe und unbegrenzt...",
+      "statement": "Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe und unbegrenzte Charakterlevel sind nicht Teil der Zielversion.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 3,
+        "section": null,
+        "locator": "block:44",
+        "quoteHash": "sha256:6840b8ac0feb20c676daa84d72119f92d703ba700d4f729a7ecbba5dbfd9efc2",
+        "originalExcerpt": "Nicht Teil der Zielversion sind: manuelle Kampffähigkeiten, aktives Zielen, PvP, Online-Ranglisten, Accounts, Gilden, Chat, Cloud-Zwang, Live-Events, tägliche Aufgaben, saisonale Inhalte, Basisbau, offene Welt, frei begehbare Dungeons, weit verzweigte Dialogbäume, permanente Heldentode, Verletzungen zwischen Kämpfen, Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe, unbegrenzte Charakterlevel und Echtgeldshops."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "PT-PHASE08-010"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0009",
+      "title": "Nach einem Sieg rekonstruiert der Riftanker alle gefallenen regulären Einheit...",
+      "statement": "Nach einem Sieg rekonstruiert der Riftanker alle gefallenen regulären Einheiten, heilt die Gruppe vollständig, entfernt normale Statuswirkungen und löscht Kampf-Beschwörungen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:53",
+        "quoteHash": "sha256:9338993f4103b1c569382515d719303fa56bef935389e7bdd2fdd465356073a1",
+        "originalExcerpt": "Nach einem Sieg rekonstruiert er alle gefallenen regulären Einheiten, heilt die Gruppe vollständig, entfernt normale Statuswirkungen und löscht Kampf-Beschwörungen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-011"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0010",
+      "title": "Bleibt keine reguläre Einheit der Spielergruppe kampffähig, endet die Expedit...",
+      "statement": "Bleibt keine reguläre Einheit der Spielergruppe kampffähig, endet die Expedition.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:54",
+        "quoteHash": "sha256:57f52374af22022baaa83a7a894b5f4387ec041545993af1892db189da8b662a",
+        "originalExcerpt": "Wenn keine reguläre Einheit der Spielergruppe kampffähig bleibt, bricht die Verbindung zusammen und die Expedition endet."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-012"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0011",
+      "title": "Das logische Schlachtfeld verwendet eine horizontale X-Achse von 0 bis 100 un...",
+      "statement": "Das logische Schlachtfeld verwendet eine horizontale X-Achse von 0 bis 100 und drei diskrete Bahnen: oben, Mitte, unten.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:89",
+        "quoteHash": "sha256:18bfb5826b5e980bce41b1e0140a016e0d7b9ca58246481fac7807d1fc1d0dc7",
+        "originalExcerpt": "Das logische Schlachtfeld verwendet eine horizontale X-Achse von 0 bis 100 und drei diskrete Bahnen: oben, Mitte, unten."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-013"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "xu",
+          "min": 0,
+          "max": 100,
+          "target": "battlefield_x_range"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0012",
+      "title": "Spielerseite bewegt sich grundsätzlich in positive X-Richtung; Gegnerseite in...",
+      "statement": "Spielerseite bewegt sich grundsätzlich in positive X-Richtung; Gegnerseite in negative X-Richtung.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:90",
+        "quoteHash": "sha256:892d8c28713aaa8e8212f597ec40624f1197f4cbfbe662e69069ea41b91853b6",
+        "originalExcerpt": "Spielerseite bewegt sich grundsätzlich in positive X-Richtung; Gegnerseite in negative X-Richtung."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-014"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0013",
+      "title": "Eigene Startzonen sind X=8 (Hinten), X=18 (Mitte), X=28 (Front); gegnerische ...",
+      "statement": "Eigene Startzonen sind X=8 (Hinten), X=18 (Mitte), X=28 (Front); gegnerische Spiegelwerte sind 92, 82, 72.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:91",
+        "quoteHash": "sha256:2120949fb9bc54c9547aeb87ff7b5073122e5ef19d0f965a2ccc6a59ba3b3a9e",
+        "originalExcerpt": "Eigene Startzonen: Hinten X=8, Mitte X=18, Front X=28. Gegnerische Spiegelwerte: 92, 82, 72."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-015"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0014",
+      "title": "Baseline-Kollisionsradien sind klein 1,2; normal 1,8; groß 2,8; Boss 4,0.",
+      "statement": "Baseline-Kollisionsradien sind klein 1,2; normal 1,8; groß 2,8; Boss 4,0.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:92",
+        "quoteHash": "sha256:da845ee2ba361f8d7c391bf5c585474c89bc2fe80da71c304badb618385639f6",
+        "originalExcerpt": "Eine Einheit besitzt einen Kollisionsradius. Baseline: klein 1,2; normal 1,8; groß 2,8; Boss 4,0."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-016"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "xu",
+          "min": 1.2,
+          "max": 4,
+          "target": "collision_radius_baseline"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0015",
+      "title": "Verbündete dürfen sich innerhalb einer Bahn überholen, wenn die überholende E...",
+      "statement": "Verbündete dürfen sich innerhalb einer Bahn überholen, wenn die überholende Einheit mindestens 25% schneller ist oder eine Fähigkeit dies erlaubt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:93",
+        "quoteHash": "sha256:f1478a31b7edfd6f61bcb116a41e076a46086c6daf508d76d5cc5eb2c7417564",
+        "originalExcerpt": "Verbündete dürfen sich innerhalb einer Bahn überholen, wenn die überholende Einheit mindestens 25% schneller ist oder eine Fähigkeit dies erlaubt. Gegnerische Körper können nicht durchlaufen werden."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-017"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "pct",
+          "min": 25,
+          "target": "ally_overtake_speed_min_pct"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0016",
+      "title": "Gegnerische Körper können nicht durchlaufen werden.",
+      "statement": "Gegnerische Körper können nicht durchlaufen werden.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:93",
+        "quoteHash": "sha256:f1478a31b7edfd6f61bcb116a41e076a46086c6daf508d76d5cc5eb2c7417564",
+        "originalExcerpt": "Verbündete dürfen sich innerhalb einer Bahn überholen, wenn die überholende Einheit mindestens 25% schneller ist oder eine Fähigkeit dies erlaubt. Gegnerische Körper können nicht durchlaufen werden."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-018"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0017",
+      "title": "Ein Bahnwechsel dauert baseline 1,2 Sekunden, unterbricht den aktuellen Stand...",
+      "statement": "Ein Bahnwechsel dauert baseline 1,2 Sekunden, unterbricht den aktuellen Standardangriff und ist nur durch Zielregel, Doktrin oder Fähigkeit erlaubt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:94",
+        "quoteHash": "sha256:9c248fc53a9ff4160c49748c07d277295cca2731819cd467761442c750b8d0a0",
+        "originalExcerpt": "Ein Bahnwechsel dauert baseline 1,2 Sekunden, unterbricht den aktuellen Standardangriff und ist nur durch Zielregel, Doktrin oder Fähigkeit erlaubt."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-019"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "value": 1.2,
+          "target": "lane_switch_baseline_duration"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0018",
+      "title": "Physischer und magischer Endschaden werden nach Rohschaden x 100 / (100 + eff...",
+      "statement": "Physischer und magischer Endschaden werden nach Rohschaden x 100 / (100 + effektive Verteidigung) berechnet.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:98",
+        "quoteHash": "sha256:2b62529c541eb78aa757b40d4d0fb5764cc56e70f966d7391ed30fc8fa878b7f",
+        "originalExcerpt": "Physischer Endschaden = Rohschaden x 100 / (100 + effektive Rüstung). Magischer Endschaden verwendet dieselbe Formel mit Widerstand. Reiner Schaden ignoriert Rüstung und Widerstand, darf aber nie mehr als 18% der maximalen LP eines Bosses durch einen einzelnen Treffer verursachen. Effektive Verteidigung kann nicht unter -40 und nicht über 200 liegen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-020"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0019",
+      "title": "Effektive Verteidigung darf nicht unter -40 und nicht über 200 liegen.",
+      "statement": "Effektive Verteidigung darf nicht unter -40 und nicht über 200 liegen.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:98",
+        "quoteHash": "sha256:2b62529c541eb78aa757b40d4d0fb5764cc56e70f966d7391ed30fc8fa878b7f",
+        "originalExcerpt": "Physischer Endschaden = Rohschaden x 100 / (100 + effektive Rüstung). Magischer Endschaden verwendet dieselbe Formel mit Widerstand. Reiner Schaden ignoriert Rüstung und Widerstand, darf aber nie mehr als 18% der maximalen LP eines Bosses durch einen einzelnen Treffer verursachen. Effektive Verteidigung kann nicht unter -40 und nicht über 200 liegen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-021"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "def",
+          "min": -40,
+          "target": "max:200"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0020",
+      "title": "Reiner Schaden darf nie mehr als 18% der maximalen LP eines Bosses durch eine...",
+      "statement": "Reiner Schaden darf nie mehr als 18% der maximalen LP eines Bosses durch einen einzelnen Treffer verursachen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:98",
+        "quoteHash": "sha256:2b62529c541eb78aa757b40d4d0fb5764cc56e70f966d7391ed30fc8fa878b7f",
+        "originalExcerpt": "Physischer Endschaden = Rohschaden x 100 / (100 + effektive Rüstung). Magischer Endschaden verwendet dieselbe Formel mit Widerstand. Reiner Schaden ignoriert Rüstung und Widerstand, darf aber nie mehr als 18% der maximalen LP eines Bosses durch einen einzelnen Treffer verursachen. Effektive Verteidigung kann nicht unter -40 und nicht über 200 liegen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-022"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "pct",
+          "max": 18,
+          "target": "true_damage_boss_cap_pct"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0021",
+      "title": "Standardangriff-Rohschaden ist Angriffskraft x Angriffsmultiplikator.",
+      "statement": "Standardangriff-Rohschaden ist Angriffskraft x Angriffsmultiplikator.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:99",
+        "quoteHash": "sha256:032cc6d9910e5325e4391b14ab9d11f1f8260d646a1a5cac0df8c55c03a7c161",
+        "originalExcerpt": "Standardangriff-Rohschaden = Angriffskraft x Angriffsmultiplikator."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-023"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0022",
+      "title": "Kritische Treffer dürfen nicht als globaler Zufallswert existieren.",
+      "statement": "Kritische Treffer dürfen nicht als globaler Zufallswert existieren.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:100",
+        "quoteHash": "sha256:8ef5d3845237295eb71de5536c7f04586c4703abe7de50f7a83d346b9a60b337",
+        "originalExcerpt": "Kritische Treffer existieren nicht als globaler Zufallswert. Nur ausdrücklich benannte Fähigkeiten dürfen einen festen kritischen Effekt besitzen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-024"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0023",
+      "title": "Nur ausdrücklich benannte Fähigkeiten dürfen einen festen kritischen Effekt b...",
+      "statement": "Nur ausdrücklich benannte Fähigkeiten dürfen einen festen kritischen Effekt besitzen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:100",
+        "quoteHash": "sha256:8ef5d3845237295eb71de5536c7f04586c4703abe7de50f7a83d346b9a60b337",
+        "originalExcerpt": "Kritische Treffer existieren nicht als globaler Zufallswert. Nur ausdrücklich benannte Fähigkeiten dürfen einen festen kritischen Effekt besitzen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-025"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0024",
+      "title": "Schilde absorbieren Endschaden vor LP und bilden einen gemeinsamen Pool; zuer...",
+      "statement": "Schilde absorbieren Endschaden vor LP und bilden einen gemeinsamen Pool; zuerst läuft die Quelle mit der kürzesten Restdauer ab.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:101",
+        "quoteHash": "sha256:bf879d2177db8e84994823ce226684a5045e3b45f26cb5c0fc35d756c0ac7d76",
+        "originalExcerpt": "Schilde absorbieren Endschaden vor LP. Mehrere Schilde bilden einen gemeinsamen Schildpool, behalten aber ihre eigene Ablaufzeit; zuerst läuft/verbrauchte Quelle wird zuerst abgebaut."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-026"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0025",
+      "title": "Heilung darf LP nicht über das Maximum erhöhen; Überheilung verfällt, sofern ...",
+      "statement": "Heilung darf LP nicht über das Maximum erhöhen; Überheilung verfällt, sofern keine Fähigkeit sie in Schild umwandelt.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:102",
+        "quoteHash": "sha256:213865015f49425bb9fbdfbd7a315fa32c9bee67face11e5d1464599a591075c",
+        "originalExcerpt": "Heilung kann LP nicht über das Maximum erhöhen. Überheilung verfällt, außer eine Fähigkeit wandelt sie ausdrücklich in Schild um."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-027"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0026",
+      "title": "Angriffsintervall darf nicht unter 0,45 Sekunden sinken; Bewegungsgeschwindig...",
+      "statement": "Angriffsintervall darf nicht unter 0,45 Sekunden sinken; Bewegungsgeschwindigkeit nie unter 2,0 und nie über 14,0.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:103",
+        "quoteHash": "sha256:9332d20c11a1cff66be310250daa3cc6bb836efdb76def4038fec15dc49b20fe",
+        "originalExcerpt": "Angriffsgeschwindigkeit verändert das gesamte Intervall, aber nie unter 0,45 Sekunden. Bewegungsgeschwindigkeit nie unter 2,0 und nie über 14,0."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-028"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "min": 0.45,
+          "target": "attack_interval_floor"
+        },
+        {
+          "unit": "s",
+          "min": 2,
+          "max": 14,
+          "target": "movement_speed_range"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0027",
+      "title": "Jeder Kampf erhält einen gespeicherten Seed; gleiche Startdaten, Seed und Sim...",
+      "statement": "Jeder Kampf erhält einen gespeicherten Seed; gleiche Startdaten, Seed und Simulationsversion müssen dasselbe Ergebnis erzeugen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:120",
+        "quoteHash": "sha256:8dc6e94a2cf579fcb5db0e0365316d00cecdcf6b7f926c91dcb813fddb820bda",
+        "originalExcerpt": "Jeder Kampf erhält einen gespeicherten Seed. Gleiche Startdaten, Seed und Simulationsversion müssen dasselbe Ergebnis erzeugen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-029"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0028",
+      "title": "Beschwörungen allein dürfen einen Kampf nicht offen halten.",
+      "statement": "Beschwörungen allein dürfen einen Kampf nicht offen halten.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:121",
+        "quoteHash": "sha256:bbe1df7774e6a7a0b99c633c69829d2d7cb32aad1b0ae764b656cadeb71bbf2f",
+        "originalExcerpt": "Ein Kampf endet, sobald eine Seite keine kampffähige reguläre Einheit mehr besitzt. Beschwörungen allein halten den Kampf nicht offen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-030"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0029",
+      "title": "Ein Kampf endet, sobald eine Seite keine kampffähige reguläre Einheit mehr be...",
+      "statement": "Ein Kampf endet, sobald eine Seite keine kampffähige reguläre Einheit mehr besitzt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:121",
+        "quoteHash": "sha256:bbe1df7774e6a7a0b99c633c69829d2d7cb32aad1b0ae764b656cadeb71bbf2f",
+        "originalExcerpt": "Ein Kampf endet, sobald eine Seite keine kampffähige reguläre Einheit mehr besitzt. Beschwörungen allein halten den Kampf nicht offen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-031"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0030",
+      "title": "Das normale weiche Zeitlimit beträgt 90 Sekunden, das Bosslimit 120 Sekunden.",
+      "statement": "Das normale weiche Zeitlimit beträgt 90 Sekunden, das Bosslimit 120 Sekunden.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:122",
+        "quoteHash": "sha256:bc6bff1a3ebf456af8ec32522feb109d47ce0ba28cbd09485ea0925b0fa04e3a",
+        "originalExcerpt": "Normales weiches Zeitlimit: 90 Sekunden. Bosslimit: 120 Sekunden. Bei Erreichen beginnt der 15 Sekunden lange Riftkollaps."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-032"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "value": 90,
+          "target": "normal_soft_time_limit"
+        },
+        {
+          "unit": "s",
+          "value": 120,
+          "target": "boss_time_limit"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0031",
+      "title": "Während des Riftkollapses erhalten alle regulären Einheiten alle 3 Sekunden r...",
+      "statement": "Während des Riftkollapses erhalten alle regulären Einheiten alle 3 Sekunden reinen Schaden in Höhe von 8% ihrer maximalen LP; Heilung ist um 50% reduziert.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:123",
+        "quoteHash": "sha256:0c8223063b30f44f60abfdd5d886c4b36d830b206e6a2ee4861afb86ff449acb",
+        "originalExcerpt": "Während des Riftkollapses erhalten alle regulären Einheiten alle 3 Sekunden reinen Schaden in Höhe von 8% ihrer maximalen LP; Heilung ist um 50% reduziert."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-033"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "pct",
+          "value": 8,
+          "target": "rift_collapse_pure_damage_pct"
+        },
+        {
+          "unit": "pct",
+          "value": 50,
+          "target": "rift_collapse_healing_reduction_pct"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0032",
+      "title": "Sind nach Riftkollaps beide Seiten noch regulär kampffähig, gewinnt die Seite...",
+      "statement": "Sind nach Riftkollaps beide Seiten noch regulär kampffähig, gewinnt die Seite mit höherer Summe aus verbleibenden LP-Prozenten plus halbem Schild-Prozent.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:124",
+        "quoteHash": "sha256:8d9f06b13be48c884931f642060913e785e53244d0137fe46f475813b6edc13c",
+        "originalExcerpt": "Sind nach weiteren 15 Sekunden beide Seiten noch regulär kampffähig, gewinnt die Seite mit höherer Summe aus verbleibenden LP-Prozenten plus halbem Schild-Prozent. Exakter Gleichstand gilt als Niederlage des Spielers, wird aber als Sondergrund ausgewiesen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-034"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0033",
+      "title": "Ein exakter Gleichstand darf nicht als Sieg des Spielers gelten.",
+      "statement": "Ein exakter Gleichstand darf nicht als Sieg des Spielers gelten.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:124",
+        "quoteHash": "sha256:8d9f06b13be48c884931f642060913e785e53244d0137fe46f475813b6edc13c",
+        "originalExcerpt": "Sind nach weiteren 15 Sekunden beide Seiten noch regulär kampffähig, gewinnt die Seite mit höherer Summe aus verbleibenden LP-Prozenten plus halbem Schild-Prozent. Exakter Gleichstand gilt als Niederlage des Spielers, wird aber als Sondergrund ausgewiesen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-035"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0034",
+      "title": "Tiebreak-Reihenfolge ohne Zufall: höchster Zielscore, geringste Distanz, nied...",
+      "statement": "Tiebreak-Reihenfolge ohne Zufall: höchster Zielscore, geringste Distanz, niedrigste verbleibende LP in absoluten Punkten, niedrigste stabile Entity-ID.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:125",
+        "quoteHash": "sha256:d4c48d8d7ae5374f6e9d45eb534c912020255485573256c3c17601e0713963ef",
+        "originalExcerpt": "Tiebreak-Reihenfolge ohne Zufall: höchster Zielscore, geringste Distanz, niedrigste verbleibende LP in absoluten Punkten, niedrigste stabile Entity-ID."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-036"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0035",
+      "title": "Geschwindigkeitsstufe, Pause, Kamera und reduzierte Effekte dürfen das Kampfe...",
+      "statement": "Geschwindigkeitsstufe, Pause, Kamera und reduzierte Effekte dürfen das Kampfergebnis nie verändern.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:126",
+        "quoteHash": "sha256:577c572a717e0c7f4917d9a3adcd927b071afe7b6c63c3e0d30509174136829f",
+        "originalExcerpt": "Geschwindigkeitsstufe, Pause, Kamera und reduzierte Effekte dürfen das Ergebnis nie verändern."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-037"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "tempId": "REQ-TEMP-B-0014",
+      "statement": "In Tiefe 1-5 beträgt die Gegnerbaseline 0,90 der Kampagnenend-Werte.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:2e28fae0d4f77ff23dbcb03339f097330c9ea64a27c2550e0a3b2119d6dcc580",
+        "originalExcerpt": "Baseline Kampagnenende x0,90"
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-009"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-SIM-0036"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0016",
+      "statement": "In Tiefe 6-10 beträgt die Elitechance 25 Prozent und der erste Zwischenboss erscheint auf Tiefe 10.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:50e64d88a7af6983d755fc68b088edebd314c2ed68c28d3e952e881f606a7342",
+        "originalExcerpt": "Elitechance 25%, erster Zwischenboss auf 10."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-010"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-SIM-0037"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0017",
+      "statement": "In Tiefe 11-20 steigt pro Tiefe das gegnerische LP um 2 Prozent und der Angriff um 1,2 Prozent.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:00ff5b4db4d592db453a462173e836465b14c2234be725cd436007e512335021",
+        "originalExcerpt": "Je Tiefe +2% LP/+1,2% Angriff ab 11"
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-011"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-SIM-0038"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0031",
+      "statement": "Der Endless-Generator wiederholt keine identische Encounter-ID innerhalb der letzten acht Kämpfe.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1262",
+        "quoteHash": "sha256:586dc844e427d7c2edbb1c95affd7add35ff77a6f1dc4a37454108b3b13a6f43",
+        "originalExcerpt": "Endless-Generator wiederholt identische Encounter-ID nicht innerhalb der letzten acht Kämpfe."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-012"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-SIM-0039"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0034",
+      "statement": "Die Skalierung der Endlosen Rift bleibt numerisch berechenbar und enthält keine versteckten Sprünge außerhalb der Tabelle.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1264",
+        "quoteHash": "sha256:8c2d5394443efd495428df8915d2184e6bdf5e5da06396718370093d9a1b0986",
+        "originalExcerpt": "Skalierung bleibt numerisch berechenbar und besitzt keine versteckten Sprünge außerhalb Tabelle."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-013"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-SIM-0040"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0056",
+      "statement": "Kosmetische Effekte aus Meisterschaften verändern Trefferzeit, Fläche und Lesbarkeit nicht.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1315",
+        "quoteHash": "sha256:a134b632d71db8d0114e1cdb721b182b46f1f23a931c91a77e6478454b5b3106",
+        "originalExcerpt": "Kosmetische Effekte verändern Trefferzeit, Fläche und Lesbarkeit nicht."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-014"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-SIM-0041"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0075",
+      "statement": "Auswertungswerte stimmen mit dem Kampflog auf Rundungsdifferenz unter 0,1 Prozent überein.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1351",
+        "quoteHash": "sha256:758026dcfd4312b65ae18ec2c8d4dd827a6b4a0b96ce285243ec855f93868aea",
+        "originalExcerpt": "Auswertungswerte stimmen mit Kampflog auf Rundungsdifferenz unter 0,1% überein."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-015"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "%",
+          "max": 0.1,
+          "target": "eval_log_deviation"
+        }
+      ],
+      "status": "planned",
+      "id": "REQ-SIM-0042"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0076",
+      "statement": "Der MVP-Algorithmus bevorzugt nicht automatisch reine DPS über essentielle Heilung oder Tankleistung.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1352",
+        "quoteHash": "sha256:b2b8f9674def8fedcbd38e94ce3544b839e88a62ee14ed89fbd0c7204b720fc4",
+        "originalExcerpt": "MVP-Algorithmus bevorzugt nicht automatisch reine DPS über essentielle Heilung/Tankleistung."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-016"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-SIM-0043"
+    },
+    {
+      "id": "REQ-SIM-0044",
+      "title": "LP/Schild nie negativ",
+      "statement": "LP und Schild dürfen nie negativ sein; keine Entity darf gleichzeitig ACTIVE und DEFEATED sein.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "65",
+        "section": null,
+        "locator": "block:1860",
+        "quoteHash": "sha256:b0e7194bfa1fae0376602d10b9394a06d97e5a83b0a91fbdc562ac45ddd45faa",
+        "originalExcerpt": "LP und Schild nie negativ; keine Entity gleichzeitig ACTIVE und DEFEATED."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-INV-NEGLP-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0045",
+      "title": "Sim-Obergrenzen pro Seite",
+      "statement": "Pro Seite gelten die Obergrenzen: maximal sieben reguläre Einheiten, drei Helden, drei gleiche Truppen und sechs Beschwörungen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "65",
+        "section": null,
+        "locator": "block:1861",
+        "quoteHash": "sha256:02b2058db4c54daa0d0d5116e6e219f87fb2e702482cdc07c16f869855a2ccc5",
+        "originalExcerpt": "Maximal sieben reguläre Einheiten, drei Helden, drei gleiche Truppen und sechs Beschwörungen pro Seite."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-INV-CAPS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 7
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0046",
+      "title": "Safety Cap für Aktionen",
+      "statement": "Jede geplante Aktion endet, wird unterbrochen oder verfällt innerhalb ihres Safety Caps.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "65",
+        "section": null,
+        "locator": "block:1862",
+        "quoteHash": "sha256:f4dbf4866fc69260d06bc566fae5eaf1c9247f53e51d47ba9cfb3e67437df61d",
+        "originalExcerpt": "Jede geplante Aktion endet, wird unterbrochen oder verfällt innerhalb ihres Safety Caps."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-INV-SAFETY-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0047",
+      "title": "Keine unbegrenzten Trigger",
+      "statement": "Keine Fähigkeit darf sich im selben Tick unbegrenzt selbst triggern; die globale Eventobergrenze ist 10.000 je Kampf, Überschreitung führt zu hartem Testfehler.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "65",
+        "section": null,
+        "locator": "block:1863",
+        "quoteHash": "sha256:84e584c2eda62a14a873cccb1ec8918fbae629471fbb12cc651800b592e4e6a1",
+        "originalExcerpt": "Keine Fähigkeit kann sich im selben Tick unbegrenzt selbst triggern; globale Eventobergrenze 10.000 je Kampf, danach harter Testfehler."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-INV-LOOP-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 10000
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0048",
+      "title": "Determinismus Invariante",
+      "statement": "Gleicher Startsnapshot, gleiche Entscheidungen und gleiche Version erzeugen identischen Endchecksum, Eventcount und Ergebnis.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "65",
+        "section": null,
+        "locator": "block:1864",
+        "quoteHash": "sha256:b80d9dff05fa35c28f563f926f66ecd6289625f61bb2e526fabf359fec000a62",
+        "originalExcerpt": "Gleicher Startsnapshot + Entscheidungen + Version erzeugt identischen Endchecksum, Eventcount und Ergebnis."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-INV-DET-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0049",
+      "title": "Kampfende bis Tick 5400",
+      "statement": "Jeder Kampf endet bis Tick 5400; jeder Dungeon-Generator endet bis Versuch 50.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "65",
+        "section": null,
+        "locator": "block:1865",
+        "quoteHash": "sha256:93a0270fd57c0203469fa000ca145e8858ca68d9e0e1ec97cc9e49206ee406c5",
+        "originalExcerpt": "Jeder Kampf endet bis Tick 5400; jeder Dungeon-Generator endet bis Versuch 50."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-INV-BOUND-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "tick",
+          "max": 5400
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0050",
+      "title": "V4 implementiert ohne Ersatz",
+      "statement": "Die V4-Technik ersetzt keine Bossmechanik, Synergie, Belohnungslogik oder Kampagnenstruktur; sie implementiert nur die bestehenden Inhaltsregeln.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "70",
+        "section": null,
+        "locator": "block:1939",
+        "quoteHash": "sha256:1604ffe98ecc99d67c3482f7ed4a23e2cdc2dd663711b7341876cc5c886851c7",
+        "originalExcerpt": "Die V4-Technik implementiert die bestehenden Inhaltsregeln; sie ersetzt keine Bossmechanik, Synergie, Belohnungslogik oder Kampagnenstruktur."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-VAUDIT-NOREP-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0051",
+      "title": "Tickrate 30/s",
+      "statement": "Die Simulation läuft mit 30 Ticks pro Sekunde.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:c1ae570345a012414394aefb94b0887a07d13430ce2f189816874e15fbbf1eca",
+        "originalExcerpt": "simulationTicksPerSecond: 30"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-TICKRATE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "tps",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0052",
+      "title": "Formation 3x3",
+      "statement": "Die Formation besitzt 3 Bahnen und 3 Tiefen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:f46ba0ed44d67f4541c032ad72665a679b1bafc26deefe77efc4daddb241aed7",
+        "originalExcerpt": "formationLanes: 3, formationDepths: 3"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-FORM-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0053",
+      "title": "Max reguläre Einheiten",
+      "statement": "Pro Seite sind maximal 7 reguläre Einheiten erlaubt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:70bc30dab1430b934da72818405f7842aea0cf40b32e2121d9c5847fc14be171",
+        "originalExcerpt": "maxRegularUnitsPerSide: 7"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-REGULAR-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 7
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0054",
+      "title": "Max Helden 3",
+      "statement": "Pro Spielergruppe sind maximal 3 Helden erlaubt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:6b0ced8316b73bade4ebe0c594705e384673931788241de9a36eb3494b0c8ded",
+        "originalExcerpt": "maxHeroesPerPlayerGroup: 3"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-HEROES-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 3
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0055",
+      "title": "Max Truppenkopien 3",
+      "statement": "Pro Truppentyp sind maximal 3 Kopien erlaubt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:bddf5290bd39a31b5ec208609c9fdd9823cd872851a1208e245f0078d90410af",
+        "originalExcerpt": "maxCopiesPerTroopType: 3"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-COPIES-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 3
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0056",
+      "title": "Max Beschwörungen 6",
+      "statement": "Pro Seite sind maximal 6 aktive Beschwörungen erlaubt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:9c2e0dcd26da2e9abd3deb8f40d14eadd7a885aa831c786a16a6859af3887ca2",
+        "originalExcerpt": "maxActiveSummonsPerSide: 6"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-SUMMONS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 6
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0057",
+      "title": "Aktive Relikte Obergrenze 8",
+      "statement": "Aktive Relikte: Basis 6, tiefe Endlose Rift 8, absolutes Maximum 8.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:c59d001a1097ea5666686515e24690378e24f4e959be6fb8a65863cc45a224fe",
+        "originalExcerpt": "baseActiveRelics: 6, deepEndlessActiveRelics: 8, absoluteMaxActiveRelics: 8"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-RELICS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 8
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0058",
+      "title": "Heldenlevel 1-3",
+      "statement": "Heldenlevel reichen von 1 bis 3.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:b2730bed89b95ceebc18288f8697ce7b4f7ba2de63373e021206e2d506d6ee82",
+        "originalExcerpt": "heroLevelMin: 1, heroLevelMax: 3"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-HEROLEVEL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "level",
+          "min": 1
+        },
+        {
+          "unit": "level",
+          "max": 3
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0059",
+      "title": "Heldenausrüstung 2 Slots",
+      "statement": "Jeder Held besitzt 2 permanente Ausrüstungsplätze.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:71ae61b3810fe4110ba562d24842e3686d78017850363b1ab3c9be850bbc7c6d",
+        "originalExcerpt": "permanentEquipmentSlotsPerHero: 2"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-EQSLOTS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0060",
+      "title": "Riftkollaps Timing",
+      "statement": "Riftkollaps-Startticks: normal/elite 2700, Boss 3600; Dauer 450 Ticks.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:07284814c3c05d698a837f4c5d8d951d8125c2b766cc75ae14d0f43b7be658de",
+        "originalExcerpt": "normalRiftCollapseStartTicks: 90 * 30, eliteRiftCollapseStartTicks: 90 * 30, bossRiftCollapseStartTicks: 120 * 30, riftCollapseDurationTicks: 15 * 30"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-RIFTCOLLAPSE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "tick",
+          "value": null
+        },
+        {
+          "unit": "tick",
+          "value": null
+        },
+        {
+          "unit": "tick",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0061",
+      "title": "Schlachtabbruch 5400 Ticks",
+      "statement": "Die absolute Schlachtabbruchsobergrenze liegt bei 5400 Ticks.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:a6076e3c63db311980e16dcd1512d42d573f3ffc1691694a8e4e22218396666e",
+        "originalExcerpt": "absoluteBattleAbortTicks: 180 * 30"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-ABORT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "tick",
+          "max": 5400
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0062",
+      "title": "Tick-Pipeline Reihenfolge",
+      "statement": "Ein Tick wird in stabiler Reihenfolge (scheduledTick, eventPriority, sourceEntityId, abilityId, eventSequence) verarbeitet; kein Renderer- oder Arrayindex darf die Reihenfolge beeinflussen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2021",
+        "quoteHash": "sha256:aa8a0152088520b6a0d1456a782a5d4222b7abcef366d7d4a48e84bac0e7e52f",
+        "originalExcerpt": "Ein Tick wird exakt in der folgenden Reihenfolge verarbeitet. Innerhalb einer Phase gilt die stabile Sortierung scheduledTick, eventPriority, sourceEntityId, abilityId, eventSequence. Kein Renderer- oder Arrayindex darf die Reihenfolge beeinflussen."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-TICK-ORDER-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0063",
+      "title": "Reichweite inklusive",
+      "statement": "Reichweite ist inklusive (distance <= range); Distanz ist Abstand der Kollisionsränder, nicht Mittelpunktdistanz.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2024",
+        "quoteHash": "sha256:0fcd224f230b3d3aa4b1a0afe0d139bd23ce11cff766873ba7f759d3fcb8e802",
+        "originalExcerpt": "Reichweite ist inklusive: distance <= range gilt als in Reichweite. Distanz ist Abstand der Kollisionsränder, nicht Mittelpunktdistanz."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-RANGE-INCLUSIVE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0064",
+      "title": "Nahkampf-Stop Baseline",
+      "statement": "Nahkämpfer stoppen bei targetRadius + ownRadius + attackStopGap; Baseline attackStopGap ist 0,10 X-Einheiten.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2025",
+        "quoteHash": "sha256:9b5b2b9572e1680edd6bf53326cfa92159cfede7c2674ce1c7ceae69705d2e65",
+        "originalExcerpt": "Nahkämpfer stoppen bei targetRadius + ownRadius + attackStopGap. Baseline attackStopGap=0,10 X-Einheiten."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-MELEE-STOP-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "x",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0065",
+      "title": "Separation 0,25 X/Tick",
+      "statement": "Verbündete dürfen sich bei Spawn/Knockback kurz überlappen; Separation löst maximal 0,25 X pro Tick, ohne die Gegnergrenze zu durchdringen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2026",
+        "quoteHash": "sha256:429b3c12aebcb7e22e26ba8e45db12de002bcaaf6cb527e8e41a722027189aee",
+        "originalExcerpt": "Verbündete dürfen sich überlappen, wenn Spawn/Knockback dies kurz erzwingt; Separation löst maximal 0,25 X pro Tick, ohne die Gegnergrenze zu durchdringen."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-SEP-LIMIT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "x",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0066",
+      "title": "Projektil-Ziellock",
+      "statement": "Projektile speichern Ziel-ID und Zielposition beim Abschuss; Homing=false trifft die gespeicherte Position, homing=true verfolgt bis maxTurn/expiry; bei entferntem Ziel folgt die lostTargetPolicy.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2027",
+        "quoteHash": "sha256:2793a11136f8d3557d800e3cf7ee262353ce6390adee11f242378f8e100ef403",
+        "originalExcerpt": "Projektile speichern Ziel-ID und Zielposition beim Abschuss. Homing=false trifft die gespeicherte Position; homing=true verfolgt bis maxTurn/expiry. Ist das Ziel entfernt, folgt die definierte lostTargetPolicy."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-PROJ-LOCK-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0067",
+      "title": "AoE Einzelhit pro EffectIndex",
+      "statement": "AoE nutzt einen einmaligen Samplepunkt beim Impact; Einheit gilt als getroffen, wenn Kollisionskreis die AoE-Grenze berührt; eine Fähigkeit trifft dieselbe Entity pro EffectIndex höchstens einmal.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2028",
+        "quoteHash": "sha256:7f496f9965a9d1613466449dbdd2817e8a9b15807f88b5eb24509473c19e8270",
+        "originalExcerpt": "AoE nutzt einen einmaligen Samplepunkt beim Impact. Einheit gilt getroffen, wenn Kollisionskreis die AoE-Grenze berührt. Eine Fähigkeit trifft dieselbe Entity pro EffectIndex höchstens einmal."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AOE-SINGLE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0068",
+      "title": "True Damage Regeln",
+      "statement": "True Damage ignoriert Rüstung/Widerstand, aber nicht Schilde oder explizite Unverwundbarkeit; negative Endschäden werden auf 0 geklemmt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2029",
+        "quoteHash": "sha256:a6f32ed655b32971e3d4c86a970cca1378a3567b6ad611474a11cd66ce492c4a",
+        "originalExcerpt": "True Damage ignoriert Rüstung/Widerstand, aber nicht Schilde oder explizite Unverwundbarkeit. Negative Endschäden werden auf 0 geklemmt."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-DMG-TRUEDMG-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0069",
+      "title": "invalidTargetPolicy wait",
+      "statement": "Bei invalidTargetPolicy=wait bleibt die Fähigkeit vollständig geladen, prüft jeden Tick und verbraucht keine Nutzung.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2032",
+        "quoteHash": "sha256:6951ce52de628d544c0e8b88477e0f3c8ea4753aad83ffe337689ed011caf17f",
+        "originalExcerpt": "invalidTargetPolicy=wait: Fähigkeit bleibt vollständig geladen und prüft jeden Tick, verbraucht keine Nutzung."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-ITP-WAIT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0070",
+      "title": "invalidTargetPolicy retarget",
+      "statement": "Bei invalidTargetPolicy=retarget wird die Zielquery im selben Tick genau einmal neu ausgeführt; ohne Ziel verhält sie sich wie wait.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2033",
+        "quoteHash": "sha256:08f2f42be5566c2503bfb90f33ec46371020c4ff5147ffd9e63df8e87120b65f",
+        "originalExcerpt": "invalidTargetPolicy=retarget: Zielquery wird im selben Tick genau einmal neu ausgeführt; ohne Ziel verhält sie sich wie wait."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-ITP-RETARGET-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0071",
+      "title": "invalidTargetPolicy consume",
+      "statement": "invalidTargetPolicy=consume_without_effect ist nur für ausdrücklich designte zufällige oder risikobehaftete Fähigkeiten erlaubt und muss in der Vorschau stehen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2034",
+        "quoteHash": "sha256:763a9810e796afdfb13a0aa970eb9a72b378a7b196d43baa8db82d908554a824",
+        "originalExcerpt": "invalidTargetPolicy=consume_without_effect ist nur für ausdrücklich designte zufällige/risikobehaftete Fähigkeiten erlaubt und muss in Vorschau stehen."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-ITP-CONSUME-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0072",
+      "title": "Kein Doppelangriff bei Retarget",
+      "statement": "Standardangriffe retargeten nach Zielverlust frühestens im nächsten Tick; ein sofortiger Doppelangriff durch Retarget ist verboten.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2035",
+        "quoteHash": "sha256:115a6ec0b08946a7d6f6cd877716e9ae0cd5723b8edaba5342f50188d8eab3e4",
+        "originalExcerpt": "Standardangriffe retargeten nach Zielverlust frühestens im nächsten Tick. Kein sofortiger Doppelangriff durch Retarget."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-ATK-NODBL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0073",
+      "title": "Periodische Effekte Timing",
+      "statement": "Periodische Effekte ticken erstmals nach ihrem intervalTicks, niemals sofort beim Auftragen; initialTick=true ist nur ausdrücklich erlaubt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2038",
+        "quoteHash": "sha256:2c2130eac12786e8cbf0583bc8745d58a7bf7ae18596749676b3a2947d00ab98",
+        "originalExcerpt": "Periodische Effekte ticken erstmals nach ihrem intervalTicks, niemals sofort beim Auftragen, außer initialTick=true ist ausdrücklich gesetzt."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-PERIOD-FIRST-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0074",
+      "title": "Dispel-Reihenfolge",
+      "statement": "Dispel entfernt nach Priorität: harte Kontrolle, stärkster negativer Effekt, längste Restdauer, Status-ID; Bannung positiver Effekte nutzt analog stärkster Buff zuerst.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2039",
+        "quoteHash": "sha256:ff254766596a7a536b88337f8eb787faa33045706c700968c4489484ed60d9e0",
+        "originalExcerpt": "Dispel entfernt nach Priorität: harte Kontrolle, stärkster negativer Effekt, längste Restdauer, Status-ID. Bannung positiver Effekte nutzt analog stärkster Buff zuerst."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-DISPEL-ORDER-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0075",
+      "title": "Schild-FIFO Priorität",
+      "statement": "Schilde bilden eine FIFO-Liste nach Auftragssequenz, außer shieldPriority ist gesetzt; Schaden verbraucht zuerst höchsten shieldPriority, dann ältesten Schild.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2040",
+        "quoteHash": "sha256:46d1a245c2b0c4a5fe259710e395d4f48a61f5b90b6633c9650513b8c1c59d5f",
+        "originalExcerpt": "Schilde bilden eine FIFO-Liste nach Auftragssequenz, außer shieldPriority ist gesetzt. Schaden verbraucht zuerst höchsten shieldPriority, dann ältesten Schild."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-SHIELD-FIFO-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0076",
+      "title": "Überheilung Schildregel",
+      "statement": "Überheilung erzeugt nur dann Schild, wenn eine Fähigkeit dies ausdrücklich definiert; der erzeugte Schild ist ein neuer Effekt und übernimmt keine Heilmodifikatoren doppelt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2041",
+        "quoteHash": "sha256:6a6cb8a1024e4130f65b3be4a60aea01617113507027b95c45b571003d6d785a",
+        "originalExcerpt": "Überheilung erzeugt nur dann Schild, wenn eine Fähigkeit dies ausdrücklich definiert. Der erzeugte Schild ist ein neuer Effekt und übernimmt keine Heilmodifikatoren doppelt."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-OVERHEAL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0077",
+      "title": "Keine Events nach Kampfende",
+      "statement": "Sobald Phase L ein endgültiges Kampfende setzt, werden keine neuen Gameplayevents geplant; bereits geplante Ereignisse späterer Ticks werden verworfen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2044",
+        "quoteHash": "sha256:0a72448a88b4a4749fba1df57880bb98da764bb43f1d6debede505073e19783c",
+        "originalExcerpt": "Sobald Phase L ein endgültiges Kampfende setzt, werden keine neuen Gameplayevents geplant. Bereits geplante Ereignisse späterer Ticks werden verworfen."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-END-NOEVT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0078",
+      "title": "Render ohne Gameplayautorität",
+      "statement": "Render- und Audioevents dürfen ihre kurze Abschlussanimation abspielen, besitzen aber keine Gameplayautorität.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2045",
+        "quoteHash": "sha256:532d6f3ce90c3e027137568a61e47e812ddef7bf5b53e2b88cba21d2c6fe43d6",
+        "originalExcerpt": "Render-/Audioevents dürfen ihre kurze Abschlussanimation abspielen, besitzen aber keine Gameplayautorität."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-RENDER-NOGAME-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0079",
+      "title": "Zeitlimit-Wertung",
+      "statement": "Bei Zeitlimit gewinnt die Seite mit höherem Verhältnis (Summe aktuelle LP+Schilde) / (Summe maximale LP der regulären Einheiten); Gleichstand: mehr reguläre Einheiten, dann mehr Boss-/Zielschaden, sonst Doppelniederlage.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2046",
+        "quoteHash": "sha256:090598b96e60af6757ad90dd2546fb4af04e050636ec3965e5e934f3a0e81008",
+        "originalExcerpt": "Bei Zeitlimit gewinnt die Seite mit höherem Verhältnis Summe aktuelle LP+Schilde / Summe maximale LP der regulären Einheiten. Gleichstand: mehr reguläre Einheiten, dann mehr Boss-/Zielschaden; sonst Doppelniederlage."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-TIMELIMIT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0080",
+      "title": "Replayhash 30 Ticks",
+      "statement": "Ein Replayhash wird alle 30 Ticks und beim Kampfende erzeugt; er umfasst autoritativen Zustand, nicht Render-, Audio- oder Statistikformatierung.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2047",
+        "quoteHash": "sha256:76f0a3d36e20ae55bc99c8ee17104023bf54e87a75e6928ad56597b4bfbfd6df",
+        "originalExcerpt": "Ein Replayhash wird alle 30 Ticks und beim Kampfende erzeugt. Hash umfasst autoritativen Zustand, nicht Render-, Audio- oder Statistikformatierung."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-REPLAY-HASH-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "tick",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0081",
+      "title": "FSM eine Änderung pro Tick",
+      "statement": "Eine Einheit führt pro Tick höchstens eine autoritative Zustandsänderung aus; DEFEATED und PHASE_TRANSITION besitzen höhere Priorität.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2050",
+        "quoteHash": "sha256:b6b55dde3164170ad113012b5a4257eed06a247b50fea232d792fe84ca382ce6",
+        "originalExcerpt": "Eine Einheit führt pro Tick höchstens eine autoritative Zustandsänderung aus, außer DEFEATED/PHASE_TRANSITION besitzt höhere Priorität."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-FSM-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0082",
+      "title": "Zielwahl nur bei Trigger",
+      "statement": "Zielwahl findet beim Eintritt in ACQUIRE_TARGET, bei ungültigem Ziel und bei explizitem Reevaluate-Trigger statt; nicht permanent jeden Tick.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2051",
+        "quoteHash": "sha256:b5c41cd0dcc85afc20da845151e5d0ea24333677c8ffa81b0b9a954a696f48b4",
+        "originalExcerpt": "Zielwahl findet beim Eintritt in ACQUIRE_TARGET, bei ungültigem Ziel und bei explizitem Reevaluate-Trigger statt; nicht permanent jeden Tick."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-REACQ-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0083",
+      "title": "Target Lock Baseline",
+      "statement": "Target Lock: Standardangriff bis Treffer/Abbruch, Signaturfähigkeit bis Castende; Duellanten dürfen nach kill/unerreichbar sofort neu bewerten.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2052",
+        "quoteHash": "sha256:fde20ff2e7085364e8d2782388a544a9ccdc5d11cbf7d78a13669a5e3acaab4d",
+        "originalExcerpt": "Target Lock baseline: Standardangriff bis Treffer/Abbruch; Signaturfähigkeit bis Castende; Duellanten dürfen nach kill/unerreichbar sofort neu bewerten."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-LOCK-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0084",
+      "title": "Bahnwechsel-Cooldown 90",
+      "statement": "Ein normaler Bahnwechsel ist frühestens 90 Ticks nach dem letzten normalen Wechsel erlaubt; Fähigkeitswechsel ignorieren den Cooldown, setzen ihn danach aber neu.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2056",
+        "quoteHash": "sha256:d1c8ed9a705f656fa1705c0d22e5548f381bb7b1c003848ab1b4c5b7da921b73",
+        "originalExcerpt": "Ein normaler Bahnwechsel ist frühestens 90 Ticks nach dem letzten normalen Wechsel erlaubt. Fähigkeitswechsel ignorieren den Cooldown, setzen ihn danach aber neu."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-LANECD-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "tick",
+          "min": 90
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0085",
+      "title": "Bahnwechsel Bedrohung 20%",
+      "statement": "Der Bedrohungswert einer Nachbarbahn muss mindestens 20 % höher sein als der aktuellen Bahn, bevor Schutzformation/Verteidiger freiwillig wechseln.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2057",
+        "quoteHash": "sha256:3dcd70c8c2a473b279540f52fb169e8e5b42022cc629d149dcfb24749e88a0d4",
+        "originalExcerpt": "Bedrohungswert einer Nachbarbahn muss mindestens 20% höher sein als der aktuellen Bahn, bevor Schutzformation/Verteidiger freiwillig wechseln."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-LANETHR-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "pct",
+          "min": 20
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0086",
+      "title": "Kein Bahnwechsel-Abbruch",
+      "statement": "Eine Einheit bricht einen begonnenen Bahnwechsel nur durch Tod, harte Kontrolle oder explizite Fähigkeit ab; neue Zielwerte werden erst nach Abschluss geprüft.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2058",
+        "quoteHash": "sha256:23ef7e9e6e23293c68957973aa28a8d98e3c8adf42907bfc2f9d3b1ec7a07a2a",
+        "originalExcerpt": "Eine Einheit bricht einen begonnenen Bahnwechsel nur durch Tod, harte Kontrolle oder explizite Fähigkeit ab. Neue Zielwerte werden erst nach Abschluss geprüft."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-LANEINT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0087",
+      "title": "Top/Bottom nur via Mitte",
+      "statement": "Top<->Bottom direkter Wechsel ist verboten; er erfolgt über Mitte und benötigt zwei vollständige Wechsel.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2059",
+        "quoteHash": "sha256:8215124f16b62f69ef13328111735d1face04349d11540f8d94544a57f8591ee",
+        "originalExcerpt": "Top<->Bottom direkter Wechsel ist verboten; er erfolgt über Mitte und benötigt zwei vollständige Wechsel."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-LANETB-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0088",
+      "title": "Spawn-Offset Lane",
+      "statement": "Beschwörung mit targetLane spawnt 1,0 X hinter der vordersten verbündeten regulären Einheit dieser Bahn und mindestens 0,5 X innerhalb eigener Seite des nächsten Gegners.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2062",
+        "quoteHash": "sha256:016ec92f2c7b2fc6d6cbdcade4d2312fd740334fe29d780e1cfe398c9ed93487",
+        "originalExcerpt": "Beschwörung mit targetLane spawnt 1,0 X hinter der vordersten verbündeten regulären Einheit dieser Bahn; mindestens 0,5 X innerhalb eigener Seite des nächsten Gegners."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-SPAWNLN-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "x",
+          "value": null
+        },
+        {
+          "unit": "x",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0089",
+      "title": "Spawn-Offsets blockiert",
+      "statement": "Ohne Verbündeten in der Bahn spawnt sie an der eigenen Front-Startzone; ist die Position blockiert, werden Offsets 0,5 X nach hinten bis maximal 4 X geprüft.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2063",
+        "quoteHash": "sha256:32166c08911db8970b4f1737a0d1cb6e92b18a4174427b8aae33aa1a3b20f97b",
+        "originalExcerpt": "Ohne Verbündeten in der Bahn spawnt sie an der eigenen Front-Startzone. Ist Position blockiert, werden Offsets 0,5 X nach hinten bis maximal 4 X geprüft."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-SPAWNOFF-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "x",
+          "value": null
+        },
+        {
+          "unit": "x",
+          "max": 4
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0090",
+      "title": "Stationärer Slot-Spawn",
+      "statement": "Stationäre Konstruktionen spawnen am definierten Slot; ist dieser belegt, gilt Ersatzpolicy oder Spawn scheitert sichtbar; automatisches Stapeln ist verboten.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2064",
+        "quoteHash": "sha256:ea68c031e6e4c5b16fd528da0cb32cab06ced91d36b672b7d65e52aca6c012ff",
+        "originalExcerpt": "Stationäre Konstruktionen spawnen am definierten Slot. Ist belegt, gilt Ersatzpolicy oder Spawn scheitert sichtbar; kein automatisches Stapeln."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-SPAWNSLOT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0091",
+      "title": "Keine Überlappung mit Gegnern",
+      "statement": "Große Beschwörung darf kleine Einheiten kurz verdrängen, aber niemals gegnerische Körper oder Arenaobjekte überlappen.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2065",
+        "quoteHash": "sha256:ce0399c7d845e49b8187bab71bd15644f30fcc2f17956ef31abe6415c29e7e49",
+        "originalExcerpt": "Große Beschwörung darf kleine Einheiten kurz verdrängen, aber niemals gegnerische Körper oder Arenaobjekte überlappen."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-SPAWNBIG-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0092",
+      "title": "Die Telegraphiedauer entspricht Ability.castTicks und darf durch Quality nicht verkürzt werden; Reduce Motion ersetzt Bewegung, aber niemals Dauer oder Information.",
+      "statement": "Die Telegraphiedauer entspricht Ability.castTicks und darf durch Quality nicht verkürzt werden; Reduce Motion ersetzt Bewegung, aber niemals Dauer oder Information.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 81,
+        "section": null,
+        "locator": "block:2135",
+        "quoteHash": "sha256:7c2fbd1c927fb22b205e95527d9a88eeb874e400e4a30e7cf238dacd28733d97",
+        "originalExcerpt": "Telegraphiedauer entspricht Ability.castTicks und darf durch Quality nicht verkürzt werden. Reduce Motion ersetzt Bewegung, nicht Dauer/Information."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "SIM-TELEGRAPH-DURATION-081"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0093",
+      "title": "Die Audioengine trifft keine zufälligen Gameplayentscheidungen; Pitch- und Variantenauswahl stammen aus combatCosmetic und beeinflussen Replays nicht.",
+      "statement": "Die Audioengine trifft keine zufälligen Gameplayentscheidungen; Pitch- und Variantenauswahl stammen aus combatCosmetic und beeinflussen Replays nicht.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 82,
+        "section": null,
+        "locator": "block:2153",
+        "quoteHash": "sha256:230e98280b7472f5e36239a04c1114b72fee9203d8a175e82d206207481058d2",
+        "originalExcerpt": "Audioengine verwendet keine zufällige Gameplayentscheidung. Pitch-/Variantenauswahl stammt aus combatCosmetic und beeinflusst Replay nicht."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "SIM-AUDIO-DETERMINISM-082"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0094",
+      "title": "Version 1 initialisiert PixiJS explizit mit preference=webgl und preferWebGLVersion=2; WebGL1 darf nur als automatisch funktionierender Pixi-WebGL-Fallback verwendet werden, wenn alle visuellen Tests bestehen.",
+      "statement": "Version 1 initialisiert PixiJS explizit mit preference=webgl und preferWebGLVersion=2; WebGL1 darf nur als automatisch funktionierender Pixi-WebGL-Fallback verwendet werden, wenn alle visuellen Tests bestehen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 84,
+        "section": null,
+        "locator": "block:2198",
+        "quoteHash": "sha256:4be4dc4a49ee3d401e5b76944d83cc91fc59014565930247942d3fe03feb94fe",
+        "originalExcerpt": "Version 1 initialisiert PixiJS explizit mit preference=webgl und preferWebGLVersion=2; WebGL1 darf nur als automatisch funktionierender Pixi-WebGL-Fallback verwendet werden, wenn alle visuellen Tests bestehen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "SIM-PIXI-WEBGL2-084"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0095",
+      "title": "contextlost pausiert die Simulation sofort; contextrestored lädt Atlanten und Renderstate neu aus autoritativem Snapshot, ohne Kampfneustart und ohne Zufallsänderung.",
+      "statement": "contextlost pausiert die Simulation sofort; contextrestored lädt Atlanten und Renderstate neu aus autoritativem Snapshot, ohne Kampfneustart und ohne Zufallsänderung.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 84,
+        "section": null,
+        "locator": "block:2201",
+        "quoteHash": "sha256:6d81e2e298f55efe52fc3c8e59244c4a7eda3946dc920541f847944d2c0530e8",
+        "originalExcerpt": "contextlost pausiert Simulation sofort. contextrestored lädt Atlanten/Renderstate neu aus autoritativem Snapshot; kein Kampfneustart und keine Zufallsänderung."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "SIM-CONTEXT-LOST-084"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0096",
+      "title": "Keine Entity besitzt LP <0 oder >maxLP, negative Schilde, ungültige Bahn oder Position, doppelte Entity-ID oder widersprüchlichen Alive/Removed-Status.",
+      "statement": "Keine Entity besitzt LP <0 oder >maxLP, negative Schilde, ungültige Bahn oder Position, doppelte Entity-ID oder widersprüchlichen Alive/Removed-Status.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 85,
+        "section": null,
+        "locator": "block:2219",
+        "quoteHash": "sha256:4a24ded24ddb135012c45fa7249f1a29c7115a733202ae4501f1f60e50ae15b1",
+        "originalExcerpt": "85.2 Pflichtinvarianten der Simulation"
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "property",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "SIM-INV-ENTITY-085"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0097",
+      "title": "Keine Seite überschreitet sieben reguläre Einheiten oder sechs zählende Beschwörungen; kein Spielerbuild überschreitet drei Helden oder drei gleiche Truppen.",
+      "statement": "Keine Seite überschreitet sieben reguläre Einheiten oder sechs zählende Beschwörungen; kein Spielerbuild überschreitet drei Helden oder drei gleiche Truppen.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 85,
+        "section": null,
+        "locator": "block:2220",
+        "quoteHash": "sha256:b3a436e5e635dd358e0c0e415cbae3ae449537eb7eaa0025197ad3cf735af8e9",
+        "originalExcerpt": "Keine Entity besitzt LP <0 oder >maxLP, negative Schilde, ungültige Bahn/Position, doppelte Entity-ID oder widersprüchlichen Alive/Removed-Status."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "property",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "SIM-INV-CAPS-085"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "regularUnitsPerSide",
+          "value": 7
+        },
+        {
+          "kind": "max",
+          "name": "summonsPerSide",
+          "value": 6
+        },
+        {
+          "kind": "max",
+          "name": "heroesPerBuild",
+          "value": 3
+        },
+        {
+          "kind": "max",
+          "name": "sameTroopPerBuild",
+          "value": 3
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0098",
+      "title": "Gleicher Seed, Content, Simulationversion, Entscheidungen und Startsnapshot erzeugen bit-identische Endhashes in Node, Chromium, Android WebView und iOS WKWebView.",
+      "statement": "Gleicher Seed, Content, Simulationversion, Entscheidungen und Startsnapshot erzeugen bit-identische Endhashes in Node, Chromium, Android WebView und iOS WKWebView.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 85,
+        "section": null,
+        "locator": "block:2221",
+        "quoteHash": "sha256:687ba7188b4750920c70be1f09d70c5b7df5a10fd1d4bf4e8fa321d9ec6f570f",
+        "originalExcerpt": "Keine Seite überschreitet sieben reguläre Einheiten oder sechs zählende Beschwörungen; kein Spielerbuild überschreitet drei Helden/drei gleiche Truppen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "property",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "SIM-INV-DETERMINISM-085"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0099",
+      "title": "Kampfgeschwindigkeit, Render-FPS, Pause/Resume und Quality verändern niemals das Ergebnis oder den RNG-Verbrauch.",
+      "statement": "Kampfgeschwindigkeit, Render-FPS, Pause/Resume und Quality verändern niemals das Ergebnis oder den RNG-Verbrauch.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 85,
+        "section": null,
+        "locator": "block:2222",
+        "quoteHash": "sha256:2d32ef977483c38f6d945bfaeb3199e4f690a4f92f011fec9395b234ceaef1d3",
+        "originalExcerpt": "Gleicher Seed, Content, Simulationversion, Entscheidungen und Startsnapshot erzeugen bit-identische Endhashes in Node, Chromium, Android WebView und iOS WKWebView."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "property",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "SIM-INV-NO-RNG-COUPLING-085"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0100",
+      "title": "Jeder Kampf endet spätestens am hardBattleLimit oder einer ausdrücklich kürzeren Missionsgrenze; es gibt keinen Deadlock.",
+      "statement": "Jeder Kampf endet spätestens am hardBattleLimit oder einer ausdrücklich kürzeren Missionsgrenze; es gibt keinen Deadlock.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 85,
+        "section": null,
+        "locator": "block:2223",
+        "quoteHash": "sha256:17551bae96fcd06a31a52095c1f7738629d077682c170fd4223cf7550f47288d",
+        "originalExcerpt": "Kampfgeschwindigkeit, Render-FPS, Pause/Resume und Quality verändern niemals Ergebnis oder RNGverbrauch."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "property",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "SIM-INV-NO-DEADLOCK-085"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0101",
+      "title": "Jede Rewardtransaktion ist idempotent; doppelte UI- oder Lifecycleevents erzeugen keinen Doppelgewinn oder Doppelkauf.",
+      "statement": "Jede Rewardtransaktion ist idempotent; doppelte UI- oder Lifecycleevents erzeugen keinen Doppelgewinn oder Doppelkauf.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 85,
+        "section": null,
+        "locator": "block:2224",
+        "quoteHash": "sha256:301eb73d6416b0a308297fab2c018d9c6d3890dbfc266441a893eb2f31cbf2a1",
+        "originalExcerpt": "Jeder Kampf endet spätestens am hardBattleLimit oder einer ausdrücklich kürzeren Missionsgrenze; kein Deadlock."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "property",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "SIM-INV-IDEMPOTENT-REWARD-085"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0102",
+      "title": "Simulations-Tick sammelt Eingaben und geplante Ereignisse zuerst und verändert den Zustand noch nicht.",
+      "statement": "Ein Simulations-Tick sammelt zunächst Eingaben und bereits geplante Ereignisse, verändert aber noch keinen Zustand.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1550",
+        "quoteHash": "sha256:f76663a7bfcbd290ae054383d4812dfe07ae9f7444fc9151184ed9a74abfac18",
+        "originalExcerpt": "Ein Simulations-Tick sammelt zunächst Eingaben und bereits geplante Ereignisse, verändert aber noch keinen Zustand."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-TICK-PHASE-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0103",
+      "title": "Zuerst werden Kampfende- und Phasenübergangsbedingungen geprüft; Bossphasenwechsel sperrt Schaden über Phasengrenze nur bei ausdrücklicher Übergangssperre.",
+      "statement": "Zuerst werden Kampfende- und Phasenübergangsbedingungen geprüft. Ein Bossphasenwechsel verhindert Schaden über die Phasengrenze nur, wenn die Bossdefinition ausdrücklich eine Übergangssperre besitzt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1551",
+        "quoteHash": "sha256:3badc6a2fce0837e620c4f31d4453813b24752923cbc5825e7eacba20afff778",
+        "originalExcerpt": "Zuerst werden Kampfende- und Phasenübergangsbedingungen geprüft. Ein Bossphasenwechsel verhindert Schaden über die Phasengrenze nur, wenn die Bossdefinition ausdrücklich eine Übergangssperre besitzt."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-PHASE-PRIO-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0104",
+      "title": "Nach Phasenprüfung werden Wiederbelebungen, Todesverhinderungen und Schild-vor-LP-Regeln aufgelöst.",
+      "statement": "Danach werden Wiederbelebungen, Todesverhinderungen und Schild-vor-LP-Regeln aufgelöst.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1552",
+        "quoteHash": "sha256:5e960f9f9e79e4a4f016d79426dd5a13b429e937bacf9d1a2285f1b459290924",
+        "originalExcerpt": "Danach werden Wiederbelebungen, Todesverhinderungen und Schild-vor-LP-Regeln aufgelöst."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-REVIVE-PRIO-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0105",
+      "title": "Schaden, Heilung, Kontrolle, Bewegung und Beschwörungen werden in der Ereignispriorität ausgeführt.",
+      "statement": "Danach werden Schaden, Heilung, Kontrolle, Bewegung und Beschwörungen in der Ereignispriorität ausgeführt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1553",
+        "quoteHash": "sha256:d391fbcc6aaca2c3f32149c5787baff36dbb476b8f074b38a02f384b02d7dfba",
+        "originalExcerpt": "Danach werden Schaden, Heilung, Kontrolle, Bewegung und Beschwörungen in der Ereignispriorität ausgeführt."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-EVENT-PRIO-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0106",
+      "title": "Gleichrangige Ereignisse werden nach scheduledTick, priority, sourceEntityId, abilityId, eventSequence sortiert; Entity-IDs sind stabil, Array-/Renderreihenfolge ist niemals Tie-Break.",
+      "statement": "Gleichrangige Ereignisse werden nach scheduledTick, priority, sourceEntityId, abilityId und eventSequence sortiert. Entity-IDs sind stabil; Array- oder Renderreihenfolge ist niemals ein Tie-Break.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1554",
+        "quoteHash": "sha256:b112d9af3e29204d7a745ddb0eb6b4e1094d3f607a15f1a747d36e784592409a",
+        "originalExcerpt": "Gleichrangige Ereignisse werden nach scheduledTick, priority, sourceEntityId, abilityId und eventSequence sortiert. Entity-IDs sind stabil; Array- oder Renderreihenfolge ist niemals ein Tie-Break."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-TIEBREAK-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0107",
+      "title": "Erreicht eine Seite im selben Tick den Zustand ohne reguläre kampffähige Einheit, gilt Boss-/Missionssonderregel, sonst Doppelniederlage; Doppelniederlage zählt als Niederlage des Spielers ohne Siegloot.",
+      "statement": "Erreicht eine Seite im selben Tick den Zustand ohne reguläre kampffähige Einheit, gilt: Boss-/Missionssonderregel, sonst Doppelniederlage. Eine Doppelniederlage zählt als Niederlage des Spielers und erzeugt keinen Siegloot.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1555",
+        "quoteHash": "sha256:58aa3265c8395f4f9bdc177c5fcdae39fba6c4dadc327d610de4d813daaf6065",
+        "originalExcerpt": "Erreicht eine Seite im selben Tick den Zustand ohne reguläre kampffähige Einheit, gilt: Boss-/Missionssonderregel, sonst Doppelniederlage. Eine Doppelniederlage zählt als Niederlage des Spielers und erzeugt keinen Siegloot."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-DOUBLE-DEFEAT-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0108",
+      "title": "Jede Seite besitzt exakt sechs aktive Beschwörungs-Slots.",
+      "statement": "Jede Seite besitzt exakt sechs aktive Beschwörungs-Slots.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1557",
+        "quoteHash": "sha256:278510bcdc5e64291b8af485a00335b6b7bb71c3973d5bd5e6e96f477b225d45",
+        "originalExcerpt": "Jede Seite besitzt exakt sechs aktive Beschwörungs-Slots."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-SUMMON-SLOTS-048"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "summonSlotsPerSide",
+          "value": 6
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0109",
+      "title": "Mehrfacheinheiten-Fähigkeiten belegen freie Slots in Spawn-Reihenfolge; nicht erzeugte Einheiten verursachen weder Explosion noch OnSpawn-Effekt.",
+      "statement": "Kann eine Fähigkeit mehrere Einheiten erzeugen, werden freie Slots in der definierten Spawn-Reihenfolge belegt. Nicht erzeugte Einheiten verursachen weder Explosion noch OnSpawn-Effekt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1558",
+        "quoteHash": "sha256:1792111d3e474f30aadf86e18297a8eb2df4515bbb8245f893674ec99007b0f0",
+        "originalExcerpt": "Kann eine Fähigkeit mehrere Einheiten erzeugen, werden freie Slots in der definierten Spawn-Reihenfolge belegt. Nicht erzeugte Einheiten verursachen weder Explosion noch OnSpawn-Effekt."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-SUMMON-ORDER-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0110",
+      "title": "Ersatz ist nur mit replacementPolicy=replace_lower_priority erlaubt; ersetzt wird die eigene aktive Beschwörung mit niedrigstem replacementPriority, Gleichstand: kürzeste Restlebenszeit, dann älteste Spawn-Sequenz.",
+      "statement": "Ersatz ist nur erlaubt, wenn die Fähigkeit replacementPolicy=replace_lower_priority besitzt. Ersetzt wird die eigene aktive Beschwörung mit niedrigstem replacementPriority; Gleichstand: kürzeste Restlebenszeit, dann älteste Spawn-Sequenz.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1559",
+        "quoteHash": "sha256:ec5c31079963743116d3a060f65ba13e116e76186aac7735c4b82e4b02ee97a0",
+        "originalExcerpt": "Ersatz ist nur erlaubt, wenn die Fähigkeit replacementPolicy=replace_lower_priority besitzt. Ersetzt wird die eigene aktive Beschwörung mit niedrigstem replacementPriority; Gleichstand: kürzeste Restlebenszeit, dann älteste Spawn-Sequenz."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-SUMMON-REPLACE-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0111",
+      "title": "Ersetzte Wesen erhalten expirationReason=replaced und lösen keine defeated-only Effekte aus; explizit auf expiration reagierende Effekte dürfen auslösen.",
+      "statement": "Ein ersetztes Wesen erhält expirationReason=replaced und löst keine Effekte aus, die nur bei defeated gelten. Ausdrücklich auf expiration reagierende Effekte dürfen auslösen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1560",
+        "quoteHash": "sha256:9bdb3c4f4924165640437cdaf7d34a17c250035e23876496a8c0724b585596a8",
+        "originalExcerpt": "Ein ersetztes Wesen erhält expirationReason=replaced und löst keine Effekte aus, die nur bei defeated gelten. Ausdrücklich auf expiration reagierende Effekte dürfen auslösen."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-EXP-REASON-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0112",
+      "title": "Beschwörungen können Gegner besiegen, aber Kampf endet sofort wenn ihre Seite keine reguläre Einheit mehr besitzt; nach Kampfende werden keine nachlaufenden Geschosse gewertet.",
+      "statement": "Beschwörungen können einen Gegner besiegen, aber der Kampf endet sofort, wenn ihre Seite keine reguläre Einheit mehr besitzt; nach Kampfende werden keine nachlaufenden Geschosse gewertet.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1561",
+        "quoteHash": "sha256:28f4fe9ed18e772d0572df70bac26dcf99341dd08a460fd0a9c40028af7859ee",
+        "originalExcerpt": "Beschwörungen können einen Gegner besiegen, aber der Kampf endet sofort, wenn ihre Seite keine reguläre Einheit mehr besitzt; nach Kampfende werden keine nachlaufenden Geschosse gewertet."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-SUMMON-END-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0113",
+      "title": "Betäubung, Stille, Rückstoß und erzwungener Bahnwechsel sind harte Kontrolle; Verlangsamung, Schwächung, Markierung, Brennen und Gift sind weiche Effekte.",
+      "statement": "Betäubung, Stille, Rückstoß und erzwungener Bahnwechsel sind harte Kontrolle. Verlangsamung, Schwächung, Markierung, Brennen und Gift sind weiche Effekte.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1563",
+        "quoteHash": "sha256:b0aa29a90b58f899d7de1eb9060dac6c098cfd3831c692474c26824e5a35e82f",
+        "originalExcerpt": "Betäubung, Stille, Rückstoß und erzwungener Bahnwechsel sind harte Kontrolle. Verlangsamung, Schwächung, Markierung, Brennen und Gift sind weiche Effekte."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-CONTROL-CLASS-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0114",
+      "title": "Kontrollresistenz reduziert nur Dauer, nie die sichtbare Auslösung; auf <=0,15 s reduzierte harte Kontrolle wird als 0,15-s-Unterbrechungsimpuls dargestellt.",
+      "statement": "Kontrollresistenz reduziert nur Dauer, nie die sichtbare Auslösung. Eine auf 0,15 s oder weniger reduzierte harte Kontrolle wird als 0,15-s-Unterbrechungsimpuls dargestellt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1564",
+        "quoteHash": "sha256:bb4548c23db5cdfb110cb87a829d6a6d1176360a5aa29cdb9bf400c4868230f2",
+        "originalExcerpt": "Kontrollresistenz reduziert nur Dauer, nie die sichtbare Auslösung. Eine auf 0,15 s oder weniger reduzierte harte Kontrolle wird als 0,15-s-Unterbrechungsimpuls dargestellt."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-RESIST-INTERRUPT-048"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "hardControlReducedToSeconds",
+          "value": 0.15,
+          "unit": "s"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0115",
+      "title": "Phasenübergänge reinigen harte Kontrolle, unterbrechen gegnerische Projektile jedoch nicht; bereits abgeschossene Geschosse dürfen treffen sofern die Phase nicht ausdrücklich unverwundbar ist.",
+      "statement": "Phasenübergänge reinigen harte Kontrolle, unterbrechen gegnerische Projektile jedoch nicht. Bereits abgeschossene Geschosse dürfen treffen, sofern die Phase nicht ausdrücklich unverwundbar ist.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1565",
+        "quoteHash": "sha256:6e58f18fe039a9b3cca7d2ede3b84574cd9c795088655b74be663fc08520c3a9",
+        "originalExcerpt": "Phasenübergänge reinigen harte Kontrolle, unterbrechen gegnerische Projektile jedoch nicht. Bereits abgeschossene Geschosse dürfen treffen, sofern die Phase nicht ausdrücklich unverwundbar ist."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-PHASE-PROJECTILE-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0116",
+      "title": "Bosse können nicht von normalen Effekten die Bahn wechseln; Rückstoß wird in 0,25 s Unterbrechung umgewandelt, sofern keine Bossfähigkeit uninterruptible markiert ist.",
+      "statement": "Bosse können nicht von normalen Effekten die Bahn wechseln. Rückstoß wird in 0,25 s Unterbrechung umgewandelt, sofern keine Bossfähigkeit gerade als uninterruptible markiert ist.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1566",
+        "quoteHash": "sha256:512abd57de1a7cb1a4b90831d52a4f6b2827eba1c6d91715dccf8544bb452887",
+        "originalExcerpt": "Bosse können nicht von normalen Effekten die Bahn wechseln. Rückstoß wird in 0,25 s Unterbrechung umgewandelt, sofern keine Bossfähigkeit gerade als uninterruptible markiert ist."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-BOSS-KNOCKBACK-048"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "knockbackInterruptSeconds",
+          "value": 0.25,
+          "unit": "s"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0117",
+      "title": "Mehrere Reinigungen im selben Tick entfernen einen Effekt nur einmal; die Quelle der zuerst sortierten Reinigung erhält die Statistikgutschrift.",
+      "statement": "Mehrere Reinigungen im selben Tick entfernen einen Effekt nur einmal. Die Quelle der zuerst sortierten Reinigung erhält die Statistikgutschrift.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1567",
+        "quoteHash": "sha256:ae44a508f7688364ee1b13ce1c3c1a5ac18e74842d97e0b853c2569a95360d16",
+        "originalExcerpt": "Mehrere Reinigungen im selben Tick entfernen einen Effekt nur einmal. Die Quelle der zuerst sortierten Reinigung erhält die Statistikgutschrift."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-CLEANSE-ONCE-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0118",
+      "title": "game/sim darf nur Standard-TypeScript und gemeinsame reine Typen importieren; kein Zugriff auf window, Date.now, Math.random, DOM, React, Pixi oder Capacitor.",
+      "statement": "game/sim darf nur Standard-TypeScript und gemeinsame reine Typen importieren. Kein Zugriff auf window, Date.now, Math.random, DOM, React, Pixi oder Capacitor.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 50,
+        "section": null,
+        "locator": "block:1608",
+        "quoteHash": "sha256:ae1912163e7db3b756bee033ef6bfc393ab978908446fb15c1a37b112cb57c4a",
+        "originalExcerpt": "game/sim darf nur Standard-TypeScript und gemeinsame reine Typen importieren. Kein Zugriff auf window, Date.now, Math.random, DOM, React, Pixi oder Capacitor."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "ST-SIM-IMPORTS-050"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0119",
+      "title": "game/render liest Simulationssnapshots und Events, schreibt aber niemals Simulationszustand; Animation-Callbacks dürfen keine Treffer auslösen.",
+      "statement": "game/render liest Simulationssnapshots und Events, schreibt aber niemals Simulationszustand. Animation callbacks dürfen keine Treffer auslösen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 50,
+        "section": null,
+        "locator": "block:1609",
+        "quoteHash": "sha256:247dd5da7c9757d95b0f03257e53f7b90c3924e1e4d9c0624c41d323cd6212a8",
+        "originalExcerpt": "game/render liest Simulationssnapshots und Events, schreibt aber niemals Simulationszustand. Animation callbacks dürfen keine Treffer auslösen."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "ST-RENDER-READONLY-050"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0120",
+      "title": "PRNG ist xoshiro128** mit vier unsigned 32-bit Zustandswerten; Seeding erfolgt über SplitMix32 aus einem 128-bit Run-Seed, gespeichert als vier Hex-UInt32.",
+      "statement": "PRNG ist xoshiro128** mit vier unsigned 32-bit Zustandswerten. Seeding erfolgt über SplitMix32 aus einem 128-bit Run-Seed, der als vier Hex-UInt32 gespeichert wird.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 51,
+        "section": null,
+        "locator": "block:1630",
+        "quoteHash": "sha256:b998b82d4fc61e07133b71088a6c44cdeb2c2910a138d137f66b773e3d6d3b81",
+        "originalExcerpt": "PRNG ist xoshiro128** mit vier unsigned 32-bit Zustandswerten. Seeding erfolgt über SplitMix32 aus einem 128-bit Run-Seed, der als vier Hex-UInt32 gespeichert wird."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-PRNG-ALGO-051"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0121",
+      "title": "PRNG-Streams: map, encounter, rewards, eventChoices, combatCosmetic; combatCosmetic darf keinen Gameplayzustand beeinflussen.",
+      "statement": "Getrennte Streams: map, encounter, rewards, eventChoices, combatCosmetic. Der combatCosmetic-Stream darf keinen Gameplayzustand beeinflussen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 51,
+        "section": null,
+        "locator": "block:1631",
+        "quoteHash": "sha256:7ea833b2f24ad68cb9201227852b2ca67da7f1fe82c6ec12fdce046adbd51aac",
+        "originalExcerpt": "Getrennte Streams: map, encounter, rewards, eventChoices, combatCosmetic. Der combatCosmetic-Stream darf keinen Gameplayzustand beeinflussen."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-PRNG-STREAMS-051"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0122",
+      "title": "Jeder deterministische Rollslot besitzt einen stabilen String-Key; neue Rolls nicht zwischen bestehende einfügen; neuer Slot oder simulationVersion-Erhöhung.",
+      "statement": "Jeder deterministische Rollslot besitzt einen stabilen String-Key. Neue Rolls dürfen nicht zwischen bestehende Rolls eingefügt werden; sie erhalten einen neuen Slot oder erhöhen simulationVersion.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 51,
+        "section": null,
+        "locator": "block:1632",
+        "quoteHash": "sha256:572e780eac8b2c271f17464d017abaea1ca9dcac10cdd5f27bb11bef7c535efb",
+        "originalExcerpt": "Jeder deterministische Rollslot besitzt einen stabilen String-Key. Neue Rolls dürfen nicht zwischen bestehende Rolls eingefügt werden; sie erhalten einen neuen Slot oder erhöhen simulationVersion."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-ROLL-STABLE-051"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0123",
+      "title": "Math.random ist im gesamten Quelltext per ESLint verboten; UI-Konfetti darf Cosmetic-Stream oder crypto.getRandomValues nutzen, aber nie Replaydaten verändern.",
+      "statement": "Math.random ist im gesamten Quelltext per ESLint verboten. UI-Konfetti darf den Cosmetic-Stream oder crypto.getRandomValues nutzen, aber nie Replaydaten verändern.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 51,
+        "section": null,
+        "locator": "block:1633",
+        "quoteHash": "sha256:6637a778976c27d114da03a876c08d3f3f7fd54288449e273579b2997c92af40",
+        "originalExcerpt": "Math.random ist im gesamten Quelltext per ESLint verboten. UI-Konfetti darf den Cosmetic-Stream oder crypto.getRandomValues nutzen, aber nie Replaydaten verändern."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "ST-NO-MATH-RANDOM-051"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0124",
+      "title": "Replaydatei speichert Seed, contentVersion, simulationVersion, Startsnapshot und Spielerentscheidungen; daraus muss das Ergebnis bit-identisch rekonstruierbar sein.",
+      "statement": "Replaydatei speichert Seed, contentVersion, simulationVersion, Startsnapshot und Spielerentscheidungen. Aus ihr muss das Ergebnis bit-identisch rekonstruierbar sein.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 51,
+        "section": null,
+        "locator": "block:1634",
+        "quoteHash": "sha256:7535efdff64d578bb5f1787956772d79874128e24441b9a067fd8c0bf9e13145",
+        "originalExcerpt": "Replaydatei speichert Seed, contentVersion, simulationVersion, Startsnapshot und Spielerentscheidungen. Aus ihr muss das Ergebnis bit-identisch rekonstruierbar sein."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-REPLAY-BIT-IDENT-051"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0125",
+      "title": "INTRO besitzt keine autoritativen Angriffe; Startpassiven werden am ersten ACTIVE-Tick in stabiler Priorität committed.",
+      "statement": "INTRO besitzt keine autoritativen Angriffe. Startpassiven werden am ersten ACTIVE-Tick in stabiler Priorität committed.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 51,
+        "section": null,
+        "locator": "block:1638",
+        "quoteHash": "sha256:efd363ba72accf61cff7c2fb808dd9ac04708bb5f6af816bb25156d8378e9f7c",
+        "originalExcerpt": "INTRO besitzt keine autoritativen Angriffe. Startpassiven werden am ersten ACTIVE-Tick in stabiler Priorität committed."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-INTRO-NO-ATTACK-051"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0126",
+      "title": "PHASE_TRANSITION pausiert Bossaktionen und Fähigkeitladung nur wenn Phase es definiert; globale Standarddauer beträgt 45 Ticks.",
+      "statement": "PHASE_TRANSITION pausiert Bossaktionen und Fähigkeitladung nur, wenn die Phase es definiert; die globale Standarddauer beträgt 45 Ticks.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 51,
+        "section": null,
+        "locator": "block:1639",
+        "quoteHash": "sha256:c4098e177376725fdc544e2940d3496688da07116caa1c1b30f96ccd2c456f79",
+        "originalExcerpt": "PHASE_TRANSITION pausiert Bossaktionen und Fähigkeitladung nur, wenn die Phase es definiert; die globale Standarddauer beträgt 45 Ticks."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-PHASE-DURATION-051"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "defaultPhaseTransitionTicks",
+          "value": 45
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0127",
+      "title": "RESOLVING_END dauert autoritativ höchstens 3 Ticks und verarbeitet bereits committed Wiederbelebung/Todesverhinderung; kosmetische Outrozeit liegt außerhalb der Simulation.",
+      "statement": "RESOLVING_END dauert autoritativ höchstens 3 Ticks und verarbeitet bereits committed Wiederbelebung/Todesverhinderung. Kosmetische Outrozeit liegt außerhalb der Simulation.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 51,
+        "section": null,
+        "locator": "block:1640",
+        "quoteHash": "sha256:184518e5409742758dabbf7e61cfcdec6e38efd2a50c55be2c9dafbe6bd8ca75",
+        "originalExcerpt": "RESOLVING_END dauert autoritativ höchstens 3 Ticks und verarbeitet bereits committed Wiederbelebung/Todesverhinderung. Kosmetische Outrozeit liegt außerhalb der Simulation."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-RESOLVING-END-051"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "resolvingEndTicks",
+          "value": 3
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0128",
+      "title": "Kampf erhält hartes Simulationslimit von 5400 Ticks = 180 Sekunden; danach greift die in V3 definierte Riftkollapswertung; kein unendlicher Kampf.",
+      "statement": "Ein Kampf erhält ein hartes Simulationslimit von 5400 Ticks = 180 Sekunden. Danach greift die in V3 definierte Riftkollapswertung; kein unendlicher Kampf.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 51,
+        "section": null,
+        "locator": "block:1641",
+        "quoteHash": "sha256:b0dfb5e06cc6844105a3315d75b3ec6b7416cf8ee4210f12e52324a268a9876f",
+        "originalExcerpt": "Ein Kampf erhält ein hartes Simulationslimit von 5400 Ticks = 180 Sekunden. Danach greift die in V3 definierte Riftkollapswertung; kein unendlicher Kampf."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-BATTLE-TICK-LIMIT-051"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "battleTickLimit",
+          "value": 5400,
+          "unit": "ticks"
+        },
+        {
+          "kind": "exact",
+          "name": "battleTimeLimit",
+          "value": 180,
+          "unit": "s"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0129",
+      "title": "Jedes Event enthält tick, sequence, type, sourceId, targetIds, ability/effect ID, integer payload und localization-safe logTags.",
+      "statement": "Jedes Event enthält tick, sequence, type, sourceId, targetIds, ability/effect ID, integer payload und localization-safe logTags.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 51,
+        "section": null,
+        "locator": "block:1643",
+        "quoteHash": "sha256:161d00f86f29b6d9182dd0373108d3fee25a9f42ea39d5dd7c67ff1a47f19f6b",
+        "originalExcerpt": "Jedes Event enthält tick, sequence, type, sourceId, targetIds, ability/effect ID, integer payload und localization-safe logTags."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-EVENT-SCHEMA-051"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0130",
+      "title": "Ergebnisbildschirm liest ausschließlich aggregierte Events und schätzt keine Werte aus Renderanimationen.",
+      "statement": "Der Ergebnisbildschirm liest ausschließlich aggregierte Events. Er schätzt keine Werte aus Renderanimationen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 51,
+        "section": null,
+        "locator": "block:1644",
+        "quoteHash": "sha256:64ab8749ff2ee59ae28778188c8faf9ed47de0d8b32332032ef740a5f49a9534",
+        "originalExcerpt": "Der Ergebnisbildschirm liest ausschließlich aggregierte Events. Er schätzt keine Werte aus Renderanimationen."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "ST-RESULT-AGG-051"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0131",
+      "title": "Keine Begegnung wird nur durch massive LP-Skalierung schwierig; es ist mindestens eine Formations- oder Mechanikänderung erforderlich.",
+      "statement": "Keine Begegnung wird nur durch massive LP-Skalierung schwierig; mindestens eine Formations- oder Mechanikänderung.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 43,
+        "section": null,
+        "locator": "block:1468",
+        "quoteHash": "sha256:f60cbc045580c2706ed51798c6422e32e75ceb9a68da97bb2a88ee201d020551",
+        "originalExcerpt": "Keine Begegnung wird nur durch massive LP-Skalierung schwierig; mindestens eine Formations-/Mechanikänderung."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "GR-NO-LP-ONLY-043"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0132",
+      "title": "Keine Fähigkeit darf eine versteckte Trefferchance oder zufällige kritische Treffer erhalten, um Zielwerte zu erreichen.",
+      "statement": "Keine Fähigkeit erhält versteckte Trefferchance oder zufällige kritische Treffer, um Zielwerte zu erreichen.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 43,
+        "section": null,
+        "locator": "block:1469",
+        "quoteHash": "sha256:21777cbde411feb9572aa61e877ddcc9cc2143b41e4b719cfced32a7fddfb86a",
+        "originalExcerpt": "Keine Fähigkeit erhält versteckte Trefferchance oder zufällige kritische Treffer, um Zielwerte zu erreichen."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "GR-NO-HIDDEN-RNG-043"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0133",
+      "title": "Kein Boss wird gegen Kontrolle vollständig immun ohne sichtbares reduziertes Feedback.",
+      "statement": "Kein Boss wird gegen Kontrolle vollständig immun ohne sichtbares reduziertes Feedback.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 43,
+        "section": null,
+        "locator": "block:1470",
+        "quoteHash": "sha256:b180c80d1b21d6c9ca69e89a95aa0f78103b90099fb7f168f64e7cd3bcb0fd8e",
+        "originalExcerpt": "Kein Boss wird gegen Kontrolle vollständig immun ohne sichtbares reduziertes Feedback."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-BOSS-CONTROL-FEEDBACK-043"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0134",
+      "title": "Keine einzelne Synergie oder Heldengruppe darf alle vier Hauptbosse ohne Anpassung deutlich dominieren.",
+      "statement": "Keine einzelne Synergie oder Heldengruppe darf alle vier Hauptbosse ohne Anpassung deutlich dominieren.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 43,
+        "section": null,
+        "locator": "block:1471",
+        "quoteHash": "sha256:fd54a3cbd01db93a92b623364b9d3d9cec459103c3c94b9431b939f8a9c20d72",
+        "originalExcerpt": "Keine einzelne Synergie oder Heldengruppe darf alle vier Hauptbosse ohne Anpassung deutlich dominieren."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "GR-NO-DOMINANT-043"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0135",
+      "title": "Vor Vollproduktion muss ein vertikaler Prototyp beweisen, dass der beobachtete Kampf als Kernfantasie funktioniert, und nutzt die spätere Simulationslogik und Datenstruktur.",
+      "statement": "Vor Vollproduktion muss ein vertikaler Prototyp beweisen, dass der beobachtete Kampf als Kernfantasie funktioniert. Er verwendet die spätere Simulationslogik und Datenstruktur.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 44,
+        "section": null,
+        "locator": "block:1481",
+        "quoteHash": "sha256:09ea30b55fc142571e4e4e2e803592a0c8f65b52d1e3590c3a6b9c007485256b",
+        "originalExcerpt": "Vor Vollproduktion muss ein vertikaler Prototyp beweisen, dass der beobachtete Kampf als Kernfantasie funktioniert. Er ist kein Wegwerf-Mockup, sondern verwendet die spätere Simulationslogik und Datenstruktur."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "REV-VERTICAL-PROTOTYPE-044"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0136",
+      "title": "Zielwechsel werden überwiegend als nachvollziehbar bewertet; es treten keine wiederkehrenden sichtbaren KI-Aussetzer auf.",
+      "statement": "Zielwechsel werden überwiegend als nachvollziehbar bewertet; keine wiederkehrenden sichtbaren KI-Aussetzer.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 44,
+        "section": null,
+        "locator": "block:1485",
+        "quoteHash": "sha256:bcea378efb4e4669d0f09b215b366508631ea178755798ae7f084249cbd913f8",
+        "originalExcerpt": "Zielwechsel werden überwiegend als nachvollziehbar bewertet; keine wiederkehrenden sichtbaren KI-Aussetzer."
+      },
+      "ownerPhases": [
+        "PHASE-19"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-19",
+          "testIds": [
+            "FQA-TARGETING-044"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0137",
+      "title": "Keine nicht deterministische Abweichung bei identischem Seed und Snapshot.",
+      "statement": "Keine nicht deterministische Abweichung bei identischem Seed und Snapshot.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1500",
+        "quoteHash": "sha256:7e3e418f59982c6eb3c0521909c61393ffece9fa41bcb71d4434f5dae6dfd727",
+        "originalExcerpt": "Keine nicht deterministische Abweichung bei identischem Seed und Snapshot."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "GR-DETERMINISM-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0138",
+      "title": "Keine Endlosschleife durch Heilung, Wiederbelebung, Beschwörung oder unzugängliche Position.",
+      "statement": "Keine Endlosschleife durch Heilung, Wiederbelebung, Beschwörung oder unzugängliche Position.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1501",
+        "quoteHash": "sha256:1bbe6ecaffefe67974a53ecbb350868920972431a06e04fb09d40444b5a0ec82",
+        "originalExcerpt": "Keine Endlosschleife durch Heilung, Wiederbelebung, Beschwörung oder unzugängliche Position."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-NO-INFINITE-LOOP-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SIM-0139",
+      "title": "Keine Einheit oder Fähigkeit kann globale Gruppen- oder Beschwörungsgrenzen umgehen.",
+      "statement": "Keine Einheit oder Fähigkeit kann globale Gruppen- oder Beschwörungsgrenzen umgehen.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1502",
+        "quoteHash": "sha256:4c14453233fada4285af9bceb519fac4b394f29ab87aaf8a934f12db603ec583",
+        "originalExcerpt": "Keine Einheit oder Fähigkeit kann globale Gruppen-/Beschwörungsgrenzen umgehen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-NO-LIMIT-BYPASS-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ]
 }

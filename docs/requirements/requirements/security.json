@@ -1,5 +1,760 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": "1.0",
   "category": "Security",
-  "requirements": []
+  "requirements": [
+    {
+      "id": "REQ-SECURITY-0001",
+      "title": "Keine Datenerhebung",
+      "statement": "Die Release-App sammelt, überträgt oder teilt keine Nutzer-, Geräte-, Werbe-, Standort-, Nutzungs- oder Diagnosedaten; es existiert kein Backend.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1800",
+        "quoteHash": "sha256:8d2b0a7052a726d55e2d9e22b8d1279458a0d17d5f65ef20380616eaf31c52c9",
+        "originalExcerpt": "Die Release-App sammelt, überträgt oder teilt keine Nutzer-, Geräte-, Werbe-, Standort-, Nutzungs- oder Diagnosedaten. Es existiert kein Backend."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-SEC-PRIVACY-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0002",
+      "title": "Lokale Logs/Diagnose",
+      "statement": "Alle Statistiken, Replays und Logs bleiben lokal; Diagnoseexport erfolgt nur nach expliziter Nutzeraktion und zeigt vor dem Systemdialog den enthaltenen Umfang.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1801",
+        "quoteHash": "sha256:410790ce7c3f2cb0a07873015d30c471b72f7c59d56a74e6737a6c0182fb5f62",
+        "originalExcerpt": "Alle Statistiken, Replays und Logs bleiben lokal. Diagnoseexport erfolgt nur nach expliziter Nutzeraktion und zeigt vor dem Systemdialog den enthaltenen Umfang."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "UT-SEC-LOGS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0003",
+      "title": "Verbot Identifier",
+      "statement": "Es werden keine Advertising ID, IDFV, Android ID, Install Referrer, IP-Logging, Fingerprinting oder Geräteidentifier gelesen.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1802",
+        "quoteHash": "sha256:f45c0d9aac8f06d284e63123fd4aff787f0281248abdcda571dc054f3a4d7856",
+        "originalExcerpt": "Keine Advertising ID, IDFV, Android ID, Install Referrer, IP-Logging, Fingerprinting oder Geräteidentifier werden gelesen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-SEC-IDS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0004",
+      "title": "Datenschutzdeklaration konsistent",
+      "statement": "Datenschutzseite und Store-Deklarationen bilden „keine Datenerhebung/-weitergabe\" widerspruchsfrei ab; Drittbibliotheken werden vor Release auf Netzwerk- und Identifierzugriff geprüft.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1803",
+        "quoteHash": "sha256:eff9e04a0521dad2f66c4971085ecd81132a42d04d67ad74511f4095a0e45d9d",
+        "originalExcerpt": "Die Datenschutzseite und die Store-Deklarationen müssen „keine Datenerhebung/-weitergabe\" widerspruchsfrei abbilden. Drittbibliotheken werden vor Release auf Netzwerk- und Identifierzugriff geprüft."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-SEC-PRIVACYDECL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0005",
+      "title": "Produktions-CSP",
+      "statement": "Produktions-CSP: default-src self; img-src self data: blob:; media-src self blob:; font-src self; style-src self unsafe-inline; script-src self; connect-src none; object-src none; frame-src none; base-uri none; form-action none.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1806",
+        "quoteHash": "sha256:85b3ec0abe98599d64b38ff5b253d12307a854472dfb9e1c47c124fb90b65824",
+        "originalExcerpt": "default-src 'self'; img-src 'self' data: blob:; media-src 'self' blob:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-SEC-CSP-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0006",
+      "title": "connect-src none Pflicht",
+      "statement": "connect-src none ist im Produktionsbuild Pflicht; jeder unbeabsichtigte fetch/WebSocket/EventSource schlägt sichtbar im Test fehl.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1807",
+        "quoteHash": "sha256:442b7c20c038157020a6518ee479f030024c9817f773271b5bc19683b02b2b33",
+        "originalExcerpt": "connect-src none ist im Produktionsbuild Pflicht. Jeder unbeabsichtigte fetch/WebSocket/EventSource schlägt sichtbar im Test fehl."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-SEC-CONNECT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0007",
+      "title": "capacitor.config produktionsfest",
+      "statement": "capacitor.config enthält im Release keine server.url, cleartext, allowNavigation oder mixed content; WebView-Debugging ist deaktiviert.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1808",
+        "quoteHash": "sha256:4d19bf8b0509c73d6deebbba2280027fb8c1d3f760667d153a069cdd1d3eb79f",
+        "originalExcerpt": "capacitor.config enthält im Release keine server.url, cleartext, allowNavigation oder mixed content. WebView-Debugging ist deaktiviert."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-SEC-CAPCONFIG-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0008",
+      "title": "Verbot eval/Remote Script",
+      "statement": "Keine eval/new Function/dynamische Scriptinjektion; Sourcemaps werden intern archiviert, nicht öffentlich mitgeliefert.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1811",
+        "quoteHash": "sha256:1e97a6c30b3eb97a98510ffdb3942bf47a0f3237e6cd72cfdac510905e578426",
+        "originalExcerpt": "Keine eval/new Function/dynamische Scriptinjektion. Sourcemaps werden intern archiviert, nicht öffentlich mitgeliefert."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-SEC-EVAL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0009",
+      "title": "Dependency-Aufnahmeprüfung",
+      "statement": "Nur direkte Dependencies mit klarer Funktion; neue Dependency benötigt Lizenz-, Größe-, Netzwerk-, Permission- und Maintenance-Prüfung.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1813",
+        "quoteHash": "sha256:eadce53a83b0748ad290b6013cd65fbb4a0cae1791987edb9ffb20499c764840",
+        "originalExcerpt": "Nur direkte Dependencies mit klarer Funktion. Neue Dependency benötigt Lizenz-, Größe-, Netzwerk-, Permission- und Maintenance-Prüfung."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-SEC-DEPS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0010",
+      "title": "CI Dependency-Audit",
+      "statement": "CI führt pnpm audit oder gleichwertigen Advisory-Scan aus; kritische/hohe ausnutzbare Findings blockieren Release.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1814",
+        "quoteHash": "sha256:8a0397d24039b7743d227daa061b99ebf965c03e40cd2272fbc1e93c0c7e7652",
+        "originalExcerpt": "CI führt pnpm audit oder gleichwertigen Advisory-Scan aus. Kritische/hohe ausnutzbare Findings blockieren Release."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-SEC-AUDIT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0011",
+      "title": "Buildprovenienz archiviert",
+      "statement": "Alle Store-Artefakte werden aus clean checkout mit frozen lockfile gebaut; Buildprovenienz, Commit und Dependencyliste werden archiviert.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1815",
+        "quoteHash": "sha256:faa853a90956b2f087356299589d5e32dd6e923f56a7a95d4d0399a560d28407",
+        "originalExcerpt": "Alle Store-Artefakte werden aus clean checkout mit frozen lockfile gebaut. Buildprovenienz, Commit und Dependencyliste werden archiviert."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-SEC-PROVENANCE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0012",
+      "title": "iOS Privacy Manifest",
+      "statement": "PrivacyInfo.xcprivacy im App-Target und alle SDK-Manifeste werden geprüft; Approved Reasons werden dokumentiert.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:5daf5ea888892b270059595221d360b3a74ede3445045f0820e9897ac109c558",
+        "originalExcerpt": "Privacy Manifest | PrivacyInfo.xcprivacy im App-Target und alle SDK-Manifeste prüfen; Approved Reasons dokumentieren."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-IOS-PRIVACY-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0013",
+      "title": "iOS Network minimal",
+      "statement": "Keine ATS-Ausnahmen, keine Remote Endpoints, keine Tracking-Domains.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:f560d9bf7ea39d498302fef3f3d204720e644a8b12c79d79a7a64a2054836b2d",
+        "originalExcerpt": "Network | Keine ATS-Ausnahmen, keine Remote Endpoints, keine Tracking-Domains."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-IOS-NET-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0014",
+      "title": "Secrets ausschließlich im Secret Store",
+      "statement": "Keystore, Passwörter, App Store Connect Keys und Provisioning Profiles liegen ausschließlich im Secret Store oder in geschütztem lokalen Setup.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1889",
+        "quoteHash": "sha256:15585ecc9d80445482f3141e4bc6995e96755711bafbd5cc6ca882f29d326421",
+        "originalExcerpt": "Keystore, Passwörter, App Store Connect Keys und Provisioning Profiles liegen ausschließlich im Secret Store/geschützten lokalen Setup."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-SECRETS-LOC-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0015",
+      "title": "Debugsignatur nie im Release",
+      "statement": "Entwicklerdebugsignatur darf niemals einen Release-Track erreichen; CI prüft Zertifikat und Fingerabdruck.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1890",
+        "quoteHash": "sha256:53c199bf6ee83ba01c34363ca4d73e6f5d3422b673b1a70bee427eea8a14591f",
+        "originalExcerpt": "Entwicklerdebugsignatur darf niemals einen Release-Track erreichen. CI prüft Zertifikat/Fingerprint."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-SECRETS-DEBUGREL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0016",
+      "title": "Vollständige Offline-Funktion",
+      "statement": "Alle Inhalte sind offline; der Trafficmonitor zeigt während vollständigem Durchlauf keinen App-Netzwerkverkehr.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1904",
+        "quoteHash": "sha256:64604edd6e8d538399ffe5d273672ade41818188b8c686b85c88ba5c6f6c997a",
+        "originalExcerpt": "Alle Inhalte offline; Trafficmonitor zeigt während vollständigem Durchlauf keinen App-Netzwerkverkehr."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PREFLIGHT-OFFLINE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0017",
+      "title": "Privacy-Antworten konsistent",
+      "statement": "Privacy-/Data-Safety-/App-Privacy-Antworten stimmen mit Binary, Plugins und Permissions überein.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1907",
+        "quoteHash": "sha256:792dcb70a8365c892cf27620136c90a433ed5484c84633d18d9cf07855eae410",
+        "originalExcerpt": "Privacy-/Data-Safety-/App-Privacy-Antworten stimmen mit Binary, Plugins und Permissions überein."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PREFLIGHT-PRIVACY-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0018",
+      "title": "Keine Secrets in Production",
+      "statement": "In Production werden process.env/Import-Meta nur zur Buildzeit definiert; es existieren keine geheimen Clientwerte, unbekannte Umgebungsvariablen brechen die Validierung.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "74",
+        "section": null,
+        "locator": "block:1989",
+        "quoteHash": "sha256:5473685a33892d15cf9da3d9a2e581356e769092bf25c4979acebc203e8a74b1",
+        "originalExcerpt": "Production definiert process.env/Import-Meta nur zur Buildzeit. Es existieren keine geheimen Clientwerte; unbekannte Umgebungsvariablen brechen die Validierung."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-ENV-NOSEC-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0019",
+      "title": "Es existieren maximal fünf rotierende Sessionslogs mit jeweils 512 KiB und insgesamt höchstens 2,5 MiB; Logs enthalten keine freie Nutzereingabe, Dateipfade außerhalb des Appbereichs, Geräte-IDs, IPs oder personenbezogene Daten.",
+      "statement": "Es existieren maximal fünf rotierende Sessionslogs mit jeweils 512 KiB und insgesamt höchstens 2,5 MiB; Logs enthalten keine freie Nutzereingabe, Dateipfade außerhalb des Appbereichs, Geräte-IDs, IPs oder personenbezogene Daten.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 83,
+        "section": null,
+        "locator": "block:2188",
+        "quoteHash": "sha256:7a5467aa91c57821841e84b6eb78838a9ac23f27084313311c2ab8e15d8365cf",
+        "originalExcerpt": "Maximal fünf rotierende Sessions, je 512 KiB, insgesamt <=2,5 MiB. Keine freie Nutzereingabe, Dateipfade außerhalb Appbereich, Geräte-ID, IP oder personenbezogene Daten."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "SEC-LOG-PRIVACY-083"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "sessionLogFiles",
+          "value": 5
+        },
+        {
+          "kind": "max",
+          "name": "sessionLogSizeKiB",
+          "value": 512,
+          "unit": "KiB"
+        },
+        {
+          "kind": "max",
+          "name": "sessionLogTotalKiB",
+          "value": 2560,
+          "unit": "KiB"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0020",
+      "title": "Logfelder umfassen UTC-Zeit, appVersion, buildChannel, platform/osVersion, errorCode, module, safeContext und in QA den Stack; im Release ist der Stack lokal erlaubt, wird aber niemals übertragen.",
+      "statement": "Logfelder umfassen UTC-Zeit, appVersion, buildChannel, platform/osVersion, errorCode, module, safeContext und in QA den Stack; im Release ist der Stack lokal erlaubt, wird aber niemals übertragen.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 83,
+        "section": null,
+        "locator": "block:2189",
+        "quoteHash": "sha256:27580f12f8777ab62b12ef236b671927dcb6ac3552259730404fae7fbb73bde2",
+        "originalExcerpt": "Logfelder: UTC-Zeit, appVersion, buildChannel, platform/osVersion, errorCode, module, safeContext, stack in QA; Release stack lokal möglich, nie übertragen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "SEC-LOG-FIELDS-083"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0021",
+      "title": "Logs werden niemals automatisch versendet; der Supporttext erklärt, dass ein Export vom Nutzer selbst geteilt werden muss.",
+      "statement": "Logs werden niemals automatisch versendet; der Supporttext erklärt, dass ein Export vom Nutzer selbst geteilt werden muss.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 83,
+        "section": null,
+        "locator": "block:2191",
+        "quoteHash": "sha256:ed13a9bc888cbf6f2d8bb6b5c6e121cb97c9c8619723c705c002fa3ccf239b91",
+        "originalExcerpt": "Logs werden niemals automatisch versendet. Supporttext erklärt, dass Export vom Nutzer selbst geteilt werden muss."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "SEC-NO-AUTO-UPLOAD-083"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0022",
+      "title": "Keine dangerouslySetInnerHTML für lokalisierte oder Inhaltsdaten; formatierte Texte nutzen tokenisierte RichText-Komponenten mit Whitelist.",
+      "statement": "Keine dangerouslySetInnerHTML für lokalisierte oder Inhaltsdaten. Formatierte Texte nutzen tokenisierte RichText-Komponenten mit Whitelist.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 50,
+        "section": null,
+        "locator": "block:1619",
+        "quoteHash": "sha256:ff08f3282cb597d43522ef1dc0b1905c5f6a91f4118f748ecc105db27d8efe32",
+        "originalExcerpt": "Keine dangerouslySetInnerHTML für lokalisierte oder Inhaltsdaten. Formatierte Texte nutzen tokenisierte RichText-Komponenten mit Whitelist."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "ST-NO-DANGEROUS-HTML-050"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SECURITY-0023",
+      "title": "Generierte Atlanten, store-signierte Artefakte, Keystores, Provisioning Profiles und Secrets werden nicht committet.",
+      "statement": "Generierte Atlanten, store-signierte Artefakte, Keystores, Provisioning Profiles und Secrets werden nicht committet.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 50,
+        "section": null,
+        "locator": "block:1623",
+        "quoteHash": "sha256:2847823f588634c125f0e50238187defc2e3249e22a0e563f04d3b2f61fcffaa",
+        "originalExcerpt": "Generierte Atlanten, store-signierte Artefakte, Keystores, Provisioning Profiles und Secrets werden nicht committet."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "ST-NO-SECRETS-050"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ]
 }

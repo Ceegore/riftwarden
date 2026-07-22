@@ -1,0 +1,313 @@
+=== block 1640 type=paragraph ===
+PHASE_TRANSITION pausiert Bossaktionen und Fähigkeitladung nur, wenn die Phase es definiert; die globale Standarddauer beträgt 45 Ticks.
+
+=== block 1641 type=paragraph ===
+RESOLVING_END dauert autoritativ höchstens 3 Ticks und verarbeitet bereits committed Wiederbelebung/Todesverhinderung. Kosmetische Outrozeit liegt außerhalb der Simulation.
+
+=== block 1642 type=paragraph ===
+Ein Kampf erhält ein hartes Simulationslimit von 5400 Ticks = 180 Sekunden. Danach greift die in V3 definierte Riftkollapswertung; kein unendlicher Kampf.
+
+=== block 1643 type=paragraph ===
+51.4 Eventtypen und Log
+
+=== block 1644 type=table ===
+[
+  [
+    "Kategorie",
+    "Pflichtevents"
+  ],
+  [
+    "Lifecycle",
+    "BattleStarted, PhaseStarted, BattleEnded"
+  ],
+  [
+    "Entity",
+    "Spawned, Activated, TargetChanged, MovedLane, Defeated, Removed, Revived"
+  ],
+  [
+    "Combat",
+    "AttackPrepared, ProjectileSpawned, DamageApplied, HealApplied, ShieldApplied, EffectApplied, EffectRemoved"
+  ],
+  [
+    "Ability",
+    "ChargeReady, AbilityPrepared, AbilityInterrupted, AbilityCommitted, AbilityResolved"
+  ],
+  [
+    "World",
+    "ModifierTriggered, HazardTelegraphed, HazardResolved, ReinforcementQueued, ReinforcementSpawned"
+  ],
+  [
+    "Diagnostics",
+    "InvalidTargetPrevented, SummonLimitBlocked, FallbackRuleUsed, SafetyCapTriggered"
+  ]
+]
+
+=== block 1645 type=paragraph ===
+(empty)
+
+=== block 1646 type=paragraph ===
+Jedes Event enthält tick, sequence, type, sourceId, targetIds, ability/effect ID, integer payload und localization-safe logTags.
+
+=== block 1647 type=paragraph ===
+Der Ergebnisbildschirm liest ausschließlich aggregierte Events. Er schätzt keine Werte aus Renderanimationen.
+
+=== block 1648 type=paragraph ===
+Debug-Replays können das vollständige Eventlog speichern; normale Saves speichern nur Snapshot plus Entscheidungen, um Dateigröße zu begrenzen.
+
+=== block 1649 type=paragraph ===
+52. Rendering-, Asset- und Performancearchitektur
+
+=== block 1650 type=paragraph ===
+52.1 Pixi-Szenenaufbau
+
+=== block 1651 type=table ===
+[
+  [
+    "Layer",
+    "Inhalt",
+    "Regel"
+  ],
+  [
+    "0 Background",
+    "Region, Parallaxen, entfernte Partikel",
+    "Langsame Bewegung; bei Reduce Motion statisch."
+  ],
+  [
+    "1 Ground",
+    "Bahnen, Schatten, Warnmuster",
+    "Warnungen immer über Boden, unter Einheiten."
+  ],
+  [
+    "2 Back Units",
+    "Hintere Bahnsegmente",
+    "Sortierung lane, logicalX, stableEntityId."
+  ],
+  [
+    "3 Main Units",
+    "Sprites, Konstruktionen, Beschwörungen",
+    "Keine React-Re-Renders pro Tick."
+  ],
+  [
+    "4 Projectiles",
+    "Geschosse und Trails",
+    "Object Pool; Gameplayposition aus Snapshot."
+  ],
+  [
+    "5 Effects",
+    "Treffer, Schilde, Fähigkeitseffekte",
+    "Budgetiert; reduzierte Varianten vorhanden."
+  ],
+  [
+    "6 Readability",
+    "Statusicons, Zielmarker, Bosswarnungen",
+    "Nie von kosmetischen Effekten verdecken."
+  ],
+  [
+    "7 Debug",
+    "Hitbox, IDs, Tick, Zielscore",
+    "Nur nicht-produktive Builds."
+  ]
+]
+
+=== block 1652 type=paragraph ===
+(empty)
+
+=== block 1653 type=paragraph ===
+52.2 Assetformate und Budgets
+
+=== block 1654 type=table ===
+[
+  [
+    "Assettyp",
+    "Format",
+    "Budget/Regel"
+  ],
+  [
+    "UI-Vektor",
+    "SVG, build-time geprüft",
+    "Keine externen Referenzen, Filter oder eingebetteten Skripte."
+  ],
+  [
+    "UI-/Illustrationsraster",
+    "WebP lossless/lossy",
+    "1x/2x Varianten; Alpha nur wenn benötigt."
+  ],
+  [
+    "Sprites",
+    "WebP-Atlanten + JSON",
+    "Max. 2048x2048 pro Atlas; 4 px Extrusion; premultiplied alpha."
+  ],
+  [
+    "Musik",
+    "AAC-LC .m4a",
+    "44.1 kHz Stereo, 160-192 kbps, Loop-Marker in Manifest."
+  ],
+  [
+    "SFX",
+    "AAC-LC oder PCM für extrem kurze Cues",
+    "Mono bevorzugt, 44.1 kHz; gleichzeitige Decodes vermeiden."
+  ],
+  [
+    "Voice",
+    "AAC-LC mono",
+    "48-96 kbps; Untertitel immer vorhanden."
+  ],
+  [
+    "Font",
+    "WOFF2 lokal",
+    "Noto Sans UI, Cinzel Display; OFL-Lizenzdateien bündeln."
+  ],
+  [
+    "Gesamt-Download",
+    "AAB/IPA komprimiert <= 180 MB",
+    "Keine Pflichtdownloads nach Installation."
+  ],
+  [
+    "Installiert",
+    "<= 450 MB",
+    "Saves/Logs ausgeschlossen; Cache automatisch begrenzt."
+  ]
+]
+
+=== block 1655 type=paragraph ===
+(empty)
+
+=== block 1656 type=paragraph ===
+52.3 Animationsvertrag je Einheit
+
+=== block 1657 type=table ===
+[
+  [
+    "Clip",
+    "Pflicht",
+    "Abbruchregel"
+  ],
+  [
+    "idle",
+    "Ja",
+    "Beliebig auf movement/prepare überblendbar."
+  ],
+  [
+    "move",
+    "Ja",
+    "Stoppt innerhalb 100 ms nach Simulationsstopp."
+  ],
+  [
+    "basic_prepare/basic_hit/basic_recover",
+    "Ja",
+    "Prepare durch Kontrolle abbrechbar; Hit nur nach committed Event."
+  ],
+  [
+    "ability_prepare/ability_execute",
+    "Je Fähigkeit",
+    "Telegraphiedauer entspricht Simulationsdaten; Execute kann visuell nachlaufen."
+  ],
+  [
+    "hurt_light/hurt_heavy",
+    "Ja",
+    "Darf keine autoritative Bewegung verursachen."
+  ],
+  [
+    "controlled",
+    "Für harte Kontrolle",
+    "Statusicon bleibt primäre Information."
+  ],
+  [
+    "defeat/dissolve",
+    "Ja",
+    "Entity ist bereits nicht zielbar; Dauer 0,35-0,7 s."
+  ],
+  [
+    "victory",
+    "Helden/Bosse",
+    "Nur nach finalem Ergebnis; überspringbar."
+  ]
+]
+
+=== block 1658 type=paragraph ===
+(empty)
+
+=== block 1659 type=paragraph ===
+52.4 Qualitätsstufen
+
+=== block 1660 type=table ===
+[
+  [
+    "Stufe",
+    "Auswahl",
+    "Unterschiede"
+  ],
+  [
+    "Hoch",
+    "Standard auf >=6 GB RAM oder manuell",
+    "Volle Partikel, 2x UI-Raster, dynamische Schatten, 60 FPS."
+  ],
+  [
+    "Mittel",
+    "Standard auf 4-6 GB",
+    "60% Partikel, einfache Schatten, 60 FPS Ziel."
+  ],
+  [
+    "Niedrig",
+    "<=4 GB oder thermische/Framewarnung",
+    "30% Partikel, keine Blurfilter, reduzierte Trails, 30/60 adaptives Rendering."
+  ],
+  [
+    "Barrierefrei reduziert",
+    "Unabhängig von Leistung",
+    "Kein Schütteln/Blitz/Parallax, klare Telegraphie unverändert."
+  ]
+]
+
+=== block 1661 type=paragraph ===
+(empty)
+
+=== block 1662 type=paragraph ===
+52.5 Harte Performance-Gates
+
+=== block 1663 type=table ===
+[
+  [
+    "Metrik",
+    "Release-Gate"
+  ],
+  [
+    "Cold start",
+    "Native Splash <= 0,5 s sichtbar; interaktives Hauptmenü <= 5 s auf Mindestgerät. Bei >2 s sichtbarer Fortschritt."
+  ],
+  [
+    "Warm start",
+    "Zur letzten sicheren Oberfläche <= 2 s."
+  ],
+  [
+    "Kampf FPS",
+    "Median 60; 99. Perzentil Framedauer <= 33 ms auf Mindestgerät; keine Tickverluste."
+  ],
+  [
+    "Speicher",
+    "<= 350 MB PSS Android Mindestgerät, <= 450 MB iOS; kein Wachstum > 10 MB nach 20 Kämpfen."
+  ],
+  [
+    "JS Main Thread",
+    "Keine Task > 100 ms im normalen Spiel; Save/Contentvalidierung chunked oder vor Screenwechsel."
+  ],
+  [
+    "GC/Jank",
+    "Keine wiederkehrende sichtbare Pause bei Spawnwellen; Pools für Projektile, Zahlen und Partikel."
+  ],
+  [
+    "Thermik",
+    "30 Minuten Endlose Rift ohne OS-Warnung oder unkontrolliertes Throttling; Qualität darf automatisch sinken."
+  ],
+  [
+    "Akku",
+    "Keine Hintergrundsimulation, Wake Locks oder Audio nach Background."
+  ]
+]
+
+=== block 1664 type=paragraph ===
+(empty)
+
+=== block 1665 type=paragraph ===
+53. App-Lifecycle, Navigation und globale Zustände
+

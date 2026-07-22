@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "request_id": "REQ-P00-T02g-v1-dbf03fed",
+  "project_id": "riftwarden",
+  "phase_id": "PHASE-00",
+  "work_package_id": "P00-T02g",
+  "work_package_version": 1,
+  "idempotency_key": "rw-p00-t02g-v1-81b54f79",
+  "phase_contract_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "work_package_contract_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+  "repository": {
+    "root": "C:\\Projects\\_sortiert\\Riftwarden",
+    "branch": "feat/00-autorit-t-requirements-und-traceability",
+    "commit": "e1be20ccb305a62b07774464bd3fa1a837052c6f",
+    "tree_hash": "f17ddfc9fb3001c4837be7de614fbe3e07188ce0"
+  },
+  "goal": "Extract ALL normative requirements from GDD V5 chapters 51..58 into atomic REQ records.\n\nFULL CONTRACT:\n# WP P00-T02g – Requirements Fill-in Chunk (chapters 51-58)\n\n## Identity\n- Version: 1\n- Phase: PHASE-00\n- Idempotency Key: rw-p00-t02g-v1-20260722\n- Branch: feat/00-autorit-t-requirements-und-traceability\n- Status: APPROVED\n- Note: fills the ch51-58 gap (chunk-b only reached ch35; chunk-c started at 59).\n\n## Goal\nExtract ALL normative requirements from GDD V5 chapters 51..58 into atomic REQ records.\n## Sole Write Target (DISJUNCT)\ndocs/requirements/requirements/_staging/chunk-g.json\n## Read Inputs\n- docs/requirements/generated/chapters/chapter-51.txt ... chapter-58.txt\n- docs/requirements/generated/chapter-index.json\n- Phase 00 handbook §5.4, §7\n## Method\n- Read each chapter text file (small). Extract normative statements as atomic REQs.\n- TEMP id REQ-TEMP-G-0001.. Fields per §5.4. context-only if no normative content.\n- Write staging file once when all chapters done. Call finalize_report.\n## Budgets: max_changed_files 2, timeout 3000s, repair rounds 3.\n",
+  "contract_path": ".orchestrator/contracts/WORK_PACKAGE_P00-T02g.md"
+}
