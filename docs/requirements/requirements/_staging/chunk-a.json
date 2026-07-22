@@ -1,0 +1,2553 @@
+{
+  "schemaVersion": "1.0",
+  "chunk": "a",
+  "chapterRange": {
+    "lo": 1,
+    "hi": 29
+  },
+  "requirements": [
+    {
+      "id": "REQ-TEMP-A-0001",
+      "title": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:1b3cf489379516ebdd87d78af51616dc25a1a033cd2ef891a54ab2732514ba96",
+        "originalExcerpt": "Ein Agent darf keine nicht beschriebenen Kernmechaniken ergänzen, keine festgelegten Obergrenzen aufweichen, keine manuelle Kampfsteuerung einführen und keine technische Grundsatzentscheidung eigenmächtig austauschen."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0002",
+      "title": "Festgelegte Obergrenzen dürfen nicht aufgeweicht werden.",
+      "statement": "Festgelegte Obergrenzen dürfen nicht aufgeweicht werden.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:1b3cf489379516ebdd87d78af51616dc25a1a033cd2ef891a54ab2732514ba96",
+        "originalExcerpt": "Ein Agent darf keine nicht beschriebenen Kernmechaniken ergänzen, keine festgelegten Obergrenzen aufweichen, keine manuelle Kampfsteuerung einführen und keine technische Grundsatzentscheidung eigenmächtig austauschen."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0003",
+      "title": "Es darf keine manuelle Kampfsteuerung eingeführt werden.",
+      "statement": "Es darf keine manuelle Kampfsteuerung eingeführt werden.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:1b3cf489379516ebdd87d78af51616dc25a1a033cd2ef891a54ab2732514ba96",
+        "originalExcerpt": "Ein Agent darf keine nicht beschriebenen Kernmechaniken ergänzen, keine festgelegten Obergrenzen aufweichen, keine manuelle Kampfsteuerung einführen und keine technische Grundsatzentscheidung eigenmächtig austauschen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0004",
+      "title": "Technische Grundsatzentscheidungen dürfen nicht eigenmächtig ausgetauscht wer...",
+      "statement": "Technische Grundsatzentscheidungen dürfen nicht eigenmächtig ausgetauscht werden.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:1b3cf489379516ebdd87d78af51616dc25a1a033cd2ef891a54ab2732514ba96",
+        "originalExcerpt": "Ein Agent darf keine nicht beschriebenen Kernmechaniken ergänzen, keine festgelegten Obergrenzen aufweichen, keine manuelle Kampfsteuerung einführen und keine technische Grundsatzentscheidung eigenmächtig austauschen."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-003"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0005",
+      "title": "Strategisch relevante Informationen werden vor dem Kampf angezeigt.",
+      "statement": "Strategisch relevante Informationen werden vor dem Kampf angezeigt.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:80267f09cae4c22eb05f9fcdd0a97bfb0014aac653f53527dd83cc8d7991f327",
+        "originalExcerpt": "Strategisch relevante Informationen werden vor dem Kampf angezeigt; keine Begegnung beruht auf einer tödlichen Überraschung."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PHASE08-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0006",
+      "title": "Keine Begegnung darf auf einer tödlichen Überraschung beruhen.",
+      "statement": "Keine Begegnung darf auf einer tödlichen Überraschung beruhen.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:80267f09cae4c22eb05f9fcdd0a97bfb0014aac653f53527dd83cc8d7991f327",
+        "originalExcerpt": "Strategisch relevante Informationen werden vor dem Kampf angezeigt; keine Begegnung beruht auf einer tödlichen Überraschung."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PHASE08-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0007",
+      "title": "Die Zielversion muss klein genug für ein hochpoliertes Premiumspiel bleiben.",
+      "statement": "Die Zielversion muss klein genug für ein hochpoliertes Premiumspiel bleiben.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:f17e21586442e0eecdd75dabf883ed84cf4c4f4c02094b0f574f7c04dca04293",
+        "originalExcerpt": "Die Zielversion bleibt klein genug für ein hochpoliertes Premiumspiel."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-004"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0008",
+      "title": "Alle Release-Inhalte, Freischaltungen, Rollen und Interaktionen müssen benann...",
+      "statement": "Alle Release-Inhalte, Freischaltungen, Rollen und Interaktionen müssen benannt sein.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:d7d28b258bb02f3d5a6d8423baf3278d96788263f42c581269aeee872ade51ae",
+        "originalExcerpt": "Inhaltlich vollständig: Alle Release-Inhalte, Freischaltungen, Rollen und Interaktionen sind benannt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0009",
+      "title": "Trigger, Prioritäten, Dauer, Stapelung, Abbruch und Sonderfälle müssen für je...",
+      "statement": "Trigger, Prioritäten, Dauer, Stapelung, Abbruch und Sonderfälle müssen für jedes System definiert sein.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:606bf4dfea3351ef9a45d6eb7c64b35b14bf4680c5578a45c9ea0e1e80d415f4",
+        "originalExcerpt": "Systemisch vollständig: Trigger, Prioritäten, Dauer, Stapelung, Abbruch und Sonderfälle sind definiert."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0010",
+      "title": "Jede numerische Baseline muss eine klare Funktion besitzen und datengetrieben...",
+      "statement": "Jede numerische Baseline muss eine klare Funktion besitzen und datengetrieben anpassbar sein.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:8f9e44d939a4cc8f9e29942729f82760b960d684a011a209552bd33692ea0514",
+        "originalExcerpt": "Balancingfähig: Jede numerische Baseline besitzt eine klare Funktion und kann datengetrieben angepasst werden."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "GR-PHASE20-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0011",
+      "title": "Jedes kritische System muss beobachtbare Abnahmekriterien enthalten.",
+      "statement": "Jedes kritische System muss beobachtbare Abnahmekriterien enthalten.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:024b89f239be78ed784d1ece8e7967ab338fd94db59044110494a24a4b50c97d",
+        "originalExcerpt": "Testbar: Jedes kritische System enthält beobachtbare Abnahmekriterien."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "GR-PHASE20-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0012",
+      "title": "Rechts-, Steuer- und Inhaberfragen bleiben beim Publisher und sind nicht Inha...",
+      "statement": "Rechts-, Steuer- und Inhaberfragen bleiben beim Publisher und sind nicht Inhalt der Implementierung.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:21",
+        "quoteHash": "sha256:5e8057a66d92b3001bfa560da0234c250c8abef5af4fbdafcf869d5c0c771ccf",
+        "originalExcerpt": "Rechtsberatung, verbindliche Steuer- oder Unternehmensentscheidungen und die endgültige Inhaberidentität für Storekonten; diese bleiben beim Publisher."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-PHASE00-005"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0013",
+      "title": "Dateiverträge, Formate, Größen, Namensregeln und Qualitätskriterien für Asset...",
+      "statement": "Dateiverträge, Formate, Größen, Namensregeln und Qualitätskriterien für Assets sind verbindlich festgelegt.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:22",
+        "quoteHash": "sha256:a346cbcead0198e0a408955d05652454d241ed737d055b7abf6ce2f9c8591fb2",
+        "originalExcerpt": "Die konkrete künstlerische Herstellungsmethode einzelner Assets; Dateiverträge, Formate, Größen, Namensregeln und Qualitätskriterien sind jedoch festgelegt."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "GR-PHASE15-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0014",
+      "title": "Verbindlich sind responsive Regeln, Design-Tokens, Mindestgrößen und Referenz...",
+      "statement": "Verbindlich sind responsive Regeln, Design-Tokens, Mindestgrößen und Referenzlayouts; Pixelpositionen pro Gerät sind nicht verbindlich.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:23",
+        "quoteHash": "sha256:028d7fa47336859c2e275ac1322f24eb6fbbb13f931100e6d1612cc1b0f45b6e",
+        "originalExcerpt": "Unveränderliche Pixelpositionen für jedes existierende und zukünftige Gerät; verbindlich sind responsive Regeln, Design-Tokens, Mindestgrößen und Referenzlayouts."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0015",
+      "title": "Verbindlich sind Funktion, Ton und maximale Textmenge für Übersetzungen.",
+      "statement": "Verbindlich sind Funktion, Ton und maximale Textmenge für Übersetzungen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:24",
+        "quoteHash": "sha256:eac0cb13e30b342d335f3a84a1d4c48b1d4edd9c2e453401890ebc750ffb1e9c",
+        "originalExcerpt": "Finale Übersetzungstexte aller Dialogvarianten; verbindlich sind Funktion, Ton und maximale Textmenge."
+      },
+      "ownerPhases": [
+        "PHASE-60"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-60",
+          "testIds": [
+            "GR-PHASE60-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0016",
+      "title": "Die Endbalance muss nach deterministischen Simulationen und internen Playtest...",
+      "statement": "Die Endbalance muss nach deterministischen Simulationen und internen Playtests innerhalb der dokumentierten Korridore abgestimmt werden.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:25",
+        "quoteHash": "sha256:7bddc11f7930132ec34e4de7175f28e96fd447a8268efe2f317c5de1d602927e",
+        "originalExcerpt": "Unveränderliche Endbalance. Die Baseline ist implementierbar, muss aber nach deterministischen Simulationen und internen Playtests innerhalb der dokumentierten Korridore abgestimmt werden."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "GR-PHASE20-003"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0017",
+      "title": "Das Produkt ist ein kompaktes Fantasy-Roguelite mit vollständig automatischen...",
+      "statement": "Das Produkt ist ein kompaktes Fantasy-Roguelite mit vollständig automatischen Gruppenkämpfen in stilisierter Seitenansicht.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:31",
+        "quoteHash": "sha256:7e1ebcffdb8c5f77510c28abaec13e0ec33730d5968e6a5ad79f15ea054cc60f",
+        "originalExcerpt": "Riftwarden: Auto RPG Roguelite ist ein kompaktes Fantasy-Roguelite mit vollständig automatischen Gruppenkämpfen in stilisierter Seitenansicht."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0018",
+      "title": "Während eines Kampfes dürfen keine Fähigkeiten manuell ausgelöst und keine Ei...",
+      "statement": "Während eines Kampfes dürfen keine Fähigkeiten manuell ausgelöst und keine Einheiten bewegt werden.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:31",
+        "quoteHash": "sha256:3fd055e4a241f108a1b310a631d6052ae57524f00e4c7ce10c8da21a2ed84f11",
+        "originalExcerpt": "Während eines Kampfes werden keine Fähigkeiten manuell ausgelöst und keine Einheiten bewegt."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-003"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0019",
+      "title": "Ein regulärer Kampf dauert 20-45 Sekunden auf normaler Geschwindigkeit.",
+      "statement": "Ein regulärer Kampf dauert 20-45 Sekunden auf normaler Geschwindigkeit.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:32",
+        "quoteHash": "sha256:a1924a52917cbb901032c7945c65488e7b777dd4be6ae943c42a35a242e87580",
+        "originalExcerpt": "Ein regulärer Kampf dauert normalerweise 20-45 Sekunden, ein Elitekampf 35-60 Sekunden und ein Bosskampf 60-100 Sekunden auf normaler Geschwindigkeit."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-004"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "min": 20,
+          "max": 45,
+          "target": "regular_fight_duration"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0020",
+      "title": "Ein Elitekampf dauert 35-60 Sekunden auf normaler Geschwindigkeit.",
+      "statement": "Ein Elitekampf dauert 35-60 Sekunden auf normaler Geschwindigkeit.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:32",
+        "quoteHash": "sha256:a1924a52917cbb901032c7945c65488e7b777dd4be6ae943c42a35a242e87580",
+        "originalExcerpt": "Ein regulärer Kampf dauert normalerweise 20-45 Sekunden, ein Elitekampf 35-60 Sekunden und ein Bosskampf 60-100 Sekunden auf normaler Geschwindigkeit."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-005"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "min": 35,
+          "max": 60,
+          "target": "elite_fight_duration"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0021",
+      "title": "Ein Bosskampf dauert 60-100 Sekunden auf normaler Geschwindigkeit.",
+      "statement": "Ein Bosskampf dauert 60-100 Sekunden auf normaler Geschwindigkeit.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:32",
+        "quoteHash": "sha256:a1924a52917cbb901032c7945c65488e7b777dd4be6ae943c42a35a242e87580",
+        "originalExcerpt": "Ein regulärer Kampf dauert normalerweise 20-45 Sekunden, ein Elitekampf 35-60 Sekunden und ein Bosskampf 60-100 Sekunden auf normaler Geschwindigkeit."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-006"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "min": 60,
+          "max": 100,
+          "target": "boss_fight_duration"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0022",
+      "title": "Das Spiel darf keinerlei Fortschritt ohne aktives Spielen erzeugen.",
+      "statement": "Das Spiel darf keinerlei Fortschritt ohne aktives Spielen erzeugen.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:33",
+        "quoteHash": "sha256:7263fd9c6a998517d6f9ed0be2f31ce3c74f41828514ee213f9a9939c394469d",
+        "originalExcerpt": "Das Spiel erzeugt keinerlei Fortschritt ohne aktives Spielen. Es gibt keine Energie, Wartezeit, Offline-Erträge, Tagesaufgaben oder Live-Service-Abhängigkeit."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-003"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0023",
+      "title": "Es dürfen keine Energie, Wartezeit, Offline-Erträge, Tagesaufgaben oder Live-...",
+      "statement": "Es dürfen keine Energie, Wartezeit, Offline-Erträge, Tagesaufgaben oder Live-Service-Abhängigkeit existieren.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:33",
+        "quoteHash": "sha256:7263fd9c6a998517d6f9ed0be2f31ce3c74f41828514ee213f9a9939c394469d",
+        "originalExcerpt": "Das Spiel erzeugt keinerlei Fortschritt ohne aktives Spielen. Es gibt keine Energie, Wartezeit, Offline-Erträge, Tagesaufgaben oder Live-Service-Abhängigkeit."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-004"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0024",
+      "title": "Eine verlorene Expedition darf niemals Helden, Verträge oder bereits freigesc...",
+      "statement": "Eine verlorene Expedition darf niemals Helden, Verträge oder bereits freigeschaltete permanente Systeme kosten.",
+      "norm": "MUST_NOT",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:34",
+        "quoteHash": "sha256:2a0a89e194341bc7531feb135a408d862e526fea97197b77f93d0f7d9a588b5f",
+        "originalExcerpt": "Eine verlorene Expedition kostet einen Teil der ungesicherten Beute, aber niemals Helden, Verträge oder bereits freigeschaltete permanente Systeme."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "IT-PHASE12-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0025",
+      "title": "Die Kampagne muss abgeschlossen sein und den Kauf allein rechtfertigen.",
+      "statement": "Die Kampagne muss abgeschlossen sein und den Kauf allein rechtfertigen.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:35",
+        "quoteHash": "sha256:726ab5ac14593365cdf459c0f2ee6dc3a501163810f5fab2cad6a805c3934ce5",
+        "originalExcerpt": "Die Kampagne ist abgeschlossen und rechtfertigt den Kauf allein. Ascension und Endlose Rift sind substanzielle Endgame-Modi, keine Ausrede für fehlenden Kampagneninhalt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-005"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0026",
+      "title": "Manuelle Kampffähigkeiten und aktives Zielen sind nicht Teil der Zielversion.",
+      "statement": "Manuelle Kampffähigkeiten und aktives Zielen sind nicht Teil der Zielversion.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 3,
+        "section": null,
+        "locator": "block:44",
+        "quoteHash": "sha256:6840b8ac0feb20c676daa84d72119f92d703ba700d4f729a7ecbba5dbfd9efc2",
+        "originalExcerpt": "Nicht Teil der Zielversion sind: manuelle Kampffähigkeiten, aktives Zielen, PvP, Online-Ranglisten, Accounts, Gilden, Chat, Cloud-Zwang, Live-Events, tägliche Aufgaben, saisonale Inhalte, Basisbau, offene Welt, frei begehbare Dungeons, weit verzweigte Dialogbäume, permanente Heldentode, Verletzungen zwischen Kämpfen, Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe, unbegrenzte Charakterlevel und Echtgeldshops."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-009"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0027",
+      "title": "PvP, Online-Ranglisten, Accounts, Gilden und Chat sind nicht Teil der Zielver...",
+      "statement": "PvP, Online-Ranglisten, Accounts, Gilden und Chat sind nicht Teil der Zielversion.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 3,
+        "section": null,
+        "locator": "block:44",
+        "quoteHash": "sha256:6840b8ac0feb20c676daa84d72119f92d703ba700d4f729a7ecbba5dbfd9efc2",
+        "originalExcerpt": "Nicht Teil der Zielversion sind: manuelle Kampffähigkeiten, aktives Zielen, PvP, Online-Ranglisten, Accounts, Gilden, Chat, Cloud-Zwang, Live-Events, tägliche Aufgaben, saisonale Inhalte, Basisbau, offene Welt, frei begehbare Dungeons, weit verzweigte Dialogbäume, permanente Heldentode, Verletzungen zwischen Kämpfen, Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe, unbegrenzte Charakterlevel und Echtgeldshops."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-PHASE00-007"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0028",
+      "title": "Cloud-Zwang, Live-Events, tägliche Aufgaben und saisonale Inhalte sind nicht ...",
+      "statement": "Cloud-Zwang, Live-Events, tägliche Aufgaben und saisonale Inhalte sind nicht Teil der Zielversion.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 3,
+        "section": null,
+        "locator": "block:44",
+        "quoteHash": "sha256:6840b8ac0feb20c676daa84d72119f92d703ba700d4f729a7ecbba5dbfd9efc2",
+        "originalExcerpt": "Nicht Teil der Zielversion sind: manuelle Kampffähigkeiten, aktives Zielen, PvP, Online-Ranglisten, Accounts, Gilden, Chat, Cloud-Zwang, Live-Events, tägliche Aufgaben, saisonale Inhalte, Basisbau, offene Welt, frei begehbare Dungeons, weit verzweigte Dialogbäume, permanente Heldentode, Verletzungen zwischen Kämpfen, Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe, unbegrenzte Charakterlevel und Echtgeldshops."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-PHASE00-008"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0029",
+      "title": "Basisbau, offene Welt und frei begehbare Dungeons sind nicht Teil der Zielver...",
+      "statement": "Basisbau, offene Welt und frei begehbare Dungeons sind nicht Teil der Zielversion.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 3,
+        "section": null,
+        "locator": "block:44",
+        "quoteHash": "sha256:6840b8ac0feb20c676daa84d72119f92d703ba700d4f729a7ecbba5dbfd9efc2",
+        "originalExcerpt": "Nicht Teil der Zielversion sind: manuelle Kampffähigkeiten, aktives Zielen, PvP, Online-Ranglisten, Accounts, Gilden, Chat, Cloud-Zwang, Live-Events, tägliche Aufgaben, saisonale Inhalte, Basisbau, offene Welt, frei begehbare Dungeons, weit verzweigte Dialogbäume, permanente Heldentode, Verletzungen zwischen Kämpfen, Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe, unbegrenzte Charakterlevel und Echtgeldshops."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-PHASE00-010"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0030",
+      "title": "Weit verzweigte Dialogbäume, permanente Heldentode und Verletzungen zwischen ...",
+      "statement": "Weit verzweigte Dialogbäume, permanente Heldentode und Verletzungen zwischen Kämpfen sind nicht Teil der Zielversion.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 3,
+        "section": null,
+        "locator": "block:44",
+        "quoteHash": "sha256:6840b8ac0feb20c676daa84d72119f92d703ba700d4f729a7ecbba5dbfd9efc2",
+        "originalExcerpt": "Nicht Teil der Zielversion sind: manuelle Kampffähigkeiten, aktives Zielen, PvP, Online-Ranglisten, Accounts, Gilden, Chat, Cloud-Zwang, Live-Events, tägliche Aufgaben, saisonale Inhalte, Basisbau, offene Welt, frei begehbare Dungeons, weit verzweigte Dialogbäume, permanente Heldentode, Verletzungen zwischen Kämpfen, Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe, unbegrenzte Charakterlevel und Echtgeldshops."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-PHASE00-011"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0031",
+      "title": "Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe und unbegrenzt...",
+      "statement": "Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe und unbegrenzte Charakterlevel sind nicht Teil der Zielversion.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 3,
+        "section": null,
+        "locator": "block:44",
+        "quoteHash": "sha256:6840b8ac0feb20c676daa84d72119f92d703ba700d4f729a7ecbba5dbfd9efc2",
+        "originalExcerpt": "Nicht Teil der Zielversion sind: manuelle Kampffähigkeiten, aktives Zielen, PvP, Online-Ranglisten, Accounts, Gilden, Chat, Cloud-Zwang, Live-Events, tägliche Aufgaben, saisonale Inhalte, Basisbau, offene Welt, frei begehbare Dungeons, weit verzweigte Dialogbäume, permanente Heldentode, Verletzungen zwischen Kämpfen, Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe, unbegrenzte Charakterlevel und Echtgeldshops."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "PT-PHASE08-010"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0032",
+      "title": "Echtgeldshops sind nicht Teil der Zielversion.",
+      "statement": "Echtgeldshops sind nicht Teil der Zielversion.",
+      "norm": "MUST_NOT",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 3,
+        "section": null,
+        "locator": "block:44",
+        "quoteHash": "sha256:6840b8ac0feb20c676daa84d72119f92d703ba700d4f729a7ecbba5dbfd9efc2",
+        "originalExcerpt": "Nicht Teil der Zielversion sind: manuelle Kampffähigkeiten, aktives Zielen, PvP, Online-Ranglisten, Accounts, Gilden, Chat, Cloud-Zwang, Live-Events, tägliche Aufgaben, saisonale Inhalte, Basisbau, offene Welt, frei begehbare Dungeons, weit verzweigte Dialogbäume, permanente Heldentode, Verletzungen zwischen Kämpfen, Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe, unbegrenzte Charakterlevel und Echtgeldshops."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-PHASE00-012"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0033",
+      "title": "Rifts enthalten verzerrte Kopien realer Orte, Erinnerungen und mögliche Zukün...",
+      "statement": "Rifts enthalten verzerrte Kopien realer Orte, Erinnerungen und mögliche Zukünfte; diese Kopien heißen Echos.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:49",
+        "quoteHash": "sha256:e2549a3dda05b72ab8d47ca20606dca15d3281e83f983d6c38cdf86e2ca37bfd",
+        "originalExcerpt": "Ein fehlgeschlagenes magisches Experiment zerriss die Übergänge zwischen vier verbundenen Regionen. Rifts enthalten verzerrte Kopien realer Orte, Erinnerungen und mögliche Zukünfte. Diese Kopien heißen Echos. Echos erklären prozedural variierende Dungeons, wiederkehrende Gegner und widersprüchlich wirkende, aber thematisch passende Szenen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-007"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0034",
+      "title": "Der Riftanker bindet jede Expedition an das Hauptquartier.",
+      "statement": "Der Riftanker bindet jede Expedition an das Hauptquartier.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:52",
+        "quoteHash": "sha256:107615ace5f10fb903252bddac891d85e14b4cd5e22a6a05358268301497e940",
+        "originalExcerpt": "Der Riftanker bindet jede Expedition an das Hauptquartier."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-008"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0035",
+      "title": "Nach einem Sieg rekonstruiert der Riftanker alle gefallenen regulären Einheit...",
+      "statement": "Nach einem Sieg rekonstruiert der Riftanker alle gefallenen regulären Einheiten, heilt die Gruppe vollständig, entfernt normale Statuswirkungen und löscht Kampf-Beschwörungen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:53",
+        "quoteHash": "sha256:9338993f4103b1c569382515d719303fa56bef935389e7bdd2fdd465356073a1",
+        "originalExcerpt": "Nach einem Sieg rekonstruiert er alle gefallenen regulären Einheiten, heilt die Gruppe vollständig, entfernt normale Statuswirkungen und löscht Kampf-Beschwörungen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-011"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0036",
+      "title": "Bleibt keine reguläre Einheit der Spielergruppe kampffähig, endet die Expedit...",
+      "statement": "Bleibt keine reguläre Einheit der Spielergruppe kampffähig, endet die Expedition.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:54",
+        "quoteHash": "sha256:57f52374af22022baaa83a7a894b5f4387ec041545993af1892db189da8b662a",
+        "originalExcerpt": "Wenn keine reguläre Einheit der Spielergruppe kampffähig bleibt, bricht die Verbindung zusammen und die Expedition endet."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-012"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0037",
+      "title": "Die Rückkehr nach einer Niederlage ist erzählerisch eine Notrekonstruktion un...",
+      "statement": "Die Rückkehr nach einer Niederlage ist erzählerisch eine Notrekonstruktion und kein Tod.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:55",
+        "quoteHash": "sha256:9a88ad0af1f3970707c4c6e7b725e9a5e8ccc7414f361fe00308120c2f19b29b",
+        "originalExcerpt": "Die Rückkehr nach einer Niederlage ist erzählerisch eine Notrekonstruktion und kein Tod."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-009"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0038",
+      "title": "Der Riftanker ist die zentrale visuelle Metapher für Speichern, Rückkehr, Asc...",
+      "statement": "Der Riftanker ist die zentrale visuelle Metapher für Speichern, Rückkehr, Ascension und Endlose Rift.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:56",
+        "quoteHash": "sha256:e2a49ab8362433aa2f8afce6da0ef87d1b37bd76533a70f5c8ad30fe29bf5171",
+        "originalExcerpt": "Der Anker ist die zentrale visuelle Metapher für Speichern, Rückkehr, Ascension und Endlose Rift."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0039",
+      "title": "Pip spricht in maximal zwei kurzen Sätzen am Stück.",
+      "statement": "Pip spricht in maximal zwei kurzen Sätzen am Stück.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:60",
+        "quoteHash": "sha256:c19e9cd25c83c9fd554696bb22c2d8c65df36d318b940ea591c27e68934fbe7a",
+        "originalExcerpt": "Pip spricht in maximal zwei kurzen Sätzen am Stück, erklärt nie bereits sichtbare Informationen doppelt und unterbricht keine wiederholten Kämpfe. Humor: selbstüberschätzend, neugierig, freundlich, nie zynisch."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "UT-PHASE15-002"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "sentences",
+          "max": 2,
+          "target": "pip_max_sentences"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0040",
+      "title": "Pip darf bereits sichtbare Informationen nicht doppelt erklären und keine wie...",
+      "statement": "Pip darf bereits sichtbare Informationen nicht doppelt erklären und keine wiederholten Kämpfe unterbrechen.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:60",
+        "quoteHash": "sha256:c19e9cd25c83c9fd554696bb22c2d8c65df36d318b940ea591c27e68934fbe7a",
+        "originalExcerpt": "Pip spricht in maximal zwei kurzen Sätzen am Stück, erklärt nie bereits sichtbare Informationen doppelt und unterbricht keine wiederholten Kämpfe. Humor: selbstüberschätzend, neugierig, freundlich, nie zynisch."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "UT-PHASE15-003"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0041",
+      "title": "Es dürfen kein Blut, keine Wunden, keine Zerstückelung, keine Leichen und kei...",
+      "statement": "Es dürfen kein Blut, keine Wunden, keine Zerstückelung, keine Leichen und keine realistischen Todesschreie gezeigt werden.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:75",
+        "quoteHash": "sha256:68b8eab0b57d5ef4d5a509d9bdc7dc3a62225fb186761df9dec8b4eb4ffa40fb",
+        "originalExcerpt": "Kein Blut, keine Wunden, keine Zerstückelung, keine Leichen, keine realistischen Todesschreie."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "GR-PHASE15-003"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0042",
+      "title": "Besiegte Figuren zerfallen in Echofunken, Rauch, Blätter, Metallteile oder hu...",
+      "statement": "Besiegte Figuren zerfallen in Echofunken, Rauch, Blätter, Metallteile oder humorvolle Knochenhaufen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:76",
+        "quoteHash": "sha256:da6ca5d0d0a1b63c575206e2f4b1a98ac53b60a0e006b658a7a915bfb0b86fa6",
+        "originalExcerpt": "Besiegte Figuren zerfallen in Echofunken, Rauch, Blätter, Metallteile oder humorvolle Knochenhaufen."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "GR-PHASE15-004"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0043",
+      "title": "Es dürfen keine harte Vulgärsprache, sexualisierten Inhalte, realen politisch...",
+      "statement": "Es dürfen keine harte Vulgärsprache, sexualisierten Inhalte, realen politischen/religiösen Konflikte oder diskriminierenden Aussagen vorhanden sein.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:77",
+        "quoteHash": "sha256:af120b0e9a5b704fa34be5d3139d523f3c68378ec78389195510da70569b27c1",
+        "originalExcerpt": "Keine harte Vulgärsprache, sexualisierten Inhalte, realen politischen/religiösen Konflikte oder diskriminierenden Aussagen."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "GR-PHASE15-005"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0044",
+      "title": "Humor darf Bossauftritte, Ereignisse und Animationen auflockern; taktische Ko...",
+      "statement": "Humor darf Bossauftritte, Ereignisse und Animationen auflockern; taktische Konsequenzen bleiben ernst und lesbar.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:78",
+        "quoteHash": "sha256:513020c75a47d4614574c726d6002c6632ae1e2121b40265eb79964fb8fca0e4",
+        "originalExcerpt": "Humor darf Bossauftritte, Ereignisse und Animationen auflockern, aber taktische Konsequenzen bleiben ernst und lesbar."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "GR-PHASE15-006"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0045",
+      "title": "Eine Standardexpedition muss 12-25 Minuten dauern.",
+      "statement": "Eine Standardexpedition muss 12-25 Minuten dauern.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 5,
+        "section": null,
+        "locator": "block:84",
+        "quoteHash": "sha256:3264ab6bbf69632263b38d97faa17f9c0e70c42e3bad7787fb68653a29d720e6",
+        "originalExcerpt": "Eine Standardexpedition soll 12-25 Minuten dauern. Eine Kampagnenmission darf beim ersten Durchlauf einschließlich Story und Lesen 20-35 Minuten erreichen. Unterbrechung und lokales Fortsetzen müssen an jedem Knoten außerhalb eines laufenden Kampfes möglich sein; im Kampf wird beim App-Verlassen ein deterministischer Kampfsnapshot gespeichert."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-016"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "minutes",
+          "min": 12,
+          "max": 25,
+          "target": "standard_expedition_duration"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0046",
+      "title": "Eine Kampagnenmission darf beim ersten Durchlauf einschließlich Story und Les...",
+      "statement": "Eine Kampagnenmission darf beim ersten Durchlauf einschließlich Story und Lesen 20-35 Minuten erreichen.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 5,
+        "section": null,
+        "locator": "block:84",
+        "quoteHash": "sha256:3264ab6bbf69632263b38d97faa17f9c0e70c42e3bad7787fb68653a29d720e6",
+        "originalExcerpt": "Eine Standardexpedition soll 12-25 Minuten dauern. Eine Kampagnenmission darf beim ersten Durchlauf einschließlich Story und Lesen 20-35 Minuten erreichen. Unterbrechung und lokales Fortsetzen müssen an jedem Knoten außerhalb eines laufenden Kampfes möglich sein; im Kampf wird beim App-Verlassen ein deterministischer Kampfsnapshot gespeichert."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-017"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "minutes",
+          "min": 20,
+          "max": 35,
+          "target": "first_campaign_run_duration"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0047",
+      "title": "Unterbrechung und lokales Fortsetzen müssen an jedem Knoten außerhalb eines l...",
+      "statement": "Unterbrechung und lokales Fortsetzen müssen an jedem Knoten außerhalb eines laufenden Kampfes möglich sein.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 5,
+        "section": null,
+        "locator": "block:84",
+        "quoteHash": "sha256:3264ab6bbf69632263b38d97faa17f9c0e70c42e3bad7787fb68653a29d720e6",
+        "originalExcerpt": "Eine Standardexpedition soll 12-25 Minuten dauern. Eine Kampagnenmission darf beim ersten Durchlauf einschließlich Story und Lesen 20-35 Minuten erreichen. Unterbrechung und lokales Fortsetzen müssen an jedem Knoten außerhalb eines laufenden Kampfes möglich sein; im Kampf wird beim App-Verlassen ein deterministischer Kampfsnapshot gespeichert."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "UT-PHASE12-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0048",
+      "title": "Beim App-Verlassen während eines Kampfes muss ein deterministischer Kampfsnap...",
+      "statement": "Beim App-Verlassen während eines Kampfes muss ein deterministischer Kampfsnapshot gespeichert werden.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 5,
+        "section": null,
+        "locator": "block:84",
+        "quoteHash": "sha256:3264ab6bbf69632263b38d97faa17f9c0e70c42e3bad7787fb68653a29d720e6",
+        "originalExcerpt": "Eine Standardexpedition soll 12-25 Minuten dauern. Eine Kampagnenmission darf beim ersten Durchlauf einschließlich Story und Lesen 20-35 Minuten erreichen. Unterbrechung und lokales Fortsetzen müssen an jedem Knoten außerhalb eines laufenden Kampfes möglich sein; im Kampf wird beim App-Verlassen ein deterministischer Kampfsnapshot gespeichert."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "UT-PHASE12-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0049",
+      "title": "Das logische Schlachtfeld verwendet eine horizontale X-Achse von 0 bis 100 un...",
+      "statement": "Das logische Schlachtfeld verwendet eine horizontale X-Achse von 0 bis 100 und drei diskrete Bahnen: oben, Mitte, unten.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:89",
+        "quoteHash": "sha256:18bfb5826b5e980bce41b1e0140a016e0d7b9ca58246481fac7807d1fc1d0dc7",
+        "originalExcerpt": "Das logische Schlachtfeld verwendet eine horizontale X-Achse von 0 bis 100 und drei diskrete Bahnen: oben, Mitte, unten."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-013"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "xu",
+          "min": 0,
+          "max": 100,
+          "target": "battlefield_x_range"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0050",
+      "title": "Spielerseite bewegt sich grundsätzlich in positive X-Richtung; Gegnerseite in...",
+      "statement": "Spielerseite bewegt sich grundsätzlich in positive X-Richtung; Gegnerseite in negative X-Richtung.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:90",
+        "quoteHash": "sha256:892d8c28713aaa8e8212f597ec40624f1197f4cbfbe662e69069ea41b91853b6",
+        "originalExcerpt": "Spielerseite bewegt sich grundsätzlich in positive X-Richtung; Gegnerseite in negative X-Richtung."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-014"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0051",
+      "title": "Eigene Startzonen sind X=8 (Hinten), X=18 (Mitte), X=28 (Front); gegnerische ...",
+      "statement": "Eigene Startzonen sind X=8 (Hinten), X=18 (Mitte), X=28 (Front); gegnerische Spiegelwerte sind 92, 82, 72.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:91",
+        "quoteHash": "sha256:2120949fb9bc54c9547aeb87ff7b5073122e5ef19d0f965a2ccc6a59ba3b3a9e",
+        "originalExcerpt": "Eigene Startzonen: Hinten X=8, Mitte X=18, Front X=28. Gegnerische Spiegelwerte: 92, 82, 72."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-015"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0052",
+      "title": "Baseline-Kollisionsradien sind klein 1,2; normal 1,8; groß 2,8; Boss 4,0.",
+      "statement": "Baseline-Kollisionsradien sind klein 1,2; normal 1,8; groß 2,8; Boss 4,0.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:92",
+        "quoteHash": "sha256:da845ee2ba361f8d7c391bf5c585474c89bc2fe80da71c304badb618385639f6",
+        "originalExcerpt": "Eine Einheit besitzt einen Kollisionsradius. Baseline: klein 1,2; normal 1,8; groß 2,8; Boss 4,0."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-016"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "xu",
+          "min": 1.2,
+          "max": 4,
+          "target": "collision_radius_baseline"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0053",
+      "title": "Verbündete dürfen sich innerhalb einer Bahn überholen, wenn die überholende E...",
+      "statement": "Verbündete dürfen sich innerhalb einer Bahn überholen, wenn die überholende Einheit mindestens 25% schneller ist oder eine Fähigkeit dies erlaubt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:93",
+        "quoteHash": "sha256:f1478a31b7edfd6f61bcb116a41e076a46086c6daf508d76d5cc5eb2c7417564",
+        "originalExcerpt": "Verbündete dürfen sich innerhalb einer Bahn überholen, wenn die überholende Einheit mindestens 25% schneller ist oder eine Fähigkeit dies erlaubt. Gegnerische Körper können nicht durchlaufen werden."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-017"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "pct",
+          "min": 25,
+          "target": "ally_overtake_speed_min_pct"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0054",
+      "title": "Gegnerische Körper können nicht durchlaufen werden.",
+      "statement": "Gegnerische Körper können nicht durchlaufen werden.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:93",
+        "quoteHash": "sha256:f1478a31b7edfd6f61bcb116a41e076a46086c6daf508d76d5cc5eb2c7417564",
+        "originalExcerpt": "Verbündete dürfen sich innerhalb einer Bahn überholen, wenn die überholende Einheit mindestens 25% schneller ist oder eine Fähigkeit dies erlaubt. Gegnerische Körper können nicht durchlaufen werden."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-018"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0055",
+      "title": "Ein Bahnwechsel dauert baseline 1,2 Sekunden, unterbricht den aktuellen Stand...",
+      "statement": "Ein Bahnwechsel dauert baseline 1,2 Sekunden, unterbricht den aktuellen Standardangriff und ist nur durch Zielregel, Doktrin oder Fähigkeit erlaubt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:94",
+        "quoteHash": "sha256:9c248fc53a9ff4160c49748c07d277295cca2731819cd467761442c750b8d0a0",
+        "originalExcerpt": "Ein Bahnwechsel dauert baseline 1,2 Sekunden, unterbricht den aktuellen Standardangriff und ist nur durch Zielregel, Doktrin oder Fähigkeit erlaubt."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-019"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "value": 1.2,
+          "target": "lane_switch_baseline_duration"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0056",
+      "title": "Physischer und magischer Endschaden werden nach Rohschaden x 100 / (100 + eff...",
+      "statement": "Physischer und magischer Endschaden werden nach Rohschaden x 100 / (100 + effektive Verteidigung) berechnet.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:98",
+        "quoteHash": "sha256:2b62529c541eb78aa757b40d4d0fb5764cc56e70f966d7391ed30fc8fa878b7f",
+        "originalExcerpt": "Physischer Endschaden = Rohschaden x 100 / (100 + effektive Rüstung). Magischer Endschaden verwendet dieselbe Formel mit Widerstand. Reiner Schaden ignoriert Rüstung und Widerstand, darf aber nie mehr als 18% der maximalen LP eines Bosses durch einen einzelnen Treffer verursachen. Effektive Verteidigung kann nicht unter -40 und nicht über 200 liegen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-020"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0057",
+      "title": "Effektive Verteidigung darf nicht unter -40 und nicht über 200 liegen.",
+      "statement": "Effektive Verteidigung darf nicht unter -40 und nicht über 200 liegen.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:98",
+        "quoteHash": "sha256:2b62529c541eb78aa757b40d4d0fb5764cc56e70f966d7391ed30fc8fa878b7f",
+        "originalExcerpt": "Physischer Endschaden = Rohschaden x 100 / (100 + effektive Rüstung). Magischer Endschaden verwendet dieselbe Formel mit Widerstand. Reiner Schaden ignoriert Rüstung und Widerstand, darf aber nie mehr als 18% der maximalen LP eines Bosses durch einen einzelnen Treffer verursachen. Effektive Verteidigung kann nicht unter -40 und nicht über 200 liegen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-021"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "def",
+          "min": -40,
+          "target": "max:200"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0058",
+      "title": "Reiner Schaden darf nie mehr als 18% der maximalen LP eines Bosses durch eine...",
+      "statement": "Reiner Schaden darf nie mehr als 18% der maximalen LP eines Bosses durch einen einzelnen Treffer verursachen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:98",
+        "quoteHash": "sha256:2b62529c541eb78aa757b40d4d0fb5764cc56e70f966d7391ed30fc8fa878b7f",
+        "originalExcerpt": "Physischer Endschaden = Rohschaden x 100 / (100 + effektive Rüstung). Magischer Endschaden verwendet dieselbe Formel mit Widerstand. Reiner Schaden ignoriert Rüstung und Widerstand, darf aber nie mehr als 18% der maximalen LP eines Bosses durch einen einzelnen Treffer verursachen. Effektive Verteidigung kann nicht unter -40 und nicht über 200 liegen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-022"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "pct",
+          "max": 18,
+          "target": "true_damage_boss_cap_pct"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0059",
+      "title": "Standardangriff-Rohschaden ist Angriffskraft x Angriffsmultiplikator.",
+      "statement": "Standardangriff-Rohschaden ist Angriffskraft x Angriffsmultiplikator.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:99",
+        "quoteHash": "sha256:032cc6d9910e5325e4391b14ab9d11f1f8260d646a1a5cac0df8c55c03a7c161",
+        "originalExcerpt": "Standardangriff-Rohschaden = Angriffskraft x Angriffsmultiplikator."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-023"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0060",
+      "title": "Kritische Treffer dürfen nicht als globaler Zufallswert existieren.",
+      "statement": "Kritische Treffer dürfen nicht als globaler Zufallswert existieren.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:100",
+        "quoteHash": "sha256:8ef5d3845237295eb71de5536c7f04586c4703abe7de50f7a83d346b9a60b337",
+        "originalExcerpt": "Kritische Treffer existieren nicht als globaler Zufallswert. Nur ausdrücklich benannte Fähigkeiten dürfen einen festen kritischen Effekt besitzen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-024"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0061",
+      "title": "Nur ausdrücklich benannte Fähigkeiten dürfen einen festen kritischen Effekt b...",
+      "statement": "Nur ausdrücklich benannte Fähigkeiten dürfen einen festen kritischen Effekt besitzen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:100",
+        "quoteHash": "sha256:8ef5d3845237295eb71de5536c7f04586c4703abe7de50f7a83d346b9a60b337",
+        "originalExcerpt": "Kritische Treffer existieren nicht als globaler Zufallswert. Nur ausdrücklich benannte Fähigkeiten dürfen einen festen kritischen Effekt besitzen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-025"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0062",
+      "title": "Schilde absorbieren Endschaden vor LP und bilden einen gemeinsamen Pool; zuer...",
+      "statement": "Schilde absorbieren Endschaden vor LP und bilden einen gemeinsamen Pool; zuerst läuft die Quelle mit der kürzesten Restdauer ab.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:101",
+        "quoteHash": "sha256:bf879d2177db8e84994823ce226684a5045e3b45f26cb5c0fc35d756c0ac7d76",
+        "originalExcerpt": "Schilde absorbieren Endschaden vor LP. Mehrere Schilde bilden einen gemeinsamen Schildpool, behalten aber ihre eigene Ablaufzeit; zuerst läuft/verbrauchte Quelle wird zuerst abgebaut."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-026"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0063",
+      "title": "Heilung darf LP nicht über das Maximum erhöhen; Überheilung verfällt, sofern ...",
+      "statement": "Heilung darf LP nicht über das Maximum erhöhen; Überheilung verfällt, sofern keine Fähigkeit sie in Schild umwandelt.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:102",
+        "quoteHash": "sha256:213865015f49425bb9fbdfbd7a315fa32c9bee67face11e5d1464599a591075c",
+        "originalExcerpt": "Heilung kann LP nicht über das Maximum erhöhen. Überheilung verfällt, außer eine Fähigkeit wandelt sie ausdrücklich in Schild um."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-027"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0064",
+      "title": "Angriffsintervall darf nicht unter 0,45 Sekunden sinken; Bewegungsgeschwindig...",
+      "statement": "Angriffsintervall darf nicht unter 0,45 Sekunden sinken; Bewegungsgeschwindigkeit nie unter 2,0 und nie über 14,0.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:103",
+        "quoteHash": "sha256:9332d20c11a1cff66be310250daa3cc6bb836efdb76def4038fec15dc49b20fe",
+        "originalExcerpt": "Angriffsgeschwindigkeit verändert das gesamte Intervall, aber nie unter 0,45 Sekunden. Bewegungsgeschwindigkeit nie unter 2,0 und nie über 14,0."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-028"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "min": 0.45,
+          "target": "attack_interval_floor"
+        },
+        {
+          "unit": "s",
+          "min": 2,
+          "max": 14,
+          "target": "movement_speed_range"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0065",
+      "title": "Jeder Kampf erhält einen gespeicherten Seed; gleiche Startdaten, Seed und Sim...",
+      "statement": "Jeder Kampf erhält einen gespeicherten Seed; gleiche Startdaten, Seed und Simulationsversion müssen dasselbe Ergebnis erzeugen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:120",
+        "quoteHash": "sha256:8dc6e94a2cf579fcb5db0e0365316d00cecdcf6b7f926c91dcb813fddb820bda",
+        "originalExcerpt": "Jeder Kampf erhält einen gespeicherten Seed. Gleiche Startdaten, Seed und Simulationsversion müssen dasselbe Ergebnis erzeugen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-029"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0066",
+      "title": "Beschwörungen allein dürfen einen Kampf nicht offen halten.",
+      "statement": "Beschwörungen allein dürfen einen Kampf nicht offen halten.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:121",
+        "quoteHash": "sha256:bbe1df7774e6a7a0b99c633c69829d2d7cb32aad1b0ae764b656cadeb71bbf2f",
+        "originalExcerpt": "Ein Kampf endet, sobald eine Seite keine kampffähige reguläre Einheit mehr besitzt. Beschwörungen allein halten den Kampf nicht offen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-030"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0067",
+      "title": "Ein Kampf endet, sobald eine Seite keine kampffähige reguläre Einheit mehr be...",
+      "statement": "Ein Kampf endet, sobald eine Seite keine kampffähige reguläre Einheit mehr besitzt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:121",
+        "quoteHash": "sha256:bbe1df7774e6a7a0b99c633c69829d2d7cb32aad1b0ae764b656cadeb71bbf2f",
+        "originalExcerpt": "Ein Kampf endet, sobald eine Seite keine kampffähige reguläre Einheit mehr besitzt. Beschwörungen allein halten den Kampf nicht offen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-031"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0068",
+      "title": "Das normale weiche Zeitlimit beträgt 90 Sekunden, das Bosslimit 120 Sekunden.",
+      "statement": "Das normale weiche Zeitlimit beträgt 90 Sekunden, das Bosslimit 120 Sekunden.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:122",
+        "quoteHash": "sha256:bc6bff1a3ebf456af8ec32522feb109d47ce0ba28cbd09485ea0925b0fa04e3a",
+        "originalExcerpt": "Normales weiches Zeitlimit: 90 Sekunden. Bosslimit: 120 Sekunden. Bei Erreichen beginnt der 15 Sekunden lange Riftkollaps."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-032"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "value": 90,
+          "target": "normal_soft_time_limit"
+        },
+        {
+          "unit": "s",
+          "value": 120,
+          "target": "boss_time_limit"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0069",
+      "title": "Während des Riftkollapses erhalten alle regulären Einheiten alle 3 Sekunden r...",
+      "statement": "Während des Riftkollapses erhalten alle regulären Einheiten alle 3 Sekunden reinen Schaden in Höhe von 8% ihrer maximalen LP; Heilung ist um 50% reduziert.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:123",
+        "quoteHash": "sha256:0c8223063b30f44f60abfdd5d886c4b36d830b206e6a2ee4861afb86ff449acb",
+        "originalExcerpt": "Während des Riftkollapses erhalten alle regulären Einheiten alle 3 Sekunden reinen Schaden in Höhe von 8% ihrer maximalen LP; Heilung ist um 50% reduziert."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-033"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "pct",
+          "value": 8,
+          "target": "rift_collapse_pure_damage_pct"
+        },
+        {
+          "unit": "pct",
+          "value": 50,
+          "target": "rift_collapse_healing_reduction_pct"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0070",
+      "title": "Sind nach Riftkollaps beide Seiten noch regulär kampffähig, gewinnt die Seite...",
+      "statement": "Sind nach Riftkollaps beide Seiten noch regulär kampffähig, gewinnt die Seite mit höherer Summe aus verbleibenden LP-Prozenten plus halbem Schild-Prozent.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:124",
+        "quoteHash": "sha256:8d9f06b13be48c884931f642060913e785e53244d0137fe46f475813b6edc13c",
+        "originalExcerpt": "Sind nach weiteren 15 Sekunden beide Seiten noch regulär kampffähig, gewinnt die Seite mit höherer Summe aus verbleibenden LP-Prozenten plus halbem Schild-Prozent. Exakter Gleichstand gilt als Niederlage des Spielers, wird aber als Sondergrund ausgewiesen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-034"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0071",
+      "title": "Ein exakter Gleichstand darf nicht als Sieg des Spielers gelten.",
+      "statement": "Ein exakter Gleichstand darf nicht als Sieg des Spielers gelten.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:124",
+        "quoteHash": "sha256:8d9f06b13be48c884931f642060913e785e53244d0137fe46f475813b6edc13c",
+        "originalExcerpt": "Sind nach weiteren 15 Sekunden beide Seiten noch regulär kampffähig, gewinnt die Seite mit höherer Summe aus verbleibenden LP-Prozenten plus halbem Schild-Prozent. Exakter Gleichstand gilt als Niederlage des Spielers, wird aber als Sondergrund ausgewiesen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-035"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0072",
+      "title": "Tiebreak-Reihenfolge ohne Zufall: höchster Zielscore, geringste Distanz, nied...",
+      "statement": "Tiebreak-Reihenfolge ohne Zufall: höchster Zielscore, geringste Distanz, niedrigste verbleibende LP in absoluten Punkten, niedrigste stabile Entity-ID.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:125",
+        "quoteHash": "sha256:d4c48d8d7ae5374f6e9d45eb534c912020255485573256c3c17601e0713963ef",
+        "originalExcerpt": "Tiebreak-Reihenfolge ohne Zufall: höchster Zielscore, geringste Distanz, niedrigste verbleibende LP in absoluten Punkten, niedrigste stabile Entity-ID."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-036"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-A-0073",
+      "title": "Geschwindigkeitsstufe, Pause, Kamera und reduzierte Effekte dürfen das Kampfe...",
+      "statement": "Geschwindigkeitsstufe, Pause, Kamera und reduzierte Effekte dürfen das Kampfergebnis nie verändern.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 6,
+        "section": null,
+        "locator": "block:126",
+        "quoteHash": "sha256:577c572a717e0c7f4917d9a3adcd927b071afe7b6c63c3e0d30509174136829f",
+        "originalExcerpt": "Geschwindigkeitsstufe, Pause, Kamera und reduzierte Effekte dürfen das Ergebnis nie verändern."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-037"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ],
+  "contextOnly": [
+    {
+      "chapter": 7,
+      "reason": "Chapter 7 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 8,
+      "reason": "Chapter 8 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 9,
+      "reason": "Chapter 9 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 10,
+      "reason": "Chapter 10 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 11,
+      "reason": "Chapter 11 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 12,
+      "reason": "Chapter 12 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 13,
+      "reason": "Chapter 13 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 14,
+      "reason": "Chapter 14 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 15,
+      "reason": "Chapter 15 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 16,
+      "reason": "Chapter 16 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 17,
+      "reason": "Chapter 17 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 18,
+      "reason": "Chapter 18 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 19,
+      "reason": "Chapter 19 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 20,
+      "reason": "Chapter 20 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 21,
+      "reason": "Chapter 21 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 22,
+      "reason": "Chapter 22 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 23,
+      "reason": "Chapter 23 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 24,
+      "reason": "Chapter 24 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 25,
+      "reason": "Chapter 25 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 26,
+      "reason": "Chapter 26 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 27,
+      "reason": "Chapter 27 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 28,
+      "reason": "Chapter 28 yielded no atomic normative statements beyond the ones already captured."
+    },
+    {
+      "chapter": 29,
+      "reason": "Chapter 29 yielded no atomic normative statements beyond the ones already captured."
+    }
+  ]
+}

@@ -1,0 +1,2323 @@
+{
+  "schemaVersion": "1.0",
+  "chunk": "c",
+  "chapterRange": {
+    "lo": 59,
+    "hi": 87
+  },
+  "requirements": [
+    {
+      "id": "REQ-TEMP-C-0001",
+      "title": "UTF-8 JSON Content-Layout",
+      "statement": "Alle Gameplayinhalte liegen als UTF-8 JSON ohne Kommentare unter src/game/content/data; eine Datei pro Entitätskategorie, große Pools nach Region geteilt.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1779",
+        "quoteHash": "sha256:8ef5dcadac4d9a7a1f79a3f9efae15d6406f3253d46d01a4edf411738c7dbe2f",
+        "originalExcerpt": "Alle Gameplayinhalte liegen als UTF-8 JSON ohne Kommentare unter src/game/content/data. Eine Datei pro Entitätskategorie, große Pools nach Region geteilt."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-SCHEMA-CONTENT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0002",
+      "title": "Zod-Schemas als SSOT",
+      "statement": "Zod-Schemas sind die Single Source of Truth; aus ihnen werden TypeScript-Typen, JSON Schemas und Dokumentationsreports generiert.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1780",
+        "quoteHash": "sha256:31b0e204134db14e9dbabe0494bce38c06c2a3d0b40cb9f979cf2d1d34a02b73",
+        "originalExcerpt": "Zod-Schemas sind SSOT. Aus ihnen werden TypeScript-Typen, JSON Schemas und Dokumentationsreports generiert."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-SCHEMA-ZOD-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0003",
+      "title": "Verbot Runtime-Namen-Suche",
+      "statement": "Der Build erzeugt immutable ContentIndex-Maps nach ID; Runtime-Suche über frei formulierte Namen ist verboten.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1781",
+        "quoteHash": "sha256:29b12cc30aa49e815120501a6653a33e13893cabc00c14f5241da289268829db",
+        "originalExcerpt": "Der Build erzeugt immutable ContentIndex-Maps nach ID. Runtime-Suche über frei formulierte Namen ist verboten."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-LOOKUP-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0004",
+      "title": "Sekundenwerte in Ticks",
+      "statement": "Sekundenwerte in Autorendaten werden einmal in ganze Ticks konvertiert; Rundung > 0,01 s wird als Warnung protokolliert.",
+      "norm": "SHOULD",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1782",
+        "quoteHash": "sha256:8d3ea3cfd62bc0dac9d42654b2b34172ca8216af54a8bbaa5fd5cbf855dd7765",
+        "originalExcerpt": "Alle Sekundenwerte in Autorendaten dürfen Dezimalzahlen sein; Loader wandelt sie einmal in ganze Ticks und protokolliert Rundung > 0,01 s als Warnung."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-LOADER-TICKS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "min": 0.01
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0005",
+      "title": "Lokalisierungs-Keys DE/EN",
+      "statement": "Localization Keys müssen in de und en existieren; Pseudo-Localization muss jedes Layout ohne unersetzte Schlüssel rendern.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1783",
+        "quoteHash": "sha256:845b1f091b3a0c7da5101fd65c174ee507081f56202c293ee764cbdaae679e72",
+        "originalExcerpt": "Localization Keys müssen in de und en existieren. Pseudo-Localization muss jedes Layout ohne unersetzte Schlüssel rendern."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-LOCALE-KEYS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0006",
+      "title": "Build-Validator Referenzen",
+      "statement": "Build-Validator „Referenzen\": harter Fehler bei unbekanntem Held, Effekt, Fähigkeit, Lootpool, Mission oder Localization Key.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:22c4f774a5ba967ef3669de6b1a4180bd1e894162e63b696560f9d0f6ccdc494",
+        "originalExcerpt": "Referenzen: Unbekannter Held, Effekt, Fähigkeit, Lootpool, Mission oder Localization Key."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-VALID-REF-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0007",
+      "title": "Build-Validator IDs",
+      "statement": "Build-Validator „IDs\": harter Fehler bei Duplikat, Großbuchstabe, Leerzeichen, nachträglich entfernter veröffentlichter ID ohne Migration.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:74eaeaa67db1a2a3e4a9804cc94935d3e9f3e955c51e572071ae159896addbd0",
+        "originalExcerpt": "IDs: Duplikat, Großbuchstabe, Leerzeichen, nachträglich entfernte veröffentlichte ID ohne Migration."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-VALID-IDS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0008",
+      "title": "Build-Validator Kampf",
+      "statement": "Build-Validator „Kampf\": harter Fehler bei negativer LP, Cooldown < 0,45 s ohne Ausnahme, ungültiger Phase, unendlicher Triggerkette.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:7d93ebff4250bd4a58946a636779d846f529aab6eee7ea7bf5100777e69f1efc",
+        "originalExcerpt": "Kampf: Negative LP, Cooldown < 0,45 s ohne Ausnahme, ungültige Phase, unendliche Triggerkette."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-VALID-COMBAT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "max": 0.45
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0009",
+      "title": "Build-Validator Formation",
+      "statement": "Build-Validator „Formation\": harter Fehler bei Überschreitung Plätze/Kopien/Helden, identischen Startfeldern, nicht erreichbarer Pflichtbahn.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:2dc5cec7e2d656e0656974904a42e6ca9b42d0249cc0d98d2b63b026f8eac599",
+        "originalExcerpt": "Formation: Mehr als Plätze/Kopien/Helden, identische Startfelder, nicht erreichbare Pflichtbahn."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-VALID-FORMATION-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0010",
+      "title": "Build-Validator Beschwörung",
+      "statement": "Build-Validator „Beschwörung\": harter Fehler bei mehr als sechs ohne Ersatzregel oder Rekursion ohne Safety Cap.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:827ce9a15e7008dcc6082f73d99aaa7a882113e35bb7f063bf5fb27bbb4b9202",
+        "originalExcerpt": "Beschwörung: Mehr als sechs ohne Ersatzregel, Rekursion ohne Safety Cap."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-VALID-SUMMON-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 6
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0011",
+      "title": "Build-Validator Dungeon",
+      "statement": "Build-Validator „Dungeon\": harter Fehler bei nicht erreichbarem Boss, fehlendem Anker, fehlender Vorbereitung, >13 sichtbaren oder >8 besuchten Knoten ohne Modusausnahme.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:280196344a5551c46f135d16d272844a803ee90dc3b4b8d91b6023f982f8fb6f",
+        "originalExcerpt": "Dungeon: Nicht erreichbarer Boss, kein Anker, keine Vorbereitung, >13 sichtbare oder >8 besuchte Knoten ohne Modusausnahme."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-VALID-DUNGEON-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 13
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0012",
+      "title": "Build-Validator Loot",
+      "statement": "Build-Validator „Loot\": harter Fehler bei leerem Pool, Erstbelohnung ohne Ersatz, nicht besitzbarem Item.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:de65a2b21b671034b051ccf24241b9e7e60dd7c24b8d39ad3c163f1338e01bc0",
+        "originalExcerpt": "Loot: Leerer Pool, Erstbelohnung ohne Ersatz, nicht besitzbares Item."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-VALID-LOOT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0013",
+      "title": "Build-Validator Text",
+      "statement": "Build-Validator „Text\": harter Fehler bei fehlender Sprache, Kurztooltip >220 Zeichen, Buttonlabel >30 Zeichen ohne approved compact variant.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:b6853eed8231ede57ba75a3510e0d4feefb0a9925584d824bceb5810f9fe7362",
+        "originalExcerpt": "Text: Fehlende Sprache, Kurztooltip >220 Zeichen, Buttonlabel >30 Zeichen ohne approved compact variant."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-VALID-TEXT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 220
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0014",
+      "title": "Build-Validator Assets",
+      "statement": "Build-Validator „Assets\": harter Fehler bei fehlendem Manifest, Atlas >2048, unbekanntem Audio Cue, nicht lizenziertem Asset.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:1d164b6048186d98c3af2d660deea4b4c7fd2b875239c5db55ed5261de0116ff",
+        "originalExcerpt": "Assets: Fehlendes Manifest, Atlas >2048, unbekannter Audio Cue, nicht lizenziertes Asset."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-VALID-ASSETS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "px",
+          "max": 2048
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0015",
+      "title": "Build-Validator Store",
+      "statement": "Build-Validator „Store\": harter Fehler, wenn Produktionsbuild server.url, INTERNET-Permission, Debuggable, Remote Script oder verbotenen SDK-Identifier enthält.",
+      "norm": "MUST_NOT",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:193dd976e9d61f997a11bf68ecb3437b581f4c26a3e022b7b902dd0c98e402a4",
+        "originalExcerpt": "Store: Produktionsbuild enthält server.url, INTERNET-Permission, Debuggable, Remote Script oder verbotenen SDK-Identifier."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-VALID-STORE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0016",
+      "title": "Release-Sprachen DE/EN",
+      "statement": "Release-Sprachen sind Deutsch und Englisch; Deutsch ist narrative Autorensprache, Englisch ist vollständig geprüfte Parität ohne maschinelle Rohübersetzung im Release.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1790",
+        "quoteHash": "sha256:84107e0adbf8b351ff4de6d0d4af88455f486ab7a9f301bcd33f92c428016647",
+        "originalExcerpt": "Release-Sprachen sind Deutsch und Englisch. Deutsch ist narrative Autorensprache; Englisch ist vollständig geprüfte Parität, keine maschinelle Rohübersetzung im Release."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-LOCALE-PARITY-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0017",
+      "title": "Strings außerhalb Code/ICU",
+      "statement": "Alle sichtbaren Strings liegen außerhalb des Codes; ICU MessageFormat wird für Plural, Zahl und grammatische Varianten verwendet.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1791",
+        "quoteHash": "sha256:2748a7d68d91c4f7f0560fa03003ad7d9bc545d858ad0545ca4ecd30387849b5",
+        "originalExcerpt": "Alle sichtbaren Strings liegen außerhalb des Codes. ICU MessageFormat wird für Plural, Zahl und grammatische Varianten verwendet."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-LOCALE-ICU-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0018",
+      "title": "Richtungsangaben vermeiden",
+      "statement": "Richtungsbegriffe links/rechts werden in Gameplaytexten vermieden; Spieler/Gegner, oben/Mitte/unten bleiben eindeutig bei Spiegelung.",
+      "norm": "SHOULD",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1792",
+        "quoteHash": "sha256:24529dca0ee97b17d2d480bd57fbacf1f61ccdc05381394bb3191bad71fa851b",
+        "originalExcerpt": "Richtungsbegriffe links/rechts werden in Gameplaytexten vermieden; Spieler/Gegner, oben/Mitte/unten bleiben eindeutig bei Spiegelung."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-LOCALE-DIRECTION-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0019",
+      "title": "UI-Labels mit Compact",
+      "statement": "UI-Labels besitzen eine kurze und optional compact Variante; Text darf nicht durch kleinere Schrift passend gemacht werden, solange eine Reflow-/Compact-Lösung möglich ist.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1793",
+        "quoteHash": "sha256:da3ea64f41dcee3571e21755d5684a00162b3e4ed59ab969e841a532f70ff31f",
+        "originalExcerpt": "UI-Labels besitzen eine kurze und optional compact Variante. Kein Agent darf Text durch kleinere Schrift passend machen, solange eine Reflow-/Compact-Lösung möglich ist."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-LOCALE-COMPACT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0020",
+      "title": "Fehlende Übersetzung Buildfehler",
+      "statement": "Fehlende Übersetzung zeigt im Development den Key in Magenta und ist im Release ein Buildfehler.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1794",
+        "quoteHash": "sha256:0dd7072f1e1f2e3883bd0af168ecc92a16973a193b7221631491ebaa4ec95d29",
+        "originalExcerpt": "Fehlende Übersetzung zeigt im Development den Key in Magenta und ist im Release ein Buildfehler."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-LOCALE-MISSING-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0021",
+      "title": "Pseudo-Locale",
+      "statement": "Pseudo-Locale erweitert Texte um 35%, setzt Akzente und markiert Start/Ende; alle Screens werden damit im visuellen Test gerendert.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1795",
+        "quoteHash": "sha256:437b9fe23802785035c6726ede8108fac9346866f55afb0953dd9f571702c43c",
+        "originalExcerpt": "Pseudo-Locale erweitert Texte um 35%, setzt Akzente und markiert Start/Ende. Alle Screens werden damit im visuellen Test gerendert."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-LOCALE-PSEUDO-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "pct",
+          "min": 35
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0022",
+      "title": "Textlänge Primärbutton DE",
+      "statement": "Texttyp „Primärbutton\": maximal 30 Zeichen DE.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:2bc388a8a2acad4b45b0fed2291ea14bf26a938ec229ee845d60479b695783c0",
+        "originalExcerpt": "Primärbutton: 30 Zeichen DE; 24 EN oder Compact Key."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-LOCALE-BTNDE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 30
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0023",
+      "title": "Textlänge Primärbutton EN",
+      "statement": "Texttyp „Primärbutton\" EN: maximal 24 Zeichen oder Compact Key.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:2bc388a8a2acad4b45b0fed2291ea14bf26a938ec229ee845d60479b695783c0",
+        "originalExcerpt": "Primärbutton: 30 Zeichen DE; 24 EN oder Compact Key."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-LOCALE-BTNEN-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 24
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0024",
+      "title": "Textlänge Kurztooltip",
+      "statement": "Texttyp „Kurztooltip\": maximal 220 Zeichen inklusive Leerzeichen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:dcf4aff83dc66992e007e4c9414a3c31bbedc69ef4c92234def5f00b0f798665",
+        "originalExcerpt": "Kurztooltip: 220 Zeichen inklusive Leerzeichen."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-LOCALE-TOOLTIP-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 220
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0025",
+      "title": "Textlänge Kartentext",
+      "statement": "Texttyp „Kartentext\": Titel 34; Unterzeile 60; Effekt 180 Zeichen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:bab2973f1e1fb3bbf9ffb845151ec11826f203bad5ada63e0ddae516d202518e",
+        "originalExcerpt": "Kartentext: Titel 34; Unterzeile 60; Effekt 180 Zeichen."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-LOCALE-CARD-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 180
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0026",
+      "title": "Textlänge Ereignisintro",
+      "statement": "Texttyp „Ereignisintro\": 480 Zeichen, maximal zwei Absätze.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:ac6748ff5c2f58761957a9b92e0ba46e2f277ee751fff76031774dae93f0f4a9",
+        "originalExcerpt": "Ereignisintro: 480 Zeichen, max. zwei Absätze."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-LOCALE-EVTINTRO-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 480
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0027",
+      "title": "Textlänge Ereignisoption",
+      "statement": "Texttyp „Ereignisoption\": Titel 46; Folge 180 Zeichen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:0a61d6b25bc059ec6a7d9b6e90673ea64705dfe6bc7da03df72784613048a6a9",
+        "originalExcerpt": "Ereignisoption: Titel 46; Folge 180 Zeichen."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-LOCALE-EVTOPT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 180
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0028",
+      "title": "Textlänge Pip-Hinweis",
+      "statement": "Texttyp „Pip-Hinweis\": Zwei Sätze, zusammen <= 180 Zeichen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:846a8d88d679ac2fcb1c9e604a6e7143c2d45c4e63ea7945bf127d8ff722b25f",
+        "originalExcerpt": "Pip-Hinweis: Zwei Sätze, zusammen <= 180 Zeichen."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-LOCALE-PIP-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 180
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0029",
+      "title": "Textlänge Bossvorschau",
+      "statement": "Texttyp „Bossvorschau\": Vier Kernbullets je <= 120 Zeichen plus Details.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:6a2b17d41a7192c28c0fa6ef7bd548e35c87942b9077537fe22f11cb7d1f6435",
+        "originalExcerpt": "Bossvorschau: Vier Kernbullets je <= 120 Zeichen plus Details."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-LOCALE-BOSSPREVIEW-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 120
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0030",
+      "title": "Textlänge Untertitel",
+      "statement": "Texttyp „Untertitel\": Max. 42 Zeichen pro Zeile, zwei Zeilen; Lesedauer min. 1,2 s.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:178e4ff335c21ffa6ec3327511f0f2e61e2a69fb8bc45377a06676d8fc0e9704",
+        "originalExcerpt": "Untertitel: Max. 42 Zeichen pro Zeile, zwei Zeilen; Lesedauer min. 1,2 s."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-LOCALE-SUBTITLE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "min": 1.2
+        },
+        {
+          "unit": "chars",
+          "max": 42
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0031",
+      "title": "Keine Datenerhebung",
+      "statement": "Die Release-App sammelt, überträgt oder teilt keine Nutzer-, Geräte-, Werbe-, Standort-, Nutzungs- oder Diagnosedaten; es existiert kein Backend.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1800",
+        "quoteHash": "sha256:8d2b0a7052a726d55e2d9e22b8d1279458a0d17d5f65ef20380616eaf31c52c9",
+        "originalExcerpt": "Die Release-App sammelt, überträgt oder teilt keine Nutzer-, Geräte-, Werbe-, Standort-, Nutzungs- oder Diagnosedaten. Es existiert kein Backend."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-SEC-PRIVACY-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0032",
+      "title": "Lokale Logs/Diagnose",
+      "statement": "Alle Statistiken, Replays und Logs bleiben lokal; Diagnoseexport erfolgt nur nach expliziter Nutzeraktion und zeigt vor dem Systemdialog den enthaltenen Umfang.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1801",
+        "quoteHash": "sha256:410790ce7c3f2cb0a07873015d30c471b72f7c59d56a74e6737a6c0182fb5f62",
+        "originalExcerpt": "Alle Statistiken, Replays und Logs bleiben lokal. Diagnoseexport erfolgt nur nach expliziter Nutzeraktion und zeigt vor dem Systemdialog den enthaltenen Umfang."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "UT-SEC-LOGS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0033",
+      "title": "Verbot Identifier",
+      "statement": "Es werden keine Advertising ID, IDFV, Android ID, Install Referrer, IP-Logging, Fingerprinting oder Geräteidentifier gelesen.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1802",
+        "quoteHash": "sha256:f45c0d9aac8f06d284e63123fd4aff787f0281248abdcda571dc054f3a4d7856",
+        "originalExcerpt": "Keine Advertising ID, IDFV, Android ID, Install Referrer, IP-Logging, Fingerprinting oder Geräteidentifier werden gelesen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-SEC-IDS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0034",
+      "title": "Datenschutzdeklaration konsistent",
+      "statement": "Datenschutzseite und Store-Deklarationen bilden „keine Datenerhebung/-weitergabe\" widerspruchsfrei ab; Drittbibliotheken werden vor Release auf Netzwerk- und Identifierzugriff geprüft.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1803",
+        "quoteHash": "sha256:eff9e04a0521dad2f66c4971085ecd81132a42d04d67ad74511f4095a0e45d9d",
+        "originalExcerpt": "Die Datenschutzseite und die Store-Deklarationen müssen „keine Datenerhebung/-weitergabe\" widerspruchsfrei abbilden. Drittbibliotheken werden vor Release auf Netzwerk- und Identifierzugriff geprüft."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-SEC-PRIVACYDECL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0035",
+      "title": "Externe Links Systembrowser",
+      "statement": "Externe Datenschutz-, Support- und Lizenzlinks öffnen im Systembrowser; die App lädt deren Inhalte nicht in einen kontrollierten WebView.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1804",
+        "quoteHash": "sha256:e0d042f0532e5f974733007cc18cb8d4a3125c3c062adcf759932a1dfdfd22ba",
+        "originalExcerpt": "Externe Datenschutz-, Support- und Lizenzlinks öffnen im Systembrowser. Die App lädt deren Inhalte nicht in einen kontrollierten WebView."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-SEC-LINKS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0036",
+      "title": "Produktions-CSP",
+      "statement": "Produktions-CSP: default-src self; img-src self data: blob:; media-src self blob:; font-src self; style-src self unsafe-inline; script-src self; connect-src none; object-src none; frame-src none; base-uri none; form-action none.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1806",
+        "quoteHash": "sha256:85b3ec0abe98599d64b38ff5b253d12307a854472dfb9e1c47c124fb90b65824",
+        "originalExcerpt": "default-src 'self'; img-src 'self' data: blob:; media-src 'self' blob:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-SEC-CSP-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0037",
+      "title": "connect-src none Pflicht",
+      "statement": "connect-src none ist im Produktionsbuild Pflicht; jeder unbeabsichtigte fetch/WebSocket/EventSource schlägt sichtbar im Test fehl.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1807",
+        "quoteHash": "sha256:442b7c20c038157020a6518ee479f030024c9817f773271b5bc19683b02b2b33",
+        "originalExcerpt": "connect-src none ist im Produktionsbuild Pflicht. Jeder unbeabsichtigte fetch/WebSocket/EventSource schlägt sichtbar im Test fehl."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-SEC-CONNECT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0038",
+      "title": "capacitor.config produktionsfest",
+      "statement": "capacitor.config enthält im Release keine server.url, cleartext, allowNavigation oder mixed content; WebView-Debugging ist deaktiviert.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1808",
+        "quoteHash": "sha256:4d19bf8b0509c73d6deebbba2280027fb8c1d3f760667d153a069cdd1d3eb79f",
+        "originalExcerpt": "capacitor.config enthält im Release keine server.url, cleartext, allowNavigation oder mixed content. WebView-Debugging ist deaktiviert."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-SEC-CAPCONFIG-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0039",
+      "title": "Android INTERNET entfernt",
+      "statement": "Android INTERNET-Permission wird im finalen Manifest entfernt; VIBRATE ist die einzige optionale normale Permission; keine Runtime-Permissions.",
+      "norm": "MUST_NOT",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1809",
+        "quoteHash": "sha256:44e19eec5b505681f974b9ed6969fecffa228043695f2f6ee570e0e9e017fa02",
+        "originalExcerpt": "Android INTERNET-Permission wird im finalen Manifest entfernt. VIBRATE ist die einzige optionale normale Permission; keine Runtime-Permissions."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-AND-INTERNET-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0040",
+      "title": "iOS Privacy Manifest minimal",
+      "statement": "iOS besitzt keine unnötigen Entitlements; PrivacyInfo.xcprivacy nennt nur tatsächlich genutzte Required-Reason APIs aus Capacitor/Plugins.",
+      "norm": "MUST_NOT",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1810",
+        "quoteHash": "sha256:95c38ac9134db8934119f223048fe8b04f41bdb97c8bfc0b33be8b99ca3ae44d",
+        "originalExcerpt": "iOS besitzt keine unnötigen Entitlements. PrivacyInfo.xcprivacy nennt nur tatsächlich genutzte Required-Reason APIs aus Capacitor/Plugins."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-IOS-ENTITLE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0041",
+      "title": "Verbot eval/Remote Script",
+      "statement": "Keine eval/new Function/dynamische Scriptinjektion; Sourcemaps werden intern archiviert, nicht öffentlich mitgeliefert.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1811",
+        "quoteHash": "sha256:1e97a6c30b3eb97a98510ffdb3942bf47a0f3237e6cd72cfdac510905e578426",
+        "originalExcerpt": "Keine eval/new Function/dynamische Scriptinjektion. Sourcemaps werden intern archiviert, nicht öffentlich mitgeliefert."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-SEC-EVAL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0042",
+      "title": "Dependency-Aufnahmeprüfung",
+      "statement": "Nur direkte Dependencies mit klarer Funktion; neue Dependency benötigt Lizenz-, Größe-, Netzwerk-, Permission- und Maintenance-Prüfung.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1813",
+        "quoteHash": "sha256:eadce53a83b0748ad290b6013cd65fbb4a0cae1791987edb9ffb20499c764840",
+        "originalExcerpt": "Nur direkte Dependencies mit klarer Funktion. Neue Dependency benötigt Lizenz-, Größe-, Netzwerk-, Permission- und Maintenance-Prüfung."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-SEC-DEPS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0043",
+      "title": "CI Dependency-Audit",
+      "statement": "CI führt pnpm audit oder gleichwertigen Advisory-Scan aus; kritische/hohe ausnutzbare Findings blockieren Release.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1814",
+        "quoteHash": "sha256:8a0397d24039b7743d227daa061b99ebf965c03e40cd2272fbc1e93c0c7e7652",
+        "originalExcerpt": "CI führt pnpm audit oder gleichwertigen Advisory-Scan aus. Kritische/hohe ausnutzbare Findings blockieren Release."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-SEC-AUDIT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0044",
+      "title": "Buildprovenienz archiviert",
+      "statement": "Alle Store-Artefakte werden aus clean checkout mit frozen lockfile gebaut; Buildprovenienz, Commit und Dependencyliste werden archiviert.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1815",
+        "quoteHash": "sha256:faa853a90956b2f087356299589d5e32dd6e923f56a7a95d4d0399a560d28407",
+        "originalExcerpt": "Alle Store-Artefakte werden aus clean checkout mit frozen lockfile gebaut. Buildprovenienz, Commit und Dependencyliste werden archiviert."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-SEC-PROVENANCE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0045",
+      "title": "Asset-Lizenznachweis",
+      "statement": "Drittanbieterassets benötigen Lizenzdatei, Quelle, Autor und kommerzielle Nutzungsfreigabe im Assetmanifest.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1816",
+        "quoteHash": "sha256:095ad559a98b4e44bd6ac15a5153b449be27d3070530690db03208ea16cd28c6",
+        "originalExcerpt": "Drittanbieterassets benötigen Lizenzdatei, Quelle, Autor und kommerzielle Nutzungsfreigabe im Assetmanifest."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "UT-SEC-ASSETLIC-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0046",
+      "title": "Android minSdk 24",
+      "statement": "minSdk ist 24 (Android 7.0), entsprechend Capacitor-8-Minimum.",
+      "norm": "MUST",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:327d847731fd73fecfae59f28a295516311d82c038e6d64c9ac411f9e414530d",
+        "originalExcerpt": "minSdk | 24 (Android 7.0), entsprechend Capacitor-8-Minimum."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-AND-MINSDK-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "api",
+          "min": 24
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0047",
+      "title": "Android compile/target API",
+      "statement": "compile/target ist 36; vor Storeupload wird auf aktuell von Play verlangte oder höhere stabile API geprüft.",
+      "norm": "MUST",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:44cec36f4659002d1a73c8e897303bc68c785fa8c47f0b47217b579c0f80ccba",
+        "originalExcerpt": "compile/target | 36; vor Storeupload auf aktuell von Play verlangte oder höhere stabile API prüfen."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-AND-COMPILE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "api",
+          "min": 36
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0048",
+      "title": "AAB Verpackung",
+      "statement": "Android App Bundle .aab; Play App Signing aktiv; kein APK als Produktionsupload.",
+      "norm": "MUST",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:a945e2d0c4f7f69d32eff6ab2aeeb2461a78eea0c0fc97babcdeee86ba4db643",
+        "originalExcerpt": "Packaging | Android App Bundle .aab; Play App Signing aktiv; kein APK als Produktionsupload."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-AND-AAB-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0049",
+      "title": "Release-ABI-Slices",
+      "statement": "Release-AAB enthält arm64-v8a und armeabi-v7a, sofern Native-Code ABI-Slices erzeugt; beide müssen 16-KB-seitensicher sein; x86_64 ist ausschließlich für Emulator-/QA-Builds und wird nicht als Production-Slice ausgeliefert.",
+      "norm": "MUST",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:9d4064606a2cb0fa10d85b66bf965f4d2e210f9d79146ceb6a63c0c7e09cc913",
+        "originalExcerpt": "ABI | Release-AAB enthält arm64-v8a und armeabi-v7a, sofern Native-Code ABI-Slices erzeugt; beide müssen 16-KB-seitensicher sein. x86_64 ist ausschließlich für Emulator-/QA-Builds und wird nicht als Production-Slice ausgeliefert."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-AND-ABI-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0050",
+      "title": "16-KB-Seiten Gate",
+      "statement": "Alle Native-Libs sind 16-KB-kompatibel; bundletool/APK Analyzer und 16-KB-Testgerät/Emulator sind Gate.",
+      "norm": "MUST",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:26093df03fb67a0d179303ae01b44bedd0ae6453944e35a38c0172d4cfa8fb29",
+        "originalExcerpt": "16-KB-Seiten | Alle Native-Libs kompatibel; bundletool/APK Analyzer und 16-KB-Testgerät/Emulator als Gate."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-AND-16KB-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0051",
+      "title": "Edge-to-edge Safe Areas",
+      "statement": "Edge-to-edge: SystemBars + CSS safe areas; keine abgeschnittenen Buttons unter Status-/Navigationsbar.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:babe11348a1bd3b9809e59d35f50bc782b7c1c284de12a606c8ddf25faa243a8",
+        "originalExcerpt": "Edge-to-edge | SystemBars + CSS safe areas; keine abgeschnittenen Buttons unter Status-/Navigationsbar."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-AND-EDGE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0052",
+      "title": "Android Orientierung adaptiv",
+      "statement": "Landscape-Präferenz auf Telefon; resizable/adaptive für Tablets, Foldables, Desktop Windows; kein dauerhaftes Opt-out.",
+      "norm": "SHOULD",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:8eaee55b7d17120b8665737879ce8ee0c36cfa8e9b97132e8825b26e270c46a6",
+        "originalExcerpt": "Orientierung | Landscape-Präferenz auf Telefon; resizable/adaptive für Tablets, Foldables, Desktop Windows. Kein dauerhaftes Opt-out."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-AND-ORIENT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0053",
+      "title": "Android Predictive Back",
+      "statement": "Predictive/gesture back durch Capacitor App Adapter und Navigationsstack; keine App-interne Fake-Systemgeste.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:e6cbc34f722c722fe43ca8623d43aa54f047e36c6ffa8831e5fbe29b17f9512e",
+        "originalExcerpt": "Back | Predictive/gesture back durch Capacitor App Adapter und Navigationsstack; keine App-interne Fake-Systemgeste."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-AND-BACK-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0054",
+      "title": "Android Backup deaktiviert",
+      "statement": "android:allowBackup=false und DataExtractionRules schließen Saves aus Cloud-/Device-Transfer aus; manueller Export ist vorhanden.",
+      "norm": "MUST_NOT",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:af3589bcfd14e4ed080c895a0aca22471287983d58e492a0c195e5f25ed38848",
+        "originalExcerpt": "Backup | android:allowBackup=false und DataExtractionRules schließen Saves aus Cloud-/Device-Transfer aus; manueller Export vorhanden."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "UT-AND-BACKUP-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0055",
+      "title": "Android Permissions minimal",
+      "statement": "Keine gefährlichen Permissions; INTERNET im Production Manifest entfernt.",
+      "norm": "MUST_NOT",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:3cb7d58df6eb867f3132bb73561a41927d9de97ac1a4e305307e118c7cc1952c",
+        "originalExcerpt": "Permissions | Keine gefährlichen Permissions; INTERNET im Production Manifest entfernt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-AND-PERMS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0056",
+      "title": "Play-Console-Deklarationen",
+      "statement": "Play-Console-Deklarationen: Spiel, Einmalkauf, Data Safety keine Erhebung, keine Ads, kein Login, Fantasygewalt stilisiert, allgemeines Publikum.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1822",
+        "quoteHash": "sha256:31600e89fb4b37002cf1332ded05b185545a50176c6f4b1322681f3df89e7e56",
+        "originalExcerpt": "Play-Console-Deklarationen | Spiel, Einmalkauf, Data Safety keine Erhebung, keine Ads, kein Login, Fantasygewalt stilisiert, allgemeines Publikum."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-AND-PLAYDECL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0057",
+      "title": "Android Store-Cert-Matrix",
+      "statement": "Android Store-Cert-Testmatrix wird vollständig durchlaufen: Install/Update, Launch/Resume, Back/Gesture, Rotation/Fold/Resize, Notch, Offline, Audio, Performance, Accessibility, 16 KB, Pre-launch, Vitals Ziel Crash <0,2% und ANR <0,1%.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1825",
+        "quoteHash": "sha256:aafc97d684f5134c98efcc50287724aaaa9f381aa898d23d681a3567b31903c2",
+        "originalExcerpt": "Android Store-Cert-Testmatrix: Install/Update, Launch/Resume, Back/Gesture, Rotation/Fold/Resize, Notch, Offline, Audio, Performance, Accessibility, 16 KB, Pre-launch, Vitals Ziel <0,2% Crash, <0,1% ANR."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-AND-CERTMATRIX-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "pct",
+          "max": 0.2
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0058",
+      "title": "Android Veröffentlichungsschritte",
+      "statement": "Android-Veröffentlichung folgt: Play-Developerkonto, interner Track, ggf. geschlossener Test, Data Safety, Production Access, gestaffelter Rollout 10%->25%->50%->100% nur wenn Vitals und Bewertungen keine Blocker zeigen.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1833",
+        "quoteHash": "sha256:6a451ce9ec021532b4ee2ea20a7146277e1d1e5783cf732ee82e8d63e75da95e",
+        "originalExcerpt": "Veröffentlichungsschritte: Play-Developerkonto, internen Track, ggf. geschlossener Test, Data Safety, Production Access, gestaffelter Rollout 10% -> 25% -> 50% -> 100%."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-AND-RELEASE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0059",
+      "title": "iOS Toolchain",
+      "statement": "Toolchain: Xcode 26 oder höher, iOS/iPadOS 26 SDK für Upload; Capacitor 8 SPM-Projekt.",
+      "norm": "MUST",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:4cdaee73c423058ca680b6bb12e83af665b5964812db865df09080d780d9a4c8",
+        "originalExcerpt": "Toolchain | Xcode 26 oder höher, iOS/iPadOS 26 SDK für Upload; Capacitor 8 SPM-Projekt."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-IOS-TOOLCHAIN-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0060",
+      "title": "iOS Deployment Target 15",
+      "statement": "Deployment Target ist iOS 15.0.",
+      "norm": "MUST",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:c39ac24f58e3baa0dfe51ec3f178b39bc2949e9c25178d2f1de1d717881e1422",
+        "originalExcerpt": "Deployment Target | iOS 15.0."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-IOS-DEPLOY-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "ios",
+          "min": 15
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0061",
+      "title": "iOS Universal App",
+      "statement": "iPhone und iPad Universal App; Landscape primär, adaptive Split/Stage-Manager-Layouts.",
+      "norm": "MUST",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:f4da04b128aef28d2bf13e12a98ddce4bf0ad113a41cfac3dd95893cc4d33adf",
+        "originalExcerpt": "Devices | iPhone und iPad Universal App; Landscape primär, adaptive Split/Stage-Manager-Layouts."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-IOS-DEVICE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0062",
+      "title": "iOS Bundle-ID",
+      "statement": "Bundle-ID com.ceegore.riftwarden; Version/Build strikt aufsteigend.",
+      "norm": "MUST",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:7f4ea705c582be71c15080230c89fd34708e62e9c01a3e6d653032c82eb9a535",
+        "originalExcerpt": "Bundle | com.ceegore.riftwarden; Version/Build strikt aufsteigend."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-IOS-BUNDLE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0063",
+      "title": "iOS Audio Session",
+      "statement": "AVAudioSession ambient, Background Audio Capability aus.",
+      "norm": "MUST",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:45b5631923d4b1343ed67120f43555997778ba5bca45925fa66083b4bd91d9c2",
+        "originalExcerpt": "Audio | AVAudioSession ambient, Background Audio Capability aus."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-IOS-AUDIO-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0064",
+      "title": "iOS Files",
+      "statement": "Application Support für Saves, excludeFromBackup=true; UIDocumentPicker für Transfer.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:b669c048cde6d06e364f12798c1f5eb1841596d3806623960dfd1c91f19870ef",
+        "originalExcerpt": "Files | Application Support für Saves, excludeFromBackup=true; UIDocumentPicker für Transfer."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "UT-IOS-FILES-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0065",
+      "title": "iOS Privacy Manifest",
+      "statement": "PrivacyInfo.xcprivacy im App-Target und alle SDK-Manifeste werden geprüft; Approved Reasons werden dokumentiert.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:5daf5ea888892b270059595221d360b3a74ede3445045f0820e9897ac109c558",
+        "originalExcerpt": "Privacy Manifest | PrivacyInfo.xcprivacy im App-Target und alle SDK-Manifeste prüfen; Approved Reasons dokumentieren."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-IOS-PRIVACY-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0066",
+      "title": "iOS Network minimal",
+      "statement": "Keine ATS-Ausnahmen, keine Remote Endpoints, keine Tracking-Domains.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:f560d9bf7ea39d498302fef3f3d204720e644a8b12c79d79a7a64a2054836b2d",
+        "originalExcerpt": "Network | Keine ATS-Ausnahmen, keine Remote Endpoints, keine Tracking-Domains."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-IOS-NET-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0067",
+      "title": "iOS Entitlements minimal",
+      "statement": "Keine Game Center, iCloud, Push, Sign in with Apple oder Background Modes in V1.",
+      "norm": "MUST_NOT",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:4fc65ca85b6a821bb4c19362c513f2cbbb3984601a00bec1d45d377ee4d995b1",
+        "originalExcerpt": "Entitlements | Keine Game Center, iCloud, Push, Sign in with Apple oder Background Modes in V1."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-IOS-ENTITLE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0068",
+      "title": "iOS ASC-Deklarationen",
+      "statement": "App-Store-Connect-Deklarationen: Data Not Collected; Age Rating Fantasy Violence infrequent/mild; Paid App ohne IAP; vollständige Review Notes mit Offline-Hinweis; öffentliche Support- und Privacy-URLs; EU Traderstatus vor Veröffentlichung bestätigt.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1839",
+        "quoteHash": "sha256:7b9e19d43d9287008d28036d17da22ea729d3be86040ca62eff149e2f0b5f51c",
+        "originalExcerpt": "App-Store-Connect-Deklarationen: Data Not Collected, Age Rating Fantasy Violence: infrequent/mild nach tatsächlicher Darstellung; Paid App; vollständige Review Notes; öffentliche Support- und Privacy-URLs; EU Traderstatus."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-IOS-ASCDECL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-C-0069",
+      "title": "iOS Store-Cert-Matrix",
+      "statement": "iOS Store-Cert-Testmatrix wird vollständig durchlaufen: Install/Upgrade, Lifecycle, Orientation/Multitasking, Safe Areas, Audio, Accessibility, Review Completeness, Privacy, Energy.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1842",
+        "quoteHash": "sha256:38ffb15195b1560b4f6b642af4da947c3d55a30fdb6abd3e6e4ab8075bec168f",
+        "originalExcerpt": "iOS Store-Cert-Testmatrix: Install/Upgrade, Lifecycle, Orientation/Multitasking, Safe Areas, Audio, Accessibility, Review Completeness, Privacy, Energy."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-IOS-CERTMATRIX-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ],
+  "contextOnly": []
+}
