@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "defaultBranch": "main",
+  "requiredChecks": [
+    "verify-repo",
+    "file-length-check",
+    "text-normalization",
+    "repo-tests"
+  ],
+  "strictUpToDate": true,
+  "note": "Phase 03 expands this bootstrap list to the complete CI status-check contract."
+}

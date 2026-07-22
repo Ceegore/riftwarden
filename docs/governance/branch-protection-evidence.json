@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "provider": "REPLACE_WITH_PROVIDER",
+  "repository": "REPLACE_WITH_OWNER_AND_REPOSITORY",
+  "defaultBranch": "main",
+  "capturedAtUtc": "REPLACE_WITH_UTC_TIMESTAMP",
+  "sourceRevision": "REPLACE_WITH_FULL_GIT_SHA",
+  "rules": {
+    "pullRequestRequired": false,
+    "minimumApprovals": 0,
+    "dismissStaleApprovals": false,
+    "requireCodeOwnerReview": false,
+    "requireLastPushApprovalByOtherUser": false,
+    "requiredStatusChecks": [],
+    "strictStatusChecks": false,
+    "conversationResolutionRequired": false,
+    "linearHistoryRequired": false,
+    "forcePushAllowed": true,
+    "deletionAllowed": true,
+    "adminBypassAllowed": true
+  },
+  "evidenceFiles": [],
+  "reviewedBy": "REPLACE_WITH_REVIEWER",
+  "reviewedAtUtc": "REPLACE_WITH_UTC_TIMESTAMP"
+}

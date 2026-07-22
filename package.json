@@ -1,0 +1,24 @@
+{
+  "name": "riftwarden-auto-rpg-roguelite",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Riftwarden repository bootstrap. Application dependencies are frozen in Phase 02.",
+  "type": "module",
+  "packageManager": "pnpm@10.0.0",
+  "engines": {
+    "node": ">=22 <23",
+    "pnpm": ">=10 <11"
+  },
+  "scripts": {
+    "capture:preflight": "node tools/repo/capture-preflight.mjs",
+    "verify:repo": "node tools/repo/verify-root.mjs",
+    "verify:repo:json": "node tools/repo/verify-root.mjs --format=json --output=docs/reports/generated/repo-root-report.json",
+    "check:text-normalization": "node tools/repo/check-text-normalization.mjs",
+    "check:file-length": "node tools/check-file-length.mjs",
+    "check:file-length:json": "node tools/check-file-length.mjs --format=json --output=docs/reports/generated/file-length-report.json",
+    "check:file-length:sarif": "node tools/check-file-length.mjs --format=sarif --output=docs/reports/generated/file-length-report.sarif",
+    "verify:governance": "node tools/repo/verify-governance-evidence.mjs",
+    "test:repo": "node --test tests/unit/repo/*.test.mjs",
+    "verify:phase01": "node tools/repo/verify-phase01.mjs"
+  }
+}
