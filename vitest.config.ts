@@ -17,6 +17,15 @@ const aliases = {
 
 export default defineConfig({
   resolve: { alias: aliases },
+  define: {
+    __RW_BUILD_MANIFEST__: JSON.stringify({
+      channel: 'dev',
+      contentVersion: 'test-content-placeholder',
+      devtoolsEnabled: true,
+      sourceRevision: 'test-revision',
+      toolchainFreezeSha256: '0000000000000000000000000000000000000000000000000000000000000000',
+    }),
+  },
   test: {
     coverage: {
       provider: 'v8',
@@ -27,9 +36,9 @@ export default defineConfig({
     environment: 'node',
     passWithNoTests: false,
     projects: [
-      { test: { name: 'unit', include: ['tests/unit/**/*.test.ts'] } },
-      { test: { name: 'simulation', include: ['tests/simulation/**/*.test.ts'], sequence: { concurrent: false } } },
-      { test: { name: 'integration', include: ['tests/integration/**/*.test.ts'] } },
+      { test: { name: 'unit', include: ['tests/unit/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.ts'] } },
+      { test: { name: 'simulation', include: ['tests/simulation/**/*.test.ts'], sequence: { concurrent: false }, setupFiles: ['tests/setup/inject-build-manifest.ts'] } },
+      { test: { name: 'integration', include: ['tests/integration/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.ts'] } },
     ],
     reporters: ['default', ['junit', { outputFile: 'docs/reports/test-results/vitest-junit.xml' }]],
   },
