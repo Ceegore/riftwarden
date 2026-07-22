@@ -1,6 +1,23 @@
 {
   "schema_version": "1.0",
   "project_id": "riftwarden",
-  "updated_at": "2026-07-22T00:52:00Z",
-  "sessions": []
+  "updated_at": "2026-07-21T23:57:40Z",
+  "sessions": [
+    {
+      "session_id": "sess_c215af2b55824a95",
+      "actor": "M3_EXECUTOR",
+      "provider": "minimax",
+      "model": "MiniMax-M3",
+      "integration_mode": "api-supervisor",
+      "phase_id": "PHASE-00",
+      "work_package_id": "P00-T01",
+      "status": "FAILED",
+      "process_id": 41416,
+      "idempotency_key": "rw-p00-t01-v2-47e71cea",
+      "request_hash": "6cda2e3dec0e8aed25efc6026b4bef1d564cfc792bb698d859ddb5210e5b0759",
+      "started_at": "2026-07-21T23:46:19Z",
+      "last_heartbeat_at": "2026-07-21T23:57:40Z",
+      "usage": {}
+    }
+  ]
 }

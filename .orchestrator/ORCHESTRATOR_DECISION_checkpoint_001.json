@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "decision_id": "DEC-CHECKPOINT-001",
+  "project_id": "riftwarden",
+  "phase_id": "PHASE-00",
+  "work_package_id": "P00-T01",
+  "event_type": "CHECKPOINT_REVIEW",
+  "decision": "READY_WITH_DECLARED_LIMITATIONS",
+  "reasoning_summary": "Orchestration setup complete and proven: bundle validated, git repo initialized, GLM-5.2 as control plane, MiniMax-M3 driven via API-to-API supervisor adapter (Mode B). Adapter sandbox smoke (4 runs) proved model pinning, path/command policy enforcement, schema validation with self-repair, telemetry, secret redaction, tamper detection, crash recovery. Real-repo pilot P00-T01 ran through M3: GDD V5 frozen correctly (sha256 f550bdf3..., byteSize 232607), publisher confirmation correctly left pending (no fabrication), draft validator PASS with 0 errors, 0 open source markers. M3 exhausted the round budget before self-finalizing, so its report is supervisor-synthesized; GLM completion-reviewed the actual artifacts against acceptance criteria. The orchestration loop works end-to-end on the real repo. Limitation 1: G00 cannot PASS until publisher confirmation is provided (declared gap, not a defect). Limitation 2: 87 chapter headings remain requires_review (P00-T01 debt to clear in a follow-up dispatch). Limitation 3: M3 self-finalization within round budget is variable; mitigated by finalization nudge, supervisor-synthesized reports, and GLM artifact review.",
+  "evidence_reviewed": [
+    {"type": "BUNDLE_VALIDATION", "reference": ".orchestration_source validate_bundle.py", "finding": "BUNDLE VALID, 49 files, SHA-256 manifest matches"},
+    {"type": "M3_API", "reference": "live ping + tool-call roundtrip", "finding": "MiniMax-M3 at api.minimax.io/v1; model pinned per call; thinking/tool-calls/usage/cache all proven"},
+    {"type": "ADAPTER_SMOKE", "reference": ".orchestrator/artifacts/DRY_RUN_EVIDENCE_REPORT.json", "finding": "4 runs; core capabilities proven; READY_WITH_DECLARED_LIMITATIONS"},
+    {"type": "M3_EVIDENCE_REPORT", "reference": ".orchestrator/artifacts/P00-T01_evidence_report.json", "finding": "supervisor-synthesized (M3 exhausted rounds); status FAILED but actual work completed"},
+    {"type": "SOURCE_MANIFEST", "reference": "docs/requirements/source-manifest.json", "finding": "frozen; sha256 f550bdf3...6ed9; byteSize 232607; authorityStatus frozen; publisherConfirmation pending (correct)"},
+    {"type": "VALIDATION_REPORT", "reference": "docs/reports/phase-00-validation-draft.json", "finding": "result PASS; errors 0; warnings 0"},
+    {"type": "SCOPE_CHECK", "reference": "git diff a1a8a31", "finding": "all changes within docs/requirements + docs/reports write roots; no out-of-allowlist changes; no new dependencies; no secrets"}
+  ],
+  "risk_assessment": [
+    {"severity": "P1", "risk": "GAP-PUBLISHER-CONFIRMATION blocks G00 PASS", "disposition": "declared; operator must provide confirmation artifact; draft-mode work continues"},
+    {"severity": "P2", "risk": "P00-T01 chapter verification incomplete (0/87 verified)", "disposition": "ACCEPT_WITH_DECLARED_DEBT; clear in follow-up P00-T01 dispatch (heading verification is partly human-review per handbook)"},
+    {"severity": "P2", "risk": "M3 does not reliably self-finalize within round budget", "disposition": "mitigated by finalization nudge + supervisor-synthesized reports + GLM artifact review"}
+  ],
+  "next_action": "Pause for operator review of this checkpoint. On approval: (1) provide publisher confirmation or accept draft-only G00; (2) dispatch follow-up P00-T01 to verify 87 chapter headings; (3) proceed to P00-T02 (requirements extraction) using up to 3 parallel M3 sessions where write-sets are disjunct.",
+  "scope": {
+    "allowed": ["PHASE-00 P00-T01 source freeze and draft validation", "follow-up heading verification", "P00-T02..T06 per Phase 00 contract"],
+    "forbidden": ["any game/runtime code", "new production dependencies", "fabricating publisher confirmation or external values", "changes to .git/.orchestration_source", "force-push/history-rewrite"]
+  },
+  "required_tests": [
+    "node --test tools/requirements/tests/validator.test.mjs",
+    "node tools/requirements/validate.mjs --mode=draft"
+  ],
+  "budget_adjustment": {"additional_repair_rounds": 0, "additional_changed_files": 0, "additional_diff_lines": 0},
+  "validity_conditions": [
+    "GDD V5 hash remains f550bdf33f3c23787156c0b138f42d29958c84e1dcda562010fbb0874f9d6ed9",
+    "no new production dependencies introduced in Phase 00",
+    "publisherConfirmation stays pending until a real confirmation artifact exists",
+    "all writes stay within the PATH_ALLOWLIST write roots"
+  ],
+  "created_at": "2026-07-22T01:05:00Z"
+}
