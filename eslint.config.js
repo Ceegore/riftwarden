@@ -7,7 +7,7 @@ const simulationFiles = ['src/game/sim/**/*.{ts,tsx}'];
 
 export default tseslint.config(
   {
-    ignores: ['android/**', 'ios/**', 'content/generated/**', 'dist/**', 'node_modules/**', 'public/assets/generated/**', 'tests/fixtures/negative/**'],
+    ignores: ['android/**', 'ios/**', 'content/generated/**', 'dist/**', 'node_modules/**', 'public/assets/generated/**', 'tests/fixtures/negative/**', 'Phasen/**', 'backup/**', 'Meldungen/**', '.orchestration_source/**', '.orchestrator/**', 'docs/**', 'reference/**', 'tools/**', 'tests/tooling/**', '**/*.mjs', '**/*.cjs', '**/*.js', '**/*.config.*', 'vite.config.ts', 'vitest.config.ts', 'playwright.config.ts'],
   },
   eslint.configs.recommended,
   ...tseslint.configs.strictTypeChecked,
