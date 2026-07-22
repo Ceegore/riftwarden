@@ -1,0 +1,31 @@
+# Chapter 78: Navigations-, Screen-, Modal- und Wiederherstellungsverträge
+# blocks 2068..2086 (19 blocks)
+
+[Heading 2] 78. Navigations-, Screen-, Modal- und Wiederherstellungsverträge
+[Heading 3] 78.1 Route als serialisierbarer Zustand
+[Code Block] interface AppRoute {
+  screenId: ScreenId;
+  params: Record<string, string | number | boolean>;
+  returnRoute?: AppRoute;
+  restoreToken?: string;
+}
+
+interface ScreenState<TData> {
+  status: 'loading' | 'ready' | 'empty' | 'recoverable_error' | 'fatal_error';
+  data: TData | null;
+  errorCode: string | null;
+  pendingTransactionId: string | null;
+}
+[Compact] Nur ready erlaubt primäre irreversible Aktionen. Loading/Fehlerzustände deaktivieren Commitbuttons und bewahren Back/Recovery.
+[Compact] Jeder Routeparameter wird validiert. Ungültige ID führt zu definierter Rückroute plus lokalem Diagnoseeintrag, niemals zu leerem Detailbildschirm.
+[Compact] ReturnRoute ist maximal acht Ebenen tief. Bei Überschreitung wird deterministisch auf den nächstgelegenen Hauptbereich reduziert.
+[Compact] Browser-History ist innerhalb Capacitor nicht Gameplay-SSOT. Der AppNavigator spiegelt Navigation, Android-Back und Deep Links kontrolliert.
+[Heading 3] 78.2 First-Boot- und Resume-Flows
+[Heading 3] 78.3 Standardzustände jedes Screens
+[Heading 3] 78.4 Modal- und Transaktionsregeln
+[Compact] Maximal ein blockierendes Modal. Tooltips/Toasts zählen nicht, dürfen aber bei Modalöffnung schließen.
+[Compact] Irreversible Aktionen nennen Objekt, Folge und Nicht-Rückgängigkeit. Primärbutton verwendet konkrete Verben, nicht „OK“.
+[Compact] Käufe und Belohnungen erzeugen transactionId. UI sperrt nur betroffene Aktion, wartet auf Save-Commit und zeigt Ergebnis erst danach.
+[Compact] Android-Back/Escape schließt Tooltip -> nichtkritisches Overlay -> Modal (wenn sicher) -> Screen. Ein laufender Commit ist nicht durch Back abbrechbar.
+[Compact] Fokus kehrt nach Modal exakt zum auslösenden Element zurück; existiert es nicht mehr, zum nächsten logischen Geschwister oder Screenheading.
+[Heading 3] 78.5 Screen-spezifische Persistenz

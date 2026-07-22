@@ -1,0 +1,14 @@
+# Chapter 62: Android-Konfiguration und Google-Play-Abnahme
+# blocks 1817..1833 (17 blocks)
+
+[Heading 2] 62. Android-Konfiguration und Google-Play-Abnahme
+[Heading 3] 62.1 Native Baseline
+[Heading 3] 62.2 Play-Console-Deklarationen
+[Heading 3] 62.3 Android Store-Cert-Testmatrix
+[Heading 3] 62.4 Veröffentlichungsschritte
+[Compact] 1. Play-Developerkonto, Identität und ggf. Gerät verifizieren; Package-ID reservieren.
+[Compact] 2. Interner Track mit signiertem AAB; Pre-launch Report und automatisierte Geräteprüfung auswerten.
+[Compact] 3. Falls neues persönliches Konto: geschlossener Test mit mindestens 12 dauerhaft opt-in Testern über mindestens 14 Tage und dokumentiertem Feedback durchführen.
+[Compact] 4. Data Safety, Privacy Policy, Content Rating, Store Listing, Screenshots und Supportkontakt vollständig machen.
+[Compact] 5. Production Access beantragen, Review Notes mit Offline-/No-Account-Hinweis und Testpfad einreichen.
+[Compact] 6. Gestaffelter Rollout 10% -> 25% -> 50% -> 100%, nur wenn Vitals und Bewertungen keine Blocker zeigen.

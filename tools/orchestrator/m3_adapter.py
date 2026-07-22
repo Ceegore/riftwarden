@@ -331,6 +331,68 @@ def _type_ok(node: Any, t: str) -> bool:
 # ---------------------------------------------------------------------------
 # Idempotency / session registry
 # ---------------------------------------------------------------------------
+def _registry_lock():
+    """File-lock context manager for SESSION_REGISTRY.json read-modify-write.
+
+    Prevents concurrent claims/updates from clobbering each other (framework
+    pitfall: parallel sessions racing on a shared state file). Uses an msvcrt
+    lock on Windows, fcntl elsewhere; falls back to a spin-lock on a .lock file.
+    """
+    import contextlib
+
+    @contextlib.contextmanager
+    def _cm():
+        lock_path = ORCH_ROOT / "locks" / "registry.lock"
+        lock_path.parent.mkdir(parents=True, exist_ok=True)
+        fh = open(lock_path, "a+b")
+        acquired = False
+        try:
+            if os.name == "nt":
+                try:
+                    import msvcrt
+                    deadline = time.time() + 30
+                    while time.time() < deadline:
+                        try:
+                            msvcrt.locking(fh.fileno(), msvcrt.LK_LOCK, 1)
+                            acquired = True
+                            break
+                        except OSError:
+                            time.sleep(0.05)
+                except Exception:
+                    pass  # fall through to spin-lock
+            else:
+                try:
+                    import fcntl
+                    fcntl.flock(fh.fileno(), fcntl.LOCK_EX)
+                    acquired = True
+                except Exception:
+                    pass
+            if not acquired:
+                # spin-lock fallback
+                deadline = time.time() + 30
+                while time.time() < deadline:
+                    try:
+                        fh.seek(0); fh.truncate(); fh.write(b"%d" % os.getpid()); fh.flush()
+                        acquired = True
+                        break
+                    except OSError:
+                        time.sleep(0.05)
+            yield
+        finally:
+            try:
+                if acquired and os.name == "nt":
+                    try:
+                        import msvcrt
+                        fh.seek(0)
+                        msvcrt.locking(fh.fileno(), msvcrt.LK_UNLCK, 1)
+                    except Exception:
+                        pass
+            finally:
+                fh.close()
+
+    return _cm()
+
+
 def claim_session(request: dict) -> str:
     """Register an active session for an idempotency key. Returns session_id."""
     reg_path = ORCH_ROOT / "SESSION_REGISTRY.json"
@@ -343,44 +405,46 @@ def claim_session(request: dict) -> str:
     if lock_file.exists():
         # check if stale (> package_timeout)
         raise RuntimeError(f"IDEMPOTENCY_KEY_ALREADY_CLAIMED: {key}")
-    reg = load_json(reg_path) if reg_path.exists() else {"schema_version": "1.0", "project_id": request.get("project_id"), "sessions": []}
-    for s in reg.get("sessions", []):
-        if s.get("idempotency_key") == key and s.get("status") == "RUNNING":
-            raise RuntimeError(f"SESSION_ALREADY_RUNNING: {s['session_id']}")
-    session_id = f"sess_{uuid.uuid4().hex[:16]}"
-    lock_file.write_text(session_id, encoding="utf-8")
-    entry = {
-        "session_id": session_id,
-        "actor": "M3_EXECUTOR",
-        "provider": "minimax",
-        "model": "MiniMax-M3",
-        "integration_mode": "api-supervisor",
-        "phase_id": request.get("phase_id"),
-        "work_package_id": request.get("work_package_id"),
-        "status": "RUNNING",
-        "process_id": os.getpid(),
-        "idempotency_key": key,
-        "request_hash": sha256_bytes(json.dumps(request, sort_keys=True).encode()),
-        "started_at": now_iso(),
-        "last_heartbeat_at": now_iso(),
-        "usage": {},
-    }
-    reg.setdefault("sessions", []).append(entry)
-    reg["updated_at"] = now_iso()
-    atomic_write_json(reg_path, reg)
+    with _registry_lock():
+        reg = load_json(reg_path) if reg_path.exists() else {"schema_version": "1.0", "project_id": request.get("project_id"), "sessions": []}
+        for s in reg.get("sessions", []):
+            if s.get("idempotency_key") == key and s.get("status") == "RUNNING":
+                raise RuntimeError(f"SESSION_ALREADY_RUNNING: {s['session_id']}")
+        session_id = f"sess_{uuid.uuid4().hex[:16]}"
+        lock_file.write_text(session_id, encoding="utf-8")
+        entry = {
+            "session_id": session_id,
+            "actor": "M3_EXECUTOR",
+            "provider": "minimax",
+            "model": "MiniMax-M3",
+            "integration_mode": "api-supervisor",
+            "phase_id": request.get("phase_id"),
+            "work_package_id": request.get("work_package_id"),
+            "status": "RUNNING",
+            "process_id": os.getpid(),
+            "idempotency_key": key,
+            "request_hash": sha256_bytes(json.dumps(request, sort_keys=True).encode()),
+            "started_at": now_iso(),
+            "last_heartbeat_at": now_iso(),
+            "usage": {},
+        }
+        reg.setdefault("sessions", []).append(entry)
+        reg["updated_at"] = now_iso()
+        atomic_write_json(reg_path, reg)
     return session_id
 
 
 def update_session(session_id: str, **fields):
     reg_path = ORCH_ROOT / "SESSION_REGISTRY.json"
-    reg = load_json(reg_path)
-    for s in reg.get("sessions", []):
-        if s["session_id"] == session_id:
-            s.update(fields)
-            s["last_heartbeat_at"] = now_iso()
-            break
-    reg["updated_at"] = now_iso()
-    atomic_write_json(reg_path, reg)
+    with _registry_lock():
+        reg = load_json(reg_path)
+        for s in reg.get("sessions", []):
+            if s["session_id"] == session_id:
+                s.update(fields)
+                s["last_heartbeat_at"] = now_iso()
+                break
+        reg["updated_at"] = now_iso()
+        atomic_write_json(reg_path, reg)
 
 
 def release_session(session_id: str, status: str, key: str | None = None):

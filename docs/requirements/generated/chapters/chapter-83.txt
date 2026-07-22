@@ -1,0 +1,67 @@
+# Chapter 83: Konkretes Save-, Settings-, Diagnose- und Recovery-Protokoll
+# blocks 2169..2195 (27 blocks)
+
+[Heading 2] 83. Konkretes Save-, Settings-, Diagnose- und Recovery-Protokoll
+[Heading 3] 83.1 Private Dateistruktur
+[Code Block] Application Support / private app storage:
+  /saves/manifest.json
+  /saves/profile-A.json
+  /saves/profile-B.json
+  /saves/profile-C.json
+  /saves/run-A.json
+  /saves/run-B.json
+  /saves/run-C.json
+  /saves/battle.snapshot
+  /saves/manual-backup.json
+  /settings/settings.json
+  /logs/session-0.log ... session-4.log
+  /exports/.staging/
+  /content/installed-manifest.json
+[Technical Note] Für atomare Rename-/fsync-Semantik wird ein eigener NativeSaveStore-Adapter verwendet. @capacitor/filesystem allein ist keine Autorität für die Atomizitätsgarantie.
+[Heading 3] 83.2 Save Envelope
+[Code Block] interface SaveEnvelope<T> {
+  magic: 'RIFTWARDEN_SAVE';
+  formatVersion: 1;
+  schemaVersion: number;
+  simulationVersion: number;
+  contentVersion: string;
+  appVersion: string;
+  commitId: number;
+  committedAtUtc: string;       // informational; not used for gameplay ordering
+  payloadSha256: string;
+  payload: T;
+}
+
+interface SettingsSave {
+  schemaVersion: number;
+  locale: 'de' | 'en';
+  quality: 'auto' | 'high' | 'medium' | 'low';
+  textScalePercent: 100 | 125 | 150 | 175 | 200;
+  masterVolume: number; musicVolume: number; sfxVolume: number;
+  voiceVolume: number; uiVolume: number; ambientVolume: number;
+  haptics: 'off' | 'low' | 'normal';
+  reduceMotion: boolean; reduceFlash: boolean;
+  cameraShakePercent: 0 | 25 | 50 | 75 | 100;
+  colorProfile: 'default' | 'deuteranopia' | 'protanopia' | 'tritanopia';
+  damageNumbers: 'off' | 'important' | 'all';
+  autoSlowImportantAbilities: boolean;
+  battleSpeed: 50 | 100 | 200 | 300;
+}
+[Heading 3] 83.3 Kanonische JSON- und Hashregeln
+[Compact] UTF-8 ohne BOM, LF, sortierte Objektschlüssel, keine NaN/Infinity/-0, keine Kommentare. Arrays behalten fachliche Reihenfolge.
+[Compact] payloadSha256 wird über kanonische Serialisierung von payload berechnet. Envelopemetadaten sind nicht Teil des Payloadhashes.
+[Compact] commitId ist monoton pro Profil. Zeitstempel ist Anzeige/Diagnose und niemals Tie-Break für Recovery.
+[Compact] NativeSaveStore schreibt tmp, flush/fsync, liest zurück, prüft Hash, atomarer rename, Verzeichnis-Metadaten flush soweit Plattform unterstützt, dann Manifest analog.
+[Heading 3] 83.4 Commitfrequenz und Kampfsnapshot
+[Heading 3] 83.5 Exportformat
+[Compact] Dateiendung .riftwarden-save; ZIP ohne ausführbaren Inhalt mit export-manifest.json, profile.json, optional settings.json und checksums.txt.
+[Compact] Export enthält keine Logs/Replays standardmäßig. Diagnoseexport ist separate .riftwarden-diagnostic und zeigt Inhaltsliste vor Systemdialog.
+[Compact] Import entpackt ausschließlich bekannte Dateinamen, maximale Gesamtgröße 10 MiB, maximale Einzeldatei 8 MiB, keine Pfadsegmente, Symlinks oder verschachtelten Archive.
+[Compact] Import wird vollständig in Staging validiert/migriert. Erst nach Nutzerbestätigung ersetzt ein atomarer Commit das aktive Profil; automatisches Backup wird vorher erstellt.
+[Heading 3] 83.6 Settings-Defaults
+[Heading 3] 83.7 Lokale Logs und Diagnose
+[Compact] Maximal fünf rotierende Sessions, je 512 KiB, insgesamt <=2,5 MiB. Keine freie Nutzereingabe, Dateipfade außerhalb Appbereich, Geräte-ID, IP oder personenbezogene Daten.
+[Compact] Logfelder: UTC-Zeit, appVersion, buildChannel, platform/osVersion, errorCode, module, safeContext, stack in QA; Release stack lokal möglich, nie übertragen.
+[Compact] Diagnoseexport listet App-/Content-/Simulationversion, Saveintegrität, Rendererinfo, Speicher-/Qualitätsstatus und letzte Fehler. Savepayload/Replays nur per separater Checkbox.
+[Compact] Logs werden niemals automatisch versendet. Supporttext erklärt, dass Export vom Nutzer selbst geteilt werden muss.
+[Heading 3] 83.8 Recovery-Matrix

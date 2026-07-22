@@ -1,0 +1,20 @@
+# Chapter 21: Permanente Ausrüstung
+# blocks 989..1021 (33 blocks)
+
+[Heading 2] 21. Permanente Ausrüstung
+[Heading 3] 21.1 Globale Ausrüstungsregeln
+[Compact] Permanente Gegenstände sind einmalige Sammlungseinträge ohne zufällige Affixe. Eine Freischaltung erlaubt beliebige Verwendung als Ausrüstungsvorlage; das Objekt wird nicht verbraucht.
+[Compact] Jeder Held trägt eine passende Hauptausrüstung und einen universellen Talisman. Jede Truppenkopie trägt genau ein Kit. Eine Gruppe trägt genau ein Banner.
+[Compact] Jeder Gegenstand hat höchstens einen kleinen Wertefokus und genau einen leicht verständlichen Sondereffekt.
+[Compact] Polieren ist eine einmalige permanente Verbesserung je Sammlungseintrag. Polierte Werte sind fest und kein Auswahlpfad.
+[Compact] Gleiche Gegenstandsvorlage darf mehreren kompatiblen Einheiten gleichzeitig zugewiesen werden; die Sammlung ist kein physisches Einzelexemplar-Inventar. Dadurch entsteht kein unnötiges Umstecken vor jedem Kampf.
+[Compact] Effekte mit „erste“ oder „einmal“ werden pro Träger und Kampf zurückgesetzt, sofern nicht Banner/Relikt ausdrücklich gruppenweit ist.
+[Heading 3] 21.2 12 Hauptausrüstungen
+[Heading 3] 21.3 12 Talismane
+[Heading 3] 21.4 12 Truppenkits
+[Heading 3] 21.5 6 Gruppenbanner
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Alle Gegenstandseffekte erscheinen mit eigener Quellen-ID in Auswertung.
+[Compact] Polieren verändert exakt die dokumentierten Felder und kann nicht mehrfach gekauft werden.
+[Compact] Inkompatible Hauptausrüstung ist sichtbar, aber nicht ausrüstbar; Tooltip nennt passende Kategorien.
+[Compact] Ein Gegenstand darf keine versteckte Zufallschance besitzen.

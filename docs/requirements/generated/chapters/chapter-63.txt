@@ -1,0 +1,7 @@
+# Chapter 63: iOS/iPadOS-Konfiguration und App-Store-Abnahme
+# blocks 1834..1843 (10 blocks)
+
+[Heading 2] 63. iOS/iPadOS-Konfiguration und App-Store-Abnahme
+[Heading 3] 63.1 Native Baseline
+[Heading 3] 63.2 App-Store-Connect-Deklarationen
+[Heading 3] 63.3 iOS Store-Cert-Testmatrix

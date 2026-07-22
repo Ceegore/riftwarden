@@ -1,0 +1,10 @@
+# Chapter 71: Definition der finalen produktionsreifen Zielversion
+# blocks 1945..1952 (8 blocks)
+
+[Heading 2] 71. Definition der finalen produktionsreifen Zielversion
+[First Paragraph] Riftwarden: Auto RPG Roguelite ist produktionsreif spezifiziert, wenn ein Implementierungsagent aus diesem Dokument Repository, Datenmodelle, deterministische Simulation, Mobile-App-Shell, sämtliche Screens, responsive GUIs, Save- und Recoverylogik, Android-/iOS-Projekte, Tests und Storeartefakte erstellen kann, ohne eine inhaltliche oder technische Grundsatzentscheidung zu erfinden. Die vollständige V3-Spieldefinition bleibt die Autorität für Inhalt und Balance; die Kapitel 48 bis 70 sind die Autorität für Restklarstellungen, Technik, UX, Plattformen und Release.
+[Compact] Der erste ausführbare Meilenstein ist nicht ein Mockup, sondern Phase 0-2 mit validiertem Content, reproduzierbarer Simulation und beiden startbaren Capacitor-Containern.
+[Compact] Der erste spielbare Qualitätsbeweis ist der vertikale Slice mit dem vollständig definierten Aschenkönig und finalnaher Vorschau, Lesbarkeit, Audio- und Savequalität.
+[Compact] Ein Storebuild ist erst zulässig, wenn gemeinsame, Android- und iOS-Gates bestanden, Datenschutzdeklarationen mit dem Binary identisch und keine P0/P1-Fehler offen sind.
+[Compact] Kein Agent darf zur Beschleunigung Remote-Code, Analytics, Werbung, manuelle Fähigkeiten, Accountzwang, ungesicherte Saves oder nicht adaptive Webview-Hacks einführen.
+[Body Text] Die abschließende Qualitätsfrage lautet nun zweistufig: „Kann der Spieler erkennen, welche Vorbereitung zu welchem Kampfverhalten und Ergebnis geführt hat?“ und „Kann die App diesen Zustand auf unterstützten Geräten sicher, flüssig, zugänglich, offline und storekonform ausführen und wiederherstellen?“ Nur wenn beide Antworten eindeutig Ja sind, entspricht die Umsetzung Version 4.

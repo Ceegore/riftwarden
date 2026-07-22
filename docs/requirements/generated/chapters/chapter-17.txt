@@ -1,0 +1,19 @@
+# Chapter 17: Kampfvarianten und Schlachtfeldmodifikatoren
+# blocks 745..770 (26 blocks)
+
+[Heading 2] 17. Kampfvarianten und Schlachtfeldmodifikatoren
+[Heading 3] 17.1 Kampfvarianten
+[Heading 3] 17.2 Die 18 Schlachtfeldmodifikatoren
+[First Paragraph] Ein Modifikator wirkt grundsätzlich symmetrisch, sofern die Definition nicht ausdrücklich eine Seite nennt. Er wird auf Missionskarte, Knotenvorschau und Kampfbildschirm mit identischem Namen und Kurztext angezeigt. Normale Kampagne: höchstens ein Modifikator; Ascension 8+: höchstens zwei kompatible; Endlose Rift Tiefe 31+: bis zu zwei, niemals drei.
+[Heading 3] 17.3 Inkompatible Kombinationen
+[Compact] Früher Funke darf nicht mit Stille Zonen im ersten 4-Sekunden-Fenster beginnen; erste Stille startet frühestens Sekunde 6.
+[Compact] Nebelbank und Riftwind dürfen zusammen auftreten, aber nicht in einer Mission, deren Ziel ausdrücklich Fernkampfschaden verlangt.
+[Compact] Schwere Zeit und Wechselnde Schwäche dürfen zusammen auftreten; Kampfzeitlimit wird jedoch um 10 s erhöht.
+[Compact] Gefährliche Flanken und Stille Zonen dürfen nicht dieselbe Bahn im selben 2-Sekunden-Fenster erzwingen.
+[Compact] Spröde Konstruktionen ist unzulässig, wenn eine Missionsbedingung den Erhalt einer Konstruktion verlangt.
+[Compact] Echoüberfluss darf nicht mit einer Bossphase kombiniert werden, die bereits sechs unvermeidliche Beschwörungen startet, ohne Ersetzungsregel.
+[First Paragraph] Implementierungs- und Abnahmekriterien
+[Compact] Jeder Modifikator besitzt mindestens einen sichtbaren UI-Indikator zusätzlich zur Farbe.
+[Compact] Kombinationsvalidator verhindert alle explizit inkompatiblen Paarungen.
+[Compact] Modifikatoren verändern niemals zufällig während eines Kampfes ihre Grundregel; nur fest definierte Intervalle wechseln.
+[Compact] Automatische Hinweise können einen Modifikator als Ursache nennen, wenn er mindestens 25% des relevanten Schadens/Heilverlusts erklärt.

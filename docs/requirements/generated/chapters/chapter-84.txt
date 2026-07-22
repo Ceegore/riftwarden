@@ -1,0 +1,21 @@
+# Chapter 84: Performance-, Speicher-, GPU-, Akku- und Gerätebudgets
+# blocks 2196..2216 (21 blocks)
+
+[Heading 2] 84. Performance-, Speicher-, GPU-, Akku- und Gerätebudgets
+[Heading 3] 84.1 Verbindlicher Rendererpfad
+[Compact] Version 1 initialisiert PixiJS explizit mit preference=webgl und preferWebGLVersion=2; WebGL1 darf nur als automatisch funktionierender Pixi-WebGL-Fallback verwendet werden, wenn alle visuellen Tests bestehen.
+[Compact] WebGPU ist experimentell und in Release 1 deaktiviert. Aktivierung erfordert eigenes ADR, vollständige visuelle/device Regression und identisches Gameplay.
+[Compact] Es existiert kein CanvasRenderer-Fallback. Wenn WebGL-Kontext nicht erstellt werden kann, wird S02 Kompatibilität angezeigt; Menüs/Saveexport bleiben bedienbar.
+[Compact] contextlost pausiert Simulation sofort. contextrestored lädt Atlanten/Renderstate neu aus autoritativem Snapshot; kein Kampfneustart und keine Zufallsänderung.
+[Heading 3] 84.2 Geräteklassen
+[Heading 3] 84.3 Laufzeitbudgets
+[Heading 3] 84.4 Bundle- und Assetbudgets
+[Heading 3] 84.5 Auto-Quality-Entscheidung
+[Compact] Beim ersten Start wird kein langer Benchmark gezeigt. Nach Rendererinitialisierung werden GPU limits, deviceMemory falls verfügbar und 120 Frames einer nicht sichtbaren standardisierten Szene gemessen.
+[Compact] High wenn p95 <=15 ms und Texturspeicherindikatoren ausreichend; Medium <=25 ms; sonst Low. Ergebnis wird gespeichert, aber bei OS-/Appmajor oder wiederholten Context Loss neu bewertet.
+[Compact] Während Kampf darf Auto nur stufenweise kosmetisch reduzieren: Partikel -> Schatten -> Hintergrundlayer -> Auflösung 1,0 bis 0,75. Keine Änderung von Telegraphiedauer, Entitysichtbarkeit oder Simulation.
+[Compact] Qualität steigt nie mitten im Kampf. Sie kann nach drei stabilen Kämpfen beim nächsten Screenwechsel um eine Stufe steigen.
+[Heading 3] 84.6 Thermik und Akku
+[Compact] Im Hintergrund 0 Renderframes und 0 Simulationsticks. Dekorative HQ-Loops pausieren nach 30 s Inaktivität oder bei Reduce Motion.
+[Compact] Bei OS Thermal Warning oder dauerhaft p95 >33 ms wird sofort maximal Medium/Low kosmetisch gewählt und FPS-Ziel 30; Spieler erhält keine störende Warnung außer Funktionsproblem.
+[Compact] 30-Minuten-Stresstest auf Targetgerät darf keinen Memorytrend >10% nach Warmup, keinen Context Loss und keine unkontrollierte Audio-/Timerakkumulation zeigen.

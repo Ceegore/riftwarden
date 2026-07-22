@@ -1,0 +1,29 @@
+# Chapter 14: Gegnerroster und regionale Kampfidentitäten
+# blocks 482..521 (40 blocks)
+
+[Heading 2] 14. Gegnerroster und regionale Kampfidentitäten
+[First Paragraph] Gegner verwenden dieselben Grundformeln wie die Spielergruppe. Ihre Werte werden durch Mission, Schwierigkeit, Instabilität und Ascension skaliert. Die folgenden Werte sind Referenzwerte für die erste Expedition der jeweiligen Region auf Normal; regionale Skalierung wird im Kampagnenkapitel angewendet.
+[Heading 3] 14.1 Aschenstraße
+[First Paragraph] Visuelle Identität: Königreichsruinen, Rauch, militärische Echoformationen. Mechanische Identität: Brennen, Schildlinien, Wiederkehr schwacher Echos.
+[Compact] Jede normale Formation der Region verwendet 3-7 reguläre Gegner entsprechend freigeschalteter Spielerplätze.
+[Compact] Ein normaler Kampf darf höchstens zwei Exemplare derselben stark spezialisierten Unterstützerrolle enthalten.
+[Compact] Die ersten zwei Begegnungen einer Region führen neue Mechaniken isoliert ein; danach werden sie kombiniert.
+[Compact] Gegnerfähigkeiten werden beim ersten Kontakt als Kurzkarte und danach im Kodex vollständig gezeigt.
+[Heading 3] 14.2 Dornenhain
+[First Paragraph] Visuelle Identität: Überwachsene Wege, lebendige Pflanzen und Tierjäger. Mechanische Identität: Gift, Regeneration, Bahnkontrolle, Pflanzen.
+[Compact] Jede normale Formation der Region verwendet 3-7 reguläre Gegner entsprechend freigeschalteter Spielerplätze.
+[Compact] Ein normaler Kampf darf höchstens zwei Exemplare derselben stark spezialisierten Unterstützerrolle enthalten.
+[Compact] Die ersten zwei Begegnungen einer Region führen neue Mechaniken isoliert ein; danach werden sie kombiniert.
+[Compact] Gegnerfähigkeiten werden beim ersten Kontakt als Kurzkarte und danach im Kodex vollständig gezeigt.
+[Heading 3] 14.3 Eisenschmiede
+[First Paragraph] Visuelle Identität: Mechanische Hallen, Runenöfen und Konstruktionen. Mechanische Identität: Rüstung, Schilde, Geschütze, Überladung.
+[Compact] Jede normale Formation der Region verwendet 3-7 reguläre Gegner entsprechend freigeschalteter Spielerplätze.
+[Compact] Ein normaler Kampf darf höchstens zwei Exemplare derselben stark spezialisierten Unterstützerrolle enthalten.
+[Compact] Die ersten zwei Begegnungen einer Region führen neue Mechaniken isoliert ein; danach werden sie kombiniert.
+[Compact] Gegnerfähigkeiten werden beim ersten Kontakt als Kurzkarte und danach im Kodex vollständig gezeigt.
+[Heading 3] 14.4 Zitadelle der Echos
+[First Paragraph] Visuelle Identität: Unmögliche Architektur und gemischte Echoarmeen. Mechanische Identität: Kopien, Zeitstörung, gemischte Rollen, Phasen.
+[Compact] Jede normale Formation der Region verwendet 3-7 reguläre Gegner entsprechend freigeschalteter Spielerplätze.
+[Compact] Ein normaler Kampf darf höchstens zwei Exemplare derselben stark spezialisierten Unterstützerrolle enthalten.
+[Compact] Die ersten zwei Begegnungen einer Region führen neue Mechaniken isoliert ein; danach werden sie kombiniert.
+[Compact] Gegnerfähigkeiten werden beim ersten Kontakt als Kurzkarte und danach im Kodex vollständig gezeigt.

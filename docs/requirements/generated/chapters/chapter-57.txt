@@ -1,0 +1,10 @@
+# Chapter 57: Audio-, Haptik- und Unterbrechungsverhalten
+# blocks 1745..1751 (7 blocks)
+
+[Heading 2] 57. Audio-, Haptik- und Unterbrechungsverhalten
+[Compact] Das Spiel spielt Audio ausschließlich im Vordergrund. Bei Background, Telefonanruf, Siri/Assistant, Kopfhörerabzug oder Audiofokusverlust wird sofort weich pausiert; der Kampf wird ebenfalls pausiert.
+[Compact] iOS verwendet AVAudioSession category ambient als Baseline: Der Silent Switch wird respektiert und bereits laufende Nutzermusik darf weiterlaufen. Bei Unterbrechung wird der Kampf pausiert; eine eigene Mischoption ist in V1 nicht erforderlich.
+[Compact] Android fordert AUDIOFOCUS_GAIN für die aktive Spielsitzung an und gibt den Fokus bei Background oder beendetem Audiokontext frei. Bei transientem Verlust wird pausiert beziehungsweise weich ausgeblendet; bei dauerhaftem Verlust bleibt Audio bis zum bewussten Resume stumm.
+[Compact] Audio wird in vier Bussen gemischt: master, music, sfx, voice. Gameplay-Warnungen liegen im SFX-Bus und werden bei wichtigen Warnungen gegenüber Musik um 3 dB priorisiert.
+[Compact] Gleichartige SFX verwenden mindestens vier Varianten und einen 80-ms-Cooldown pro Cue, damit Beschwörungswellen nicht clippen.
+[Compact] Haptik wird nur bei starkem eigenen Treffer, Schildbruch, Bossphase, Unlock und Bestätigung eines riskanten Altars genutzt; maximal ein Impuls je 120 ms.

@@ -1,0 +1,20 @@
+# Chapter 66: CI/CD, Buildvarianten und Releaseprozess
+# blocks 1876..1894 (19 blocks)
+
+[Heading 2] 66. CI/CD, Buildvarianten und Releaseprozess
+[Heading 3] 66.1 Buildvarianten
+[Heading 3] 66.2 Pflichtpipeline
+[Compact] 1. Clean checkout, Node/pnpm-Version prüfen, pnpm install --frozen-lockfile.
+[Compact] 2. Format/Lint/Typecheck und Lizenz-/Dependencyaudit.
+[Compact] 3. Content-, Localization-, Asset- und Store-Manifestvalidatoren.
+[Compact] 4. Unit-, Property-, Golden-Replay- und Integrationstests.
+[Compact] 5. Web-Productionbuild, Bundlegrößen- und CSP-Prüfung.
+[Compact] 6. Playwright E2E und visuelle Referenztests in DE, EN und Pseudo.
+[Compact] 7. npx cap sync, Native-Config-Diff und unerlaubte Permission-/Endpointprüfung.
+[Compact] 8. Android release AAB und iOS Archive bauen; Signatur/Entitlements/Privacy Manifest prüfen.
+[Compact] 9. Native-Smokes auf mindestens einem Android- und iOS-Gerät; Artefakte, Checksums, SBOM und Testreport archivieren.
+[Heading 3] 66.3 Secrets und Signierung
+[Compact] Keystore, Passwörter, App Store Connect Keys und Provisioning Profiles liegen ausschließlich im Secret Store/geschützten lokalen Setup.
+[Compact] Entwicklerdebugsignatur darf niemals einen Release-Track erreichen. CI prüft Zertifikat/Fingerprint.
+[Compact] Play App Signing wird verwendet; Upload Key besitzt offline gesichertes Backup und dokumentierten Recoveryprozess.
+[Compact] iOS Distribution über App Store Connect/TestFlight; keine Ad-hoc-Binaries als öffentliche Releasequelle.

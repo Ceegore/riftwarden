@@ -1,0 +1,11 @@
+# Chapter 70: V3-Inhaltserhaltungs- und Abweichungsaudit
+# blocks 1935..1944 (10 blocks)
+
+[Heading 2] 70. V3-Inhaltserhaltungs- und Abweichungsaudit
+[First Paragraph] Version 4 wurde nicht aus einer verkürzten Zusammenfassung neu aufgebaut, sondern direkt auf der vollständigen DOCX-Version 3 ergänzt. Sämtliche Kapitel 2 bis 46, alle zehn Helden, 18 Truppen, 14 Beschwörungen, Gegner, Elites, Champions, Zwischen- und Hauptbosse, 18 Modifikatoren, 30 Ereignisse, 42 permanente Gegenstände, 36 Relikte, 20 Missionen, Ascension, Konstellation, Jenseits, Endlose Rift, Meisterschaften, Kodex, Erfolge, UX-, Audio-, Save-, Balancing- und Release-Regeln bleiben enthalten.
+[Heading 3] 70.1 Explizit ersetzte V3-Aussagen
+[Heading 3] 70.2 Nicht verworfene Inhalte
+[Compact] Kein Held, Trupp, Gegner, Boss, Item, Relikt, Ereignis, Mission, Modus, Meisterschaftsziel oder Erfolg wurde entfernt.
+[Compact] Keine V3-Obergrenze wurde erhöht: sieben reguläre Einheiten, drei Helden, drei gleiche Truppen, sechs Beschwörungen, drei Heldenlevel und drei Ascension-Startgegenstände bleiben verbindlich.
+[Compact] Das Premium-Einmalkaufmodell, vollständige Offlinefunktion, keine Werbung/IAP/Accounts/Server und keine manuelle Kampfsteuerung bleiben unverändert.
+[Compact] Die V4-Technik implementiert die bestehenden Inhaltsregeln; sie ersetzt keine Bossmechanik, Synergie, Belohnungslogik oder Kampagnenstruktur.

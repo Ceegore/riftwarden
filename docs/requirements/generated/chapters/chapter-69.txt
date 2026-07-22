@@ -1,0 +1,18 @@
+# Chapter 69: Quellen- und Anforderungsstand der Plattformregeln
+# blocks 1920..1934 (15 blocks)
+
+[Heading 2] 69. Quellen- und Anforderungsstand der Plattformregeln
+[First Paragraph] Die folgenden externen Regeln sind der dokumentierte Prüfstand vom 16. Juli 2026. Storeanforderungen ändern sich. Spätestens 14 Tage vor jedem Produktionsupload müssen die offiziellen Seiten erneut geprüft und die Release-Checkliste aktualisiert werden. Eine neuere Plattformpflicht überschreibt nur den technischen Mindestwert, nicht die Produktidentität oder Datenschutzgrenzen.
+[Compact] Capacitor 8 Documentation
+[Compact] Capacitor: Updating to 8.0
+[Compact] Google Play Target API Requirements
+[Compact] Android 16 KB Page Sizes
+[Compact] Android Edge-to-Edge
+[Compact] Android App Bundles
+[Compact] Android Core App Quality
+[Compact] Android Vitals for Games
+[Compact] Google Play Data Safety
+[Compact] Google Play Testing Requirements
+[Compact] Apple App Review Guidelines
+[Compact] Apple Upcoming Requirements
+[Compact] Apple Privacy Manifests

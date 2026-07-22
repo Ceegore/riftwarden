@@ -1,0 +1,18 @@
+# Chapter 1: Zweck, Leseregeln und Definition von Implementierungsreife
+# blocks 11..29 (19 blocks)
+
+[Heading 2] 1. Zweck, Leseregeln und Definition von Implementierungsreife
+[First Paragraph] Dieses Dokument ersetzt Version 4 vollständig. Version 4 hatte Version 3 vollständig bewahrt; Version 5 übernimmt daher den gesamten nicht verworfenen Inhaltsumfang beider Fassungen und schließt ihn zur finalen Pre-Implementation-Spezifikation. Ein Agent darf keine nicht beschriebenen Kernmechaniken ergänzen, keine festgelegten Obergrenzen aufweichen, keine manuelle Kampfsteuerung einführen und keine technische Grundsatzentscheidung eigenmächtig austauschen.
+[Body Text] Jede implementierbare Inhaltsdefinition folgt, soweit anwendbar, derselben Struktur: Identität und Rolle; Startzustand; Basiswerte; Standardangriff; passive Regeln; automatische Fähigkeiten; Zielwahl; Timing; Grenzen und Sonderfälle; visuelle und akustische Telegraphie; Gegenstrategien; Belohnung; Abnahmekriterien.
+[Compact] Inhaltlich vollständig: Alle Release-Inhalte, Freischaltungen, Rollen und Interaktionen sind benannt.
+[Compact] Systemisch vollständig: Trigger, Prioritäten, Dauer, Stapelung, Abbruch und Sonderfälle sind definiert.
+[Compact] Balancingfähig: Jede numerische Baseline besitzt eine klare Funktion und kann datengetrieben angepasst werden.
+[Compact] Testbar: Jedes kritische System enthält beobachtbare Abnahmekriterien.
+[Compact] Fair: Strategisch relevante Informationen werden vor dem Kampf angezeigt; keine Begegnung beruht auf einer tödlichen Überraschung.
+[Compact] Scope-stabil: Die Zielversion bleibt klein genug für ein hochpoliertes Premiumspiel.
+[Heading 3] 1.1 Was dieses Dokument weiterhin bewusst nicht festlegt
+[Compact] Rechtsberatung, verbindliche Steuer- oder Unternehmensentscheidungen und die endgültige Inhaberidentität für Storekonten; diese bleiben beim Publisher.
+[Compact] Die konkrete künstlerische Herstellungsmethode einzelner Assets; Dateiverträge, Formate, Größen, Namensregeln und Qualitätskriterien sind jedoch festgelegt.
+[Compact] Unveränderliche Pixelpositionen für jedes existierende und zukünftige Gerät; verbindlich sind responsive Regeln, Design-Tokens, Mindestgrößen und Referenzlayouts.
+[Compact] Finale Übersetzungstexte aller Dialogvarianten; verbindlich sind Funktion, Ton und maximale Textmenge.
+[Compact] Unveränderliche Endbalance. Die Baseline ist implementierbar, muss aber nach deterministischen Simulationen und internen Playtests innerhalb der dokumentierten Korridore abgestimmt werden.

@@ -1,0 +1,33 @@
+# Chapter 19: Dungeonkarten und Knoten
+# blocks 781..819 (39 blocks)
+
+[Heading 2] 19. Dungeonkarten und Knoten
+[Heading 3] 19.1 Kartenform
+[Compact] Eine Standardexpedition besitzt sechs horizontale Ebenen: Start; erste Wahl; Aufbau/Risiko; sicherer Anker; letzte Vorbereitung; Boss/Ziel.
+[Compact] 9-13 sichtbare Gesamtknoten, davon 5-8 tatsächlich besucht. Mindestens zwei echte Routenentscheidungen.
+[Compact] Wege dürfen sich teilen und zusammenlaufen. Kein Knoten außer Start darf unerreichbar und kein gewählter Weg darf in eine Sackgasse ohne Abschluss führen.
+[Compact] Mindestens ein sicherer Ankerpunkt und mindestens eine Anpassungsmöglichkeit unmittelbar vor Boss/Ziel.
+[Compact] Maximal drei Knoten pro Ebene; maximal zwei ausgehende Wege pro Knoten auf mobilen Displays.
+[Compact] Knoten werden aus kuratierten Strukturbausteinen zusammengesetzt, nicht frei zufällig verbunden.
+[Heading 3] 19.2 Generierungsalgorithmus als Inhaltsregel
+[Compact] Wähle einen zur Mission passenden Strukturbaustein mit 6 Ebenen und 2-3 Routen.
+[Compact] Setze festen Start-, Anker- und Abschlussknoten.
+[Compact] Platziere missionspflichtige Knotentypen auf erreichbaren Ebenen.
+[Compact] Fülle übrige Slots anhand regionaler Gewichtung: Kampf 35%, Elite 12%, Ereignis 15%, Händler 8%, Schatz 8%, Rekrutierung 7%, Werkstatt 5%, Altar 4%, Spähposten 6%.
+[Compact] Prüfe, dass jede Route mindestens einen Kampf und vor Abschluss mindestens eine Belohnungs-/Anpassungsoption enthält.
+[Compact] Prüfe, dass keine Route zwei harte Risikoknoten ohne sichtbare alternative Route erzwingt.
+[Compact] Prüfe Ereignis- und Begegnungswiederholung gegen aktuellen Run; identische Ereignisse sind im selben Run verboten.
+[Compact] Berechne erwartete Instabilität jeder Route und verwerfe Karten, deren sicherste Route über 75 oder riskanteste unter 55 endet, sofern Mission nichts anderes verlangt.
+[Compact] Validiere maximale Besuchslänge 8 und minimale 5 Knoten.
+[Compact] Speichere finalen Karten-Seed und alle Inhalte; späteres Laden generiert nichts neu.
+[Heading 3] 19.3 Knoteninteraktion
+[Compact] Vor Auswahl sieht der Spieler Knotentyp, Instabilitätsänderung, bekannte Belohnungskategorie und bei Kämpfen vollständige Formation.
+[Compact] Weiter entfernte Knoten dürfen Details verdecken, aber Typ und erreichbare Verbindung bleiben sichtbar. Spähposten enthüllt Details.
+[Compact] Nach Betreten kann der Spieler nicht zum vorherigen Knoten zurücklaufen. Rückkehr ist nur freiwilliges Expeditionsende am Anker oder über ausdrücklich benannte Option.
+[Compact] Formation, Doktrin und Ausrüstung dürfen zwischen allen Knoten kostenlos geändert werden; Gruppenmitglieder nur aus aktuell verfügbaren permanenten/temporären Rekruten.
+[Compact] Händlerangebote, Ereignisergebnisse und Belohnungswahlen werden beim Öffnen gespeichert, damit Neustart kein Neurollen erlaubt.
+[First Paragraph] Implementierungs- und Abnahmekriterien
+[Compact] 10.000 generierte Karten pro Missionsprofil enthalten keine Sackgasse, keinen fehlenden Anker und keine Besuchslänge außerhalb 5-8.
+[Compact] Mindestens 95% der Karten besitzen zwei Routen mit unterschiedlichem Risiko-/Belohnungsprofil.
+[Compact] Kein identisches Ereignis oder identische Encounter-ID erscheint zweimal in derselben Expedition.
+[Compact] Speichern/Laden vor und nach Knotenauswahl verändert weder Karte noch Angebote.

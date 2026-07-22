@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "project_id": "riftwarden",
-  "updated_at": "2026-07-21T23:57:40Z",
+  "updated_at": "2026-07-22T00:26:07Z",
   "sessions": [
     {
       "session_id": "sess_c215af2b55824a95",
@@ -17,6 +17,54 @@
       "request_hash": "6cda2e3dec0e8aed25efc6026b4bef1d564cfc792bb698d859ddb5210e5b0759",
       "started_at": "2026-07-21T23:46:19Z",
       "last_heartbeat_at": "2026-07-21T23:57:40Z",
+      "usage": {}
+    },
+    {
+      "session_id": "sess_c4a93d30868d4898",
+      "actor": "M3_EXECUTOR",
+      "provider": "minimax",
+      "model": "MiniMax-M3",
+      "integration_mode": "api-supervisor",
+      "phase_id": "PHASE-00",
+      "work_package_id": "P00-T01b",
+      "status": "FAILED",
+      "process_id": 32024,
+      "idempotency_key": "rw-p00-t01b-v1-f3c4a3d9",
+      "request_hash": "b482b5c5bd6672f5fcb7061a363666a7a2a53cac19aaf5652a22591ea8feeda3",
+      "started_at": "2026-07-22T00:08:24Z",
+      "last_heartbeat_at": "2026-07-22T00:14:02Z",
+      "usage": {}
+    },
+    {
+      "session_id": "sess_ad8c0422e2c24da8",
+      "actor": "M3_EXECUTOR",
+      "provider": "minimax",
+      "model": "MiniMax-M3",
+      "integration_mode": "api-supervisor",
+      "phase_id": "PHASE-00",
+      "work_package_id": "P00-T02c",
+      "status": "RUNNING",
+      "process_id": 38552,
+      "idempotency_key": "rw-p00-t02c-v1-5102b369",
+      "request_hash": "6c882a9eec136bbdaa009ba7f586bab09b7c89c4aa08b9489f6eeac5e2e41eeb",
+      "started_at": "2026-07-22T00:16:33Z",
+      "last_heartbeat_at": "2026-07-22T00:26:07Z",
+      "usage": {}
+    },
+    {
+      "session_id": "sess_b8dd9cc3427e402b",
+      "actor": "M3_EXECUTOR",
+      "provider": "minimax",
+      "model": "MiniMax-M3",
+      "integration_mode": "api-supervisor",
+      "phase_id": "PHASE-00",
+      "work_package_id": "P00-T02a",
+      "status": "RUNNING",
+      "process_id": 3448,
+      "idempotency_key": "rw-p00-t02a-v1-7ff28443",
+      "request_hash": "4ff83e46060960a90485a1289b2a6b3bf7e19db7871154fa06fa5a40b803668c",
+      "started_at": "2026-07-22T00:16:33Z",
+      "last_heartbeat_at": "2026-07-22T00:26:01Z",
       "usage": {}
     }
   ]

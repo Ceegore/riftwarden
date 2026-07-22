@@ -1,0 +1,22 @@
+# Chapter 79: Finales GUI-, Komponenten- und Visual-Polish-System
+# blocks 2087..2108 (22 blocks)
+
+[Heading 2] 79. Finales GUI-, Komponenten- und Visual-Polish-System
+[Heading 3] 79.1 Verbindliche visuelle Hierarchie
+[Compact] Pro Screen existiert genau eine primäre Handlung. Sekundäraktionen sind visuell leiser; gefährliche Aktionen stehen nie direkt neben primär ohne Abstand/Bestätigung.
+[Compact] Ein Screen verwendet maximal drei Paneele gleichzeitig auf Telefon und vier auf Tablet. Zusätzliche Details liegen in Tabs, Drawer oder Vollbilddetail.
+[Compact] Gold markiert Fortschritt/Primäraktion, Violett Auswahl/Rift, Cyan Information/Magie, Rot ausschließlich Gefahr/Verlust. Farbe wird immer durch Form/Icon/Text ergänzt.
+[Compact] Dekoration darf keine Hitbox imitieren, keinen Textkontrast verschlechtern und keine strategisch relevante Silhouette verdecken.
+[Heading 3] 79.2 Z-Index- und Overlayebenen
+[Heading 3] 79.3 Screen-Kompositionsdefaults
+[Heading 3] 79.4 Komponenteninteraktion
+[Compact] Buttons zeigen Pressed innerhalb 80 ms; Loading ersetzt Label nicht vollständig, sondern behält Verb und ergänzt Indikator.
+[Compact] GameCard-Auswahl ist nicht identisch mit Aktivierung: erster Tap selektiert/zeigt Details, expliziter Button oder zweiter klarer Schritt bestätigt.
+[Compact] Slider sind nur für kontinuierliche Audio-/Textskala erlaubt. Gameplaywerte, Qualität und Geschwindigkeit nutzen diskrete Segmented Controls.
+[Compact] Scrollbars sind auf Desktop sichtbar gestylt; auf Touch systemnah. Kein horizontales Scrollen für Fließtext.
+[Compact] Tooltips öffnen bei Fokus/Tap, schließen über explizites X, Back/Escape oder Tap außerhalb. Kritische Information steht zusätzlich im Detailscreen.
+[Heading 3] 79.5 Polish-Definition pro Screen
+[Heading 3] 79.6 Golden-Screenshot-Zustände
+[Compact] Mindestens: Titel, HQ nach jedem Akt, Missionsdetails, Formation normal/boss, Helden-/Trupp-/Itemdetail, Dungeonkarte, Ereignis, Händler, Pre-Battle, Kampf normal/boss, Ergebnis, Niederlage, Ascension, Endless Checkpoint, Settings, Recovery.
+[Compact] Jeder Golden State existiert in DE, EN und Pseudo; Telefon Compact, Telefon Standard und Tablet. Kritische Screens zusätzlich bei 200% Text und Reduce Motion.
+[Compact] Testdaten nutzen feste Seed-/Savefixtures und keine Uhrzeit, Zufallsanimation oder OS-spezifische Schriftglättung als Vergleichsinhalt.

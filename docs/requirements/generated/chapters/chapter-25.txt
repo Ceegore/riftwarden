@@ -1,0 +1,8 @@
+# Chapter 25: Kampagnenschwierigkeiten
+# blocks 1157..1164 (8 blocks)
+
+[Heading 2] 25. Kampagnenschwierigkeiten
+[Compact] Schwierigkeit darf zwischen Expeditionen jederzeit geändert werden, nicht innerhalb einer laufenden Expedition.
+[Compact] Story, Helden, Verträge, Gegenstände und Endgame werden auf Entdecker vollständig freigeschaltet; keine inhaltliche Bestrafung.
+[Compact] Veteran ist keine Voraussetzung für Ascension. Er dient Kampagnenwiederholung und Meisterschaften.
+[Compact] Entdecker verändert keine Zielwahl oder entfernt keine Mechanik; er vergrößert Fehlertoleranz.

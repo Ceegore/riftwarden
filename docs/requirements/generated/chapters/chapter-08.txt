@@ -1,0 +1,17 @@
+# Chapter 8: Statuswirkungen, Buffs und Kontrolle
+# blocks 220..240 (21 blocks)
+
+[Heading 2] 8. Statuswirkungen, Buffs und Kontrolle
+[First Paragraph] Statuswirkungen besitzen immer Quelle, Ziel, Startzeit, Endzeit, Stärke und Stapelgruppe. Gleiche Stapelgruppe addiert sich nur, wenn die Definition dies ausdrücklich erlaubt. Standardmäßig ersetzt die stärkere Anwendung die schwächere und erneuert die Dauer bis zum längeren Endzeitpunkt.
+[Heading 3] 8.1 Kontrollresistenz
+[First Paragraph] Effektive Dauer harter Kontrolle = Basisdauer x (1 - Kontrollresistenz). Harte Kontrolle umfasst Betäubung, Stille und Verwirrung. Verlangsamung ist weich. Reguläre Bosse besitzen 70% Kontrollresistenz, Ascension-Bosse 80% und das Herz des Risses 85%. Kein harter Kontrolleffekt auf Bosse darf länger als 0,65 Sekunden dauern.
+[Heading 3] 8.2 Reinigung und Bannung
+[Compact] Reinigung entfernt negative Wirkungen vom Verbündeten. Priorität: Betäubung/Stille, Schwächung, Gift/Brennen, Verlangsamung, Markierung.
+[Compact] Bannung entfernt positive Wirkungen vom Gegner. Priorität: Unverwundbar ist nicht bannbar; danach Schild, Eile/Verstärkung, Regeneration, Widerstandskraft.
+[Compact] Ein Effekt kann als nicht reinigbar oder nicht bannbar markiert sein, insbesondere Bossphasen und Schlachtfeldregeln. Dies muss im Tooltip stehen.
+[Compact] Entfernen eines Schildes durch Bannung vernichtet höchstens 35% der maximalen LP des Ziels als Schildmenge pro Bann; größere Pools werden auf diesen Betrag reduziert statt vollständig gelöscht.
+[First Paragraph] Implementierungs- und Abnahmekriterien
+[Compact] Jeder aktive Effekt besitzt ein Icon mit eindeutiger Form, Fortschrittsring und gestapelter Quellenzahl, falls relevant.
+[Compact] Keine reguläre Einheit kann durch wiederholte Standardkontrolle dauerhaft aktionsunfähig gehalten werden.
+[Compact] Bosse zeigen bei reduzierter Kontrolle ein sichtbares Resistenzfeedback statt scheinbar den Effekt zu ignorieren.
+[Compact] Statuswerte im Kampflog stimmen mit den sichtbaren Dauern auf 0,1 Sekunden überein.

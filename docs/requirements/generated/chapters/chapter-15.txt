@@ -1,0 +1,21 @@
+# Chapter 15: Eliteeigenschaften, Champions und Zwischenbosse
+# blocks 522..552 (31 blocks)
+
+[Heading 2] 15. Eliteeigenschaften, Champions und Zwischenbosse
+[Heading 3] 15.1 Eliteeigenschaften
+[First Paragraph] Ein Elitekampf markiert ein oder zwei normale Gegner als Elite. Auf Normal erhält ein Elitegegner genau eine Eigenschaft; ab Ascension 7 kann ein Elitegegner zwei kompatible Eigenschaften tragen. Eliteeigenschaften sind vor dem Kampf vollständig sichtbar und besitzen ein großes Symbol am Lebensbalken.
+[Heading 3] 15.2 Kompatibilitätsregeln
+[Compact] Unnachgiebig darf nicht mit Explosiv kombiniert werden, damit das Todesfenster eindeutig bleibt.
+[Compact] Phasenhaft darf nicht auf stationären Konstruktionen oder Pflanzen erscheinen.
+[Compact] Beschwörer darf nicht auf einem Gegner liegen, der bereits mehr als zwei Beschwörungen erzeugt.
+[Compact] Vampirisch heilt nicht aus reflektiertem, Gift- oder Brennschaden.
+[Compact] Nachhallend kopiert keine einmalige Phasenfähigkeit und keine Beschwörung, die das globale Limit überschreiten würde.
+[Compact] Ein Eliteattribut erhöht den Belohnungswert des Kampfes um 1; zwei Attribute um 2.
+[Heading 3] 15.3 Champions
+[First Paragraph] Champions werden ab Ascension-Rang 5 in normalen und Elitekämpfen zugelassen. Sie sind eigene kuratierte Gegner, keine zufällige Kombination. Höchstens ein Champion pro Kampf, außer Endlose Rift Tiefe 41+.
+[Heading 3] 15.4 Zwischenbosse
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Jeder Elite- und Championeffekt besitzt Vor-Kampf-Tooltip, Icon und eindeutige Kampftelegraphie.
+[Compact] Kein Eliteeffekt kann eine reguläre Fähigkeit in eine nicht konterbare Soforttötung verwandeln.
+[Compact] Formationsgenerator prüft Kompatibilitätsregeln und erstellt keine illegale Kombination.
+[Compact] Zwischenbosse dauern auf Normal 45-70 Sekunden und besitzen mindestens einen, höchstens zwei Mechanikwechsel.

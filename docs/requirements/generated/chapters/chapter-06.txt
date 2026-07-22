@@ -1,0 +1,55 @@
+# Chapter 6: Verbindliches Kampfsimulationsmodell
+# blocks 88..156 (69 blocks)
+
+[Heading 2] 6. Verbindliches Kampfsimulationsmodell
+[Heading 3] 6.1 Koordinaten, Bahnen und Startfelder
+[Compact] Das logische Schlachtfeld verwendet eine horizontale X-Achse von 0 bis 100 und drei diskrete Bahnen: oben, Mitte, unten.
+[Compact] Spielerseite bewegt sich grundsätzlich in positive X-Richtung; Gegnerseite in negative X-Richtung.
+[Compact] Eigene Startzonen: Hinten X=8, Mitte X=18, Front X=28. Gegnerische Spiegelwerte: 92, 82, 72.
+[Compact] Eine Einheit besitzt einen Kollisionsradius. Baseline: klein 1,2; normal 1,8; groß 2,8; Boss 4,0.
+[Compact] Verbündete dürfen sich innerhalb einer Bahn überholen, wenn die überholende Einheit mindestens 25% schneller ist oder eine Fähigkeit dies erlaubt. Gegnerische Körper können nicht durchlaufen werden.
+[Compact] Ein Bahnwechsel dauert baseline 1,2 Sekunden, unterbricht den aktuellen Standardangriff und ist nur durch Zielregel, Doktrin oder Fähigkeit erlaubt.
+[Compact] Bahnwechselpositionen werden visuell diagonal animiert, logisch bleibt eine Einheit während der ersten 50% auf der Ausgangsbahn und danach auf der Zielbahn.
+[Heading 3] 6.2 Referenzwerte und Einheitenstatistiken
+[Heading 3] 6.3 Schadensformeln
+[First Paragraph] Physischer Endschaden = Rohschaden x 100 / (100 + effektive Rüstung). Magischer Endschaden verwendet dieselbe Formel mit Widerstand. Reiner Schaden ignoriert Rüstung und Widerstand, darf aber nie mehr als 18% der maximalen LP eines Bosses durch einen einzelnen Treffer verursachen. Effektive Verteidigung kann nicht unter -40 und nicht über 200 liegen.
+[Compact] Standardangriff-Rohschaden = Angriffskraft x Angriffsmultiplikator.
+[Compact] Kritische Treffer existieren nicht als globaler Zufallswert. Nur ausdrücklich benannte Fähigkeiten dürfen einen festen kritischen Effekt besitzen.
+[Compact] Flächenschaden verwendet für jedes Ziel separat Verteidigung und Schild.
+[Compact] Schilde absorbieren Endschaden vor LP. Mehrere Schilde bilden einen gemeinsamen Schildpool, behalten aber ihre eigene Ablaufzeit; zuerst läuft/verbrauchte Quelle wird zuerst abgebaut.
+[Compact] Heilung kann LP nicht über das Maximum erhöhen. Überheilung verfällt, außer eine Fähigkeit wandelt sie ausdrücklich in Schild um.
+[Compact] Mindestschaden eines erfolgreichen Angriffs ist 1. Verfehlungen existieren nur durch ausdrücklich definierte Ausweich- oder Unverwundbarkeitsregeln.
+[Compact] Angriffsgeschwindigkeit verändert das gesamte Intervall, aber nie unter 0,45 Sekunden. Bewegungsgeschwindigkeit nie unter 2,0 und nie über 14,0.
+[Heading 3] 6.4 Angriffszustandsmaschine
+[Compact] Ziel validieren oder nach Zielscore neu wählen.
+[Compact] In Reichweite bewegen. Das Ziel wird alle 0,25 Sekunden validiert, aber nicht wegen minimaler Positionsänderungen gewechselt.
+[Compact] Angriff vorbereiten. Während der Vorbereitung ist die Aktion sichtbar und kann durch Betäubung oder eine als Unterbrechung markierte Fähigkeit abgebrochen werden.
+[Compact] Treffer oder Projektil erzeugen. Projektiltreffer verwenden die Zielposition zum Abschusszeitpunkt plus definierte Verfolgung; normale Pfeile verfolgen nicht zwischen Bahnen.
+[Compact] Erholungsphase. Bewegung ist bei normalen Einheiten während der ersten Hälfte gesperrt; danach darf die Einheit nachrücken.
+[Compact] Nächstes Intervall planen und Ziel erneut validieren.
+[Heading 3] 6.5 Fähigkeiten und Ladung
+[Compact] Wiederholbare Fähigkeiten besitzen eine Startladung und eine Wiederaufladung. Wenn nur ein Wert angegeben ist, sind beide identisch.
+[Compact] Ladung läuft ab Kampfbeginn, auch während Bewegung. Stille stoppt die Ladung nicht, verhindert aber den Start; die fertige Fähigkeit wartet.
+[Compact] Eine Fähigkeit startet nur mit gültigem Ziel und sinnvoller Wirkung. Eine Heilung wird beispielsweise erst ausgelöst, wenn das Ziel mindestens 12% LP vermisst, sofern nicht anders festgelegt.
+[Compact] Wird eine Fähigkeit während ihrer Vorbereitung unterbrochen, verliert sie 35% ihrer vollen Ladung und beginnt danach von diesem Stand neu. Einmal-pro-Kampf-Fähigkeiten gelten erst beim Effekt als verbraucht.
+[Compact] Phasenwechsel eines Bosses können laufende Aktionen abbrechen; dies wird in der Bossdefinition einzeln festgelegt.
+[Compact] Startbeschwörungen und Startkonstruktionen werden nach passiven Synergien, aber vor dem ersten Bewegungstick erzeugt.
+[Heading 3] 6.6 Kampfende, Zeitlimit und Gleichstand
+[Compact] Ein Kampf endet, sobald eine Seite keine kampffähige reguläre Einheit mehr besitzt. Beschwörungen allein halten den Kampf nicht offen.
+[Compact] Reguläre Einheiten sind Helden, Truppen und als regulär markierte Gegner/Bosse; temporäre Kampf-Beschwörungen sind nicht regulär.
+[Compact] Normales weiches Zeitlimit: 90 Sekunden. Bosslimit: 120 Sekunden. Bei Erreichen beginnt der 15 Sekunden lange Riftkollaps.
+[Compact] Während des Riftkollapses erhalten alle regulären Einheiten alle 3 Sekunden reinen Schaden in Höhe von 8% ihrer maximalen LP; Heilung ist um 50% reduziert.
+[Compact] Sind nach weiteren 15 Sekunden beide Seiten noch regulär kampffähig, gewinnt die Seite mit höherer Summe aus verbleibenden LP-Prozenten plus halbem Schild-Prozent. Exakter Gleichstand gilt als Niederlage des Spielers, wird aber als Sondergrund ausgewiesen.
+[Compact] Zeitlimits sind Anti-Stall-Schutz und sollen in weniger als 2% balancierter Kämpfe greifen.
+[Heading 3] 6.7 Determinismus und Zufall
+[Compact] Jeder Kampf erhält einen gespeicherten Seed. Gleiche Startdaten, Seed und Simulationsversion müssen dasselbe Ergebnis erzeugen.
+[Compact] Zufall wird nur für explizite Varianten genutzt: gleichwertige Ziel-Tiebreaks, angekündigte Ereignisspannen und bestimmte Relikte.
+[Compact] Tiebreak-Reihenfolge ohne Zufall: höchster Zielscore, geringste Distanz, niedrigste verbleibende LP in absoluten Punkten, niedrigste stabile Entity-ID.
+[Compact] Geschwindigkeitsstufe, Pause, Kamera und reduzierte Effekte dürfen das Ergebnis nie verändern.
+[Compact] Ein Kampfreplay speichert nicht jeden Frame, sondern Startsnapshot, Seed, Simulationsversion und Spieler-Geschwindigkeitsereignisse nur für Darstellung.
+[First Paragraph] Implementierungs- und Abnahmekriterien
+[Compact] Ein Kampf liefert bei zehn identischen Wiederholungen byte-identische Ergebnisdaten.
+[Compact] Keine Einheit wechselt in fünf Sekunden mehr als zweimal ohne ausdrückliche Mobilitätsfähigkeit die Bahn.
+[Compact] Alle Fähigkeiten können aus Kampfprotokoll und UI-Icon auf Trigger, Ziel und Ergebnis zurückgeführt werden.
+[Compact] Kampfgeschwindigkeit 0,5x, 1x, 2x und 3x erzeugt dieselben Sieger, Schäden und Triggerzeitpunkte in Simulationszeit.
+[Compact] Ein Kampf kann nicht durch reine Beschwörungen nach Tod aller regulären Einheiten fortgesetzt werden.

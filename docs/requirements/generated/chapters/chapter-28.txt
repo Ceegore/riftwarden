@@ -1,0 +1,10 @@
+# Chapter 28: Ascension-Konstellation - 28 Knoten
+# blocks 1213..1224 (12 blocks)
+
+[Heading 2] 28. Ascension-Konstellation - 28 Knoten
+[First Paragraph] Die Konstellation bietet neue Optionen, Komfort und kuratierte Inhalte statt einer unbegrenzten Folge globaler Schadens-/Lebensboni. Dauerhafte Knoten müssen nicht ausgerüstet werden. Segnungen werden vor einem Zyklus gewählt; maximal vier aktiv. Kosten sind Riftessenz und jeder Knoten besitzt sichtbare Verbindungsvoraussetzungen in sieben Ringen A-G.
+[Heading 3] 28.1 Konstellationspfade
+[Compact] Ring A ist nach Kampagne offen. Ring B benötigt zwei gekaufte A-Knoten; Ring C vier Gesamtknoten; D sieben; E zehn; F vierzehn; G achtzehn und Ascension-Rang 10.
+[Compact] Knoten können kostenlos zurückgesetzt werden, aber nur ausgerüstete Segnungen ändern sich. Dauerhafte Freischaltungen bleiben entdeckt, auch wenn Pfad neu verteilt wird; ausgegebene Essenz wird bei Reset vollständig erstattet.
+[Compact] Ein Zyklus speichert seine Segnungen beim Start. Änderungen in der Riftkammer wirken erst auf einen neuen Zyklus.
+[Compact] Knoten E1 wird technisch als Rückzugsrecht umgesetzt, nicht als Währungsumwandlung; dies verhindert farmbare Essenzschleifen.

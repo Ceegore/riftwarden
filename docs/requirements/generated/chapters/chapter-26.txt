@@ -1,0 +1,13 @@
+# Chapter 26: Onboarding und progressive Offenlegung
+# blocks 1165..1177 (13 blocks)
+
+[Heading 2] 26. Onboarding und progressive Offenlegung
+[Compact] Alle Tutorials sind im Archiv erneut aufrufbar und einzeln deaktivierbar.
+[Compact] Nach zweimaliger Demonstration erscheint ein Hinweis nicht automatisch erneut, außer der Spieler öffnet Hilfe oder verliert dreimal aus nachweislich passendem Grund.
+[Compact] Tutorials dürfen keine Formation als einzig richtige darstellen.
+[Compact] Tooltips verwenden erst Kurztext, dann optional Details mit exakten Zahlen.
+[First Paragraph] Implementierungs- und Abnahmekriterien
+[Compact] Ein neuer Testspieler kann Expedition 1.1 ohne externe Erklärung starten und abschließen.
+[Compact] Keine Tutorialkarte enthält mehr als 55 Wörter oder verdeckt einen bestätigungspflichtigen Button.
+[Compact] Überspringen deaktiviert nur Erklärung, nie Freischaltung oder System.
+[Compact] Alle 20 Missionen besitzen gültige Kartenprofile und mindestens drei getestete Encounter-Varianten je normalem Kampfslot.

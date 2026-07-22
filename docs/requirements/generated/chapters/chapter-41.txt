@@ -1,0 +1,10 @@
+# Chapter 41: Inhaltliche Datenverträge
+# blocks 1446..1457 (12 blocks)
+
+[Heading 2] 41. Inhaltliche Datenverträge
+[First Paragraph] Version 4 legt die technische Speicherform als validierte, versionierte JSON-Inhaltsdaten plus TypeScript-Schemas fest. Jede Datenentität muss mindestens die folgenden semantischen Felder besitzen. IDs sind stabile, kleingeschriebene ASCII-Schlüssel und dürfen nach Veröffentlichung nicht ohne explizite Migration umbenannt werden.
+[Heading 3] 41.1 Stabile ID-Konvention
+[Compact] Helden: hero_aurel, hero_mira usw.; Truppen: troop_shieldguard; Gegner: enemy_ash_soldier; Fähigkeiten: ability__.
+[Compact] Missionen: mission_1_1 bis mission_4_5; Ereignisse: event_; Gegenstände: gear_main_, gear_talisman_, gear_kit_, gear_banner_.
+[Compact] Lokalisierte Namen sind nie IDs und werden nicht für Savegame-Logik verwendet.
+[Compact] Alle Referenzen werden beim Build validiert; unbekannte ID ist harter Fehler, kein stilles Überspringen.

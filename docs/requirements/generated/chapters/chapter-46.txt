@@ -1,0 +1,14 @@
+# Chapter 46: Zielumfang, Spielzeit und Scope-Schutz
+# blocks 1524..1539 (16 blocks)
+
+[Heading 2] 46. Zielumfang, Spielzeit und Scope-Schutz
+[Body Text] Neue Inhalte dürfen nur aufgenommen werden, wenn sie eine erkennbare strategische Lücke schließen und keine Kernqualität gefährden. Vor Release werden keine weiteren Helden, Regionen, Hauptbosse, Talentbäume, Gegenstandsaffixe oder Onlinefunktionen ergänzt. Ein späteres Update ist optional und nicht Bestandteil des Produktversprechens.
+[Heading 3] 46.1 Prioritätsreihenfolge bei Produktionsdruck
+[Compact] Kampfsimulation, Zielwahl und Lesbarkeit.
+[Compact] Vollständige Kampagne inklusive vier Bosse.
+[Compact] Formation, Doktrinen, Helden/Truppen und Ausrüstung.
+[Compact] Savegame, Offlinequalität, Bedienung und Barrierefreiheit.
+[Compact] Ascension 1-10 und Konstellation.
+[Compact] Endlose Rift, Meisterschaften, Kodex, Erfolge.
+[Compact] Zusätzliche Kosmetik und Dialogvarianten.
+[First Paragraph] Wird Scope reduziert, werden zuerst kosmetische Varianten und optionale Textvarianten gekürzt, niemals Bosslesbarkeit, vollständige Fähigkeiten, Save-Sicherheit oder notwendige Gegenstrategien.

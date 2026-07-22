@@ -1,0 +1,9 @@
+# Chapter 29: Jenseits-Modus
+# blocks 1225..1232 (8 blocks)
+
+[Heading 2] 29. Jenseits-Modus
+[Compact] Nach Ascension-Rang 10 wählt der Spieler Jenseitsgrad 1-20. Jeder Grad: Gegner +2,5% Max-LP und +1,8% Angriff kumulativ; ab Grad 11 nur +1,5% LP/+1,0% Angriff pro Grad.
+[Compact] Alle fünf Grade wird eine zusätzliche kuratierte Regel aktiviert: Grad 5 zweites Eliteattribut häufiger; 10 Championchance +15 Prozentpunkte; 15 zwei Modifikatoren ab Instabilität 50; 20 Boss-Rang-9-Phasen +10% Geschwindigkeit ihrer Arenaereignisse, nicht Schaden.
+[Compact] Jenseits gibt keine permanenten Machtboni. Einmalige kosmetische Meilensteine auf Grad 1, 5, 10, 15, 20.
+[Compact] Lokaler Rekord speichert höchsten abgeschlossenen Grad, Gruppe, drei Startgegenstände, Segnungen und Seed.
+[Compact] Der Spieler darf jeden bereits freigeschalteten Grad wiederholen; fehlgeschlagener Grad reduziert keinen Rekord.

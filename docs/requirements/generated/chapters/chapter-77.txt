@@ -1,0 +1,26 @@
+# Chapter 77: Verbindliche Einheiten-KI, Navigation und Anti-Stuck-Regeln
+# blocks 2048..2067 (20 blocks)
+
+[Heading 2] 77. Verbindliche Einheiten-KI, Navigation und Anti-Stuck-Regeln
+[Heading 3] 77.1 Gemeinsame Zustandsmaschine
+[Code Block] SPAWNING -> ACQUIRE_TARGET -> MOVE_OR_POSITION -> PREPARE_ATTACK
+          -> EXECUTE_ATTACK -> RECOVERY -> ACQUIRE_TARGET
+Any active state -> CONTROLLED -> previous legal state
+Any active state -> CAST_ABILITY -> RECOVERY
+Any active state -> DEFEATED -> REMOVED
+Boss only: Any active state -> PHASE_TRANSITION -> ACQUIRE_TARGET
+[Compact] Eine Einheit führt pro Tick höchstens eine autoritative Zustandsänderung aus, außer DEFEATED/PHASE_TRANSITION besitzt höhere Priorität.
+[Compact] Zielwahl findet beim Eintritt in ACQUIRE_TARGET, bei ungültigem Ziel und bei explizitem Reevaluate-Trigger statt; nicht permanent jeden Tick.
+[Compact] Target Lock baseline: Standardangriff bis Treffer/Abbruch; Signaturfähigkeit bis Castende; Duellanten dürfen nach kill/unerreichbar sofort neu bewerten.
+[Heading 3] 77.2 Rollenverhalten
+[Heading 3] 77.3 Bahnwechsel und Anti-Ping-Pong
+[Compact] Ein normaler Bahnwechsel ist frühestens 90 Ticks nach dem letzten normalen Wechsel erlaubt. Fähigkeitswechsel ignorieren den Cooldown, setzen ihn danach aber neu.
+[Compact] Bedrohungswert einer Nachbarbahn muss mindestens 20% höher sein als der aktuellen Bahn, bevor Schutzformation/Verteidiger freiwillig wechseln.
+[Compact] Eine Einheit bricht einen begonnenen Bahnwechsel nur durch Tod, harte Kontrolle oder explizite Fähigkeit ab. Neue Zielwerte werden erst nach Abschluss geprüft.
+[Compact] Top<->Bottom direkter Wechsel ist verboten; er erfolgt über Mitte und benötigt zwei vollständige Wechsel.
+[Heading 3] 77.4 Spawn- und Konstruktionspositionen
+[Compact] Beschwörung mit targetLane spawnt 1,0 X hinter der vordersten verbündeten regulären Einheit dieser Bahn; mindestens 0,5 X innerhalb eigener Seite des nächsten Gegners.
+[Compact] Ohne Verbündeten in der Bahn spawnt sie an der eigenen Front-Startzone. Ist Position blockiert, werden Offsets 0,5 X nach hinten bis maximal 4 X geprüft.
+[Compact] Stationäre Konstruktionen spawnen am definierten Slot. Ist belegt, gilt Ersatzpolicy oder Spawn scheitert sichtbar; kein automatisches Stapeln.
+[Compact] Große Beschwörung darf kleine Einheiten kurz verdrängen, aber niemals gegnerische Körper oder Arenaobjekte überlappen.
+[Heading 3] 77.5 Anti-Stuck und Deadlock

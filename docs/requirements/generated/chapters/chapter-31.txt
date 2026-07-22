@@ -1,0 +1,20 @@
+# Chapter 31: Heldenmeisterschaften
+# blocks 1270..1319 (50 blocks)
+
+[Heading 2] 31. Heldenmeisterschaften
+[First Paragraph] Jeder Held besitzt fünf Kernziele. Ziele werden sichtbar, sobald der Held freigeschaltet ist; Ziel 4 nach Kampagnenabschluss, Ziel 5 nach Level 3. Fortschritt wird nur in gewonnenen Kämpfen oder erfolgreich abgeschlossenen Modi gewertet, außer reiner Teilnahmecounter. Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte.
+[Heading 3] 31.1 Aurel
+[Heading 3] 31.2 Mira
+[Heading 3] 31.3 Veyra
+[Heading 3] 31.4 Morcant
+[Heading 3] 31.5 Sable
+[Heading 3] 31.6 Brunn
+[Heading 3] 31.7 Ilyra
+[Heading 3] 31.8 Thorn
+[Heading 3] 31.9 Orrik
+[Heading 3] 31.10 Nyx
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Jedes Meisterschaftsziel besitzt eindeutige maschinenprüfbare Eventbedingungen.
+[Compact] Fortschritt wird unmittelbar nach Kampf angezeigt und persistent gespeichert.
+[Compact] Kosmetische Effekte verändern Trefferzeit, Fläche und Lesbarkeit nicht.
+[Compact] Kein Ziel ist durch dauerhaft verpassbaren Inhalt blockierbar.

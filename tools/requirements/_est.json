@@ -1,0 +1,2811 @@
+{
+  "schemaVersion": "1.0",
+  "chunk": "a",
+  "chapterRange": {
+    "lo": 1,
+    "hi": 29
+  },
+  "requirements": [
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0000"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0001"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0002"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0003"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0004"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0005"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0006"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0007"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0008"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0009"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0010"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0011"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0012"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0013"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0014"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0015"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0016"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0017"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0018"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0019"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0020"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0021"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0022"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0023"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0024"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0025"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0026"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0027"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0028"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0029"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0030"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0031"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0032"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0033"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0034"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0035"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0036"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0037"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0038"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0039"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0040"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0041"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0042"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0043"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0044"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0045"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0046"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0047"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0048"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0049"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0050"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0051"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0052"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0053"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0054"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0055"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0056"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0057"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0058"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0059"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0060"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0061"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0062"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0063"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0064"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0065"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0066"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0067"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0068"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0069"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0070"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0071"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0072"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0073"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0074"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0075"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0076"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0077"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0078"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0079"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0080"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0081"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0082"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0083"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0084"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0085"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0086"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0087"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0088"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0089"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0090"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0091"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0092"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0093"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0094"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0095"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0096"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0097"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0098"
+    },
+    {
+      "chapter": 1,
+      "locator": "block:12",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-PHASE00-001"
+          ]
+        }
+      ],
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "quoteHash": "sha256:2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881",
+      "originalExcerpt": "x",
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null,
+      "title": "No new core mechanics.",
+      "id": "REQ-TEMP-A-0099"
+    }
+  ],
+  "contextOnly": []
+}

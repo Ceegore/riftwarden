@@ -1,0 +1,17 @@
+# Chapter 9: Formation, Gruppengröße und Plätze
+# blocks 241..258 (18 blocks)
+
+[Heading 2] 9. Formation, Gruppengröße und Plätze
+[Compact] Formationstableau: drei Bahnen x drei Tiefenzonen = neun Startfelder.
+[Compact] Maximal sieben reguläre Einheiten; maximal drei davon Helden; maximal drei Kopien desselben Truppentyps.
+[Compact] Spielbeginn vier Plätze; fünfter Platz nach Expedition 1.3; sechster nach Akt II; siebter nach Akt III.
+[Compact] Ein Startfeld kann nur eine reguläre Einheit enthalten. Startbeschwörungen werden in definierten freien Positionen derselben Bahn erzeugt und belegen keinen Startplatz.
+[Compact] Eine leere Bahn ist erlaubt und wird vor Kampfstart mit einer Warnung markiert, wenn der Gegner dort Frontdruck besitzt.
+[Compact] Vier Formationsvorlagen: Standard, Defensiv, Offensiv, frei benannte Spezialformation. Gespeichert werden Einheiten, exakte Kopien, Felder, Kits, Heldenausrüstung, Banner und Doktrin.
+[Compact] Beim unvollständigen Laden einer Vorlage werden fehlende Inhalte übersprungen; nichts wird automatisch durch eine andere Einheit ersetzt.
+[Heading 3] 9.1 Formationsvalidierung
+[Compact] Mindestens eine reguläre Einheit muss eingesetzt werden.
+[Compact] Keine doppelte Heldeninstanz und keine Überschreitung des Vertragslevels.
+[Compact] Jede ausgerüstete Kopie darf genau ein Truppenkit tragen; ein physisches Kit-Objekt kann beliebig oft als Vorlage genutzt werden, wird also nicht zwischen Kopien verbraucht.
+[Compact] Jeder Held trägt maximal eine passende Hauptausrüstung und einen Talisman.
+[Compact] Eine Warnung ist nicht blockierend bei fehlendem Heiler, leerer Bahn oder fehlendem Nahkämpfer; harte Regelverstöße blockieren den Start.

@@ -1,0 +1,872 @@
+[
+  {
+    "chapter": 1,
+    "title": "Zweck, Leseregeln und Definition von Implementierungsreife",
+    "confidence": "high",
+    "locator": "block:11",
+    "blockIndex": 11,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 6
+  },
+  {
+    "chapter": 2,
+    "title": "Verbindliche Produktdefinition",
+    "confidence": "high",
+    "locator": "block:30",
+    "blockIndex": 30,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 6
+  },
+  {
+    "chapter": 3,
+    "title": "Designpfeiler und Nicht-Ziele",
+    "confidence": "high",
+    "locator": "block:43",
+    "blockIndex": 43,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 6
+  },
+  {
+    "chapter": 4,
+    "title": "Welt, Ton und Erzählrahmen",
+    "confidence": "high",
+    "locator": "block:48",
+    "blockIndex": 48,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 6
+  },
+  {
+    "chapter": 5,
+    "title": "Gesamtschleife und Sitzungsstruktur",
+    "confidence": "high",
+    "locator": "block:83",
+    "blockIndex": 83,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 6
+  },
+  {
+    "chapter": 6,
+    "title": "Verbindliches Kampfsimulationsmodell",
+    "confidence": "high",
+    "locator": "block:88",
+    "blockIndex": 88,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 4
+  },
+  {
+    "chapter": 7,
+    "title": "Zielwahl, Bedrohung und Doktrinen",
+    "confidence": "high",
+    "locator": "block:157",
+    "blockIndex": 157,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 2
+  },
+  {
+    "chapter": 8,
+    "title": "Statuswirkungen, Buffs und Kontrolle",
+    "confidence": "high",
+    "locator": "block:220",
+    "blockIndex": 220,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 2
+  },
+  {
+    "chapter": 9,
+    "title": "Formation, Gruppengröße und Plätze",
+    "confidence": "high",
+    "locator": "block:241",
+    "blockIndex": 241,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 2
+  },
+  {
+    "chapter": 10,
+    "title": "Merkmale und Synergien",
+    "confidence": "high",
+    "locator": "block:259",
+    "blockIndex": 259,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 11,
+    "title": "Helden, Ruhm und vollständige Heldenkits",
+    "confidence": "high",
+    "locator": "block:269",
+    "blockIndex": 269,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 12,
+    "title": "Truppenverträge und die 18 Truppentypen",
+    "confidence": "high",
+    "locator": "block:373",
+    "blockIndex": 373,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 13,
+    "title": "Beschwörungen",
+    "confidence": "high",
+    "locator": "block:463",
+    "blockIndex": 463,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 14,
+    "title": "Gegnerroster und regionale Kampfidentitäten",
+    "confidence": "high",
+    "locator": "block:482",
+    "blockIndex": 482,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 15,
+    "title": "Eliteeigenschaften, Champions und Zwischenbosse",
+    "confidence": "high",
+    "locator": "block:522",
+    "blockIndex": 522,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 16,
+    "title": "Vollständiges Bossdesign",
+    "confidence": "high",
+    "locator": "block:553",
+    "blockIndex": 553,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 17,
+    "title": "Kampfvarianten und Schlachtfeldmodifikatoren",
+    "confidence": "high",
+    "locator": "block:745",
+    "blockIndex": 745,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 18,
+    "title": "Riftinstabilität",
+    "confidence": "high",
+    "locator": "block:771",
+    "blockIndex": 771,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 19,
+    "title": "Dungeonkarten und Knoten",
+    "confidence": "high",
+    "locator": "block:781",
+    "blockIndex": 781,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 20,
+    "title": "Ereignissystem und 30 vollständige Ereignisse",
+    "confidence": "high",
+    "locator": "block:820",
+    "blockIndex": 820,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 21,
+    "title": "Permanente Ausrüstung",
+    "confidence": "high",
+    "locator": "block:989",
+    "blockIndex": 989,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 22,
+    "title": "Temporäre Relikte",
+    "confidence": "high",
+    "locator": "block:1022",
+    "blockIndex": 1022,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 23,
+    "title": "Wirtschaft, Beute und Sicherung",
+    "confidence": "high",
+    "locator": "block:1031",
+    "blockIndex": 1031,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 24,
+    "title": "Kampagne: 4 Akte und 20 implementierungsreife Expeditionen",
+    "confidence": "high",
+    "locator": "block:1060",
+    "blockIndex": 1060,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 25,
+    "title": "Kampagnenschwierigkeiten",
+    "confidence": "high",
+    "locator": "block:1157",
+    "blockIndex": 1157,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 26,
+    "title": "Onboarding und progressive Offenlegung",
+    "confidence": "high",
+    "locator": "block:1165",
+    "blockIndex": 1165,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 27,
+    "title": "Ascension-Endgame",
+    "confidence": "high",
+    "locator": "block:1178",
+    "blockIndex": 1178,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 28,
+    "title": "Ascension-Konstellation - 28 Knoten",
+    "confidence": "high",
+    "locator": "block:1213",
+    "blockIndex": 1213,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 29,
+    "title": "Jenseits-Modus",
+    "confidence": "high",
+    "locator": "block:1225",
+    "blockIndex": 1225,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 30,
+    "title": "Endlose Rift",
+    "confidence": "high",
+    "locator": "block:1233",
+    "blockIndex": 1233,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 31,
+    "title": "Heldenmeisterschaften",
+    "confidence": "high",
+    "locator": "block:1270",
+    "blockIndex": 1270,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 32,
+    "title": "Kodex",
+    "confidence": "high",
+    "locator": "block:1320",
+    "blockIndex": 1320,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 33,
+    "title": "Interne Erfolge",
+    "confidence": "high",
+    "locator": "block:1329",
+    "blockIndex": 1329,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 34,
+    "title": "Kampfauswertung und automatische Hinweise",
+    "confidence": "high",
+    "locator": "block:1337",
+    "blockIndex": 1337,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 35,
+    "title": "Hauptquartier und dauerhafte Progressionsoberfläche",
+    "confidence": "high",
+    "locator": "block:1358",
+    "blockIndex": 1358,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 36,
+    "title": "UX für Formation, Vorschau und Kampf",
+    "confidence": "high",
+    "locator": "block:1375",
+    "blockIndex": 1375,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 37,
+    "title": "Visuelle Ausrichtung",
+    "confidence": "high",
+    "locator": "block:1405",
+    "blockIndex": 1405,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 38,
+    "title": "Kampfpolish und Feedbackbudget",
+    "confidence": "high",
+    "locator": "block:1418",
+    "blockIndex": 1418,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 39,
+    "title": "Audioausrichtung",
+    "confidence": "high",
+    "locator": "block:1426",
+    "blockIndex": 1426,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 40,
+    "title": "Bedienung, Komfort und Barrierefreiheit",
+    "confidence": "high",
+    "locator": "block:1434",
+    "blockIndex": 1434,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 41,
+    "title": "Inhaltliche Datenverträge",
+    "confidence": "high",
+    "locator": "block:1446",
+    "blockIndex": 1446,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 42,
+    "title": "Savegame, Versionierung und Offline-Verhalten",
+    "confidence": "high",
+    "locator": "block:1458",
+    "blockIndex": 1458,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 43,
+    "title": "Balancing-Leitplanken",
+    "confidence": "high",
+    "locator": "block:1468",
+    "blockIndex": 1468,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 44,
+    "title": "Vertikaler Inhaltsprototyp",
+    "confidence": "high",
+    "locator": "block:1481",
+    "blockIndex": 1481,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 45,
+    "title": "Release-Abnahmekriterien",
+    "confidence": "high",
+    "locator": "block:1495",
+    "blockIndex": 1495,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 46,
+    "title": "Zielumfang, Spielzeit und Scope-Schutz",
+    "confidence": "high",
+    "locator": "block:1524",
+    "blockIndex": 1524,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 47,
+    "title": "Definition der vollständigen inhaltlichen Zielversion",
+    "confidence": "high",
+    "locator": "block:1540",
+    "blockIndex": 1540,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 48,
+    "title": "Verbindliche Restklarstellungen und Konfliktauflösung",
+    "confidence": "high",
+    "locator": "block:1546",
+    "blockIndex": 1546,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 49,
+    "title": "Verbindliche technische Produktbaseline",
+    "confidence": "high",
+    "locator": "block:1592",
+    "blockIndex": 1592,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 50,
+    "title": "Repository, Module und Coding-Verträge",
+    "confidence": "high",
+    "locator": "block:1605",
+    "blockIndex": 1605,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 51,
+    "title": "Deterministische Simulation und Replay-Architektur",
+    "confidence": "high",
+    "locator": "block:1627",
+    "blockIndex": 1627,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 52,
+    "title": "Rendering-, Asset- und Performancearchitektur",
+    "confidence": "high",
+    "locator": "block:1649",
+    "blockIndex": 1649,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 53,
+    "title": "App-Lifecycle, Navigation und globale Zustände",
+    "confidence": "high",
+    "locator": "block:1665",
+    "blockIndex": 1665,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 54,
+    "title": "Vollständiger Screenkatalog und Funktionsumfang",
+    "confidence": "high",
+    "locator": "block:1679",
+    "blockIndex": 1679,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 55,
+    "title": "GUI-Designsystem und responsive Layouts",
+    "confidence": "high",
+    "locator": "block:1699",
+    "blockIndex": 1699,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 56,
+    "title": "Eingabe, Controller und Barrierefreiheit",
+    "confidence": "high",
+    "locator": "block:1723",
+    "blockIndex": 1723,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 57,
+    "title": "Audio-, Haptik- und Unterbrechungsverhalten",
+    "confidence": "high",
+    "locator": "block:1745",
+    "blockIndex": 1745,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 58,
+    "title": "Savegame, Migration, Import/Export und Recovery",
+    "confidence": "high",
+    "locator": "block:1752",
+    "blockIndex": 1752,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 59,
+    "title": "Content-Pipeline, Schemas und Buildvalidierung",
+    "confidence": "high",
+    "locator": "block:1777",
+    "blockIndex": 1777,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 60,
+    "title": "Lokalisierung, Copy und Textproduktion",
+    "confidence": "high",
+    "locator": "block:1789",
+    "blockIndex": 1789,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 61,
+    "title": "Datenschutz, Sicherheit und Netzwerkfreiheit",
+    "confidence": "high",
+    "locator": "block:1798",
+    "blockIndex": 1798,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 62,
+    "title": "Android-Konfiguration und Google-Play-Abnahme",
+    "confidence": "high",
+    "locator": "block:1817",
+    "blockIndex": 1817,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 63,
+    "title": "iOS/iPadOS-Konfiguration und App-Store-Abnahme",
+    "confidence": "high",
+    "locator": "block:1834",
+    "blockIndex": 1834,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 64,
+    "title": "Storegrafiken, App-Icon, Splash und Metadaten",
+    "confidence": "high",
+    "locator": "block:1844",
+    "blockIndex": 1844,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 65,
+    "title": "Teststrategie, QA und automatisierte Gates",
+    "confidence": "high",
+    "locator": "block:1858",
+    "blockIndex": 1858,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 66,
+    "title": "CI/CD, Buildvarianten und Releaseprozess",
+    "confidence": "high",
+    "locator": "block:1876",
+    "blockIndex": 1876,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 67,
+    "title": "Produktionsphasen und sofortige Implementierungsreihenfolge",
+    "confidence": "high",
+    "locator": "block:1895",
+    "blockIndex": 1895,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 68,
+    "title": "Store- und Release-Checklisten als harte Gates",
+    "confidence": "high",
+    "locator": "block:1901",
+    "blockIndex": 1901,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 69,
+    "title": "Quellen- und Anforderungsstand der Plattformregeln",
+    "confidence": "high",
+    "locator": "block:1920",
+    "blockIndex": 1920,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 70,
+    "title": "V3-Inhaltserhaltungs- und Abweichungsaudit",
+    "confidence": "high",
+    "locator": "block:1935",
+    "blockIndex": 1935,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 71,
+    "title": "Definition der finalen produktionsreifen Zielversion",
+    "confidence": "high",
+    "locator": "block:1945",
+    "blockIndex": 1945,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 72,
+    "title": "V5-Autorität, Null-Unklarheits-Protokoll und externe Restwerte",
+    "confidence": "high",
+    "locator": "block:1953",
+    "blockIndex": 1953,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 73,
+    "title": "Kanonische Konstanten, Einheiten, Enums und ID-Regeln",
+    "confidence": "high",
+    "locator": "block:1967",
+    "blockIndex": 1967,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 74,
+    "title": "Exakter Repository-Bootstrap, Befehle und Konfigurationsbaseline",
+    "confidence": "high",
+    "locator": "block:1981",
+    "blockIndex": 1981,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 75,
+    "title": "Konkrete Datenmodelle, Schemas und Inhaltskompilierung",
+    "confidence": "high",
+    "locator": "block:2000",
+    "blockIndex": 2000,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 76,
+    "title": "Vollständig geschlossene Simulations- und Ereignisreihenfolge",
+    "confidence": "high",
+    "locator": "block:2020",
+    "blockIndex": 2020,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 77,
+    "title": "Verbindliche Einheiten-KI, Navigation und Anti-Stuck-Regeln",
+    "confidence": "high",
+    "locator": "block:2048",
+    "blockIndex": 2048,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 78,
+    "title": "Navigations-, Screen-, Modal- und Wiederherstellungsverträge",
+    "confidence": "high",
+    "locator": "block:2068",
+    "blockIndex": 2068,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 79,
+    "title": "Finales GUI-, Komponenten- und Visual-Polish-System",
+    "confidence": "high",
+    "locator": "block:2087",
+    "blockIndex": 2087,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 80,
+    "title": "Vollständige Accessibility- und Eingabe-Abnahmematrix",
+    "confidence": "high",
+    "locator": "block:2109",
+    "blockIndex": 2109,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 81,
+    "title": "Asset-, Animation-, VFX- und Produktionspakete",
+    "confidence": "high",
+    "locator": "block:2127",
+    "blockIndex": 2127,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 82,
+    "title": "Audio-, Musik-, Sprach- und Haptik-Spezifikation",
+    "confidence": "high",
+    "locator": "block:2147",
+    "blockIndex": 2147,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 83,
+    "title": "Konkretes Save-, Settings-, Diagnose- und Recovery-Protokoll",
+    "confidence": "high",
+    "locator": "block:2169",
+    "blockIndex": 2169,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 84,
+    "title": "Performance-, Speicher-, GPU-, Akku- und Gerätebudgets",
+    "confidence": "high",
+    "locator": "block:2196",
+    "blockIndex": 2196,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 85,
+    "title": "Testkatalog, Golden Seeds, Coverage und Go/No-Go",
+    "confidence": "high",
+    "locator": "block:2217",
+    "blockIndex": 2217,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 86,
+    "title": "V4-Inhaltserhalt, Korrekturen und Vollständigkeitsaudit",
+    "confidence": "high",
+    "locator": "block:2241",
+    "blockIndex": 2241,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  },
+  {
+    "chapter": 87,
+    "title": "Finaler Handoff-Vertrag vor Entwicklungsplan und Implementierung",
+    "confidence": "high",
+    "locator": "block:2257",
+    "blockIndex": 2257,
+    "styleId": "Heading2",
+    "styleName": "Heading 2",
+    "candidates": 1
+  }
+]

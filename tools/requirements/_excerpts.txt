@@ -1,0 +1,39 @@
+Ein Agent darf keine nicht beschriebenen Kernmechaniken ergänzen, keine festgelegten Obergrenzen aufweichen, keine manuelle Kampfsteuerung einführen und keine technische Grundsatzentscheidung eigenmächtig austauschen.
+Strategisch relevante Informationen werden vor dem Kampf angezeigt; keine Begegnung beruht auf einer tödlichen Überraschung.
+Die Zielversion bleibt klein genug für ein hochpoliertes Premiumspiel.
+Inhaltlich vollständig: Alle Release-Inhalte, Freischaltungen, Rollen und Interaktionen sind benannt.
+Systemisch vollständig: Trigger, Prioritäten, Dauer, Stapelung, Abbruch und Sonderfälle sind definiert.
+Balancingfähig: Jede numerische Baseline besitzt eine klare Funktion und kann datengetrieben angepasst werden.
+Testbar: Jedes kritische System enthält beobachtbare Abnahmekriterien.
+Rechtsberatung, verbindliche Steuer- oder Unternehmensentscheidungen und die endgültige Inhaberidentität für Storekonten; diese bleiben beim Publisher.
+Die konkrete künstlerische Herstellungsmethode einzelner Assets; Dateiverträge, Formate, Größen, Namensregeln und Qualitätskriterien sind jedoch festgelegt.
+Unveränderliche Pixelpositionen für jedes existierende und zukünftige Gerät; verbindlich sind responsive Regeln, Design-Tokens, Mindestgrößen und Referenzlayouts.
+Finale Übersetzungstexte aller Dialogvarianten; verbindlich sind Funktion, Ton und maximale Textmenge.
+Unveränderliche Endbalance. Die Baseline ist implementierbar, muss aber nach deterministischen Simulationen und internen Playtests innerhalb der dokumentierten Korridore abgestimmt werden.
+Riftwarden: Auto RPG Roguelite ist ein kompaktes Fantasy-Roguelite mit vollständig automatischen Gruppenkämpfen in stilisierter Seitenansicht.
+Während eines Kampfes werden keine Fähigkeiten manuell ausgelöst und keine Einheiten bewegt.
+Ein regulärer Kampf dauert normalerweise 20-45 Sekunden, ein Elitekampf 35-60 Sekunden und ein Bosskampf 60-100 Sekunden auf normaler Geschwindigkeit.
+Das Spiel erzeugt keinerlei Fortschritt ohne aktives Spielen. Es gibt keine Energie, Wartezeit, Offline-Erträge, Tagesaufgaben oder Live-Service-Abhängigkeit.
+Eine verlorene Expedition kostet einen Teil der ungesicherten Beute, aber niemals Helden, Verträge oder bereits freigeschaltete permanente Systeme.
+Die Kampagne ist abgeschlossen und rechtfertigt den Kauf allein. Ascension und Endlose Rift sind substanzielle Endgame-Modi, keine Ausrede für fehlenden Kampagneninhalt.
+[["Inhaltsgruppe","Release-Ziel"],["Kampagne","4 Akte, je 5 Expeditionen, insgesamt 20 klar definierte Missionen"],["Helden","10 einzigartige Helden, jeweils Level 1-3 und 5 Meisterschaftsziele"],["Truppen","18 Verträge, jeweils bis zu 3 gleichzeitig einsetzbare Kopien"],["Beschwörungen","14 fest definierte Beschwörungstypen; maximal 6 aktive pro Seite"],["Regionen","4 Regionen mit je 7 Grundgegnern, regionalen Regeln und eigenem Hauptboss"],["Zwischenbosse","4 feste Zwischenbosse plus Elite- und Championvarianten"],["Ausrüstung","42 permanente Objekte: 12 Hauptausrüstungen, 12 Talismane, 12 Truppenkits, 6 Banner"],["Relikte","36 temporäre Relikte für Expeditionen/Ascension"],["Ereignisse","30 vollständige Ereignisse mit transparenten Optionen"],["Schlachtfeld","7 Kampfvarianten und 18 sichtbare Modifikatoren"],["Endgame","10 kuratierte Ascension-Ränge, 28 Konstellationsknoten, Jenseits-Modus und Endlose Rift"],["Meta","Kodex, 36 interne Erfolge, lokale Rekorde, kosmetische Freischaltungen"]]
+Jeder Sieg muss auf Formation, Rollen, Zielwahl, Doktrin oder Ausrüstung zurückführbar sein.
+Einheiten handeln deterministisch nachvollziehbar; wichtige Zielwechsel und Trigger sind sichtbar.
+Kontakt, Entwicklung, Wendepunkt und Abschluss sind in jedem Kampf erkennbar.
+Tiefe entsteht aus Interaktionen, nicht aus hunderten austauschbaren Einheiten.
+Risiken und mögliche Folgen sind sichtbar; Scheitern erzeugt Lernwert statt irreversiblem Verlust.
+Kein System darf als halbfertige Checkliste existieren. Lieber weniger Inhalte, aber vollständige Rückmeldung.
+Nicht Teil der Zielversion sind: manuelle Kampffähigkeiten, aktives Zielen, PvP, Online-Ranglisten, Accounts, Gilden, Chat, Cloud-Zwang, Live-Events, tägliche Aufgaben, saisonale Inhalte, Basisbau, offene Welt, frei begehbare Dungeons, weit verzweigte Dialogbäume, permanente Heldentode, Verletzungen zwischen Kämpfen, Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe, unbegrenzte Charakterlevel und Echtgeldshops.
+Der Riftanker bindet jede Expedition an das Hauptquartier.
+Nach einem Sieg rekonstruiert er alle gefallenen regulären Einheiten, heilt die Gruppe vollständig, entfernt normale Statuswirkungen und löscht Kampf-Beschwörungen.
+Wenn keine reguläre Einheit der Spielergruppe kampffähig bleibt, bricht die Verbindung zusammen und die Expedition endet.
+Die Rückkehr nach einer Niederlage ist erzählerisch eine Notrekonstruktion und kein Tod.
+Der Anker ist die zentrale visuelle Metapher für Speichern, Rückkehr, Ascension und Endlose Rift.
+Der Spielercharakter bleibt unsichtbar, unbenannt und ohne festgelegtes Geschlecht. Figuren sprechen den Spieler als Riftwarden oder Kommandant an. Entscheidungen werden durch Missions-, Routen- und Ereigniswahl getroffen. Es existiert kein Dialograd und keine moralische Statistik.
+Pip spricht in maximal zwei kurzen Sätzen am Stück, erklärt nie bereits sichtbare Informationen doppelt und unterbricht keine wiederholten Kämpfe. Humor: selbstüberschätzend, neugierig, freundlich, nie zynisch.
+Kein Blut, keine Wunden, keine Zerstückelung, keine Leichen, keine realistischen Todesschreie.
+Besiegte Figuren zerfallen in Echofunken, Rauch, Blätter, Metallteile oder humorvolle Knochenhaufen.
+Keine harte Vulgärsprache, sexualisierten Inhalte, realen politischen/religiösen Konflikte oder diskriminierenden Aussagen.
+Humor darf Bossauftritte, Ereignisse und Animationen auflockern, aber taktische Konsequenzen bleiben ernst und lesbar.
+[["Phase","Verbindliche Handlung","Zielzeit"],["Hauptquartier","Freischaltungen prüfen, Helden/Verträge/Ausrüstung verwalten, Mission wählen","1-4 Minuten"],["Expeditionsvorbereitung","Mission, Gegnerrollen, Belohnungen und Regeln lesen; Startgruppe festlegen","1-3 Minuten"],["Dungeonkarte","Zwischen 5 und 8 Knoten besuchen; Route, Ereignisse, Händler und Risiko wählen","8-18 Minuten"],["Kampfvorbereitung","Gegnerformation ansehen; eigene Formation, Ausrüstung und Doktrin anpassen","20-90 Sekunden"],["Auto-Battle","Beobachten, pausieren, Geschwindigkeit ändern und Informationen einblenden","20-100 Sekunden"],["Auswertung","Leistung, Hinweise und Belohnungen prüfen","10-30 Sekunden"],["Expeditionsabschluss","Gesicherte Beute, Ruhm, Fortschritt und Freischaltungen anwenden","30-90 Sekunden"]]
+Eine Standardexpedition soll 12-25 Minuten dauern. Eine Kampagnenmission darf beim ersten Durchlauf einschließlich Story und Lesen 20-35 Minuten erreichen. Unterbrechung und lokales Fortsetzen müssen an jedem Knoten außerhalb eines laufenden Kampfes möglich sein; im Kampf wird beim App-Verlassen ein deterministischer Kampfsnapshot gespeichert.

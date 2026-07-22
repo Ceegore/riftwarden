@@ -1,0 +1,32 @@
+# Chapter 81: Asset-, Animation-, VFX- und Produktionspakete
+# blocks 2127..2146 (20 blocks)
+
+[Heading 2] 81. Asset-, Animation-, VFX- und Produktionspakete
+[Heading 3] 81.1 Assetmanifest
+[Code Block] interface AssetManifestEntry {
+  id: string;
+  type: 'texture' | 'atlas' | 'font' | 'audio' | 'music' | 'video' | 'localization';
+  sourcePath: string;
+  generatedPath: string;
+  sha256: string;
+  licenseId: string;
+  colorSpace?: 'srgb';
+  alphaMode?: 'premultiplied' | 'opaque';
+  dimensions?: { width: number; height: number };
+  maxBytes: number;
+  preloadGroup: 'bootstrap' | 'hq' | 'region_1' | 'region_2' | 'region_3' | 'region_4' | 'endgame' | 'on_demand';
+}
+[Heading 3] 81.2 Dateinamen und technische Formate
+[Heading 3] 81.3 Einheitspaket
+[Heading 3] 81.4 Mindestanimationsbudgets
+[Heading 3] 81.5 VFX- und Telegraphievertrag
+[Compact] Jede gefährliche Bodenfläche besitzt Vorwarnform, Countdown-/Füllrichtung und Impact. Farbe allein reicht nicht.
+[Compact] Telegraphiedauer entspricht Ability.castTicks und darf durch Quality nicht verkürzt werden. Reduce Motion ersetzt Bewegung, nicht Dauer/Information.
+[Compact] Trefferfeedback: maximal 80 ms Hitstop für Boss-/Level3-Momente, 20-40 ms schwerer Treffer, keine Simulationspause; Renderer kompensiert.
+[Compact] Kameraschütteln maximal 10 px/180 ms normal, 18 px/260 ms Boss; Nutzerstärke 0/25/50/75/100%, Default 50%, Reduce Motion 0%.
+[Compact] Partikelobergrenzen pro Qualitätsstufe werden in Kapitel 84 gemessen. Bei Budgetüberschreitung werden kosmetische Partikel verworfen, nie Telegraphie.
+[Heading 3] 81.6 Asset-Abnahme
+[Compact] Keine Halo-/Fringing-Kanten auf transparenten Sprites; premultiplied Alpha wird durch Pipeline/Testbild geprüft.
+[Compact] Keine eingebetteten Texte in Gameplaygrafiken außer universellen Symbolen; lokalisierbarer Text bleibt UI.
+[Compact] Alle Quellen besitzen Lizenz-/Provenienzdatensatz. KI-generierte Assets werden mit Tool/Modell/Datum/Prompt-ID und kommerzieller Rechteprüfung dokumentiert.
+[Compact] Assetbuild erzeugt Kontaktbogen, Größenreport, unreferenzierte Assets und fehlende Varianten als CI-Artefakt.
