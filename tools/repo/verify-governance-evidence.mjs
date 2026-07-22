@@ -62,9 +62,8 @@ function loadJson(path, label) {
   try {
     return JSON.parse(readFileSync(path, 'utf8'));
   } catch (error) {
-    /** @type {{message?: string}} */
-    const err = error;
-    findings.push(`${label} is unreadable/invalid: ${err.message ?? String(error)}`);
+    const message = error instanceof Error ? error.message : String(error);
+    findings.push(`${label} is unreadable/invalid: ${message}`);
     return null;
   }
 }

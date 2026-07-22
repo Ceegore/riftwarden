@@ -60,9 +60,8 @@ function readJson(path, findings, label) {
   try {
     return JSON.parse(readFileSync(path, 'utf8'));
   } catch (error) {
-    /** @type {{message?: string}} */
-    const err = error;
-    findings.push(issue('REPO_INVALID_JSON', `${label} is not valid JSON: ${err.message ?? String(error)}`, `Repair ${label} and rerun the validator.`, toPosix(path)));
+    const message = error instanceof Error ? error.message : String(error);
+    findings.push(issue('REPO_INVALID_JSON', `${label} is not valid JSON: ${message}`, `Repair ${label} and rerun the validator.`, toPosix(path)));
     return null;
   }
 }

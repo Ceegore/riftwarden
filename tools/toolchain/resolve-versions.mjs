@@ -1,11 +1,22 @@
-import fs from 'node:fs';
 import path from 'node:path';
 import { contractPath, freezePath, readJson, repositoryRoot, writeJson } from './contracts.mjs';
 import { fetchPackageMetadata, selectHighestStable } from './registry-client.mjs';
 
-const contract = readJson(contractPath);
 /**
- * @type {Array<{
+ * @typedef {{ versions?: Record<string, import('./registry-client.mjs').VersionMetadata> }} PackageMetadata
+ */
+
+/**
+ * @typedef {{ name: string, group: string, major: number|null, versionGroup?: string|null }} ContractEntry
+ *
+ * @typedef {{
+ *   runtime: ContractEntry[],
+ *   development: ContractEntry[]
+ * }} DependencyContract
+ */
+
+/**
+ * @typedef {{
  *   name: string,
  *   classification: string,
  *   requestedMajor: number|null,
@@ -20,13 +31,17 @@ const contract = readJson(contractPath);
  *   repository: unknown,
  *   homepage: string|null,
  *   registrySource: string
- * }>}
+ * }} ResolvedPackage
  */
+
+/** @type {DependencyContract} */
+const contract = /** @type {DependencyContract} */ (/** @type {unknown} */ (readJson(contractPath)));
+/** @type {ResolvedPackage[]} */
 const resolved = [];
 
 for (const item of [...contract.runtime, ...contract.development]) {
   const metadata = await fetchPackageMetadata(item.name);
-  const candidate = selectHighestStable(metadata, item.major);
+  const candidate = selectHighestStable(/** @type {PackageMetadata} */ (/** @type {unknown} */ (metadata)), item.major);
   const packageData = candidate.value;
   resolved.push({
     name: item.name,

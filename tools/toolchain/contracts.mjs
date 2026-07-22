@@ -12,7 +12,7 @@ export const packagePath = path.join(repositoryRoot, 'package.json');
 /**
  * Reads and parses a JSON file synchronously.
  * @param {string} filePath Absolute file path.
- * @returns {unknown}
+ * @returns {any}
  */
 export function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -58,7 +58,7 @@ export function compareVersions(left, right) {
   const a = parseVersion(left);
   const b = parseVersion(right);
   if (a === null || b === null) throw new Error(`Invalid semantic version: ${left} / ${right}`);
-  for (const key of ['major', 'minor', 'patch']) {
+  for (const key of /** @type {('major'|'minor'|'patch')[]} */ (['major', 'minor', 'patch'])) {
     const av = a[key];
     const bv = b[key];
     if (av !== bv) return av - bv;

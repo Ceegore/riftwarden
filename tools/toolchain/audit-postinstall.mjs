@@ -19,10 +19,11 @@ if (!fs.existsSync(pnpmRoot)) throw new Error('Install with --ignore-scripts bef
  * @param {string} packageJson Path to the package.json file.
  */
 function scanPackageJson(packageJson) {
-  const data = readJson(packageJson);
+  /** @type {{ name?: string, version?: string, scripts?: Record<string, string> }} */
+  const data = /** @type {{ name?: string, version?: string, scripts?: Record<string, string> }} */ (readJson(packageJson));
   /** @type {Record<string, string>} */
-  const lifecycle = Object.fromEntries(['preinstall', 'install', 'postinstall', 'prepare'].filter((key) => data.scripts?.[key]).map((key) => [key, data.scripts[key]]));
-  if (Object.keys(lifecycle).length > 0) scripts.push({ name: data.name, version: data.version, lifecycle });
+  const lifecycle = Object.fromEntries(['preinstall', 'install', 'postinstall', 'prepare'].filter((key) => data.scripts?.[key]).map((key) => [key, /** @type {string} */ (data.scripts?.[key])]));
+  if (Object.keys(lifecycle).length > 0) scripts.push({ name: /** @type {string} */ (data.name), version: /** @type {string} */ (data.version), lifecycle });
 }
 
 for (const entry of fs.readdirSync(pnpmRoot, { withFileTypes: true })) {

@@ -25,13 +25,14 @@ for (const entry of fs.readdirSync(pnpmRoot, { withFileTypes: true })) {
   for (const packageDir of candidates) {
     const packageJson = path.join(packageDir, 'package.json');
     if (!fs.existsSync(packageJson)) continue;
-    const data = readJson(packageJson);
+    /** @type {{ name?: string, version?: string|null, license?: string|null, repository?: unknown, homepage?: string|null }} */
+    const data = /** @type {{ name?: string, version?: string|null, license?: string|null, repository?: unknown, homepage?: string|null }} */ (readJson(packageJson));
     packages.push({
       name: data.name ?? path.basename(packageDir),
       version: data.version ?? null,
       license: data.license ?? null,
       source: data.repository ?? data.homepage ?? null,
-      classification: classifyLicense(data.license, policy),
+      classification: classifyLicense(data.license, /** @type {import('./license-lib.mjs').LicensePolicy} */ (/** @type {unknown} */ (policy))),
     });
   }
 }

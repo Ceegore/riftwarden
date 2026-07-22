@@ -1,14 +1,15 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const baseURL = 'http://127.0.0.1:4173';
+const ci = process.env.CI;
 
 export default defineConfig({
   testDir: './tests/e2e',
   outputDir: 'docs/reports/test-results/playwright-artifacts',
   fullyParallel: false,
   forbidOnly: true,
-  retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  retries: ci ? 1 : 0,
+  ...ci ? { workers: 1 } : {},
   reporter: [
     ['list'],
     ['junit', { outputFile: 'docs/reports/test-results/playwright-junit.xml' }],
@@ -19,7 +20,7 @@ export default defineConfig({
     locale: 'en-US',
     timezoneId: 'UTC',
     colorScheme: 'dark',
-    reducedMotion: 'reduce',
+    contextOptions: { reducedMotion: 'reduce' },
     serviceWorkers: 'block',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
@@ -33,7 +34,7 @@ export default defineConfig({
   webServer: {
     command: 'pnpm build:qa && pnpm preview --port 4173',
     url: baseURL,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: !ci,
     timeout: 120_000,
     env: {
       VITE_BUILD_CHANNEL: 'qa',

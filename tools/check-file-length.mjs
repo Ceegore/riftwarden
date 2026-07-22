@@ -62,8 +62,7 @@ try {
   }
   process.exitCode = report.passed ? 0 : 1;
 } catch (error) {
-  /** @type {{message?: string}} */
-  const err = error;
-  process.stderr.write(`check-file-length failed: ${err.message ?? String(error)}\n`);
+  const message = error instanceof Error ? error.message : String(error);
+  process.stderr.write(`check-file-length failed: ${message}\n`);
   process.exitCode = 2;
 }

@@ -33,7 +33,7 @@ for (const tuple of checks) {
   const name = tuple[0];
   const command = tuple[1];
   const options = tuple[2] ?? {};
-  const result = spawnSync(command[0], command.slice(1), {
+  const result = spawnSync(/** @type {string} */ (command[0]), command.slice(1), {
     cwd: process.cwd(),
     encoding: 'utf8',
     shell: options.shell ?? false,

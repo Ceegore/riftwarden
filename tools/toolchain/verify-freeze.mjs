@@ -2,16 +2,29 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { contractPath, freezePath, isExactVersion, packagePath, readJson, repositoryRoot } from './contracts.mjs';
 
+/**
+ * @typedef {{ name: string, group: string, major: number|null }} ContractEntry
+ *
+ * @typedef {{ runtime: ContractEntry[], development: ContractEntry[] }} DependencyContract
+ *
+ * @typedef {{ packages: Array<{ name: string, resolvedVersion: string }> }} FreezeFile
+ *
+ * @typedef {{ packageManager?: string, workspaces?: unknown, dependencies?: Record<string, string>, devDependencies?: Record<string, string> }} PackageJsonShape
+ */
+
 const errors = [];
-const contract = readJson(contractPath);
-const freeze = readJson(freezePath);
-const pkg = readJson(packagePath);
-const allowed = new Map([...contract.runtime, ...contract.development].map((item) => [item.name, item]));
-const frozen = new Map(freeze.packages.map((item) => [item.name, item.resolvedVersion]));
+/** @type {DependencyContract} */
+const contract = /** @type {DependencyContract} */ (/** @type {unknown} */ (readJson(contractPath)));
+/** @type {FreezeFile} */
+const freeze = /** @type {FreezeFile} */ (/** @type {unknown} */ (readJson(freezePath)));
+/** @type {PackageJsonShape} */
+const pkg = /** @type {PackageJsonShape} */ (/** @type {unknown} */ (readJson(packagePath)));
+const allowed = new Map([...contract.runtime, ...contract.development].map((/** @type {ContractEntry} */ item) => [item.name, item]));
+const frozen = new Map(freeze.packages.map((/** @type {{name: string, resolvedVersion: string}} */ item) => [item.name, item.resolvedVersion]));
 
 if ('workspaces' in pkg) errors.push('package.json must not contain workspaces.');
 if (!/^pnpm@10\.\d+\.\d+$/.test(pkg.packageManager ?? '')) errors.push('packageManager must pin exact pnpm major 10.');
-for (const section of ['dependencies', 'devDependencies']) {
+for (const section of /** @type {Array<keyof Pick<PackageJsonShape, 'dependencies'|'devDependencies'>>} */ (['dependencies', 'devDependencies'])) {
   for (const [name, version] of Object.entries(pkg[section] ?? {})) {
     if (!allowed.has(name)) errors.push(`${section}.${name} is outside dependency-contract.json.`);
     if (!isExactVersion(version)) errors.push(`${section}.${name} is not an exact x.y.z version.`);

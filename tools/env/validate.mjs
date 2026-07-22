@@ -2,6 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { validateEnvironment } from './contracts.mjs';
 
+/** @typedef {import('./contracts.d.mts').BuildChannel} BuildChannel */
+
 /**
  * Loads a .env-style file into a plain object.
  * @param {string} filePath Path to the .env file.
@@ -31,7 +33,7 @@ const raw = {
   ...loadDotEnv(path.resolve(`.env.${expected ?? 'dev'}`)),
   ...viteEnv,
 };
-const result = validateEnvironment(raw, expected);
+const result = validateEnvironment(raw, /** @type {BuildChannel|undefined} */ (expected));
 if (!result.ok) {
   console.error(result.errors.map((error) => `- ${error}`).join('\n'));
   process.exit(1);

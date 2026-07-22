@@ -28,7 +28,15 @@ export async function fetchPackageMetadata(name, fetchImpl = fetch) {
 }
 
 /**
- * @typedef {{deprecated?: string|null, license?: string}} VersionMetadata
+ * @typedef {{
+ *   deprecated?: string|null,
+ *   license?: string|null,
+ *   engines?: Record<string, string>,
+ *   peerDependencies?: Record<string, string>,
+ *   dist?: { integrity?: string|null, tarball?: string|null },
+ *   repository?: unknown,
+ *   homepage?: string|null
+ * }} VersionMetadata
  */
 
 /**
