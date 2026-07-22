@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "project_id": "riftwarden",
-  "updated_at": "2026-07-22T01:02:20Z",
+  "updated_at": "2026-07-22T01:07:54Z",
   "sessions": [
     {
       "session_id": "sess_c215af2b55824a95",
@@ -283,12 +283,12 @@
       "integration_mode": "api-supervisor",
       "phase_id": "PHASE-00",
       "work_package_id": "P00-T02i",
-      "status": "RUNNING",
+      "status": "FAILED",
       "process_id": 21712,
       "idempotency_key": "rw-p00-t02i-v1-526f41f4",
       "request_hash": "4aa2dedce3212c4b4a3d80a4284eed93bd0128cb6f1f6f76cfe1b7bd2165bd7d",
       "started_at": "2026-07-22T00:48:36Z",
-      "last_heartbeat_at": "2026-07-22T01:00:36Z",
+      "last_heartbeat_at": "2026-07-22T01:07:54Z",
       "usage": {}
     },
     {
@@ -299,12 +299,12 @@
       "integration_mode": "api-supervisor",
       "phase_id": "PHASE-00",
       "work_package_id": "P00-T02j",
-      "status": "RUNNING",
+      "status": "FAILED",
       "process_id": 12520,
       "idempotency_key": "rw-p00-t02j-v1-831a35ec",
       "request_hash": "a23a4f22770875eb8ac0dc2a8e2d4973fdafb6b9685034fb8d28394c0de59b98",
       "started_at": "2026-07-22T00:56:16Z",
-      "last_heartbeat_at": "2026-07-22T01:02:17Z",
+      "last_heartbeat_at": "2026-07-22T01:05:13Z",
       "usage": {}
     },
     {
@@ -315,12 +315,12 @@
       "integration_mode": "api-supervisor",
       "phase_id": "PHASE-00",
       "work_package_id": "P00-T02k",
-      "status": "RUNNING",
+      "status": "FAILED",
       "process_id": 30960,
       "idempotency_key": "rw-p00-t02k-v1-ab81564b",
       "request_hash": "a9ad0f1704b0107acb170934124fa3069c60627e4ed4753d947a4d5e21b96c12",
       "started_at": "2026-07-22T00:56:16Z",
-      "last_heartbeat_at": "2026-07-22T01:02:19Z",
+      "last_heartbeat_at": "2026-07-22T01:07:53Z",
       "usage": {}
     },
     {
@@ -331,12 +331,12 @@
       "integration_mode": "api-supervisor",
       "phase_id": "PHASE-00",
       "work_package_id": "P00-T02l",
-      "status": "RUNNING",
+      "status": "FAILED",
       "process_id": 41360,
       "idempotency_key": "rw-p00-t02l-v1-c0488f64",
       "request_hash": "5d90237c216b350b4005779ddda2c3338bdaa5eed73b49f8c56c6de60bd9d411",
       "started_at": "2026-07-22T00:56:16Z",
-      "last_heartbeat_at": "2026-07-22T01:02:20Z",
+      "last_heartbeat_at": "2026-07-22T01:03:22Z",
       "usage": {}
     },
     {
@@ -347,12 +347,12 @@
       "integration_mode": "api-supervisor",
       "phase_id": "PHASE-00",
       "work_package_id": "P00-T02l",
-      "status": "RUNNING",
+      "status": "FAILED",
       "process_id": 20520,
       "idempotency_key": "rw-p00-t02l-v2-b1e7caf5",
       "request_hash": "f97a128fae55337fa8ea87035fea4ccb754b9a2bb036a4dc342be4ec4ad3fb33",
       "started_at": "2026-07-22T01:01:14Z",
-      "last_heartbeat_at": "2026-07-22T01:02:17Z",
+      "last_heartbeat_at": "2026-07-22T01:03:34Z",
       "usage": {}
     }
   ]

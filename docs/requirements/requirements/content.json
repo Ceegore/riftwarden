@@ -24,7 +24,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-001"
+            "UT-CONTENT-001"
           ]
         }
       ],
@@ -56,7 +56,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-15",
           "testIds": [
-            "GR-PHASE15-001"
+            "UT-CONTENT-002"
           ]
         }
       ],
@@ -81,14 +81,14 @@
         "originalExcerpt": "Finale Übersetzungstexte aller Dialogvarianten; verbindlich sind Funktion, Ton und maximale Textmenge."
       },
       "ownerPhases": [
-        "PHASE-60"
+        "PHASE-20"
       ],
       "verification": [
         {
           "type": "unit",
-          "plannedPhase": "PHASE-60",
+          "plannedPhase": "PHASE-20",
           "testIds": [
-            "GR-PHASE60-001"
+            "UT-CONTENT-003"
           ]
         }
       ],
@@ -120,7 +120,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-PHASE00-011"
+            "UT-CONTENT-004"
           ]
         }
       ],
@@ -152,7 +152,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-007"
+            "UT-CONTENT-005"
           ]
         }
       ],
@@ -184,7 +184,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-008"
+            "UT-CONTENT-006"
           ]
         }
       ],
@@ -216,7 +216,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-009"
+            "UT-CONTENT-007"
           ]
         }
       ],
@@ -248,7 +248,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-15",
           "testIds": [
-            "GR-PHASE15-003"
+            "UT-CONTENT-008"
           ]
         }
       ],
@@ -280,7 +280,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-15",
           "testIds": [
-            "GR-PHASE15-004"
+            "UT-CONTENT-009"
           ]
         }
       ],
@@ -312,7 +312,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-15",
           "testIds": [
-            "GR-PHASE15-005"
+            "UT-CONTENT-010"
           ]
         }
       ],
@@ -343,13 +343,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-008"
+            "UT-CONTENT-011"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0011"
+      "id": "REQ-CONTENT-0011",
+      "title": "Beim Start der Endlosen Rift werden genau drei permanente Gegenstände inklusive "
     },
     {
       "tempId": "REQ-TEMP-B-0004",
@@ -372,13 +373,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-010"
+            "UT-CONTENT-012"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0012"
+      "id": "REQ-CONTENT-0012",
+      "title": "In der Endlosen Rift finden fortlaufend einzelne Kämpfe statt."
     },
     {
       "tempId": "REQ-TEMP-B-0005",
@@ -401,13 +403,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-011"
+            "UT-CONTENT-013"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0013"
+      "id": "REQ-CONTENT-0013",
+      "title": "Nach jedem Sieg werden drei Belohnungen zur Wahl angeboten."
     },
     {
       "tempId": "REQ-TEMP-B-0006",
@@ -430,13 +433,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-012"
+            "UT-CONTENT-014"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0014"
+      "id": "REQ-CONTENT-0014",
+      "title": "In der Endlosen Rift existieren Gold und Zyklusmünzen nicht."
     },
     {
       "tempId": "REQ-TEMP-B-0007",
@@ -459,13 +463,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-013"
+            "UT-CONTENT-015"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0015"
+      "id": "REQ-CONTENT-0015",
+      "title": "Nach jeweils fünf Kämpfen erscheint ein Checkpoint."
     },
     {
       "tempId": "REQ-TEMP-B-0009",
@@ -488,13 +493,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-014"
+            "UT-CONTENT-016"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0016"
+      "id": "REQ-CONTENT-0016",
+      "title": "Die Gruppe darf nur mit im Lauf gewonnenen Rekruten verändert werden."
     },
     {
       "tempId": "REQ-TEMP-B-0012",
@@ -517,13 +523,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-015"
+            "UT-CONTENT-017"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0017"
+      "id": "REQ-CONTENT-0017",
+      "title": "In der Endlosen Rift existieren keine wiederholbaren permanenten Machtbelohnunge"
     },
     {
       "tempId": "REQ-TEMP-B-0013",
@@ -546,13 +553,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-016"
+            "UT-CONTENT-018"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0018"
+      "id": "REQ-CONTENT-0018",
+      "title": "Erstmalige Meilensteine sind kosmetisch oder geringe einmalige Riftessenz."
     },
     {
       "tempId": "REQ-TEMP-B-0015",
@@ -575,13 +583,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-017"
+            "UT-CONTENT-019"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0019"
+      "id": "REQ-CONTENT-0019",
+      "title": "In Tiefe 1-5 gilt: eine Region, keine Champions, maximal 1 Modifikator."
     },
     {
       "tempId": "REQ-TEMP-B-0018",
@@ -604,13 +613,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-018"
+            "UT-CONTENT-020"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0020"
+      "id": "REQ-CONTENT-0020",
+      "title": "In Tiefe 11-20 werden zwei Regionen gemischt, die Championchance beträgt 15 Proz"
     },
     {
       "tempId": "REQ-TEMP-B-0019",
@@ -633,13 +643,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-019"
+            "UT-CONTENT-021"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0021"
+      "id": "REQ-CONTENT-0021",
+      "title": "In Tiefe 21-30 werden Eliteattribute kombiniert und ab Tiefe 26 sind alle Region"
     },
     {
       "tempId": "REQ-TEMP-B-0020",
@@ -662,13 +673,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-020"
+            "UT-CONTENT-022"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0022"
+      "id": "REQ-CONTENT-0022",
+      "title": "In Tiefe 31-40 sind bis zu 2 Modifikatoren aktiv, die Championchance beträgt 30 "
     },
     {
       "tempId": "REQ-TEMP-B-0021",
@@ -691,13 +703,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-021"
+            "UT-CONTENT-023"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0023"
+      "id": "REQ-CONTENT-0023",
+      "title": "In Tiefe 41-60 sind ab Tiefe 51 maximal 2 Champions erlaubt, jedoch nie mit zwei"
     },
     {
       "tempId": "REQ-TEMP-B-0022",
@@ -720,13 +733,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-022"
+            "UT-CONTENT-024"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0024"
+      "id": "REQ-CONTENT-0024",
+      "title": "In Tiefe 61+ werden ausschließlich kuratierte Rotationen verwendet und keine neu"
     },
     {
       "tempId": "REQ-TEMP-B-0023",
@@ -749,13 +763,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-023"
+            "UT-CONTENT-025"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0025"
+      "id": "REQ-CONTENT-0025",
+      "title": "Nach Kämpfen 1-4 werden mindestens zwei gewöhnliche und eine beliebige Option an"
     },
     {
       "tempId": "REQ-TEMP-B-0024",
@@ -778,13 +793,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-024"
+            "UT-CONTENT-026"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0026"
+      "id": "REQ-CONTENT-0026",
+      "title": "Jeder fünfte Kampf enthält mindestens eine seltene Option."
     },
     {
       "tempId": "REQ-TEMP-B-0025",
@@ -807,13 +823,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-025"
+            "UT-CONTENT-027"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0027"
+      "id": "REQ-CONTENT-0027",
+      "title": "An einem Bosscheckpoint wird eine von vier Optionen angeboten, davon mindestens "
     },
     {
       "tempId": "REQ-TEMP-B-0026",
@@ -836,13 +853,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-026"
+            "UT-CONTENT-028"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0028"
+      "id": "REQ-CONTENT-0028",
+      "title": "Das Reliktlimit beträgt sechs bis Tiefe 20."
     },
     {
       "tempId": "REQ-TEMP-B-0027",
@@ -865,13 +883,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-027"
+            "UT-CONTENT-029"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0029"
+      "id": "REQ-CONTENT-0029",
+      "title": "Das Reliktlimit beträgt acht ab Tiefe 21 und wächst darüber nicht weiter."
     },
     {
       "tempId": "REQ-TEMP-B-0028",
@@ -894,13 +913,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-028"
+            "UT-CONTENT-030"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0030"
+      "id": "REQ-CONTENT-0030",
+      "title": "Eine Rekrutierungswahl darf die Vertragsgrenze von drei nicht überschreiten."
     },
     {
       "tempId": "REQ-TEMP-B-0029",
@@ -923,13 +943,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-029"
+            "UT-CONTENT-031"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0031"
+      "id": "REQ-CONTENT-0031",
+      "title": "Ein temporärer Rekrut bleibt bis zum Laufende erhalten."
     },
     {
       "tempId": "REQ-TEMP-B-0030",
@@ -952,13 +973,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-030"
+            "UT-CONTENT-032"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0032"
+      "id": "REQ-CONTENT-0032",
+      "title": "Alle zehn Tiefen wird eine Begegnung als Erholungsfenster leichter gestaltet."
     },
     {
       "tempId": "REQ-TEMP-B-0033",
@@ -981,13 +1003,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-031"
+            "UT-CONTENT-033"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0033"
+      "id": "REQ-CONTENT-0033",
+      "title": "Ein Neustart darf keine Belohnung neu würfeln."
     },
     {
       "tempId": "REQ-TEMP-B-0037",
@@ -1010,7 +1033,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-033"
+            "UT-CONTENT-034"
           ]
         }
       ],
@@ -1022,7 +1045,8 @@
         }
       ],
       "status": "planned",
-      "id": "REQ-CONTENT-0034"
+      "id": "REQ-CONTENT-0034",
+      "title": "Tiefe 5 schaltet den Porträtrahmen „Fünf Schritte“ frei."
     },
     {
       "tempId": "REQ-TEMP-B-0038",
@@ -1045,7 +1069,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-034"
+            "UT-CONTENT-035"
           ]
         }
       ],
@@ -1057,7 +1081,8 @@
         }
       ],
       "status": "planned",
-      "id": "REQ-CONTENT-0035"
+      "id": "REQ-CONTENT-0035",
+      "title": "Tiefe 10 gewährt 1 Riftessenz und einen Titel."
     },
     {
       "tempId": "REQ-TEMP-B-0039",
@@ -1080,7 +1105,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-035"
+            "UT-CONTENT-036"
           ]
         }
       ],
@@ -1092,7 +1117,8 @@
         }
       ],
       "status": "planned",
-      "id": "REQ-CONTENT-0036"
+      "id": "REQ-CONTENT-0036",
+      "title": "Tiefe 20 schaltet eine Kodexseite und 2 Riftessenz frei."
     },
     {
       "tempId": "REQ-TEMP-B-0040",
@@ -1115,7 +1141,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-036"
+            "UT-CONTENT-037"
           ]
         }
       ],
@@ -1127,7 +1153,8 @@
         }
       ],
       "status": "planned",
-      "id": "REQ-CONTENT-0037"
+      "id": "REQ-CONTENT-0037",
+      "title": "Tiefe 30 gewährt 2 Riftessenz und einen Titel."
     },
     {
       "tempId": "REQ-TEMP-B-0041",
@@ -1150,7 +1177,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-037"
+            "UT-CONTENT-038"
           ]
         }
       ],
@@ -1162,7 +1189,8 @@
         }
       ],
       "status": "planned",
-      "id": "REQ-CONTENT-0038"
+      "id": "REQ-CONTENT-0038",
+      "title": "Tiefe 50 gewährt 3 Riftessenz und die gold-violette Arenafarbe."
     },
     {
       "tempId": "REQ-TEMP-B-0042",
@@ -1185,7 +1213,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-038"
+            "UT-CONTENT-039"
           ]
         }
       ],
@@ -1197,7 +1225,8 @@
         }
       ],
       "status": "planned",
-      "id": "REQ-CONTENT-0039"
+      "id": "REQ-CONTENT-0039",
+      "title": "Tiefe 75 gewährt 4 Riftessenz und eine Bossfarbvariante."
     },
     {
       "tempId": "REQ-TEMP-B-0043",
@@ -1220,7 +1249,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-039"
+            "UT-CONTENT-040"
           ]
         }
       ],
@@ -1232,7 +1261,8 @@
         }
       ],
       "status": "planned",
-      "id": "REQ-CONTENT-0040"
+      "id": "REQ-CONTENT-0040",
+      "title": "Tiefe 100 gewährt einen legendären rein kosmetischen Rahmen und eine Statistikpl"
     },
     {
       "tempId": "REQ-TEMP-B-0044",
@@ -1255,13 +1285,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-040"
+            "UT-CONTENT-041"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0041"
+      "id": "REQ-CONTENT-0041",
+      "title": "Jeder Held besitzt genau fünf Kernziele."
     },
     {
       "tempId": "REQ-TEMP-B-0046",
@@ -1284,13 +1315,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-041"
+            "UT-CONTENT-042"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0042"
+      "id": "REQ-CONTENT-0042",
+      "title": "Ziel 4 wird erst nach Kampagnenabschluss sichtbar."
     },
     {
       "tempId": "REQ-TEMP-B-0047",
@@ -1313,13 +1345,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-042"
+            "UT-CONTENT-043"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0043"
+      "id": "REQ-CONTENT-0043",
+      "title": "Ziel 5 wird erst nach Erreichen von Level 3 sichtbar."
     },
     {
       "tempId": "REQ-TEMP-B-0048",
@@ -1342,13 +1375,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-043"
+            "UT-CONTENT-044"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0044"
+      "id": "REQ-CONTENT-0044",
+      "title": "Fortschritt wird nicht in verlorenen Kämpfen gewertet, außer bei reinen Teilnahm"
     },
     {
       "tempId": "REQ-TEMP-B-0049",
@@ -1371,13 +1405,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-044"
+            "UT-CONTENT-045"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0045"
+      "id": "REQ-CONTENT-0045",
+      "title": "Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte."
     },
     {
       "tempId": "REQ-TEMP-B-0050",
@@ -1400,13 +1435,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-045"
+            "UT-CONTENT-046"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0046"
+      "id": "REQ-CONTENT-0046",
+      "title": "Stufe I einer Heldenmeisterschaft gewährt eine alternative Farbvariante."
     },
     {
       "tempId": "REQ-TEMP-B-0051",
@@ -1429,13 +1465,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-046"
+            "UT-CONTENT-047"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0047"
+      "id": "REQ-CONTENT-0047",
+      "title": "Stufe II einer Heldenmeisterschaft gewährt einen Porträtrahmen."
     },
     {
       "tempId": "REQ-TEMP-B-0052",
@@ -1458,13 +1495,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-047"
+            "UT-CONTENT-048"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0048"
+      "id": "REQ-CONTENT-0048",
+      "title": "Stufe III einer Heldenmeisterschaft gewährt eine kurze Charaktergeschichte im Ar"
     },
     {
       "tempId": "REQ-TEMP-B-0053",
@@ -1487,13 +1525,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-048"
+            "UT-CONTENT-049"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0049"
+      "id": "REQ-CONTENT-0049",
+      "title": "Stufe IV einer Heldenmeisterschaft gewährt einen kosmetischen Signaturfähigkeits"
     },
     {
       "tempId": "REQ-TEMP-B-0054",
@@ -1516,7 +1555,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-049"
+            "UT-CONTENT-050"
           ]
         }
       ],
@@ -1528,7 +1567,8 @@
         }
       ],
       "status": "planned",
-      "id": "REQ-CONTENT-0050"
+      "id": "REQ-CONTENT-0050",
+      "title": "Stufe V einer Heldenmeisterschaft gewährt einen Heldentitel und 2 Riftessenz."
     },
     {
       "tempId": "REQ-TEMP-B-0057",
@@ -1551,13 +1591,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-050"
+            "UT-CONTENT-051"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0051"
+      "id": "REQ-CONTENT-0051",
+      "title": "Kein Meisterschaftsziel darf durch dauerhaft verpassbaren Inhalt blockierbar sei"
     },
     {
       "tempId": "REQ-TEMP-B-0058",
@@ -1580,13 +1621,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-051"
+            "UT-CONTENT-052"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0052"
+      "id": "REQ-CONTENT-0052",
+      "title": "Der Kodex umfasst die Kategorien 10 Helden, 18 Truppen, 14 Beschwörungen, 28 Gru"
     },
     {
       "tempId": "REQ-TEMP-B-0060",
@@ -1609,13 +1651,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-052"
+            "UT-CONTENT-053"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0053"
+      "id": "REQ-CONTENT-0053",
+      "title": "Eine erste Begegnung schaltet Namen, Rolle, Kurzmechanik und Gegenstrategie frei"
     },
     {
       "tempId": "REQ-TEMP-B-0061",
@@ -1638,13 +1681,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-053"
+            "UT-CONTENT-054"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0054"
+      "id": "REQ-CONTENT-0054",
+      "title": "Ein erster Sieg schaltet vollständige Baselinewerte und Fähigkeiten frei."
     },
     {
       "tempId": "REQ-TEMP-B-0062",
@@ -1667,13 +1711,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-054"
+            "UT-CONTENT-055"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0055"
+      "id": "REQ-CONTENT-0055",
+      "title": "Der Boss-Kodex zeigt normale, Veteran-, Rang-4- und Rang-9-Regeln getrennt."
     },
     {
       "tempId": "REQ-TEMP-B-0063",
@@ -1696,13 +1741,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-055"
+            "UT-CONTENT-056"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0056"
+      "id": "REQ-CONTENT-0056",
+      "title": "Kodex-Einträge enthalten keine versteckten aktuellen Endwerte nach Schwierigkeit"
     },
     {
       "tempId": "REQ-TEMP-B-0065",
@@ -1725,13 +1771,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-056"
+            "UT-CONTENT-057"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0057"
+      "id": "REQ-CONTENT-0057",
+      "title": "Erfolge sind lokal, offline und rein intern."
     },
     {
       "tempId": "REQ-TEMP-B-0066",
@@ -1754,13 +1801,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-057"
+            "UT-CONTENT-058"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0058"
+      "id": "REQ-CONTENT-0058",
+      "title": "Erfolge gewähren niemals exklusive notwendige Macht."
     },
     {
       "tempId": "REQ-TEMP-B-0067",
@@ -1783,13 +1831,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-058"
+            "UT-CONTENT-059"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0059"
+      "id": "REQ-CONTENT-0059",
+      "title": "Versteckte Erfolge dürfen keine ernsthafte Fehlhandlung verlangen."
     },
     {
       "tempId": "REQ-TEMP-B-0068",
@@ -1812,13 +1861,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-059"
+            "UT-CONTENT-060"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0060"
+      "id": "REQ-CONTENT-0060",
+      "title": "Normale Erfolge gewähren 100 Gold oder ein kosmetisches Abzeichen."
     },
     {
       "tempId": "REQ-TEMP-B-0069",
@@ -1841,7 +1891,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-060"
+            "UT-CONTENT-061"
           ]
         }
       ],
@@ -1853,7 +1903,8 @@
         }
       ],
       "status": "planned",
-      "id": "REQ-CONTENT-0061"
+      "id": "REQ-CONTENT-0061",
+      "title": "Kampagnen- oder Endgame-Erfolge gewähren Titel oder Rahmen und höchstens 1-3 Rif"
     },
     {
       "tempId": "REQ-TEMP-B-0071",
@@ -1876,13 +1927,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-061"
+            "UT-CONTENT-062"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0062"
+      "id": "REQ-CONTENT-0062",
+      "title": "Die Erfolge „Pip hatte recht/nicht recht\" verwenden ausschließlich die explizit "
     },
     {
       "tempId": "REQ-TEMP-B-0079",
@@ -1905,7 +1957,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-062"
+            "UT-CONTENT-063"
           ]
         }
       ],
@@ -1917,7 +1969,8 @@
         }
       ],
       "status": "planned",
-      "id": "REQ-CONTENT-0063"
+      "id": "REQ-CONTENT-0063",
+      "title": "Die Kampfbewertung „Überlegen\" gewährt 15 Prozent mehr Gold und eine höhere Reli"
     },
     {
       "tempId": "REQ-TEMP-B-0080",
@@ -1940,7 +1993,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-063"
+            "UT-CONTENT-064"
           ]
         }
       ],
@@ -1952,7 +2005,8 @@
         }
       ],
       "status": "planned",
-      "id": "REQ-CONTENT-0064"
+      "id": "REQ-CONTENT-0064",
+      "title": "Die Kampfbewertung „Kontrolliert\" gewährt 8 Prozent mehr Gold."
     },
     {
       "tempId": "REQ-TEMP-B-0081",
@@ -1975,13 +2029,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-064"
+            "UT-CONTENT-065"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0065"
+      "id": "REQ-CONTENT-0065",
+      "title": "Die Kampfbewertung „Hart erkämpft\" gewährt weder Bonus noch Malus."
     },
     {
       "tempId": "REQ-TEMP-B-0082",
@@ -2004,13 +2059,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-065"
+            "UT-CONTENT-066"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-CONTENT-0066"
+      "id": "REQ-CONTENT-0066",
+      "title": "Die Kampfbewertung „Letzter Stand\" gewährt keinen Malus, aber einen eigenen Stat"
     },
     {
       "id": "REQ-CONTENT-0067",
@@ -2031,10 +2087,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-SCHEMA-CONTENT-001"
+            "UT-CONTENT-067"
           ]
         }
       ],
@@ -2063,10 +2119,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-SCHEMA-ZOD-001"
+            "UT-CONTENT-068"
           ]
         }
       ],
@@ -2095,10 +2151,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-CONTENT-LOOKUP-001"
+            "UT-CONTENT-069"
           ]
         }
       ],
@@ -2127,10 +2183,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-LOADER-TICKS-001"
+            "UT-CONTENT-070"
           ]
         }
       ],
@@ -2164,10 +2220,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-LOCALE-KEYS-001"
+            "UT-CONTENT-071"
           ]
         }
       ],
@@ -2196,10 +2252,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-VALID-TEXT-001"
+            "UT-CONTENT-072"
           ]
         }
       ],
@@ -2233,10 +2289,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-VALID-ASSETS-001"
+            "UT-CONTENT-073"
           ]
         }
       ],
@@ -2270,10 +2326,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-LOCALE-PARITY-001"
+            "UT-CONTENT-074"
           ]
         }
       ],
@@ -2302,10 +2358,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-LOCALE-ICU-001"
+            "UT-CONTENT-075"
           ]
         }
       ],
@@ -2334,10 +2390,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-LOCALE-DIRECTION-001"
+            "UT-CONTENT-076"
           ]
         }
       ],
@@ -2366,10 +2422,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-LOCALE-MISSING-001"
+            "UT-CONTENT-077"
           ]
         }
       ],
@@ -2398,10 +2454,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "UT-LOCALE-PSEUDO-001"
+            "UT-CONTENT-078"
           ]
         }
       ],
@@ -2435,10 +2491,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-LOCALE-CARD-001"
+            "UT-CONTENT-079"
           ]
         }
       ],
@@ -2472,10 +2528,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-04",
           "testIds": [
-            "UT-LOCALE-EVTINTRO-001"
+            "UT-CONTENT-080"
           ]
         }
       ],
@@ -2509,10 +2565,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-04",
           "testIds": [
-            "UT-LOCALE-EVTOPT-001"
+            "UT-CONTENT-081"
           ]
         }
       ],
@@ -2546,10 +2602,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "UT-LOCALE-SUBTITLE-001"
+            "UT-CONTENT-082"
           ]
         }
       ],
@@ -2587,10 +2643,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-15",
           "testIds": [
-            "UT-SEC-ASSETLIC-001"
+            "UT-CONTENT-083"
           ]
         }
       ],
@@ -2608,7 +2664,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "68",
+        "chapter": 68,
         "section": null,
         "locator": "block:1905",
         "quoteHash": "sha256:a1c7e4452cb76f6cdb62d8e634e5944cf395e2924df69b81932cbfee0b1a6e48",
@@ -2619,10 +2675,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-PREFLIGHT-LICENSE-001"
+            "UT-CONTENT-084"
           ]
         }
       ],
@@ -2640,7 +2696,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "70",
+        "chapter": 70,
         "section": null,
         "locator": "block:1936",
         "quoteHash": "sha256:2a006fdfce8699973084905222bc4f1a149c5745f9f63184a80a44c68eff01d4",
@@ -2651,10 +2707,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-VAUDIT-NOREM-001"
+            "UT-CONTENT-085"
           ]
         }
       ],
@@ -2672,7 +2728,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1968",
         "quoteHash": "sha256:f978a45a6af61565d36aaa4c46330aca83694485249aa9e3a288483fce750fbe",
@@ -2683,10 +2739,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-CONST-MODULE-001"
+            "UT-CONTENT-086"
           ]
         }
       ],
@@ -2704,7 +2760,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1968",
         "quoteHash": "sha256:6e9c2f6d7904774d3fd1c29d125fe9793265c5b07688ff9d4ebe2392cc461c38",
@@ -2715,10 +2771,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-CONST-LOCALES-001"
+            "UT-CONTENT-087"
           ]
         }
       ],
@@ -2736,7 +2792,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1977",
         "quoteHash": "sha256:75bc79a682ca17672424aa15769a385c5441e6f6ead4b7b836894e07c597a893",
@@ -2747,10 +2803,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-ID-PREFIXES-001"
+            "UT-CONTENT-088"
           ]
         }
       ],
@@ -2768,7 +2824,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1978",
         "quoteHash": "sha256:fd5884f327ab31639ec2bad733e548ca4c486737a57d1988f267e31d31f38d7a",
@@ -2779,10 +2835,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-ID-UNIQUE-001"
+            "UT-CONTENT-089"
           ]
         }
       ],
@@ -2800,7 +2856,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1980",
         "quoteHash": "sha256:2cf28f1745b4c320b5643077f1297e4bd6e8c2ccbbfce4ba1c2d60d38d35b23e",
@@ -2811,10 +2867,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-ID-IMMUTABLE-001"
+            "UT-CONTENT-090"
           ]
         }
       ],
@@ -2832,7 +2888,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1981",
         "quoteHash": "sha256:8ed789c0f53dc48836943336f9bf0e1ab55d4277c11a1fc7888c68f19a708815",
@@ -2843,10 +2899,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-ID-LOCKEYS-001"
+            "UT-CONTENT-091"
           ]
         }
       ],
@@ -2864,7 +2920,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "75",
+        "chapter": 75,
         "section": null,
         "locator": "block:2001",
         "quoteHash": "sha256:8ff118e561535bba1044df3f949b7d1545da861e85c5cf3d608fefcd148da0de",
@@ -2875,10 +2931,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-DATA-NOUNDEF-001"
+            "UT-CONTENT-092"
           ]
         }
       ],
@@ -2896,7 +2952,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "75",
+        "chapter": 75,
         "section": null,
         "locator": "block:2002",
         "quoteHash": "sha256:c72a92d089727f217a34d6eb6710e0dc4dfdf27d173b777903007d7df9d9b489",
@@ -2907,10 +2963,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-DATA-NULLSEM-001"
+            "UT-CONTENT-093"
           ]
         }
       ],
@@ -2928,7 +2984,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "75",
+        "chapter": 75,
         "section": null,
         "locator": "block:2003",
         "quoteHash": "sha256:a78585f09b83317185a0374fb2b17ee13a506e94dfd0d56a7af510d74261b52b",
@@ -2939,10 +2995,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-DATA-DEFAULTS-001"
+            "UT-CONTENT-094"
           ]
         }
       ],
@@ -2960,7 +3016,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "75",
+        "chapter": 75,
         "section": null,
         "locator": "block:2004",
         "quoteHash": "sha256:a3d099998418fe03b805ff3e7c00904c0dbe1275ff31069a14f326c1d6399fd6",
@@ -2971,10 +3027,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-DATA-UNKNOWN-001"
+            "UT-CONTENT-095"
           ]
         }
       ],
@@ -2992,7 +3048,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "75",
+        "chapter": 75,
         "section": null,
         "locator": "block:2021",
         "quoteHash": "sha256:bfa5b4ae4ca15e70214c2033e282a8edc788b33582f1457d738977708275d245",
@@ -3003,10 +3059,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-DATA-UNITREF-001"
+            "UT-CONTENT-096"
           ]
         }
       ],
@@ -3024,7 +3080,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "75",
+        "chapter": 75,
         "section": null,
         "locator": "block:2022",
         "quoteHash": "sha256:835e003402b66b9520b4e3eb563f473b1bec9017cab01e9774ac819001ece2bc",
@@ -3035,10 +3091,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-DATA-ABILITYSPEC-001"
+            "UT-CONTENT-097"
           ]
         }
       ],
@@ -3056,7 +3112,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "75",
+        "chapter": 75,
         "section": null,
         "locator": "block:2023",
         "quoteHash": "sha256:84afb90e8358e0d8a3546a6a9a50c66b82437b18d2b075c9d10c952f74ca8d22",
@@ -3067,10 +3123,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-04",
           "testIds": [
-            "UT-DATA-BOSSPHASES-001"
+            "UT-CONTENT-098"
           ]
         }
       ],
@@ -3088,7 +3144,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "75",
+        "chapter": 75,
         "section": null,
         "locator": "block:2024",
         "quoteHash": "sha256:01acc938c85ff6c8649d0c8a4492a79125cd92cb071dacd3f585ad24bb98d6a9",
@@ -3099,10 +3155,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-04",
           "testIds": [
-            "UT-DATA-MISSIONGEN-001"
+            "UT-CONTENT-099"
           ]
         }
       ],
@@ -3129,7 +3185,7 @@
       "category": "Content",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "75",
+        "chapter": 75,
         "section": null,
         "locator": "block:2025",
         "quoteHash": "sha256:fa586f8c10f7d59e57196455210c104f4db73cae8b9ccef20837df4c3ed606e1",
@@ -3140,10 +3196,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-04",
           "testIds": [
-            "UT-DATA-EVENTSPEC-001"
+            "UT-CONTENT-100"
           ]
         }
       ],
@@ -3172,10 +3228,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "UX-GOLDEN-STATES-CATALOG-079"
+            "UT-CONTENT-101"
           ]
         }
       ],
@@ -3210,10 +3266,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "CONTENT-TELEGRAPH-AOE-081"
+            "UT-CONTENT-102"
           ]
         }
       ],
@@ -3242,10 +3298,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "CONTENT-EMBEDDED-TEXT-081"
+            "UT-CONTENT-103"
           ]
         }
       ],
@@ -3274,10 +3330,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "CONTENT-ASSET-PROVENANCE-081"
+            "UT-CONTENT-104"
           ]
         }
       ],
@@ -3306,10 +3362,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "CONTENT-VOICE-PIP-082"
+            "UT-CONTENT-105"
           ]
         }
       ],
@@ -3344,10 +3400,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "CONTENT-VOICE-HERO-082"
+            "UT-CONTENT-106"
           ]
         }
       ],
@@ -3389,10 +3445,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "CONTENT-VOICE-BOSS-082"
+            "UT-CONTENT-107"
           ]
         }
       ],
@@ -3421,10 +3477,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "CONTENT-VOICE-RELEASE-CATALOG-082"
+            "UT-CONTENT-108"
           ]
         }
       ],
@@ -3456,7 +3512,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-SUMMON-CONSTR-048"
+            "UT-CONTENT-109"
           ]
         }
       ],
@@ -3485,10 +3541,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-04",
           "testIds": [
-            "ST-ENCOUNTER-VALID-048"
+            "UT-CONTENT-110"
           ]
         }
       ],
@@ -3520,7 +3576,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-04",
           "testIds": [
-            "UT-GEN-HISTORY-048"
+            "UT-CONTENT-111"
           ]
         }
       ],
@@ -3573,7 +3629,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-04",
           "testIds": [
-            "UT-EVENT-COOLDOWN-048"
+            "UT-CONTENT-112"
           ]
         }
       ],
@@ -3616,7 +3672,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-04",
           "testIds": [
-            "UT-GEN-MAX-ATTEMPTS-048"
+            "UT-CONTENT-113"
           ]
         }
       ],
@@ -3654,7 +3710,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-04",
           "testIds": [
-            "UT-FALLBACK-PROFILE-048"
+            "UT-CONTENT-114"
           ]
         }
       ],
@@ -3689,10 +3745,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "ST-CONTENT-VALID-050"
+            "UT-CONTENT-115"
           ]
         }
       ],
@@ -3721,10 +3777,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "ST-UI-NO-LOGIC-050"
+            "UT-CONTENT-116"
           ]
         }
       ],
@@ -3753,10 +3809,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-DATA-CONTRACT-041"
+            "UT-CONTENT-117"
           ]
         }
       ],
@@ -3785,10 +3841,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-ID-STABILITY-041"
+            "UT-CONTENT-118"
           ]
         }
       ],
@@ -3817,10 +3873,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-ID-CONVENTION-HERO-041"
+            "UT-CONTENT-119"
           ]
         }
       ],
@@ -3849,10 +3905,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-ID-CONVENTION-MISSION-041"
+            "UT-CONTENT-120"
           ]
         }
       ],
@@ -3881,10 +3937,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-LOC-NAME-NOID-041"
+            "UT-CONTENT-121"
           ]
         }
       ],
@@ -3913,10 +3969,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-REF-VALIDATION-041"
+            "UT-CONTENT-122"
           ]
         }
       ],
@@ -3948,7 +4004,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-MISSIONS-045"
+            "UT-CONTENT-123"
           ]
         }
       ],
@@ -3986,7 +4042,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-CONTENT-COUNT-045"
+            "UT-CONTENT-124"
           ]
         }
       ],
@@ -4064,7 +4120,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-ITEM-COUNT-045"
+            "UT-CONTENT-125"
           ]
         }
       ],
@@ -4122,7 +4178,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-ENDGAME-OFFLINE-045"
+            "UT-CONTENT-126"
           ]
         }
       ],
@@ -4170,7 +4226,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-META-COUNT-045"
+            "UT-CONTENT-127"
           ]
         }
       ],

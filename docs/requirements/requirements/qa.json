@@ -24,7 +24,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "GR-PHASE20-001"
+            "UT-QA-001"
           ]
         }
       ],
@@ -56,7 +56,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "GR-PHASE20-002"
+            "UT-QA-002"
           ]
         }
       ],
@@ -88,7 +88,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "GR-PHASE20-003"
+            "UT-QA-003"
           ]
         }
       ],
@@ -117,10 +117,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-VALID-REF-001"
+            "UT-QA-004"
           ]
         }
       ],
@@ -149,10 +149,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-VALID-IDS-001"
+            "UT-QA-005"
           ]
         }
       ],
@@ -181,10 +181,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-VALID-COMBAT-001"
+            "UT-QA-006"
           ]
         }
       ],
@@ -218,10 +218,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-VALID-FORMATION-001"
+            "UT-QA-007"
           ]
         }
       ],
@@ -250,10 +250,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-VALID-SUMMON-001"
+            "UT-QA-008"
           ]
         }
       ],
@@ -287,10 +287,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-04",
           "testIds": [
-            "UT-VALID-DUNGEON-001"
+            "UT-QA-009"
           ]
         }
       ],
@@ -324,10 +324,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-04",
           "testIds": [
-            "UT-VALID-LOOT-001"
+            "UT-QA-010"
           ]
         }
       ],
@@ -356,10 +356,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-AND-CERTMATRIX-001"
+            "UT-QA-011"
           ]
         }
       ],
@@ -393,10 +393,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-IOS-CERTMATRIX-001"
+            "UT-QA-012"
           ]
         }
       ],
@@ -414,7 +414,7 @@
       "category": "QA",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "66",
+        "chapter": 66,
         "section": null,
         "locator": "block:1878",
         "quoteHash": "sha256:8955482848eb6a448b4fbb41c792aeb08d1fcb749c1aac81062fe60714b67e84",
@@ -425,10 +425,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-CICD-CLEAN-001"
+            "UT-QA-013"
           ]
         }
       ],
@@ -446,7 +446,7 @@
       "category": "QA",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "66",
+        "chapter": 66,
         "section": null,
         "locator": "block:1879",
         "quoteHash": "sha256:f18cdd2971ec776b21cc69f25335944c8e9e3dc03a192e54c960d31189902aa5",
@@ -457,10 +457,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-CICD-LINT-001"
+            "UT-QA-014"
           ]
         }
       ],
@@ -478,7 +478,7 @@
       "category": "QA",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "66",
+        "chapter": 66,
         "section": null,
         "locator": "block:1880",
         "quoteHash": "sha256:53f1790d727af7b0d2c2eb185b82a5990bbbdff57ff5be0cc9c95178b6194e3d",
@@ -489,10 +489,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-CICD-VALID-001"
+            "UT-QA-015"
           ]
         }
       ],
@@ -510,7 +510,7 @@
       "category": "QA",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "66",
+        "chapter": 66,
         "section": null,
         "locator": "block:1881",
         "quoteHash": "sha256:555a30b60eb45502eedf967972dd928545e339046e4aa58f4cacebef1510971c",
@@ -521,10 +521,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-CICD-TEST-001"
+            "UT-QA-016"
           ]
         }
       ],
@@ -542,7 +542,7 @@
       "category": "QA",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "66",
+        "chapter": 66,
         "section": null,
         "locator": "block:1882",
         "quoteHash": "sha256:0b130a59745a0311175a9004b399c616c0125c3acfca048b2a043d6d2f453a11",
@@ -553,10 +553,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-CICD-BUILD-001"
+            "UT-QA-017"
           ]
         }
       ],
@@ -574,7 +574,7 @@
       "category": "QA",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "66",
+        "chapter": 66,
         "section": null,
         "locator": "block:1883",
         "quoteHash": "sha256:1dbfbf116f28c29b1f118e5c24b9e8e92efb99c3176d6607938e875c9130275a",
@@ -585,10 +585,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-CICD-E2E-001"
+            "UT-QA-018"
           ]
         }
       ],
@@ -606,7 +606,7 @@
       "category": "QA",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "66",
+        "chapter": 66,
         "section": null,
         "locator": "block:1884",
         "quoteHash": "sha256:dff8c11e44452b526642eceeedccfc2ab6b68217e397c85434f7a17bba0310f2",
@@ -617,10 +617,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-CICD-CAPSYNC-001"
+            "UT-QA-019"
           ]
         }
       ],
@@ -638,7 +638,7 @@
       "category": "QA",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "66",
+        "chapter": 66,
         "section": null,
         "locator": "block:1885",
         "quoteHash": "sha256:6a1c7a4a5513cbec656ee5baf5156b84eb96c745d1543ac5faaa8145f69bb58d",
@@ -649,10 +649,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-CICD-NATIVE-001"
+            "UT-QA-020"
           ]
         }
       ],
@@ -670,7 +670,7 @@
       "category": "QA",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "66",
+        "chapter": 66,
         "section": null,
         "locator": "block:1886",
         "quoteHash": "sha256:c1aedd963a8c2c53f7ea02a76c5f1bc6d49b568a0f01446bbe32a15c7b0a56c9",
@@ -681,10 +681,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-CICD-SMOKE-001"
+            "UT-QA-021"
           ]
         }
       ],
@@ -702,7 +702,7 @@
       "category": "QA",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "68",
+        "chapter": 68,
         "section": null,
         "locator": "block:1906",
         "quoteHash": "sha256:039d04efc8efed7a06c6141203137ede8feff2f53b2696914b486300283ed547",
@@ -713,10 +713,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-PREFLIGHT-SMOKE-001"
+            "UT-QA-022"
           ]
         }
       ],
@@ -734,7 +734,7 @@
       "category": "QA",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "68",
+        "chapter": 68,
         "section": null,
         "locator": "block:1911",
         "quoteHash": "sha256:b2d8cfc62d7debf4f49391f04759db964ab2d16967649a9ad5630c0efb49dcb2",
@@ -745,10 +745,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-STORESS-REAL-001"
+            "UT-QA-023"
           ]
         }
       ],
@@ -766,7 +766,7 @@
       "category": "QA",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "74",
+        "chapter": 74,
         "section": null,
         "locator": "block:1996",
         "quoteHash": "sha256:7e2ec969208ed832fa0624454d696670c0786f85e92da32a3410c87b1083af45",
@@ -777,10 +777,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-DEPS-LICENSE-001"
+            "UT-QA-024"
           ]
         }
       ],
@@ -798,7 +798,7 @@
       "category": "QA",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "75",
+        "chapter": 75,
         "section": null,
         "locator": "block:2020",
         "quoteHash": "sha256:a4eb2901a37a89779574071ac298ddd101902de3ca33a8c1e1a259d20a095106",
@@ -809,10 +809,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-DATA-RELEASECOUNT-001"
+            "UT-QA-025"
           ]
         }
       ],
@@ -841,10 +841,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "QA-GOLDEN-FIXTURE-079"
+            "UT-QA-026"
           ]
         }
       ],
@@ -873,10 +873,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "QA-ALPHA-EDGE-081"
+            "UT-QA-027"
           ]
         }
       ],
@@ -905,10 +905,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "QA-ASSETBUILDS-081"
+            "UT-QA-028"
           ]
         }
       ],
@@ -937,10 +937,10 @@
       ],
       "verification": [
         {
-          "type": "property",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "QA-DUNGEON-100K-085"
+            "UT-QA-029"
           ]
         }
       ],
@@ -990,10 +990,10 @@
       ],
       "verification": [
         {
-          "type": "property",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "QA-ENCOUNTER-POOL-085"
+            "UT-QA-030"
           ]
         }
       ],
@@ -1022,10 +1022,10 @@
       ],
       "verification": [
         {
-          "type": "property",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "QA-CROSS-SYSTEM-085"
+            "UT-QA-031"
           ]
         }
       ],
@@ -1054,10 +1054,10 @@
       ],
       "verification": [
         {
-          "type": "property",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "QA-BALANCE-REPORT-085"
+            "UT-QA-032"
           ]
         }
       ],
@@ -1099,10 +1099,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "QA-GO-CRITERIA-085"
+            "UT-QA-033"
           ]
         }
       ],
@@ -1142,10 +1142,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "QA-GO-DECL-MATCH-085"
+            "UT-QA-034"
           ]
         }
       ],
@@ -1174,10 +1174,10 @@
       ],
       "verification": [
         {
-          "type": "e2e",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "QA-GO-RC-SMOKES-085"
+            "UT-QA-035"
           ]
         }
       ],
@@ -1206,10 +1206,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "QA-NOGO-TRIGGERS-085"
+            "UT-QA-036"
           ]
         }
       ],
@@ -1238,10 +1238,10 @@
       ],
       "verification": [
         {
-          "type": "property",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "QA-DOC-AUDIT-086"
+            "UT-QA-037"
           ]
         }
       ],
@@ -1270,10 +1270,10 @@
       ],
       "verification": [
         {
-          "type": "property",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "QA-CONTENT-COUNTS-086"
+            "UT-QA-038"
           ]
         }
       ],
@@ -1322,10 +1322,10 @@
       ],
       "verification": [
         {
-          "type": "property",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "QA-HEADING-AUDIT-086"
+            "UT-QA-039"
           ]
         }
       ],
@@ -1360,10 +1360,10 @@
       ],
       "verification": [
         {
-          "type": "visual",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "QA-RENDER-AUDIT-086"
+            "UT-QA-040"
           ]
         }
       ],
@@ -1392,10 +1392,10 @@
       ],
       "verification": [
         {
-          "type": "property",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "QA-A11Y-PDF-PREFLIGHT-086"
+            "UT-QA-041"
           ]
         }
       ],

@@ -24,7 +24,7 @@
           "type": "native",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-IOS-ENTITLE-001"
+            "NAT-I-IOS-001"
           ]
         }
       ],
@@ -56,7 +56,7 @@
           "type": "native",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-IOS-TOOLCHAIN-001"
+            "NAT-I-IOS-002"
           ]
         }
       ],
@@ -88,7 +88,7 @@
           "type": "native",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-IOS-DEPLOY-001"
+            "NAT-I-IOS-003"
           ]
         }
       ],
@@ -125,7 +125,7 @@
           "type": "native",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-IOS-DEVICE-001"
+            "NAT-I-IOS-004"
           ]
         }
       ],
@@ -157,7 +157,7 @@
           "type": "native",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-IOS-BUNDLE-001"
+            "NAT-I-IOS-005"
           ]
         }
       ],
@@ -189,7 +189,7 @@
           "type": "native",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "UT-IOS-AUDIO-001"
+            "NAT-I-IOS-006"
           ]
         }
       ],
@@ -221,7 +221,7 @@
           "type": "native",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-IOS-ENTITLE-001"
+            "NAT-I-IOS-007"
           ]
         }
       ],
@@ -239,7 +239,7 @@
       "category": "iOS",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "66",
+        "chapter": 66,
         "section": null,
         "locator": "block:1892",
         "quoteHash": "sha256:037b32cc2a77a923bf2d3771e43b23d742df4097e5b3799883bddade5400115e",
@@ -253,7 +253,7 @@
           "type": "native",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-ASC-DISTRIB-001"
+            "NAT-I-IOS-008"
           ]
         }
       ],
@@ -282,10 +282,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "native",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "IOS-AUDIO-SESSION-082"
+            "NAT-I-IOS-009"
           ]
         }
       ],
@@ -317,7 +317,7 @@
           "type": "native",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "NAT-I-AVAUDIO-AMBIENT-057"
+            "NAT-I-IOS-010"
           ]
         }
       ],

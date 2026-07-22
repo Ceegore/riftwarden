@@ -21,10 +21,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "manual",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-PHASE00-012"
+            "FQA-STORE-001"
           ]
         }
       ],
@@ -53,10 +53,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-VALID-STORE-001"
+            "FQA-STORE-002"
           ]
         }
       ],
@@ -85,10 +85,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-AND-PLAYDECL-001"
+            "FQA-STORE-003"
           ]
         }
       ],
@@ -117,10 +117,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-AND-RELEASE-001"
+            "FQA-STORE-004"
           ]
         }
       ],
@@ -149,10 +149,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-IOS-ASCDECL-001"
+            "FQA-STORE-005"
           ]
         }
       ],
@@ -170,7 +170,7 @@
       "category": "Store",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "64",
+        "chapter": 64,
         "section": null,
         "locator": "block:1845",
         "quoteHash": "sha256:b1a3111f2b50b179ec38339ca22cad68464ccb223cdb6b676087e4e5d1905f60",
@@ -181,10 +181,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-ICON-MOTIF-001"
+            "FQA-STORE-006"
           ]
         }
       ],
@@ -202,7 +202,7 @@
       "category": "Store",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "64",
+        "chapter": 64,
         "section": null,
         "locator": "block:1846",
         "quoteHash": "sha256:247cf1bbc037543cccf33d940003b05db302c57bf0c998d588955e702494b137",
@@ -213,10 +213,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-ICON-LEGIB-001"
+            "FQA-STORE-007"
           ]
         }
       ],
@@ -239,7 +239,7 @@
       "category": "Store",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "64",
+        "chapter": 64,
         "section": null,
         "locator": "block:1848",
         "quoteHash": "sha256:3cdd7963d0f4af3c85fd1f3908b196de006a663463ca0722a6b0339a28a71f58",
@@ -250,10 +250,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-STORE-FAKES-001"
+            "FQA-STORE-008"
           ]
         }
       ],
@@ -271,7 +271,7 @@
       "category": "Store",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "64",
+        "chapter": 64,
         "section": null,
         "locator": "block:1852",
         "quoteHash": "sha256:ede22732928998936e8ac97307c33e08eed32fbd481e4a81054bfbc0f197dae4",
@@ -282,10 +282,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-STORE-TITLE-001"
+            "FQA-STORE-009"
           ]
         }
       ],
@@ -308,7 +308,7 @@
       "category": "Store",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "64",
+        "chapter": 64,
         "section": null,
         "locator": "block:1853",
         "quoteHash": "sha256:db454c109ab8e59286bc959133dda2768ba0bcd2af28fbcee62d109a32fe4871",
@@ -319,10 +319,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-STORE-METACL-001"
+            "FQA-STORE-010"
           ]
         }
       ],
@@ -340,7 +340,7 @@
       "category": "Store",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "64",
+        "chapter": 64,
         "section": null,
         "locator": "block:1854",
         "quoteHash": "sha256:ed4e371e8184d325d16eeb6478ee5e8ee24a075b03deadd36553c523b759a478",
@@ -351,10 +351,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-STORE-DESC-001"
+            "FQA-STORE-011"
           ]
         }
       ],
@@ -372,7 +372,7 @@
       "category": "Store",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "64",
+        "chapter": 64,
         "section": null,
         "locator": "block:1855",
         "quoteHash": "sha256:fdfc12b72d6170fc57f596fb4bdbec5de883106d398d2facddbddc40e348e51b",
@@ -383,10 +383,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-STORE-WHATSNEW-001"
+            "FQA-STORE-012"
           ]
         }
       ],
@@ -404,7 +404,7 @@
       "category": "Store",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "68",
+        "chapter": 68,
         "section": null,
         "locator": "block:1902",
         "quoteHash": "sha256:f11ce0594de11eae25863e85a394462a65d2473e84dd8722c6775efe0718fc41",
@@ -415,10 +415,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-PREFLIGHT-META-001"
+            "FQA-STORE-013"
           ]
         }
       ],
@@ -436,7 +436,7 @@
       "category": "Store",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "68",
+        "chapter": 68,
         "section": null,
         "locator": "block:1903",
         "quoteHash": "sha256:715b65f01cce3f6a4a442c17cd0aaba8fe03aaf9081d654167ea891ec1cba46b",
@@ -447,10 +447,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-PREFLIGHT-CLEAN-001"
+            "FQA-STORE-014"
           ]
         }
       ],
@@ -468,7 +468,7 @@
       "category": "Store",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "68",
+        "chapter": 68,
         "section": null,
         "locator": "block:1908",
         "quoteHash": "sha256:a15be563013d19f1763b0c02f53497fb108f124682c1cef0c97f3d187cb53e83",
@@ -479,10 +479,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-PREFLIGHT-NOTES-001"
+            "FQA-STORE-015"
           ]
         }
       ],
@@ -500,7 +500,7 @@
       "category": "Store",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "68",
+        "chapter": 68,
         "section": null,
         "locator": "block:1912",
         "quoteHash": "sha256:37c312bb4fea17a1a976c0d91e443f6b6122cf41446f867a9186221ed822c702",
@@ -511,10 +511,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-STORESS-FEATURE-001"
+            "FQA-STORE-016"
           ]
         }
       ],
@@ -532,7 +532,7 @@
       "category": "Store",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "68",
+        "chapter": 68,
         "section": null,
         "locator": "block:1913",
         "quoteHash": "sha256:29a5802a3ce1e450b033bc51d928a9614d89a850e6286152a4b2723490bb4d77",
@@ -543,10 +543,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-STORESS-LOCALIZED-001"
+            "FQA-STORE-017"
           ]
         }
       ],
@@ -564,7 +564,7 @@
       "category": "Store",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "68",
+        "chapter": 68,
         "section": null,
         "locator": "block:1914",
         "quoteHash": "sha256:796846e94f1572ca771b45fac0fb83db5e2efc02d07272af38e9f6da44579dfe",
@@ -575,10 +575,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-STORESS-RATING-001"
+            "FQA-STORE-018"
           ]
         }
       ],
@@ -596,7 +596,7 @@
       "category": "Store",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "71",
+        "chapter": 71,
         "section": null,
         "locator": "block:1949",
         "quoteHash": "sha256:0d77d30ec50e757372a84ba198958c1d7cbe2e2287b398f53007be9a9ea5366c",
@@ -607,10 +607,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-STOREBUILD-GATE-001"
+            "FQA-STORE-019"
           ]
         }
       ],
@@ -639,10 +639,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "REV-PUB-IDS-049"
+            "FQA-STORE-020"
           ]
         }
       ],
@@ -671,10 +671,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "REV-RELEASE-TAG-050"
+            "FQA-STORE-021"
           ]
         }
       ],
@@ -703,10 +703,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "manual",
           "plannedPhase": "PHASE-22",
           "testIds": [
-            "REV-NO-MONETIZATION-045"
+            "FQA-STORE-022"
           ]
         }
       ],

@@ -21,10 +21,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-001"
+            "GR-SIM-001"
           ]
         }
       ],
@@ -53,10 +53,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-002"
+            "GR-SIM-002"
           ]
         }
       ],
@@ -85,10 +85,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-003"
+            "GR-SIM-003"
           ]
         }
       ],
@@ -117,10 +117,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-004"
+            "GR-SIM-004"
           ]
         }
       ],
@@ -156,10 +156,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-005"
+            "GR-SIM-005"
           ]
         }
       ],
@@ -195,10 +195,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-006"
+            "GR-SIM-006"
           ]
         }
       ],
@@ -234,10 +234,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-009"
+            "GR-SIM-007"
           ]
         }
       ],
@@ -266,10 +266,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "PT-PHASE08-010"
+            "GR-SIM-008"
           ]
         }
       ],
@@ -298,10 +298,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-011"
+            "GR-SIM-009"
           ]
         }
       ],
@@ -330,10 +330,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-012"
+            "GR-SIM-010"
           ]
         }
       ],
@@ -362,10 +362,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-013"
+            "GR-SIM-011"
           ]
         }
       ],
@@ -401,10 +401,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-014"
+            "GR-SIM-012"
           ]
         }
       ],
@@ -433,10 +433,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-015"
+            "GR-SIM-013"
           ]
         }
       ],
@@ -465,10 +465,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-016"
+            "GR-SIM-014"
           ]
         }
       ],
@@ -504,10 +504,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-017"
+            "GR-SIM-015"
           ]
         }
       ],
@@ -542,10 +542,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-018"
+            "GR-SIM-016"
           ]
         }
       ],
@@ -574,10 +574,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-019"
+            "GR-SIM-017"
           ]
         }
       ],
@@ -612,10 +612,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-020"
+            "GR-SIM-018"
           ]
         }
       ],
@@ -644,10 +644,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-021"
+            "GR-SIM-019"
           ]
         }
       ],
@@ -682,10 +682,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-022"
+            "GR-SIM-020"
           ]
         }
       ],
@@ -720,10 +720,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-023"
+            "GR-SIM-021"
           ]
         }
       ],
@@ -752,10 +752,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-024"
+            "GR-SIM-022"
           ]
         }
       ],
@@ -784,10 +784,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-025"
+            "GR-SIM-023"
           ]
         }
       ],
@@ -816,10 +816,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-026"
+            "GR-SIM-024"
           ]
         }
       ],
@@ -848,10 +848,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-027"
+            "GR-SIM-025"
           ]
         }
       ],
@@ -880,10 +880,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-028"
+            "GR-SIM-026"
           ]
         }
       ],
@@ -924,10 +924,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-029"
+            "GR-SIM-027"
           ]
         }
       ],
@@ -956,10 +956,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-030"
+            "GR-SIM-028"
           ]
         }
       ],
@@ -988,10 +988,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-031"
+            "GR-SIM-029"
           ]
         }
       ],
@@ -1020,10 +1020,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-032"
+            "GR-SIM-030"
           ]
         }
       ],
@@ -1063,10 +1063,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-033"
+            "GR-SIM-031"
           ]
         }
       ],
@@ -1106,10 +1106,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-034"
+            "GR-SIM-032"
           ]
         }
       ],
@@ -1138,10 +1138,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-035"
+            "GR-SIM-033"
           ]
         }
       ],
@@ -1170,10 +1170,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-036"
+            "GR-SIM-034"
           ]
         }
       ],
@@ -1202,10 +1202,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-037"
+            "GR-SIM-035"
           ]
         }
       ],
@@ -1233,16 +1233,17 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-009"
+            "GR-SIM-036"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-SIM-0036"
+      "id": "REQ-SIM-0036",
+      "title": "In Tiefe 1-5 beträgt die Gegnerbaseline 0,90 der Kampagnenend-Werte."
     },
     {
       "tempId": "REQ-TEMP-B-0016",
@@ -1262,16 +1263,17 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-010"
+            "GR-SIM-037"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-SIM-0037"
+      "id": "REQ-SIM-0037",
+      "title": "In Tiefe 6-10 beträgt die Elitechance 25 Prozent und der erste Zwischenboss ersc"
     },
     {
       "tempId": "REQ-TEMP-B-0017",
@@ -1291,16 +1293,17 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-011"
+            "GR-SIM-038"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-SIM-0038"
+      "id": "REQ-SIM-0038",
+      "title": "In Tiefe 11-20 steigt pro Tiefe das gegnerische LP um 2 Prozent und der Angriff "
     },
     {
       "tempId": "REQ-TEMP-B-0031",
@@ -1320,16 +1323,17 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-012"
+            "GR-SIM-039"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-SIM-0039"
+      "id": "REQ-SIM-0039",
+      "title": "Der Endless-Generator wiederholt keine identische Encounter-ID innerhalb der let"
     },
     {
       "tempId": "REQ-TEMP-B-0034",
@@ -1349,16 +1353,17 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-013"
+            "GR-SIM-040"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-SIM-0040"
+      "id": "REQ-SIM-0040",
+      "title": "Die Skalierung der Endlosen Rift bleibt numerisch berechenbar und enthält keine "
     },
     {
       "tempId": "REQ-TEMP-B-0056",
@@ -1378,16 +1383,17 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-014"
+            "GR-SIM-041"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-SIM-0041"
+      "id": "REQ-SIM-0041",
+      "title": "Kosmetische Effekte aus Meisterschaften verändern Trefferzeit, Fläche und Lesbar"
     },
     {
       "tempId": "REQ-TEMP-B-0075",
@@ -1407,10 +1413,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-015"
+            "GR-SIM-042"
           ]
         }
       ],
@@ -1422,7 +1428,8 @@
         }
       ],
       "status": "planned",
-      "id": "REQ-SIM-0042"
+      "id": "REQ-SIM-0042",
+      "title": "Auswertungswerte stimmen mit dem Kampflog auf Rundungsdifferenz unter 0,1 Prozen"
     },
     {
       "tempId": "REQ-TEMP-B-0076",
@@ -1442,16 +1449,17 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PT-PHASE08-016"
+            "GR-SIM-043"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-SIM-0043"
+      "id": "REQ-SIM-0043",
+      "title": "Der MVP-Algorithmus bevorzugt nicht automatisch reine DPS über essentielle Heilu"
     },
     {
       "id": "REQ-SIM-0044",
@@ -1461,7 +1469,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "65",
+        "chapter": 65,
         "section": null,
         "locator": "block:1860",
         "quoteHash": "sha256:b0e7194bfa1fae0376602d10b9394a06d97e5a83b0a91fbdc562ac45ddd45faa",
@@ -1472,10 +1480,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-INV-NEGLP-001"
+            "GR-SIM-044"
           ]
         }
       ],
@@ -1493,7 +1501,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "65",
+        "chapter": 65,
         "section": null,
         "locator": "block:1861",
         "quoteHash": "sha256:02b2058db4c54daa0d0d5116e6e219f87fb2e702482cdc07c16f869855a2ccc5",
@@ -1504,10 +1512,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-INV-CAPS-001"
+            "GR-SIM-045"
           ]
         }
       ],
@@ -1530,7 +1538,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "65",
+        "chapter": 65,
         "section": null,
         "locator": "block:1862",
         "quoteHash": "sha256:f4dbf4866fc69260d06bc566fae5eaf1c9247f53e51d47ba9cfb3e67437df61d",
@@ -1541,10 +1549,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-INV-SAFETY-001"
+            "GR-SIM-046"
           ]
         }
       ],
@@ -1562,7 +1570,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "65",
+        "chapter": 65,
         "section": null,
         "locator": "block:1863",
         "quoteHash": "sha256:84e584c2eda62a14a873cccb1ec8918fbae629471fbb12cc651800b592e4e6a1",
@@ -1573,10 +1581,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-INV-LOOP-001"
+            "GR-SIM-047"
           ]
         }
       ],
@@ -1599,7 +1607,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "65",
+        "chapter": 65,
         "section": null,
         "locator": "block:1864",
         "quoteHash": "sha256:b80d9dff05fa35c28f563f926f66ecd6289625f61bb2e526fabf359fec000a62",
@@ -1610,10 +1618,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-INV-DET-001"
+            "GR-SIM-048"
           ]
         }
       ],
@@ -1631,7 +1639,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "65",
+        "chapter": 65,
         "section": null,
         "locator": "block:1865",
         "quoteHash": "sha256:93a0270fd57c0203469fa000ca145e8858ca68d9e0e1ec97cc9e49206ee406c5",
@@ -1642,10 +1650,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-INV-BOUND-001"
+            "GR-SIM-049"
           ]
         }
       ],
@@ -1668,7 +1676,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "70",
+        "chapter": 70,
         "section": null,
         "locator": "block:1939",
         "quoteHash": "sha256:1604ffe98ecc99d67c3482f7ed4a23e2cdc2dd663711b7341876cc5c886851c7",
@@ -1679,10 +1687,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-VAUDIT-NOREP-001"
+            "GR-SIM-050"
           ]
         }
       ],
@@ -1700,7 +1708,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1968",
         "quoteHash": "sha256:c1ae570345a012414394aefb94b0887a07d13430ce2f189816874e15fbbf1eca",
@@ -1711,10 +1719,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-CONST-TICKRATE-001"
+            "GR-SIM-051"
           ]
         }
       ],
@@ -1737,7 +1745,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1968",
         "quoteHash": "sha256:f46ba0ed44d67f4541c032ad72665a679b1bafc26deefe77efc4daddb241aed7",
@@ -1748,10 +1756,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-CONST-FORM-001"
+            "GR-SIM-052"
           ]
         }
       ],
@@ -1774,7 +1782,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1968",
         "quoteHash": "sha256:70bc30dab1430b934da72818405f7842aea0cf40b32e2121d9c5847fc14be171",
@@ -1785,10 +1793,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-CONST-REGULAR-001"
+            "GR-SIM-053"
           ]
         }
       ],
@@ -1811,7 +1819,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1968",
         "quoteHash": "sha256:6b0ced8316b73bade4ebe0c594705e384673931788241de9a36eb3494b0c8ded",
@@ -1822,10 +1830,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-CONST-HEROES-001"
+            "GR-SIM-054"
           ]
         }
       ],
@@ -1848,7 +1856,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1968",
         "quoteHash": "sha256:bddf5290bd39a31b5ec208609c9fdd9823cd872851a1208e245f0078d90410af",
@@ -1859,10 +1867,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-CONST-COPIES-001"
+            "GR-SIM-055"
           ]
         }
       ],
@@ -1885,7 +1893,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1968",
         "quoteHash": "sha256:9c2e0dcd26da2e9abd3deb8f40d14eadd7a885aa831c786a16a6859af3887ca2",
@@ -1896,10 +1904,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-CONST-SUMMONS-001"
+            "GR-SIM-056"
           ]
         }
       ],
@@ -1922,7 +1930,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1968",
         "quoteHash": "sha256:c59d001a1097ea5666686515e24690378e24f4e959be6fb8a65863cc45a224fe",
@@ -1933,10 +1941,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-CONST-RELICS-001"
+            "GR-SIM-057"
           ]
         }
       ],
@@ -1959,7 +1967,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1968",
         "quoteHash": "sha256:b2730bed89b95ceebc18288f8697ce7b4f7ba2de63373e021206e2d506d6ee82",
@@ -1970,10 +1978,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-CONST-HEROLEVEL-001"
+            "GR-SIM-058"
           ]
         }
       ],
@@ -2000,7 +2008,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1968",
         "quoteHash": "sha256:71ae61b3810fe4110ba562d24842e3686d78017850363b1ab3c9be850bbc7c6d",
@@ -2011,10 +2019,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-CONST-EQSLOTS-001"
+            "GR-SIM-059"
           ]
         }
       ],
@@ -2037,7 +2045,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1968",
         "quoteHash": "sha256:07284814c3c05d698a837f4c5d8d951d8125c2b766cc75ae14d0f43b7be658de",
@@ -2048,10 +2056,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-CONST-RIFTCOLLAPSE-001"
+            "GR-SIM-060"
           ]
         }
       ],
@@ -2082,7 +2090,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1968",
         "quoteHash": "sha256:a6076e3c63db311980e16dcd1512d42d573f3ffc1691694a8e4e22218396666e",
@@ -2093,10 +2101,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-CONST-ABORT-001"
+            "GR-SIM-061"
           ]
         }
       ],
@@ -2119,7 +2127,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2021",
         "quoteHash": "sha256:aa8a0152088520b6a0d1456a782a5d4222b7abcef366d7d4a48e84bac0e7e52f",
@@ -2130,10 +2138,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-TICK-ORDER-001"
+            "GR-SIM-062"
           ]
         }
       ],
@@ -2151,7 +2159,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2024",
         "quoteHash": "sha256:0fcd224f230b3d3aa4b1a0afe0d139bd23ce11cff766873ba7f759d3fcb8e802",
@@ -2162,10 +2170,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-RANGE-INCLUSIVE-001"
+            "GR-SIM-063"
           ]
         }
       ],
@@ -2183,7 +2191,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2025",
         "quoteHash": "sha256:9b5b2b9572e1680edd6bf53326cfa92159cfede7c2674ce1c7ceae69705d2e65",
@@ -2194,10 +2202,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-MELEE-STOP-001"
+            "GR-SIM-064"
           ]
         }
       ],
@@ -2220,7 +2228,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2026",
         "quoteHash": "sha256:429b3c12aebcb7e22e26ba8e45db12de002bcaaf6cb527e8e41a722027189aee",
@@ -2231,10 +2239,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-SEP-LIMIT-001"
+            "GR-SIM-065"
           ]
         }
       ],
@@ -2257,7 +2265,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2027",
         "quoteHash": "sha256:2793a11136f8d3557d800e3cf7ee262353ce6390adee11f242378f8e100ef403",
@@ -2268,10 +2276,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-PROJ-LOCK-001"
+            "GR-SIM-066"
           ]
         }
       ],
@@ -2289,7 +2297,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2028",
         "quoteHash": "sha256:7f496f9965a9d1613466449dbdd2817e8a9b15807f88b5eb24509473c19e8270",
@@ -2300,10 +2308,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-AOE-SINGLE-001"
+            "GR-SIM-067"
           ]
         }
       ],
@@ -2321,7 +2329,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2029",
         "quoteHash": "sha256:a6f32ed655b32971e3d4c86a970cca1378a3567b6ad611474a11cd66ce492c4a",
@@ -2332,10 +2340,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-DMG-TRUEDMG-001"
+            "GR-SIM-068"
           ]
         }
       ],
@@ -2353,7 +2361,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2032",
         "quoteHash": "sha256:6951ce52de628d544c0e8b88477e0f3c8ea4753aad83ffe337689ed011caf17f",
@@ -2364,10 +2372,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-ITP-WAIT-001"
+            "GR-SIM-069"
           ]
         }
       ],
@@ -2385,7 +2393,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2033",
         "quoteHash": "sha256:08f2f42be5566c2503bfb90f33ec46371020c4ff5147ffd9e63df8e87120b65f",
@@ -2396,10 +2404,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-ITP-RETARGET-001"
+            "GR-SIM-070"
           ]
         }
       ],
@@ -2417,7 +2425,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2034",
         "quoteHash": "sha256:763a9810e796afdfb13a0aa970eb9a72b378a7b196d43baa8db82d908554a824",
@@ -2428,10 +2436,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-ITP-CONSUME-001"
+            "GR-SIM-071"
           ]
         }
       ],
@@ -2449,7 +2457,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2035",
         "quoteHash": "sha256:115a6ec0b08946a7d6f6cd877716e9ae0cd5723b8edaba5342f50188d8eab3e4",
@@ -2460,10 +2468,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-ATK-NODBL-001"
+            "GR-SIM-072"
           ]
         }
       ],
@@ -2481,7 +2489,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2038",
         "quoteHash": "sha256:2c2130eac12786e8cbf0583bc8745d58a7bf7ae18596749676b3a2947d00ab98",
@@ -2492,10 +2500,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-PERIOD-FIRST-001"
+            "GR-SIM-073"
           ]
         }
       ],
@@ -2513,7 +2521,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2039",
         "quoteHash": "sha256:ff254766596a7a536b88337f8eb787faa33045706c700968c4489484ed60d9e0",
@@ -2524,10 +2532,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-DISPEL-ORDER-001"
+            "GR-SIM-074"
           ]
         }
       ],
@@ -2545,7 +2553,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2040",
         "quoteHash": "sha256:46d1a245c2b0c4a5fe259710e395d4f48a61f5b90b6633c9650513b8c1c59d5f",
@@ -2556,10 +2564,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-SHIELD-FIFO-001"
+            "GR-SIM-075"
           ]
         }
       ],
@@ -2577,7 +2585,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2041",
         "quoteHash": "sha256:6a6cb8a1024e4130f65b3be4a60aea01617113507027b95c45b571003d6d785a",
@@ -2588,10 +2596,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-OVERHEAL-001"
+            "GR-SIM-076"
           ]
         }
       ],
@@ -2609,7 +2617,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2044",
         "quoteHash": "sha256:0a72448a88b4a4749fba1df57880bb98da764bb43f1d6debede505073e19783c",
@@ -2620,10 +2628,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-END-NOEVT-001"
+            "GR-SIM-077"
           ]
         }
       ],
@@ -2641,7 +2649,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2045",
         "quoteHash": "sha256:532d6f3ce90c3e027137568a61e47e812ddef7bf5b53e2b88cba21d2c6fe43d6",
@@ -2652,10 +2660,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-RENDER-NOGAME-001"
+            "GR-SIM-078"
           ]
         }
       ],
@@ -2673,7 +2681,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2046",
         "quoteHash": "sha256:090598b96e60af6757ad90dd2546fb4af04e050636ec3965e5e934f3a0e81008",
@@ -2684,10 +2692,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-TIMELIMIT-001"
+            "GR-SIM-079"
           ]
         }
       ],
@@ -2705,7 +2713,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "76",
+        "chapter": 76,
         "section": null,
         "locator": "block:2047",
         "quoteHash": "sha256:76f0a3d36e20ae55bc99c8ee17104023bf54e87a75e6928ad56597b4bfbfd6df",
@@ -2716,10 +2724,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-REPLAY-HASH-001"
+            "GR-SIM-080"
           ]
         }
       ],
@@ -2742,7 +2750,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "77",
+        "chapter": 77,
         "section": null,
         "locator": "block:2050",
         "quoteHash": "sha256:b6b55dde3164170ad113012b5a4257eed06a247b50fea232d792fe84ca382ce6",
@@ -2753,10 +2761,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-AI-FSM-001"
+            "GR-SIM-081"
           ]
         }
       ],
@@ -2774,7 +2782,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "77",
+        "chapter": 77,
         "section": null,
         "locator": "block:2051",
         "quoteHash": "sha256:b5c41cd0dcc85afc20da845151e5d0ea24333677c8ffa81b0b9a954a696f48b4",
@@ -2785,10 +2793,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-AI-REACQ-001"
+            "GR-SIM-082"
           ]
         }
       ],
@@ -2806,7 +2814,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "77",
+        "chapter": 77,
         "section": null,
         "locator": "block:2052",
         "quoteHash": "sha256:fde20ff2e7085364e8d2782388a544a9ccdc5d11cbf7d78a13669a5e3acaab4d",
@@ -2817,10 +2825,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-AI-LOCK-001"
+            "GR-SIM-083"
           ]
         }
       ],
@@ -2838,7 +2846,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "77",
+        "chapter": 77,
         "section": null,
         "locator": "block:2056",
         "quoteHash": "sha256:d1c8ed9a705f656fa1705c0d22e5548f381bb7b1c003848ab1b4c5b7da921b73",
@@ -2849,10 +2857,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-AI-LANECD-001"
+            "GR-SIM-084"
           ]
         }
       ],
@@ -2875,7 +2883,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "77",
+        "chapter": 77,
         "section": null,
         "locator": "block:2057",
         "quoteHash": "sha256:3dcd70c8c2a473b279540f52fb169e8e5b42022cc629d149dcfb24749e88a0d4",
@@ -2886,10 +2894,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-AI-LANETHR-001"
+            "GR-SIM-085"
           ]
         }
       ],
@@ -2912,7 +2920,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "77",
+        "chapter": 77,
         "section": null,
         "locator": "block:2058",
         "quoteHash": "sha256:23ef7e9e6e23293c68957973aa28a8d98e3c8adf42907bfc2f9d3b1ec7a07a2a",
@@ -2923,10 +2931,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-AI-LANEINT-001"
+            "GR-SIM-086"
           ]
         }
       ],
@@ -2944,7 +2952,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "77",
+        "chapter": 77,
         "section": null,
         "locator": "block:2059",
         "quoteHash": "sha256:8215124f16b62f69ef13328111735d1face04349d11540f8d94544a57f8591ee",
@@ -2955,10 +2963,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-AI-LANETB-001"
+            "GR-SIM-087"
           ]
         }
       ],
@@ -2976,7 +2984,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "77",
+        "chapter": 77,
         "section": null,
         "locator": "block:2062",
         "quoteHash": "sha256:016ec92f2c7b2fc6d6cbdcade4d2312fd740334fe29d780e1cfe398c9ed93487",
@@ -2987,10 +2995,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-AI-SPAWNLN-001"
+            "GR-SIM-088"
           ]
         }
       ],
@@ -3017,7 +3025,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "77",
+        "chapter": 77,
         "section": null,
         "locator": "block:2063",
         "quoteHash": "sha256:32166c08911db8970b4f1737a0d1cb6e92b18a4174427b8aae33aa1a3b20f97b",
@@ -3028,10 +3036,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-AI-SPAWNOFF-001"
+            "GR-SIM-089"
           ]
         }
       ],
@@ -3058,7 +3066,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "77",
+        "chapter": 77,
         "section": null,
         "locator": "block:2064",
         "quoteHash": "sha256:ea68c031e6e4c5b16fd528da0cb32cab06ced91d36b672b7d65e52aca6c012ff",
@@ -3069,10 +3077,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-AI-SPAWNSLOT-001"
+            "GR-SIM-090"
           ]
         }
       ],
@@ -3090,7 +3098,7 @@
       "category": "Sim",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "77",
+        "chapter": 77,
         "section": null,
         "locator": "block:2065",
         "quoteHash": "sha256:ce0399c7d845e49b8187bab71bd15644f30fcc2f17956ef31abe6415c29e7e49",
@@ -3101,10 +3109,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-AI-SPAWNBIG-001"
+            "GR-SIM-091"
           ]
         }
       ],
@@ -3133,10 +3141,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SIM-TELEGRAPH-DURATION-081"
+            "GR-SIM-092"
           ]
         }
       ],
@@ -3165,10 +3173,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SIM-AUDIO-DETERMINISM-082"
+            "GR-SIM-093"
           ]
         }
       ],
@@ -3197,10 +3205,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SIM-PIXI-WEBGL2-084"
+            "GR-SIM-094"
           ]
         }
       ],
@@ -3229,10 +3237,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SIM-CONTEXT-LOST-084"
+            "GR-SIM-095"
           ]
         }
       ],
@@ -3261,10 +3269,10 @@
       ],
       "verification": [
         {
-          "type": "property",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SIM-INV-ENTITY-085"
+            "GR-SIM-096"
           ]
         }
       ],
@@ -3293,10 +3301,10 @@
       ],
       "verification": [
         {
-          "type": "property",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SIM-INV-CAPS-085"
+            "GR-SIM-097"
           ]
         }
       ],
@@ -3346,10 +3354,10 @@
       ],
       "verification": [
         {
-          "type": "property",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SIM-INV-DETERMINISM-085"
+            "GR-SIM-098"
           ]
         }
       ],
@@ -3378,10 +3386,10 @@
       ],
       "verification": [
         {
-          "type": "property",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SIM-INV-NO-RNG-COUPLING-085"
+            "GR-SIM-099"
           ]
         }
       ],
@@ -3410,10 +3418,10 @@
       ],
       "verification": [
         {
-          "type": "property",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SIM-INV-NO-DEADLOCK-085"
+            "GR-SIM-100"
           ]
         }
       ],
@@ -3442,10 +3450,10 @@
       ],
       "verification": [
         {
-          "type": "property",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SIM-INV-IDEMPOTENT-REWARD-085"
+            "GR-SIM-101"
           ]
         }
       ],
@@ -3474,10 +3482,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-TICK-PHASE-048"
+            "GR-SIM-102"
           ]
         }
       ],
@@ -3506,10 +3514,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-PHASE-PRIO-048"
+            "GR-SIM-103"
           ]
         }
       ],
@@ -3538,10 +3546,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-REVIVE-PRIO-048"
+            "GR-SIM-104"
           ]
         }
       ],
@@ -3570,10 +3578,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-EVENT-PRIO-048"
+            "GR-SIM-105"
           ]
         }
       ],
@@ -3602,10 +3610,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-TIEBREAK-048"
+            "GR-SIM-106"
           ]
         }
       ],
@@ -3634,10 +3642,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-DOUBLE-DEFEAT-048"
+            "GR-SIM-107"
           ]
         }
       ],
@@ -3666,10 +3674,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-SUMMON-SLOTS-048"
+            "GR-SIM-108"
           ]
         }
       ],
@@ -3704,10 +3712,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-SUMMON-ORDER-048"
+            "GR-SIM-109"
           ]
         }
       ],
@@ -3736,10 +3744,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-SUMMON-REPLACE-048"
+            "GR-SIM-110"
           ]
         }
       ],
@@ -3768,10 +3776,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-EXP-REASON-048"
+            "GR-SIM-111"
           ]
         }
       ],
@@ -3800,10 +3808,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-SUMMON-END-048"
+            "GR-SIM-112"
           ]
         }
       ],
@@ -3832,10 +3840,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-CONTROL-CLASS-048"
+            "GR-SIM-113"
           ]
         }
       ],
@@ -3864,10 +3872,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-RESIST-INTERRUPT-048"
+            "GR-SIM-114"
           ]
         }
       ],
@@ -3903,10 +3911,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-PHASE-PROJECTILE-048"
+            "GR-SIM-115"
           ]
         }
       ],
@@ -3935,10 +3943,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-BOSS-KNOCKBACK-048"
+            "GR-SIM-116"
           ]
         }
       ],
@@ -3974,10 +3982,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-CLEANSE-ONCE-048"
+            "GR-SIM-117"
           ]
         }
       ],
@@ -4006,10 +4014,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "ST-SIM-IMPORTS-050"
+            "GR-SIM-118"
           ]
         }
       ],
@@ -4038,10 +4046,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "ST-RENDER-READONLY-050"
+            "GR-SIM-119"
           ]
         }
       ],
@@ -4070,10 +4078,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-PRNG-ALGO-051"
+            "GR-SIM-120"
           ]
         }
       ],
@@ -4102,10 +4110,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-PRNG-STREAMS-051"
+            "GR-SIM-121"
           ]
         }
       ],
@@ -4134,10 +4142,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-ROLL-STABLE-051"
+            "GR-SIM-122"
           ]
         }
       ],
@@ -4166,10 +4174,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "ST-NO-MATH-RANDOM-051"
+            "GR-SIM-123"
           ]
         }
       ],
@@ -4198,10 +4206,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-REPLAY-BIT-IDENT-051"
+            "GR-SIM-124"
           ]
         }
       ],
@@ -4230,10 +4238,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-INTRO-NO-ATTACK-051"
+            "GR-SIM-125"
           ]
         }
       ],
@@ -4262,10 +4270,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-PHASE-DURATION-051"
+            "GR-SIM-126"
           ]
         }
       ],
@@ -4300,10 +4308,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-RESOLVING-END-051"
+            "GR-SIM-127"
           ]
         }
       ],
@@ -4338,10 +4346,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-BATTLE-TICK-LIMIT-051"
+            "GR-SIM-128"
           ]
         }
       ],
@@ -4383,10 +4391,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-EVENT-SCHEMA-051"
+            "GR-SIM-129"
           ]
         }
       ],
@@ -4415,10 +4423,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "ST-RESULT-AGG-051"
+            "GR-SIM-130"
           ]
         }
       ],
@@ -4447,10 +4455,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "GR-NO-LP-ONLY-043"
+            "GR-SIM-131"
           ]
         }
       ],
@@ -4479,10 +4487,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "GR-NO-HIDDEN-RNG-043"
+            "GR-SIM-132"
           ]
         }
       ],
@@ -4511,10 +4519,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "UT-BOSS-CONTROL-FEEDBACK-043"
+            "GR-SIM-133"
           ]
         }
       ],
@@ -4543,10 +4551,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "GR-NO-DOMINANT-043"
+            "GR-SIM-134"
           ]
         }
       ],
@@ -4575,10 +4583,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "golden",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "REV-VERTICAL-PROTOTYPE-044"
+            "GR-SIM-135"
           ]
         }
       ],
@@ -4607,10 +4615,10 @@
       ],
       "verification": [
         {
-          "type": "manual",
+          "type": "golden",
           "plannedPhase": "PHASE-19",
           "testIds": [
-            "FQA-TARGETING-044"
+            "GR-SIM-136"
           ]
         }
       ],
@@ -4639,10 +4647,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "GR-DETERMINISM-045"
+            "GR-SIM-137"
           ]
         }
       ],
@@ -4671,10 +4679,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "UT-NO-INFINITE-LOOP-045"
+            "GR-SIM-138"
           ]
         }
       ],
@@ -4703,10 +4711,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "UT-NO-LIMIT-BYPASS-045"
+            "GR-SIM-139"
           ]
         }
       ],

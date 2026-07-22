@@ -24,7 +24,7 @@
           "type": "native",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-AND-INTERNET-001"
+            "NAT-A-ANDROID-001"
           ]
         }
       ],
@@ -56,7 +56,7 @@
           "type": "native",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-AND-MINSDK-001"
+            "NAT-A-ANDROID-002"
           ]
         }
       ],
@@ -93,7 +93,7 @@
           "type": "native",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-AND-COMPILE-001"
+            "NAT-A-ANDROID-003"
           ]
         }
       ],
@@ -130,7 +130,7 @@
           "type": "native",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-AND-AAB-001"
+            "NAT-A-ANDROID-004"
           ]
         }
       ],
@@ -162,7 +162,7 @@
           "type": "native",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-AND-ABI-001"
+            "NAT-A-ANDROID-005"
           ]
         }
       ],
@@ -194,7 +194,7 @@
           "type": "native",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-AND-16KB-001"
+            "NAT-A-ANDROID-006"
           ]
         }
       ],
@@ -226,7 +226,7 @@
           "type": "native",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-AND-PERMS-001"
+            "NAT-A-ANDROID-007"
           ]
         }
       ],
@@ -244,7 +244,7 @@
       "category": "Android",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "66",
+        "chapter": 66,
         "section": null,
         "locator": "block:1891",
         "quoteHash": "sha256:7cf18e34c3cb2bee3553f53c44bf460bff7d7c2e3072d3e323251cb73525a0ad",
@@ -258,7 +258,7 @@
           "type": "native",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-PLAY-SIGN-001"
+            "NAT-A-ANDROID-008"
           ]
         }
       ],
@@ -287,10 +287,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "native",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "ANDROID-AUDIO-FOCUS-082"
+            "NAT-A-ANDROID-009"
           ]
         }
       ],
@@ -322,7 +322,7 @@
           "type": "native",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "NAT-A-RESIZABLE-055"
+            "NAT-A-ANDROID-010"
           ]
         }
       ],
@@ -354,7 +354,7 @@
           "type": "native",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "NAT-A-AUDIOFOCUS-057"
+            "NAT-A-ANDROID-011"
           ]
         }
       ],

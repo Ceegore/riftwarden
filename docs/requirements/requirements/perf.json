@@ -24,7 +24,7 @@
           "type": "review",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PERF-NO-WEBGPU-084"
+            "PERF-PERF-001"
           ]
         }
       ],
@@ -56,7 +56,7 @@
           "type": "review",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PERF-NO-CANVAS-084"
+            "PERF-PERF-002"
           ]
         }
       ],
@@ -88,7 +88,7 @@
           "type": "review",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PERF-AUTOQ-MEASURE-084"
+            "PERF-PERF-003"
           ]
         }
       ],
@@ -120,7 +120,7 @@
           "type": "review",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PERF-AUTOQ-THRESHOLDS-084"
+            "PERF-PERF-004"
           ]
         }
       ],
@@ -165,7 +165,7 @@
           "type": "review",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PERF-AUTOQ-BATTLE-084"
+            "PERF-PERF-005"
           ]
         }
       ],
@@ -204,7 +204,7 @@
           "type": "review",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PERF-AUTOQ-NO-RAMP-UP-084"
+            "PERF-PERF-006"
           ]
         }
       ],
@@ -236,7 +236,7 @@
           "type": "review",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PERF-BACKGROUND-ZERO-084"
+            "PERF-PERF-007"
           ]
         }
       ],
@@ -285,7 +285,7 @@
           "type": "review",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PERF-THERMAL-084"
+            "PERF-PERF-008"
           ]
         }
       ],
@@ -327,10 +327,10 @@
       ],
       "verification": [
         {
-          "type": "e2e",
+          "type": "review",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PERF-30MIN-STRESS-084"
+            "PERF-PERF-009"
           ]
         }
       ],
@@ -372,10 +372,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "review",
           "plannedPhase": "PHASE-21",
           "testIds": [
-            "PERF-MOBILE-FPS-044"
+            "PERF-PERF-010"
           ]
         }
       ],

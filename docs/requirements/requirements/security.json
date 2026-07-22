@@ -21,10 +21,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-SEC-PRIVACY-001"
+            "SEC-SEC-001"
           ]
         }
       ],
@@ -53,10 +53,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "UT-SEC-LOGS-001"
+            "SEC-SEC-002"
           ]
         }
       ],
@@ -85,10 +85,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-SEC-IDS-001"
+            "SEC-SEC-003"
           ]
         }
       ],
@@ -117,10 +117,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-SEC-PRIVACYDECL-001"
+            "SEC-SEC-004"
           ]
         }
       ],
@@ -149,10 +149,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-SEC-CSP-001"
+            "SEC-SEC-005"
           ]
         }
       ],
@@ -181,10 +181,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-SEC-CONNECT-001"
+            "SEC-SEC-006"
           ]
         }
       ],
@@ -213,10 +213,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-SEC-CAPCONFIG-001"
+            "SEC-SEC-007"
           ]
         }
       ],
@@ -245,10 +245,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-SEC-EVAL-001"
+            "SEC-SEC-008"
           ]
         }
       ],
@@ -277,10 +277,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "UT-SEC-DEPS-001"
+            "SEC-SEC-009"
           ]
         }
       ],
@@ -309,10 +309,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-SEC-AUDIT-001"
+            "SEC-SEC-010"
           ]
         }
       ],
@@ -341,10 +341,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-SEC-PROVENANCE-001"
+            "SEC-SEC-011"
           ]
         }
       ],
@@ -373,10 +373,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-IOS-PRIVACY-001"
+            "SEC-SEC-012"
           ]
         }
       ],
@@ -405,10 +405,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-IOS-NET-001"
+            "SEC-SEC-013"
           ]
         }
       ],
@@ -426,7 +426,7 @@
       "category": "Security",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "66",
+        "chapter": 66,
         "section": null,
         "locator": "block:1889",
         "quoteHash": "sha256:15585ecc9d80445482f3141e4bc6995e96755711bafbd5cc6ca882f29d326421",
@@ -437,10 +437,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-SECRETS-LOC-001"
+            "SEC-SEC-014"
           ]
         }
       ],
@@ -458,7 +458,7 @@
       "category": "Security",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "66",
+        "chapter": 66,
         "section": null,
         "locator": "block:1890",
         "quoteHash": "sha256:53c199bf6ee83ba01c34363ca4d73e6f5d3422b673b1a70bee427eea8a14591f",
@@ -469,10 +469,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "UT-SECRETS-DEBUGREL-001"
+            "SEC-SEC-015"
           ]
         }
       ],
@@ -490,7 +490,7 @@
       "category": "Security",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "68",
+        "chapter": 68,
         "section": null,
         "locator": "block:1904",
         "quoteHash": "sha256:64604edd6e8d538399ffe5d273672ade41818188b8c686b85c88ba5c6f6c997a",
@@ -501,10 +501,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-PREFLIGHT-OFFLINE-001"
+            "SEC-SEC-016"
           ]
         }
       ],
@@ -522,7 +522,7 @@
       "category": "Security",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "68",
+        "chapter": 68,
         "section": null,
         "locator": "block:1907",
         "quoteHash": "sha256:792dcb70a8365c892cf27620136c90a433ed5484c84633d18d9cf07855eae410",
@@ -533,10 +533,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-PREFLIGHT-PRIVACY-001"
+            "SEC-SEC-017"
           ]
         }
       ],
@@ -554,7 +554,7 @@
       "category": "Security",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "74",
+        "chapter": 74,
         "section": null,
         "locator": "block:1989",
         "quoteHash": "sha256:5473685a33892d15cf9da3d9a2e581356e769092bf25c4979acebc203e8a74b1",
@@ -565,10 +565,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "static",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-ENV-NOSEC-001"
+            "SEC-SEC-018"
           ]
         }
       ],
@@ -597,10 +597,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "static",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SEC-LOG-PRIVACY-083"
+            "SEC-SEC-019"
           ]
         }
       ],
@@ -647,10 +647,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "static",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SEC-LOG-FIELDS-083"
+            "SEC-SEC-020"
           ]
         }
       ],
@@ -679,10 +679,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "static",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SEC-NO-AUTO-UPLOAD-083"
+            "SEC-SEC-021"
           ]
         }
       ],
@@ -714,7 +714,7 @@
           "type": "static",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "ST-NO-DANGEROUS-HTML-050"
+            "SEC-SEC-022"
           ]
         }
       ],
@@ -746,7 +746,7 @@
           "type": "static",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "ST-NO-SECRETS-050"
+            "SEC-SEC-023"
           ]
         }
       ],

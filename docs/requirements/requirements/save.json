@@ -21,10 +21,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "IT-PHASE12-001"
+            "GR-SAVE-001"
           ]
         }
       ],
@@ -53,10 +53,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "UT-PHASE12-001"
+            "GR-SAVE-002"
           ]
         }
       ],
@@ -85,10 +85,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "UT-PHASE12-002"
+            "GR-SAVE-003"
           ]
         }
       ],
@@ -116,16 +116,17 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "IT-PHASE12-002"
+            "GR-SAVE-004"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-SAVE-0004"
+      "id": "REQ-SAVE-0004",
+      "title": "Am Checkpoint kann der Lauf freiwillig beendet und ein Rekord gesichert werden."
     },
     {
       "tempId": "REQ-TEMP-B-0010",
@@ -145,16 +146,17 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "IT-PHASE12-003"
+            "GR-SAVE-005"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-SAVE-0005"
+      "id": "REQ-SAVE-0005",
+      "title": "Eine Niederlage beendet den Lauf und speichert die erreichte Tiefe."
     },
     {
       "tempId": "REQ-TEMP-B-0011",
@@ -174,16 +176,17 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "IT-PHASE12-004"
+            "GR-SAVE-006"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-SAVE-0006"
+      "id": "REQ-SAVE-0006",
+      "title": "Ein freiwilliges Ende am Checkpoint gilt als gültiger Rekord."
     },
     {
       "tempId": "REQ-TEMP-B-0032",
@@ -203,16 +206,17 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "IT-PHASE12-005"
+            "GR-SAVE-007"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-SAVE-0007"
+      "id": "REQ-SAVE-0007",
+      "title": "Jeder Checkpoint speichert vollständig."
     },
     {
       "tempId": "REQ-TEMP-B-0036",
@@ -232,16 +236,17 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "IT-PHASE12-006"
+            "GR-SAVE-008"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-SAVE-0008"
+      "id": "REQ-SAVE-0008",
+      "title": "Alle Meilensteinbelohnungen werden einmalig vergeben und danach als abgeschlosse"
     },
     {
       "tempId": "REQ-TEMP-B-0055",
@@ -261,16 +266,17 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "IT-PHASE12-007"
+            "GR-SAVE-009"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-SAVE-0009"
+      "id": "REQ-SAVE-0009",
+      "title": "Meisterschaftsfortschritt wird unmittelbar nach Kampf angezeigt und persistent g"
     },
     {
       "tempId": "REQ-TEMP-B-0070",
@@ -290,16 +296,17 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "IT-PHASE12-008"
+            "GR-SAVE-010"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-SAVE-0010"
+      "id": "REQ-SAVE-0010",
+      "title": "Erfolge werden nachträglich geprüft, wenn ein altes Savegame auf eine Version mi"
     },
     {
       "id": "REQ-SAVE-0011",
@@ -320,10 +327,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "UT-AND-BACKUP-001"
+            "GR-SAVE-011"
           ]
         }
       ],
@@ -352,10 +359,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "UT-IOS-FILES-001"
+            "GR-SAVE-012"
           ]
         }
       ],
@@ -373,7 +380,7 @@
       "category": "Save",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "65",
+        "chapter": 65,
         "section": null,
         "locator": "block:1866",
         "quoteHash": "sha256:ed89c225f7d284031a4309612c3a6606f42b72e7a1c1a21f23ed42139003c843",
@@ -384,10 +391,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "UT-INV-COMMIT-001"
+            "GR-SAVE-013"
           ]
         }
       ],
@@ -405,7 +412,7 @@
       "category": "Save",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "68",
+        "chapter": 68,
         "section": null,
         "locator": "block:1919",
         "quoteHash": "sha256:14fa3d45764e896968361767672c16b04ee0c2f1478325f59d88c51bb5872840",
@@ -416,10 +423,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "UT-POSTSAVE-NORESET-001"
+            "GR-SAVE-014"
           ]
         }
       ],
@@ -437,7 +444,7 @@
       "category": "Save",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "72",
+        "chapter": 72,
         "section": null,
         "locator": "block:1964",
         "quoteHash": "sha256:ceff96f3de60f72ad9be6ecaa44c8631466ce05766bd51ec69b4040264131ab6",
@@ -448,10 +455,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-AUTH-FALLBACK-001"
+            "GR-SAVE-015"
           ]
         }
       ],
@@ -469,7 +476,7 @@
       "category": "Save",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1968",
         "quoteHash": "sha256:c28be745567c9bfacbc990941c23c40692f5b79119757d4102987bef4c5cb0ba",
@@ -480,10 +487,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "UT-CONST-AUTOSAVE-001"
+            "GR-SAVE-016"
           ]
         }
       ],
@@ -506,7 +513,7 @@
       "category": "Save",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "73",
+        "chapter": 73,
         "section": null,
         "locator": "block:1979",
         "quoteHash": "sha256:2e02fe53558009937200403ea43dbf020b3e4122017dd78105664ca57d62bac6",
@@ -517,10 +524,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "UT-ID-REFERENCES-001"
+            "GR-SAVE-017"
           ]
         }
       ],
@@ -538,7 +545,7 @@
       "category": "Save",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "78",
+        "chapter": 78,
         "section": null,
         "locator": "block:2080",
         "quoteHash": "sha256:1d3a52a459bf8fb84f610489a18cae18a668bc0f40a74b90f310ae867e452d8d",
@@ -549,10 +556,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "UT-TX-LOCK-001"
+            "GR-SAVE-018"
           ]
         }
       ],
@@ -581,10 +588,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SAVE-NATIVE-STORE-083"
+            "GR-SAVE-019"
           ]
         }
       ],
@@ -613,10 +620,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SAVE-CANONICAL-083"
+            "GR-SAVE-020"
           ]
         }
       ],
@@ -645,10 +652,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SAVE-PAYLOAD-HASH-083"
+            "GR-SAVE-021"
           ]
         }
       ],
@@ -677,10 +684,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SAVE-COMMIT-ID-083"
+            "GR-SAVE-022"
           ]
         }
       ],
@@ -709,10 +716,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SAVE-ATOMIC-COMMIT-083"
+            "GR-SAVE-023"
           ]
         }
       ],
@@ -741,10 +748,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SAVE-EXPORT-FORMAT-083"
+            "GR-SAVE-024"
           ]
         }
       ],
@@ -773,10 +780,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SAVE-DIAGNOSTIC-EXPORT-083"
+            "GR-SAVE-025"
           ]
         }
       ],
@@ -805,10 +812,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SAVE-IMPORT-LIMITS-083"
+            "GR-SAVE-026"
           ]
         }
       ],
@@ -850,10 +857,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SAVE-STAGED-IMPORT-083"
+            "GR-SAVE-027"
           ]
         }
       ],
@@ -882,10 +889,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "golden",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "SAVE-DIAGNOSTIC-CONTENT-083"
+            "GR-SAVE-028"
           ]
         }
       ],
@@ -914,10 +921,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "golden",
           "plannedPhase": "PHASE-03",
           "testIds": [
-            "IT-REWARD-COMMIT-048"
+            "GR-SAVE-029"
           ]
         }
       ],
@@ -946,10 +953,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "UT-SAVE-COMPACT-051"
+            "GR-SAVE-030"
           ]
         }
       ],
@@ -978,10 +985,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "golden",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "IT-SNAPSHOT-250MS-053"
+            "GR-SAVE-031"
           ]
         }
       ],
@@ -1017,10 +1024,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "golden",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "IT-OSKILL-LOSS-053"
+            "GR-SAVE-032"
           ]
         }
       ],
@@ -1049,10 +1056,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "UT-COMMIT-CANONICAL-058"
+            "GR-SAVE-033"
           ]
         }
       ],
@@ -1081,10 +1088,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "UT-COMMIT-PAYLOAD-058"
+            "GR-SAVE-034"
           ]
         }
       ],
@@ -1113,10 +1120,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "golden",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "IT-COMMIT-TMP-058"
+            "GR-SAVE-035"
           ]
         }
       ],
@@ -1145,10 +1152,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "golden",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "IT-COMMIT-RENAME-058"
+            "GR-SAVE-036"
           ]
         }
       ],
@@ -1177,10 +1184,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "golden",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "IT-COMMIT-UI-058"
+            "GR-SAVE-037"
           ]
         }
       ],
@@ -1209,10 +1216,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "golden",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "IT-EXPORT-FORMAT-058"
+            "GR-SAVE-038"
           ]
         }
       ],
@@ -1241,10 +1248,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "golden",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "IT-IMPORT-QUARANTINE-058"
+            "GR-SAVE-039"
           ]
         }
       ],
@@ -1279,10 +1286,10 @@
       ],
       "verification": [
         {
-          "type": "visual",
+          "type": "golden",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "VIS-IMPORT-CONFLICT-058"
+            "GR-SAVE-040"
           ]
         }
       ],
@@ -1311,10 +1318,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "golden",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "IT-IMPORT-SCHEMA-058"
+            "GR-SAVE-041"
           ]
         }
       ],
@@ -1343,10 +1350,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "UT-RECOVERY-1-058"
+            "GR-SAVE-042"
           ]
         }
       ],
@@ -1375,10 +1382,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "UT-RECOVERY-2-058"
+            "GR-SAVE-043"
           ]
         }
       ],
@@ -1407,10 +1414,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "golden",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "IT-RECOVERY-3-058"
+            "GR-SAVE-044"
           ]
         }
       ],
@@ -1439,10 +1446,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "golden",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "IT-RECOVERY-4-058"
+            "GR-SAVE-045"
           ]
         }
       ],
@@ -1471,10 +1478,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "golden",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "IT-RECOVERY-5-058"
+            "GR-SAVE-046"
           ]
         }
       ],
@@ -1503,10 +1510,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-AUTOSLOT-COUNT-042"
+            "GR-SAVE-047"
           ]
         }
       ],
@@ -1541,10 +1548,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-SAVE-FIELDS-042"
+            "GR-SAVE-048"
           ]
         }
       ],
@@ -1573,10 +1580,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-ATOMIC-WRITE-042"
+            "GR-SAVE-049"
           ]
         }
       ],
@@ -1605,10 +1612,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-MIGRATION-IDEMPOTENT-042"
+            "GR-SAVE-050"
           ]
         }
       ],
@@ -1637,10 +1644,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-COMBAT-RESUME-042"
+            "GR-SAVE-051"
           ]
         }
       ],
@@ -1669,10 +1676,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-INVALID-SNAPSHOT-042"
+            "GR-SAVE-052"
           ]
         }
       ],
@@ -1701,10 +1708,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-NO-CLOCK-DEP-042"
+            "GR-SAVE-053"
           ]
         }
       ],
@@ -1733,10 +1740,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "golden",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "REV-EXPORT-IMPORT-042"
+            "GR-SAVE-054"
           ]
         }
       ],
@@ -1765,10 +1772,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-CRASH-DUP-SAFE-045"
+            "GR-SAVE-055"
           ]
         }
       ],
@@ -1797,10 +1804,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "golden",
           "plannedPhase": "PHASE-22",
           "testIds": [
-            "IT-AIRPLANE-MODE-045"
+            "GR-SAVE-056"
           ]
         }
       ],
@@ -1829,10 +1836,10 @@
       ],
       "verification": [
         {
-          "type": "unit",
+          "type": "golden",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-INTERRUPT-RESUME-045"
+            "GR-SAVE-057"
           ]
         }
       ],

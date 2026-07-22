@@ -1,4 +1,4758 @@
 {
   "schemaVersion": 1,
-  "tests": []
+  "tests": [
+    {
+      "id": "UT-A11Y-001",
+      "title": "Verify REQ-A11Y-0001: Fokus nach Modal",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-002",
+      "title": "Verify REQ-A11Y-0002: Die App erfüllt für ihre Web- und Mobile-Oberfläche WCAG-2.2",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-003",
+      "title": "Verify REQ-A11Y-0003: Im laufenden Kampf meldet die Screenreader-Live-Region aussc",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-004",
+      "title": "Verify REQ-A11Y-0004: Beim Pausieren wird eine semantische Liste aufgebaut mit obe",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-005",
+      "title": "Verify REQ-A11Y-0005: Die Einheitenreihenfolge für Screenreader ist: Seite Spieler",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-006",
+      "title": "Verify REQ-A11Y-0006: Die Screenreader-Timeline listet bekannte nächste Ereignisse",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-007",
+      "title": "Verify REQ-A11Y-0007: Beim Fortsetzen erhält den Fokus der pausierte Eintrag oder ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-008",
+      "title": "Verify REQ-A11Y-0008: Mit TalkBack und VoiceOver sind die Flows Erststart bis erst",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-009",
+      "title": "Verify REQ-A11Y-0009: Bei 200% Text sind alle S00-S65 und O01-O07 auf kleinster un",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-010",
+      "title": "Verify REQ-A11Y-0010: Mit gleichzeitig aktiviertem Reduce Motion, Reduced Flash un",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-011",
+      "title": "Verify REQ-A11Y-0011: Für Deuteranopie, Protanopie und Tritanopie sind Status, Bah",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-012",
+      "title": "Verify REQ-A11Y-0012: Über alle primären Flows bestehen mit Keyboard oder Gamepad ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-013",
+      "title": "Verify REQ-A11Y-0013: Systemtextskalierung und interne Skalierung werden kombinier",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-014",
+      "title": "Verify REQ-A11Y-0014: Focus-visible ist deutlich gold/violett mit mindestens 3:1 K",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-015",
+      "title": "Verify REQ-A11Y-0015: Gamepad-Reconnect stellt Fokus auf das letzte logische Eleme",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-016",
+      "title": "Verify REQ-A11Y-0016: Alle React-UI nutzen semantische HTML-Elemente, Labels, Grup",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-017",
+      "title": "Verify REQ-A11Y-0017: Pixi-Canvas besitzt parallel eine unsichtbare, aber fokussie",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-018",
+      "title": "Verify REQ-A11Y-0018: Optionale taktische Textansicht zeigt im pausierten Kampf pr",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-019",
+      "title": "Verify REQ-A11Y-0019: Kampfereignisse werden nicht vollständig vorgelesen; Standar",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-020",
+      "title": "Verify REQ-A11Y-0020: Alle gesprochenen Inhalte besitzen Untertitel; alle Audiohin",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-021",
+      "title": "Verify REQ-A11Y-0021: Separate Audio-Regler: Gesamt, Musik, Effekte, Stimmen; Stum",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-022",
+      "title": "Verify REQ-A11Y-0022: Untertitel für alle gesprochenen Inhalte; Sprechername und o",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-023",
+      "title": "Verify REQ-A11Y-0023: Gameplayrelevante Audiohinweise besitzen immer ein visuelles",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-024",
+      "title": "Verify REQ-A11Y-0024: Wichtige Begriffe sind antippbar und öffnen Glossar ohne Ver",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-025",
+      "title": "Verify REQ-A11Y-0025: Alle Menüs sind mit Controller/Tastatur navigierbar, auch we",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-026",
+      "title": "Verify REQ-A11Y-0026: Alle Kernflows sind mit Touch, Maus und Controller/Tastatur ",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-027",
+      "title": "Verify REQ-A11Y-0027: Keine abgeschnittenen Texte bei 150% Textgröße auf unterstüt",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "unit"
+    },
+    {
+      "id": "UT-A11Y-028",
+      "title": "Verify REQ-A11Y-0028: Alle Warnungen sind ohne Farbinformation verständlich; reduz",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "unit"
+    },
+    {
+      "id": "NAT-A-ANDROID-001",
+      "title": "Verify REQ-ANDROID-0001: Android INTERNET entfernt",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "native"
+    },
+    {
+      "id": "NAT-A-ANDROID-002",
+      "title": "Verify REQ-ANDROID-0002: Android minSdk 24",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "native"
+    },
+    {
+      "id": "NAT-A-ANDROID-003",
+      "title": "Verify REQ-ANDROID-0003: Android compile/target API",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "native"
+    },
+    {
+      "id": "NAT-A-ANDROID-004",
+      "title": "Verify REQ-ANDROID-0004: AAB Verpackung",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "native"
+    },
+    {
+      "id": "NAT-A-ANDROID-005",
+      "title": "Verify REQ-ANDROID-0005: Release-ABI-Slices",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "native"
+    },
+    {
+      "id": "NAT-A-ANDROID-006",
+      "title": "Verify REQ-ANDROID-0006: 16-KB-Seiten Gate",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "native"
+    },
+    {
+      "id": "NAT-A-ANDROID-007",
+      "title": "Verify REQ-ANDROID-0007: Android Permissions minimal",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "native"
+    },
+    {
+      "id": "NAT-A-ANDROID-008",
+      "title": "Verify REQ-ANDROID-0008: Play App Signing aktiv",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "native"
+    },
+    {
+      "id": "NAT-A-ANDROID-009",
+      "title": "Verify REQ-ANDROID-0009: Auf Android pausiert oder duckt Audio bei transient loss gem",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "native"
+    },
+    {
+      "id": "NAT-A-ANDROID-010",
+      "title": "Verify REQ-ANDROID-0010: Android 16+ große Fenster dürfen Orientierung/Resizable-Eins",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "native"
+    },
+    {
+      "id": "NAT-A-ANDROID-011",
+      "title": "Verify REQ-ANDROID-0011: Android fordert AUDIOFOCUS_GAIN für die aktive Spielsitzung ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "native"
+    },
+    {
+      "id": "UT-CONTENT-001",
+      "title": "Verify REQ-CONTENT-0001: Alle Release-Inhalte, Freischaltungen, Rollen und Interaktio",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-002",
+      "title": "Verify REQ-CONTENT-0002: Dateiverträge, Formate, Größen, Namensregeln und Qualitätskr",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-003",
+      "title": "Verify REQ-CONTENT-0003: Verbindlich sind Funktion, Ton und maximale Textmenge für Üb",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-004",
+      "title": "Verify REQ-CONTENT-0004: Weit verzweigte Dialogbäume, permanente Heldentode und Verle",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-005",
+      "title": "Verify REQ-CONTENT-0005: Rifts enthalten verzerrte Kopien realer Orte, Erinnerungen u",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-006",
+      "title": "Verify REQ-CONTENT-0006: Der Riftanker bindet jede Expedition an das Hauptquartier.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-007",
+      "title": "Verify REQ-CONTENT-0007: Die Rückkehr nach einer Niederlage ist erzählerisch eine Not",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-008",
+      "title": "Verify REQ-CONTENT-0008: Es dürfen kein Blut, keine Wunden, keine Zerstückelung, kein",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-009",
+      "title": "Verify REQ-CONTENT-0009: Besiegte Figuren zerfallen in Echofunken, Rauch, Blätter, Me",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-010",
+      "title": "Verify REQ-CONTENT-0010: Es dürfen keine harte Vulgärsprache, sexualisierten Inhalte,",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-011",
+      "title": "Verify REQ-CONTENT-0011: Beim Start der Endlosen Rift werden genau drei permanente Ge",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-012",
+      "title": "Verify REQ-CONTENT-0012: In der Endlosen Rift finden fortlaufend einzelne Kämpfe stat",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-013",
+      "title": "Verify REQ-CONTENT-0013: Nach jedem Sieg werden drei Belohnungen zur Wahl angeboten.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-014",
+      "title": "Verify REQ-CONTENT-0014: In der Endlosen Rift existieren Gold und Zyklusmünzen nicht.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-015",
+      "title": "Verify REQ-CONTENT-0015: Nach jeweils fünf Kämpfen erscheint ein Checkpoint.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-016",
+      "title": "Verify REQ-CONTENT-0016: Die Gruppe darf nur mit im Lauf gewonnenen Rekruten veränder",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-017",
+      "title": "Verify REQ-CONTENT-0017: In der Endlosen Rift existieren keine wiederholbaren permane",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-018",
+      "title": "Verify REQ-CONTENT-0018: Erstmalige Meilensteine sind kosmetisch oder geringe einmali",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-019",
+      "title": "Verify REQ-CONTENT-0019: In Tiefe 1-5 gilt: eine Region, keine Champions, maximal 1 M",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-020",
+      "title": "Verify REQ-CONTENT-0020: In Tiefe 11-20 werden zwei Regionen gemischt, die Championch",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-021",
+      "title": "Verify REQ-CONTENT-0021: In Tiefe 21-30 werden Eliteattribute kombiniert und ab Tiefe",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-022",
+      "title": "Verify REQ-CONTENT-0022: In Tiefe 31-40 sind bis zu 2 Modifikatoren aktiv, die Champi",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-023",
+      "title": "Verify REQ-CONTENT-0023: In Tiefe 41-60 sind ab Tiefe 51 maximal 2 Champions erlaubt,",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-024",
+      "title": "Verify REQ-CONTENT-0024: In Tiefe 61+ werden ausschließlich kuratierte Rotationen ver",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-025",
+      "title": "Verify REQ-CONTENT-0025: Nach Kämpfen 1-4 werden mindestens zwei gewöhnliche und eine",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-026",
+      "title": "Verify REQ-CONTENT-0026: Jeder fünfte Kampf enthält mindestens eine seltene Option.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-027",
+      "title": "Verify REQ-CONTENT-0027: An einem Bosscheckpoint wird eine von vier Optionen angebote",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-028",
+      "title": "Verify REQ-CONTENT-0028: Das Reliktlimit beträgt sechs bis Tiefe 20.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-029",
+      "title": "Verify REQ-CONTENT-0029: Das Reliktlimit beträgt acht ab Tiefe 21 und wächst darüber ",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-030",
+      "title": "Verify REQ-CONTENT-0030: Eine Rekrutierungswahl darf die Vertragsgrenze von drei nich",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-031",
+      "title": "Verify REQ-CONTENT-0031: Ein temporärer Rekrut bleibt bis zum Laufende erhalten.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-032",
+      "title": "Verify REQ-CONTENT-0032: Alle zehn Tiefen wird eine Begegnung als Erholungsfenster le",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-033",
+      "title": "Verify REQ-CONTENT-0033: Ein Neustart darf keine Belohnung neu würfeln.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-034",
+      "title": "Verify REQ-CONTENT-0034: Tiefe 5 schaltet den Porträtrahmen „Fünf Schritte“ frei.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-035",
+      "title": "Verify REQ-CONTENT-0035: Tiefe 10 gewährt 1 Riftessenz und einen Titel.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-036",
+      "title": "Verify REQ-CONTENT-0036: Tiefe 20 schaltet eine Kodexseite und 2 Riftessenz frei.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-037",
+      "title": "Verify REQ-CONTENT-0037: Tiefe 30 gewährt 2 Riftessenz und einen Titel.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-038",
+      "title": "Verify REQ-CONTENT-0038: Tiefe 50 gewährt 3 Riftessenz und die gold-violette Arenafar",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-039",
+      "title": "Verify REQ-CONTENT-0039: Tiefe 75 gewährt 4 Riftessenz und eine Bossfarbvariante.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-040",
+      "title": "Verify REQ-CONTENT-0040: Tiefe 100 gewährt einen legendären rein kosmetischen Rahmen ",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-041",
+      "title": "Verify REQ-CONTENT-0041: Jeder Held besitzt genau fünf Kernziele.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-042",
+      "title": "Verify REQ-CONTENT-0042: Ziel 4 wird erst nach Kampagnenabschluss sichtbar.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-043",
+      "title": "Verify REQ-CONTENT-0043: Ziel 5 wird erst nach Erreichen von Level 3 sichtbar.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-044",
+      "title": "Verify REQ-CONTENT-0044: Fortschritt wird nicht in verlorenen Kämpfen gewertet, außer",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-045",
+      "title": "Verify REQ-CONTENT-0045: Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte ",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-046",
+      "title": "Verify REQ-CONTENT-0046: Stufe I einer Heldenmeisterschaft gewährt eine alternative F",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-047",
+      "title": "Verify REQ-CONTENT-0047: Stufe II einer Heldenmeisterschaft gewährt einen Porträtrahm",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-048",
+      "title": "Verify REQ-CONTENT-0048: Stufe III einer Heldenmeisterschaft gewährt eine kurze Chara",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-049",
+      "title": "Verify REQ-CONTENT-0049: Stufe IV einer Heldenmeisterschaft gewährt einen kosmetische",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-050",
+      "title": "Verify REQ-CONTENT-0050: Stufe V einer Heldenmeisterschaft gewährt einen Heldentitel ",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-051",
+      "title": "Verify REQ-CONTENT-0051: Kein Meisterschaftsziel darf durch dauerhaft verpassbaren In",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-052",
+      "title": "Verify REQ-CONTENT-0052: Der Kodex umfasst die Kategorien 10 Helden, 18 Truppen, 14 B",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-053",
+      "title": "Verify REQ-CONTENT-0053: Eine erste Begegnung schaltet Namen, Rolle, Kurzmechanik und",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-054",
+      "title": "Verify REQ-CONTENT-0054: Ein erster Sieg schaltet vollständige Baselinewerte und Fähi",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-055",
+      "title": "Verify REQ-CONTENT-0055: Der Boss-Kodex zeigt normale, Veteran-, Rang-4- und Rang-9-R",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-056",
+      "title": "Verify REQ-CONTENT-0056: Kodex-Einträge enthalten keine versteckten aktuellen Endwert",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-057",
+      "title": "Verify REQ-CONTENT-0057: Erfolge sind lokal, offline und rein intern.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-058",
+      "title": "Verify REQ-CONTENT-0058: Erfolge gewähren niemals exklusive notwendige Macht.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-059",
+      "title": "Verify REQ-CONTENT-0059: Versteckte Erfolge dürfen keine ernsthafte Fehlhandlung verl",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-060",
+      "title": "Verify REQ-CONTENT-0060: Normale Erfolge gewähren 100 Gold oder ein kosmetisches Abze",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-061",
+      "title": "Verify REQ-CONTENT-0061: Kampagnen- oder Endgame-Erfolge gewähren Titel oder Rahmen u",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-062",
+      "title": "Verify REQ-CONTENT-0062: Die Erfolge „Pip hatte recht/nicht recht\" verwenden ausschli",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-063",
+      "title": "Verify REQ-CONTENT-0063: Die Kampfbewertung „Überlegen\" gewährt 15 Prozent mehr Gold ",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-064",
+      "title": "Verify REQ-CONTENT-0064: Die Kampfbewertung „Kontrolliert\" gewährt 8 Prozent mehr Gol",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-065",
+      "title": "Verify REQ-CONTENT-0065: Die Kampfbewertung „Hart erkämpft\" gewährt weder Bonus noch ",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-066",
+      "title": "Verify REQ-CONTENT-0066: Die Kampfbewertung „Letzter Stand\" gewährt keinen Malus, abe",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-067",
+      "title": "Verify REQ-CONTENT-0067: UTF-8 JSON Content-Layout",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-068",
+      "title": "Verify REQ-CONTENT-0068: Zod-Schemas als SSOT",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-069",
+      "title": "Verify REQ-CONTENT-0069: Verbot Runtime-Namen-Suche",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-070",
+      "title": "Verify REQ-CONTENT-0070: Sekundenwerte in Ticks",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-071",
+      "title": "Verify REQ-CONTENT-0071: Lokalisierungs-Keys DE/EN",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-072",
+      "title": "Verify REQ-CONTENT-0072: Build-Validator Text",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-073",
+      "title": "Verify REQ-CONTENT-0073: Build-Validator Assets",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-074",
+      "title": "Verify REQ-CONTENT-0074: Release-Sprachen DE/EN",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-075",
+      "title": "Verify REQ-CONTENT-0075: Strings außerhalb Code/ICU",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-076",
+      "title": "Verify REQ-CONTENT-0076: Richtungsangaben vermeiden",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-077",
+      "title": "Verify REQ-CONTENT-0077: Fehlende Übersetzung Buildfehler",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-078",
+      "title": "Verify REQ-CONTENT-0078: Pseudo-Locale",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-079",
+      "title": "Verify REQ-CONTENT-0079: Textlänge Kartentext",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-080",
+      "title": "Verify REQ-CONTENT-0080: Textlänge Ereignisintro",
+      "status": "planned",
+      "ownerPhase": "PHASE-04",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-081",
+      "title": "Verify REQ-CONTENT-0081: Textlänge Ereignisoption",
+      "status": "planned",
+      "ownerPhase": "PHASE-04",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-082",
+      "title": "Verify REQ-CONTENT-0082: Textlänge Untertitel",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-083",
+      "title": "Verify REQ-CONTENT-0083: Asset-Lizenznachweis",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-084",
+      "title": "Verify REQ-CONTENT-0084: Assets lizenziert und Credits",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-085",
+      "title": "Verify REQ-CONTENT-0085: Keine V3-Inhalte entfernt",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-086",
+      "title": "Verify REQ-CONTENT-0086: Magic Numbers verboten",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-087",
+      "title": "Verify REQ-CONTENT-0087: Unterstützte Sprachen DE/EN",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-088",
+      "title": "Verify REQ-CONTENT-0088: ID-Präfixe verbindlich",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-089",
+      "title": "Verify REQ-CONTENT-0089: Eindeutige IDs über Dateien",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-090",
+      "title": "Verify REQ-CONTENT-0090: Keine ID-Löschung",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-091",
+      "title": "Verify REQ-CONTENT-0091: Lokalisierungskey-Schema",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-092",
+      "title": "Verify REQ-CONTENT-0092: Kein undefined für Pflichtfelder",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-093",
+      "title": "Verify REQ-CONTENT-0093: Null/Optional Semantik",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-094",
+      "title": "Verify REQ-CONTENT-0094: Explizite Defaults",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-095",
+      "title": "Verify REQ-CONTENT-0095: Unbekannte Felder Fehler",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-096",
+      "title": "Verify REQ-CONTENT-0096: Unit-Referenzen vollständig",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-097",
+      "title": "Verify REQ-CONTENT-0097: Fähigkeitsspezifikation voll",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-098",
+      "title": "Verify REQ-CONTENT-0098: Bossphasen vollständig",
+      "status": "planned",
+      "ownerPhase": "PHASE-04",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-099",
+      "title": "Verify REQ-CONTENT-0099: Mission 5-8 Knoten",
+      "status": "planned",
+      "ownerPhase": "PHASE-04",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-100",
+      "title": "Verify REQ-CONTENT-0100: Ereignisspezifikation voll",
+      "status": "planned",
+      "ownerPhase": "PHASE-04",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-101",
+      "title": "Verify REQ-CONTENT-0101: Es existieren mindestens Golden-Screenshot-Zustände für: Tit",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-102",
+      "title": "Verify REQ-CONTENT-0102: Jede gefährliche Bodenfläche besitzt Vorwarnform, Countdown-",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-103",
+      "title": "Verify REQ-CONTENT-0103: Gameplaygrafiken enthalten außer universellen Symbolen keine",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-104",
+      "title": "Verify REQ-CONTENT-0104: Alle Asset-Quellen besitzen einen Lizenz- und Provenienzdate",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-105",
+      "title": "Verify REQ-CONTENT-0105: Pip spricht Tutorial-, Unlock-, Niederlagen- und Storykurzte",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-106",
+      "title": "Verify REQ-CONTENT-0106: Helden besitzen Voice-Cues für Einmarsch, Signatur, Level3, ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-107",
+      "title": "Verify REQ-CONTENT-0107: Bosse besitzen Voice-Cues für Intro, Phase und Niederlage; s",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-108",
+      "title": "Verify REQ-CONTENT-0108: Der Release besitzt eine begrenzte, aber verbindliche DE- un",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-109",
+      "title": "Verify REQ-CONTENT-0109: Stationäre Konstruktionen zählen zum Beschwörungslimit nur, ",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-110",
+      "title": "Verify REQ-CONTENT-0110: Ein Schlachtfeldmodifikator darf nie eine Bosskernmechanik v",
+      "status": "planned",
+      "ownerPhase": "PHASE-04",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-111",
+      "title": "Verify REQ-CONTENT-0111: Generator führt pro Modus Verlauf: letzte drei Kartenprofile",
+      "status": "planned",
+      "ownerPhase": "PHASE-04",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-112",
+      "title": "Verify REQ-CONTENT-0112: Identische Ereignis-ID ist innerhalb einer Expedition verbot",
+      "status": "planned",
+      "ownerPhase": "PHASE-04",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-113",
+      "title": "Verify REQ-CONTENT-0113: Kann ein Pool die Regel nicht erfüllen, wird die geringste W",
+      "status": "planned",
+      "ownerPhase": "PHASE-04",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-114",
+      "title": "Verify REQ-CONTENT-0114: Fallback-Profil enthält genau sechs Ebenen, einen normalen K",
+      "status": "planned",
+      "ownerPhase": "PHASE-04",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-115",
+      "title": "Verify REQ-CONTENT-0115: content lädt nur validierte Daten; fehlende Referenz ist im ",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-116",
+      "title": "Verify REQ-CONTENT-0116: UI-Komponenten enthalten keine konkrete Helden-/Bosslogik; I",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-117",
+      "title": "Verify REQ-CONTENT-0117: Inhaltsdaten sind validierte, versionierte JSON-Inhaltsdaten",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-118",
+      "title": "Verify REQ-CONTENT-0118: IDs sind stabile, kleingeschriebene ASCII-Schlüssel und dürf",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-119",
+      "title": "Verify REQ-CONTENT-0119: Stabile ID-Konvention: hero_<name>, troop_<rolle>, enemy_<na",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-120",
+      "title": "Verify REQ-CONTENT-0120: Stabile ID-Konvention: Missionen mission_1_1 bis mission_4_5",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-121",
+      "title": "Verify REQ-CONTENT-0121: Lokalisierte Namen sind nie IDs und werden nicht für Savegam",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-122",
+      "title": "Verify REQ-CONTENT-0122: Alle Referenzen werden beim Build validiert; unbekannte ID i",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-123",
+      "title": "Verify REQ-CONTENT-0123: 20 Missionen vollständig spielbar, alle Erst- und Wiederholu",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-124",
+      "title": "Verify REQ-CONTENT-0124: Inhaltliche Mindestmenge implementiert: 10 Helden × 3 Stufen",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-125",
+      "title": "Verify REQ-CONTENT-0125: 42 permanente Gegenstände, 36 Relikte, 30 Ereignisse, 18 Mod",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-126",
+      "title": "Verify REQ-CONTENT-0126: Ascension 1-10, 28 Konstellationsknoten, Jenseits 1-20, Endl",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-CONTENT-127",
+      "title": "Verify REQ-CONTENT-0127: 50 Meisterschaftsziele, Kodex und 36 Erfolge vollständig prü",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "NAT-I-IOS-001",
+      "title": "Verify REQ-IOS-0001: iOS Privacy Manifest minimal",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "native"
+    },
+    {
+      "id": "NAT-I-IOS-002",
+      "title": "Verify REQ-IOS-0002: iOS Toolchain",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "native"
+    },
+    {
+      "id": "NAT-I-IOS-003",
+      "title": "Verify REQ-IOS-0003: iOS Deployment Target 15",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "native"
+    },
+    {
+      "id": "NAT-I-IOS-004",
+      "title": "Verify REQ-IOS-0004: iOS Universal App",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "native"
+    },
+    {
+      "id": "NAT-I-IOS-005",
+      "title": "Verify REQ-IOS-0005: iOS Bundle-ID",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "native"
+    },
+    {
+      "id": "NAT-I-IOS-006",
+      "title": "Verify REQ-IOS-0006: iOS Audio Session",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "native"
+    },
+    {
+      "id": "NAT-I-IOS-007",
+      "title": "Verify REQ-IOS-0007: iOS Entitlements minimal",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "native"
+    },
+    {
+      "id": "NAT-I-IOS-008",
+      "title": "Verify REQ-IOS-0008: iOS Distribution via App Store Connect",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "native"
+    },
+    {
+      "id": "NAT-I-IOS-009",
+      "title": "Verify REQ-IOS-0009: Auf iOS wird AVAudioSession ambient verwendet; der Hardware-",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "native"
+    },
+    {
+      "id": "NAT-I-IOS-010",
+      "title": "Verify REQ-IOS-0010: iOS nutzt AVAudioSession category ambient als Baseline: Sile",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "native"
+    },
+    {
+      "id": "PERF-PERF-001",
+      "title": "Verify REQ-PERF-0001: WebGPU ist experimentell und in Release 1 deaktiviert; eine ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "review"
+    },
+    {
+      "id": "PERF-PERF-002",
+      "title": "Verify REQ-PERF-0002: Es existiert kein CanvasRenderer-Fallback; wenn kein WebGL-K",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "review"
+    },
+    {
+      "id": "PERF-PERF-003",
+      "title": "Verify REQ-PERF-0003: Beim ersten Start wird kein langer Benchmark gezeigt; nach R",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "review"
+    },
+    {
+      "id": "PERF-PERF-004",
+      "title": "Verify REQ-PERF-0004: High wenn p95 <=15 ms und Texturspeicherindikatoren ausreich",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "review"
+    },
+    {
+      "id": "PERF-PERF-005",
+      "title": "Verify REQ-PERF-0005: Während des Kampfs darf Auto nur stufenweise kosmetisch redu",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "review"
+    },
+    {
+      "id": "PERF-PERF-006",
+      "title": "Verify REQ-PERF-0006: Qualität steigt nie mitten im Kampf; sie kann nach drei stab",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "review"
+    },
+    {
+      "id": "PERF-PERF-007",
+      "title": "Verify REQ-PERF-0007: Im Hintergrund gibt es 0 Renderframes und 0 Simulationsticks",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "review"
+    },
+    {
+      "id": "PERF-PERF-008",
+      "title": "Verify REQ-PERF-0008: Bei OS-Thermal-Warning oder dauerhaft p95 >33 ms wird sofort",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "review"
+    },
+    {
+      "id": "PERF-PERF-009",
+      "title": "Verify REQ-PERF-0009: Ein 30-Minuten-Stresstest auf dem Targetgerät darf keinen Me",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "review"
+    },
+    {
+      "id": "PERF-PERF-010",
+      "title": "Verify REQ-PERF-0010: Mobile Zielhardware hält 60 FPS im Normalfall und mindestens",
+      "status": "planned",
+      "ownerPhase": "PHASE-21",
+      "method": "review"
+    },
+    {
+      "id": "UT-PROD-001",
+      "title": "Verify REQ-PRODUCT-0001: Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt w",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-002",
+      "title": "Verify REQ-PRODUCT-0002: Festgelegte Obergrenzen dürfen nicht aufgeweicht werden.",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-003",
+      "title": "Verify REQ-PRODUCT-0003: Technische Grundsatzentscheidungen dürfen nicht eigenmächtig",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-004",
+      "title": "Verify REQ-PRODUCT-0004: Die Zielversion muss klein genug für ein hochpoliertes Premi",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-005",
+      "title": "Verify REQ-PRODUCT-0005: Rechts-, Steuer- und Inhaberfragen bleiben beim Publisher un",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-006",
+      "title": "Verify REQ-PRODUCT-0006: Das Produkt ist ein kompaktes Fantasy-Roguelite mit vollstän",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-007",
+      "title": "Verify REQ-PRODUCT-0007: Das Spiel darf keinerlei Fortschritt ohne aktives Spielen er",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-008",
+      "title": "Verify REQ-PRODUCT-0008: Es dürfen keine Energie, Wartezeit, Offline-Erträge, Tagesau",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-009",
+      "title": "Verify REQ-PRODUCT-0009: Die Kampagne muss abgeschlossen sein und den Kauf allein rec",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-010",
+      "title": "Verify REQ-PRODUCT-0010: PvP, Online-Ranglisten, Accounts, Gilden und Chat sind nicht",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-011",
+      "title": "Verify REQ-PRODUCT-0011: Cloud-Zwang, Live-Events, tägliche Aufgaben und saisonale In",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-012",
+      "title": "Verify REQ-PRODUCT-0012: Basisbau, offene Welt und frei begehbare Dungeons sind nicht",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-013",
+      "title": "Verify REQ-PRODUCT-0013: Eine Standardexpedition muss 12-25 Minuten dauern.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-014",
+      "title": "Verify REQ-PRODUCT-0014: Eine Kampagnenmission darf beim ersten Durchlauf einschließl",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-015",
+      "title": "Verify REQ-PRODUCT-0015: Endlose Rift wird nach Abschluss der Kampagne freigeschaltet",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-016",
+      "title": "Verify REQ-PRODUCT-0016: Endlose Rift darf nicht ohne Doktrin starten.",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-017",
+      "title": "Verify REQ-PRODUCT-0017: Tiefe 100 ist theoretisch erreichbar, aber kein durchschnitt",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-018",
+      "title": "Verify REQ-PRODUCT-0018: Keine Inhaltsproduktion vor Phase 4",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-019",
+      "title": "Verify REQ-PRODUCT-0019: Keine Wegwerfarchitektur",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-020",
+      "title": "Verify REQ-PRODUCT-0020: Scope nach V3 Kapitel 46 kürzen",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-021",
+      "title": "Verify REQ-PRODUCT-0021: Kein Live-Service",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-022",
+      "title": "Verify REQ-PRODUCT-0022: Manuelle Post-Launch-Prüfung",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-023",
+      "title": "Verify REQ-PRODUCT-0023: Plattform-Drop ankündigen",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-024",
+      "title": "Verify REQ-PRODUCT-0024: Externer Recheck vor Upload",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-025",
+      "title": "Verify REQ-PRODUCT-0025: V3-Obergrenzen unverändert",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-026",
+      "title": "Verify REQ-PRODUCT-0026: V3-Geschäftsmodell unverändert",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-027",
+      "title": "Verify REQ-PRODUCT-0027: Produktionsreife Definition",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-028",
+      "title": "Verify REQ-PRODUCT-0028: Erster Meilenstein Phase 0-2",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-029",
+      "title": "Verify REQ-PRODUCT-0029: Keine Beschleunigungs-Shortcuts",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-030",
+      "title": "Verify REQ-PRODUCT-0030: V5 als Source of Truth",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-031",
+      "title": "Verify REQ-PRODUCT-0031: Erlaubte technische Eigenentscheidungen",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-032",
+      "title": "Verify REQ-PRODUCT-0032: Verbotene Erweiterungen",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-033",
+      "title": "Verify REQ-PRODUCT-0033: Tiebreak-Reihenfolge technisch",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-034",
+      "title": "Verify REQ-PRODUCT-0034: pnpm Single-Repo Struktur",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-035",
+      "title": "Verify REQ-PRODUCT-0035: Capacitor Config Baseline",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-036",
+      "title": "Verify REQ-PRODUCT-0036: Vite Base Manifest",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-037",
+      "title": "Verify REQ-PRODUCT-0037: Debug compile-time entfernt",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-038",
+      "title": "Verify REQ-PRODUCT-0038: Native Projekte committed",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-039",
+      "title": "Verify REQ-PRODUCT-0039: Dependency Freeze exakt",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-040",
+      "title": "Verify REQ-PRODUCT-0040: Keine Auto-Upgrades",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-041",
+      "title": "Verify REQ-PRODUCT-0041: Konkrete Sprint- und Taskzerlegung, Aufwandsschätzung, perso",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-042",
+      "title": "Verify REQ-PRODUCT-0042: Publisheridentität, Signing-Secrets, endgültige Storepreisst",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-043",
+      "title": "Verify REQ-PRODUCT-0043: Feintuning außerhalb der Baseline erfolgt evidenzbasiert übe",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-044",
+      "title": "Verify REQ-PRODUCT-0044: Nach V5 darf der Entwicklungsplan das Werk in Phasen, Epics,",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-045",
+      "title": "Verify REQ-PRODUCT-0045: Der Entwicklungsplan darf entscheiden: Reihenfolge innerhalb",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-046",
+      "title": "Verify REQ-PRODUCT-0046: Der Entwicklungsplan darf entscheiden: konkrete interne Algo",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-047",
+      "title": "Verify REQ-PRODUCT-0047: Der Entwicklungsplan darf entscheiden: welche V5-Tests in we",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-048",
+      "title": "Verify REQ-PRODUCT-0048: Der Entwicklungsplan darf nicht entscheiden: neue oder entfe",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-049",
+      "title": "Verify REQ-PRODUCT-0049: Der Entwicklungsplan darf nicht entscheiden: andere Stack-Ma",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-050",
+      "title": "Verify REQ-PRODUCT-0050: Der Entwicklungsplan darf nicht entscheiden: das Weglassen v",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-051",
+      "title": "Verify REQ-PRODUCT-0051: Riftwarden: Auto RPG Roguelite ist mit Version 5 ausreichend",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-052",
+      "title": "Verify REQ-PRODUCT-0052: Tritt während der Umsetzung dennoch eine echte Designlücke a",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-053",
+      "title": "Verify REQ-PRODUCT-0053: Konflikt-Prioritätsreihenfolge: V4-Klarstellung > V3; konkre",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-054",
+      "title": "Verify REQ-PRODUCT-0054: Kein Implementierungsagent darf aus unklaren Formulierungen ",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-055",
+      "title": "Verify REQ-PRODUCT-0055: Permanentes Inventar hat keine Gesamtplatzgrenze; ein dauerh",
+      "status": "planned",
+      "ownerPhase": "PHASE-03",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-056",
+      "title": "Verify REQ-PRODUCT-0056: Politur ist ein boolescher permanenter Zustand je Gegenstand",
+      "status": "planned",
+      "ownerPhase": "PHASE-03",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-057",
+      "title": "Verify REQ-PRODUCT-0057: Temporäre Relikte: maximal acht unterschiedliche aktive Kart",
+      "status": "planned",
+      "ownerPhase": "PHASE-03",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-058",
+      "title": "Verify REQ-PRODUCT-0058: Erstbelohnung wegen bereits freigeschaltetem Inhalt wird dur",
+      "status": "planned",
+      "ownerPhase": "PHASE-03",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-059",
+      "title": "Verify REQ-PRODUCT-0059: Entdecker/Normal/Veteran gelten nur für Kampagne und Kampagn",
+      "status": "planned",
+      "ownerPhase": "PHASE-04",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-060",
+      "title": "Verify REQ-PRODUCT-0060: Endlose Rift nutzt Normal-Baseline plus Tiefenskalierung und",
+      "status": "planned",
+      "ownerPhase": "PHASE-04",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-061",
+      "title": "Verify REQ-PRODUCT-0061: Generatorfehler werden lokal protokolliert; der Spieler sieh",
+      "status": "planned",
+      "ownerPhase": "PHASE-04",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-062",
+      "title": "Verify REQ-PRODUCT-0062: Release-App wird als lokal gebündelte Web-App in Capacitor 8",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-063",
+      "title": "Verify REQ-PRODUCT-0063: Patch- und Minor-Versionen werden beim Repository-Bootstrap ",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-064",
+      "title": "Verify REQ-PRODUCT-0064: Screens verwenden Feature-Services und Stores; direkter Zugr",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-065",
+      "title": "Verify REQ-PRODUCT-0065: Kein any außer eng begrenztem Adapter mit Kommentar und unmi",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-066",
+      "title": "Verify REQ-PRODUCT-0066: Keine non-null Assertions in Save-, Content-, Reward- oder C",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-067",
+      "title": "Verify REQ-PRODUCT-0067: Alle Geld-, Statistik-, Tick- und ID-Werte sind Integer; UI-",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-068",
+      "title": "Verify REQ-PRODUCT-0068: Funktionen mit Seiteneffekt tragen dies im Namen oder liegen",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-069",
+      "title": "Verify REQ-PRODUCT-0069: ESLint behandelt floating promises, unhandled switch cases, ",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-070",
+      "title": "Verify REQ-PRODUCT-0070: Main ist jederzeit baubar; Featurebranches werden über Pull ",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-071",
+      "title": "Verify REQ-PRODUCT-0071: Architekturänderungen, neue Native-Plugins, neue Permissions",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-072",
+      "title": "Verify REQ-PRODUCT-0072: package-lock.json ist verboten; pnpm-lock.yaml ist SSOT; nat",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-073",
+      "title": "Verify REQ-PRODUCT-0073: Bei appStateChange zu inactive/background: Simulation am let",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-074",
+      "title": "Verify REQ-PRODUCT-0074: Beim Resume wird niemals automatisch ein Kampf fortgesetzt, ",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-075",
+      "title": "Verify REQ-PRODUCT-0075: Native Splash verschwindet erst nach erstem stabilen React-F",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-076",
+      "title": "Verify REQ-PRODUCT-0076: Spiel spielt Audio ausschließlich im Vordergrund; bei Backgr",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-077",
+      "title": "Verify REQ-PRODUCT-0077: Audio wird in vier Bussen gemischt: master, music, sfx, voic",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-078",
+      "title": "Verify REQ-PRODUCT-0078: Gleichartige SFX verwenden mindestens vier Varianten und ein",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-079",
+      "title": "Verify REQ-PRODUCT-0079: Haptik wird nur bei starkem eigenen Treffer, Schildbruch, Bo",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-080",
+      "title": "Verify REQ-PRODUCT-0080: Android nutzt ACTION_OPEN_DOCUMENT/ACTION_CREATE_DOCUMENT, i",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-081",
+      "title": "Verify REQ-PRODUCT-0081: Keine Kampagnenfreischaltung verlangt wiederholtes Farmen de",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-082",
+      "title": "Verify REQ-PRODUCT-0082: Keine Niederlage wird durch Reduzieren permanenter Progressi",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-083",
+      "title": "Verify REQ-PRODUCT-0083: Neue Inhalte werden nur aufgenommen, wenn sie eine erkennbar",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-084",
+      "title": "Verify REQ-PRODUCT-0084: Vor Release werden keine weiteren Helden, Regionen, Hauptbos",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-085",
+      "title": "Verify REQ-PRODUCT-0085: Ein späteres Update ist optional und nicht Bestandteil des P",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-086",
+      "title": "Verify REQ-PRODUCT-0086: Priorität 1 unter Produktionsdruck: Kampfsimulation, Zielwah",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-087",
+      "title": "Verify REQ-PRODUCT-0087: Priorität 2 unter Produktionsdruck: vollständige Kampagne in",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-088",
+      "title": "Verify REQ-PRODUCT-0088: Priorität 3 unter Produktionsdruck: Formation, Doktrinen, He",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-089",
+      "title": "Verify REQ-PRODUCT-0089: Priorität 4 unter Produktionsdruck: Savegame, Offlinequalitä",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-090",
+      "title": "Verify REQ-PRODUCT-0090: Priorität 5 unter Produktionsdruck: Ascension 1-10 und Konst",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-091",
+      "title": "Verify REQ-PRODUCT-0091: Priorität 6 unter Produktionsdruck: Endlose Rift, Meistersch",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-092",
+      "title": "Verify REQ-PRODUCT-0092: Priorität 7 unter Produktionsdruck: zusätzliche Kosmetik und",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-093",
+      "title": "Verify REQ-PRODUCT-0093: Bei Scope-Reduktion werden zuerst kosmetische Varianten und ",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-094",
+      "title": "Verify REQ-PRODUCT-0094: Riftwarden ist releasebereit, wenn der Spieler eine ungewöhn",
+      "status": "planned",
+      "ownerPhase": "PHASE-22",
+      "method": "unit"
+    },
+    {
+      "id": "UT-PROD-095",
+      "title": "Verify REQ-PRODUCT-0095: Zentrale Qualitätsfrage: \"Kann der Spieler erkennen, welche ",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-001",
+      "title": "Verify REQ-QA-0001: Jede numerische Baseline muss eine klare Funktion besitzen u",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-002",
+      "title": "Verify REQ-QA-0002: Jedes kritische System muss beobachtbare Abnahmekriterien en",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-003",
+      "title": "Verify REQ-QA-0003: Die Endbalance muss nach deterministischen Simulationen und ",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-004",
+      "title": "Verify REQ-QA-0004: Build-Validator Referenzen",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-005",
+      "title": "Verify REQ-QA-0005: Build-Validator IDs",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-006",
+      "title": "Verify REQ-QA-0006: Build-Validator Kampf",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-007",
+      "title": "Verify REQ-QA-0007: Build-Validator Formation",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-008",
+      "title": "Verify REQ-QA-0008: Build-Validator Beschwörung",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-009",
+      "title": "Verify REQ-QA-0009: Build-Validator Dungeon",
+      "status": "planned",
+      "ownerPhase": "PHASE-04",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-010",
+      "title": "Verify REQ-QA-0010: Build-Validator Loot",
+      "status": "planned",
+      "ownerPhase": "PHASE-04",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-011",
+      "title": "Verify REQ-QA-0011: Android Store-Cert-Matrix",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-012",
+      "title": "Verify REQ-QA-0012: iOS Store-Cert-Matrix",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-013",
+      "title": "Verify REQ-QA-0013: CI Schritt 1 Clean checkout",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-014",
+      "title": "Verify REQ-QA-0014: CI Schritt 2 Lint/Audit",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-015",
+      "title": "Verify REQ-QA-0015: CI Schritt 3 Validatoren",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-016",
+      "title": "Verify REQ-QA-0016: CI Schritt 4 Tests",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-017",
+      "title": "Verify REQ-QA-0017: CI Schritt 5 Webbuild",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-018",
+      "title": "Verify REQ-QA-0018: CI Schritt 6 E2E",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-019",
+      "title": "Verify REQ-QA-0019: CI Schritt 7 cap sync",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-020",
+      "title": "Verify REQ-QA-0020: CI Schritt 8 Nativebuilds",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-021",
+      "title": "Verify REQ-QA-0021: CI Schritt 9 Native-Smoke",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-022",
+      "title": "Verify REQ-QA-0022: Smoke-Test Pflichtläufe",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-023",
+      "title": "Verify REQ-QA-0023: Screenshots echter UI-Stand",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-024",
+      "title": "Verify REQ-QA-0024: Lizenzreport Build-Gate",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-025",
+      "title": "Verify REQ-QA-0025: Releasecounts Gate",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-026",
+      "title": "Verify REQ-QA-0026: Testdaten für Golden Screens nutzen feste Seed- und Savefixt",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-027",
+      "title": "Verify REQ-QA-0027: Transparente Sprites besitzen keine Halo- oder Fringing-Kant",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-028",
+      "title": "Verify REQ-QA-0028: Der Assetbuild erzeugt Kontaktbogen, Größenreport, Liste unr",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-029",
+      "title": "Verify REQ-QA-0029: 100.000 Dungeonkarten über Missions- und Modusprofile müssen",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-030",
+      "title": "Verify REQ-QA-0030: Jeder Encounterpool wird über alle Freischaltzustände validi",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-031",
+      "title": "Verify REQ-QA-0031: Ein automatischer Cross-System-Test erzeugt jede zulässige E",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-032",
+      "title": "Verify REQ-QA-0032: Balanceberichte markieren Winrate <20% oder >80% für neutral",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-033",
+      "title": "Verify REQ-QA-0033: GO nur wenn verify:release grün, P0/P1=0, P2 ausdrücklich en",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-034",
+      "title": "Verify REQ-QA-0034: GO nur wenn Android- und iOS-Deklarationen mit tatsächlich e",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-035",
+      "title": "Verify REQ-QA-0035: GO nur wenn vollständiger Kampagnenlauf, Ascension-Smoke, En",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-036",
+      "title": "Verify REQ-QA-0036: NO-GO bei nicht reproduzierbarem Build, ungeklärter Lizenz, ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-037",
+      "title": "Verify REQ-QA-0037: Das Dokumentaudit vergleicht normalisierte V4-Absätze und Ta",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-038",
+      "title": "Verify REQ-QA-0038: Der Contentvalidator bestätigt exakt 10/18/14/28/4/4/18/30/4",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-039",
+      "title": "Verify REQ-QA-0039: Der Headingaudit bestätigt lückenlose Kapitel 1-87 und ein s",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-040",
+      "title": "Verify REQ-QA-0040: Das Renderaudit prüft jede Seite auf Leerseite, Beschnitt, T",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "UT-QA-041",
+      "title": "Verify REQ-QA-0041: DOCX-A11y-Audit und PDF-Preflight müssen ohne kritische Befu",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "unit"
+    },
+    {
+      "id": "GR-SAVE-001",
+      "title": "Verify REQ-SAVE-0001: Eine verlorene Expedition darf niemals Helden, Verträge oder",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-002",
+      "title": "Verify REQ-SAVE-0002: Unterbrechung und lokales Fortsetzen müssen an jedem Knoten ",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-003",
+      "title": "Verify REQ-SAVE-0003: Beim App-Verlassen während eines Kampfes muss ein determinis",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-004",
+      "title": "Verify REQ-SAVE-0004: Am Checkpoint kann der Lauf freiwillig beendet und ein Rekor",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-005",
+      "title": "Verify REQ-SAVE-0005: Eine Niederlage beendet den Lauf und speichert die erreichte",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-006",
+      "title": "Verify REQ-SAVE-0006: Ein freiwilliges Ende am Checkpoint gilt als gültiger Rekord",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-007",
+      "title": "Verify REQ-SAVE-0007: Jeder Checkpoint speichert vollständig.",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-008",
+      "title": "Verify REQ-SAVE-0008: Alle Meilensteinbelohnungen werden einmalig vergeben und dan",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-009",
+      "title": "Verify REQ-SAVE-0009: Meisterschaftsfortschritt wird unmittelbar nach Kampf angeze",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-010",
+      "title": "Verify REQ-SAVE-0010: Erfolge werden nachträglich geprüft, wenn ein altes Savegame",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-011",
+      "title": "Verify REQ-SAVE-0011: Android Backup deaktiviert",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-012",
+      "title": "Verify REQ-SAVE-0012: iOS Files",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-013",
+      "title": "Verify REQ-SAVE-0013: Belohnungs-Commit idempotent",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-014",
+      "title": "Verify REQ-SAVE-0014: Saves nie absichtlich zurücksetzen",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-015",
+      "title": "Verify REQ-SAVE-0015: Fallback erhält Progression",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-016",
+      "title": "Verify REQ-SAVE-0016: 3 Autosave-Slots",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-017",
+      "title": "Verify REQ-SAVE-0017: Stabile ID-Referenzen",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-018",
+      "title": "Verify REQ-SAVE-0018: Transaktionssperre",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-019",
+      "title": "Verify REQ-SAVE-0019: Für atomare Rename- und fsync-Semantik wird ein eigener Nati",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-020",
+      "title": "Verify REQ-SAVE-0020: Kanonische Serialisierung: UTF-8 ohne BOM, LF-Zeilenenden, s",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-021",
+      "title": "Verify REQ-SAVE-0021: payloadSha256 wird über die kanonische Serialisierung des pa",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-022",
+      "title": "Verify REQ-SAVE-0022: commitId ist monoton pro Profil; Zeitstempel dient ausschlie",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-023",
+      "title": "Verify REQ-SAVE-0023: NativeSaveStore schreibt tmp, führt flush/fsync durch, liest",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-024",
+      "title": "Verify REQ-SAVE-0024: Export-Dateiendung ist .riftwarden-save; das ZIP enthält kei",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-025",
+      "title": "Verify REQ-SAVE-0025: Der Standard-Export enthält keine Logs oder Replays; der Dia",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-026",
+      "title": "Verify REQ-SAVE-0026: Beim Import werden ausschließlich bekannte Dateinamen entpac",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-027",
+      "title": "Verify REQ-SAVE-0027: Der Import wird vollständig im Staging validiert und migrier",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-028",
+      "title": "Verify REQ-SAVE-0028: Der Diagnoseexport listet App-, Content- und Simulationversi",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-029",
+      "title": "Verify REQ-SAVE-0029: Belohnungen werden vor der nächsten Navigation persistent co",
+      "status": "planned",
+      "ownerPhase": "PHASE-03",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-030",
+      "title": "Verify REQ-SAVE-0030: Debug-Replays können vollständiges Eventlog speichern; norma",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-031",
+      "title": "Verify REQ-SAVE-0031: Snapshot muss innerhalb 250 ms in Memory erzeugt werden; Per",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-032",
+      "title": "Verify REQ-SAVE-0032: OS-Kill ohne Pause-Callback darf höchstens Fortschritt seit ",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-033",
+      "title": "Verify REQ-SAVE-0033: Atomarer Commit Schritt 1: In-Memory-State wird in kanonisch",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-034",
+      "title": "Verify REQ-SAVE-0034: Atomarer Commit Schritt 2: Payload erhält schemaVersion, con",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-035",
+      "title": "Verify REQ-SAVE-0035: Atomarer Commit Schritt 3: In next-slot.tmp schreiben, Datei",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-036",
+      "title": "Verify REQ-SAVE-0036: Atomarer Commit Schritt 4: .tmp in Slotdatei umbenennen; dan",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-037",
+      "title": "Verify REQ-SAVE-0037: Atomarer Commit Schritt 5: Erst jetzt UI-Transaktion als abg",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-038",
+      "title": "Verify REQ-SAVE-0038: Export verwendet Custom SaveTransfer und System-Dateidialog;",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-039",
+      "title": "Verify REQ-SAVE-0039: Import wird in Quarantäne gelesen, Größe <= 10 MB, ZIP/JSON-",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-040",
+      "title": "Verify REQ-SAVE-0040: Vor Import zeigt App Quelle, Version, Fortschritt und Konfli",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-041",
+      "title": "Verify REQ-SAVE-0041: Neueres unbekanntes Schema wird abgelehnt ohne aktiven Save ",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-042",
+      "title": "Verify REQ-SAVE-0042: Recovery Schritt 1: Manifest und aktiven Slot prüfen.",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-043",
+      "title": "Verify REQ-SAVE-0043: Recovery Schritt 2: Bei Fehler andere Slots nach höchster gü",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-044",
+      "title": "Verify REQ-SAVE-0044: Recovery Schritt 3: Bei gültigem Fallback diesen laden, besc",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-045",
+      "title": "Verify REQ-SAVE-0045: Recovery Schritt 4: Wenn Profil gültig und Run beschädigt, p",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-046",
+      "title": "Verify REQ-SAVE-0046: Recovery Schritt 5: Wenn kein Slot gültig, Import/Neues Prof",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-047",
+      "title": "Verify REQ-SAVE-0047: Mindestens drei rotierende lokale Autosave-Slots plus ein ma",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-048",
+      "title": "Verify REQ-SAVE-0048: Save enthält schemaVersion, contentVersion, simulationVersio",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-049",
+      "title": "Verify REQ-SAVE-0049: Schreibvorgang atomar: in temporäre Datei, Prüfsumme, dann e",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-050",
+      "title": "Verify REQ-SAVE-0050: Migrationen sind vorwärtsgerichtet und idempotent; ein Save ",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-051",
+      "title": "Verify REQ-SAVE-0051: Laufender Kampf speichert Startsnapshot plus aktuellen Simul",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-052",
+      "title": "Verify REQ-SAVE-0052: Bei technisch ungültigem Snapshot wird der Kampf mit demselb",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-053",
+      "title": "Verify REQ-SAVE-0053: Kein Fortschritt hängt von Uhrzeit, Zeitzone, Geräte-ID, Acc",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-054",
+      "title": "Verify REQ-SAVE-0054: Export/Import eines Savefiles ist als Komfortfunktion vorges",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-055",
+      "title": "Verify REQ-SAVE-0055: Alle Käufe, Belohnungen, Saves und Migrationen sind crash- u",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-056",
+      "title": "Verify REQ-SAVE-0056: App startet und alle Inhalte funktionieren im Flugmodus ohne",
+      "status": "planned",
+      "ownerPhase": "PHASE-22",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SAVE-057",
+      "title": "Verify REQ-SAVE-0057: Unterbrechung oder Prozessbeendigung an jedem Knoten und in ",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "golden"
+    },
+    {
+      "id": "SEC-SEC-001",
+      "title": "Verify REQ-SECURITY-0001: Keine Datenerhebung",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-002",
+      "title": "Verify REQ-SECURITY-0002: Lokale Logs/Diagnose",
+      "status": "planned",
+      "ownerPhase": "PHASE-12",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-003",
+      "title": "Verify REQ-SECURITY-0003: Verbot Identifier",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-004",
+      "title": "Verify REQ-SECURITY-0004: Datenschutzdeklaration konsistent",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-005",
+      "title": "Verify REQ-SECURITY-0005: Produktions-CSP",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-006",
+      "title": "Verify REQ-SECURITY-0006: connect-src none Pflicht",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-007",
+      "title": "Verify REQ-SECURITY-0007: capacitor.config produktionsfest",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-008",
+      "title": "Verify REQ-SECURITY-0008: Verbot eval/Remote Script",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-009",
+      "title": "Verify REQ-SECURITY-0009: Dependency-Aufnahmeprüfung",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-010",
+      "title": "Verify REQ-SECURITY-0010: CI Dependency-Audit",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-011",
+      "title": "Verify REQ-SECURITY-0011: Buildprovenienz archiviert",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-012",
+      "title": "Verify REQ-SECURITY-0012: iOS Privacy Manifest",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-013",
+      "title": "Verify REQ-SECURITY-0013: iOS Network minimal",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-014",
+      "title": "Verify REQ-SECURITY-0014: Secrets ausschließlich im Secret Store",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-015",
+      "title": "Verify REQ-SECURITY-0015: Debugsignatur nie im Release",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-016",
+      "title": "Verify REQ-SECURITY-0016: Vollständige Offline-Funktion",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-017",
+      "title": "Verify REQ-SECURITY-0017: Privacy-Antworten konsistent",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-018",
+      "title": "Verify REQ-SECURITY-0018: Keine Secrets in Production",
+      "status": "planned",
+      "ownerPhase": "PHASE-05",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-019",
+      "title": "Verify REQ-SECURITY-0019: Es existieren maximal fünf rotierende Sessionslogs mit jewei",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-020",
+      "title": "Verify REQ-SECURITY-0020: Logfelder umfassen UTC-Zeit, appVersion, buildChannel, platf",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-021",
+      "title": "Verify REQ-SECURITY-0021: Logs werden niemals automatisch versendet; der Supporttext e",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-022",
+      "title": "Verify REQ-SECURITY-0022: Keine dangerouslySetInnerHTML für lokalisierte oder Inhaltsd",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "static"
+    },
+    {
+      "id": "SEC-SEC-023",
+      "title": "Verify REQ-SECURITY-0023: Generierte Atlanten, store-signierte Artefakte, Keystores, P",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "static"
+    },
+    {
+      "id": "GR-SIM-001",
+      "title": "Verify REQ-SIM-0001: Es darf keine manuelle Kampfsteuerung eingeführt werden.",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-002",
+      "title": "Verify REQ-SIM-0002: Trigger, Prioritäten, Dauer, Stapelung, Abbruch und Sonderfä",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-003",
+      "title": "Verify REQ-SIM-0003: Während eines Kampfes dürfen keine Fähigkeiten manuell ausge",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-004",
+      "title": "Verify REQ-SIM-0004: Ein regulärer Kampf dauert 20-45 Sekunden auf normaler Gesch",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-005",
+      "title": "Verify REQ-SIM-0005: Ein Elitekampf dauert 35-60 Sekunden auf normaler Geschwindi",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-006",
+      "title": "Verify REQ-SIM-0006: Ein Bosskampf dauert 60-100 Sekunden auf normaler Geschwindi",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-007",
+      "title": "Verify REQ-SIM-0007: Manuelle Kampffähigkeiten und aktives Zielen sind nicht Teil",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-008",
+      "title": "Verify REQ-SIM-0008: Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffi",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-009",
+      "title": "Verify REQ-SIM-0009: Nach einem Sieg rekonstruiert der Riftanker alle gefallenen ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-010",
+      "title": "Verify REQ-SIM-0010: Bleibt keine reguläre Einheit der Spielergruppe kampffähig, ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-011",
+      "title": "Verify REQ-SIM-0011: Das logische Schlachtfeld verwendet eine horizontale X-Achse",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-012",
+      "title": "Verify REQ-SIM-0012: Spielerseite bewegt sich grundsätzlich in positive X-Richtun",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-013",
+      "title": "Verify REQ-SIM-0013: Eigene Startzonen sind X=8 (Hinten), X=18 (Mitte), X=28 (Fro",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-014",
+      "title": "Verify REQ-SIM-0014: Baseline-Kollisionsradien sind klein 1,2; normal 1,8; groß 2",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-015",
+      "title": "Verify REQ-SIM-0015: Verbündete dürfen sich innerhalb einer Bahn überholen, wenn ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-016",
+      "title": "Verify REQ-SIM-0016: Gegnerische Körper können nicht durchlaufen werden.",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-017",
+      "title": "Verify REQ-SIM-0017: Ein Bahnwechsel dauert baseline 1,2 Sekunden, unterbricht de",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-018",
+      "title": "Verify REQ-SIM-0018: Physischer und magischer Endschaden werden nach Rohschaden x",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-019",
+      "title": "Verify REQ-SIM-0019: Effektive Verteidigung darf nicht unter -40 und nicht über 2",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-020",
+      "title": "Verify REQ-SIM-0020: Reiner Schaden darf nie mehr als 18% der maximalen LP eines ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-021",
+      "title": "Verify REQ-SIM-0021: Standardangriff-Rohschaden ist Angriffskraft x Angriffsmulti",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-022",
+      "title": "Verify REQ-SIM-0022: Kritische Treffer dürfen nicht als globaler Zufallswert exis",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-023",
+      "title": "Verify REQ-SIM-0023: Nur ausdrücklich benannte Fähigkeiten dürfen einen festen kr",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-024",
+      "title": "Verify REQ-SIM-0024: Schilde absorbieren Endschaden vor LP und bilden einen gemei",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-025",
+      "title": "Verify REQ-SIM-0025: Heilung darf LP nicht über das Maximum erhöhen; Überheilung ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-026",
+      "title": "Verify REQ-SIM-0026: Angriffsintervall darf nicht unter 0,45 Sekunden sinken; Bew",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-027",
+      "title": "Verify REQ-SIM-0027: Jeder Kampf erhält einen gespeicherten Seed; gleiche Startda",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-028",
+      "title": "Verify REQ-SIM-0028: Beschwörungen allein dürfen einen Kampf nicht offen halten.",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-029",
+      "title": "Verify REQ-SIM-0029: Ein Kampf endet, sobald eine Seite keine kampffähige regulär",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-030",
+      "title": "Verify REQ-SIM-0030: Das normale weiche Zeitlimit beträgt 90 Sekunden, das Bossli",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-031",
+      "title": "Verify REQ-SIM-0031: Während des Riftkollapses erhalten alle regulären Einheiten ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-032",
+      "title": "Verify REQ-SIM-0032: Sind nach Riftkollaps beide Seiten noch regulär kampffähig, ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-033",
+      "title": "Verify REQ-SIM-0033: Ein exakter Gleichstand darf nicht als Sieg des Spielers gel",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-034",
+      "title": "Verify REQ-SIM-0034: Tiebreak-Reihenfolge ohne Zufall: höchster Zielscore, gering",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-035",
+      "title": "Verify REQ-SIM-0035: Geschwindigkeitsstufe, Pause, Kamera und reduzierte Effekte ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-036",
+      "title": "Verify REQ-SIM-0036: In Tiefe 1-5 beträgt die Gegnerbaseline 0,90 der Kampagnenen",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-037",
+      "title": "Verify REQ-SIM-0037: In Tiefe 6-10 beträgt die Elitechance 25 Prozent und der ers",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-038",
+      "title": "Verify REQ-SIM-0038: In Tiefe 11-20 steigt pro Tiefe das gegnerische LP um 2 Proz",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-039",
+      "title": "Verify REQ-SIM-0039: Der Endless-Generator wiederholt keine identische Encounter-",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-040",
+      "title": "Verify REQ-SIM-0040: Die Skalierung der Endlosen Rift bleibt numerisch berechenba",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-041",
+      "title": "Verify REQ-SIM-0041: Kosmetische Effekte aus Meisterschaften verändern Trefferzei",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-042",
+      "title": "Verify REQ-SIM-0042: Auswertungswerte stimmen mit dem Kampflog auf Rundungsdiffer",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-043",
+      "title": "Verify REQ-SIM-0043: Der MVP-Algorithmus bevorzugt nicht automatisch reine DPS üb",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-044",
+      "title": "Verify REQ-SIM-0044: LP/Schild nie negativ",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-045",
+      "title": "Verify REQ-SIM-0045: Sim-Obergrenzen pro Seite",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-046",
+      "title": "Verify REQ-SIM-0046: Safety Cap für Aktionen",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-047",
+      "title": "Verify REQ-SIM-0047: Keine unbegrenzten Trigger",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-048",
+      "title": "Verify REQ-SIM-0048: Determinismus Invariante",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-049",
+      "title": "Verify REQ-SIM-0049: Kampfende bis Tick 5400",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-050",
+      "title": "Verify REQ-SIM-0050: V4 implementiert ohne Ersatz",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-051",
+      "title": "Verify REQ-SIM-0051: Tickrate 30/s",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-052",
+      "title": "Verify REQ-SIM-0052: Formation 3x3",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-053",
+      "title": "Verify REQ-SIM-0053: Max reguläre Einheiten",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-054",
+      "title": "Verify REQ-SIM-0054: Max Helden 3",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-055",
+      "title": "Verify REQ-SIM-0055: Max Truppenkopien 3",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-056",
+      "title": "Verify REQ-SIM-0056: Max Beschwörungen 6",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-057",
+      "title": "Verify REQ-SIM-0057: Aktive Relikte Obergrenze 8",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-058",
+      "title": "Verify REQ-SIM-0058: Heldenlevel 1-3",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-059",
+      "title": "Verify REQ-SIM-0059: Heldenausrüstung 2 Slots",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-060",
+      "title": "Verify REQ-SIM-0060: Riftkollaps Timing",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-061",
+      "title": "Verify REQ-SIM-0061: Schlachtabbruch 5400 Ticks",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-062",
+      "title": "Verify REQ-SIM-0062: Tick-Pipeline Reihenfolge",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-063",
+      "title": "Verify REQ-SIM-0063: Reichweite inklusive",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-064",
+      "title": "Verify REQ-SIM-0064: Nahkampf-Stop Baseline",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-065",
+      "title": "Verify REQ-SIM-0065: Separation 0,25 X/Tick",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-066",
+      "title": "Verify REQ-SIM-0066: Projektil-Ziellock",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-067",
+      "title": "Verify REQ-SIM-0067: AoE Einzelhit pro EffectIndex",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-068",
+      "title": "Verify REQ-SIM-0068: True Damage Regeln",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-069",
+      "title": "Verify REQ-SIM-0069: invalidTargetPolicy wait",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-070",
+      "title": "Verify REQ-SIM-0070: invalidTargetPolicy retarget",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-071",
+      "title": "Verify REQ-SIM-0071: invalidTargetPolicy consume",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-072",
+      "title": "Verify REQ-SIM-0072: Kein Doppelangriff bei Retarget",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-073",
+      "title": "Verify REQ-SIM-0073: Periodische Effekte Timing",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-074",
+      "title": "Verify REQ-SIM-0074: Dispel-Reihenfolge",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-075",
+      "title": "Verify REQ-SIM-0075: Schild-FIFO Priorität",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-076",
+      "title": "Verify REQ-SIM-0076: Überheilung Schildregel",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-077",
+      "title": "Verify REQ-SIM-0077: Keine Events nach Kampfende",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-078",
+      "title": "Verify REQ-SIM-0078: Render ohne Gameplayautorität",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-079",
+      "title": "Verify REQ-SIM-0079: Zeitlimit-Wertung",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-080",
+      "title": "Verify REQ-SIM-0080: Replayhash 30 Ticks",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-081",
+      "title": "Verify REQ-SIM-0081: FSM eine Änderung pro Tick",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-082",
+      "title": "Verify REQ-SIM-0082: Zielwahl nur bei Trigger",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-083",
+      "title": "Verify REQ-SIM-0083: Target Lock Baseline",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-084",
+      "title": "Verify REQ-SIM-0084: Bahnwechsel-Cooldown 90",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-085",
+      "title": "Verify REQ-SIM-0085: Bahnwechsel Bedrohung 20%",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-086",
+      "title": "Verify REQ-SIM-0086: Kein Bahnwechsel-Abbruch",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-087",
+      "title": "Verify REQ-SIM-0087: Top/Bottom nur via Mitte",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-088",
+      "title": "Verify REQ-SIM-0088: Spawn-Offset Lane",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-089",
+      "title": "Verify REQ-SIM-0089: Spawn-Offsets blockiert",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-090",
+      "title": "Verify REQ-SIM-0090: Stationärer Slot-Spawn",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-091",
+      "title": "Verify REQ-SIM-0091: Keine Überlappung mit Gegnern",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-092",
+      "title": "Verify REQ-SIM-0092: Die Telegraphiedauer entspricht Ability.castTicks und darf d",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-093",
+      "title": "Verify REQ-SIM-0093: Die Audioengine trifft keine zufälligen Gameplayentscheidung",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-094",
+      "title": "Verify REQ-SIM-0094: Version 1 initialisiert PixiJS explizit mit preference=webgl",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-095",
+      "title": "Verify REQ-SIM-0095: contextlost pausiert die Simulation sofort; contextrestored ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-096",
+      "title": "Verify REQ-SIM-0096: Keine Entity besitzt LP <0 oder >maxLP, negative Schilde, un",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-097",
+      "title": "Verify REQ-SIM-0097: Keine Seite überschreitet sieben reguläre Einheiten oder sec",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-098",
+      "title": "Verify REQ-SIM-0098: Gleicher Seed, Content, Simulationversion, Entscheidungen un",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-099",
+      "title": "Verify REQ-SIM-0099: Kampfgeschwindigkeit, Render-FPS, Pause/Resume und Quality v",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-100",
+      "title": "Verify REQ-SIM-0100: Jeder Kampf endet spätestens am hardBattleLimit oder einer a",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-101",
+      "title": "Verify REQ-SIM-0101: Jede Rewardtransaktion ist idempotent; doppelte UI- oder Lif",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-102",
+      "title": "Verify REQ-SIM-0102: Simulations-Tick sammelt Eingaben und geplante Ereignisse zu",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-103",
+      "title": "Verify REQ-SIM-0103: Zuerst werden Kampfende- und Phasenübergangsbedingungen gepr",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-104",
+      "title": "Verify REQ-SIM-0104: Nach Phasenprüfung werden Wiederbelebungen, Todesverhinderun",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-105",
+      "title": "Verify REQ-SIM-0105: Schaden, Heilung, Kontrolle, Bewegung und Beschwörungen werd",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-106",
+      "title": "Verify REQ-SIM-0106: Gleichrangige Ereignisse werden nach scheduledTick, priority",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-107",
+      "title": "Verify REQ-SIM-0107: Erreicht eine Seite im selben Tick den Zustand ohne reguläre",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-108",
+      "title": "Verify REQ-SIM-0108: Jede Seite besitzt exakt sechs aktive Beschwörungs-Slots.",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-109",
+      "title": "Verify REQ-SIM-0109: Mehrfacheinheiten-Fähigkeiten belegen freie Slots in Spawn-R",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-110",
+      "title": "Verify REQ-SIM-0110: Ersatz ist nur mit replacementPolicy=replace_lower_priority ",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-111",
+      "title": "Verify REQ-SIM-0111: Ersetzte Wesen erhalten expirationReason=replaced und lösen ",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-112",
+      "title": "Verify REQ-SIM-0112: Beschwörungen können Gegner besiegen, aber Kampf endet sofor",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-113",
+      "title": "Verify REQ-SIM-0113: Betäubung, Stille, Rückstoß und erzwungener Bahnwechsel sind",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-114",
+      "title": "Verify REQ-SIM-0114: Kontrollresistenz reduziert nur Dauer, nie die sichtbare Aus",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-115",
+      "title": "Verify REQ-SIM-0115: Phasenübergänge reinigen harte Kontrolle, unterbrechen gegne",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-116",
+      "title": "Verify REQ-SIM-0116: Bosse können nicht von normalen Effekten die Bahn wechseln; ",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-117",
+      "title": "Verify REQ-SIM-0117: Mehrere Reinigungen im selben Tick entfernen einen Effekt nu",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-118",
+      "title": "Verify REQ-SIM-0118: game/sim darf nur Standard-TypeScript und gemeinsame reine T",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-119",
+      "title": "Verify REQ-SIM-0119: game/render liest Simulationssnapshots und Events, schreibt ",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-120",
+      "title": "Verify REQ-SIM-0120: PRNG ist xoshiro128** mit vier unsigned 32-bit Zustandswerte",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-121",
+      "title": "Verify REQ-SIM-0121: PRNG-Streams: map, encounter, rewards, eventChoices, combatC",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-122",
+      "title": "Verify REQ-SIM-0122: Jeder deterministische Rollslot besitzt einen stabilen Strin",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-123",
+      "title": "Verify REQ-SIM-0123: Math.random ist im gesamten Quelltext per ESLint verboten; U",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-124",
+      "title": "Verify REQ-SIM-0124: Replaydatei speichert Seed, contentVersion, simulationVersio",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-125",
+      "title": "Verify REQ-SIM-0125: INTRO besitzt keine autoritativen Angriffe; Startpassiven we",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-126",
+      "title": "Verify REQ-SIM-0126: PHASE_TRANSITION pausiert Bossaktionen und Fähigkeitladung n",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-127",
+      "title": "Verify REQ-SIM-0127: RESOLVING_END dauert autoritativ höchstens 3 Ticks und verar",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-128",
+      "title": "Verify REQ-SIM-0128: Kampf erhält hartes Simulationslimit von 5400 Ticks = 180 Se",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-129",
+      "title": "Verify REQ-SIM-0129: Jedes Event enthält tick, sequence, type, sourceId, targetId",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-130",
+      "title": "Verify REQ-SIM-0130: Ergebnisbildschirm liest ausschließlich aggregierte Events u",
+      "status": "planned",
+      "ownerPhase": "PHASE-02",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-131",
+      "title": "Verify REQ-SIM-0131: Keine Begegnung wird nur durch massive LP-Skalierung schwier",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-132",
+      "title": "Verify REQ-SIM-0132: Keine Fähigkeit darf eine versteckte Trefferchance oder zufä",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-133",
+      "title": "Verify REQ-SIM-0133: Kein Boss wird gegen Kontrolle vollständig immun ohne sichtb",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-134",
+      "title": "Verify REQ-SIM-0134: Keine einzelne Synergie oder Heldengruppe darf alle vier Hau",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-135",
+      "title": "Verify REQ-SIM-0135: Vor Vollproduktion muss ein vertikaler Prototyp beweisen, da",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-136",
+      "title": "Verify REQ-SIM-0136: Zielwechsel werden überwiegend als nachvollziehbar bewertet;",
+      "status": "planned",
+      "ownerPhase": "PHASE-19",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-137",
+      "title": "Verify REQ-SIM-0137: Keine nicht deterministische Abweichung bei identischem Seed",
+      "status": "planned",
+      "ownerPhase": "PHASE-20",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-138",
+      "title": "Verify REQ-SIM-0138: Keine Endlosschleife durch Heilung, Wiederbelebung, Beschwör",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "GR-SIM-139",
+      "title": "Verify REQ-SIM-0139: Keine Einheit oder Fähigkeit kann globale Gruppen- oder Besc",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "golden"
+    },
+    {
+      "id": "FQA-STORE-001",
+      "title": "Verify REQ-STORE-0001: Echtgeldshops sind nicht Teil der Zielversion.",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-002",
+      "title": "Verify REQ-STORE-0002: Build-Validator Store",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-003",
+      "title": "Verify REQ-STORE-0003: Play-Console-Deklarationen",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-004",
+      "title": "Verify REQ-STORE-0004: Android Veröffentlichungsschritte",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-005",
+      "title": "Verify REQ-STORE-0005: iOS ASC-Deklarationen",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-006",
+      "title": "Verify REQ-STORE-0006: App-Icon Siegelmotiv",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-007",
+      "title": "Verify REQ-STORE-0007: Icon Lesbarkeit 32px",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-008",
+      "title": "Verify REQ-STORE-0008: Keine vorgetäuschten Funktionen",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-009",
+      "title": "Verify REQ-STORE-0009: Storetitel max 30 Zeichen",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-010",
+      "title": "Verify REQ-STORE-0010: Verbot unbelegbarer Werbeversprechen",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-011",
+      "title": "Verify REQ-STORE-0011: Storebeschreibung Pflichtinhalte",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-012",
+      "title": "Verify REQ-STORE-0012: What’s New konkret",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-013",
+      "title": "Verify REQ-STORE-0013: Binary-Preflight Metadaten",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-014",
+      "title": "Verify REQ-STORE-0014: Keine Debugartefakte im Release",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-015",
+      "title": "Verify REQ-STORE-0015: Review Notes vollständig",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-016",
+      "title": "Verify REQ-STORE-0016: Keine irreführenden Features",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-017",
+      "title": "Verify REQ-STORE-0017: Store-Texte lokalisiert lesbar",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-018",
+      "title": "Verify REQ-STORE-0018: Rating-konforme Storegrafiken",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-019",
+      "title": "Verify REQ-STORE-0019: Storebuild Gates bestanden",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-020",
+      "title": "Verify REQ-STORE-0020: Publisher bestätigt Produktionskennungen vor dem ersten Stor",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-021",
+      "title": "Verify REQ-STORE-0021: Release-Tags lauten vMAJOR.MINOR.PATCH und verweisen auf exa",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "manual"
+    },
+    {
+      "id": "FQA-STORE-022",
+      "title": "Verify REQ-STORE-0022: Keine Werbung, IAP, Accountpflicht, Trackingpflicht oder kün",
+      "status": "planned",
+      "ownerPhase": "PHASE-22",
+      "method": "manual"
+    },
+    {
+      "id": "E2E-UX-001",
+      "title": "Verify REQ-UX-0001: Strategisch relevante Informationen werden vor dem Kampf ang",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-002",
+      "title": "Verify REQ-UX-0002: Keine Begegnung darf auf einer tödlichen Überraschung beruhe",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-003",
+      "title": "Verify REQ-UX-0003: Verbindlich sind responsive Regeln, Design-Tokens, Mindestgr",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-004",
+      "title": "Verify REQ-UX-0004: Der Riftanker ist die zentrale visuelle Metapher für Speiche",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-005",
+      "title": "Verify REQ-UX-0005: Pip spricht in maximal zwei kurzen Sätzen am Stück.",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-006",
+      "title": "Verify REQ-UX-0006: Pip darf bereits sichtbare Informationen nicht doppelt erklä",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-007",
+      "title": "Verify REQ-UX-0007: Humor darf Bossauftritte, Ereignisse und Animationen auflock",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-008",
+      "title": "Verify REQ-UX-0008: Ziele werden sichtbar, sobald der Held freigeschaltet ist.",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-009",
+      "title": "Verify REQ-UX-0009: Unbekannte Kodex-Einträge erscheinen als Silhouette mit Entd",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-010",
+      "title": "Verify REQ-UX-0010: Der Kodex unterstützt Suche und Filter nach Name, Rolle, Mer",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-011",
+      "title": "Verify REQ-UX-0011: Nach jedem Kampf werden maximal zwei Hinweise aus objektiven",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-012",
+      "title": "Verify REQ-UX-0012: Ein Hinweis benötigt eine Mindestkonfidenz und darf keine ei",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-013",
+      "title": "Verify REQ-UX-0013: Wirtschaft und Belohnung werden niemals als Kampfhinweis ver",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-014",
+      "title": "Verify REQ-UX-0014: Hinweise werden nur bei vollständig erfüllten Triggern gezei",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-015",
+      "title": "Verify REQ-UX-0015: Der Spieler kann von jeder Metrik direkt zur Ereignis-Timeli",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-016",
+      "title": "Verify REQ-UX-0016: Das Hauptquartier ist eine kompakte, visuell zusammenhängend",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-017",
+      "title": "Verify REQ-UX-0017: Der Spieler baut keine Räume im Hauptquartier manuell.",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-018",
+      "title": "Verify REQ-UX-0018: Vom Hauptquartier ist jeder Hauptbereich mit einem Tap errei",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-019",
+      "title": "Verify REQ-UX-0019: Die Navigation ist nicht tiefer als drei Ebenen verschachtel",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-020",
+      "title": "Verify REQ-UX-0020: Zurück führt immer eine Ebene zurück.",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-021",
+      "title": "Verify REQ-UX-0021: Unbestätigte Käufe werden nicht ohne Dialog verworfen.",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-022",
+      "title": "Verify REQ-UX-0022: Neue Inhalte erhalten einen einmaligen Punkt, der nach Öffne",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-023",
+      "title": "Verify REQ-UX-0023: Gold, Riftessenz und aktueller Modus sind auf allen Verwaltu",
+      "status": "planned",
+      "ownerPhase": "PHASE-15",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-024",
+      "title": "Verify REQ-UX-0024: UI-Labels mit Compact",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-025",
+      "title": "Verify REQ-UX-0025: Textlänge Primärbutton DE",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-026",
+      "title": "Verify REQ-UX-0026: Textlänge Primärbutton EN",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-027",
+      "title": "Verify REQ-UX-0027: Textlänge Kurztooltip",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-028",
+      "title": "Verify REQ-UX-0028: Textlänge Pip-Hinweis",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-029",
+      "title": "Verify REQ-UX-0029: Textlänge Bossvorschau",
+      "status": "planned",
+      "ownerPhase": "PHASE-04",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-030",
+      "title": "Verify REQ-UX-0030: Externe Links Systembrowser",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-031",
+      "title": "Verify REQ-UX-0031: Edge-to-edge Safe Areas",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-032",
+      "title": "Verify REQ-UX-0032: Android Orientierung adaptiv",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-033",
+      "title": "Verify REQ-UX-0033: Android Predictive Back",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-034",
+      "title": "Verify REQ-UX-0034: Native Splash Vertrag",
+      "status": "planned",
+      "ownerPhase": "PHASE-10",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-035",
+      "title": "Verify REQ-UX-0035: Vertikaler Slice Aschenkönig",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-036",
+      "title": "Verify REQ-UX-0036: 4 Formation-Presets",
+      "status": "planned",
+      "ownerPhase": "PHASE-01",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-037",
+      "title": "Verify REQ-UX-0037: Screen-Referenzen vollständig",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-038",
+      "title": "Verify REQ-UX-0038: Aktionen nur im ready",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-039",
+      "title": "Verify REQ-UX-0039: Routeparameter validiert",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-040",
+      "title": "Verify REQ-UX-0040: ReturnRoute max 8",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-041",
+      "title": "Verify REQ-UX-0041: AppNavigator kontrolliert History",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-042",
+      "title": "Verify REQ-UX-0042: Maximal ein Modal",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-043",
+      "title": "Verify REQ-UX-0043: Konkrete Verben für Irreversibel",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-044",
+      "title": "Verify REQ-UX-0044: Back-Reihenfolge verbindlich",
+      "status": "planned",
+      "ownerPhase": "PHASE-09",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-045",
+      "title": "Verify REQ-UX-0045: Pro Screen existiert genau eine primäre Handlung; Sekundärak",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-046",
+      "title": "Verify REQ-UX-0046: Ein Screen verwendet maximal drei Paneele gleichzeitig auf T",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-047",
+      "title": "Verify REQ-UX-0047: Farbbedeutung folgt festen Kategorien: Gold für Fortschritt/",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-048",
+      "title": "Verify REQ-UX-0048: Dekoration darf keine Hitbox imitieren, keinen Textkontrast ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-049",
+      "title": "Verify REQ-UX-0049: Buttons zeigen den Pressed-Zustand innerhalb von 80 ms; währ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-050",
+      "title": "Verify REQ-UX-0050: GameCard-Auswahl ist nicht identisch mit Aktivierung: der er",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-051",
+      "title": "Verify REQ-UX-0051: Slider sind ausschließlich für kontinuierliche Audio- oder T",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-052",
+      "title": "Verify REQ-UX-0052: Scrollbars sind auf Desktop sichtbar gestylt und auf Touch s",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-053",
+      "title": "Verify REQ-UX-0053: Tooltips öffnen bei Fokus oder Tap und schließen über expliz",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-054",
+      "title": "Verify REQ-UX-0054: Jeder Golden State existiert in DE, EN und Pseudo sowie auf ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-055",
+      "title": "Verify REQ-UX-0055: Trefferfeedback: maximal 80 ms Hitstop für Boss- oder Level3",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-056",
+      "title": "Verify REQ-UX-0056: Kameraschütteln maximal 10 px in 180 ms normal und 18 px in ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-057",
+      "title": "Verify REQ-UX-0057: Partikelobergrenzen pro Qualitätsstufe werden gemäß Kapitel ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-058",
+      "title": "Verify REQ-UX-0058: Music Masterziel ist -16 LUFS integrated mit True Peak <= -1",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-059",
+      "title": "Verify REQ-UX-0059: Höchstens 24 gleichzeitige SFX-Voices in High, 16 in Medium ",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-060",
+      "title": "Verify REQ-UX-0060: Bei Bosswarnung oder Sprache duckt Music um 3 dB und Ambient",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-061",
+      "title": "Verify REQ-UX-0061: Kopfhörerabzug pausiert einen laufenden Kampf automatisch un",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-062",
+      "title": "Verify REQ-UX-0062: Im App-Background werden SFX und Voice gestoppt und die Musi",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-063",
+      "title": "Verify REQ-UX-0063: Jeder Screen implementiert sechs Zustände: loading, ready, e",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-064",
+      "title": "Verify REQ-UX-0064: Primärer Flow ist mit höchstens drei Navigationsebenen errei",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-065",
+      "title": "Verify REQ-UX-0065: Jeder Kauf zeigt Kosten, neuen Bestand und exakte Wirkung vo",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-066",
+      "title": "Verify REQ-UX-0066: Jede Liste erhält deterministische Standardsortierung, Filte",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-067",
+      "title": "Verify REQ-UX-0067: Kein Screen verliert Zustand bei App-Wechsel, Sperren/Entspe",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-068",
+      "title": "Verify REQ-UX-0068: Kampfvorbereitung zeigt jede strategisch relevante Informati",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-069",
+      "title": "Verify REQ-UX-0069: Maximale Zeilenlänge 75 Zeichen; auf Telefon bevorzugt 45-60",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-070",
+      "title": "Verify REQ-UX-0070: Displayfont darf niemals einzige Schrift für längere deutsch",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-071",
+      "title": "Verify REQ-UX-0071: Logische Designfläche für Kampfszenen ist 1920x1080, proport",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-072",
+      "title": "Verify REQ-UX-0072: Unterstützte Seitenverhältnisse 4:3 bis 21:9 ohne abgeschnit",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-073",
+      "title": "Verify REQ-UX-0073: Safe-Area-Inset wird auf allen vier Seiten über env(safe-are",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-074",
+      "title": "Verify REQ-UX-0074: Mindesthitbox 48x48 CSS px; Hauptaktionen 56 px hoch; Abstan",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-075",
+      "title": "Verify REQ-UX-0075: Drag-and-drop ist immer durch Tap-Auswählen/Tap-Platzieren e",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-076",
+      "title": "Verify REQ-UX-0076: Long-Press öffnet nur Zusatzinfo; kein Fortschritt, Kauf ode",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-077",
+      "title": "Verify REQ-UX-0077: Doppeltap hat keine Sonderfunktion; Pinch-Zoom nicht benötig",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-078",
+      "title": "Verify REQ-UX-0078: Hover verbessert Desktop, ist aber keine Informationsvorauss",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-079",
+      "title": "Verify REQ-UX-0079: Alle Mappings werden in S63 angezeigt; freie Neukonfiguratio",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-080",
+      "title": "Verify REQ-UX-0080: Formationsscreen zeigt eigene 3x3-Formation und vollständige",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-081",
+      "title": "Verify REQ-UX-0081: Drag-and-drop und Tap-Select/Tap-Place sind gleichwertig; un",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-082",
+      "title": "Verify REQ-UX-0082: Jede Karte zeigt Portrait, Rolle, Merkmale, LP/Angriff/Verte",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-083",
+      "title": "Verify REQ-UX-0083: Reichweitenvorschau wird als horizontales Band dargestellt; ",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-084",
+      "title": "Verify REQ-UX-0084: Aktive Synergien und Doktrinwirkung aktualisieren sofort; Be",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-085",
+      "title": "Verify REQ-UX-0085: Gegnerkarte zeigt Rolle, Startfeld, Angriffstyp, Fähigkeitst",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-086",
+      "title": "Verify REQ-UX-0086: Bossvorschau besitzt eigene Phasentabs und listet Rang- und ",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-087",
+      "title": "Verify REQ-UX-0087: Startbutton bleibt erreichbar; harte Regelverstöße blockiere",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-088",
+      "title": "Verify REQ-UX-0088: Spieler kann jederzeit pausieren und Einheiten antippen, um ",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-089",
+      "title": "Verify REQ-UX-0089: Spieler darf im Kampf niemals Ziel markieren, Fähigkeit ausl",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-090",
+      "title": "Verify REQ-UX-0090: Wichtige Signaturfähigkeit verlangsamt bei 2x/3x auf maximal",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-091",
+      "title": "Verify REQ-UX-0091: Schadenszahlen werden bei mehr als vier Treffern in 0,4 s au",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-092",
+      "title": "Verify REQ-UX-0092: Kamera bleibt standardmäßig vollständig auf allen drei Bahne",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-093",
+      "title": "Verify REQ-UX-0093: Ergebnis-Flow-Reihenfolge: Sieg/Niederlage → Bewertung → 3 w",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-094",
+      "title": "Verify REQ-UX-0094: Wiederholen eines Bosskampfs vom Anker ist mit höchstens zwe",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-095",
+      "title": "Verify REQ-UX-0095: Neue Kodex-/Meisterschaftsfortschritte erscheinen kompakt na",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-096",
+      "title": "Verify REQ-UX-0096: Belohnungskarten zeigen aktuellen Bestand, Synergie/Kompatib",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-097",
+      "title": "Verify REQ-UX-0097: Visuelle Ausrichtung: stilisierte Fantasy mit klaren 2D/2.5D",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-098",
+      "title": "Verify REQ-UX-0098: Jeder Held ist in schwarzer Silhouette bei 96 px Höhe eindeu",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-099",
+      "title": "Verify REQ-UX-0099: Jede Truppenrolle ist bei 64 px grob erkennbar: Schild, Spee",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-100",
+      "title": "Verify REQ-UX-0100: Bossphasen ändern mindestens ein großes Formelement oder Are",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-101",
+      "title": "Verify REQ-UX-0101: Beschwörungen unterscheiden sich durch Körperform und Besitz",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-102",
+      "title": "Verify REQ-UX-0102: Warnflächen besitzen Rand, Muster und Symbol; Farbe allein i",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-103",
+      "title": "Verify REQ-UX-0103: Maximal zwei starke Kameraschüttler innerhalb 1 Sekunde; wei",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-104",
+      "title": "Verify REQ-UX-0104: Maximal drei große Vollflächen-Partikelsysteme gleichzeitig;",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-105",
+      "title": "Verify REQ-UX-0105: Trefferfeedback muss bei 3x noch lesbar, aber nicht als Stro",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-106",
+      "title": "Verify REQ-UX-0106: Reduzierte-Effekte-Modus senkt Partikelzahl mindestens 60%, ",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-107",
+      "title": "Verify REQ-UX-0107: Keine realistischen Todesschreie; Falllaute stilisiert und k",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-108",
+      "title": "Verify REQ-UX-0108: Kurztooltips verwenden maximal 220 Zeichen; Detailansicht da",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-109",
+      "title": "Verify REQ-UX-0109: Komplexe Bossphase verwendet höchstens vier Kernbulletpoints",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-110",
+      "title": "Verify REQ-UX-0110: Auf Telefon gibt es keine horizontale Scrollpflicht; Verglei",
+      "status": "planned",
+      "ownerPhase": "PHASE-00",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-111",
+      "title": "Verify REQ-UX-0111: Mindestens 80% interner Tester können nach einer Niederlage ",
+      "status": "planned",
+      "ownerPhase": "PHASE-19",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-112",
+      "title": "Verify REQ-UX-0112: Mindestens 70% der Spieler verändern vor einem Retry bewusst",
+      "status": "planned",
+      "ownerPhase": "PHASE-19",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-113",
+      "title": "Verify REQ-UX-0113: Der Aschenkönig ist ohne Entwicklererklärung nach Vorschau l",
+      "status": "planned",
+      "ownerPhase": "PHASE-19",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-114",
+      "title": "Verify REQ-UX-0114: Kampf bei 3x bleibt lesbar und identisch im Ergebnis.",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-115",
+      "title": "Verify REQ-UX-0115: Alle strategisch relevanten Boss-, Modifikator- und Champion",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    },
+    {
+      "id": "E2E-UX-116",
+      "title": "Verify REQ-UX-0116: Alle Kampfauswertungen und Hinweise basieren auf tatsächlich",
+      "status": "planned",
+      "ownerPhase": "PHASE-08",
+      "method": "e2e"
+    }
+  ]
 }

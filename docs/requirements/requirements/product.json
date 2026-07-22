@@ -22,9 +22,9 @@
       "verification": [
         {
           "type": "unit",
-          "plannedPhase": "PHASE-01",
+          "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-PHASE00-001"
+            "UT-PROD-001"
           ]
         }
       ],
@@ -54,9 +54,9 @@
       "verification": [
         {
           "type": "unit",
-          "plannedPhase": "PHASE-01",
+          "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-PHASE00-002"
+            "UT-PROD-002"
           ]
         }
       ],
@@ -86,9 +86,9 @@
       "verification": [
         {
           "type": "unit",
-          "plannedPhase": "PHASE-01",
+          "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-PHASE00-003"
+            "UT-PROD-003"
           ]
         }
       ],
@@ -118,9 +118,9 @@
       "verification": [
         {
           "type": "unit",
-          "plannedPhase": "PHASE-01",
+          "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-PHASE00-004"
+            "UT-PROD-004"
           ]
         }
       ],
@@ -152,7 +152,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-PHASE00-005"
+            "UT-PROD-005"
           ]
         }
       ],
@@ -184,7 +184,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-002"
+            "UT-PROD-006"
           ]
         }
       ],
@@ -216,7 +216,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-003"
+            "UT-PROD-007"
           ]
         }
       ],
@@ -248,7 +248,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-004"
+            "UT-PROD-008"
           ]
         }
       ],
@@ -280,7 +280,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-005"
+            "UT-PROD-009"
           ]
         }
       ],
@@ -312,7 +312,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-PHASE00-007"
+            "UT-PROD-010"
           ]
         }
       ],
@@ -344,7 +344,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-PHASE00-008"
+            "UT-PROD-011"
           ]
         }
       ],
@@ -376,7 +376,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-PHASE00-010"
+            "UT-PROD-012"
           ]
         }
       ],
@@ -408,7 +408,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-016"
+            "UT-PROD-013"
           ]
         }
       ],
@@ -447,7 +447,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-017"
+            "UT-PROD-014"
           ]
         }
       ],
@@ -485,13 +485,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-007"
+            "UT-PROD-015"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-PRODUCT-0015"
+      "id": "REQ-PRODUCT-0015",
+      "title": "Endlose Rift wird nach Abschluss der Kampagne freigeschaltet."
     },
     {
       "tempId": "REQ-TEMP-B-0003",
@@ -514,13 +515,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-009"
+            "UT-PROD-016"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-PRODUCT-0016"
+      "id": "REQ-PRODUCT-0016",
+      "title": "Endlose Rift darf nicht ohne Doktrin starten."
     },
     {
       "tempId": "REQ-TEMP-B-0035",
@@ -543,13 +545,14 @@
           "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-PHASE10-032"
+            "UT-PROD-017"
           ]
         }
       ],
       "numericConstraints": [],
       "status": "planned",
-      "id": "REQ-PRODUCT-0017"
+      "id": "REQ-PRODUCT-0017",
+      "title": "Tiefe 100 ist theoretisch erreichbar, aber kein durchschnittliches Balanceziel."
     },
     {
       "id": "REQ-PRODUCT-0018",
@@ -559,7 +562,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "67",
+        "chapter": 67,
         "section": null,
         "locator": "block:1896",
         "quoteHash": "sha256:00155c531bd6c25cffb3ce7e8782e0097edbc9587ef31625154095dab50d4cdb",
@@ -570,10 +573,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-PHASE00-NOINHALT-001"
+            "UT-PROD-018"
           ]
         }
       ],
@@ -591,7 +594,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "67",
+        "chapter": 67,
         "section": null,
         "locator": "block:1897",
         "quoteHash": "sha256:b75148b4fef2630ea2c96124b7a4636321b554dc4a0da034efc62444d9f4914b",
@@ -602,10 +605,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-PHASE00-NOPROTO-001"
+            "UT-PROD-019"
           ]
         }
       ],
@@ -623,7 +626,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "67",
+        "chapter": 67,
         "section": null,
         "locator": "block:1898",
         "quoteHash": "sha256:c204139667988eb5cca64928a8be4a40d11b62809588464c8626c348336470b0",
@@ -634,10 +637,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-PHASE00-SCOPECUT-001"
+            "UT-PROD-020"
           ]
         }
       ],
@@ -655,7 +658,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "68",
+        "chapter": 68,
         "section": null,
         "locator": "block:1917",
         "quoteHash": "sha256:8ae9bd4ed2b15ca2ae3e852dca9b5785dc0baf5b36593f891790a72ab4975c1f",
@@ -666,10 +669,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-POSTLIVE-NOSVC-001"
+            "UT-PROD-021"
           ]
         }
       ],
@@ -687,7 +690,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "68",
+        "chapter": 68,
         "section": null,
         "locator": "block:1918",
         "quoteHash": "sha256:a47025ec6f50b54056df9c75a5b90f9aaea58c4d98bad55224ac074d0eb871aa",
@@ -698,10 +701,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-POSTLIVE-MANUAL-001"
+            "UT-PROD-022"
           ]
         }
       ],
@@ -719,7 +722,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "68",
+        "chapter": 68,
         "section": null,
         "locator": "block:1920",
         "quoteHash": "sha256:9de16e8c7de6f3e2ae6db4b752e2b2c9226ef7609a9969d150db76965e0b4479",
@@ -730,10 +733,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-POSTLIVE-PLATFDROP-001"
+            "UT-PROD-023"
           ]
         }
       ],
@@ -751,7 +754,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "69",
+        "chapter": 69,
         "section": null,
         "locator": "block:1921",
         "quoteHash": "sha256:34eb926084a909b6d16bc55ceb3b08d74eb9d97bcdc1b81d2efa74c45fc9ec23",
@@ -762,10 +765,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-EXT-RECHECK-001"
+            "UT-PROD-024"
           ]
         }
       ],
@@ -788,7 +791,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "70",
+        "chapter": 70,
         "section": null,
         "locator": "block:1937",
         "quoteHash": "sha256:0ba16addb56b015c7209597517666b5fee9f1503f2a8eb16f770222aff23341a",
@@ -799,10 +802,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-VAUDIT-CAPS-001"
+            "UT-PROD-025"
           ]
         }
       ],
@@ -825,7 +828,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "70",
+        "chapter": 70,
         "section": null,
         "locator": "block:1938",
         "quoteHash": "sha256:19dd4104f4bd8f18556d01836ca2a0fc591f80074323504ae831150355f1d3eb",
@@ -836,10 +839,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "UT-VAUDIT-MODEL-001"
+            "UT-PROD-026"
           ]
         }
       ],
@@ -857,7 +860,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "71",
+        "chapter": 71,
         "section": null,
         "locator": "block:1946",
         "quoteHash": "sha256:85e24820979588c072d48978d6116b21aebd907e59bcf90f840259054964ef62",
@@ -868,10 +871,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-PHASE00-PRODUCTIONREADY-001"
+            "UT-PROD-027"
           ]
         }
       ],
@@ -889,7 +892,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "71",
+        "chapter": 71,
         "section": null,
         "locator": "block:1947",
         "quoteHash": "sha256:2ba52fc671f156ae97625fe9bff5267e0b87eb1d79c6b8bd6397aef663421678",
@@ -900,10 +903,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-PHASE00-FIRSTEXEC-001"
+            "UT-PROD-028"
           ]
         }
       ],
@@ -921,7 +924,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "71",
+        "chapter": 71,
         "section": null,
         "locator": "block:1950",
         "quoteHash": "sha256:890022f4759b415ee248903c114f89d079c99ce2ce5fb375c114fec9ea42f7fe",
@@ -932,10 +935,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-10",
           "testIds": [
-            "GR-NOSHORTCUT-001"
+            "UT-PROD-029"
           ]
         }
       ],
@@ -953,7 +956,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "72",
+        "chapter": 72,
         "section": null,
         "locator": "block:1954",
         "quoteHash": "sha256:fb3c8d736ccf7b0362132918fb37a4400244a36d40148a3e0e34f9b324bdb40a",
@@ -964,10 +967,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-AUTH-V5SOT-001"
+            "UT-PROD-030"
           ]
         }
       ],
@@ -985,7 +988,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "72",
+        "chapter": 72,
         "section": null,
         "locator": "block:1962",
         "quoteHash": "sha256:8d6895d90fcaca43d7a932fa0262cb585768e6e59df3e34a8f8cb5a0fd79428b",
@@ -996,10 +999,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-AUTH-AGENTLIM-001"
+            "UT-PROD-031"
           ]
         }
       ],
@@ -1017,7 +1020,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "72",
+        "chapter": 72,
         "section": null,
         "locator": "block:1962",
         "quoteHash": "sha256:783c3021b31be1b519a8a273b360f26b7e8303935de75e913f0af3abb61e2128",
@@ -1028,10 +1031,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-AUTH-AGENTNOLIM-001"
+            "UT-PROD-032"
           ]
         }
       ],
@@ -1049,7 +1052,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "72",
+        "chapter": 72,
         "section": null,
         "locator": "block:1963",
         "quoteHash": "sha256:4d4c5336a272ee9795a9600e48f57142571b665c9a663e75fa9342f95dade0b1",
@@ -1060,10 +1063,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "GR-AUTH-TIEBREAK-001"
+            "UT-PROD-033"
           ]
         }
       ],
@@ -1081,7 +1084,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "74",
+        "chapter": 74,
         "section": null,
         "locator": "block:1982",
         "quoteHash": "sha256:84898d01849ede72589609c2b465faae9b7739f0d070c460e1d00f615a3ad38a",
@@ -1092,10 +1095,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-REPO-STRUCT-001"
+            "UT-PROD-034"
           ]
         }
       ],
@@ -1113,7 +1116,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "74",
+        "chapter": 74,
         "section": null,
         "locator": "block:1987",
         "quoteHash": "sha256:8a436e0ee80f96365c4f9d040a5d5db8995f59894504ccf5b954ade28f1501eb",
@@ -1124,10 +1127,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-CAP-CONFIG-001"
+            "UT-PROD-035"
           ]
         }
       ],
@@ -1145,7 +1148,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "74",
+        "chapter": 74,
         "section": null,
         "locator": "block:1988",
         "quoteHash": "sha256:e04c3dab194177d26f079e14f66004a854c4a8595b5d1b126af2a8aa2772c701",
@@ -1156,10 +1159,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-VITE-BASE-001"
+            "UT-PROD-036"
           ]
         }
       ],
@@ -1177,7 +1180,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "74",
+        "chapter": 74,
         "section": null,
         "locator": "block:1990",
         "quoteHash": "sha256:c347ca60107f4c74a339e1a809f39a22279789504932392ca52a1d42bfab0a3b",
@@ -1188,10 +1191,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-DEBUG-COMPILE-001"
+            "UT-PROD-037"
           ]
         }
       ],
@@ -1209,7 +1212,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "74",
+        "chapter": 74,
         "section": null,
         "locator": "block:1991",
         "quoteHash": "sha256:fb3c4575bc4a92e8e6c881201ed2ac2cc65fc717a948c6a61b1f719649aa2907",
@@ -1220,10 +1223,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-CAP-NATIVE-001"
+            "UT-PROD-038"
           ]
         }
       ],
@@ -1241,7 +1244,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "74",
+        "chapter": 74,
         "section": null,
         "locator": "block:1994",
         "quoteHash": "sha256:35d2837bf272269e705ac2e319be8687f3e92ea29786cd3ec8e16dc307339392",
@@ -1252,10 +1255,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-DEPS-FROZEN-001"
+            "UT-PROD-039"
           ]
         }
       ],
@@ -1273,7 +1276,7 @@
       "category": "Product",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "74",
+        "chapter": 74,
         "section": null,
         "locator": "block:1995",
         "quoteHash": "sha256:1126c955ef6eb5a7349c92f4dd1ad2b69e32fefb9e88a7e8c10277fbf8d3a1fe",
@@ -1284,10 +1287,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-05",
           "testIds": [
-            "UT-DEPS-NOAUTO-001"
+            "UT-PROD-040"
           ]
         }
       ],
@@ -1316,10 +1319,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PROD-NO-SPRINT-IN-GDD-086"
+            "UT-PROD-041"
           ]
         }
       ],
@@ -1348,10 +1351,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PROD-NO-PUBLISHER-IN-GDD-086"
+            "UT-PROD-042"
           ]
         }
       ],
@@ -1380,10 +1383,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PROD-NO-NEW-MECHANICS-086"
+            "UT-PROD-043"
           ]
         }
       ],
@@ -1412,10 +1415,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PROD-DEVPLAN-SCOPE-087"
+            "UT-PROD-044"
           ]
         }
       ],
@@ -1444,10 +1447,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PROD-DEVPLAN-MAY-087"
+            "UT-PROD-045"
           ]
         }
       ],
@@ -1476,10 +1479,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PROD-DEVPLAN-MAY-ALGOS-087"
+            "UT-PROD-046"
           ]
         }
       ],
@@ -1508,10 +1511,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PROD-DEVPLAN-TEST-ORDER-087"
+            "UT-PROD-047"
           ]
         }
       ],
@@ -1540,10 +1543,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PROD-DEVPLAN-MUST-NOT-087"
+            "UT-PROD-048"
           ]
         }
       ],
@@ -1572,10 +1575,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PROD-DEVPLAN-MUST-NOT-TECH-087"
+            "UT-PROD-049"
           ]
         }
       ],
@@ -1604,10 +1607,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PROD-DEVPLAN-MUST-NOT-MVP-087"
+            "UT-PROD-050"
           ]
         }
       ],
@@ -1636,10 +1639,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PROD-V5-COMPLETE-087"
+            "UT-PROD-051"
           ]
         }
       ],
@@ -1668,10 +1671,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "PROD-CHANGE-REQUEST-087"
+            "UT-PROD-052"
           ]
         }
       ],
@@ -1700,10 +1703,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-PRIORITY-ORDER-048"
+            "UT-PROD-053"
           ]
         }
       ],
@@ -1732,10 +1735,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-NO-NEW-CONTENT-048"
+            "UT-PROD-054"
           ]
         }
       ],
@@ -1767,7 +1770,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-03",
           "testIds": [
-            "UT-INVENTORY-NO-LIMIT-048"
+            "UT-PROD-055"
           ]
         }
       ],
@@ -1799,7 +1802,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-03",
           "testIds": [
-            "UT-POLISH-BOOL-048"
+            "UT-PROD-056"
           ]
         }
       ],
@@ -1831,7 +1834,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-03",
           "testIds": [
-            "UT-RELIC-CAP-048"
+            "UT-PROD-057"
           ]
         }
       ],
@@ -1875,7 +1878,7 @@
           "type": "unit",
           "plannedPhase": "PHASE-03",
           "testIds": [
-            "UT-FIRSTREWARD-REPLACE-048"
+            "UT-PROD-058"
           ]
         }
       ],
@@ -1904,10 +1907,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-04",
           "testIds": [
-            "IT-DIFF-SCOPE-048"
+            "UT-PROD-059"
           ]
         }
       ],
@@ -1936,10 +1939,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-04",
           "testIds": [
-            "IT-RIFT-BASELINE-048"
+            "UT-PROD-060"
           ]
         }
       ],
@@ -1968,10 +1971,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-04",
           "testIds": [
-            "IT-GEN-ERROR-UI-048"
+            "UT-PROD-061"
           ]
         }
       ],
@@ -2000,10 +2003,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "ST-STACK-SEP-049"
+            "UT-PROD-062"
           ]
         }
       ],
@@ -2032,10 +2035,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "ST-VERSION-PIN-049"
+            "UT-PROD-063"
           ]
         }
       ],
@@ -2064,10 +2067,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "ST-SCREEN-BOUNDARY-050"
+            "UT-PROD-064"
           ]
         }
       ],
@@ -2096,10 +2099,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "ST-NO-ANY-050"
+            "UT-PROD-065"
           ]
         }
       ],
@@ -2128,10 +2131,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "ST-NO-NONNULL-050"
+            "UT-PROD-066"
           ]
         }
       ],
@@ -2160,10 +2163,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "ST-INTEGER-UNITS-050"
+            "UT-PROD-067"
           ]
         }
       ],
@@ -2192,10 +2195,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "ST-SIDE-EFFECT-NAMING-050"
+            "UT-PROD-068"
           ]
         }
       ],
@@ -2224,10 +2227,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-02",
           "testIds": [
-            "ST-ESLINT-RULES-050"
+            "UT-PROD-069"
           ]
         }
       ],
@@ -2256,10 +2259,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "REV-MAIN-BUILD-050"
+            "UT-PROD-070"
           ]
         }
       ],
@@ -2288,10 +2291,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "REV-ADR-REQUIRED-050"
+            "UT-PROD-071"
           ]
         }
       ],
@@ -2320,10 +2323,10 @@
       ],
       "verification": [
         {
-          "type": "static",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "ST-LOCKFILE-SSOT-050"
+            "UT-PROD-072"
           ]
         }
       ],
@@ -2352,10 +2355,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "IT-LIFECYCLE-PAUSE-053"
+            "UT-PROD-073"
           ]
         }
       ],
@@ -2384,10 +2387,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "IT-RESUME-NO-AUTO-053"
+            "UT-PROD-074"
           ]
         }
       ],
@@ -2416,10 +2419,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-01",
           "testIds": [
-            "IT-SPLASH-DISMISS-053"
+            "UT-PROD-075"
           ]
         }
       ],
@@ -2448,10 +2451,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "IT-AUDIO-FOREGROUND-057"
+            "UT-PROD-076"
           ]
         }
       ],
@@ -2480,10 +2483,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "IT-AUDIO-BUSES-057"
+            "UT-PROD-077"
           ]
         }
       ],
@@ -2512,10 +2515,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "IT-SFX-VARIANTS-057"
+            "UT-PROD-078"
           ]
         }
       ],
@@ -2555,10 +2558,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "IT-HAPTIC-COOLDOWN-057"
+            "UT-PROD-079"
           ]
         }
       ],
@@ -2593,10 +2596,10 @@
       ],
       "verification": [
         {
-          "type": "native",
+          "type": "unit",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "NAT-AI-DOCPICKER-058"
+            "UT-PROD-080"
           ]
         }
       ],
@@ -2625,10 +2628,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "GR-NO-FARM-GATE-043"
+            "UT-PROD-081"
           ]
         }
       ],
@@ -2657,10 +2660,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-20",
           "testIds": [
-            "GR-NO-NERF-PROGRESSION-043"
+            "UT-PROD-082"
           ]
         }
       ],
@@ -2689,10 +2692,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-SCOPE-GATE-046"
+            "UT-PROD-083"
           ]
         }
       ],
@@ -2721,10 +2724,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-NO-NEW-SCOPE-046"
+            "UT-PROD-084"
           ]
         }
       ],
@@ -2753,10 +2756,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-NO-UPDATE-PROMISE-046"
+            "UT-PROD-085"
           ]
         }
       ],
@@ -2785,10 +2788,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-PRIO-1-046"
+            "UT-PROD-086"
           ]
         }
       ],
@@ -2817,10 +2820,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-PRIO-2-046"
+            "UT-PROD-087"
           ]
         }
       ],
@@ -2855,10 +2858,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-PRIO-3-046"
+            "UT-PROD-088"
           ]
         }
       ],
@@ -2887,10 +2890,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-PRIO-4-046"
+            "UT-PROD-089"
           ]
         }
       ],
@@ -2919,10 +2922,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-PRIO-5-046"
+            "UT-PROD-090"
           ]
         }
       ],
@@ -2957,10 +2960,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-PRIO-6-046"
+            "UT-PROD-091"
           ]
         }
       ],
@@ -2989,10 +2992,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-PRIO-7-046"
+            "UT-PROD-092"
           ]
         }
       ],
@@ -3021,10 +3024,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-SCOPE-CUT-RULES-046"
+            "UT-PROD-093"
           ]
         }
       ],
@@ -3053,10 +3056,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-22",
           "testIds": [
-            "REV-DEFINITION-OF-DONE-047"
+            "UT-PROD-094"
           ]
         }
       ],
@@ -3085,10 +3088,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-CORE-QUALITY-047"
+            "UT-PROD-095"
           ]
         }
       ],

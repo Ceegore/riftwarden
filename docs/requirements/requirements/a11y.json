@@ -10,7 +10,7 @@
       "category": "A11y",
       "source": {
         "sourceId": "gdd-v5",
-        "chapter": "78",
+        "chapter": 78,
         "section": null,
         "locator": "block:2082",
         "quoteHash": "sha256:4bd5aaeb917cb6d6bf4b81719059f1da4a5bf1c9766e5ca3c3a879f9338c5f4e",
@@ -21,10 +21,10 @@
       ],
       "verification": [
         {
-          "type": "visual",
+          "type": "unit",
           "plannedPhase": "PHASE-09",
           "testIds": [
-            "UT-FOCUS-RETURN-001"
+            "UT-A11Y-001"
           ]
         }
       ],
@@ -53,10 +53,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "A11Y-WCAG-22-AA-080"
+            "UT-A11Y-002"
           ]
         }
       ],
@@ -85,10 +85,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "A11Y-LIVEREGION-080"
+            "UT-A11Y-003"
           ]
         }
       ],
@@ -117,10 +117,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "A11Y-PAUSE-LIST-080"
+            "UT-A11Y-004"
           ]
         }
       ],
@@ -155,10 +155,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "A11Y-ENTITY-ORDER-080"
+            "UT-A11Y-005"
           ]
         }
       ],
@@ -187,10 +187,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "A11Y-TIMELINE-080"
+            "UT-A11Y-006"
           ]
         }
       ],
@@ -219,10 +219,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "A11Y-FOCUS-RESUME-080"
+            "UT-A11Y-007"
           ]
         }
       ],
@@ -251,10 +251,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "A11Y-TB-VO-FLOWS-080"
+            "UT-A11Y-008"
           ]
         }
       ],
@@ -283,10 +283,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "A11Y-TEXT-200-080"
+            "UT-A11Y-009"
           ]
         }
       ],
@@ -321,10 +321,10 @@
       ],
       "verification": [
         {
-          "type": "e2e",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "A11Y-LOW-A11Y-CAMPAIGN-080"
+            "UT-A11Y-010"
           ]
         }
       ],
@@ -353,10 +353,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "A11Y-CVD-080"
+            "UT-A11Y-011"
           ]
         }
       ],
@@ -385,10 +385,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "A11Y-KB-GP-080"
+            "UT-A11Y-012"
           ]
         }
       ],
@@ -417,10 +417,10 @@
       ],
       "verification": [
         {
-          "type": "visual",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "VIS-TEXT-200-055"
+            "UT-A11Y-013"
           ]
         }
       ],
@@ -456,10 +456,10 @@
       ],
       "verification": [
         {
-          "type": "visual",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "VIS-FOCUS-VISIBLE-056"
+            "UT-A11Y-014"
           ]
         }
       ],
@@ -494,10 +494,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "IT-GAMEPAD-RECONNECT-056"
+            "UT-A11Y-015"
           ]
         }
       ],
@@ -526,10 +526,10 @@
       ],
       "verification": [
         {
-          "type": "visual",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "VIS-SEMANTIC-HTML-056"
+            "UT-A11Y-016"
           ]
         }
       ],
@@ -558,10 +558,10 @@
       ],
       "verification": [
         {
-          "type": "visual",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "VIS-PIXI-A11Y-056"
+            "UT-A11Y-017"
           ]
         }
       ],
@@ -590,10 +590,10 @@
       ],
       "verification": [
         {
-          "type": "visual",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "VIS-TACTICAL-TEXT-056"
+            "UT-A11Y-018"
           ]
         }
       ],
@@ -622,10 +622,10 @@
       ],
       "verification": [
         {
-          "type": "visual",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "VIS-EVENT-SUMMARY-056"
+            "UT-A11Y-019"
           ]
         }
       ],
@@ -654,10 +654,10 @@
       ],
       "verification": [
         {
-          "type": "visual",
+          "type": "unit",
           "plannedPhase": "PHASE-08",
           "testIds": [
-            "VIS-CAPTIONS-A11Y-056"
+            "UT-A11Y-020"
           ]
         }
       ],
@@ -686,10 +686,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-AUDIO-MIX-039"
+            "UT-A11Y-021"
           ]
         }
       ],
@@ -718,10 +718,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-SUBTITLES-039"
+            "UT-A11Y-022"
           ]
         }
       ],
@@ -750,10 +750,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-AUDIO-VISUAL-039"
+            "UT-A11Y-023"
           ]
         }
       ],
@@ -782,10 +782,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-GLOSSAR-LINK-040"
+            "UT-A11Y-024"
           ]
         }
       ],
@@ -814,10 +814,10 @@
       ],
       "verification": [
         {
-          "type": "review",
+          "type": "unit",
           "plannedPhase": "PHASE-00",
           "testIds": [
-            "REV-CTRL-NAV-040"
+            "UT-A11Y-025"
           ]
         }
       ],
@@ -846,10 +846,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "IT-INPUT-MODES-045"
+            "UT-A11Y-026"
           ]
         }
       ],
@@ -878,10 +878,10 @@
       ],
       "verification": [
         {
-          "type": "visual",
+          "type": "unit",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "VIS-TEXT-150-045"
+            "UT-A11Y-027"
           ]
         }
       ],
@@ -917,10 +917,10 @@
       ],
       "verification": [
         {
-          "type": "integration",
+          "type": "unit",
           "plannedPhase": "PHASE-12",
           "testIds": [
-            "IT-A11Y-WARNINGS-045"
+            "UT-A11Y-028"
           ]
         }
       ],
