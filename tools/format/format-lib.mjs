@@ -15,7 +15,7 @@ export function normalizedText(filePath) {
 export function collect(root, result=[]) {
   if (!fs.existsSync(root)) return result;
   for (const entry of fs.readdirSync(root,{withFileTypes:true})) {
-    if (['.git','node_modules','dist','android','ios','generated'].includes(entry.name)) continue;
+    if (['.git','node_modules','dist','android','ios','generated','backup','Phasen','Meldungen','.orchestration_source','coverage','.pnpm-store'].includes(entry.name)) continue;
     const full=path.join(root,entry.name);
     if (entry.isDirectory()) collect(full,result);
     else if (extensions.has(path.extname(entry.name)) || entry.name.startsWith('.')) result.push(full);
