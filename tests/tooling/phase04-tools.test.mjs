@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { execFileSync, spawnSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import { cp, mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -32,6 +32,12 @@ async function fixture() {
   return root;
 }
 
+/**
+ * Runs a native tool in the fixture root.
+ * @param {string} root Fixture root path.
+ * @param {string} tool Tool filename.
+ * @returns {import('node:child_process').SpawnSyncReturns<string>}
+ */
 function run(root, tool) {
   return spawnSync(node, [path.join(root, 'tools/native', tool), root], { encoding: 'utf8' });
 }
