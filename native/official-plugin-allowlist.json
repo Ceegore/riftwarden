@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "capacitorMajor": 8,
+  "sameMajorRequired": true,
+  "officialPackages": [
+    {
+      "name": "@capacitor/core",
+      "role": "runtime and built-in SystemBars API"
+    },
+    {
+      "name": "@capacitor/android",
+      "role": "Android platform"
+    },
+    {
+      "name": "@capacitor/ios",
+      "role": "iOS platform"
+    },
+    {
+      "name": "@capacitor/app",
+      "role": "lifecycle, Android Back, app URL events"
+    },
+    {
+      "name": "@capacitor/filesystem",
+      "role": "non-authoritative logs/export staging only"
+    },
+    {
+      "name": "@capacitor/preferences",
+      "role": "non-authoritative boot hints only"
+    },
+    {
+      "name": "@capacitor/haptics",
+      "role": "optional haptics, never sole warning"
+    },
+    {
+      "name": "@capacitor/screen-orientation",
+      "role": "landscape preference with adaptive fallback"
+    },
+    {
+      "name": "@capacitor/splash-screen",
+      "role": "native launch presentation"
+    },
+    {
+      "name": "@capacitor/browser",
+      "role": "confirmed HTTPS support/privacy/license links in system browser"
+    }
+  ],
+  "builtInCoreApis": [
+    {
+      "name": "SystemBars",
+      "import": "@capacitor/core",
+      "separatePackageForbidden": true
+    }
+  ],
+  "customPlugins": [
+    "NativeSaveStore",
+    "SaveTransfer",
+    "GameAudioSession"
+  ],
+  "forbiddenExamples": [
+    "analytics",
+    "ads",
+    "crash-reporting",
+    "push",
+    "network",
+    "camera",
+    "microphone",
+    "location",
+    "contacts",
+    "remote-config",
+    "live-update"
+  ],
+  "rule": "Any runtime dependency not explicitly allowed is a blocker requiring review/ADR; phase 04 must not add it merely to simplify native setup."
+}

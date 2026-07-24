@@ -5,8 +5,10 @@ import { listGitVisibleFiles } from './git-files.mjs';
 
 const TEXT_EXTENSIONS = new Set([
   '.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.css', '.scss', '.html', '.json', '.jsonc', '.md',
-  '.java', '.kt', '.kts', '.swift', '.plist', '.xml', '.yml', '.yaml', '.sh', '.ps1', '.txt', '.editorconfig',
+  '.java', '.kt', '.kts', '.swift', '.plist', '.xml', '.yml', '.yaml', '.sh', '.txt', '.editorconfig',
 ]);
+// Platform-specific batch files use CRLF by design (.gitattributes eol=crlf); skip them.
+const CRLF_OK_EXTENSIONS = new Set(['.ps1', '.bat', '.cmd']);
 const ROOT_TEXT_FILES = new Set(['.gitignore', '.gitattributes', '.npmrc', '.node-version']);
 
 /**
@@ -16,7 +18,12 @@ const ROOT_TEXT_FILES = new Set(['.gitignore', '.gitattributes', '.npmrc', '.nod
  */
 function isText(path) {
   const name = path.split('/').at(-1);
-  return name !== undefined && (ROOT_TEXT_FILES.has(name) || TEXT_EXTENSIONS.has(extname(path).toLowerCase()));
+  if (name !== undefined && (ROOT_TEXT_FILES.has(name) || TEXT_EXTENSIONS.has(extname(path).toLowerCase()))) {
+    // Skip platform-specific batch files that use CRLF by design
+    if (CRLF_OK_EXTENSIONS.has(extname(path).toLowerCase())) return false;
+    return true;
+  }
+  return false;
 }
 
 const findings = [];

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "phase": 4,
+  "sourceRevision": {
+    "status": "UNVERIFIED",
+    "artifact": null
+  },
+  "lockfileSha256": {
+    "status": "UNVERIFIED",
+    "artifact": null
+  },
+  "g03Evidence": {
+    "status": "UNVERIFIED",
+    "artifact": null
+  },
+  "capSyncClean": {
+    "status": "UNVERIFIED",
+    "artifact": null
+  },
+  "androidConfigScan": {
+    "status": "UNVERIFIED",
+    "artifact": null
+  },
+  "androidOfflineSmoke": {
+    "status": "UNVERIFIED",
+    "artifact": null
+  },
+  "iosConfigScan": {
+    "status": "UNVERIFIED",
+    "artifact": null
+  },
+  "iosOfflineSmoke": {
+    "status": "UNVERIFIED",
+    "artifact": null
+  },
+  "pluginContractParity": {
+    "status": "UNVERIFIED",
+    "artifact": null
+  },
+  "mainCiRun": {
+    "status": "UNVERIFIED",
+    "artifact": null
+  },
+  "gateDecision": "BLOCKED"
+}

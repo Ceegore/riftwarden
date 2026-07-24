@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "required": {
+    "PRODUCT_BUNDLE_IDENTIFIER": "com.ceegore.riftwarden",
+    "IPHONEOS_DEPLOYMENT_TARGET": "15.0",
+    "CURRENT_PROJECT_VERSION": "10000",
+    "MARKETING_VERSION": "1.0.0",
+    "TARGETED_DEVICE_FAMILY": "1,2"
+  },
+  "forbiddenEntitlementKeys": [
+    "aps-environment",
+    "com.apple.developer.game-center",
+    "com.apple.developer.icloud-container-identifiers",
+    "com.apple.developer.icloud-services",
+    "com.apple.developer.applesignin",
+    "com.apple.developer.associated-domains"
+  ],
+  "forbiddenInfoPlistKeys": [
+    "UIBackgroundModes",
+    "NSAppTransportSecurity.NSAllowsArbitraryLoads"
+  ],
+  "privacyManifest": {
+    "filename": "PrivacyInfo.xcprivacy",
+    "mustBeInAppTarget": true,
+    "doNotInventRequiredReasons": true
+  },
+  "passRule": "No iOS PASS without xcodebuild/simulator or device evidence on macOS with Xcode 26+."
+}

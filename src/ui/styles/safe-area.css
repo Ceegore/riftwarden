@@ -1,0 +1,13 @@
+:root {
+  --rw-safe-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+  --rw-safe-right: var(--safe-area-inset-right, env(safe-area-inset-right, 0px));
+  --rw-safe-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
+  --rw-safe-left: var(--safe-area-inset-left, env(safe-area-inset-left, 0px));
+}
+
+.rw-safe-frame {
+  padding-block-start: var(--rw-safe-top);
+  padding-inline-end: var(--rw-safe-right);
+  padding-block-end: var(--rw-safe-bottom);
+  padding-inline-start: var(--rw-safe-left);
+}
