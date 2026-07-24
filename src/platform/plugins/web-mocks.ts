@@ -19,7 +19,6 @@ function info(plugin: BridgeInfo['plugin'], capabilities: readonly string[]): Br
   };
 }
 
-// eslint-disable-next-line @typescript-eslint/require-await
 async function skeletonReject(plugin: string, phase: string): Promise<never> {
   await Promise.resolve();
   throw new Error(`${plugin} is implemented in Phase ${phase}.`);
