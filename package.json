@@ -49,7 +49,11 @@
     "security:secrets": "node tools/security/scan-secrets.mjs",
     "security:artifact-paths": "node tools/security/check-artifact-allowlist.mjs",
     "test:phase03-tooling": "node --test tests/tooling/phase03/*.test.mjs",
-    "verify:phase03": "node tools/repo/verify-phase03.mjs"
+    "verify:phase03": "node tools/repo/verify-phase03.mjs",
+    "verify:repo": "node tools/repo/verify-root.mjs",
+    "check:text-normalization": "node tools/repo/check-text-normalization.mjs",
+    "check:file-length": "node tools/check-file-length.mjs",
+    "test:repo": "node --test tests/unit/repo/*.test.mjs"
   },
   "dependencies": {
     "react": "19.2.8",
