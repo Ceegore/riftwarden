@@ -1,0 +1,131 @@
+# Chapter 75: Konkrete Datenmodelle, Schemas und Inhaltskompilierung
+# blocks 2000..2019 (20 blocks)
+
+[Heading 2] 75. Konkrete Datenmodelle, Schemas und Inhaltskompilierung
+[Heading 3] 75.1 Null-/Optional-Semantik
+[Compact] Ein Pflichtfeld fehlt niemals. undefined ist ausschließlich für technisch optionale, nicht serialisierte Funktionsparameter zulässig.
+[Compact] JSON verwendet null nur, wenn „bewusst kein Wert“ eine fachliche Aussage ist. Leere Arrays bedeuten „gültig, aber keine Einträge“.
+[Compact] Defaults werden beim Source-Content nicht still ergänzt. Der Compiler materialisiert explizite Defaults in generated content, damit Runtime und Tests denselben Wert sehen.
+[Compact] Unbekannte Felder sind in Source-, Save- und Importdaten Fehler. Forward Compatibility erfolgt über schemaVersion und Migration, nicht durch Ignorieren.
+[Heading 3] 75.2 Zentrale Typen
+[Code Block] type ContentId = string;
+type LocalizationKey = string;
+type Tick = number;
+type MilliValue = number;
+type BasisPoints = number;
+
+interface ContentManifest {
+  schemaVersion: number;
+  contentVersion: string;          // SHA-256 of canonical generated content
+  simulationVersion: number;
+  localeVersions: Record<'de' | 'en', string>;
+  counts: Record<string, number>;
+  files: Array<{ path: string; sha256: string; byteLength: number }>;
+}
+
+interface UnitStats {
+  maxHp: MilliValue;
+  armor: MilliValue;
+  resistance: MilliValue;
+  attackPower: MilliValue;
+  attackIntervalTicks: Tick;
+  preparationTicks: Tick;
+  rangeX100: number;
+  movementX100PerSecond: number;
+  controlResistanceBps: BasisPoints;
+}
+
+interface UnitDefinition {
+  id: ContentId;
+  category: 'hero' | 'troop' | 'summon' | 'enemy' | 'boss' | 'boss_object';
+  displayNameKey: LocalizationKey;
+  roleTags: RoleTag[];
+  traitIds: ContentId[];           // 0..2
+  baseStats: UnitStats;
+  collisionRadiusX100: number;
+  preferredDepths: Depth[];
+  basicAttackId: ContentId;
+  passiveAbilityIds: ContentId[];
+  activeAbilityIds: ContentId[];
+  targetProfileId: ContentId;
+  visualId: ContentId;
+  audioId: ContentId;
+  codexId: ContentId;
+}
+
+interface AbilityDefinition {
+  id: ContentId;
+  kind: AbilityKind;
+  trigger: TriggerDefinition;
+  target: TargetQuery;
+  chargeTicks: Tick | null;
+  cooldownTicks: Tick | null;
+  castTicks: Tick;
+  recoveryTicks: Tick;
+  interruptPolicy: 'interruptible' | 'cast_committed' | 'uninterruptible';
+  usesPerBattle: number | null;
+  effects: EffectDefinition[];
+  telegraphId: ContentId;
+  invalidTargetPolicy: 'wait' | 'retarget' | 'consume_without_effect';
+}
+
+interface StatusDefinition {
+  id: ContentId;
+  kind: StatusKind;
+  stackPolicy: StackPolicy;
+  maxStacks: number;
+  durationCapTicks: Tick | null;
+  dispelCategory: 'positive' | 'negative' | 'control' | 'none';
+  bossPolicy: 'normal' | 'duration_reduced' | 'convert_to_interrupt' | 'immune';
+  statModifiers: StatModifier[];
+  periodicEffects: PeriodicEffect[];
+}
+[Heading 3] 75.3 Encounter-, Mission- und Ereignisverträge
+[Code Block] interface EncounterDefinition {
+  id: ContentId;
+  regionId: ContentId;
+  kind: 'normal' | 'elite' | 'boss' | 'survival' | 'reinforcement';
+  enemySlots: Array<{ unitId: ContentId; lane: Lane; depth: Depth; eliteId?: ContentId }>;
+  modifierIds: ContentId[];
+  reinforcementWaves: ReinforcementWave[];
+  objective: CombatObjective;
+  rewardTableId: ContentId;
+  previewDisclosure: PreviewDisclosure;
+  allowedModes: RunMode[];
+}
+
+interface MissionDefinition {
+  id: ContentId;
+  act: 1 | 2 | 3 | 4;
+  sequence: number;
+  titleKey: LocalizationKey;
+  objective: MissionObjective;
+  mapProfileId: ContentId;
+  mandatoryNodeRules: NodeRule[];
+  encounterPoolIds: ContentId[];
+  firstCompletionRewards: RewardDefinition[];
+  repeatRewards: RewardDefinition[];
+  unlockFlags: string[];
+  storyEntryKeys: LocalizationKey[];
+}
+
+interface EventDefinition {
+  id: ContentId;
+  regionTags: ContentId[];
+  riskTier: 0 | 1 | 2 | 3;
+  titleKey: LocalizationKey;
+  bodyKey: LocalizationKey;
+  prerequisites: PredicateDefinition[];
+  options: EventOptionDefinition[];
+  deterministicRollSlots: string[];
+  repeatPolicy: 'once_per_run' | 'history_limited';
+}
+[Heading 3] 75.4 Compiler- und Laufzeitpipeline
+[Heading 3] 75.5 Semantische Pflichtvalidatoren
+[Compact] Exakte Releasecounts gemäß Kapitel 2.1; eine Abweichung blockiert release, außer eine neue Dokumentversion ändert den Umfang.
+[Compact] Jede reguläre Einheit besitzt genau einen Standardangriff, mindestens ein Zielprofil, vollständige Visual-/Audio-/Codexreferenzen und gültige Startzone.
+[Compact] Jede automatisch auslösende Fähigkeit besitzt Trigger, Ziel, Cast-/Recoveryzeit, InvalidTargetPolicy, Telegraphie und Effektliste.
+[Compact] Jeder Boss besitzt vollständig abgedeckte LP-Phasen ohne Lücke/Überlappung, eine maximale Kampfdauer und Vorschau für alle strategisch relevanten Mechaniken.
+[Compact] Jede Mission generiert 5-8 besuchte Knoten, garantiert ihre Pflichtknoten, hat mindestens drei gültige normale Encounter-Varianten pro Kampfslot und endet erreichbar.
+[Compact] Jedes Ereignis besitzt zwei oder drei Optionen, sichtbare Kosten/Folgen, deterministische Randomslots und eine valide Ablehn-/Fallbackfolge.
+[Compact] Jeder Screen verweist auf existierende Route, Localization Keys, Icons und mindestens einen Happy-Path-E2E-Test.

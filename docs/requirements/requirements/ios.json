@@ -1,0 +1,331 @@
+{
+  "schemaVersion": "1.0",
+  "category": "iOS",
+  "requirements": [
+    {
+      "id": "REQ-IOS-0001",
+      "title": "iOS Privacy Manifest minimal",
+      "statement": "iOS besitzt keine unnötigen Entitlements; PrivacyInfo.xcprivacy nennt nur tatsächlich genutzte Required-Reason APIs aus Capacitor/Plugins.",
+      "norm": "MUST_NOT",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1810",
+        "quoteHash": "sha256:95c38ac9134db8934119f223048fe8b04f41bdb97c8bfc0b33be8b99ca3ae44d",
+        "originalExcerpt": "iOS besitzt keine unnötigen Entitlements. PrivacyInfo.xcprivacy nennt nur tatsächlich genutzte Required-Reason APIs aus Capacitor/Plugins."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "NAT-I-IOS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-IOS-0002",
+      "title": "iOS Toolchain",
+      "statement": "Toolchain: Xcode 26 oder höher, iOS/iPadOS 26 SDK für Upload; Capacitor 8 SPM-Projekt.",
+      "norm": "MUST",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:4cdaee73c423058ca680b6bb12e83af665b5964812db865df09080d780d9a4c8",
+        "originalExcerpt": "Toolchain | Xcode 26 oder höher, iOS/iPadOS 26 SDK für Upload; Capacitor 8 SPM-Projekt."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "NAT-I-IOS-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-IOS-0003",
+      "title": "iOS Deployment Target 15",
+      "statement": "Deployment Target ist iOS 15.0.",
+      "norm": "MUST",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:c39ac24f58e3baa0dfe51ec3f178b39bc2949e9c25178d2f1de1d717881e1422",
+        "originalExcerpt": "Deployment Target | iOS 15.0."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "NAT-I-IOS-003"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "ios",
+          "min": 15
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-IOS-0004",
+      "title": "iOS Universal App",
+      "statement": "iPhone und iPad Universal App; Landscape primär, adaptive Split/Stage-Manager-Layouts.",
+      "norm": "MUST",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:f4da04b128aef28d2bf13e12a98ddce4bf0ad113a41cfac3dd95893cc4d33adf",
+        "originalExcerpt": "Devices | iPhone und iPad Universal App; Landscape primär, adaptive Split/Stage-Manager-Layouts."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "NAT-I-IOS-004"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-IOS-0005",
+      "title": "iOS Bundle-ID",
+      "statement": "Bundle-ID com.ceegore.riftwarden; Version/Build strikt aufsteigend.",
+      "norm": "MUST",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:7f4ea705c582be71c15080230c89fd34708e62e9c01a3e6d653032c82eb9a535",
+        "originalExcerpt": "Bundle | com.ceegore.riftwarden; Version/Build strikt aufsteigend."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "NAT-I-IOS-005"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-IOS-0006",
+      "title": "iOS Audio Session",
+      "statement": "AVAudioSession ambient, Background Audio Capability aus.",
+      "norm": "MUST",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:45b5631923d4b1343ed67120f43555997778ba5bca45925fa66083b4bd91d9c2",
+        "originalExcerpt": "Audio | AVAudioSession ambient, Background Audio Capability aus."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "NAT-I-IOS-006"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-IOS-0007",
+      "title": "iOS Entitlements minimal",
+      "statement": "Keine Game Center, iCloud, Push, Sign in with Apple oder Background Modes in V1.",
+      "norm": "MUST_NOT",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:4fc65ca85b6a821bb4c19362c513f2cbbb3984601a00bec1d45d377ee4d995b1",
+        "originalExcerpt": "Entitlements | Keine Game Center, iCloud, Push, Sign in with Apple oder Background Modes in V1."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "NAT-I-IOS-007"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-IOS-0008",
+      "title": "iOS Distribution via App Store Connect",
+      "statement": "iOS Distribution erfolgt über App Store Connect/TestFlight; Ad-hoc-Binaries sind keine öffentliche Releasequelle.",
+      "norm": "MUST",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 66,
+        "section": null,
+        "locator": "block:1892",
+        "quoteHash": "sha256:037b32cc2a77a923bf2d3771e43b23d742df4097e5b3799883bddade5400115e",
+        "originalExcerpt": "iOS Distribution über App Store Connect/TestFlight; keine Ad-hoc-Binaries als öffentliche Releasequelle."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "NAT-I-IOS-008"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-IOS-0009",
+      "title": "Auf iOS wird AVAudioSession ambient verwendet; der Hardware-Silent-Switch stummschaltet das Spielaudio und andere Audioquellen dürfen entsprechend ambient weiterlaufen oder mixen.",
+      "statement": "Auf iOS wird AVAudioSession ambient verwendet; der Hardware-Silent-Switch stummschaltet das Spielaudio und andere Audioquellen dürfen entsprechend ambient weiterlaufen oder mixen.",
+      "norm": "MUST",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 82,
+        "section": null,
+        "locator": "block:2162",
+        "quoteHash": "sha256:e82b706610eae3ea6cb0fc3b2ee0e9a01000a24e765d3f720ba57bcfa7faf22b",
+        "originalExcerpt": "iOS: AVAudioSession ambient; Hardware-Silent-Switch stummschaltet Spielaudio. Andere Audioquellen dürfen weiterlaufen/mixen entsprechend ambient."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "NAT-I-IOS-009"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-IOS-0010",
+      "title": "iOS nutzt AVAudioSession category ambient als Baseline: Silent Switch respektiert, Nutzermusik darf weiterlaufen; bei Unterbrechung Kampf pausiert; eigene Mischoption nicht in V1.",
+      "statement": "iOS verwendet AVAudioSession category ambient als Baseline: Der Silent Switch wird respektiert und bereits laufende Nutzermusik darf weiterlaufen. Bei Unterbrechung wird der Kampf pausiert; eine eigene Mischoption ist in V1 nicht erforderlich.",
+      "norm": "MUST",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 57,
+        "section": null,
+        "locator": "block:1747",
+        "quoteHash": "sha256:20be4b7444b280e80452c766dbd67b6b4c33c7378019d42f3bc58294f92ae1e5",
+        "originalExcerpt": "iOS verwendet AVAudioSession category ambient als Baseline: Der Silent Switch wird respektiert und bereits laufende Nutzermusik darf weiterlaufen. Bei Unterbrechung wird der Kampf pausiert; eine eigene Mischoption ist in V1 nicht erforderlich."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "NAT-I-IOS-010"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ]
+}

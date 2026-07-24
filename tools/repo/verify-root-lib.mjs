@@ -70,11 +70,13 @@ function readJson(path, findings, label) {
  * Validates the root package.json content.
  * @param {string} root Repository root.
  * @param {RepoFinding[]} findings Findings accumulator.
+ * @param {RepositoryProfile|null} profile Repository profile (for migration mode).
  */
-function validatePackage(root, findings) {
+function validatePackage(root, findings, profile) {
   const path = resolve(root, 'package.json');
   const packageJson = /** @type {PackageJson|null} */ (readJson(path, findings, 'package.json'));
   if (!packageJson) return;
+  const isMigration = profile?.mode === 'migration';
 
   if (packageJson.name !== 'riftwarden-auto-rpg-roguelite') {
     findings.push(issue('REPO_PACKAGE_NAME', 'package.json name does not match the fixed web package name.', 'Set name to riftwarden-auto-rpg-roguelite.', 'package.json'));
@@ -88,13 +90,15 @@ function validatePackage(root, findings) {
   if (!/^pnpm@10\.\d+\.\d+(?:[-+].*)?$/.test(packageJson.packageManager ?? '')) {
     findings.push(issue('REPO_PACKAGE_MANAGER', 'packageManager must identify pnpm Major 10 with an explicit bootstrap version.', 'Set packageManager to pnpm@10.x.y; Phase 02 freezes the approved current stable version.', 'package.json'));
   }
-  if (packageJson.engines?.node !== '>=22 <23' || packageJson.engines?.pnpm !== '>=10 <11') {
-    findings.push(issue('REPO_ENGINES', 'Node/pnpm bootstrap engine ranges differ from Phase-01 contract.', 'Use node >=22 <23 and pnpm >=10 <11.', 'package.json'));
-  }
-  for (const field of ['dependencies', 'devDependencies', 'optionalDependencies', 'peerDependencies']) {
-    const candidate = /** @type {Record<string, unknown>} */ (/** @type {unknown} */ (packageJson))[field];
-    if (candidate && Object.keys(candidate).length > 0) {
-      findings.push(issue('REPO_PHASE01_DEPENDENCY', `${field} must be empty in a clean Phase-01 bootstrap.`, 'Move dependency resolution to Phase 02 or document a migration blocker before Gate G01.', 'package.json'));
+  if (!isMigration) {
+    if (packageJson.engines?.node !== '>=22 <23' || packageJson.engines?.pnpm !== '>=10 <11') {
+      findings.push(issue('REPO_ENGINES', 'Node/pnpm bootstrap engine ranges differ from Phase-01 contract.', 'Use node >=22 <23 and pnpm >=10 <11.', 'package.json'));
+    }
+    for (const field of ['dependencies', 'devDependencies', 'optionalDependencies', 'peerDependencies']) {
+      const candidate = /** @type {Record<string, unknown>} */ (/** @type {unknown} */ (packageJson))[field];
+      if (candidate && Object.keys(candidate).length > 0) {
+        findings.push(issue('REPO_PHASE01_DEPENDENCY', `${field} must be empty in a clean Phase-01 bootstrap.`, 'Move dependency resolution to Phase 02 or document a migration blocker before Gate G01.', 'package.json'));
+      }
     }
   }
 }
@@ -207,8 +211,12 @@ export function verifyRoot(root = process.cwd()) {
   const findings = [];
   validateGit(root, findings);
   validatePaths(root, findings);
-  if (existsSync(resolve(root, 'package.json'))) validatePackage(root, findings);
-  if (existsSync(resolve(root, 'docs/governance/repository-profile.json'))) validateProfile(root, findings);
+  let profile = /** @type {RepositoryProfile|null} */ (null);
+  if (existsSync(resolve(root, 'docs/governance/repository-profile.json'))) {
+    profile = /** @type {RepositoryProfile|null} */ (readJson(resolve(root, 'docs/governance/repository-profile.json'), findings, 'repository profile'));
+    validateProfile(root, findings);
+  }
+  if (existsSync(resolve(root, 'package.json'))) validatePackage(root, findings, profile);
   validateSensitiveFiles(root, findings);
   validatePlaceholders(root, findings);
 

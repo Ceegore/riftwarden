@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 1,
+  "chapters": [
+    {
+      "chapter": 1,
+      "disposition": "has_requirements",
+      "reason": "Chapter 1 contains extracted normative requirements (see requirements registry).",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 2,
+      "disposition": "has_requirements",
+      "reason": "Chapter 2 contains extracted normative requirements (see requirements registry).",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 3,
+      "disposition": "has_requirements",
+      "reason": "Chapter 3 contains extracted normative requirements (see requirements registry).",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 4,
+      "disposition": "has_requirements",
+      "reason": "Chapter 4 contains extracted normative requirements (see requirements registry).",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 5,
+      "disposition": "has_requirements",
+      "reason": "Chapter 5 contains extracted normative requirements (see requirements registry).",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 6,
+      "disposition": "has_requirements",
+      "reason": "Chapter 6 contains extracted normative requirements (see requirements registry).",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 7,
+      "disposition": "context_only",
+      "reason": "Chapter 7 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 8,
+      "disposition": "context_only",
+      "reason": "Chapter 8 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 9,
+      "disposition": "context_only",
+      "reason": "Chapter 9 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 10,
+      "disposition": "context_only",
+      "reason": "Chapter 10 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 11,
+      "disposition": "context_only",
+      "reason": "Chapter 11 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 12,
+      "disposition": "context_only",
+      "reason": "Chapter 12 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 13,
+      "disposition": "context_only",
+      "reason": "Chapter 13 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 14,
+      "disposition": "context_only",
+      "reason": "Chapter 14 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 15,
+      "disposition": "context_only",
+      "reason": "Chapter 15 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 16,
+      "disposition": "context_only",
+      "reason": "Chapter 16 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 17,
+      "disposition": "context_only",
+      "reason": "Chapter 17 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 18,
+      "disposition": "context_only",
+      "reason": "Chapter 18 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 19,
+      "disposition": "context_only",
+      "reason": "Chapter 19 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 20,
+      "disposition": "context_only",
+      "reason": "Chapter 20 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 21,
+      "disposition": "context_only",
+      "reason": "Chapter 21 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 22,
+      "disposition": "context_only",
+      "reason": "Chapter 22 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 23,
+      "disposition": "context_only",
+      "reason": "Chapter 23 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 24,
+      "disposition": "context_only",
+      "reason": "Chapter 24 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 25,
+      "disposition": "context_only",
+      "reason": "Chapter 25 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 26,
+      "disposition": "context_only",
+      "reason": "Chapter 26 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 27,
+      "disposition": "context_only",
+      "reason": "Chapter 27 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 28,
+      "disposition": "context_only",
+      "reason": "Chapter 28 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 29,
+      "disposition": "context_only",
+      "reason": "Chapter 29 yielded no atomic normative statements beyond the ones already captured.",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 30,
+      "disposition": "has_requirements",
+      "reason": "Chapter 30 contains extracted normative requirements (see requirements registry).",
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    }
+  ]
+}

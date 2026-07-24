@@ -1,0 +1,22 @@
+# Chapter 68: Store- und Release-Checklisten als harte Gates
+# blocks 1901..1919 (19 blocks)
+
+[Heading 2] 68. Store- und Release-Checklisten als harte Gates
+[Heading 3] 68.1 Gemeinsamer Binary-Preflight
+[Compact] Appname, Version, Package/Bundle ID, Icons, Splash, Copyright und Supportkontakt korrekt.
+[Compact] Kein Debugmenü, Testseed, Platzhaltertext, ungenutzter Button, leere Sammlung oder Entwickler-URL sichtbar.
+[Compact] Alle Inhalte offline; Trafficmonitor zeigt während vollständigem Durchlauf keinen App-Netzwerkverkehr.
+[Compact] Alle Assets lizenziert und Credits/Lizenzen vollständig.
+[Compact] Neues Spiel bis Kampagnenende, Update-Migration, Import, Reset und Endgame-Smoke erfolgreich.
+[Compact] Privacy-/Data-Safety-/App-Privacy-Antworten stimmen mit Binary, Plugins und Permissions überein.
+[Compact] Release Notes und Review Notes nennen nicht offensichtliche Funktionen und Testweg.
+[Heading 3] 68.2 Store-Screenshot- und Metadaten-QA
+[Compact] Jeder Screenshot ist auf tatsächlich unterstützter Gerätegröße aufgenommen und zeigt echten UI-Stand.
+[Compact] Keine irreführenden Währungen, Käufe, Onlinefunktionen, Controllerpflicht oder nicht enthaltene Sprache.
+[Compact] Texte sind in Zielstore lokalisiert, lesbar und nicht durch Store-Crops abgeschnitten.
+[Compact] Icon und Screenshots vermeiden grausame Gewaltdarstellung und bleiben für das deklarierte Rating passend.
+[Heading 3] 68.3 Post-Launch ohne Live-Service
+[Compact] Es gibt keine tägliche Betriebsverpflichtung, Server oder Contentkalender. Wartung betrifft OS/Store-Kompatibilität, kritische Fehler und optionale Qualitätsupdates.
+[Compact] Android Vitals, Play Reviews, App Store Crashes und Supportmails werden manuell geprüft; keine App-Telemetrie wird nachgerüstet, ohne Produkt-/Datenschutzentscheidung.
+[Compact] Ein Update darf Saves nie absichtlich zurücksetzen. Jede schemaVersion besitzt Migrationstests aus allen veröffentlichten Versionen.
+[Compact] Wird eine Plattformversion nicht mehr unterstützt, muss dies in Storemetadata und Release Notes angekündigt werden; bestehende Offlinefunktion darf nicht künstlich deaktiviert werden.

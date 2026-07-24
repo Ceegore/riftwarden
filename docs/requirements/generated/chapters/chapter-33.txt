@@ -1,0 +1,8 @@
+# Chapter 33: Interne Erfolge
+# blocks 1329..1336 (8 blocks)
+
+[Heading 2] 33. Interne Erfolge
+[First Paragraph] Erfolge sind lokal, offline und rein intern. Sie geben Kosmetik, Titel oder kleine einmalige Gold-/Riftessenzbeträge, niemals exklusive notwendige Macht. Versteckte Erfolge sind erlaubt, dürfen aber keine ernsthafte Fehlhandlung verlangen.
+[Compact] Normale Erfolge: 100 Gold oder kosmetisches Abzeichen. Kampagnen-/Endgame-Meilensteine: Titel/Rahmen und höchstens 1-3 Riftessenz.
+[Compact] Erfolge werden nachträglich geprüft, wenn ein altes Savegame auf eine Version mit neuer Prüfung geladen wird.
+[Compact] „Pip hatte recht/nicht recht“ verwendet ausschließlich die explizit zufälligen Pip-Optionen und keine versteckten Wertungen.

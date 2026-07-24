@@ -1,0 +1,4029 @@
+{
+  "schemaVersion": "1.0",
+  "category": "UX",
+  "requirements": [
+    {
+      "id": "REQ-UX-0001",
+      "title": "Strategisch relevante Informationen werden vor dem Kampf angezeigt.",
+      "statement": "Strategisch relevante Informationen werden vor dem Kampf angezeigt.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:80267f09cae4c22eb05f9fcdd0a97bfb0014aac653f53527dd83cc8d7991f327",
+        "originalExcerpt": "Strategisch relevante Informationen werden vor dem Kampf angezeigt; keine Begegnung beruht auf einer tödlichen Überraschung."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0002",
+      "title": "Keine Begegnung darf auf einer tödlichen Überraschung beruhen.",
+      "statement": "Keine Begegnung darf auf einer tödlichen Überraschung beruhen.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:80267f09cae4c22eb05f9fcdd0a97bfb0014aac653f53527dd83cc8d7991f327",
+        "originalExcerpt": "Strategisch relevante Informationen werden vor dem Kampf angezeigt; keine Begegnung beruht auf einer tödlichen Überraschung."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0003",
+      "title": "Verbindlich sind responsive Regeln, Design-Tokens, Mindestgrößen und Referenz...",
+      "statement": "Verbindlich sind responsive Regeln, Design-Tokens, Mindestgrößen und Referenzlayouts; Pixelpositionen pro Gerät sind nicht verbindlich.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:23",
+        "quoteHash": "sha256:028d7fa47336859c2e275ac1322f24eb6fbbb13f931100e6d1612cc1b0f45b6e",
+        "originalExcerpt": "Unveränderliche Pixelpositionen für jedes existierende und zukünftige Gerät; verbindlich sind responsive Regeln, Design-Tokens, Mindestgrößen und Referenzlayouts."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-003"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0004",
+      "title": "Der Riftanker ist die zentrale visuelle Metapher für Speichern, Rückkehr, Asc...",
+      "statement": "Der Riftanker ist die zentrale visuelle Metapher für Speichern, Rückkehr, Ascension und Endlose Rift.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:56",
+        "quoteHash": "sha256:e2a49ab8362433aa2f8afce6da0ef87d1b37bd76533a70f5c8ad30fe29bf5171",
+        "originalExcerpt": "Der Anker ist die zentrale visuelle Metapher für Speichern, Rückkehr, Ascension und Endlose Rift."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-004"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0005",
+      "title": "Pip spricht in maximal zwei kurzen Sätzen am Stück.",
+      "statement": "Pip spricht in maximal zwei kurzen Sätzen am Stück.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:60",
+        "quoteHash": "sha256:c19e9cd25c83c9fd554696bb22c2d8c65df36d318b940ea591c27e68934fbe7a",
+        "originalExcerpt": "Pip spricht in maximal zwei kurzen Sätzen am Stück, erklärt nie bereits sichtbare Informationen doppelt und unterbricht keine wiederholten Kämpfe. Humor: selbstüberschätzend, neugierig, freundlich, nie zynisch."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-005"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "sentences",
+          "max": 2,
+          "target": "pip_max_sentences"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0006",
+      "title": "Pip darf bereits sichtbare Informationen nicht doppelt erklären und keine wie...",
+      "statement": "Pip darf bereits sichtbare Informationen nicht doppelt erklären und keine wiederholten Kämpfe unterbrechen.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:60",
+        "quoteHash": "sha256:c19e9cd25c83c9fd554696bb22c2d8c65df36d318b940ea591c27e68934fbe7a",
+        "originalExcerpt": "Pip spricht in maximal zwei kurzen Sätzen am Stück, erklärt nie bereits sichtbare Informationen doppelt und unterbricht keine wiederholten Kämpfe. Humor: selbstüberschätzend, neugierig, freundlich, nie zynisch."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-006"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0007",
+      "title": "Humor darf Bossauftritte, Ereignisse und Animationen auflockern; taktische Ko...",
+      "statement": "Humor darf Bossauftritte, Ereignisse und Animationen auflockern; taktische Konsequenzen bleiben ernst und lesbar.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:78",
+        "quoteHash": "sha256:513020c75a47d4614574c726d6002c6632ae1e2121b40265eb79964fb8fca0e4",
+        "originalExcerpt": "Humor darf Bossauftritte, Ereignisse und Animationen auflockern, aber taktische Konsequenzen bleiben ernst und lesbar."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-007"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "tempId": "REQ-TEMP-B-0045",
+      "statement": "Ziele werden sichtbar, sobald der Held freigeschaltet ist.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1271",
+        "quoteHash": "sha256:54e811d7920510c4055b647744243bd4a91c40b034076e07518aedadc1195d59",
+        "originalExcerpt": "Jeder Held besitzt fünf Kernziele. Ziele werden sichtbar, sobald der Held freigeschaltet ist; Ziel 4 nach Kampagnenabschluss, Ziel 5 nach Level 3. Fortschritt wird nur in gewonnenen Kämpfen oder erfolgreich abgeschlossenen Modi gewertet, außer reiner Teilnahmecounter. Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-008"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-UX-0008",
+      "title": "Ziele werden sichtbar, sobald der Held freigeschaltet ist."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0059",
+      "statement": "Unbekannte Kodex-Einträge erscheinen als Silhouette mit Entdeckungsquelle, sofern die Quelle bereits zugänglich ist.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 32,
+        "section": null,
+        "locator": "block:1322",
+        "quoteHash": "sha256:079ecdf36754f2576183faa15bbf500a27de1356a659b1c19713e88cdbb99350",
+        "originalExcerpt": "Unbekannte Einträge erscheinen als Silhouette mit Entdeckungsquelle, sofern die Quelle bereits zugänglich ist."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-009"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-UX-0009",
+      "title": "Unbekannte Kodex-Einträge erscheinen als Silhouette mit Entdeckungsquelle, sofer"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0064",
+      "statement": "Der Kodex unterstützt Suche und Filter nach Name, Rolle, Merkmal, Region, Schadenstyp, Beschwörung/Konstruktion und Status freigeschaltet/ungesehen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 32,
+        "section": null,
+        "locator": "block:1326",
+        "quoteHash": "sha256:849be9ff471bbb0d5d0d0911c4857b8a78c3eff0bf91f210b2f9bdffcefd6e88",
+        "originalExcerpt": "Such-/Filteroptionen: Name, Rolle, Merkmal, Region, Schadenstyp, Beschwörung/Konstruktion, freigeschaltet/ungesehen."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-010"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-UX-0010",
+      "title": "Der Kodex unterstützt Suche und Filter nach Name, Rolle, Merkmal, Region, Schade"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0072",
+      "statement": "Nach jedem Kampf werden maximal zwei Hinweise aus objektiven Regeln gewählt.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1348",
+        "quoteHash": "sha256:30b0ad4b64c384cc2378e6aa55e7106bfa04201bb28e54cb42cd0c228749481a",
+        "originalExcerpt": "Nach jedem Kampf werden maximal zwei Hinweise aus objektiven Regeln gewählt. Ein Hinweis benötigt eine Mindestkonfidenz und darf keine einzige perfekte Lösung behaupten. Priorität: unmittelbare Niederlagenursache; ungenutzter klarer Counter; Positionsproblem; Wirtschaft/Belohnung nie als Kampfhinweis."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-011"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-UX-0011",
+      "title": "Nach jedem Kampf werden maximal zwei Hinweise aus objektiven Regeln gewählt."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0073",
+      "statement": "Ein Hinweis benötigt eine Mindestkonfidenz und darf keine einzige perfekte Lösung behaupten.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1348",
+        "quoteHash": "sha256:30b0ad4b64c384cc2378e6aa55e7106bfa04201bb28e54cb42cd0c228749481a",
+        "originalExcerpt": "Nach jedem Kampf werden maximal zwei Hinweise aus objektiven Regeln gewählt. Ein Hinweis benötigt eine Mindestkonfidenz und darf keine einzige perfekte Lösung behaupten. Priorität: unmittelbare Niederlagenursache; ungenutzter klarer Counter; Positionsproblem; Wirtschaft/Belohnung nie als Kampfhinweis."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-012"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-UX-0012",
+      "title": "Ein Hinweis benötigt eine Mindestkonfidenz und darf keine einzige perfekte Lösun"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0074",
+      "statement": "Wirtschaft und Belohnung werden niemals als Kampfhinweis verwendet.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1348",
+        "quoteHash": "sha256:30b0ad4b64c384cc2378e6aa55e7106bfa04201bb28e54cb42cd0c228749481a",
+        "originalExcerpt": "Nach jedem Kampf werden maximal zwei Hinweise aus objektiven Regeln gewählt. Ein Hinweis benötigt eine Mindestkonfidenz und darf keine einzige perfekte Lösung behaupten. Priorität: unmittelbare Niederlagenursache; ungenutzter klarer Counter; Positionsproblem; Wirtschaft/Belohnung nie als Kampfhinweis."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-013"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-UX-0013",
+      "title": "Wirtschaft und Belohnung werden niemals als Kampfhinweis verwendet."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0077",
+      "statement": "Hinweise werden nur bei vollständig erfüllten Triggern gezeigt und nennen keine nicht vorhandene Fähigkeit.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1353",
+        "quoteHash": "sha256:ad9a70a7551a94f7fdeb8f33a5f00af792bd54688c9b2bf85e3c129a2b17f77c",
+        "originalExcerpt": "Hinweise werden nur bei vollständig erfüllten Triggern gezeigt und nennen keine nicht vorhandene Fähigkeit."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-014"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-UX-0014",
+      "title": "Hinweise werden nur bei vollständig erfüllten Triggern gezeigt und nennen keine "
+    },
+    {
+      "tempId": "REQ-TEMP-B-0078",
+      "statement": "Der Spieler kann von jeder Metrik direkt zur Ereignis-Timeline springen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1354",
+        "quoteHash": "sha256:50f6857af7f9de41dc6f3536f728845d0935272155987bc90e16b3b9134542e2",
+        "originalExcerpt": "Spieler kann von jeder Metrik direkt zur Ereignis-Timeline springen."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-015"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-UX-0015",
+      "title": "Der Spieler kann von jeder Metrik direkt zur Ereignis-Timeline springen."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0083",
+      "statement": "Das Hauptquartier ist eine kompakte, visuell zusammenhängende Menüumgebung.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 35,
+        "section": null,
+        "locator": "block:1359",
+        "quoteHash": "sha256:bcff5dde29d9e9b728eac61fabf8043941311b2a55b5b91133eca0f853e9ec56",
+        "originalExcerpt": "Das Hauptquartier ist eine kompakte, visuell zusammenhängende Menüumgebung und keine frei begehbare Basis. Jeder Bereich öffnet eine klar fokussierte Oberfläche; der Spieler baut keine Räume manuell."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-016"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-UX-0016",
+      "title": "Das Hauptquartier ist eine kompakte, visuell zusammenhängende Menüumgebung."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0084",
+      "statement": "Der Spieler baut keine Räume im Hauptquartier manuell.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 35,
+        "section": null,
+        "locator": "block:1359",
+        "quoteHash": "sha256:bcff5dde29d9e9b728eac61fabf8043941311b2a55b5b91133eca0f853e9ec56",
+        "originalExcerpt": "Das Hauptquartier ist eine kompakte, visuell zusammenhängende Menüumgebung und keine frei begehbare Basis. Jeder Bereich öffnet eine klar fokussierte Oberfläche; der Spieler baut keine Räume manuell."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-017"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-UX-0017",
+      "title": "Der Spieler baut keine Räume im Hauptquartier manuell."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0085",
+      "statement": "Vom Hauptquartier ist jeder Hauptbereich mit einem Tap erreichbar.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 35,
+        "section": null,
+        "locator": "block:1363",
+        "quoteHash": "sha256:6014d1a3ad02546c60b37879bbe0302ba11699416964be49f900111d1d9c91e9",
+        "originalExcerpt": "Vom Hauptquartier ist jeder Hauptbereich mit einem Tap erreichbar; keine verschachtelte Navigation tiefer als drei Ebenen."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-018"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-UX-0018",
+      "title": "Vom Hauptquartier ist jeder Hauptbereich mit einem Tap erreichbar."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0086",
+      "statement": "Die Navigation ist nicht tiefer als drei Ebenen verschachtelt.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 35,
+        "section": null,
+        "locator": "block:1363",
+        "quoteHash": "sha256:6014d1a3ad02546c60b37879bbe0302ba11699416964be49f900111d1d9c91e9",
+        "originalExcerpt": "Vom Hauptquartier ist jeder Hauptbereich mit einem Tap erreichbar; keine verschachtelte Navigation tiefer als drei Ebenen."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-019"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-UX-0019",
+      "title": "Die Navigation ist nicht tiefer als drei Ebenen verschachtelt."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0087",
+      "statement": "Zurück führt immer eine Ebene zurück.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 35,
+        "section": null,
+        "locator": "block:1364",
+        "quoteHash": "sha256:bc849e5fcf35a3ea3e624fc649b7b481ceee7aeb2ac0ed520a7f927df9b4ee82",
+        "originalExcerpt": "Zurück führt immer eine Ebene zurück und verwirft nie unbestätigte Käufe ohne Dialog."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-020"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-UX-0020",
+      "title": "Zurück führt immer eine Ebene zurück."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0088",
+      "statement": "Unbestätigte Käufe werden nicht ohne Dialog verworfen.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 35,
+        "section": null,
+        "locator": "block:1364",
+        "quoteHash": "sha256:bc849e5fcf35a3ea3e624fc649b7b481ceee7aeb2ac0ed520a7f927df9b4ee82",
+        "originalExcerpt": "Zurück führt immer eine Ebene zurück und verwirft nie unbestätigte Käufe ohne Dialog."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-021"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-UX-0021",
+      "title": "Unbestätigte Käufe werden nicht ohne Dialog verworfen."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0089",
+      "statement": "Neue Inhalte erhalten einen einmaligen Punkt, der nach Öffnen des relevanten Details verschwindet.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 35,
+        "section": null,
+        "locator": "block:1365",
+        "quoteHash": "sha256:42969c1fd36e692dc616483343d7ae91c211cb5fe2c40f8a7c47c97381a9a0bd",
+        "originalExcerpt": "Neue Inhalte erhalten einen einmaligen Punkt; der Punkt verschwindet nach Öffnen des relevanten Details, nicht bloß des Obermenüs."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-022"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-UX-0022",
+      "title": "Neue Inhalte erhalten einen einmaligen Punkt, der nach Öffnen des relevanten Det"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0090",
+      "statement": "Gold, Riftessenz und aktueller Modus sind auf allen Verwaltungsseiten sichtbar.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 35,
+        "section": null,
+        "locator": "block:1366",
+        "quoteHash": "sha256:46ec0b3b3af5a33cc84dab5b677a74df4a57b981adfdc01f0891631b584d5271",
+        "originalExcerpt": "Gold, Riftessenz und aktueller Modus sind auf allen Verwaltungsseiten sichtbar."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "E2E-UX-023"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-UX-0023",
+      "title": "Gold, Riftessenz und aktueller Modus sind auf allen Verwaltungsseiten sichtbar."
+    },
+    {
+      "id": "REQ-UX-0024",
+      "title": "UI-Labels mit Compact",
+      "statement": "UI-Labels besitzen eine kurze und optional compact Variante; Text darf nicht durch kleinere Schrift passend gemacht werden, solange eine Reflow-/Compact-Lösung möglich ist.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1793",
+        "quoteHash": "sha256:da3ea64f41dcee3571e21755d5684a00162b3e4ed59ab969e841a532f70ff31f",
+        "originalExcerpt": "UI-Labels besitzen eine kurze und optional compact Variante. Kein Agent darf Text durch kleinere Schrift passend machen, solange eine Reflow-/Compact-Lösung möglich ist."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "E2E-UX-024"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0025",
+      "title": "Textlänge Primärbutton DE",
+      "statement": "Texttyp „Primärbutton\": maximal 30 Zeichen DE.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:2bc388a8a2acad4b45b0fed2291ea14bf26a938ec229ee845d60479b695783c0",
+        "originalExcerpt": "Primärbutton: 30 Zeichen DE; 24 EN oder Compact Key."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "E2E-UX-025"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 30
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0026",
+      "title": "Textlänge Primärbutton EN",
+      "statement": "Texttyp „Primärbutton\" EN: maximal 24 Zeichen oder Compact Key.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:2bc388a8a2acad4b45b0fed2291ea14bf26a938ec229ee845d60479b695783c0",
+        "originalExcerpt": "Primärbutton: 30 Zeichen DE; 24 EN oder Compact Key."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "E2E-UX-026"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 24
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0027",
+      "title": "Textlänge Kurztooltip",
+      "statement": "Texttyp „Kurztooltip\": maximal 220 Zeichen inklusive Leerzeichen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:dcf4aff83dc66992e007e4c9414a3c31bbedc69ef4c92234def5f00b0f798665",
+        "originalExcerpt": "Kurztooltip: 220 Zeichen inklusive Leerzeichen."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "E2E-UX-027"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 220
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0028",
+      "title": "Textlänge Pip-Hinweis",
+      "statement": "Texttyp „Pip-Hinweis\": Zwei Sätze, zusammen <= 180 Zeichen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:846a8d88d679ac2fcb1c9e604a6e7143c2d45c4e63ea7945bf127d8ff722b25f",
+        "originalExcerpt": "Pip-Hinweis: Zwei Sätze, zusammen <= 180 Zeichen."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "E2E-UX-028"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 180
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0029",
+      "title": "Textlänge Bossvorschau",
+      "statement": "Texttyp „Bossvorschau\": Vier Kernbullets je <= 120 Zeichen plus Details.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:6a2b17d41a7192c28c0fa6ef7bd548e35c87942b9077537fe22f11cb7d1f6435",
+        "originalExcerpt": "Bossvorschau: Vier Kernbullets je <= 120 Zeichen plus Details."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "E2E-UX-029"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 120
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0030",
+      "title": "Externe Links Systembrowser",
+      "statement": "Externe Datenschutz-, Support- und Lizenzlinks öffnen im Systembrowser; die App lädt deren Inhalte nicht in einen kontrollierten WebView.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1804",
+        "quoteHash": "sha256:e0d042f0532e5f974733007cc18cb8d4a3125c3c062adcf759932a1dfdfd22ba",
+        "originalExcerpt": "Externe Datenschutz-, Support- und Lizenzlinks öffnen im Systembrowser. Die App lädt deren Inhalte nicht in einen kontrollierten WebView."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "E2E-UX-030"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0031",
+      "title": "Edge-to-edge Safe Areas",
+      "statement": "Edge-to-edge: SystemBars + CSS safe areas; keine abgeschnittenen Buttons unter Status-/Navigationsbar.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:babe11348a1bd3b9809e59d35f50bc782b7c1c284de12a606c8ddf25faa243a8",
+        "originalExcerpt": "Edge-to-edge | SystemBars + CSS safe areas; keine abgeschnittenen Buttons unter Status-/Navigationsbar."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "E2E-UX-031"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0032",
+      "title": "Android Orientierung adaptiv",
+      "statement": "Landscape-Präferenz auf Telefon; resizable/adaptive für Tablets, Foldables, Desktop Windows; kein dauerhaftes Opt-out.",
+      "norm": "SHOULD",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:8eaee55b7d17120b8665737879ce8ee0c36cfa8e9b97132e8825b26e270c46a6",
+        "originalExcerpt": "Orientierung | Landscape-Präferenz auf Telefon; resizable/adaptive für Tablets, Foldables, Desktop Windows. Kein dauerhaftes Opt-out."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "E2E-UX-032"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0033",
+      "title": "Android Predictive Back",
+      "statement": "Predictive/gesture back durch Capacitor App Adapter und Navigationsstack; keine App-interne Fake-Systemgeste.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:e6cbc34f722c722fe43ca8623d43aa54f047e36c6ffa8831e5fbe29b17f9512e",
+        "originalExcerpt": "Back | Predictive/gesture back durch Capacitor App Adapter und Navigationsstack; keine App-interne Fake-Systemgeste."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "E2E-UX-033"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0034",
+      "title": "Native Splash Vertrag",
+      "statement": "Native Splash verwendet bg-void, zentriertes Siegel und optional sehr subtile statische Glut; langer Logo-Film und „Loading 100%“ ohne echten Fortschritt sind verboten.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 64,
+        "section": null,
+        "locator": "block:1847",
+        "quoteHash": "sha256:9b4771168cefad6137867e7689acb9a299eeed7deb95aba7431e8e75d3be386a",
+        "originalExcerpt": "Native Splash verwendet bg-void, zentriertes Siegel und optional sehr subtile statische Glut. Kein langer Logo-Film und kein „Loading 100%“ ohne echten Fortschritt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "E2E-UX-034"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0035",
+      "title": "Vertikaler Slice Aschenkönig",
+      "statement": "Der erste spielbare Qualitätsbeweis ist der vertikale Slice mit dem vollständig definierten Aschenkönig und finalnaher Vorschau, Lesbarkeit, Audio- und Savequalität.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 71,
+        "section": null,
+        "locator": "block:1948",
+        "quoteHash": "sha256:b8e0dc12992824315575a7cc818bccc4b325b372886ae79440b860ae353829a0",
+        "originalExcerpt": "Der erste spielbare Qualitätsbeweis ist der vertikale Slice mit dem vollständig definierten Aschenkönig und finalnaher Vorschau, Lesbarkeit, Audio- und Savequalität."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-035"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0036",
+      "title": "4 Formation-Presets",
+      "statement": "Es gibt 4 Formation-Presets.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 73,
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:e556608f4b849943b12497e52a4a6b6704019bc7759be7e27a0ae7551bc5081a",
+        "originalExcerpt": "formationPresetCount: 4"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "E2E-UX-036"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0037",
+      "title": "Screen-Referenzen vollständig",
+      "statement": "Jeder Screen verweist auf existierende Route, Localization Keys, Icons und mindestens einen Happy-Path-E2E-Test.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 75,
+        "section": null,
+        "locator": "block:2026",
+        "quoteHash": "sha256:3c16acd8d449e1fcf922bb2b535d40b43805e5b65329d8583295aa91f9af6087",
+        "originalExcerpt": "Jeder Screen verweist auf existierende Route, Localization Keys, Icons und mindestens einen Happy-Path-E2E-Test."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "E2E-UX-037"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0038",
+      "title": "Aktionen nur im ready",
+      "statement": "Nur ready erlaubt primäre irreversible Aktionen; Loading- und Fehlerzustände deaktivieren Commitbuttons und bewahren Back/Recovery.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 78,
+        "section": null,
+        "locator": "block:2070",
+        "quoteHash": "sha256:8987d815ebaea6cf811fa21a8e6b1b2f3e7e1faaa1a4ac4b422b8c30855f64b9",
+        "originalExcerpt": "Nur ready erlaubt primäre irreversible Aktionen. Loading/Fehlerzustände deaktivieren Commitbuttons und bewahren Back/Recovery."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "E2E-UX-038"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0039",
+      "title": "Routeparameter validiert",
+      "statement": "Jeder Routeparameter wird validiert; eine ungültige ID führt zu definierter Rückroute plus lokalem Diagnoseeintrag, niemals zu leerem Detailbildschirm.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 78,
+        "section": null,
+        "locator": "block:2071",
+        "quoteHash": "sha256:9ff6468c932a811e1b1d8ce6978e80a345eb29cdd0d9236e1686de1c1ad51a15",
+        "originalExcerpt": "Jeder Routeparameter wird validiert. Ungültige ID führt zu definierter Rückroute plus lokalem Diagnoseeintrag, niemals zu leerem Detailbildschirm."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "E2E-UX-039"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0040",
+      "title": "ReturnRoute max 8",
+      "statement": "ReturnRoute ist maximal 8 Ebenen tief; bei Überschreitung wird deterministisch auf den nächstgelegenen Hauptbereich reduziert.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 78,
+        "section": null,
+        "locator": "block:2072",
+        "quoteHash": "sha256:9cda275b4f576d605f9a3045026689ef0a0fd1a63f790eb2e36d49a74184ef8c",
+        "originalExcerpt": "ReturnRoute ist maximal acht Ebenen tief. Bei Überschreitung wird deterministisch auf den nächstgelegenen Hauptbereich reduziert."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "E2E-UX-040"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "level",
+          "max": 8
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0041",
+      "title": "AppNavigator kontrolliert History",
+      "statement": "Browser-History ist innerhalb Capacitor nicht Gameplay-SSOT; der AppNavigator spiegelt Navigation, Android-Back und Deep Links kontrolliert.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 78,
+        "section": null,
+        "locator": "block:2073",
+        "quoteHash": "sha256:bc9a28adba611c8b845a81597cec285261fd725228a47f7eb05fa2114b74c9ce",
+        "originalExcerpt": "Browser-History ist innerhalb Capacitor nicht Gameplay-SSOT. Der AppNavigator spiegelt Navigation, Android-Back und Deep Links kontrolliert."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "E2E-UX-041"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0042",
+      "title": "Maximal ein Modal",
+      "statement": "Es gibt maximal ein blockierendes Modal; Tooltips/Toasts zählen nicht, dürfen aber bei Modalöffnung schließen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 78,
+        "section": null,
+        "locator": "block:2078",
+        "quoteHash": "sha256:430d00f208cc360bf9bf399e694a452b7c5ba6deb69e95d11a33c05dafca4c6a",
+        "originalExcerpt": "Maximal ein blockierendes Modal. Tooltips/Toasts zählen nicht, dürfen aber bei Modalöffnung schließen."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "E2E-UX-042"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0043",
+      "title": "Konkrete Verben für Irreversibel",
+      "statement": "Irreversible Aktionen nennen Objekt, Folge und Nicht-Rückgängigkeit; der Primärbutton verwendet konkrete Verben, nicht „OK“.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 78,
+        "section": null,
+        "locator": "block:2079",
+        "quoteHash": "sha256:beb517ba4116805827d92fd491d6ce7afc5bd4a9a57f3becd12b549fe534da32",
+        "originalExcerpt": "Irreversible Aktionen nennen Objekt, Folge und Nicht-Rückgängigkeit. Primärbutton verwendet konkrete Verben, nicht „OK“."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "E2E-UX-043"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0044",
+      "title": "Back-Reihenfolge verbindlich",
+      "statement": "Android-Back/Escape schließt Tooltip, dann nichtkritisches Overlay, dann Modal (wenn sicher), dann Screen; ein laufender Commit ist nicht durch Back abbrechbar.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 78,
+        "section": null,
+        "locator": "block:2081",
+        "quoteHash": "sha256:df3f9ce5a6074d52ddb6ada7e150e7afe5785a5b37fedf70935f231f72cc831d",
+        "originalExcerpt": "Android-Back/Escape schließt Tooltip -> nichtkritisches Overlay -> Modal (wenn sicher) -> Screen. Ein laufender Commit ist nicht durch Back abbrechbar."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "E2E-UX-044"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0045",
+      "title": "Pro Screen existiert genau eine primäre Handlung; Sekundäraktionen sind visuell leiser und gefährliche Aktionen stehen nie direkt neben der primären Aktion ohne Abstand oder Bestätigung.",
+      "statement": "Pro Screen existiert genau eine primäre Handlung; Sekundäraktionen sind visuell leiser und gefährliche Aktionen stehen nie direkt neben der primären Aktion ohne Abstand oder Bestätigung.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 79,
+        "section": null,
+        "locator": "block:2089",
+        "quoteHash": "sha256:be1f5f1a94ccb9cb05415666107aed5684060a91ec03c59468141e989c532a51",
+        "originalExcerpt": "Pro Screen existiert genau eine primäre Handlung. Sekundäraktionen sind visuell leiser; gefährliche Aktionen stehen nie direkt neben primär ohne Abstand/Bestätigung."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-045"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "primaryActionsPerScreen",
+          "value": 1
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0046",
+      "title": "Ein Screen verwendet maximal drei Paneele gleichzeitig auf Telefon und vier auf Tablet; zusätzliche Details liegen in Tabs, Drawer oder Vollbilddetail.",
+      "statement": "Ein Screen verwendet maximal drei Paneele gleichzeitig auf Telefon und vier auf Tablet; zusätzliche Details liegen in Tabs, Drawer oder Vollbilddetail.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 79,
+        "section": null,
+        "locator": "block:2090",
+        "quoteHash": "sha256:3f47fd55dd345b24d50b78ac266b0a0fb52a04c4072359a650009f7eb4a1a886",
+        "originalExcerpt": "Ein Screen verwendet maximal drei Paneele gleichzeitig auf Telefon und vier auf Tablet. Zusätzliche Details liegen in Tabs, Drawer oder Vollbilddetail."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-046"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "panelsPhoneConcurrent",
+          "value": 3
+        },
+        {
+          "kind": "max",
+          "name": "panelsTabletConcurrent",
+          "value": 4
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0047",
+      "title": "Farbbedeutung folgt festen Kategorien: Gold für Fortschritt/Primäraktion, Violett für Auswahl/Rift, Cyan für Information/Magie, Rot ausschließlich für Gefahr/Verlust; Farbe wird immer durch Form, Icon oder Text ergänzt.",
+      "statement": "Farbbedeutung folgt festen Kategorien: Gold für Fortschritt/Primäraktion, Violett für Auswahl/Rift, Cyan für Information/Magie, Rot ausschließlich für Gefahr/Verlust; Farbe wird immer durch Form, Icon oder Text ergänzt.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 79,
+        "section": null,
+        "locator": "block:2091",
+        "quoteHash": "sha256:85e543909b808cb7e355b2591bc0812fc03f278bed8e222a8546293cc38987ae",
+        "originalExcerpt": "Gold markiert Fortschritt/Primäraktion, Violett Auswahl/Rift, Cyan Information/Magie, Rot ausschließlich Gefahr/Verlust. Farbe wird immer durch Form/Icon/Text ergänzt."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-047"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0048",
+      "title": "Dekoration darf keine Hitbox imitieren, keinen Textkontrast verschlechtern und keine strategisch relevante Silhouette verdecken.",
+      "statement": "Dekoration darf keine Hitbox imitieren, keinen Textkontrast verschlechtern und keine strategisch relevante Silhouette verdecken.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 79,
+        "section": null,
+        "locator": "block:2092",
+        "quoteHash": "sha256:17721a1507713195aa5eba6eed689317360c1f56e3ed76bedb9906fede3a649f",
+        "originalExcerpt": "Dekoration darf keine Hitbox imitieren, keinen Textkontrast verschlechtern und keine strategisch relevante Silhouette verdecken."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0049",
+      "title": "Buttons zeigen den Pressed-Zustand innerhalb von 80 ms; während Loading wird das Label nicht vollständig ersetzt, sondern das Verb beibehalten und ein Indikator ergänzt.",
+      "statement": "Buttons zeigen den Pressed-Zustand innerhalb von 80 ms; während Loading wird das Label nicht vollständig ersetzt, sondern das Verb beibehalten und ein Indikator ergänzt.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 79,
+        "section": null,
+        "locator": "block:2096",
+        "quoteHash": "sha256:e5151e57a5cb522110c875e3c00e0997033ccfaf587a23bea8fd8028ea4f57be",
+        "originalExcerpt": "Buttons zeigen Pressed innerhalb 80 ms; Loading ersetzt Label nicht vollständig, sondern behält Verb und ergänzt Indikator."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-049"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "buttonPressedMs",
+          "value": 80,
+          "unit": "ms"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0050",
+      "title": "GameCard-Auswahl ist nicht identisch mit Aktivierung: der erste Tap selektiert oder zeigt Details, ein expliziter Button oder ein zweiter klarer Schritt bestätigt.",
+      "statement": "GameCard-Auswahl ist nicht identisch mit Aktivierung: der erste Tap selektiert oder zeigt Details, ein expliziter Button oder ein zweiter klarer Schritt bestätigt.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 79,
+        "section": null,
+        "locator": "block:2097",
+        "quoteHash": "sha256:4cbf6e0b7e755333c752352a744d829325d1cfaf07275db79635309444bd405c",
+        "originalExcerpt": "GameCard-Auswahl ist nicht identisch mit Aktivierung: erster Tap selektiert/zeigt Details, expliziter Button oder zweiter klarer Schritt bestätigt."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-050"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0051",
+      "title": "Slider sind ausschließlich für kontinuierliche Audio- oder Textskala erlaubt; Gameplaywerte, Qualität und Geschwindigkeit nutzen diskrete Segmented Controls.",
+      "statement": "Slider sind ausschließlich für kontinuierliche Audio- oder Textskala erlaubt; Gameplaywerte, Qualität und Geschwindigkeit nutzen diskrete Segmented Controls.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 79,
+        "section": null,
+        "locator": "block:2098",
+        "quoteHash": "sha256:a8e1af4381c15fbf7c17c55932e37de019e7d2edcc2495c134e618c392568420",
+        "originalExcerpt": "Slider sind nur für kontinuierliche Audio-/Textskala erlaubt. Gameplaywerte, Qualität und Geschwindigkeit nutzen diskrete Segmented Controls."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-051"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0052",
+      "title": "Scrollbars sind auf Desktop sichtbar gestylt und auf Touch systemnah; horizontales Scrollen ist für Fließtext nicht erlaubt.",
+      "statement": "Scrollbars sind auf Desktop sichtbar gestylt und auf Touch systemnah; horizontales Scrollen ist für Fließtext nicht erlaubt.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 79,
+        "section": null,
+        "locator": "block:2099",
+        "quoteHash": "sha256:f8b810edef3516287866a836d488227673ba4087dca6670ad3a8765366b3acdc",
+        "originalExcerpt": "Scrollbars sind auf Desktop sichtbar gestylt; auf Touch systemnah. Kein horizontales Scrollen für Fließtext."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-052"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0053",
+      "title": "Tooltips öffnen bei Fokus oder Tap und schließen über explizites X, Back/Escape oder Tap außerhalb; kritische Information steht zusätzlich im Detailscreen.",
+      "statement": "Tooltips öffnen bei Fokus oder Tap und schließen über explizites X, Back/Escape oder Tap außerhalb; kritische Information steht zusätzlich im Detailscreen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 79,
+        "section": null,
+        "locator": "block:2100",
+        "quoteHash": "sha256:4080cdd08b829c952ebc42227becbcdd97481ac43bbaf76ebd7d2a3e94e901c0",
+        "originalExcerpt": "Tooltips öffnen bei Fokus/Tap, schließen über explizites X, Back/Escape oder Tap außerhalb. Kritische Information steht zusätzlich im Detailscreen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-053"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0054",
+      "title": "Jeder Golden State existiert in DE, EN und Pseudo sowie auf Telefon Compact, Telefon Standard und Tablet; kritische Screens zusätzlich bei 200% Text und Reduce Motion.",
+      "statement": "Jeder Golden State existiert in DE, EN und Pseudo sowie auf Telefon Compact, Telefon Standard und Tablet; kritische Screens zusätzlich bei 200% Text und Reduce Motion.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 79,
+        "section": null,
+        "locator": "block:2104",
+        "quoteHash": "sha256:b6282da5a8b342381b9c6ac40595e77fadbf75a38c8b5380e79c82e254c37aec",
+        "originalExcerpt": "Jeder Golden State existiert in DE, EN und Pseudo; Telefon Compact, Telefon Standard und Tablet. Kritische Screens zusätzlich bei 200% Text und Reduce Motion."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-054"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0055",
+      "title": "Trefferfeedback: maximal 80 ms Hitstop für Boss- oder Level3-Momente, 20 bis 40 ms schwerer Treffer, ohne Simulationspause; der Renderer kompensiert.",
+      "statement": "Trefferfeedback: maximal 80 ms Hitstop für Boss- oder Level3-Momente, 20 bis 40 ms schwerer Treffer, ohne Simulationspause; der Renderer kompensiert.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 81,
+        "section": null,
+        "locator": "block:2136",
+        "quoteHash": "sha256:75852053d7bcaa76a40a04831d33b9dac16ad7456b241677a2cb647d1bf66a87",
+        "originalExcerpt": "Trefferfeedback: maximal 80 ms Hitstop für Boss-/Level3-Momente, 20-40 ms schwerer Treffer, keine Simulationspause; Renderer kompensiert."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-055"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "hitstopBossMs",
+          "value": 80,
+          "unit": "ms"
+        },
+        {
+          "kind": "range",
+          "name": "hitstopHeavyMs",
+          "min": 20,
+          "max": 40,
+          "unit": "ms"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0056",
+      "title": "Kameraschütteln maximal 10 px in 180 ms normal und 18 px in 260 ms für Boss; Nutzerstärke in Stufen 0/25/50/75/100 %, Default 50 %, Reduce Motion 0 %.",
+      "statement": "Kameraschütteln maximal 10 px in 180 ms normal und 18 px in 260 ms für Boss; Nutzerstärke in Stufen 0/25/50/75/100 %, Default 50 %, Reduce Motion 0 %.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 81,
+        "section": null,
+        "locator": "block:2137",
+        "quoteHash": "sha256:b3010645be3626aab22629cb2d869e115e7e19fee23dee44baa1baabf97bcd88",
+        "originalExcerpt": "Kameraschütteln maximal 10 px/180 ms normal, 18 px/260 ms Boss; Nutzerstärke 0/25/50/75/100%, Default 50%, Reduce Motion 0%."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-056"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "camShakeNormalPx",
+          "value": 10,
+          "unit": "px/180ms"
+        },
+        {
+          "kind": "max",
+          "name": "camShakeBossPx",
+          "value": 18,
+          "unit": "px/260ms"
+        },
+        {
+          "kind": "enum",
+          "name": "cameraShakePercent",
+          "values": [
+            0,
+            25,
+            50,
+            75,
+            100
+          ]
+        },
+        {
+          "kind": "pct",
+          "name": "cameraShakeDefaultPercent",
+          "value": 50
+        },
+        {
+          "kind": "pct",
+          "name": "cameraShakeReduceMotionPercent",
+          "value": 0
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0057",
+      "title": "Partikelobergrenzen pro Qualitätsstufe werden gemäß Kapitel 84 gemessen; bei Budgetüberschreitung werden kosmetische Partikel verworfen, niemals Telegraphie.",
+      "statement": "Partikelobergrenzen pro Qualitätsstufe werden gemäß Kapitel 84 gemessen; bei Budgetüberschreitung werden kosmetische Partikel verworfen, niemals Telegraphie.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 81,
+        "section": null,
+        "locator": "block:2138",
+        "quoteHash": "sha256:751942ac61ef0bfbe88ad95e816fed3375bea9f6bdba4c3098190a69833818cf",
+        "originalExcerpt": "Partikelobergrenzen pro Qualitätsstufe werden in Kapitel 84 gemessen. Bei Budgetüberschreitung werden kosmetische Partikel verworfen, nie Telegraphie."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-057"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0058",
+      "title": "Music Masterziel ist -16 LUFS integrated mit True Peak <= -1 dBTP; SFX werden nach Wahrnehmungsgruppe normalisiert und kein Einzelclip clippt.",
+      "statement": "Music Masterziel ist -16 LUFS integrated mit True Peak <= -1 dBTP; SFX werden nach Wahrnehmungsgruppe normalisiert und kein Einzelclip clippt.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 82,
+        "section": null,
+        "locator": "block:2150",
+        "quoteHash": "sha256:c0aa79553ee29ceb05548e582ce4414de2901b7e45e14b1aef7ba634b0ac386f",
+        "originalExcerpt": "Music Masterziel -16 LUFS integrated, True Peak <= -1 dBTP. SFX werden nach Wahrnehmungsgruppe normalisiert; kein Einzelclip clippt."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-058"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "musicLufsIntegrated",
+          "value": -16,
+          "unit": "LUFS"
+        },
+        {
+          "kind": "max",
+          "name": "musicTruePeakDbtp",
+          "value": -1,
+          "unit": "dBTP"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0059",
+      "title": "Höchstens 24 gleichzeitige SFX-Voices in High, 16 in Medium und 10 in Low; dieselbe Cue-ID besitzt eine Retrigger-Sperre von 60 ms, sofern sie nicht ausdrücklich als Burst markiert ist.",
+      "statement": "Höchstens 24 gleichzeitige SFX-Voices in High, 16 in Medium und 10 in Low; dieselbe Cue-ID besitzt eine Retrigger-Sperre von 60 ms, sofern sie nicht ausdrücklich als Burst markiert ist.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 82,
+        "section": null,
+        "locator": "block:2151",
+        "quoteHash": "sha256:62e2138369e74c79f8e17e53f6933907e4a62e77a3ffcbd6a43e603d654b6ec4",
+        "originalExcerpt": "Maximal 24 gleichzeitige SFX-Voices High, 16 Medium, 10 Low. Gleiche Cue-ID besitzt 60 ms Retrigger-Sperre, sofern nicht ausdrücklich Burst."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-059"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "sfxVoicesHigh",
+          "value": 24
+        },
+        {
+          "kind": "max",
+          "name": "sfxVoicesMedium",
+          "value": 16
+        },
+        {
+          "kind": "max",
+          "name": "sfxVoicesLow",
+          "value": 10
+        },
+        {
+          "kind": "min",
+          "name": "retriggerLockoutMs",
+          "value": 60,
+          "unit": "ms"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0060",
+      "title": "Bei Bosswarnung oder Sprache duckt Music um 3 dB und Ambient um 5 dB für die Cue-Dauer plus 200 ms; SFX bleiben erhalten, sofern nicht eine Warnpriorität Sidechain definiert.",
+      "statement": "Bei Bosswarnung oder Sprache duckt Music um 3 dB und Ambient um 5 dB für die Cue-Dauer plus 200 ms; SFX bleiben erhalten, sofern nicht eine Warnpriorität Sidechain definiert.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 82,
+        "section": null,
+        "locator": "block:2152",
+        "quoteHash": "sha256:d28d24ea09200930059d905673b535247fe13be247bac2d3b0b2f42c1f815fac",
+        "originalExcerpt": "Bei Bosswarnung oder Sprache duckt Music um 3 dB und Ambient um 5 dB für Cue-Dauer +200 ms. SFX bleiben, außer Warnpriorität definiert Sidechain."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-060"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "musicDuckDb",
+          "value": 3,
+          "unit": "dB"
+        },
+        {
+          "kind": "min",
+          "name": "ambientDuckDb",
+          "value": 5,
+          "unit": "dB"
+        },
+        {
+          "kind": "min",
+          "name": "duckTailMs",
+          "value": 200,
+          "unit": "ms"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0061",
+      "title": "Kopfhörerabzug pausiert einen laufenden Kampf automatisch und zeigt einen Hinweis; ein Wechsel der Bluetooth-Routen darf keinen doppelten Cue auslösen.",
+      "statement": "Kopfhörerabzug pausiert einen laufenden Kampf automatisch und zeigt einen Hinweis; ein Wechsel der Bluetooth-Routen darf keinen doppelten Cue auslösen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 82,
+        "section": null,
+        "locator": "block:2163",
+        "quoteHash": "sha256:d2474bf5e78ad3e9ec767b0e5868dbe8287326d18266247a15c639a461963aa1",
+        "originalExcerpt": "Kopfhörerabzug pausiert laufenden Kampf automatisch und zeigt Hinweis. Bluetooth-Routenwechsel darf keinen doppelten Cue auslösen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-061"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0062",
+      "title": "Im App-Background werden SFX und Voice gestoppt und die Musikposition pausiert; die Simulation ist bereits pausiert oder gesnapshottet.",
+      "statement": "Im App-Background werden SFX und Voice gestoppt und die Musikposition pausiert; die Simulation ist bereits pausiert oder gesnapshottet.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 82,
+        "section": null,
+        "locator": "block:2164",
+        "quoteHash": "sha256:0ca6a7f71a9fe6ea3094d1064196a0414393040ffeb2a828b7399e96aae1383d",
+        "originalExcerpt": "App Background stoppt SFX/Voice und pausiert Musikposition. Simulation ist bereits pausiert/snapshotted."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-062"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0063",
+      "title": "Jeder Screen implementiert sechs Zustände: loading, ready, empty (nur wenn sachlich möglich), blocked, recoverableError, fatalError; jeder Screen besitzt stabile screenId, eindeutigen primären Zweck, festgelegten Back-Target und mindestens einen automatisierten Screenshot-Test pro unterstützter Layoutklasse.",
+      "statement": "Jeder Screen implementiert sechs gemeinsame Zustände: loading, ready, empty (nur wenn sachlich möglich), blocked, recoverableError und fatalError. Jeder Screen besitzt einen stabilen screenId, einen eindeutigen primären Zweck, einen festgelegten Back-Target und mindestens einen automatisierten Screenshot-Test pro unterstützter Layoutklasse.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 54,
+        "section": null,
+        "locator": "block:1680",
+        "quoteHash": "sha256:fe9cfe49fba12a48a846b305745abc86a319ea99bbab010f02cb4d81c722d55e",
+        "originalExcerpt": "Jeder Screen implementiert sechs gemeinsame Zustände: loading, ready, empty (nur wenn sachlich möglich), blocked, recoverableError und fatalError. Jeder Screen besitzt einen stabilen screenId, einen eindeutigen primären Zweck, einen festgelegten Back-Target und mindestens einen automatisierten Screenshot-Test pro unterstützter Layoutklasse."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-063"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0064",
+      "title": "Primärer Flow ist mit höchstens drei Navigationsebenen erreichbar; keine Pflichtfunktion nur über Long-Press oder versteckte Geste.",
+      "statement": "Jeder primäre Flow ist mit höchstens drei Navigationsebenen erreichbar; keine Pflichtfunktion nur über Long-Press oder versteckte Geste.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 54,
+        "section": null,
+        "locator": "block:1685",
+        "quoteHash": "sha256:5ca47d0e5ea87c425ae33e6f523051cf371725dab73f7b46aff3e3afacfa8dbe",
+        "originalExcerpt": "Jeder primäre Flow ist mit höchstens drei Navigationsebenen erreichbar; keine Pflichtfunktion nur über Long-Press oder versteckte Geste."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-064"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "navigationDepth",
+          "value": 3
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0065",
+      "title": "Jeder Kauf zeigt Kosten, neuen Bestand und exakte Wirkung vor Bestätigung; Buttons während Commit atomar gesperrt; Doppeltap erzeugt keine Doppeltransaktion.",
+      "statement": "Jeder Kauf zeigt Kosten, neuen Bestand und exakte Wirkung vor Bestätigung. Buttons werden während Commit atomar gesperrt, Doppeltap erzeugt keine Doppeltransaktion.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 54,
+        "section": null,
+        "locator": "block:1686",
+        "quoteHash": "sha256:820045e7dfe6453e1a153475616d91a876c82c5816007a03eb3b7960d87ae459",
+        "originalExcerpt": "Jeder Kauf zeigt Kosten, neuen Bestand und exakte Wirkung vor Bestätigung. Buttons werden während Commit atomar gesperrt, Doppeltap erzeugt keine Doppeltransaktion."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-065"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0066",
+      "title": "Jede Liste erhält deterministische Standardsortierung, Filter-Reset und leeren Zustand; Scrollposition bleibt beim Zurückkehren erhalten.",
+      "statement": "Jede Liste erhält deterministische Standardsortierung, Filter-Reset und leeren Zustand. Scrollposition bleibt beim Zurückkehren erhalten.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 54,
+        "section": null,
+        "locator": "block:1687",
+        "quoteHash": "sha256:cdf2e4f9e463e029647f27684ee533d1b208020c96151a1064315223edf22d4f",
+        "originalExcerpt": "Jede Liste erhält deterministische Standardsortierung, Filter-Reset und leeren Zustand. Scrollposition bleibt beim Zurückkehren erhalten."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-066"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0067",
+      "title": "Kein Screen verliert Zustand bei App-Wechsel, Sperren/Entsperren, Fensterresize oder OS-Schriftänderung.",
+      "statement": "Kein Screen verliert Zustand bei App-Wechsel, Sperren/Entsperren, Fensterresize oder OS-Schriftänderung.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 54,
+        "section": null,
+        "locator": "block:1688",
+        "quoteHash": "sha256:33b85aabda608cc06ec069f055dd97ecbf486100f5093fbbdd5c6a02fd1c4755",
+        "originalExcerpt": "Kein Screen verliert Zustand bei App-Wechsel, Sperren/Entsperren, Fensterresize oder OS-Schriftänderung."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-067"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0068",
+      "title": "Kampfvorbereitung zeigt jede strategisch relevante Information ohne Öffnen eines externen Dokuments; Detailtexte dürfen in Tooltips liegen.",
+      "statement": "Die Kampfvorbereitung zeigt jede strategisch relevante Information ohne Öffnen eines externen Dokuments; Detailtexte dürfen in Tooltips liegen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 54,
+        "section": null,
+        "locator": "block:1689",
+        "quoteHash": "sha256:4f82ea1c5e4a3ba6d9c2b173fb373785d8485f7328cddfe97491ecfd0ec3a850",
+        "originalExcerpt": "Die Kampfvorbereitung zeigt jede strategisch relevante Information ohne Öffnen eines externen Dokuments; Detailtexte dürfen in Tooltips liegen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-068"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0069",
+      "title": "Maximale Zeilenlänge 75 Zeichen; auf Telefon bevorzugt 45-60; All Caps nur für kurze Labels bis 18 Zeichen.",
+      "statement": "Maximale Zeilenlänge 75 Zeichen; auf Telefon bevorzugt 45-60. All Caps nur für kurze Labels bis 18 Zeichen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 55,
+        "section": null,
+        "locator": "block:1703",
+        "quoteHash": "sha256:a319b715bb7c8ed45aa6d21df6243c4a6db7d6a6cbbed0af041677cef37c28f0",
+        "originalExcerpt": "Maximale Zeilenlänge 75 Zeichen; auf Telefon bevorzugt 45-60. All Caps nur für kurze Labels bis 18 Zeichen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-069"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "maxLineLengthChars",
+          "value": 75
+        },
+        {
+          "kind": "range",
+          "name": "phoneLineLengthChars",
+          "min": 45,
+          "max": 60
+        },
+        {
+          "kind": "max",
+          "name": "allCapsLabelChars",
+          "value": 18
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0070",
+      "title": "Displayfont darf niemals einzige Schrift für längere deutsche oder englische Texte sein.",
+      "statement": "Displayfont darf niemals einzige Schrift für längere deutsche oder englische Texte sein.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 55,
+        "section": null,
+        "locator": "block:1704",
+        "quoteHash": "sha256:76cdf178a1b482f9b78d3f956367982df557cdfdc68b96a683add44624ae4a61",
+        "originalExcerpt": "Displayfont darf niemals einzige Schrift für längere deutsche oder englische Texte sein."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-070"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0071",
+      "title": "Logische Designfläche für Kampfszenen ist 1920x1080, proportional skaliert; HUD nutzt CSS-Layout außerhalb der Pixi-Koordinaten.",
+      "statement": "Die logische Designfläche für Kampfszenen ist 1920x1080. Sie wird proportional skaliert; HUD nutzt CSS-Layout außerhalb der Pixi-Koordinaten.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 55,
+        "section": null,
+        "locator": "block:1706",
+        "quoteHash": "sha256:f279bc1beb2e2c7cf3d8fea50c2b5d9f8f0ccbbaa05fe31a485e8ba59d8f56bd",
+        "originalExcerpt": "Die logische Designfläche für Kampfszenen ist 1920x1080. Sie wird proportional skaliert; HUD nutzt CSS-Layout außerhalb der Pixi-Koordinaten."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-071"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "designCanvasWidth",
+          "value": 1920,
+          "unit": "px"
+        },
+        {
+          "kind": "exact",
+          "name": "designCanvasHeight",
+          "value": 1080,
+          "unit": "px"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0072",
+      "title": "Unterstützte Seitenverhältnisse 4:3 bis 21:9 ohne abgeschnittene Interaktion; zusätzliche Breite zeigt Dekoration, nie neue spielrelevante Information.",
+      "statement": "Unterstützte Seitenverhältnisse 4:3 bis 21:9 ohne abgeschnittene Interaktion. Zusätzliche Breite zeigt Dekoration, nie neue spielrelevante Information.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 55,
+        "section": null,
+        "locator": "block:1707",
+        "quoteHash": "sha256:6b079597553a47fe346ddf6d6ec9c8374a0fae3a14aec9e8140b1c0449554ccc",
+        "originalExcerpt": "Unterstützte Seitenverhältnisse 4:3 bis 21:9 ohne abgeschnittene Interaktion. Zusätzliche Breite zeigt Dekoration, nie neue spielrelevante Information."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-072"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "minAspectRatio",
+          "value": "4:3"
+        },
+        {
+          "kind": "exact",
+          "name": "maxAspectRatio",
+          "value": "21:9"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0073",
+      "title": "Safe-Area-Inset wird auf allen vier Seiten über env(safe-area-inset-*) plus SystemBars-Adapter angewandt; primäre Buttons halten zusätzlich 8 px Abstand.",
+      "statement": "Safe-Area-Inset wird auf allen vier Seiten über env(safe-area-inset-*) plus SystemBars-Adapter angewandt. Primäre Buttons halten zusätzlich 8 px Abstand.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 55,
+        "section": null,
+        "locator": "block:1708",
+        "quoteHash": "sha256:e41683ff00d3b7e9f7abb9f9e5f92acf42abbd619b7579421472d984e8c08c41",
+        "originalExcerpt": "Safe-Area-Inset wird auf allen vier Seiten über env(safe-area-inset-*) plus SystemBars-Adapter angewandt. Primäre Buttons halten zusätzlich 8 px Abstand."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-073"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "primaryButtonSafeGapPx",
+          "value": 8
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0074",
+      "title": "Mindesthitbox 48x48 CSS px; Hauptaktionen 56 px hoch; Abstand zwischen gefährlichen und primären Aktionen mindestens 12 px.",
+      "statement": "Mindesthitbox 48x48 CSS px; Hauptaktionen 56 px Höhe. Abstand zwischen gefährlichen und primären Aktionen mindestens 12 px.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 56,
+        "section": null,
+        "locator": "block:1724",
+        "quoteHash": "sha256:84787f85a8cfbdd2c9d57a1ce17407c0e56c1351d5afa34dd7f6e26ad35bca42",
+        "originalExcerpt": "Mindesthitbox 48x48 CSS px; Hauptaktionen 56 px Höhe. Abstand zwischen gefährlichen und primären Aktionen mindestens 12 px."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-074"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "minHitboxCssPx",
+          "value": 48
+        },
+        {
+          "kind": "min",
+          "name": "primaryActionHeightCssPx",
+          "value": 56
+        },
+        {
+          "kind": "min",
+          "name": "dangerousPrimaryGapCssPx",
+          "value": 12
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0075",
+      "title": "Drag-and-drop ist immer durch Tap-Auswählen/Tap-Platzieren ersetzbar; während Drag zeigt jedes Feld gültig/ungültig plus Grund.",
+      "statement": "Drag-and-drop ist immer durch Tap-Auswählen/Tap-Platzieren ersetzbar. Während Drag zeigt jedes Feld gültig/ungültig plus Grund.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 56,
+        "section": null,
+        "locator": "block:1725",
+        "quoteHash": "sha256:d0e465dca3cbfdb47d2a4176d65aa85703c6f39c29f4ffd46e2bff09ffd86436",
+        "originalExcerpt": "Drag-and-drop ist immer durch Tap-Auswählen/Tap-Platzieren ersetzbar. Während Drag zeigt jedes Feld gültig/ungültig plus Grund."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-075"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0076",
+      "title": "Long-Press öffnet nur Zusatzinfo; kein Fortschritt, Kauf oder Kampfstart erfordert Long-Press.",
+      "statement": "Long-Press darf nur Zusatzinfo öffnen. Kein Fortschritt, Kauf oder Kampfstart erfordert Long-Press.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 56,
+        "section": null,
+        "locator": "block:1726",
+        "quoteHash": "sha256:dc04092c20cecee57b288a1c0a5e977339f9e9c3a71ebb1a7f0782cbd080ebeb",
+        "originalExcerpt": "Long-Press darf nur Zusatzinfo öffnen. Kein Fortschritt, Kauf oder Kampfstart erfordert Long-Press."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-076"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0077",
+      "title": "Doppeltap hat keine Sonderfunktion; Pinch-Zoom nicht benötigt; Browserzoom wird nicht absichtlich blockiert; App bietet eigene Textskalierung.",
+      "statement": "Doppeltap besitzt keine Sonderfunktion. Pinch-Zoom wird nicht benötigt; Browserzoom wird nicht absichtlich blockiert, die App bietet eigene Textskalierung.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 56,
+        "section": null,
+        "locator": "block:1727",
+        "quoteHash": "sha256:36969b113f2bdb503dae8a9b527f30b2885bc7fbf3bcf09febd6b406dcbad23d",
+        "originalExcerpt": "Doppeltap besitzt keine Sonderfunktion. Pinch-Zoom wird nicht benötigt; Browserzoom wird nicht absichtlich blockiert, die App bietet eigene Textskalierung."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-077"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0078",
+      "title": "Hover verbessert Desktop, ist aber keine Informationsvoraussetzung.",
+      "statement": "Hover verbessert Desktop, ist aber keine Informationsvoraussetzung.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 56,
+        "section": null,
+        "locator": "block:1728",
+        "quoteHash": "sha256:dd150b6d823f057274f09f28d618d58d9feaeffedb1fd1af5547bbea5b54c43b",
+        "originalExcerpt": "Hover verbessert Desktop, ist aber keine Informationsvoraussetzung."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-078"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0079",
+      "title": "Alle Mappings werden in S63 angezeigt; freie Neukonfiguration ist V1-Nichtziel; Reset Defaults ist vorhanden.",
+      "statement": "Alle Mappings werden in S63 angezeigt; freie Neukonfiguration ist V1-Nichtziel, Reset Defaults ist vorhanden.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 56,
+        "section": null,
+        "locator": "block:1732",
+        "quoteHash": "sha256:40a650ad90ff60fe6a887b91ba0653c4d22470383cc524cc2bf0433ae7e42aac",
+        "originalExcerpt": "Alle Mappings werden in S63 angezeigt; freie Neukonfiguration ist V1-Nichtziel, Reset Defaults ist vorhanden."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-079"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0080",
+      "title": "Formationsscreen zeigt eigene 3x3-Formation und vollständige Gegnerformation als spiegelnde Vorschau.",
+      "statement": "Der Formationsscreen zeigt links/oben die eigene 3x3-Formation und rechts/unten die vollständige Gegnerformation als spiegelnde Vorschau.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.1 Formationsscreen",
+        "locator": "block:1376",
+        "quoteHash": "sha256:96a10cb110b4cf2c1e72128888b7f92691506de111ffc10657f53a738ba645dc",
+        "originalExcerpt": "Links/oben eigene 3x3-Formation, rechts/unten vollständige Gegnerformation als spiegelnde Vorschau."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-080"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0081",
+      "title": "Drag-and-drop und Tap-Select/Tap-Place sind gleichwertig; ungültige Felder zeigen Grund direkt.",
+      "statement": "Drag-and-drop und Tap-Select/Tap-Place sind als Eingabemethoden gleichwertig. Ungültige Felder zeigen ihren Grund direkt an.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.1 Formationsscreen",
+        "locator": "block:1377",
+        "quoteHash": "sha256:f34f494e11dcd2e318541eb6084781be500306a40ce84bc3acf4e32194ca27c5",
+        "originalExcerpt": "Drag-and-drop und Tap-Select/Tap-Place sind gleichwertig. Ungültige Felder zeigen Grund direkt."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-081"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0082",
+      "title": "Jede Karte zeigt Portrait, Rolle, Merkmale, LP/Angriff/Verteidigungskurzwerte, Kit/Ausrüstung und eine wichtige Fähigkeit.",
+      "statement": "Jede Karte zeigt Portrait, Rolle, Merkmale, LP/Angriff/Verteidigungskurzwerte, Kit/Ausrüstung und eine wichtige Fähigkeit.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.1 Formationsscreen",
+        "locator": "block:1378",
+        "quoteHash": "sha256:9d32983fd4711a9b211137243cb0f28771b7266a768b23e868b59e922304d1e8",
+        "originalExcerpt": "Jede Karte zeigt Portrait, Rolle, Merkmale, LP/Angriff/Verteidigungskurzwerte, Kit/Ausrüstung und wichtige Fähigkeit."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-082"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0083",
+      "title": "Reichweitenvorschau wird als horizontales Band dargestellt; Bahnwechseloptionen erscheinen als Pfeile.",
+      "statement": "Beim Auswählen einer Einheit wird die Reichweitenvorschau als horizontales Band dargestellt und Bahnwechseloptionen werden als Pfeile angezeigt.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.1 Formationsscreen",
+        "locator": "block:1379",
+        "quoteHash": "sha256:26056f7e6fa8599c1808cd487c07f76099ed6d71817ce2de8b39f210effed4a3",
+        "originalExcerpt": "Reichweitenvorschau wird beim Auswählen als horizontales Band dargestellt; Bahnwechseloptionen als Pfeile."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-083"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0084",
+      "title": "Aktive Synergien und Doktrinwirkung aktualisieren sofort; Beinahe-Synergie zeigt „2/3“, aber kein aufdringliches Warnsignal.",
+      "statement": "Aktive Synergien und die Doktrinwirkung aktualisieren sofort. Eine Beinahe-Synergie wird als „2/3“ dargestellt, aber ohne aufdringliches Warnsignal.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.1 Formationsscreen",
+        "locator": "block:1380",
+        "quoteHash": "sha256:07a8c110f48609d93b70e59963ad30782ed9748fe0c7eb667073e1e33ea58d22",
+        "originalExcerpt": "Aktive Synergien und Doktrinwirkung aktualisieren sofort. Beinahe-Synergie zeigt „2/3“, aber kein aufdringliches Warnsignal."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-084"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0085",
+      "title": "Gegnerkarte zeigt Rolle, Startfeld, Angriffstyp, Fähigkeitstrigger, Elite/Championstatus, Beschwörungen und natürliche Gegenstrategien.",
+      "statement": "Die Gegnerkarte zeigt Rolle, Startfeld, Angriffstyp, Fähigkeitstrigger, Elite-/Championstatus, Beschwörungen und natürliche Gegenstrategien.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.1 Formationsscreen",
+        "locator": "block:1381",
+        "quoteHash": "sha256:82323be4e668aa6feea8425aac8dd8f420d3005b90c72f392b73af50c2cd3c32",
+        "originalExcerpt": "Gegnerkarte enthält Rolle, Startfeld, Angriffstyp, Fähigkeitstrigger, Elite/Championstatus, Beschwörungen und natürliche Gegenstrategien."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-085"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0086",
+      "title": "Bossvorschau besitzt eigene Phasentabs und listet Rang- und Schwierigkeitszusätze getrennt.",
+      "statement": "Die Bossvorschau besitzt eigene Phasentabs und listet Rang- und Schwierigkeitszusätze getrennt auf.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.1 Formationsscreen",
+        "locator": "block:1382",
+        "quoteHash": "sha256:021d84e2f634421379a6ca689d84b4f2c25eeea9c592cffd70a45e4cc9c6bf5f",
+        "originalExcerpt": "Bossvorschau besitzt eigene Phasentabs und listet Rang-/Schwierigkeitszusätze getrennt."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-086"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0087",
+      "title": "Startbutton bleibt erreichbar; harte Regelverstöße blockieren, weiche Risiken erzeugen einmalige Warnung.",
+      "statement": "Der Startbutton bleibt erreichbar. Harte Regelverstöße blockieren den Start; weiche Risiken erzeugen genau einmal eine Warnung.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.1 Formationsscreen",
+        "locator": "block:1383",
+        "quoteHash": "sha256:28cdd6ed4e8e168bca9aec38692c42e21659ba6379598b7a5aef66a77d5d4973",
+        "originalExcerpt": "Startbutton bleibt erreichbar, aber harte Regelverstöße blockieren; weiche Risiken erzeugen einmalige Warnung."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-087"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "softWarningPerSession",
+          "value": 1
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0088",
+      "title": "Spieler kann jederzeit pausieren und Einheiten antippen, um Werte, Ziel, Ladung und aktive Effekte zu lesen.",
+      "statement": "Der Spieler kann den Kampf jederzeit pausieren und Einheiten antippen, um Werte, Ziel, Ladung und aktive Effekte zu lesen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.2 Kampfbildschirm",
+        "locator": "block:1384",
+        "quoteHash": "sha256:559362436a06ce4f798d1453d0b46f099ab9c9173e866b1742e4ed106e63f5cb",
+        "originalExcerpt": "Der Spieler kann jederzeit pausieren und Einheiten antippen, um Werte, Ziel, Ladung und aktive Effekte zu lesen."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-088"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0089",
+      "title": "Spieler darf im Kampf niemals Ziel markieren, Fähigkeit auslösen, Doktrin ändern, Gegenstand verwenden oder Verstärkung rufen.",
+      "statement": "Der Spieler darf im Kampf niemals Ziel markieren, Fähigkeit auslösen, Doktrin ändern, Gegenstand verwenden oder Verstärkung rufen.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.2 Kampfbildschirm",
+        "locator": "block:1385",
+        "quoteHash": "sha256:1d3b5e406510eef28e72636cbfa29f347d84756631487ab66fb8b8d698dd3c99",
+        "originalExcerpt": "Der Spieler kann niemals Ziel markieren, Fähigkeit auslösen, Doktrin ändern, Gegenstand verwenden oder Verstärkung rufen."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-089"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0090",
+      "title": "Wichtige Signaturfähigkeit verlangsamt bei 2x/3x auf maximal 1,2 reale Sekunden auf 1x; Option deaktivierbar.",
+      "statement": "Eine wichtige Signaturfähigkeit verlangsamt bei 2x- oder 3x-Geschwindigkeit für maximal 1,2 reale Sekunden auf 1x. Diese Option muss deaktivierbar sein.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.2 Kampfbildschirm",
+        "locator": "block:1386",
+        "quoteHash": "sha256:20af09d3b80e099e766511aaa03e796676c9178745a51f83185c7617494175af",
+        "originalExcerpt": "Wichtige Signaturfähigkeit kann bei 2x/3x automatisch für maximal 1,2 reale Sekunden auf 1x verlangsamen. Option deaktivierbar."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-090"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "signatureSlowdownRealSeconds",
+          "value": 1.2
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0091",
+      "title": "Schadenszahlen werden bei mehr als vier Treffern in 0,4 s auf dasselbe Ziel aggregiert; Detail bleibt im Log.",
+      "statement": "Schadenszahlen werden aggregiert, wenn mehr als vier Treffer in 0,4 s auf dasselbe Ziel fallen; das Detail bleibt im Log erhalten.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.2 Kampfbildschirm",
+        "locator": "block:1387",
+        "quoteHash": "sha256:b8c56fb01c4ff7cc8100daa25e18b351238b46b1dbf2c01c34d418d2418c97b3",
+        "originalExcerpt": "Schadenszahlen werden aggregiert, wenn mehr als vier Treffer in 0,4 s auf dasselbe Ziel fallen; Detail bleibt im Log."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-091"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "aggHitsThreshold",
+          "value": 4
+        },
+        {
+          "kind": "max",
+          "name": "aggWindowSeconds",
+          "value": 0.4
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0092",
+      "title": "Kamera bleibt standardmäßig vollständig auf allen drei Bahnen; kurzer Bossphasenzoom nur, wenn keine aktive Gefahrenwarnung verdeckt wird.",
+      "statement": "Die Kamera bleibt standardmäßig vollständig auf allen drei Bahnen. Ein kurzer Zoom auf eine Bossphase erfolgt nur, wenn dadurch keine aktive Gefahrenwarnung verdeckt wird.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.2 Kampfbildschirm",
+        "locator": "block:1388",
+        "quoteHash": "sha256:e1a90da8898679727d007f985928538adabe034d389d868ace137e6d36a3c0a4",
+        "originalExcerpt": "Kamera bleibt standardmäßig vollständig auf allen drei Bahnen. Kurzer Zoom auf Bossphase nur, wenn keine aktive Gefahrenwarnung verdeckt wird."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-092"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0093",
+      "title": "Ergebnis-Flow-Reihenfolge: Sieg/Niederlage → Bewertung → 3 wichtigste Beiträge → bis 2 Hinweise → detaillierte Statistik optional → Belohnungswahl → Karte.",
+      "statement": "Der Ergebnis- und Belohnungsflow folgt strikt der Reihenfolge: Sieg/Niederlage, Bewertung, die 3 wichtigsten Beiträge, bis zu 2 Hinweise, detaillierte Statistik optional, Belohnungswahl, Karte.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.3 Ergebnis- und Belohnungsflow",
+        "locator": "block:1389",
+        "quoteHash": "sha256:9442a2df25475fa9d4d0f05822fbc717b31be6c3e92b6227db063d6937c52bca",
+        "originalExcerpt": "Reihenfolge: Sieg/Niederlage -> Bewertung -> 3 wichtigste Beiträge -> bis 2 Hinweise -> detaillierte Statistik optional -> Belohnungswahl -> Karte."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-093"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "topContributionCount",
+          "value": 3
+        },
+        {
+          "kind": "max",
+          "name": "hintCount",
+          "value": 2
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0094",
+      "title": "Wiederholen eines Bosskampfs vom Anker ist mit höchstens zwei Eingaben möglich.",
+      "statement": "Das Wiederholen eines Bosskampfs vom Anker aus darf höchstens zwei Eingaben erfordern.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.3 Ergebnis- und Belohnungsflow",
+        "locator": "block:1390",
+        "quoteHash": "sha256:4fd485604870d0a886fd2ac543f2b8f1afe9a5e6db4a213046f1e32d25fbb50c",
+        "originalExcerpt": "Wiederholen eines Bosskampfs vom Anker ist mit höchstens zwei Eingaben möglich."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-094"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "bossRetryInputs",
+          "value": 2
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0095",
+      "title": "Neue Kodex-/Meisterschaftsfortschritte erscheinen kompakt nach der Belohnung und blockieren nicht mehrere Sekunden pro Eintrag.",
+      "statement": "Neue Kodex- und Meisterschaftsfortschritte erscheinen kompakt nach der Belohnung und blockieren den Ablauf nicht mehrere Sekunden pro Eintrag.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.3 Ergebnis- und Belohnungsflow",
+        "locator": "block:1391",
+        "quoteHash": "sha256:f50ec523a2136974f457b93db5efccf521ea49f40718b67aed5f8082be7a1c23",
+        "originalExcerpt": "Neue Kodex-/Meisterschaftsfortschritte erscheinen kompakt nach der Belohnung und blockieren nicht mehrere Sekunden pro Eintrag."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-095"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0096",
+      "title": "Belohnungskarten zeigen aktuellen Bestand, Synergie/Kompatibilität und genaue Auswirkung vor der Wahl.",
+      "statement": "Belohnungskarten zeigen vor der Wahl den aktuellen Bestand, Synergie/Kompatibilität und die genaue Auswirkung.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 36,
+        "section": "36.3 Ergebnis- und Belohnungsflow",
+        "locator": "block:1392",
+        "quoteHash": "sha256:ba73df753e45c5a10c70e6dd055a576049d42e5d88275b40082096d34fc7fc9e",
+        "originalExcerpt": "Belohnungskarten zeigen aktuellen Bestand, Synergie/Kompatibilität und genaue Auswirkung vor Wahl."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-096"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0097",
+      "title": "Visuelle Ausrichtung: stilisierte Fantasy mit klaren 2D/2.5D-Silhouetten; Spiel wirkt nicht wie generischer Browser-Autobattler, Asset-Sammlung oder UI-lastiges Idle-Spiel.",
+      "statement": "Das Spiel verfolgt eine stilisierte, hochwertige Fantasy-Optik mit klaren 2D-/2.5D-Silhouetten, kräftigen Formen und kontrollierter Effektmenge. Es darf nicht wie ein generischer Browser-Autobattler, eine Asset-Sammlung oder ein UI-lastiges Idle-Spiel wirken.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 37,
+        "section": "37. Visuelle Ausrichtung",
+        "locator": "block:1405",
+        "quoteHash": "sha256:4196592fe84bce19d824184bce5590e7642cc8e0d6194f45ae28ec1a3c7a656e",
+        "originalExcerpt": "Ziel ist stilisierte, hochwertige Fantasy mit klaren 2D/2.5D-Silhouetten, kräftigen Formen und kontrollierter Effektmenge. Das Spiel darf nicht wie ein generischer Browser-Autobattler, eine Asset-Sammlung oder ein UI-lastiges Idle-Spiel wirken."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-097"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0098",
+      "title": "Jeder Held ist in schwarzer Silhouette bei 96 px Höhe eindeutig identifizierbar.",
+      "statement": "Jeder Held muss in schwarzer Silhouette bei 96 px Höhe eindeutig identifizierbar sein.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 37,
+        "section": "37.1 Silhouetten- und Lesbarkeitstest",
+        "locator": "block:1406",
+        "quoteHash": "sha256:9b21fb409f4c033a24e97d5eb39ca76fd67e529a4f0b40d224f63f38ccd25bd9",
+        "originalExcerpt": "Jeder Held ist in schwarzer Silhouette bei 96 px Höhe eindeutig identifizierbar."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-098"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "heroSilhouetteHeightPx",
+          "value": 96
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0099",
+      "title": "Jede Truppenrolle ist bei 64 px grob erkennbar: Schild, Speer, Bogen, Stab, Banner, Werkzeug.",
+      "statement": "Jede Truppenrolle muss bei 64 px grob erkennbar sein: Schild, Speer, Bogen, Stab, Banner, Werkzeug.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 37,
+        "section": "37.1 Silhouetten- und Lesbarkeitstest",
+        "locator": "block:1407",
+        "quoteHash": "sha256:012661c306f37c86224baf762bcbf51c4fe336a698726dfa5d6c444f74b603ac",
+        "originalExcerpt": "Jede Truppenrolle ist bei 64 px grob erkennbar: Schild, Speer, Bogen, Stab, Banner, Werkzeug."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-099"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "troopSilhouetteHeightPx",
+          "value": 64
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0100",
+      "title": "Bossphasen ändern mindestens ein großes Formelement oder Arenaelement, nicht nur Farbe.",
+      "statement": "Bossphasen müssen mindestens ein großes Formelement oder ein Arenaelement ändern, nicht nur die Farbe.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 37,
+        "section": "37.1 Silhouetten- und Lesbarkeitstest",
+        "locator": "block:1408",
+        "quoteHash": "sha256:e59f79e4e169bf828bdcb9a9143638c33a95750b2fc49ea0e9c8a27793fbb5f8",
+        "originalExcerpt": "Bossphasen ändern mindestens ein großes Formelement oder Arenaelement, nicht nur Farbe."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-100"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0101",
+      "title": "Beschwörungen unterscheiden sich durch Körperform und Besitzer-Rune; keine zwei Kategorien verwenden dieselbe Silhouette.",
+      "statement": "Beschwörungen müssen sich durch Körperform und Besitzer-Rune unterscheiden; keine zwei Kategorien verwenden dieselbe Silhouette.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 37,
+        "section": "37.1 Silhouetten- und Lesbarkeitstest",
+        "locator": "block:1409",
+        "quoteHash": "sha256:365c3af47aa0fa68fa9f63626e0d0ae7125802d1761a2e1b9fe85caae336c66a",
+        "originalExcerpt": "Beschwörungen unterscheiden sich durch Körperform und Besitzer-Rune; keine zwei Kategorien verwenden dieselbe Silhouette."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-101"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0102",
+      "title": "Warnflächen besitzen Rand, Muster und Symbol; Farbe allein ist nie die einzige Information.",
+      "statement": "Warnflächen müssen Rand, Muster und Symbol besitzen; Farbe allein darf nie die einzige Information sein.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 37,
+        "section": "37.1 Silhouetten- und Lesbarkeitstest",
+        "locator": "block:1410",
+        "quoteHash": "sha256:acaa54ecb5fcbb4ce2c9ba94cb037aa29be6416b15356aac18616bbf37d390c2",
+        "originalExcerpt": "Warnflächen besitzen Rand, Muster und Symbol. Farbe allein ist nie die einzige Information."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-102"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0103",
+      "title": "Maximal zwei starke Kameraschüttler innerhalb 1 Sekunde; weitere werden gedämpft.",
+      "statement": "Innerhalb von 1 Sekunde dürfen maximal zwei starke Kameraschüttler auftreten; weitere werden gedämpft.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 38,
+        "section": "38. Kampfpolish und Feedbackbudget",
+        "locator": "block:1418",
+        "quoteHash": "sha256:dd2ec885951288ac7dcbb64da6316b65352abcdca6d4da6458e845ae2bb963d9",
+        "originalExcerpt": "Maximal zwei starke Kameraschüttler innerhalb 1 Sekunde; weitere werden gedämpft."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-103"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "strongShakesPerSecond",
+          "value": 2
+        },
+        {
+          "kind": "exact",
+          "name": "shakeWindowSeconds",
+          "value": 1
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0104",
+      "title": "Maximal drei große Vollflächen-Partikelsysteme gleichzeitig; weitere verwenden reduzierte Variante.",
+      "statement": "Gleichzeitig dürfen maximal drei große Vollflächen-Partikelsysteme aktiv sein; weitere verwenden eine reduzierte Variante.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 38,
+        "section": "38. Kampfpolish und Feedbackbudget",
+        "locator": "block:1419",
+        "quoteHash": "sha256:2fe8f8464ba05eb05d7ccc5f24e83aa08bc3fba5b0f1c7803b8761cf9c7757fc",
+        "originalExcerpt": "Maximal drei große Vollflächen-Partikelsysteme gleichzeitig; weitere verwenden reduzierte Variante."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-104"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "largeParticleSystems",
+          "value": 3
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0105",
+      "title": "Trefferfeedback muss bei 3x noch lesbar, aber nicht als Stroboskop wirken.",
+      "statement": "Trefferfeedback muss bei 3x-Geschwindigkeit noch lesbar sein, darf aber nicht als Stroboskop wirken.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 38,
+        "section": "38. Kampfpolish und Feedbackbudget",
+        "locator": "block:1420",
+        "quoteHash": "sha256:03b46fa4a974e5ddca0233f11aaa8af76ef5d744b58440307200f68a52374505",
+        "originalExcerpt": "Trefferfeedback muss bei 3x noch lesbar, aber nicht als Stroboskop wirken."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-105"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0106",
+      "title": "Reduzierte-Effekte-Modus senkt Partikelzahl mindestens 60%, entfernt Schütteln und Blitze, behält Warnformen.",
+      "statement": "Im Reduzierte-Effekte-Modus wird die Partikelzahl um mindestens 60 % gesenkt, Schütteln und Blitze werden entfernt, Warnformen bleiben erhalten.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 38,
+        "section": "38. Kampfpolish und Feedbackbudget",
+        "locator": "block:1421",
+        "quoteHash": "sha256:51bf93326a5bb61f2da2bcc627a60708183876c87a9c62d071e48c6c98c5ff51",
+        "originalExcerpt": "Reduzierte-Effekte-Modus senkt Partikelzahl mindestens 60%, entfernt Schütteln und Blitze, behält Warnformen."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-106"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "reducedFxParticleCutPercent",
+          "value": 60
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0107",
+      "title": "Keine realistischen Todesschreie; Falllaute stilisiert und kurz.",
+      "statement": "Es gibt keine realistischen Todesschreie; Falllaute sind stilisiert und kurz.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 39,
+        "section": "39. Audioausrichtung",
+        "locator": "block:1429",
+        "quoteHash": "sha256:bc5b6ce00270e5e870745620d04acfbde406cbbf1b8befee3dda15135a6feb11",
+        "originalExcerpt": "Keine realistischen Todesschreie; Falllaute stilisiert und kurz."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-107"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0108",
+      "title": "Kurztooltips verwenden maximal 220 Zeichen; Detailansicht darf exakte Zahlen und Regeln enthalten.",
+      "statement": "Kurztooltips verwenden maximal 220 Zeichen. Die Detailansicht darf exakte Zahlen und Regeln enthalten.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 40,
+        "section": "40.1 Informationsdichte",
+        "locator": "block:1435",
+        "quoteHash": "sha256:fee5ed121d7dda0cc88a1ae2452b4cc80a2743007b61424c435e04f6ad7bb7ff",
+        "originalExcerpt": "Kurztooltips verwenden maximal 220 Zeichen; Detailansicht darf exakte Zahlen und Regeln enthalten."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-108"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "shortTooltipChars",
+          "value": 220
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0109",
+      "title": "Komplexe Bossphase verwendet höchstens vier Kernbulletpoints plus optionale Details.",
+      "statement": "Eine komplexe Bossphase verwendet höchstens vier Kernbulletpoints plus optionale Details.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 40,
+        "section": "40.1 Informationsdichte",
+        "locator": "block:1437",
+        "quoteHash": "sha256:083c5a334a299ca86ad5097992f07534a19ec27868643852a36ab94696458f2d",
+        "originalExcerpt": "Komplexe Bossphase verwendet höchstens vier Kernbulletpoints plus optionale Details."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-109"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "bossPhaseKeyBullets",
+          "value": 4
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0110",
+      "title": "Auf Telefon gibt es keine horizontale Scrollpflicht; Vergleichstabellen werden zu gestapelten Karten umgebaut.",
+      "statement": "Auf Telefon gibt es keine horizontale Scrollpflicht. Vergleichstabellen werden in gestapelte Karten umgebaut.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 40,
+        "section": "40.1 Informationsdichte",
+        "locator": "block:1438",
+        "quoteHash": "sha256:8110fc861ef32b68d91656b8703c77f4dd94679635936dabbd53680dffa1ee66",
+        "originalExcerpt": "Keine horizontale Scrollpflicht auf Telefon. Vergleichstabellen werden in gestapelte Karten umgebaut."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "E2E-UX-110"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0111",
+      "title": "Mindestens 80% interner Tester können nach einer Niederlage eine zutreffende Ursache nennen.",
+      "statement": "Mindestens 80% interner Tester können nach einer Niederlage eine zutreffende Ursache nennen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 44,
+        "section": null,
+        "locator": "block:1483",
+        "quoteHash": "sha256:8b3e1c1dd8fde64256641903eb010c25c672b491e6a611e95bd20f3fb6721634",
+        "originalExcerpt": "Mindestens 80% interner Tester können nach einer Niederlage eine zutreffende Ursache nennen."
+      },
+      "ownerPhases": [
+        "PHASE-19"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-19",
+          "testIds": [
+            "E2E-UX-111"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "defeatCauseTestersPct",
+          "value": 80,
+          "unit": "percent"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0112",
+      "title": "Mindestens 70% der Spieler verändern vor einem Retry bewusst Formation, Doktrin, Einheit oder Ausrüstung.",
+      "statement": "Mindestens 70% verändern vor einem Retry bewusst Formation, Doktrin, Einheit oder Ausrüstung.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 44,
+        "section": null,
+        "locator": "block:1484",
+        "quoteHash": "sha256:fdeeb6f69f7c8614786b09b2b7e38f1dc36d086fc52bc996e468061f75e32909",
+        "originalExcerpt": "Mindestens 70% verändern vor einem Retry bewusst Formation, Doktrin, Einheit oder Ausrüstung."
+      },
+      "ownerPhases": [
+        "PHASE-19"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-19",
+          "testIds": [
+            "E2E-UX-112"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "retryAdaptTestersPct",
+          "value": 70,
+          "unit": "percent"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0113",
+      "title": "Der Aschenkönig ist ohne Entwicklererklärung nach Vorschau lernbar.",
+      "statement": "Der Aschenkönig ist ohne Entwicklererklärung nach Vorschau lernbar.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 44,
+        "section": null,
+        "locator": "block:1486",
+        "quoteHash": "sha256:3e4f592ddb0cd37a9e4ce3a3de9f1d6b0560cf52ae1e1ba0c1afadda5a633565",
+        "originalExcerpt": "Der Aschenkönig ist ohne Entwicklererklärung nach Vorschau lernbar."
+      },
+      "ownerPhases": [
+        "PHASE-19"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-19",
+          "testIds": [
+            "E2E-UX-113"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0114",
+      "title": "Kampf bei 3x bleibt lesbar und identisch im Ergebnis.",
+      "statement": "Kampf bei 3x bleibt lesbar und identisch im Ergebnis.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 44,
+        "section": null,
+        "locator": "block:1487",
+        "quoteHash": "sha256:03096fefff12ab703516fdb499be9ed38bd011aa6be43ac5526cc27685bb3717",
+        "originalExcerpt": "Kampf bei 3x bleibt lesbar und identisch im Ergebnis."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-114"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "speedMultiplierReadable",
+          "value": 3
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0115",
+      "title": "Alle strategisch relevanten Boss-, Modifikator- und Championfähigkeiten sind vor Kampf sichtbar.",
+      "statement": "Alle strategisch relevanten Boss-, Modifikator- und Championfähigkeiten sind vor Kampf sichtbar.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1503",
+        "quoteHash": "sha256:6b08e7e557b262b9f5a34b349b2f0cccedc69b59c064360e80e7448b0be31b3c",
+        "originalExcerpt": "Alle strategisch relevanten Boss-/Modifikator-/Championfähigkeiten vor Kampf sichtbar."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-115"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-UX-0116",
+      "title": "Alle Kampfauswertungen und Hinweise basieren auf tatsächlichen Events.",
+      "statement": "Alle Kampfauswertungen und Hinweise basieren auf tatsächlichen Events.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1505",
+        "quoteHash": "sha256:f6a4cda80db3960b83fa3ccc91345084128bbcb4ef748c9c2e6761598501e8b8",
+        "originalExcerpt": "Alle Kampfauswertungen und Hinweise basieren auf tatsächlichen Events."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "e2e",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "E2E-UX-116"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ]
+}

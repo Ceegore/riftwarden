@@ -1,0 +1,19 @@
+# Chapter 23: Wirtschaft, Beute und Sicherung
+# blocks 1031..1059 (29 blocks)
+
+[Heading 2] 23. Wirtschaft, Beute und Sicherung
+[Heading 3] 23.1 Währungen
+[Heading 3] 23.2 Gold-Baseline
+[Heading 3] 23.3 Beutelogik
+[Compact] Normaler Kampf: Gold + 35% Chance auf eine Wahl aus zwei gewöhnlichen Relikten oder einen ungesicherten permanenten Gegenstand, abhängig vom Missionspool.
+[Compact] Elitekampf: Gold + garantierte Wahl aus drei Belohnungen; mindestens eine seltene Relikt-/Gegenstandsoption.
+[Compact] Schatz: vorher angezeigte Kategorie; 60% Gold+Relikt, 30% permanenter Gegenstand, 10% Banner/seltenes Paket, angepasst an Freischaltungen.
+[Compact] Boss: garantierte fest definierte Erstbelohnung plus eine Wahl aus drei Boss-Pool-Belohnungen.
+[Compact] Doppelte permanente Funde werden automatisch in 45% ihres Händlerbasiswertes Gold umgewandelt; UI zeigt die Umwandlung.
+[Compact] Neue permanente Gegenstände sind zunächst ungesichert. Sie werden am Anker, bei erfolgreichem Missionsabschluss oder durch Sicherungsdienst permanent gespeichert.
+[Heading 3] 23.4 Sieg, Rückzug und Niederlage
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Jede Belohnung wird genau einmal vergeben und sofort im Run-Snapshot gespeichert.
+[Compact] Niederlagenbildschirm listet konkret behaltene und verlorene Werte, nicht nur Prozentregeln.
+[Compact] Die Kampagne ist auf Normal ohne Grind abschließbar; erwartetes Gold aus Pflichtmissionen reicht für mindestens 12 Vertrag-I-, 6 Vertrag-II- und 15 Politurkäufe nach individueller Wahl.
+[Compact] Kein Händler kann ausschließlich unbrauchbare Angebote zeigen; mindestens zwei Angebote sind für aktuelle Sammlung/Gruppe gültig.

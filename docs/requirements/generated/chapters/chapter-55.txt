@@ -1,0 +1,17 @@
+# Chapter 55: GUI-Designsystem und responsive Layouts
+# blocks 1699..1722 (24 blocks)
+
+[Heading 2] 55. GUI-Designsystem und responsive Layouts
+[Heading 3] 55.1 Designidentität
+[First Paragraph] Die UI verbindet dunkles kosmisches Violett, warmes Gold und klare helle Typografie mit ruhigen halbtransparenten Paneelen. Sie wirkt wie ein hochwertiges Fantasy-Handheldspiel, nicht wie eine Webseite: keine browsertypischen Formularfelder, keine ungestylten Scrollbars, keine beliebigen Materialkarten und keine uneinheitlichen Assetstile. Sämtliche Interaktionen besitzen Hover-, Focus-, Pressed-, Disabled- und Loading-Zustände.
+[Heading 3] 55.2 Typografie
+[Compact] Systemtextskalierung und interne Skalierung werden kombiniert, aber Gesamtskala ist auf 200% geprüft. Kein Text wird abgeschnitten; Karten wachsen oder wechseln in Detailmodus.
+[Compact] Maximale Zeilenlänge 75 Zeichen; auf Telefon bevorzugt 45-60. All Caps nur für kurze Labels bis 18 Zeichen.
+[Compact] Displayfont darf niemals einzige Schrift für längere deutsche oder englische Texte sein.
+[Heading 3] 55.3 Referenzraster und Layoutklassen
+[Compact] Die logische Designfläche für Kampfszenen ist 1920x1080. Sie wird proportional skaliert; HUD nutzt CSS-Layout außerhalb der Pixi-Koordinaten.
+[Compact] Unterstützte Seitenverhältnisse 4:3 bis 21:9 ohne abgeschnittene Interaktion. Zusätzliche Breite zeigt Dekoration, nie neue spielrelevante Information.
+[Compact] Safe-Area-Inset wird auf allen vier Seiten über env(safe-area-inset-*) plus SystemBars-Adapter angewandt. Primäre Buttons halten zusätzlich 8 px Abstand.
+[Compact] Android 16+ große Fenster dürfen Orientierung/Resizable-Einstellungen überschreiben; deshalb bleibt der Portrait/Narrow-Fallback vollständig bedienbar.
+[Heading 3] 55.4 Komponentenvertrag
+[Heading 3] 55.5 Motion-Tokens

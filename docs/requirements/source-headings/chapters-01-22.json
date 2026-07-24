@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "headings": [
+    {
+      "chapter": 1,
+      "title": "Zweck, Leseregeln und Definition von Implementierungsreife",
+      "locator": "block:11",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 2,
+      "title": "Verbindliche Produktdefinition",
+      "locator": "block:30",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 3,
+      "title": "Designpfeiler und Nicht-Ziele",
+      "locator": "block:43",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 4,
+      "title": "Welt, Ton und Erzählrahmen",
+      "locator": "block:48",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 5,
+      "title": "Gesamtschleife und Sitzungsstruktur",
+      "locator": "block:83",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 6,
+      "title": "Verbindliches Kampfsimulationsmodell",
+      "locator": "block:88",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 7,
+      "title": "Zielwahl, Bedrohung und Doktrinen",
+      "locator": "block:157",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 8,
+      "title": "Statuswirkungen, Buffs und Kontrolle",
+      "locator": "block:220",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 9,
+      "title": "Formation, Gruppengröße und Plätze",
+      "locator": "block:241",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 10,
+      "title": "Merkmale und Synergien",
+      "locator": "block:259",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 11,
+      "title": "Helden, Ruhm und vollständige Heldenkits",
+      "locator": "block:269",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 12,
+      "title": "Truppenverträge und die 18 Truppentypen",
+      "locator": "block:373",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 13,
+      "title": "Beschwörungen",
+      "locator": "block:463",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 14,
+      "title": "Gegnerroster und regionale Kampfidentitäten",
+      "locator": "block:482",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 15,
+      "title": "Eliteeigenschaften, Champions und Zwischenbosse",
+      "locator": "block:522",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 16,
+      "title": "Vollständiges Bossdesign",
+      "locator": "block:553",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 17,
+      "title": "Kampfvarianten und Schlachtfeldmodifikatoren",
+      "locator": "block:745",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 18,
+      "title": "Riftinstabilität",
+      "locator": "block:771",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 19,
+      "title": "Dungeonkarten und Knoten",
+      "locator": "block:781",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 20,
+      "title": "Ereignissystem und 30 vollständige Ereignisse",
+      "locator": "block:820",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 21,
+      "title": "Permanente Ausrüstung",
+      "locator": "block:989",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 22,
+      "title": "Temporäre Relikte",
+      "locator": "block:1022",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,368 @@
+{
+  "schemaVersion": "1.0",
+  "category": "Android",
+  "requirements": [
+    {
+      "id": "REQ-ANDROID-0001",
+      "title": "Android INTERNET entfernt",
+      "statement": "Android INTERNET-Permission wird im finalen Manifest entfernt; VIBRATE ist die einzige optionale normale Permission; keine Runtime-Permissions.",
+      "norm": "MUST_NOT",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1809",
+        "quoteHash": "sha256:44e19eec5b505681f974b9ed6969fecffa228043695f2f6ee570e0e9e017fa02",
+        "originalExcerpt": "Android INTERNET-Permission wird im finalen Manifest entfernt. VIBRATE ist die einzige optionale normale Permission; keine Runtime-Permissions."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "NAT-A-ANDROID-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-ANDROID-0002",
+      "title": "Android minSdk 24",
+      "statement": "minSdk ist 24 (Android 7.0), entsprechend Capacitor-8-Minimum.",
+      "norm": "MUST",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:327d847731fd73fecfae59f28a295516311d82c038e6d64c9ac411f9e414530d",
+        "originalExcerpt": "minSdk | 24 (Android 7.0), entsprechend Capacitor-8-Minimum."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "NAT-A-ANDROID-002"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "api",
+          "min": 24
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-ANDROID-0003",
+      "title": "Android compile/target API",
+      "statement": "compile/target ist 36; vor Storeupload wird auf aktuell von Play verlangte oder höhere stabile API geprüft.",
+      "norm": "MUST",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:44cec36f4659002d1a73c8e897303bc68c785fa8c47f0b47217b579c0f80ccba",
+        "originalExcerpt": "compile/target | 36; vor Storeupload auf aktuell von Play verlangte oder höhere stabile API prüfen."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "NAT-A-ANDROID-003"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "api",
+          "min": 36
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-ANDROID-0004",
+      "title": "AAB Verpackung",
+      "statement": "Android App Bundle .aab; Play App Signing aktiv; kein APK als Produktionsupload.",
+      "norm": "MUST",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:a945e2d0c4f7f69d32eff6ab2aeeb2461a78eea0c0fc97babcdeee86ba4db643",
+        "originalExcerpt": "Packaging | Android App Bundle .aab; Play App Signing aktiv; kein APK als Produktionsupload."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "NAT-A-ANDROID-004"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-ANDROID-0005",
+      "title": "Release-ABI-Slices",
+      "statement": "Release-AAB enthält arm64-v8a und armeabi-v7a, sofern Native-Code ABI-Slices erzeugt; beide müssen 16-KB-seitensicher sein; x86_64 ist ausschließlich für Emulator-/QA-Builds und wird nicht als Production-Slice ausgeliefert.",
+      "norm": "MUST",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:9d4064606a2cb0fa10d85b66bf965f4d2e210f9d79146ceb6a63c0c7e09cc913",
+        "originalExcerpt": "ABI | Release-AAB enthält arm64-v8a und armeabi-v7a, sofern Native-Code ABI-Slices erzeugt; beide müssen 16-KB-seitensicher sein. x86_64 ist ausschließlich für Emulator-/QA-Builds und wird nicht als Production-Slice ausgeliefert."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "NAT-A-ANDROID-005"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-ANDROID-0006",
+      "title": "16-KB-Seiten Gate",
+      "statement": "Alle Native-Libs sind 16-KB-kompatibel; bundletool/APK Analyzer und 16-KB-Testgerät/Emulator sind Gate.",
+      "norm": "MUST",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:26093df03fb67a0d179303ae01b44bedd0ae6453944e35a38c0172d4cfa8fb29",
+        "originalExcerpt": "16-KB-Seiten | Alle Native-Libs kompatibel; bundletool/APK Analyzer und 16-KB-Testgerät/Emulator als Gate."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "NAT-A-ANDROID-006"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-ANDROID-0007",
+      "title": "Android Permissions minimal",
+      "statement": "Keine gefährlichen Permissions; INTERNET im Production Manifest entfernt.",
+      "norm": "MUST_NOT",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:3cb7d58df6eb867f3132bb73561a41927d9de97ac1a4e305307e118c7cc1952c",
+        "originalExcerpt": "Permissions | Keine gefährlichen Permissions; INTERNET im Production Manifest entfernt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "NAT-A-ANDROID-007"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-ANDROID-0008",
+      "title": "Play App Signing aktiv",
+      "statement": "Play App Signing wird verwendet; der Upload Key besitzt offline gesichertes Backup und dokumentierten Recoveryprozess.",
+      "norm": "MUST",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 66,
+        "section": null,
+        "locator": "block:1891",
+        "quoteHash": "sha256:7cf18e34c3cb2bee3553f53c44bf460bff7d7c2e3072d3e323251cb73525a0ad",
+        "originalExcerpt": "Play App Signing wird verwendet; Upload Key besitzt offline gesichertes Backup und dokumentierten Recoveryprozess."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "NAT-A-ANDROID-008"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-ANDROID-0009",
+      "title": "Auf Android pausiert oder duckt Audio bei transient loss gemäß Fokusart; loss pausiert ohne Positionsreset und Resume erfolgt nur nach gain und wenn die App im Vordergrund ist.",
+      "statement": "Auf Android pausiert oder duckt Audio bei transient loss gemäß Fokusart; loss pausiert ohne Positionsreset und Resume erfolgt nur nach gain und wenn die App im Vordergrund ist.",
+      "norm": "MUST",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 82,
+        "section": null,
+        "locator": "block:2161",
+        "quoteHash": "sha256:2192932ec47602ba4c42eb9ec305ce524551181d02b6bd0f829d8169fa99b1de",
+        "originalExcerpt": "Android: transient loss pausiert/duckt gemäß Fokusart; loss pausiert und resettet keine Position. Resume nur nach gain und wenn App foreground."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "NAT-A-ANDROID-009"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-ANDROID-0010",
+      "title": "Android 16+ große Fenster dürfen Orientierung/Resizable-Einstellungen überschreiben; deshalb bleibt der Portrait/Narrow-Fallback vollständig bedienbar.",
+      "statement": "Android 16+ große Fenster dürfen Orientierung/Resizable-Einstellungen überschreiben; deshalb bleibt der Portrait/Narrow-Fallback vollständig bedienbar.",
+      "norm": "MUST",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 55,
+        "section": null,
+        "locator": "block:1709",
+        "quoteHash": "sha256:f24efccfddee7180269548bf126bca3db7d358d7a1c0aad0e5fbc333e9c99a29",
+        "originalExcerpt": "Android 16+ große Fenster dürfen Orientierung/Resizable-Einstellungen überschreiben; deshalb bleibt der Portrait/Narrow-Fallback vollständig bedienbar."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "NAT-A-ANDROID-010"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-ANDROID-0011",
+      "title": "Android fordert AUDIOFOCUS_GAIN für die aktive Spielsitzung an und gibt den Fokus bei Background oder beendetem Audiokontext frei; bei transientem Verlust wird pausiert bzw. weich ausgeblendet; bei dauerhaftem Verlust bleibt Audio bis zum bewussten Resume stumm.",
+      "statement": "Android fordert AUDIOFOCUS_GAIN für die aktive Spielsitzung an und gibt den Fokus bei Background oder beendetem Audiokontext frei. Bei transientem Verlust wird pausiert beziehungsweise weich ausgeblendet; bei dauerhaftem Verlust bleibt Audio bis zum bewussten Resume stumm.",
+      "norm": "MUST",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 57,
+        "section": null,
+        "locator": "block:1748",
+        "quoteHash": "sha256:2bb73192ed72270e4631b2250bb476bd9ecfc129148564d195d5d63ce6caad79",
+        "originalExcerpt": "Android fordert AUDIOFOCUS_GAIN für die aktive Spielsitzung an und gibt den Fokus bei Background oder beendetem Audiokontext frei. Bei transientem Verlust wird pausiert beziehungsweise weich ausgeblendet; bei dauerhaftem Verlust bleibt Audio bis zum bewussten Resume stumm."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "NAT-A-ANDROID-011"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ]
+}

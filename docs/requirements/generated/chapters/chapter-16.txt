@@ -1,0 +1,133 @@
+# Chapter 16: Vollständiges Bossdesign
+# blocks 553..744 (192 blocks)
+
+[Heading 2] 16. Vollständiges Bossdesign
+[First Paragraph] Jeder Hauptboss ist eine kuratierte Begegnung mit eigener Arena, Musik, Silhouette, mindestens drei klaren taktischen Momenten, vollständiger Vorschau und garantierter Freischaltung. Boss-LP schließen alle Phasen ein. Phasenschwellen werden nach Endschaden geprüft; überschüssiger Treffer wird nicht abgeschnitten, außer ein Übergang benötigt ausdrücklich Mindestdauer.
+[Compact] Bossleiste zeigt aktuelle Phase, nächste Schwelle, aktive Ressource und vorbereitete Fähigkeit.
+[Compact] Bosse sind reguläre Einheiten für Kampfende, aber keine normalen/Elitegegner für Kopier-, Wiederbelebungs- oder Exekutionsregeln.
+[Compact] Kontrolle wirkt reduziert; Rückstoß verändert nur Animationsstagger, nicht Position, sofern Bossdefinition nichts anderes sagt.
+[Compact] Jeder Boss hat mindestens ein offensives, ein strategisches und ein Zeitfenster-Element.
+[Compact] Ein erster Versuch darf wegen mangelnder Ausführung scheitern, aber nicht wegen verschwiegener Kernmechanik.
+[Heading 3] 16.1 Der Aschenkönig - Boss von Akt I
+[Heading 4] Phase 1 - Die Probe (100-70% LP)
+[Compact] Echoappell: Startladung 8 s, Wiederaufladung 13 s, Vorbereitung 1,0 s. Wählt bis zu zwei älteste aktive Aschesiegel und beschwört dort je ein Ascheecho des gefallenen normalen Gegners. Echos besitzen 45% ursprüngliche LP, 55% Angriff, nur Standardangriff, 12 s Lebensdauer und zählen zur Beschwörungsgrenze.
+[Compact] Königlicher Befehl: alle 11 s; alle aktiven Echos erhalten 5 s +25% Bewegung und wechseln ihr Jagdziel auf den regulären Spielercharakter mit niedrigstem LP-Prozent auf ihrer oder benachbarter Bahn.
+[Compact] Unterbrechungsfenster: Verliert der König während der Vorbereitung von Echoappell Endschaden in Höhe von 5% seiner Max-LP, wird die Beschwörung auf ein statt zwei Siegel reduziert. Bei 8% wird sie vollständig unterbrochen; er verliert 50% Wiederaufladung. Schwelle wird als Segment unter der Bossleiste angezeigt.
+[Heading 4] Phase 2 - Das Heer erinnert sich (70-35% LP)
+[Compact] Übergang: 1,2 s unverwundbar, stößt reguläre Nahgegner 4 X zurück, löscht keine Siegel und ruft einmalig zwei Ascheechos aus den ältesten Siegeln. Übergang wird durch Thronruf und Kamerafokus angekündigt.
+[Compact] Ascheformation: Alle 12 s markiert der König eine Bahn. Nach 1,2 s marschiert eine Linie aus drei nicht-kollidierenden Echos über diese Bahn und verursacht jedem Ziel einmal 125% physischen Schaden plus Brennen. Die Linie ist keine Beschwörung und kann nicht angegriffen werden; Bahnwarnung muss klar sein.
+[Compact] Echoappell verbessert: bis zu drei Siegel, aber weiterhin Unterbrechungsschwellen. Bei voller Beschwörungsgrenze werden keine zusätzlichen Echos erzeugt und der König erhält stattdessen pro fehlendem Echo 4 s Schild 4% Max-LP, maximal 12%.
+[Compact] Königlicher Befehl: gibt zusätzlich 15% Angriffskraft.
+[Heading 4] Phase 3 - Der letzte Auftritt (35-0% LP)
+[Compact] Übergang: alle verbliebenen Siegel werden verbraucht. Pro Siegel entsteht ein 6 s langes Schwaches Echo; höchstens sechs. Der König kann danach keine neuen Echos aus normalen Toten erzeugen.
+[Compact] Brennende Krone: permanente Aura Radius 8; Echos +20% Angriff, Spielerbeschwörungen erleiden 3% Max-LP magischen Schaden pro Sekunde. Reguläre Einheiten sind von der Aura nicht direkt betroffen.
+[Compact] Kronensturz: alle 10 s, Vorbereitung 1,1 s; Sprung zur Bahn mit meisten regulären Spielerzielen, 180% physischer Schaden Radius 5, 2 X Rückstoß. Landepunkt deutlich markiert. Danach 2,5 s lang -20 Rüstung/Widerstand auf dem König: vorgesehenes Burstfenster.
+[Compact] Echoappell entfällt. Standardangriff wird 12% schneller. Phase soll offensiver Endspurt statt unendlicher Beschwörung sein.
+[Heading 4] Ascension-Erweiterungen
+[Compact] Rang 4 - Aschearchiv: Beim ersten Echoappell jeder Phase erhält das älteste beschworene Echo zusätzlich die vereinfachte Fähigkeit seines Basistyps mit 50% Stärke. Diese Fähigkeit ist in der Vorschau aufgelistet.
+[Compact] Rang 9 - Zusätzliche Phase „Die Parade“ bei 55% LP: Arena verschiebt die äußeren Bahnen näher zur Mitte; 12 s lang erscheinen abwechselnd angekündigte Echomärsche oben/unten. König ist angreifbar, nutzt aber keine anderen Fähigkeiten. Nach Ablauf kehrt Arena zurück und Phase 2 setzt fort.
+[Compact] Veteran: +15% Boss-LP, Unterbrechungsschwellen 5,5%/9%, Echos 55% Basis-LP.
+[Heading 4] Spielerinformation und Gegenstrategie
+[Compact] Vorschau erklärt: Gefallene normale Soldaten hinterlassen Siegel; Appell kann durch hohen Schaden reduziert/unterbrochen werden; Flächenschaden und Bannwirker sind hilfreich; Phase 3 besitzt ein Burstfenster nach Kronensturz.
+[Compact] Empfohlene Rollen: eine stabile Front, Flächenschaden oder Anti-Beschwörung, mindestens eine Quelle konzentrierten Schadens. Keine davon ist zwingend.
+[Compact] Alternative Lösungen: Echos ignorieren und König bursten; Siegel durch langsames Töten verteilen; Beschwörungsgrenze kontrolliert füllen; Jagd auf Ascheträger, bevor viele Siegel entstehen.
+[Heading 4] Belohnung
+[First Paragraph] Garantiert beim ersten Sieg: Sable, Banner „Verkohlter Eid“, 280 Gold, ein Hauptausrüstungsfund. Wiederholungen: Bossbeute-Pool, 140-200 Gold und erhöhte Chance auf Aschen-Relikt.
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Jedes Echo ist eindeutig mit seinem Ursprungssiegel verbunden und übernimmt keine Eliteeigenschaft.
+[Compact] Unterbrechungsschwelle zählt ausschließlich Endschaden während der sichtbaren Vorbereitung.
+[Compact] Siegel verfallen nach zehn Sekunden oder bei Verbrauch; nie unsichtbar aktiv.
+[Compact] Phase 3 kann nicht durch dauerndes Wiederbeleben endlos werden.
+[Compact] Normaler Testkampf mit angemessener Gruppe dauert 65-90 Sekunden; mindestens drei unterschiedliche Gruppenkonzepte müssen zuverlässig siegen können.
+[Heading 3] 16.2 Die Dornenmutter - Boss von Akt II
+[Heading 4] Pflanzenregeln
+[Compact] Wurzelfelder sind feste Spawnpunkte und werden vor Kampf gezeigt. Pro Feld höchstens eine Pflanze.
+[Compact] Dornenknospe: greift alle 3 s an; Heilblüte: heilt; Fangranke: LP 500, alle 4 s 0,7 s Wurzel auf nächsten Nahgegner; Giftkelch: LP 420, alle 3 s kleines Giftfeld Radius 4.
+[Compact] Pflanzen zählen als Beschwörung. Bei voller Gegner-Beschwörungsgrenze kann die Dornenmutter eine vorhandene eigene Pflanze derselben niedrigeren Priorität ersetzen: Dornenknospe < Fangranke < Giftkelch < Heilblüte.
+[Compact] Zerstörte Pflanze hinterlässt 5 s freie Erde und kann in dieser Zeit nicht neu bepflanzt werden. Visueller Timer am Feld.
+[Heading 4] Phase 1 - Aussaat (100-65% LP)
+[Compact] Dreifache Saat: Start 6 s, Cooldown 12 s. Pflanzt je nach Bedarf zwei Pflanzen: Heilblüte bei Boss/Verbündetem unter 75% LP, Fangranke bei Nahdruck, sonst Dornenknospe. Nie beide auf derselben Bahn.
+[Compact] Dornenwall: alle 10 s markiert eine Bahn; nach 1 s wachsen 8 s lang Dornen aus dem Boden. Bewegung dort -30%; alle 2 s 45% physischer Schaden an Einheiten in Kontaktzone. Pflanzen sind nicht betroffen.
+[Heading 4] Phase 2 - Geschlossener Kelch (65-30% LP)
+[Compact] Übergang: Boss schließt Blütenpanzer für 7 s und erhält 65% Schadensreduktion. Gleichzeitig erscheinen drei klar markierte Wurzelherzen, je Bahn eines, LP 750.
+[Compact] Jedes zerstörte Wurzelherz reduziert Panzer sofort um 20 Prozentpunkte. Werden alle drei zerstört, bricht Panzer vorzeitig und Boss ist 3 s verwundbar: -25 Widerstand/Rüstung.
+[Compact] Nach Panzerende Pollenstoß: 100% magischer Flächenschaden über alle Bahnen; pro überlebendem Wurzelherz zusätzlich 35% und 2 s Schwächung. Herzen verschwinden danach.
+[Compact] Anschließend normale Saat, aber kann Giftkelche erzeugen. Panzer wiederholt sich nach 18 s, falls Phase noch aktiv.
+[Heading 4] Phase 3 - Wilde Blüte (30-0% LP)
+[Compact] Boss öffnet sich vollständig, verliert permanent 15 Rüstung/Widerstand, Standardintervall -15%.
+[Compact] Überwuchern: alle 9 s werden zwei freie Felder sofort mit Dornenknospen bepflanzt; keine Heilblüten mehr.
+[Compact] Rankenschlag: Bahn mit meisten regulären Zielen, 1 s Warnung, 175% physisch und Wechsel auf benachbarte Bahn erzwungen, falls Platz; sonst 0,5 s Betäubung.
+[Compact] Phase ist kurzer DPS-/Überlebensabschluss und darf nicht durch Heilblüten verlängert werden.
+[Heading 4] Ascension-Erweiterungen
+[Compact] Rang 4: Samenraub - erste zerstörte Spielerbeschwörung je Phase erzeugt auf nächstem freien Gegnerfeld eine Dornenknospe.
+[Compact] Rang 9: zusätzliche Phase bei 45% LP Der wandernde Garten - Bosswurzel verschiebt sich alle 4 s zwischen Bahnen; nur ihre aktuelle Bahn kann Boss direkt angreifen, andere Ziele werden von Ranken blockiert. Dauer 16 s.
+[Compact] Veteran: Wurzelherzen 900 LP; Pollenstoß-Schwächung 3 s; keine höhere Schadensreduktion.
+[Heading 4] Gegenstrategien und Belohnung
+[Compact] Mehrere Bahnen abdecken; mobile Nahkämpfer oder Beschwörungen auf Wurzelherzen; Flächenschaden gegen Pflanzen; Bannung gegen Regeneration; Panzer nicht stumpf angreifen.
+[Compact] Garantiert: Ilyras „Morgensamen“-Talisman, Banner „Offener Hain“, 360 Gold, Freischaltung Akt III und sechster Gruppenplatz.
+[First Paragraph] Implementierungs- und Abnahmekriterien
+[Compact] Pflanzenwahl folgt deterministischer Priorität und ist in Vorschau verständlich.
+[Compact] Panzerreduktion durch Herzen ist unmittelbar sichtbar und mathematisch korrekt.
+[Compact] Keine Pflanzen können auf belegtem oder gesperrtem Wurzelfeld entstehen.
+[Compact] Mindestens eine sichere Strategie ohne Flächenmagier und eine ohne Beschwörer muss funktionieren.
+[Heading 3] 16.3 Der Ewige Schmied - Boss von Akt III
+[Heading 4] Phase 1 - Aufbau (100-70% LP)
+[Compact] Schmiedebefehl: alle 9 s baut auf freiem Amboss-Slot nach Priorität Barrikade (wenn Bahn offen), Geschütz (wenn Barrikade aktiv), Reparaturdrohne (wenn Konstruktion unter 60% LP). Maximal vier Bosskonstruktionen und globale Sechsergrenze.
+[Compact] Jeder Bau +18 Hitze. Standardangriff +2 Hitze. Zerstörung einer Bosskonstruktion -15 Hitze und 0,5 s Stagger am Boss.
+[Compact] Glühender Hammer: bei 60+ Hitze ersetzt jeder dritte Angriff die Schockwelle durch 150% magischen Schaden + Brennen.
+[Heading 4] Phase 2 - Festung (70-40% LP)
+[Compact] Übergang: Boss springt zum Ofenkern, 1 s unverwundbar, erzeugt je eine Runenbarrikade auf äußeren Bahnen und Schild 18% Max-LP. Hitze wird auf mindestens 50 gesetzt.
+[Compact] Ofenkern speisen: Solange mindestens eine Bosskonstruktion aktiv ist, erhält Boss 25% Schadensreduktion. Jede aktive Konstruktion gibt zusätzlich +5 Rüstung/Widerstand, maximal +20.
+[Compact] Metallregen: alle 11 s, zwei Bahnen werden 1,2 s markiert, dann je 135% physisch auf alle Ziele dort. Konstruktionen des Bosses heilen 10% statt Schaden.
+[Compact] Notfallreparatur: bei 30% Schildrest, 1 s Kanal; repariert aktive Konstruktionen 25% und Schild 8% Max-LP. Kann durch Zerstörung einer Konstruktion während Kanal vollständig unterbrochen werden.
+[Heading 4] Phase 3 - Überhitzung (40-0% LP)
+[Compact] Alle Bosskonstruktionen überladen: +50% Angriff/Wirksamkeit, verlieren 4% Max-LP/s. Boss-Schadensreduktion endet. Hitze steigt automatisch 5/s.
+[Compact] Bei 100 Hitze Ofenbruch: 1,4 s globale Warnung, 190% magischer Schaden an allen regulären Einheiten, 80% an Beschwörungen; danach Hitze 30 und Boss 3 s verwundbar (-30 Rüstung/Widerstand). Jede in den letzten 5 s zerstörte Bosskonstruktion reduziert Ofenbruch um 15%, max. 45%.
+[Compact] Hammersturm: alle 8 s drei Schläge auf aktuelle/benachbarte Bahnen zu je 100% physisch; jeder Zielcharakter max. zweimal.
+[Compact] Boss baut in Phase 3 keine neuen Konstruktionen. Kampf besitzt damit eindeutigen Endzustand.
+[Heading 4] Ascension-Erweiterungen
+[Compact] Rang 4: Magnetkran - alle 14 s zieht entfernteste Spieler-Konstruktion oder, falls keine, entferntesten Schützen 6 X zum Zentrum; 0,9 s Warnung.
+[Compact] Rang 9: Zusatzphase bei 55% LP Qualitätskontrolle - Boss präsentiert nacheinander drei Konstruktionen; Spieler muss innerhalb 15 s zwei zerstören. Jede überlebende wird als verbesserte Version in Phase 2 übernommen.
+[Compact] Veteran: Hitze aus Standardangriff +3; Konstruktionen +15% LP; Ofenbruch unverändert, um Fairness zu bewahren.
+[Heading 4] Gegenstrategien und Belohnung
+[Compact] Brecher und Bannwirker; Konstruktionen zeitlich passend statt blind zerstören; defensive Phase überstehen; Ofenbruch durch Zerstörung abschwächen; Burst im Verwundbarkeitsfenster.
+[Compact] Garantiert: Orrik, Banner „Perfekter Bauplan“, 450 Gold, siebter Gruppenplatz und Akt IV.
+[First Paragraph] Implementierungs- und Abnahmekriterien
+[Compact] Hitzeänderungen sind vollständig im Log und an Leiste sichtbar.
+[Compact] Konstruktionstod reduziert Hitze exakt einmal, auch bei Überladungsexplosion.
+[Compact] Boss baut nie über definierte Grenzen und blockiert nicht alle drei Bahnen ohne gültigen Angriffsweg.
+[Compact] Ofenbruch hat mindestens 1,4 s lesbare Warnung bei 1x und passende Zeitlupe bei 2x/3x.
+[Heading 3] 16.4 Das Herz des Risses und der Kurator - Endboss von Akt IV
+[Heading 4] Phase 1 - Konservierte Asche (100-75% LP)
+[Compact] Ruft je einen Aschesoldaten oben/unten. Gefallene hinterlassen Siegel. Archivappell alle 12 s belebt höchstens ein Echo; Kanal kann bei 5% Boss-Max-LP Schaden verhindert werden.
+[Compact] Aschenspur: alle 9 s eine Bahn 5 s Brennzone; 3% Quellenangriff magisch pro Sekunde und -15% Bewegung.
+[Compact] Ziel: bekannte Aschenregel in vereinfachter Form, kein vollständiger Aschenkönig-Replay.
+[Heading 4] Phase 2 - Idealer Garten (75-50% LP)
+[Compact] Alle Aschesiegel/Echos verschwinden. Zwei Wurzelfelder pro äußerer Bahn erscheinen. Herz pflanzt alle 9 s eine Dornenknospe oder Heilblüte.
+[Compact] Konservierter Kelch: 6 s 50% Schadensreduktion und je ein Wurzelherz auf zwei Bahnen. Zerstörung beider beendet Schutz; sonst Pollenstoß 120% magisch.
+[Heading 4] Phase 3 - Vollkommene Maschine (50-25% LP)
+[Compact] Pflanzen verschwinden. Erzeugt Barrikade und Geschütz. Jede aktive Konstruktion gibt Herz 12% Schadensreduktion.
+[Compact] Kurator überlädt: alle 10 s markiert eine Konstruktion; nach 4 s explodiert sie Radius 6 für 150% magisch. Zerstörung vor Ablauf verhindert Explosion und macht Herz 1,5 s verwundbar (-20 Verteidigung).
+[Compact] Metalllinie: eine Bahn, 1 s Warnung, 150% physisch.
+[Heading 4] Phase 4 - Unmögliche Zukunft (25-0% LP)
+[Compact] Alle Unterstützer und Konstruktionen verschwinden. Arena mischt alle Regionen. Herz erhält keine Schadensreduktion und kann nicht mehr heilen.
+[Compact] Drei Möglichkeiten: Alle 8 s zeigt der Kurator drei Symbole über den Bahnen: Asche, Dornen, Stahl. Nach 1,2 s tritt je Bahn der entsprechende Effekt auf: Asche = 110% magisch + Brennen; Dornen = 100% physisch + Verlangsamung; Stahl = 135% physisch, ignoriert 20 Rüstung. Symbole/Zuordnung bleiben konsistent.
+[Compact] Zukunft löschen: bei 10% LP einmalig 4 s Kanal. Währenddessen erscheinen drei Riftfragmente mit je 650 LP auf den Bahnen. Wird mindestens zwei zerstört, bricht Kanal und Herz verliert 5% Max-LP reinen Schaden. Sonst globale Explosion 180% magisch und 3 s Schwächung; kein Soforttod.
+[Compact] Nach Sieg zerbricht das Herz in kontrollierte Fragmente; Kurator flieht nicht als DLC-Haken, sondern wird in einer kurzen Szene vom eigenen statischen Archiv eingeschlossen. Kampagne ist abgeschlossen.
+[Heading 4] Kurator-Regeln
+[Compact] Der Kurator darf nie Ziel, Kollisionskörper, Heilempfänger oder Schadensquelle ohne sichtbare Arenaaktion sein.
+[Compact] Jeder Eingriff besitzt Symbol, Sprachausgabe/Untertitel und mindestens 0,8 s Vorwarnung.
+[Compact] Kuratoraktionen werden wie Bossfähigkeiten im Vorschaufenster aufgelistet und im Kampflog dem Kurator zugeordnet.
+[Heading 4] Ascension-Erweiterungen
+[Compact] Rang 4: Redigierte Fußnote - einmal pro Phase friert der Kurator die aktuell höchste Spieler-Synergie 5 s ein; ihre neuen Trigger pausieren, bestehende Schilde/Einheiten bleiben. Vorwarnung und betroffene Synergie sichtbar.
+[Compact] Rang 9: Zwischen jeder Regionalphase 10 s Korridor der Möglichkeiten: zwei Bahnen sind abwechselnd gefährlich, während drei kleine Fragmente erscheinen. Zerstörte Fragmente geben der Gruppe je 4% Schild. Keine zusätzlichen regulären Gegner.
+[Compact] Rang 10 vollständige Fassung: Phasenreihenfolge wird aus drei kuratierten Reihenfolgen gewählt und vor Kampf angezeigt; Phase 4 bleibt immer zuletzt.
+[Heading 4] Gegenstrategien und Belohnung
+[Compact] Flexible Rollenverteilung statt extremer Einzelsynergie; vor Kampf alle Phasen lesen; zwischen sichtbaren Phasen verändert der Spieler nicht aktiv die Formation, daher muss Startgruppe mehrere Aufgaben lösen.
+[Compact] Garantiert erster Sieg: Abschluss der Kampagne, Riftkammer, Ascension, Endlose Rift, Nyx, 700 Gold, Talisman „Offene Möglichkeit“, Titel „Riftwarden“.
+[First Paragraph] Implementierungs- und Abnahmekriterien
+[Compact] Jede Phase ist mechanisch wiedererkennbar, aber kürzer und einfacher als ihr Regionalboss.
+[Compact] Kurator kann niemals durch Targeting-Fehler angegriffen werden.
+[Compact] Alle Phase-Objekte werden beim Übergang sauber entfernt; keine alten Auren oder Timer wirken weiter.
+[Compact] Endphase besitzt keine Heil- oder Endlosschleife.
+[Compact] Auf Normal müssen mindestens fünf deutlich verschiedene Gruppenkompositionen den Boss in internen Tests besiegen können.

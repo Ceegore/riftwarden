@@ -1,0 +1,24 @@
+# Chapter 36: UX für Formation, Vorschau und Kampf
+# blocks 1375..1404 (30 blocks)
+
+[Heading 2] 36. UX für Formation, Vorschau und Kampf
+[Heading 3] 36.1 Formationsscreen
+[Compact] Links/oben eigene 3x3-Formation, rechts/unten vollständige Gegnerformation als spiegelnde Vorschau.
+[Compact] Drag-and-drop und Tap-Select/Tap-Place sind gleichwertig. Ungültige Felder zeigen Grund direkt.
+[Compact] Jede Karte zeigt Portrait, Rolle, Merkmale, LP/Angriff/Verteidigungskurzwerte, Kit/Ausrüstung und wichtige Fähigkeit.
+[Compact] Reichweitenvorschau wird beim Auswählen als horizontales Band dargestellt; Bahnwechseloptionen als Pfeile.
+[Compact] Aktive Synergien und Doktrinwirkung aktualisieren sofort. Beinahe-Synergie zeigt „2/3“, aber kein aufdringliches Warnsignal.
+[Compact] Gegnerkarte enthält Rolle, Startfeld, Angriffstyp, Fähigkeitstrigger, Elite/Championstatus, Beschwörungen und natürliche Gegenstrategien.
+[Compact] Bossvorschau besitzt eigene Phasentabs und listet Rang-/Schwierigkeitszusätze getrennt.
+[Compact] Startbutton bleibt erreichbar, aber harte Regelverstöße blockieren; weiche Risiken erzeugen einmalige Warnung.
+[Heading 3] 36.2 Kampfbildschirm
+[Compact] Der Spieler kann jederzeit pausieren und Einheiten antippen, um Werte, Ziel, Ladung und aktive Effekte zu lesen.
+[Compact] Der Spieler kann niemals Ziel markieren, Fähigkeit auslösen, Doktrin ändern, Gegenstand verwenden oder Verstärkung rufen.
+[Compact] Wichtige Signaturfähigkeit kann bei 2x/3x automatisch für maximal 1,2 reale Sekunden auf 1x verlangsamen. Option deaktivierbar.
+[Compact] Schadenszahlen werden aggregiert, wenn mehr als vier Treffer in 0,4 s auf dasselbe Ziel fallen; Detail bleibt im Log.
+[Compact] Kamera bleibt standardmäßig vollständig auf allen drei Bahnen. Kurzer Zoom auf Bossphase nur, wenn keine aktive Gefahrenwarnung verdeckt wird.
+[Heading 3] 36.3 Ergebnis- und Belohnungsflow
+[Compact] Reihenfolge: Sieg/Niederlage -> Bewertung -> 3 wichtigste Beiträge -> bis 2 Hinweise -> detaillierte Statistik optional -> Belohnungswahl -> Karte.
+[Compact] Wiederholen eines Bosskampfs vom Anker ist mit höchstens zwei Eingaben möglich.
+[Compact] Neue Kodex-/Meisterschaftsfortschritte erscheinen kompakt nach der Belohnung und blockieren nicht mehrere Sekunden pro Eintrag.
+[Compact] Belohnungskarten zeigen aktuellen Bestand, Synergie/Kompatibilität und genaue Auswirkung vor Wahl.

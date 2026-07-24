@@ -1,0 +1,10 @@
+# Chapter 49: Verbindliche technische Produktbaseline
+# blocks 1592..1604 (13 blocks)
+
+[Heading 2] 49. Verbindliche technische Produktbaseline
+[First Paragraph] Die Release-App wird als lokal gebündelte Web-App in Capacitor 8 gebaut. React rendert sämtliche Menüs und Overlays; PixiJS rendert ausschließlich das Kampffeld und dekorative HQ-Szenen. Die Simulation ist eine pure TypeScript-Bibliothek ohne React-, DOM-, Pixi- oder Native-Abhängigkeit. Dadurch können Kämpfe headless simuliert, deterministisch wiederholt und unabhängig von Darstellungsgeschwindigkeit getestet werden.
+[Heading 3] 49.1 Festgelegter Stack
+[Technical Note] Versionsregel: Patch- und Minor-Versionen werden beim Repository-Bootstrap auf die neuesten kompatiblen stabilen Releases festgesetzt und anschließend im Lockfile eingefroren. Ein Agent darf keine Major-Version austauschen, ohne ADR, vollständigen Testlauf und Store-Build.
+[Heading 3] 49.2 Produktionsidentität
+[Technical Note] Der Publisher muss die Kennungen vor dem ersten Store-Upload einmal bestätigen. Bis dahin sind sie verbindliche Entwicklungskennungen; nach erstem Upload dürfen sie nicht geändert werden.
+[Heading 3] 49.3 Native Plugins und Verbotliste

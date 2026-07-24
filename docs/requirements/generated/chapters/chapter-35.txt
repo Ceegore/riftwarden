@@ -1,0 +1,12 @@
+# Chapter 35: Hauptquartier und dauerhafte Progressionsoberfläche
+# blocks 1358..1374 (17 blocks)
+
+[Heading 2] 35. Hauptquartier und dauerhafte Progressionsoberfläche
+[First Paragraph] Das Hauptquartier ist eine kompakte, visuell zusammenhängende Menüumgebung und keine frei begehbare Basis. Jeder Bereich öffnet eine klar fokussierte Oberfläche; der Spieler baut keine Räume manuell.
+[Heading 3] 35.1 Navigationsregeln
+[Compact] Vom Hauptquartier ist jeder Hauptbereich mit einem Tap erreichbar; keine verschachtelte Navigation tiefer als drei Ebenen.
+[Compact] Zurück führt immer eine Ebene zurück und verwirft nie unbestätigte Käufe ohne Dialog.
+[Compact] Neue Inhalte erhalten einen einmaligen Punkt; der Punkt verschwindet nach Öffnen des relevanten Details, nicht bloß des Obermenüs.
+[Compact] Gold, Riftessenz und aktueller Modus sind auf allen Verwaltungsseiten sichtbar.
+[Compact] Einheitenvergleich öffnet maximal drei Karten nebeneinander auf Tablet/Desktop und eine scrollbare Vergleichsmatrix auf Telefon.
+[Heading 3] 35.2 Sichtbare Entwicklungsmeilensteine

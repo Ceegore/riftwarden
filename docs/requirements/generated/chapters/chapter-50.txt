@@ -1,0 +1,44 @@
+# Chapter 50: Repository, Module und Coding-Verträge
+# blocks 1605..1626 (22 blocks)
+
+[Heading 2] 50. Repository, Module und Coding-Verträge
+[Heading 3] 50.1 Verzeichnisstruktur
+[Code Block] /src
+  /app              App bootstrap, router, error boundaries, lifecycle
+  /screens          Bildschirm-Container; keine Simulationslogik
+  /features         HQ, heroes, barracks, workshop, dungeon, ascension
+  /game
+    /sim            pure deterministic simulation
+    /content        typed content loading and indexes
+    /render         Pixi scene graph, animation and effects
+    /replay         event log, snapshots and deterministic playback
+  /ui               design-system components and tokens
+  /audio            buses, cue registry, GameAudioSession adapter
+  /storage          saves, migrations, checksum, import/export
+  /platform         Capacitor adapters and web mocks
+  /locales          de, en, pseudo locale
+  /assets           source manifests only; processed output in public/assets
+/tests
+  /unit /simulation /integration /e2e /visual /fixtures
+/android /ios       committed native projects
+/tools              content validator, atlas builder, replay runner
+/docs               ADRs, release checklist, generated content reports
+[Heading 3] 50.2 Abhängigkeitsrichtung
+[Compact] game/sim darf nur Standard-TypeScript und gemeinsame reine Typen importieren. Kein Zugriff auf window, Date.now, Math.random, DOM, React, Pixi oder Capacitor.
+[Compact] game/render liest Simulationssnapshots und Events, schreibt aber niemals Simulationszustand. Animation callbacks dürfen keine Treffer auslösen.
+[Compact] screens verwenden feature services und Stores. Direkter Zugriff auf Filesystem, Preferences oder Native-Plugins außerhalb platform/storage ist verboten.
+[Compact] content lädt nur validierte Daten. Fehlende Referenz ist im Development/CI ein harter Fehler; Release startet bei korruptem Bundle in einen Recovery-Screen statt still zu ersetzen.
+[Compact] UI-Komponenten enthalten keine konkrete Helden-/Bosslogik. Inhaltsnamen, Werte und Beschreibungen kommen aus Daten und Localization Keys.
+[Heading 3] 50.3 TypeScript- und Qualitätsregeln
+[Compact] Kein any außer eng begrenztem Adapter mit Kommentar und unmittelbar anschließender Validierung. unknown ist für externe Daten Pflicht.
+[Compact] Keine nicht-null Assertions in Save-, Content-, Reward- oder Combat-Code. Exhaustive switch mit assertNever für Zustandsautomaten.
+[Compact] Alle Geld-, Statistik-, Tick- und ID-Werte sind Integer. UI-Formatierung ist von interner Einheit getrennt.
+[Compact] Funktionen mit Seiteneffekt tragen dies im Namen oder liegen in Service-/Adaptermodulen. Pure Simulationsfunktionen verändern keine externen Objekte.
+[Compact] ESLint behandelt floating promises, unhandled switch cases, direkte Math.random-/Date.now-Nutzung in Simulation und unsichere HTML-Injektion als Fehler.
+[Compact] Keine dangerouslySetInnerHTML für lokalisierte oder Inhaltsdaten. Formatierte Texte nutzen tokenisierte RichText-Komponenten mit Whitelist.
+[Heading 3] 50.4 Git- und Entscheidungsregeln
+[Compact] Main ist jederzeit baubar. Featurebranches werden über Pull Request mit grünen Pflichtchecks integriert.
+[Compact] Architekturänderungen, neue Native-Plugins, neue Permissions, Save-Schemaänderungen und Inhaltsobergrenzen benötigen eine ADR-Datei.
+[Compact] Generierte Atlanten, store-signierte Artefakte, Keystores, Provisioning Profiles und Secrets werden nicht committet.
+[Compact] package-lock.json ist verboten; pnpm-lock.yaml ist SSOT. Native Lockfiles und Package.resolved werden committet.
+[Compact] Release-Tags lauten vMAJOR.MINOR.PATCH und verweisen auf exakt den Store-Quellstand.

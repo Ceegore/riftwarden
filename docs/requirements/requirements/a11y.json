@@ -1,0 +1,934 @@
+{
+  "schemaVersion": "1.0",
+  "category": "A11y",
+  "requirements": [
+    {
+      "id": "REQ-A11Y-0001",
+      "title": "Fokus nach Modal",
+      "statement": "Fokus kehrt nach Modal exakt zum auslösenden Element zurück; existiert es nicht mehr, zum nächsten logischen Geschwister oder Screenheading.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 78,
+        "section": null,
+        "locator": "block:2082",
+        "quoteHash": "sha256:4bd5aaeb917cb6d6bf4b81719059f1da4a5bf1c9766e5ca3c3a879f9338c5f4e",
+        "originalExcerpt": "Fokus kehrt nach Modal exakt zum auslösenden Element zurück; existiert es nicht mehr, zum nächsten logischen Geschwister oder Screenheading."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-A11Y-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0002",
+      "title": "Die App erfüllt für ihre Web- und Mobile-Oberfläche WCAG-2.2-AA-Prinzipien, soweit auf ein lokales Spiel anwendbar, sowie die Plattformkonventionen von Android und iOS; Accessibility ist ein Release-Gate.",
+      "statement": "Die App erfüllt für ihre Web- und Mobile-Oberfläche WCAG-2.2-AA-Prinzipien, soweit auf ein lokales Spiel anwendbar, sowie die Plattformkonventionen von Android und iOS; Accessibility ist ein Release-Gate.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 80,
+        "section": null,
+        "locator": "block:2111",
+        "quoteHash": "sha256:0182e3054dea4eab967bc8e7997d91d418421ed7ffdb8e6690e3c815efe9fc6a",
+        "originalExcerpt": "Die App erfüllt für ihre Web-/Mobile-Oberfläche WCAG-2.2-AA-Prinzipien, soweit auf ein lokales Spiel anwendbar, sowie die Plattformkonventionen von Android und iOS. Accessibility ist ein Release-Gate und kein optionaler Nachpolish."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0003",
+      "title": "Im laufenden Kampf meldet die Screenreader-Live-Region ausschließlich Phasewechsel, eigene reguläre Verluste, Bosswarnungen und Kampfende; Schadenszahlen werden nicht live vorgelesen.",
+      "statement": "Im laufenden Kampf meldet die Screenreader-Live-Region ausschließlich Phasewechsel, eigene reguläre Verluste, Bosswarnungen und Kampfende; Schadenszahlen werden nicht live vorgelesen.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 80,
+        "section": null,
+        "locator": "block:2113",
+        "quoteHash": "sha256:9299affee0c3af2090e085843b00e1d59b0133320d290ef857f5bba6c4125214",
+        "originalExcerpt": "Im laufenden Kampf meldet die Live-Region ausschließlich Phasewechsel, eigene reguläre Verluste, Bosswarnungen und Kampfende. Schadenszahlen werden nicht live vorgelesen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-003"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0004",
+      "title": "Beim Pausieren wird eine semantische Liste aufgebaut mit oberer, mittlerer und unterer Bahn; je Einheit werden Name, Seite, Rolle, LP-Prozent, Schild, Ziel, Signaturladung und Status vorgelesen.",
+      "statement": "Beim Pausieren wird eine semantische Liste aufgebaut mit oberer, mittlerer und unterer Bahn; je Einheit werden Name, Seite, Rolle, LP-Prozent, Schild, Ziel, Signaturladung und Status vorgelesen.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 80,
+        "section": null,
+        "locator": "block:2114",
+        "quoteHash": "sha256:51d77b5c8b0e3444b3a9082e2b595a4b9168de0ad53ba6813cbc98a830e7036b",
+        "originalExcerpt": "Beim Pausieren wird eine semantische Liste aufgebaut: obere/mittlere/untere Bahn; je Einheit Name, Seite, Rolle, LP%, Schild, Ziel, Signaturladung, Status."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-004"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "count",
+          "name": "entityFieldsReadout",
+          "value": 8
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0005",
+      "title": "Die Einheitenreihenfolge für Screenreader ist: Seite Spieler vor Gegner, Bahn top/middle/bottom, X-Position Richtung Front, stabile Entity-ID.",
+      "statement": "Die Einheitenreihenfolge für Screenreader ist: Seite Spieler vor Gegner, Bahn top/middle/bottom, X-Position Richtung Front, stabile Entity-ID.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 80,
+        "section": null,
+        "locator": "block:2115",
+        "quoteHash": "sha256:eb46aa77a30fe6f92f6f0614ab236c86c8bcf3d8d8742266a9e3d0554a43928c",
+        "originalExcerpt": "Einheitenreihenfolge: Seite Spieler vor Gegner, Bahn top/middle/bottom, X-Position Richtung Front, stabile Entity-ID."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-005"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0006",
+      "title": "Die Screenreader-Timeline listet bekannte nächste Ereignisse als \"in N Sekunden\" auf Basis der Simulationsticks; verdeckte nicht-strategische Zufallsdetails werden nicht erfunden.",
+      "statement": "Die Screenreader-Timeline listet bekannte nächste Ereignisse als \"in N Sekunden\" auf Basis der Simulationsticks; verdeckte nicht-strategische Zufallsdetails werden nicht erfunden.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 80,
+        "section": null,
+        "locator": "block:2116",
+        "quoteHash": "sha256:ed4222e7ba918ee5d946b63ea4a63c420e3bc89022ca9bcfbbd281f7e591815b",
+        "originalExcerpt": "Timeline listet bekannte nächste Ereignisse als „in N Sekunden“, basierend auf Simulationsticks. Verdeckte nicht strategische Zufallsdetails werden nicht erfunden."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-006"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0007",
+      "title": "Beim Fortsetzen erhält den Fokus der pausierte Eintrag oder der Fortsetzenbutton; der Kampf startet nicht automatisch durch Screenreader-Navigation.",
+      "statement": "Beim Fortsetzen erhält den Fokus der pausierte Eintrag oder der Fortsetzenbutton; der Kampf startet nicht automatisch durch Screenreader-Navigation.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 80,
+        "section": null,
+        "locator": "block:2117",
+        "quoteHash": "sha256:8fde5f3c0bed8949596367c5bf67122bb26cf704ac64e7d7161134738bcf4587",
+        "originalExcerpt": "Fortsetzen erhält den Fokus auf dem pausierten Eintrag oder dem Fortsetzenbutton; Kampf startet nicht automatisch durch Screenreader-Navigation."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-007"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0008",
+      "title": "Mit TalkBack und VoiceOver sind die Flows Erststart bis erster Kampf, Kauf, Formation, Ergebnis, Saveexport und Settings vollständig bedienbar.",
+      "statement": "Mit TalkBack und VoiceOver sind die Flows Erststart bis erster Kampf, Kauf, Formation, Ergebnis, Saveexport und Settings vollständig bedienbar.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 80,
+        "section": null,
+        "locator": "block:2120",
+        "quoteHash": "sha256:9b7bb2523dd11e4db5388be306c1ba6ca6adc5b474496d105a5ad870337588ae",
+        "originalExcerpt": "TalkBack und VoiceOver: Erststart bis erster Kampf, Kauf, Formation, Ergebnis, Saveexport und Settings vollständig."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-008"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0009",
+      "title": "Bei 200% Text sind alle S00-S65 und O01-O07 auf kleinster unterstützter Breite darstellbar; keine Primäraktion darf verdeckt sein.",
+      "statement": "Bei 200% Text sind alle S00-S65 und O01-O07 auf kleinster unterstützter Breite darstellbar; keine Primäraktion darf verdeckt sein.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 80,
+        "section": null,
+        "locator": "block:2121",
+        "quoteHash": "sha256:52d1605bc1bc7ae62695cc5c99ca95b5b09ac7d5be7d7b1603ecbe289aa52fdf",
+        "originalExcerpt": "200% Text: alle S00-S65 und O01-O07 auf kleinster unterstützter Breite; keine verdeckte Primäraktion."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-009"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "pct",
+          "name": "textScalePercent",
+          "value": 200
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0010",
+      "title": "Mit gleichzeitig aktiviertem Reduce Motion, Reduced Flash und Low Quality bleibt die vollständige Kampagne technisch spielbar und keine Telegraphie fehlt.",
+      "statement": "Mit gleichzeitig aktiviertem Reduce Motion, Reduced Flash und Low Quality bleibt die vollständige Kampagne technisch spielbar und keine Telegraphie fehlt.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 80,
+        "section": null,
+        "locator": "block:2122",
+        "quoteHash": "sha256:c4ce2d2783380e521fe1a9025b150c5179bbd0da29033eaa9e92eed2462128e4",
+        "originalExcerpt": "Reduce Motion + Reduced Flash + Low Quality gleichzeitig: vollständige Kampagne technisch spielbar, keine fehlenden Telegraphien."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-010"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0011",
+      "title": "Für Deuteranopie, Protanopie und Tritanopie sind Status, Bahnwarnung, Seltenheit und positive/negative Deltas auch ohne Farbunterscheidung erkennbar.",
+      "statement": "Für Deuteranopie, Protanopie und Tritanopie sind Status, Bahnwarnung, Seltenheit und positive/negative Deltas auch ohne Farbunterscheidung erkennbar.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 80,
+        "section": null,
+        "locator": "block:2123",
+        "quoteHash": "sha256:35c5990faad14f21a65f5cbc6877e8748ee92dff7ea18b637099e38c8b1b09a0",
+        "originalExcerpt": "Deuteranopie/Protanopie/Tritanopie: Status, Bahnwarnung, Seltenheit und positive/negative Deltas ohne Farbraten unterscheidbar."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-011"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0012",
+      "title": "Über alle primären Flows bestehen mit Keyboard oder Gamepad weder Fokusfalle noch Fokusverlust noch unerreichbare Aktionen.",
+      "statement": "Über alle primären Flows bestehen mit Keyboard oder Gamepad weder Fokusfalle noch Fokusverlust noch unerreichbare Aktionen.",
+      "norm": "MUST_NOT",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 80,
+        "section": null,
+        "locator": "block:2124",
+        "quoteHash": "sha256:2f036071640714a377bee4b6899b7ebac09c4b47e4f391e35d7605f1a46a5bba",
+        "originalExcerpt": "Keyboard/Gamepad: keine Fokusfalle, Fokusverlust oder unerreichbare Aktion über alle primären Flows."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-012"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0013",
+      "title": "Systemtextskalierung und interne Skalierung werden kombiniert; Gesamtskala ist auf 200 % geprüft; kein Text abgeschnitten; Karten wachsen oder wechseln in Detailmodus.",
+      "statement": "Systemtextskalierung und interne Skalierung werden kombiniert, aber Gesamtskala ist auf 200% geprüft. Kein Text wird abgeschnitten; Karten wachsen oder wechseln in Detailmodus.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 55,
+        "section": null,
+        "locator": "block:1702",
+        "quoteHash": "sha256:f2b117d3f13c604b0e4d7225b71c2c7311ffeab18fa382fc4ca3b3fff02260d4",
+        "originalExcerpt": "Systemtextskalierung und interne Skalierung werden kombiniert, aber Gesamtskala ist auf 200% geprüft. Kein Text wird abgeschnitten; Karten wachsen oder wechseln in Detailmodus."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-013"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "totalScaleCheckPct",
+          "value": 200,
+          "unit": "%"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0014",
+      "title": "Focus-visible ist deutlich gold/violett mit mindestens 3:1 Kontrast; Fokus darf nie hinter Modals verbleiben.",
+      "statement": "Focus-visible ist deutlich gold/violett mit mindestens 3:1 Kontrast. Fokus darf nie hinter Modals verbleiben.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 56,
+        "section": null,
+        "locator": "block:1730",
+        "quoteHash": "sha256:7b7f60e399db5e9527271f8d08a522ce15a8d22eb32df7431b862b4cfd7f0057",
+        "originalExcerpt": "Focus-visible ist deutlich gold/violett mit mindestens 3:1 Kontrast. Fokus darf nie hinter Modals verbleiben."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-014"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "focusVisibleContrastRatio",
+          "value": "3:1"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0015",
+      "title": "Gamepad-Reconnect stellt Fokus auf das letzte logische Element, nicht auf Screenanfang.",
+      "statement": "Gamepad-Reconnect stellt Fokus auf das letzte logische Element, nicht auf Screenanfang.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 56,
+        "section": null,
+        "locator": "block:1731",
+        "quoteHash": "sha256:baea903e75339c2342d0a5fb160965fc7c8c4a023ff513883336f875625d84b8",
+        "originalExcerpt": "Gamepad-Reconnect stellt Fokus auf das letzte logische Element, nicht auf Screenanfang."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-015"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0016",
+      "title": "Alle React-UI nutzen semantische HTML-Elemente, Labels, Gruppen und Live-Regions; rein dekorative Bilder sind aria-hidden.",
+      "statement": "Alle React-UI-Elemente nutzen semantische HTML-Elemente, Labels, Gruppen und Live-Regions. Rein dekorative Bilder sind aria-hidden.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 56,
+        "section": null,
+        "locator": "block:1734",
+        "quoteHash": "sha256:3f7b341f72c472cf9e3a25542db07a49d26b829412213edba4e80a8279cfb7f8",
+        "originalExcerpt": "Alle React-UI-Elemente nutzen semantische HTML-Elemente, Labels, Gruppen und Live-Regions. Rein dekorative Bilder sind aria-hidden."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-016"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0017",
+      "title": "Pixi-Canvas besitzt parallel eine unsichtbare, aber fokussierbare Accessibility-Struktur mit Kampfstatus, drei Bahnen, Einheiten und Warnungen.",
+      "statement": "Der Pixi-Canvas besitzt parallel eine unsichtbare, aber fokussierbare Accessibility-Struktur mit Kampfstatus, drei Bahnen, Einheiten und Warnungen.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 56,
+        "section": null,
+        "locator": "block:1735",
+        "quoteHash": "sha256:5401a3906d45353392b7670b09d4e2e6df5122f2363ce899be11b4150f6ef895",
+        "originalExcerpt": "Der Pixi-Canvas besitzt parallel eine unsichtbare, aber fokussierbare Accessibility-Struktur mit Kampfstatus, drei Bahnen, Einheiten und Warnungen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-017"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0018",
+      "title": "Optionale taktische Textansicht zeigt im pausierten Kampf pro Bahn: Reihenfolge, LP/Schild, Ziel, nächste Fähigkeit, Effekte, angekündigte Gefahr; verändert keine Simulation.",
+      "statement": "Die optionale taktische Textansicht zeigt im pausierten Kampf pro Bahn: Reihenfolge, LP/Schild, Ziel, nächste Fähigkeit, Effekte und angekündigte Gefahr. Sie verändert keine Simulation.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 56,
+        "section": null,
+        "locator": "block:1736",
+        "quoteHash": "sha256:7b992a933e8ccb5bd8ff88529a0ab04e736b4c7b0f0ae2564116394dff4b54c0",
+        "originalExcerpt": "Die optionale taktische Textansicht zeigt im pausierten Kampf pro Bahn: Reihenfolge, LP/Schild, Ziel, nächste Fähigkeit, Effekte und angekündigte Gefahr. Sie verändert keine Simulation."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-018"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0019",
+      "title": "Kampfereignisse werden nicht vollständig vorgelesen; Standard: Bossphase, eigener Verlust, große Warnung, Sieg/Niederlage; Detailmodus ergänzt Fähigkeiten und Status.",
+      "statement": "Kampfereignisse werden nicht vollständig vorgelesen. Standard: Bossphase, eigener Verlust, große Warnung, Sieg/Niederlage. Detailmodus ergänzt Fähigkeiten und Status.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 56,
+        "section": null,
+        "locator": "block:1737",
+        "quoteHash": "sha256:4674f3300f3a8aa636ad8836d2a47547c4d5e322d0334a7247249ad8ca65889b",
+        "originalExcerpt": "Kampfereignisse werden nicht vollständig vorgelesen. Standard: Bossphase, eigener Verlust, große Warnung, Sieg/Niederlage. Detailmodus ergänzt Fähigkeiten und Status."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-019"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0020",
+      "title": "Alle gesprochenen Inhalte besitzen Untertitel; alle Audiohinweise besitzen Form/Icon/Animation als visuelles Äquivalent.",
+      "statement": "Alle gesprochenen Inhalte besitzen Untertitel; alle Audiohinweise besitzen Form/Icon/Animation als visuelles Äquivalent.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 56,
+        "section": null,
+        "locator": "block:1738",
+        "quoteHash": "sha256:f5e94479e523fce49ac53b1fd21c05fefaf9dbb2de924c412b2c8b78827c4249",
+        "originalExcerpt": "Alle gesprochenen Inhalte besitzen Untertitel; alle Audiohinweise besitzen Form/Icon/Animation als visuelles Äquivalent."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-A11Y-020"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0021",
+      "title": "Separate Audio-Regler: Gesamt, Musik, Effekte, Stimmen; Stummoption je Kanal.",
+      "statement": "Es gibt separate Audio-Regler für Gesamt, Musik, Effekte und Stimmen mit einer Stummoption je Kanal.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 39,
+        "section": "39. Audioausrichtung",
+        "locator": "block:1426",
+        "quoteHash": "sha256:2cb4ceca33951a4cb17331abcf24843aa5ca5ca464c2c0043a13acbf9d9a593b",
+        "originalExcerpt": "Separate Regler: Gesamt, Musik, Effekte, Stimmen; Stummoption je Kanal."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-A11Y-021"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0022",
+      "title": "Untertitel für alle gesprochenen Inhalte; Sprechername und optionaler Richtungsindikator.",
+      "statement": "Für alle gesprochenen Inhalte sind Untertitel vorhanden; jede Zeile enthält den Sprechernamen und optional einen Richtungsindikator.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 39,
+        "section": "39. Audioausrichtung",
+        "locator": "block:1427",
+        "quoteHash": "sha256:dc471d9c3c5a411e1cb6c2ecb2fb7e3ebbf7bece5f80895399803af6eef6578b",
+        "originalExcerpt": "Untertitel für alle gesprochenen Inhalte; Sprechername und optional Richtungsindikator."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-A11Y-022"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0023",
+      "title": "Gameplayrelevante Audiohinweise besitzen immer ein visuelles Äquivalent.",
+      "statement": "Jeder gameplayrelevante Audiohinweis besitzt immer auch ein visuelles Äquivalent.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 39,
+        "section": "39. Audioausrichtung",
+        "locator": "block:1428",
+        "quoteHash": "sha256:d4781a9eae91e1f4750d84b0acbf08992dd5b6d31817d189cc2c8a27af6920c1",
+        "originalExcerpt": "Gameplayrelevante Audiohinweise besitzen immer visuelles Äquivalent."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-A11Y-023"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0024",
+      "title": "Wichtige Begriffe sind antippbar und öffnen Glossar ohne Verlust der aktuellen Vorbereitung.",
+      "statement": "Wichtige Begriffe sind antippbar und öffnen das Glossar, ohne dass die aktuelle Vorbereitung verloren geht.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 40,
+        "section": "40.1 Informationsdichte",
+        "locator": "block:1436",
+        "quoteHash": "sha256:c46cd3273e83f48c2ec353561d176521666f104ff63fb8861949e87d44a7f9db",
+        "originalExcerpt": "Wichtige Begriffe sind antippbar und öffnen Glossar ohne Verlust der aktuellen Vorbereitung."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-A11Y-024"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0025",
+      "title": "Alle Menüs sind mit Controller/Tastatur navigierbar, auch wenn Android-Touch primär ist.",
+      "statement": "Alle Menüs sind mit Controller oder Tastatur navigierbar, auch wenn Android-Touch als primäre Eingabe dient.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 40,
+        "section": "40.1 Informationsdichte",
+        "locator": "block:1439",
+        "quoteHash": "sha256:7c027d3c21daa7079fc6a7f0a5a5796680dd3b3e8466348951c46ab7319ba22b",
+        "originalExcerpt": "Alle Menüs mit Controller/Tastatur navigierbar, auch wenn Android-Touch primär ist."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-A11Y-025"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0026",
+      "title": "Alle Kernflows sind mit Touch, Maus und Controller/Tastatur vollständig bedienbar.",
+      "statement": "Alle Kernflows mit Touch, Maus und Controller/Tastatur vollständig bedienbar.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1506",
+        "quoteHash": "sha256:aab01c63ed8a5eb3617094289bf2328c03dc4e73398530359d04140e3af1e820",
+        "originalExcerpt": "Alle Kernflows mit Touch, Maus und Controller/Tastatur vollständig bedienbar."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "UT-A11Y-026"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0027",
+      "title": "Keine abgeschnittenen Texte bei 150% Textgröße auf unterstützten Mindestauflösungen.",
+      "statement": "Keine abgeschnittenen Texte bei 150% Textgröße auf unterstützten Mindestauflösungen.",
+      "norm": "MUST_NOT",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1507",
+        "quoteHash": "sha256:34408fbdfa57ad6f693415812d367238bf999e927cba1a04075b1369aa3d2419",
+        "originalExcerpt": "Keine abgeschnittenen Texte bei 150% Textgröße auf unterstützten Mindestauflösungen."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "UT-A11Y-027"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "textScaleTest",
+          "value": 150,
+          "unit": "percent"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-A11Y-0028",
+      "title": "Alle Warnungen sind ohne Farbinformation verständlich; reduzierte Bewegung und Effekte funktionieren vollständig.",
+      "statement": "Alle Warnungen ohne Farbinformation verständlich; reduzierte Bewegung und Effekte funktionieren vollständig.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1508",
+        "quoteHash": "sha256:e55cdd959115167e890203e84329ea64cd2797053a6d0d36b08a1205cd6e59e6",
+        "originalExcerpt": "Alle Warnungen ohne Farbinformation verständlich; reduzierte Bewegung/Effekte funktionieren vollständig."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "UT-A11Y-028"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ]
+}

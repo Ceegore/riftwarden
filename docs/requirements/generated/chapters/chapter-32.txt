@@ -1,0 +1,10 @@
+# Chapter 32: Kodex
+# blocks 1320..1328 (9 blocks)
+
+[Heading 2] 32. Kodex
+[Compact] Kategorien: 10 Helden, 18 Truppen, 14 Beschwörungen, 28 Grundgegner, 12 Eliteattribute, 8 Champions, 4 Zwischenbosse, 4 Hauptbosse, 42 Gegenstände, 36 Relikte, 30 Ereignisse, 4 Regionen, Story, Ascension-Regeln und Modifikatoren.
+[Compact] Unbekannte Einträge erscheinen als Silhouette mit Entdeckungsquelle, sofern die Quelle bereits zugänglich ist.
+[Compact] Erste Begegnung schaltet Namen, Rolle, Kurzmechanik und Gegenstrategie frei. Erster Sieg schaltet vollständige Baselinewerte und Fähigkeiten frei.
+[Compact] Boss-Kodex zeigt normale, Veteran-, Rang-4- und Rang-9-Regeln getrennt.
+[Compact] Einträge enthalten niemals versteckte aktuelle Endwerte nach Schwierigkeit; stattdessen Basis plus aktive Multiplikatoren.
+[Compact] Such-/Filteroptionen: Name, Rolle, Merkmal, Region, Schadenstyp, Beschwörung/Konstruktion, freigeschaltet/ungesehen.

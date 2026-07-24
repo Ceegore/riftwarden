@@ -1,0 +1,19 @@
+# Chapter 80: Vollständige Accessibility- und Eingabe-Abnahmematrix
+# blocks 2109..2126 (18 blocks)
+
+[Heading 2] 80. Vollständige Accessibility- und Eingabe-Abnahmematrix
+[Heading 3] 80.1 Allgemeiner Zielstandard
+[First Paragraph] Die App erfüllt für ihre Web-/Mobile-Oberfläche WCAG-2.2-AA-Prinzipien, soweit auf ein lokales Spiel anwendbar, sowie die Plattformkonventionen von Android und iOS. Accessibility ist ein Release-Gate und kein optionaler Nachpolish.
+[Heading 3] 80.2 Screenreader-Kampfmodell
+[Compact] Im laufenden Kampf meldet die Live-Region ausschließlich Phasewechsel, eigene reguläre Verluste, Bosswarnungen und Kampfende. Schadenszahlen werden nicht live vorgelesen.
+[Compact] Beim Pausieren wird eine semantische Liste aufgebaut: obere/mittlere/untere Bahn; je Einheit Name, Seite, Rolle, LP%, Schild, Ziel, Signaturladung, Status.
+[Compact] Einheitenreihenfolge: Seite Spieler vor Gegner, Bahn top/middle/bottom, X-Position Richtung Front, stabile Entity-ID.
+[Compact] Timeline listet bekannte nächste Ereignisse als „in N Sekunden“, basierend auf Simulationsticks. Verdeckte nicht strategische Zufallsdetails werden nicht erfunden.
+[Compact] Fortsetzen erhält den Fokus auf dem pausierten Eintrag oder dem Fortsetzenbutton; Kampf startet nicht automatisch durch Screenreader-Navigation.
+[Heading 3] 80.3 Eingabemodalitäten
+[Heading 3] 80.4 Accessibility-Releasefälle
+[Compact] TalkBack und VoiceOver: Erststart bis erster Kampf, Kauf, Formation, Ergebnis, Saveexport und Settings vollständig.
+[Compact] 200% Text: alle S00-S65 und O01-O07 auf kleinster unterstützter Breite; keine verdeckte Primäraktion.
+[Compact] Reduce Motion + Reduced Flash + Low Quality gleichzeitig: vollständige Kampagne technisch spielbar, keine fehlenden Telegraphien.
+[Compact] Deuteranopie/Protanopie/Tritanopie: Status, Bahnwarnung, Seltenheit und positive/negative Deltas ohne Farbraten unterscheidbar.
+[Compact] Keyboard/Gamepad: keine Fokusfalle, Fokusverlust oder unerreichbare Aktion über alle primären Flows.

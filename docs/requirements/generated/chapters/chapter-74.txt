@@ -1,0 +1,41 @@
+# Chapter 74: Exakter Repository-Bootstrap, Befehle und Konfigurationsbaseline
+# blocks 1981..1999 (19 blocks)
+
+[Heading 2] 74. Exakter Repository-Bootstrap, Befehle und Konfigurationsbaseline
+[Heading 3] 74.1 Verbindliche Paket- und Workspace-Struktur
+[First Paragraph] Das Projekt ist verbindlich ein einzelnes pnpm-Repository ohne Workspace-Packages und ohne Monorepo-Tooling. Die reine Simulation liegt unter /src/game/sim, wird über normale TypeScript-Pfadaliase importiert und niemals als separates Package veröffentlicht.
+[Code Block] /
+  package.json
+  pnpm-lock.yaml
+  tsconfig.json
+  tsconfig.node.json
+  vite.config.ts
+  capacitor.config.ts
+  eslint.config.js
+  playwright.config.ts
+  vitest.config.ts
+  /src ... (Kapitel 50)
+  /content/source
+  /content/schemas
+  /content/generated
+  /public/assets/generated
+  /android
+  /ios
+  /tools
+  /tests
+  /docs/adr
+  /docs/reports
+  /store/android
+  /store/ios
+[Heading 3] 74.2 Pflichtbefehle
+[Heading 3] 74.3 Konfigurationsregeln
+[Compact] capacitor.config.ts verwendet webDir=dist, bundledWebRuntime=false, kein server.url und keine allowNavigation-Einträge im Release.
+[Compact] Vite base ist ./ für den Capacitor-Build. Asset-URLs werden ausschließlich über den generierten Manifestresolver aufgebaut.
+[Compact] Production definiert process.env/Import-Meta nur zur Buildzeit. Es existieren keine geheimen Clientwerte; unbekannte Umgebungsvariablen brechen die Validierung.
+[Compact] Debugtools, Seedpicker, Replayinspektor und FPS-HUD sind compile-time aus Release entfernt, nicht nur per verstecktem Schalter deaktiviert.
+[Compact] Native Projekte bleiben committed. npx cap sync darf keine handgeschriebenen Native-Dateien überschreiben; Custom Plugins besitzen eigene Tests.
+[Heading 3] 74.4 Zulässige Buildvariablen
+[Heading 3] 74.5 Verbindliche Dependency-Allowlist und Versionsfreeze
+[Compact] Bootstrap löst einmalig die neueste stabile Patchversion innerhalb der freigegebenen Major-Linie am Implementierungsstart auf und schreibt jede Dependency exakt ohne Caret/Tilde in package.json sowie ins Lockfile.
+[Compact] Danach erfolgen Upgrades ausschließlich als eigene PR mit Changelog-, Native-Build-, Bundle-, Determinismus- und Regressionprüfung. Automatische Major-/Minor-Upgrades sind deaktiviert.
+[Compact] Lizenzreport muss für jede direkte und transitive Dependency Name, Version, Lizenz und Quell-URL enthalten; unbekannte, copyleft-inkompatible oder nicht redistributierbare Lizenz blockiert den Build.

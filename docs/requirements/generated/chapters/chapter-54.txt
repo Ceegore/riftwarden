@@ -1,0 +1,15 @@
+# Chapter 54: Vollständiger Screenkatalog und Funktionsumfang
+# blocks 1679..1698 (20 blocks)
+
+[Heading 2] 54. Vollständiger Screenkatalog und Funktionsumfang
+[First Paragraph] Jeder Screen implementiert sechs gemeinsame Zustände: loading, ready, empty (nur wenn sachlich möglich), blocked, recoverableError und fatalError. Jeder Screen besitzt einen stabilen screenId, einen eindeutigen primären Zweck, einen festgelegten Back-Target und mindestens einen automatisierten Screenshot-Test pro unterstützter Layoutklasse.
+[Heading 3] 54.1 Start-, System- und Hauptmenüscreens
+[Heading 3] 54.2 Hauptquartier und permanente Verwaltung
+[Heading 3] 54.3 Dungeon-, Kampf- und Ergebnisscreens
+[Heading 3] 54.4 Systemunterseiten und Overlays
+[Heading 3] 54.5 Kritische Screen-Abnahmeregeln
+[Compact] Jeder primäre Flow ist mit höchstens drei Navigationsebenen erreichbar; keine Pflichtfunktion nur über Long-Press oder versteckte Geste.
+[Compact] Jeder Kauf zeigt Kosten, neuen Bestand und exakte Wirkung vor Bestätigung. Buttons werden während Commit atomar gesperrt, Doppeltap erzeugt keine Doppeltransaktion.
+[Compact] Jede Liste erhält deterministische Standardsortierung, Filter-Reset und leeren Zustand. Scrollposition bleibt beim Zurückkehren erhalten.
+[Compact] Kein Screen verliert Zustand bei App-Wechsel, Sperren/Entsperren, Fensterresize oder OS-Schriftänderung.
+[Compact] Die Kampfvorbereitung zeigt jede strategisch relevante Information ohne Öffnen eines externen Dokuments; Detailtexte dürfen in Tooltips liegen.

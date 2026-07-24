@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "id": "NORM-015",
+      "topic": "Settings",
+      "canonicalRule": "settings.json ist autoritativ. Capacitor Preferences enthält nur nichtautoritative Boot-Hinweise, etwa zuletzt bekannte Sprache.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-015",
+        "GDD chapter 83 authority review required"
+      ],
+      "affectedRequirementIds": [
+        "REQ-A11Y-0008",
+        "REQ-A11Y-0018",
+        "REQ-A11Y-0021",
+        "REQ-A11Y-0022",
+        "REQ-ANDROID-0001",
+        "REQ-CONTENT-0025",
+        "REQ-CONTENT-0026",
+        "REQ-CONTENT-0027",
+        "REQ-CONTENT-0062",
+        "REQ-CONTENT-0081",
+        "REQ-CONTENT-0092",
+        "REQ-CONTENT-0093",
+        "REQ-CONTENT-0100",
+        "REQ-CONTENT-0101",
+        "REQ-IOS-0010",
+        "REQ-PRODUCT-0021",
+        "REQ-PRODUCT-0060",
+        "REQ-PRODUCT-0064",
+        "REQ-PRODUCT-0085",
+        "REQ-PRODUCT-0093",
+        "REQ-SAVE-0024",
+        "REQ-SAVE-0040",
+        "REQ-SIM-0094",
+        "REQ-UX-0024",
+        "REQ-UX-0034",
+        "REQ-UX-0083",
+        "REQ-UX-0090",
+        "REQ-UX-0093",
+        "REQ-UX-0109"
+      ],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "NORM-016",
+      "topic": "Zeitlimit",
+      "canonicalRule": "90 s normal/elite, 120 s Boss, 15 s Kollaps, 180 s absoluter Failsafe; spätere Tie-Break-Reihenfolge.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-016",
+        "GDD chapters 73/76 and dataset-specific rules"
+      ],
+      "affectedRequirementIds": [
+        "REQ-A11Y-0006",
+        "REQ-ANDROID-0001",
+        "REQ-CONTENT-0028",
+        "REQ-CONTENT-0029",
+        "REQ-CONTENT-0069",
+        "REQ-CONTENT-0094",
+        "REQ-CONTENT-0109",
+        "REQ-IOS-0006",
+        "REQ-IOS-0009",
+        "REQ-IOS-0010",
+        "REQ-PERF-0003",
+        "REQ-PERF-0009",
+        "REQ-PRODUCT-0035",
+        "REQ-PRODUCT-0037",
+        "REQ-QA-0032",
+        "REQ-SECURITY-0019",
+        "REQ-SIM-0030",
+        "REQ-SIM-0079",
+        "REQ-SIM-0100",
+        "REQ-SIM-0128",
+        "REQ-UX-0015"
+      ],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "NORM-017",
+      "topic": "Low-End",
+      "canonicalRule": "Simulation bleibt immer 30 TPS. Low/Minimum darf 30 Render-FPS und kosmetisch reduzierte Qualität nutzen, niemals Tickskip oder Telegraphieverlust.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-017",
+        "GDD chapter 84 authority review required"
+      ],
+      "affectedRequirementIds": [
+        "REQ-ANDROID-0002",
+        "REQ-ANDROID-0010",
+        "REQ-CONTENT-0100",
+        "REQ-CONTENT-0113",
+        "REQ-CONTENT-0114",
+        "REQ-PERF-0002",
+        "REQ-PERF-0003",
+        "REQ-PRODUCT-0046",
+        "REQ-QA-0011",
+        "REQ-QA-0030",
+        "REQ-SAVE-0011",
+        "REQ-SAVE-0015",
+        "REQ-SAVE-0044",
+        "REQ-SIM-0094"
+      ],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "NORM-018",
+      "topic": "Voice",
+      "canonicalRule": "DE- und EN-Sprachausgabe ist für den in Kapitel 82.4 beschriebenen Pflichtscope Releaseinhalt, kein optionales Nice-to-have.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-018",
+        "GDD chapter 82.4"
+      ],
+      "affectedRequirementIds": [
+        "REQ-A11Y-0008",
+        "REQ-A11Y-0020",
+        "REQ-A11Y-0021",
+        "REQ-A11Y-0023",
+        "REQ-ANDROID-0009",
+        "REQ-ANDROID-0011",
+        "REQ-CONTENT-0073",
+        "REQ-CONTENT-0088",
+        "REQ-CONTENT-0096",
+        "REQ-CONTENT-0106",
+        "REQ-CONTENT-0107",
+        "REQ-CONTENT-0108",
+        "REQ-IOS-0006",
+        "REQ-IOS-0009",
+        "REQ-IOS-0010",
+        "REQ-PERF-0009",
+        "REQ-PRODUCT-0073",
+        "REQ-PRODUCT-0074",
+        "REQ-PRODUCT-0076",
+        "REQ-PRODUCT-0077",
+        "REQ-QA-0011",
+        "REQ-QA-0012",
+        "REQ-SIM-0078",
+        "REQ-SIM-0080",
+        "REQ-SIM-0093",
+        "REQ-UX-0035",
+        "REQ-UX-0051",
+        "REQ-UX-0059",
+        "REQ-UX-0062"
+      ],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "NORM-019",
+      "topic": "Dependency",
+      "canonicalRule": "Nur die V5-Allowlist. Neues Runtime-Paket benötigt Security-/Lizenz-/Bundleprüfung und ADR; Designfunktion zusätzlich neue GDD-Version.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-019",
+        "GDD chapters 72-87 authority review required"
+      ],
+      "affectedRequirementIds": [
+        "REQ-PRODUCT-0032",
+        "REQ-PRODUCT-0034",
+        "REQ-PRODUCT-0039",
+        "REQ-PRODUCT-0072",
+        "REQ-QA-0014",
+        "REQ-QA-0024",
+        "REQ-SECURITY-0009",
+        "REQ-SECURITY-0010",
+        "REQ-SECURITY-0011",
+        "REQ-STORE-0013"
+      ],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "NORM-020",
+      "topic": "Contentreihenfolge",
+      "canonicalRule": "Vollständige GDD-Inhalte werden früh strukturell extrahiert und validiert. Produktionsassets, vollständige Balance und Politur werden erst nach bestandenem Vertical Slice skaliert.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-020",
+        "GDD chapter 87 authority review required"
+      ],
+      "affectedRequirementIds": [
+        "REQ-ANDROID-0009",
+        "REQ-ANDROID-0011",
+        "REQ-CONTENT-0001",
+        "REQ-CONTENT-0002",
+        "REQ-CONTENT-0003",
+        "REQ-CONTENT-0004",
+        "REQ-CONTENT-0005",
+        "REQ-CONTENT-0006",
+        "REQ-CONTENT-0007",
+        "REQ-CONTENT-0008",
+        "REQ-CONTENT-0009",
+        "REQ-CONTENT-0010",
+        "REQ-CONTENT-0011",
+        "REQ-CONTENT-0012",
+        "REQ-CONTENT-0013",
+        "REQ-CONTENT-0014",
+        "REQ-CONTENT-0015",
+        "REQ-CONTENT-0016",
+        "REQ-CONTENT-0017",
+        "REQ-CONTENT-0018",
+        "REQ-CONTENT-0019",
+        "REQ-CONTENT-0020",
+        "REQ-CONTENT-0021",
+        "REQ-CONTENT-0022",
+        "REQ-CONTENT-0023",
+        "REQ-CONTENT-0024",
+        "REQ-CONTENT-0025",
+        "REQ-CONTENT-0026",
+        "REQ-CONTENT-0027",
+        "REQ-CONTENT-0028"
+      ],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "NORM-021",
+      "topic": "Externe Restwerte",
+      "canonicalRule": "Legal Name, Support/Privacy URLs, Preisstufe und finale IDs blockieren Entwicklung nicht, aber Closed Test/TestFlight beziehungsweise Submission über Buildvalidatoren.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-021",
+        "GDD chapters 86/87 authority review required"
+      ],
+      "affectedRequirementIds": [
+        "REQ-A11Y-0004",
+        "REQ-IOS-0001",
+        "REQ-PRODUCT-0005",
+        "REQ-PRODUCT-0035",
+        "REQ-PRODUCT-0036",
+        "REQ-PRODUCT-0042",
+        "REQ-QA-0012",
+        "REQ-QA-0020",
+        "REQ-QA-0024",
+        "REQ-SECURITY-0007",
+        "REQ-SECURITY-0012",
+        "REQ-SECURITY-0017",
+        "REQ-STORE-0002",
+        "REQ-STORE-0005",
+        "REQ-STORE-0014",
+        "REQ-STORE-0020"
+      ],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    }
+  ]
+}

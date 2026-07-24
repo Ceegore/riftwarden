@@ -1,0 +1,8 @@
+# Chapter 38: Kampfpolish und Feedbackbudget
+# blocks 1418..1425 (8 blocks)
+
+[Heading 2] 38. Kampfpolish und Feedbackbudget
+[Compact] Maximal zwei starke Kameraschüttler innerhalb 1 Sekunde; weitere werden gedämpft.
+[Compact] Maximal drei große Vollflächen-Partikelsysteme gleichzeitig; weitere verwenden reduzierte Variante.
+[Compact] Trefferfeedback muss bei 3x noch lesbar, aber nicht als Stroboskop wirken.
+[Compact] Reduzierte-Effekte-Modus senkt Partikelzahl mindestens 60%, entfernt Schütteln und Blitze, behält Warnformen.

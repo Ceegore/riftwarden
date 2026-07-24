@@ -1,0 +1,24 @@
+# Chapter 51: Deterministische Simulation und Replay-Architektur
+# blocks 1627..1648 (22 blocks)
+
+[Heading 2] 51. Deterministische Simulation und Replay-Architektur
+[Heading 3] 51.1 Fixed-Step und Zahlenmodell
+[Heading 3] 51.2 Zufallsgenerator
+[Compact] PRNG ist xoshiro128** mit vier unsigned 32-bit Zustandswerten. Seeding erfolgt über SplitMix32 aus einem 128-bit Run-Seed, der als vier Hex-UInt32 gespeichert wird.
+[Compact] Getrennte Streams: map, encounter, rewards, eventChoices, combatCosmetic. Der combatCosmetic-Stream darf keinen Gameplayzustand beeinflussen.
+[Compact] Jeder deterministische Rollslot besitzt einen stabilen String-Key. Neue Rolls dürfen nicht zwischen bestehende Rolls eingefügt werden; sie erhalten einen neuen Slot oder erhöhen simulationVersion.
+[Compact] Math.random ist im gesamten Quelltext per ESLint verboten. UI-Konfetti darf den Cosmetic-Stream oder crypto.getRandomValues nutzen, aber nie Replaydaten verändern.
+[Compact] Replaydatei speichert Seed, contentVersion, simulationVersion, Startsnapshot und Spielerentscheidungen. Aus ihr muss das Ergebnis bit-identisch rekonstruierbar sein.
+[Heading 3] 51.3 Simulationszustandsautomat
+[Code Block] BattleState = PREPARED -> INTRO -> ACTIVE -> PHASE_TRANSITION -> ACTIVE
+             -> RESOLVING_END -> VICTORY | DEFEAT | DRAW_ABORT
+EntityState = SPAWNING -> ACTIVE -> PREPARING -> EXECUTING -> RECOVERING
+              -> CONTROLLED -> DEFEATED -> REMOVED
+[Compact] INTRO besitzt keine autoritativen Angriffe. Startpassiven werden am ersten ACTIVE-Tick in stabiler Priorität committed.
+[Compact] PHASE_TRANSITION pausiert Bossaktionen und Fähigkeitladung nur, wenn die Phase es definiert; die globale Standarddauer beträgt 45 Ticks.
+[Compact] RESOLVING_END dauert autoritativ höchstens 3 Ticks und verarbeitet bereits committed Wiederbelebung/Todesverhinderung. Kosmetische Outrozeit liegt außerhalb der Simulation.
+[Compact] Ein Kampf erhält ein hartes Simulationslimit von 5400 Ticks = 180 Sekunden. Danach greift die in V3 definierte Riftkollapswertung; kein unendlicher Kampf.
+[Heading 3] 51.4 Eventtypen und Log
+[Compact] Jedes Event enthält tick, sequence, type, sourceId, targetIds, ability/effect ID, integer payload und localization-safe logTags.
+[Compact] Der Ergebnisbildschirm liest ausschließlich aggregierte Events. Er schätzt keine Werte aus Renderanimationen.
+[Compact] Debug-Replays können das vollständige Eventlog speichern; normale Saves speichern nur Snapshot plus Entscheidungen, um Dateigröße zu begrenzen.

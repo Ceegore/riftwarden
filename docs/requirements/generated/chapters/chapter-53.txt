@@ -1,0 +1,15 @@
+# Chapter 53: App-Lifecycle, Navigation und globale Zustände
+# blocks 1665..1678 (14 blocks)
+
+[Heading 2] 53. App-Lifecycle, Navigation und globale Zustände
+[Heading 3] 53.1 App-Zustandsautomat
+[Code Block] BOOT_NATIVE -> BOOT_WEB -> LOAD_SETTINGS -> VALIDATE_CONTENT -> LOAD_SAVE
+ -> RECOVERY_REQUIRED | FIRST_RUN | TITLE -> HQ -> MODE_FLOW
+AppLifecycle = ACTIVE | INACTIVE_TRANSITION | BACKGROUND | TERMINATING_UNKNOWN
+[Compact] Bei appStateChange zu inactive/background wird die Simulation am letzten vollständigen Tick pausiert, Audio ausgeblendet und ein Snapshot angefordert. UI-Animationen stoppen.
+[Compact] Der Snapshot muss innerhalb 250 ms in Memory erzeugt werden. Persistenz darf anschließend asynchron fortgesetzt werden; ein bereits existierender letzter Safe-Save bleibt gültig.
+[Compact] Beim Resume wird niemals automatisch ein Kampf fortgesetzt, bevor Renderer, Audio und Input bereit sind. Der Kampf erscheint pausiert mit „Fortsetzen“.
+[Compact] Ein OS-Kill ohne Pause-Callback darf höchstens Fortschritt seit dem letzten definierten Commit verlieren, niemals eine gesamte Expedition.
+[Compact] Native Splash verschwindet erst nach erstem stabilen React-Frame und nachdem ein Recoveryfehler als UI dargestellt werden kann.
+[Heading 3] 53.2 Navigationsstack und Android-Back
+[Heading 3] 53.3 Globale Stores

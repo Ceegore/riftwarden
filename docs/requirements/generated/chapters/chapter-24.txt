@@ -1,0 +1,33 @@
+# Chapter 24: Kampagne: 4 Akte und 20 implementierungsreife Expeditionen
+# blocks 1060..1156 (97 blocks)
+
+[Heading 2] 24. Kampagne: 4 Akte und 20 implementierungsreife Expeditionen
+[Heading 3] 24.1 Globale Kampagnenregeln
+[Compact] Jede Expedition besitzt einen festen Storyzweck, einen Lern-/Prüfschwerpunkt, ein Abschlussziel, ein Kartenprofil und feste Erstfreischaltungen.
+[Compact] Normale Begegnungsformationen werden aus kuratierten Varianten gewählt, nicht frei aus allen Gegnern gewürfelt.
+[Compact] Eine neue Mechanik wird zuerst isoliert gezeigt, danach in derselben oder nächsten Mission kombiniert.
+[Compact] Pflichtmissionen können sofort wiederholt werden. Ein gescheiterter Bossversuch darf vom letzten Anker mit identischem Seed/Angeboten neu gestartet oder vollständig neu begonnen werden.
+[Compact] Freischaltungen werden bei Missionssieg atomar angewendet. Wiederholung ersetzt einmalige Freischaltungen durch Gold/Beutewahl.
+[Compact] Storytexte vor/nach Mission maximal 4 kurze Dialogkarten; Zwischenkommentare maximal 2 Sätze.
+[Heading 3] 24.2 Expedition 1.1 - Ein Riss zum Frühstück
+[Heading 3] 24.3 Expedition 1.2 - Die Brücke, die zweimal da war
+[Heading 3] 24.4 Expedition 1.3 - Picknick auf dem Friedhof
+[Heading 3] 24.5 Expedition 1.4 - Der sehr unpünktliche Konvoi
+[Heading 3] 24.6 Expedition 1.5 - Der Aschenkönig probt seinen Auftritt
+[Heading 3] 24.7 Expedition 2.1 - Bitte nicht die Blumen treten
+[Heading 3] 24.8 Expedition 2.2 - Wölfe sind auch nur Kollegen
+[Heading 3] 24.9 Expedition 2.3 - Der Alchemist war das nicht
+[Heading 3] 24.10 Expedition 2.4 - Durch die Hecke gedacht
+[Heading 3] 24.11 Expedition 2.5 - Die Dornenmutter braucht Abstand
+[Heading 3] 24.12 Expedition 3.1 - Willkommen in der Qualitätskontrolle
+[Heading 3] 24.13 Expedition 3.2 - Der Ofen hat Gefühle
+[Heading 3] 24.14 Expedition 3.3 - Orriks völlig vernünftiger Prototyp
+[Heading 3] 24.15 Expedition 3.4 - Neun Hammer, keine Anleitung
+[Heading 3] 24.16 Expedition 3.5 - Der Ewige Schmied macht Überstunden
+[Heading 3] 24.17 Expedition 4.1 - Alles schon einmal gesehen
+[Heading 3] 24.18 Expedition 4.2 - Pip gegen Pip
+[Heading 3] 24.19 Expedition 4.3 - Die Fußnote wehrt sich
+[Heading 3] 24.20 Expedition 4.4 - Generalprobe für das Ende
+[Heading 3] 24.21 Expedition 4.5 - Eine perfekte, unveränderliche Katastrophe
+[Heading 3] 24.22 Kampagnen-Skalierungsbaseline
+[Body Text] Multiplikatoren werden auf die regionalen Referenzwerte angewendet. Bosswerte sind bereits separat definiert und verwenden nur Schwierigkeits-/Instabilitätsmultiplikatoren, nicht diese Normalgegner-Tabelle.

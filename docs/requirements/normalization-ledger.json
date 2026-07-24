@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "authorityOrder": [
+    "1. GDD V5 chapters 72-87",
+    "2. Concrete content/screen/entity definition or named exception",
+    "3. Explicit safety/save/privacy/store/minimum/maximum/accessibility limit",
+    "4. Numeric baseline and narrower tuning corridor",
+    "5. Development Plan V2.0 for sequence, ticket size, file split, Git and test timing",
+    "6. Accepted ADR only inside GDD-permitted technical discretion",
+    "7. Error instead of invention"
+  ],
+  "files": [
+    "docs/requirements/normalization-ledger/norm-001-007.json",
+    "docs/requirements/normalization-ledger/norm-008-014.json",
+    "docs/requirements/normalization-ledger/norm-015-021.json"
+  ]
+}

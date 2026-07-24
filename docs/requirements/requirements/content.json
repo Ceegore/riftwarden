@@ -1,0 +1,4251 @@
+{
+  "schemaVersion": "1.0",
+  "category": "Content",
+  "requirements": [
+    {
+      "id": "REQ-CONTENT-0001",
+      "title": "Alle Release-Inhalte, Freischaltungen, Rollen und Interaktionen müssen benann...",
+      "statement": "Alle Release-Inhalte, Freischaltungen, Rollen und Interaktionen müssen benannt sein.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:d7d28b258bb02f3d5a6d8423baf3278d96788263f42c581269aeee872ade51ae",
+        "originalExcerpt": "Inhaltlich vollständig: Alle Release-Inhalte, Freischaltungen, Rollen und Interaktionen sind benannt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0002",
+      "title": "Dateiverträge, Formate, Größen, Namensregeln und Qualitätskriterien für Asset...",
+      "statement": "Dateiverträge, Formate, Größen, Namensregeln und Qualitätskriterien für Assets sind verbindlich festgelegt.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:22",
+        "quoteHash": "sha256:a346cbcead0198e0a408955d05652454d241ed737d055b7abf6ce2f9c8591fb2",
+        "originalExcerpt": "Die konkrete künstlerische Herstellungsmethode einzelner Assets; Dateiverträge, Formate, Größen, Namensregeln und Qualitätskriterien sind jedoch festgelegt."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "UT-CONTENT-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0003",
+      "title": "Verbindlich sind Funktion, Ton und maximale Textmenge für Übersetzungen.",
+      "statement": "Verbindlich sind Funktion, Ton und maximale Textmenge für Übersetzungen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:24",
+        "quoteHash": "sha256:eac0cb13e30b342d335f3a84a1d4c48b1d4edd9c2e453401890ebc750ffb1e9c",
+        "originalExcerpt": "Finale Übersetzungstexte aller Dialogvarianten; verbindlich sind Funktion, Ton und maximale Textmenge."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CONTENT-003"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0004",
+      "title": "Weit verzweigte Dialogbäume, permanente Heldentode und Verletzungen zwischen ...",
+      "statement": "Weit verzweigte Dialogbäume, permanente Heldentode und Verletzungen zwischen Kämpfen sind nicht Teil der Zielversion.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 3,
+        "section": null,
+        "locator": "block:44",
+        "quoteHash": "sha256:6840b8ac0feb20c676daa84d72119f92d703ba700d4f729a7ecbba5dbfd9efc2",
+        "originalExcerpt": "Nicht Teil der Zielversion sind: manuelle Kampffähigkeiten, aktives Zielen, PvP, Online-Ranglisten, Accounts, Gilden, Chat, Cloud-Zwang, Live-Events, tägliche Aufgaben, saisonale Inhalte, Basisbau, offene Welt, frei begehbare Dungeons, weit verzweigte Dialogbäume, permanente Heldentode, Verletzungen zwischen Kämpfen, Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe, unbegrenzte Charakterlevel und Echtgeldshops."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-CONTENT-004"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0005",
+      "title": "Rifts enthalten verzerrte Kopien realer Orte, Erinnerungen und mögliche Zukün...",
+      "statement": "Rifts enthalten verzerrte Kopien realer Orte, Erinnerungen und mögliche Zukünfte; diese Kopien heißen Echos.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:49",
+        "quoteHash": "sha256:e2549a3dda05b72ab8d47ca20606dca15d3281e83f983d6c38cdf86e2ca37bfd",
+        "originalExcerpt": "Ein fehlgeschlagenes magisches Experiment zerriss die Übergänge zwischen vier verbundenen Regionen. Rifts enthalten verzerrte Kopien realer Orte, Erinnerungen und mögliche Zukünfte. Diese Kopien heißen Echos. Echos erklären prozedural variierende Dungeons, wiederkehrende Gegner und widersprüchlich wirkende, aber thematisch passende Szenen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-005"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0006",
+      "title": "Der Riftanker bindet jede Expedition an das Hauptquartier.",
+      "statement": "Der Riftanker bindet jede Expedition an das Hauptquartier.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:52",
+        "quoteHash": "sha256:107615ace5f10fb903252bddac891d85e14b4cd5e22a6a05358268301497e940",
+        "originalExcerpt": "Der Riftanker bindet jede Expedition an das Hauptquartier."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-006"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0007",
+      "title": "Die Rückkehr nach einer Niederlage ist erzählerisch eine Notrekonstruktion un...",
+      "statement": "Die Rückkehr nach einer Niederlage ist erzählerisch eine Notrekonstruktion und kein Tod.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:55",
+        "quoteHash": "sha256:9a88ad0af1f3970707c4c6e7b725e9a5e8ccc7414f361fe00308120c2f19b29b",
+        "originalExcerpt": "Die Rückkehr nach einer Niederlage ist erzählerisch eine Notrekonstruktion und kein Tod."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-007"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0008",
+      "title": "Es dürfen kein Blut, keine Wunden, keine Zerstückelung, keine Leichen und kei...",
+      "statement": "Es dürfen kein Blut, keine Wunden, keine Zerstückelung, keine Leichen und keine realistischen Todesschreie gezeigt werden.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:75",
+        "quoteHash": "sha256:68b8eab0b57d5ef4d5a509d9bdc7dc3a62225fb186761df9dec8b4eb4ffa40fb",
+        "originalExcerpt": "Kein Blut, keine Wunden, keine Zerstückelung, keine Leichen, keine realistischen Todesschreie."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "UT-CONTENT-008"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0009",
+      "title": "Besiegte Figuren zerfallen in Echofunken, Rauch, Blätter, Metallteile oder hu...",
+      "statement": "Besiegte Figuren zerfallen in Echofunken, Rauch, Blätter, Metallteile oder humorvolle Knochenhaufen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:76",
+        "quoteHash": "sha256:da6ca5d0d0a1b63c575206e2f4b1a98ac53b60a0e006b658a7a915bfb0b86fa6",
+        "originalExcerpt": "Besiegte Figuren zerfallen in Echofunken, Rauch, Blätter, Metallteile oder humorvolle Knochenhaufen."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "UT-CONTENT-009"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0010",
+      "title": "Es dürfen keine harte Vulgärsprache, sexualisierten Inhalte, realen politisch...",
+      "statement": "Es dürfen keine harte Vulgärsprache, sexualisierten Inhalte, realen politischen/religiösen Konflikte oder diskriminierenden Aussagen vorhanden sein.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 4,
+        "section": null,
+        "locator": "block:77",
+        "quoteHash": "sha256:af120b0e9a5b704fa34be5d3139d523f3c68378ec78389195510da70569b27c1",
+        "originalExcerpt": "Keine harte Vulgärsprache, sexualisierten Inhalte, realen politischen/religiösen Konflikte oder diskriminierenden Aussagen."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "UT-CONTENT-010"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "tempId": "REQ-TEMP-B-0002",
+      "statement": "Beim Start der Endlosen Rift werden genau drei permanente Gegenstände inklusive möglichem Banner ausgerüstet.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1236",
+        "quoteHash": "sha256:38672aabb655ef95d0a643ce4d24bb6717dc7afa8bed3a4775771df3f9d313cf",
+        "originalExcerpt": "Freischaltung nach Kampagne. Start: vollständige Gruppe, genau drei permanente Gegenstände inklusive möglichem Banner, Doktrin und optional bereits abgeschlossener Ascension-Regelsatz."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-011"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0011",
+      "title": "Beim Start der Endlosen Rift werden genau drei permanente Gegenstände inklusive "
+    },
+    {
+      "tempId": "REQ-TEMP-B-0004",
+      "statement": "In der Endlosen Rift finden fortlaufend einzelne Kämpfe statt.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1237",
+        "quoteHash": "sha256:cd4860149c29dfa8a8d616ee439a7147404597863b5527a9f8594664324ff537",
+        "originalExcerpt": "Fortlaufende einzelne Kämpfe. Nach jedem Sieg Wahl aus drei Belohnungen: Relikt, temporäres Kit/Gegenstand, Rekrut, Heil-/Sicherungsdienst, Gold/Zyklusmünzen existieren hier nicht."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-012"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0012",
+      "title": "In der Endlosen Rift finden fortlaufend einzelne Kämpfe statt."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0005",
+      "statement": "Nach jedem Sieg werden drei Belohnungen zur Wahl angeboten.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1237",
+        "quoteHash": "sha256:cd4860149c29dfa8a8d616ee439a7147404597863b5527a9f8594664324ff537",
+        "originalExcerpt": "Fortlaufende einzelne Kämpfe. Nach jedem Sieg Wahl aus drei Belohnungen: Relikt, temporäres Kit/Gegenstand, Rekrut, Heil-/Sicherungsdienst, Gold/Zyklusmünzen existieren hier nicht."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-013"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0013",
+      "title": "Nach jedem Sieg werden drei Belohnungen zur Wahl angeboten."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0006",
+      "statement": "In der Endlosen Rift existieren Gold und Zyklusmünzen nicht.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1237",
+        "quoteHash": "sha256:cd4860149c29dfa8a8d616ee439a7147404597863b5527a9f8594664324ff537",
+        "originalExcerpt": "Fortlaufende einzelne Kämpfe. Nach jedem Sieg Wahl aus drei Belohnungen: Relikt, temporäres Kit/Gegenstand, Rekrut, Heil-/Sicherungsdienst, Gold/Zyklusmünzen existieren hier nicht."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-014"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0014",
+      "title": "In der Endlosen Rift existieren Gold und Zyklusmünzen nicht."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0007",
+      "statement": "Nach jeweils fünf Kämpfen erscheint ein Checkpoint.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1238",
+        "quoteHash": "sha256:e836141b6abfec40118efbaa70edb0f764b00f3fac12a05c6e637fda84f9007e",
+        "originalExcerpt": "Nach jeweils fünf Kämpfen Checkpoint: Formation/Ausrüstung ordnen, freiwillig beenden, Rekord sichern. Gruppe darf nur mit im Lauf gewonnenen Rekruten verändert werden."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-015"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0015",
+      "title": "Nach jeweils fünf Kämpfen erscheint ein Checkpoint."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0009",
+      "statement": "Die Gruppe darf nur mit im Lauf gewonnenen Rekruten verändert werden.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1238",
+        "quoteHash": "sha256:e836141b6abfec40118efbaa70edb0f764b00f3fac12a05c6e637fda84f9007e",
+        "originalExcerpt": "Nach jeweils fünf Kämpfen Checkpoint: Formation/Ausrüstung ordnen, freiwillig beenden, Rekord sichern. Gruppe darf nur mit im Lauf gewonnenen Rekruten verändert werden."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-016"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0016",
+      "title": "Die Gruppe darf nur mit im Lauf gewonnenen Rekruten verändert werden."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0012",
+      "statement": "In der Endlosen Rift existieren keine wiederholbaren permanenten Machtbelohnungen.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1240",
+        "quoteHash": "sha256:6f67e6d0fbeb049570fdcb214e1b99bc543bf2fd360b53b398bf6a2ab5d8a73a",
+        "originalExcerpt": "Keine wiederholbare permanente Machtbelohnung. Erstmalige Meilensteine sind kosmetisch oder geringe einmalige Riftessenz."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-017"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0017",
+      "title": "In der Endlosen Rift existieren keine wiederholbaren permanenten Machtbelohnunge"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0013",
+      "statement": "Erstmalige Meilensteine sind kosmetisch oder geringe einmalige Riftessenz.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1240",
+        "quoteHash": "sha256:6f67e6d0fbeb049570fdcb214e1b99bc543bf2fd360b53b398bf6a2ab5d8a73a",
+        "originalExcerpt": "Keine wiederholbare permanente Machtbelohnung. Erstmalige Meilensteine sind kosmetisch oder geringe einmalige Riftessenz."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-018"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0018",
+      "title": "Erstmalige Meilensteine sind kosmetisch oder geringe einmalige Riftessenz."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0015",
+      "statement": "In Tiefe 1-5 gilt: eine Region, keine Champions, maximal 1 Modifikator.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:c938ff675cae087b86045160ea615663d125915d3835cced56ef129be01f6f79",
+        "originalExcerpt": "Eine Region, keine Champions, max. 1 Modifikator."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-019"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0019",
+      "title": "In Tiefe 1-5 gilt: eine Region, keine Champions, maximal 1 Modifikator."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0018",
+      "statement": "In Tiefe 11-20 werden zwei Regionen gemischt, die Championchance beträgt 15 Prozent und der Boss erscheint auf Tiefe 20.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:62733ad5708f618ffd7bd5962e2bad6f6a86a11dd5d7990a633576ab80b2a2eb",
+        "originalExcerpt": "Zwei Regionen gemischt; Championchance 15%; Boss auf 20."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-020"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0020",
+      "title": "In Tiefe 11-20 werden zwei Regionen gemischt, die Championchance beträgt 15 Proz"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0019",
+      "statement": "In Tiefe 21-30 werden Eliteattribute kombiniert und ab Tiefe 26 sind alle Regionen verfügbar.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:67c22ef33f02f3aee79442aee6bf4b1eda17cbc7a6010af5d7ff389c0ea8d31b",
+        "originalExcerpt": "Eliteattribute kombiniert; alle Regionen ab 26."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-021"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0021",
+      "title": "In Tiefe 21-30 werden Eliteattribute kombiniert und ab Tiefe 26 sind alle Region"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0020",
+      "statement": "In Tiefe 31-40 sind bis zu 2 Modifikatoren aktiv, die Championchance beträgt 30 Prozent und Bossvarianten erscheinen auf Tiefe 35 und 40.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:748cacb454ead6bed87951fa3974eff1f99debd585d7d543e1f51e235e34b408",
+        "originalExcerpt": "Bis 2 Modifikatoren; Championchance 30%; Bossvarianten 35/40."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-022"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0022",
+      "title": "In Tiefe 31-40 sind bis zu 2 Modifikatoren aktiv, die Championchance beträgt 30 "
+    },
+    {
+      "tempId": "REQ-TEMP-B-0021",
+      "statement": "In Tiefe 41-60 sind ab Tiefe 51 maximal 2 Champions erlaubt, jedoch nie mit zwei Eliteattributen auf beiden.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:005aa31cb6119d63e76838460f754aa8ad11749052058f7fbd9633d4a7de0f57",
+        "originalExcerpt": "Bis 2 Champions ab 51, aber nie plus zwei Eliteattribute auf beiden."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-023"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0023",
+      "title": "In Tiefe 41-60 sind ab Tiefe 51 maximal 2 Champions erlaubt, jedoch nie mit zwei"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0022",
+      "statement": "In Tiefe 61+ werden ausschließlich kuratierte Rotationen verwendet und keine neuen Mechaniken eingeführt.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:fb334a54943309402bd8fedad612f24277dd7d3b7188ac0d80feb27972ec214c",
+        "originalExcerpt": "Kuratierte Rotationen; keine neue Mechanik, nur Rekorddruck."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-024"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0024",
+      "title": "In Tiefe 61+ werden ausschließlich kuratierte Rotationen verwendet und keine neu"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0023",
+      "statement": "Nach Kämpfen 1-4 werden mindestens zwei gewöhnliche und eine beliebige Option angeboten.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1248",
+        "quoteHash": "sha256:e65bde4c3b5f902c37a078c16281324d5d5f8c95a23a70d0a5e9c9fd8e1fef23",
+        "originalExcerpt": "Nach Kämpfen 1-4: mindestens zwei gewöhnliche und eine beliebige Option."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-025"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0025",
+      "title": "Nach Kämpfen 1-4 werden mindestens zwei gewöhnliche und eine beliebige Option an"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0024",
+      "statement": "Jeder fünfte Kampf enthält mindestens eine seltene Option.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1249",
+        "quoteHash": "sha256:c4c9b02e499c410eb100f97d466d7a0d2ec2e16709f5e549ebd7177125a6ddb5",
+        "originalExcerpt": "Jeder fünfte Kampf: mindestens eine seltene Option; Bosscheckpoint: eine von vier, davon mindestens zwei selten/legendär."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-026"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0026",
+      "title": "Jeder fünfte Kampf enthält mindestens eine seltene Option."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0025",
+      "statement": "An einem Bosscheckpoint wird eine von vier Optionen angeboten, davon mindestens zwei selten oder legendär.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1249",
+        "quoteHash": "sha256:c4c9b02e499c410eb100f97d466d7a0d2ec2e16709f5e549ebd7177125a6ddb5",
+        "originalExcerpt": "Jeder fünfte Kampf: mindestens eine seltene Option; Bosscheckpoint: eine von vier, davon mindestens zwei selten/legendär."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-027"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0027",
+      "title": "An einem Bosscheckpoint wird eine von vier Optionen angeboten, davon mindestens "
+    },
+    {
+      "tempId": "REQ-TEMP-B-0026",
+      "statement": "Das Reliktlimit beträgt sechs bis Tiefe 20.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1250",
+        "quoteHash": "sha256:83d7e404588585d0bcf492bfab25ac7f1b04b2f93ace873a7d6210bd8e763806",
+        "originalExcerpt": "Reliktlimit sechs bis Tiefe 20, acht ab Tiefe 21. Darüber kein weiteres Wachstum."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-028"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0028",
+      "title": "Das Reliktlimit beträgt sechs bis Tiefe 20."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0027",
+      "statement": "Das Reliktlimit beträgt acht ab Tiefe 21 und wächst darüber nicht weiter.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1250",
+        "quoteHash": "sha256:83d7e404588585d0bcf492bfab25ac7f1b04b2f93ace873a7d6210bd8e763806",
+        "originalExcerpt": "Reliktlimit sechs bis Tiefe 20, acht ab Tiefe 21. Darüber kein weiteres Wachstum."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-029"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0029",
+      "title": "Das Reliktlimit beträgt acht ab Tiefe 21 und wächst darüber nicht weiter."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0028",
+      "statement": "Eine Rekrutierungswahl darf die Vertragsgrenze von drei nicht überschreiten.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1251",
+        "quoteHash": "sha256:6fd077a3318c22c1029c7d24d4e66d070354129f6efe0d840cd14bef596c00e3",
+        "originalExcerpt": "Rekrutierungswahl kann Vertragsgrenze drei nicht überschreiten; temporärer Rekrut bleibt bis Laufende."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-030"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0030",
+      "title": "Eine Rekrutierungswahl darf die Vertragsgrenze von drei nicht überschreiten."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0029",
+      "statement": "Ein temporärer Rekrut bleibt bis zum Laufende erhalten.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1251",
+        "quoteHash": "sha256:6fd077a3318c22c1029c7d24d4e66d070354129f6efe0d840cd14bef596c00e3",
+        "originalExcerpt": "Rekrutierungswahl kann Vertragsgrenze drei nicht überschreiten; temporärer Rekrut bleibt bis Laufende."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-031"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0031",
+      "title": "Ein temporärer Rekrut bleibt bis zum Laufende erhalten."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0030",
+      "statement": "Alle zehn Tiefen wird eine Begegnung als Erholungsfenster leichter gestaltet.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1252",
+        "quoteHash": "sha256:7a0cdb67fc96c934cfc53811afebeda3ba5ad19adbeadfd17b87bcc9ed5898d2",
+        "originalExcerpt": "Alle zehn Tiefen wird eine Begegnung bewusst leichter als Erholungsfenster, danach Boss/harte Gruppe."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-032"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0032",
+      "title": "Alle zehn Tiefen wird eine Begegnung als Erholungsfenster leichter gestaltet."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0033",
+      "statement": "Ein Neustart darf keine Belohnung neu würfeln.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1263",
+        "quoteHash": "sha256:a0d1418f78dfca85a72662212252b64b6907ae1c1c7ed03aff774b38aa2b2a60",
+        "originalExcerpt": "Jeder Checkpoint speichert vollständig; Neustart kann keine Belohnung neu würfeln."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-033"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0033",
+      "title": "Ein Neustart darf keine Belohnung neu würfeln."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0037",
+      "statement": "Tiefe 5 schaltet den Porträtrahmen „Fünf Schritte“ frei.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1256",
+        "quoteHash": "sha256:ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d",
+        "originalExcerpt": "5"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-034"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null,
+          "target": "endless_depth_milestone"
+        }
+      ],
+      "status": "planned",
+      "id": "REQ-CONTENT-0034",
+      "title": "Tiefe 5 schaltet den Porträtrahmen „Fünf Schritte“ frei."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0038",
+      "statement": "Tiefe 10 gewährt 1 Riftessenz und einen Titel.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1256",
+        "quoteHash": "sha256:4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5",
+        "originalExcerpt": "10"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-035"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null,
+          "target": "endless_depth_milestone"
+        }
+      ],
+      "status": "planned",
+      "id": "REQ-CONTENT-0035",
+      "title": "Tiefe 10 gewährt 1 Riftessenz und einen Titel."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0039",
+      "statement": "Tiefe 20 schaltet eine Kodexseite und 2 Riftessenz frei.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1256",
+        "quoteHash": "sha256:f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b",
+        "originalExcerpt": "20"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-036"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null,
+          "target": "endless_depth_milestone"
+        }
+      ],
+      "status": "planned",
+      "id": "REQ-CONTENT-0036",
+      "title": "Tiefe 20 schaltet eine Kodexseite und 2 Riftessenz frei."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0040",
+      "statement": "Tiefe 30 gewährt 2 Riftessenz und einen Titel.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1256",
+        "quoteHash": "sha256:624b60c58c9d8bfb6ff1886c2fd605d2adeb6ea4da576068201b6c6958ce93f4",
+        "originalExcerpt": "30"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-037"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null,
+          "target": "endless_depth_milestone"
+        }
+      ],
+      "status": "planned",
+      "id": "REQ-CONTENT-0037",
+      "title": "Tiefe 30 gewährt 2 Riftessenz und einen Titel."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0041",
+      "statement": "Tiefe 50 gewährt 3 Riftessenz und die gold-violette Arenafarbe.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1256",
+        "quoteHash": "sha256:1a6562590ef19d1045d06c4055742d38288e9e6dcd71ccde5cee80f1d5a774eb",
+        "originalExcerpt": "50"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-038"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null,
+          "target": "endless_depth_milestone"
+        }
+      ],
+      "status": "planned",
+      "id": "REQ-CONTENT-0038",
+      "title": "Tiefe 50 gewährt 3 Riftessenz und die gold-violette Arenafarbe."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0042",
+      "statement": "Tiefe 75 gewährt 4 Riftessenz und eine Bossfarbvariante.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1256",
+        "quoteHash": "sha256:f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac",
+        "originalExcerpt": "75"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-039"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null,
+          "target": "endless_depth_milestone"
+        }
+      ],
+      "status": "planned",
+      "id": "REQ-CONTENT-0039",
+      "title": "Tiefe 75 gewährt 4 Riftessenz und eine Bossfarbvariante."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0043",
+      "statement": "Tiefe 100 gewährt einen legendären rein kosmetischen Rahmen und eine Statistikplakette.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1256",
+        "quoteHash": "sha256:ad57366865126e55649ecb23ae1d48887544976efea46a48eb5d85a6eeb4d306",
+        "originalExcerpt": "100"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-040"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null,
+          "target": "endless_depth_milestone"
+        }
+      ],
+      "status": "planned",
+      "id": "REQ-CONTENT-0040",
+      "title": "Tiefe 100 gewährt einen legendären rein kosmetischen Rahmen und eine Statistikpl"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0044",
+      "statement": "Jeder Held besitzt genau fünf Kernziele.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1271",
+        "quoteHash": "sha256:54e811d7920510c4055b647744243bd4a91c40b034076e07518aedadc1195d59",
+        "originalExcerpt": "Jeder Held besitzt fünf Kernziele. Ziele werden sichtbar, sobald der Held freigeschaltet ist; Ziel 4 nach Kampagnenabschluss, Ziel 5 nach Level 3. Fortschritt wird nur in gewonnenen Kämpfen oder erfolgreich abgeschlossenen Modi gewertet, außer reiner Teilnahmecounter. Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-041"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0041",
+      "title": "Jeder Held besitzt genau fünf Kernziele."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0046",
+      "statement": "Ziel 4 wird erst nach Kampagnenabschluss sichtbar.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1271",
+        "quoteHash": "sha256:54e811d7920510c4055b647744243bd4a91c40b034076e07518aedadc1195d59",
+        "originalExcerpt": "Jeder Held besitzt fünf Kernziele. Ziele werden sichtbar, sobald der Held freigeschaltet ist; Ziel 4 nach Kampagnenabschluss, Ziel 5 nach Level 3. Fortschritt wird nur in gewonnenen Kämpfen oder erfolgreich abgeschlossenen Modi gewertet, außer reiner Teilnahmecounter. Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-042"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0042",
+      "title": "Ziel 4 wird erst nach Kampagnenabschluss sichtbar."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0047",
+      "statement": "Ziel 5 wird erst nach Erreichen von Level 3 sichtbar.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1271",
+        "quoteHash": "sha256:54e811d7920510c4055b647744243bd4a91c40b034076e07518aedadc1195d59",
+        "originalExcerpt": "Jeder Held besitzt fünf Kernziele. Ziele werden sichtbar, sobald der Held freigeschaltet ist; Ziel 4 nach Kampagnenabschluss, Ziel 5 nach Level 3. Fortschritt wird nur in gewonnenen Kämpfen oder erfolgreich abgeschlossenen Modi gewertet, außer reiner Teilnahmecounter. Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-043"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0043",
+      "title": "Ziel 5 wird erst nach Erreichen von Level 3 sichtbar."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0048",
+      "statement": "Fortschritt wird nicht in verlorenen Kämpfen gewertet, außer bei reinen Teilnahmecountern.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1271",
+        "quoteHash": "sha256:54e811d7920510c4055b647744243bd4a91c40b034076e07518aedadc1195d59",
+        "originalExcerpt": "Jeder Held besitzt fünf Kernziele. Ziele werden sichtbar, sobald der Held freigeschaltet ist; Ziel 4 nach Kampagnenabschluss, Ziel 5 nach Level 3. Fortschritt wird nur in gewonnenen Kämpfen oder erfolgreich abgeschlossenen Modi gewertet, außer reiner Teilnahmecounter. Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-044"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0044",
+      "title": "Fortschritt wird nicht in verlorenen Kämpfen gewertet, außer bei reinen Teilnahm"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0049",
+      "statement": "Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1271",
+        "quoteHash": "sha256:54e811d7920510c4055b647744243bd4a91c40b034076e07518aedadc1195d59",
+        "originalExcerpt": "Jeder Held besitzt fünf Kernziele. Ziele werden sichtbar, sobald der Held freigeschaltet ist; Ziel 4 nach Kampagnenabschluss, Ziel 5 nach Level 3. Fortschritt wird nur in gewonnenen Kämpfen oder erfolgreich abgeschlossenen Modi gewertet, außer reiner Teilnahmecounter. Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0045",
+      "title": "Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0050",
+      "statement": "Stufe I einer Heldenmeisterschaft gewährt eine alternative Farbvariante.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1272",
+        "quoteHash": "sha256:27c6f35f4ed3f140b12ead37c6251db241db02aa70e5c8620543345fe6598d23",
+        "originalExcerpt": "Alternative Farbvariante"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-046"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0046",
+      "title": "Stufe I einer Heldenmeisterschaft gewährt eine alternative Farbvariante."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0051",
+      "statement": "Stufe II einer Heldenmeisterschaft gewährt einen Porträtrahmen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1272",
+        "quoteHash": "sha256:854e2a8fae5f2858bf88fdc9fd9efeae4fe92cf4e848beba12b2cad112bd47a6",
+        "originalExcerpt": "Porträtrahmen"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-047"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0047",
+      "title": "Stufe II einer Heldenmeisterschaft gewährt einen Porträtrahmen."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0052",
+      "statement": "Stufe III einer Heldenmeisterschaft gewährt eine kurze Charaktergeschichte im Archiv.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1272",
+        "quoteHash": "sha256:e6c3d75df875dae63326bd686ac361cf34b500ae5b39e069d962f8835456650c",
+        "originalExcerpt": "Kurze Charaktergeschichte im Archiv"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0048",
+      "title": "Stufe III einer Heldenmeisterschaft gewährt eine kurze Charaktergeschichte im Ar"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0053",
+      "statement": "Stufe IV einer Heldenmeisterschaft gewährt einen kosmetischen Signaturfähigkeitseffekt.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1272",
+        "quoteHash": "sha256:149316a2c5e81ef0e9d6d43e1beed36f83ec18da0c664445e4b23ec478ae5a6c",
+        "originalExcerpt": "Kosmetischer Signaturfähigkeitseffekt"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-049"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0049",
+      "title": "Stufe IV einer Heldenmeisterschaft gewährt einen kosmetischen Signaturfähigkeits"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0054",
+      "statement": "Stufe V einer Heldenmeisterschaft gewährt einen Heldentitel und 2 Riftessenz.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1272",
+        "quoteHash": "sha256:754dfe220095f2853221b0a80220b3c09a1b9383ab3418b2684446bde6f7183a",
+        "originalExcerpt": "Heldentitel und 2 Riftessenz"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-050"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null,
+          "target": "rift_essence_mastery_v"
+        }
+      ],
+      "status": "planned",
+      "id": "REQ-CONTENT-0050",
+      "title": "Stufe V einer Heldenmeisterschaft gewährt einen Heldentitel und 2 Riftessenz."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0057",
+      "statement": "Kein Meisterschaftsziel darf durch dauerhaft verpassbaren Inhalt blockierbar sein.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1316",
+        "quoteHash": "sha256:6c746e829d3905c6d1be871504a8edcd0e62b0b3d1f228d781901ff4e468d5ee",
+        "originalExcerpt": "Kein Ziel ist durch dauerhaft verpassbaren Inhalt blockierbar."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-051"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0051",
+      "title": "Kein Meisterschaftsziel darf durch dauerhaft verpassbaren Inhalt blockierbar sei"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0058",
+      "statement": "Der Kodex umfasst die Kategorien 10 Helden, 18 Truppen, 14 Beschwörungen, 28 Grundgegner, 12 Eliteattribute, 8 Champions, 4 Zwischenbosse, 4 Hauptbosse, 42 Gegenstände, 36 Relikte, 30 Ereignisse, 4 Regionen, Story, Ascension-Regeln und Modifikatoren.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 32,
+        "section": null,
+        "locator": "block:1321",
+        "quoteHash": "sha256:12f9e74613d27ce81d57d61f69983b291a9eca2f40311440b23bb1b0684afef2",
+        "originalExcerpt": "Kategorien: 10 Helden, 18 Truppen, 14 Beschwörungen, 28 Grundgegner, 12 Eliteattribute, 8 Champions, 4 Zwischenbosse, 4 Hauptbosse, 42 Gegenstände, 36 Relikte, 30 Ereignisse, 4 Regionen, Story, Ascension-Regeln und Modifikatoren."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-052"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0052",
+      "title": "Der Kodex umfasst die Kategorien 10 Helden, 18 Truppen, 14 Beschwörungen, 28 Gru"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0060",
+      "statement": "Eine erste Begegnung schaltet Namen, Rolle, Kurzmechanik und Gegenstrategie frei.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 32,
+        "section": null,
+        "locator": "block:1323",
+        "quoteHash": "sha256:3720f5d8c927f94815d5108a14ee7e85f018b52dea25af358db31d350287d51d",
+        "originalExcerpt": "Erste Begegnung schaltet Namen, Rolle, Kurzmechanik und Gegenstrategie frei. Erster Sieg schaltet vollständige Baselinewerte und Fähigkeiten frei."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-053"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0053",
+      "title": "Eine erste Begegnung schaltet Namen, Rolle, Kurzmechanik und Gegenstrategie frei"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0061",
+      "statement": "Ein erster Sieg schaltet vollständige Baselinewerte und Fähigkeiten frei.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 32,
+        "section": null,
+        "locator": "block:1323",
+        "quoteHash": "sha256:3720f5d8c927f94815d5108a14ee7e85f018b52dea25af358db31d350287d51d",
+        "originalExcerpt": "Erste Begegnung schaltet Namen, Rolle, Kurzmechanik und Gegenstrategie frei. Erster Sieg schaltet vollständige Baselinewerte und Fähigkeiten frei."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-054"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0054",
+      "title": "Ein erster Sieg schaltet vollständige Baselinewerte und Fähigkeiten frei."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0062",
+      "statement": "Der Boss-Kodex zeigt normale, Veteran-, Rang-4- und Rang-9-Regeln getrennt.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 32,
+        "section": null,
+        "locator": "block:1324",
+        "quoteHash": "sha256:6c6652fc682cfa554133a586fa0adf525bcb6a8af6e6f441385d04be2a3f11ae",
+        "originalExcerpt": "Boss-Kodex zeigt normale, Veteran-, Rang-4- und Rang-9-Regeln getrennt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-055"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0055",
+      "title": "Der Boss-Kodex zeigt normale, Veteran-, Rang-4- und Rang-9-Regeln getrennt."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0063",
+      "statement": "Kodex-Einträge enthalten keine versteckten aktuellen Endwerte nach Schwierigkeit, sondern Basis plus aktive Multiplikatoren.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 32,
+        "section": null,
+        "locator": "block:1325",
+        "quoteHash": "sha256:c1611dbdefc71f770827b24e6f5de808ccfcb3c63684acd5b8e202588d8920d1",
+        "originalExcerpt": "Einträge enthalten niemals versteckte aktuelle Endwerte nach Schwierigkeit; stattdessen Basis plus aktive Multiplikatoren."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-056"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0056",
+      "title": "Kodex-Einträge enthalten keine versteckten aktuellen Endwerte nach Schwierigkeit"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0065",
+      "statement": "Erfolge sind lokal, offline und rein intern.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 33,
+        "section": null,
+        "locator": "block:1330",
+        "quoteHash": "sha256:d1ace74389d6903d0cd3460625de3bc156348c9beb403da3e277399f2d6e7903",
+        "originalExcerpt": "Erfolge sind lokal, offline und rein intern. Sie geben Kosmetik, Titel oder kleine einmalige Gold-/Riftessenzbeträge, niemals exklusive notwendige Macht. Versteckte Erfolge sind erlaubt, dürfen aber keine ernsthafte Fehlhandlung verlangen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-057"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0057",
+      "title": "Erfolge sind lokal, offline und rein intern."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0066",
+      "statement": "Erfolge gewähren niemals exklusive notwendige Macht.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 33,
+        "section": null,
+        "locator": "block:1330",
+        "quoteHash": "sha256:d1ace74389d6903d0cd3460625de3bc156348c9beb403da3e277399f2d6e7903",
+        "originalExcerpt": "Erfolge sind lokal, offline und rein intern. Sie geben Kosmetik, Titel oder kleine einmalige Gold-/Riftessenzbeträge, niemals exklusive notwendige Macht. Versteckte Erfolge sind erlaubt, dürfen aber keine ernsthafte Fehlhandlung verlangen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-058"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0058",
+      "title": "Erfolge gewähren niemals exklusive notwendige Macht."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0067",
+      "statement": "Versteckte Erfolge dürfen keine ernsthafte Fehlhandlung verlangen.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 33,
+        "section": null,
+        "locator": "block:1330",
+        "quoteHash": "sha256:d1ace74389d6903d0cd3460625de3bc156348c9beb403da3e277399f2d6e7903",
+        "originalExcerpt": "Erfolge sind lokal, offline und rein intern. Sie geben Kosmetik, Titel oder kleine einmalige Gold-/Riftessenzbeträge, niemals exklusive notwendige Macht. Versteckte Erfolge sind erlaubt, dürfen aber keine ernsthafte Fehlhandlung verlangen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-059"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0059",
+      "title": "Versteckte Erfolge dürfen keine ernsthafte Fehlhandlung verlangen."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0068",
+      "statement": "Normale Erfolge gewähren 100 Gold oder ein kosmetisches Abzeichen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 33,
+        "section": null,
+        "locator": "block:1332",
+        "quoteHash": "sha256:dcdefaea39108adfbf971f412f5d6f4e5d8f6e60ee9977e615967c2df0bdc96e",
+        "originalExcerpt": "Normale Erfolge: 100 Gold oder kosmetisches Abzeichen. Kampagnen-/Endgame-Meilensteine: Titel/Rahmen und höchstens 1-3 Riftessenz."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-060"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0060",
+      "title": "Normale Erfolge gewähren 100 Gold oder ein kosmetisches Abzeichen."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0069",
+      "statement": "Kampagnen- oder Endgame-Erfolge gewähren Titel oder Rahmen und höchstens 1-3 Riftessenz.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 33,
+        "section": null,
+        "locator": "block:1332",
+        "quoteHash": "sha256:dcdefaea39108adfbf971f412f5d6f4e5d8f6e60ee9977e615967c2df0bdc96e",
+        "originalExcerpt": "Normale Erfolge: 100 Gold oder kosmetisches Abzeichen. Kampagnen-/Endgame-Meilensteine: Titel/Rahmen und höchstens 1-3 Riftessenz."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-061"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 3,
+          "target": "endgame_achievement_essence"
+        }
+      ],
+      "status": "planned",
+      "id": "REQ-CONTENT-0061",
+      "title": "Kampagnen- oder Endgame-Erfolge gewähren Titel oder Rahmen und höchstens 1-3 Rif"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0071",
+      "statement": "Die Erfolge „Pip hatte recht/nicht recht\" verwenden ausschließlich die explizit zufälligen Pip-Optionen und keine versteckten Wertungen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 33,
+        "section": null,
+        "locator": "block:1334",
+        "quoteHash": "sha256:9eda21812e76a2527dbc480586dbb979598b066aa8fb4f365712542c83b30c3c",
+        "originalExcerpt": "„Pip hatte recht/nicht recht\" verwendet ausschließlich die explizit zufälligen Pip-Optionen und keine versteckten Wertungen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-062"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0062",
+      "title": "Die Erfolge „Pip hatte recht/nicht recht\" verwenden ausschließlich die explizit "
+    },
+    {
+      "tempId": "REQ-TEMP-B-0079",
+      "statement": "Die Kampfbewertung „Überlegen\" gewährt 15 Prozent mehr Gold und eine höhere Reliktgewichtung klein.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1344",
+        "quoteHash": "sha256:28e02e66035755b4fc5c5df3aa5ab3434f6d64b0a409d6fb4d90fbab79f36e02",
+        "originalExcerpt": "+15% Gold, höhere Reliktgewichtung klein."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-063"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "%",
+          "value": null,
+          "target": "superior_gold_bonus"
+        }
+      ],
+      "status": "planned",
+      "id": "REQ-CONTENT-0063",
+      "title": "Die Kampfbewertung „Überlegen\" gewährt 15 Prozent mehr Gold und eine höhere Reli"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0080",
+      "statement": "Die Kampfbewertung „Kontrolliert\" gewährt 8 Prozent mehr Gold.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1344",
+        "quoteHash": "sha256:0c9c9950e42c6059d30a07da1c7429f7947334972db603bf3153f6af16bde02b",
+        "originalExcerpt": "+8% Gold."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-064"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "%",
+          "value": null,
+          "target": "controlled_gold_bonus"
+        }
+      ],
+      "status": "planned",
+      "id": "REQ-CONTENT-0064",
+      "title": "Die Kampfbewertung „Kontrolliert\" gewährt 8 Prozent mehr Gold."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0081",
+      "statement": "Die Kampfbewertung „Hart erkämpft\" gewährt weder Bonus noch Malus.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1344",
+        "quoteHash": "sha256:2f6560be6f112c92793eb2b4bcf5b5349ac9472dbcf04af6d2e0730cabeea7c3",
+        "originalExcerpt": "Kein Bonus/Malus."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-065"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0065",
+      "title": "Die Kampfbewertung „Hart erkämpft\" gewährt weder Bonus noch Malus."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0082",
+      "statement": "Die Kampfbewertung „Letzter Stand\" gewährt keinen Malus, aber einen eigenen Statistikmarker.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1344",
+        "quoteHash": "sha256:398712629a883f9ec97e064b49e8d5969fa627ac56631e7213d1997928c0b65d",
+        "originalExcerpt": "Kein Malus; eigener Statistikmarker."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-066"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-CONTENT-0066",
+      "title": "Die Kampfbewertung „Letzter Stand\" gewährt keinen Malus, aber einen eigenen Stat"
+    },
+    {
+      "id": "REQ-CONTENT-0067",
+      "title": "UTF-8 JSON Content-Layout",
+      "statement": "Alle Gameplayinhalte liegen als UTF-8 JSON ohne Kommentare unter src/game/content/data; eine Datei pro Entitätskategorie, große Pools nach Region geteilt.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1779",
+        "quoteHash": "sha256:8ef5dcadac4d9a7a1f79a3f9efae15d6406f3253d46d01a4edf411738c7dbe2f",
+        "originalExcerpt": "Alle Gameplayinhalte liegen als UTF-8 JSON ohne Kommentare unter src/game/content/data. Eine Datei pro Entitätskategorie, große Pools nach Region geteilt."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-067"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0068",
+      "title": "Zod-Schemas als SSOT",
+      "statement": "Zod-Schemas sind die Single Source of Truth; aus ihnen werden TypeScript-Typen, JSON Schemas und Dokumentationsreports generiert.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1780",
+        "quoteHash": "sha256:31b0e204134db14e9dbabe0494bce38c06c2a3d0b40cb9f979cf2d1d34a02b73",
+        "originalExcerpt": "Zod-Schemas sind SSOT. Aus ihnen werden TypeScript-Typen, JSON Schemas und Dokumentationsreports generiert."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-068"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0069",
+      "title": "Verbot Runtime-Namen-Suche",
+      "statement": "Der Build erzeugt immutable ContentIndex-Maps nach ID; Runtime-Suche über frei formulierte Namen ist verboten.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1781",
+        "quoteHash": "sha256:29b12cc30aa49e815120501a6653a33e13893cabc00c14f5241da289268829db",
+        "originalExcerpt": "Der Build erzeugt immutable ContentIndex-Maps nach ID. Runtime-Suche über frei formulierte Namen ist verboten."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-069"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0070",
+      "title": "Sekundenwerte in Ticks",
+      "statement": "Sekundenwerte in Autorendaten werden einmal in ganze Ticks konvertiert; Rundung > 0,01 s wird als Warnung protokolliert.",
+      "norm": "SHOULD",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1782",
+        "quoteHash": "sha256:8d3ea3cfd62bc0dac9d42654b2b34172ca8216af54a8bbaa5fd5cbf855dd7765",
+        "originalExcerpt": "Alle Sekundenwerte in Autorendaten dürfen Dezimalzahlen sein; Loader wandelt sie einmal in ganze Ticks und protokolliert Rundung > 0,01 s als Warnung."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-CONTENT-070"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "min": 0.01
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0071",
+      "title": "Lokalisierungs-Keys DE/EN",
+      "statement": "Localization Keys müssen in de und en existieren; Pseudo-Localization muss jedes Layout ohne unersetzte Schlüssel rendern.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1783",
+        "quoteHash": "sha256:845b1f091b3a0c7da5101fd65c174ee507081f56202c293ee764cbdaae679e72",
+        "originalExcerpt": "Localization Keys müssen in de und en existieren. Pseudo-Localization muss jedes Layout ohne unersetzte Schlüssel rendern."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-071"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0072",
+      "title": "Build-Validator Text",
+      "statement": "Build-Validator „Text\": harter Fehler bei fehlender Sprache, Kurztooltip >220 Zeichen, Buttonlabel >30 Zeichen ohne approved compact variant.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:b6853eed8231ede57ba75a3510e0d4feefb0a9925584d824bceb5810f9fe7362",
+        "originalExcerpt": "Text: Fehlende Sprache, Kurztooltip >220 Zeichen, Buttonlabel >30 Zeichen ohne approved compact variant."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-072"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 220
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0073",
+      "title": "Build-Validator Assets",
+      "statement": "Build-Validator „Assets\": harter Fehler bei fehlendem Manifest, Atlas >2048, unbekanntem Audio Cue, nicht lizenziertem Asset.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:1d164b6048186d98c3af2d660deea4b4c7fd2b875239c5db55ed5261de0116ff",
+        "originalExcerpt": "Assets: Fehlendes Manifest, Atlas >2048, unbekannter Audio Cue, nicht lizenziertes Asset."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-073"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "px",
+          "max": 2048
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0074",
+      "title": "Release-Sprachen DE/EN",
+      "statement": "Release-Sprachen sind Deutsch und Englisch; Deutsch ist narrative Autorensprache, Englisch ist vollständig geprüfte Parität ohne maschinelle Rohübersetzung im Release.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1790",
+        "quoteHash": "sha256:84107e0adbf8b351ff4de6d0d4af88455f486ab7a9f301bcd33f92c428016647",
+        "originalExcerpt": "Release-Sprachen sind Deutsch und Englisch. Deutsch ist narrative Autorensprache; Englisch ist vollständig geprüfte Parität, keine maschinelle Rohübersetzung im Release."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-074"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0075",
+      "title": "Strings außerhalb Code/ICU",
+      "statement": "Alle sichtbaren Strings liegen außerhalb des Codes; ICU MessageFormat wird für Plural, Zahl und grammatische Varianten verwendet.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1791",
+        "quoteHash": "sha256:2748a7d68d91c4f7f0560fa03003ad7d9bc545d858ad0545ca4ecd30387849b5",
+        "originalExcerpt": "Alle sichtbaren Strings liegen außerhalb des Codes. ICU MessageFormat wird für Plural, Zahl und grammatische Varianten verwendet."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-075"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0076",
+      "title": "Richtungsangaben vermeiden",
+      "statement": "Richtungsbegriffe links/rechts werden in Gameplaytexten vermieden; Spieler/Gegner, oben/Mitte/unten bleiben eindeutig bei Spiegelung.",
+      "norm": "SHOULD",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1792",
+        "quoteHash": "sha256:24529dca0ee97b17d2d480bd57fbacf1f61ccdc05381394bb3191bad71fa851b",
+        "originalExcerpt": "Richtungsbegriffe links/rechts werden in Gameplaytexten vermieden; Spieler/Gegner, oben/Mitte/unten bleiben eindeutig bei Spiegelung."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-076"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0077",
+      "title": "Fehlende Übersetzung Buildfehler",
+      "statement": "Fehlende Übersetzung zeigt im Development den Key in Magenta und ist im Release ein Buildfehler.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1794",
+        "quoteHash": "sha256:0dd7072f1e1f2e3883bd0af168ecc92a16973a193b7221631491ebaa4ec95d29",
+        "originalExcerpt": "Fehlende Übersetzung zeigt im Development den Key in Magenta und ist im Release ein Buildfehler."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-077"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0078",
+      "title": "Pseudo-Locale",
+      "statement": "Pseudo-Locale erweitert Texte um 35%, setzt Akzente und markiert Start/Ende; alle Screens werden damit im visuellen Test gerendert.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1795",
+        "quoteHash": "sha256:437b9fe23802785035c6726ede8108fac9346866f55afb0953dd9f571702c43c",
+        "originalExcerpt": "Pseudo-Locale erweitert Texte um 35%, setzt Akzente und markiert Start/Ende. Alle Screens werden damit im visuellen Test gerendert."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-CONTENT-078"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "pct",
+          "min": 35
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0079",
+      "title": "Textlänge Kartentext",
+      "statement": "Texttyp „Kartentext\": Titel 34; Unterzeile 60; Effekt 180 Zeichen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:bab2973f1e1fb3bbf9ffb845151ec11826f203bad5ada63e0ddae516d202518e",
+        "originalExcerpt": "Kartentext: Titel 34; Unterzeile 60; Effekt 180 Zeichen."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-079"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 180
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0080",
+      "title": "Textlänge Ereignisintro",
+      "statement": "Texttyp „Ereignisintro\": 480 Zeichen, maximal zwei Absätze.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:ac6748ff5c2f58761957a9b92e0ba46e2f277ee751fff76031774dae93f0f4a9",
+        "originalExcerpt": "Ereignisintro: 480 Zeichen, max. zwei Absätze."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-CONTENT-080"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 480
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0081",
+      "title": "Textlänge Ereignisoption",
+      "statement": "Texttyp „Ereignisoption\": Titel 46; Folge 180 Zeichen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:0a61d6b25bc059ec6a7d9b6e90673ea64705dfe6bc7da03df72784613048a6a9",
+        "originalExcerpt": "Ereignisoption: Titel 46; Folge 180 Zeichen."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-CONTENT-081"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 180
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0082",
+      "title": "Textlänge Untertitel",
+      "statement": "Texttyp „Untertitel\": Max. 42 Zeichen pro Zeile, zwei Zeilen; Lesedauer min. 1,2 s.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 60,
+        "section": null,
+        "locator": "block:1796",
+        "quoteHash": "sha256:178e4ff335c21ffa6ec3327511f0f2e61e2a69fb8bc45377a06676d8fc0e9704",
+        "originalExcerpt": "Untertitel: Max. 42 Zeichen pro Zeile, zwei Zeilen; Lesedauer min. 1,2 s."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-CONTENT-082"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "s",
+          "min": 1.2
+        },
+        {
+          "unit": "chars",
+          "max": 42
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0083",
+      "title": "Asset-Lizenznachweis",
+      "statement": "Drittanbieterassets benötigen Lizenzdatei, Quelle, Autor und kommerzielle Nutzungsfreigabe im Assetmanifest.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 61,
+        "section": null,
+        "locator": "block:1816",
+        "quoteHash": "sha256:095ad559a98b4e44bd6ac15a5153b449be27d3070530690db03208ea16cd28c6",
+        "originalExcerpt": "Drittanbieterassets benötigen Lizenzdatei, Quelle, Autor und kommerzielle Nutzungsfreigabe im Assetmanifest."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "UT-CONTENT-083"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0084",
+      "title": "Assets lizenziert und Credits",
+      "statement": "Alle Assets sind lizenziert; Credits und Lizenzen sind vollständig.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 68,
+        "section": null,
+        "locator": "block:1905",
+        "quoteHash": "sha256:a1c7e4452cb76f6cdb62d8e634e5944cf395e2924df69b81932cbfee0b1a6e48",
+        "originalExcerpt": "Alle Assets lizenziert und Credits/Lizenzen vollständig."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-084"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0085",
+      "title": "Keine V3-Inhalte entfernt",
+      "statement": "Es darf kein Held, Trupp, Gegner, Boss, Item, Relikt, Ereignis, Mission, Modus, Meisterschaftsziel oder Erfolg aus V3 entfernt werden.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 70,
+        "section": null,
+        "locator": "block:1936",
+        "quoteHash": "sha256:2a006fdfce8699973084905222bc4f1a149c5745f9f63184a80a44c68eff01d4",
+        "originalExcerpt": "Kein Held, Trupp, Gegner, Boss, Item, Relikt, Ereignis, Mission, Modus, Meisterschaftsziel oder Erfolg wurde entfernt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-085"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0086",
+      "title": "Magic Numbers verboten",
+      "statement": "Alle globalen Gameplay-, Save-, UI- und technischen Konstanten liegen in versionierten, typisierten Konfigurationsmodulen; kein Magic Number darf außerhalb der autorisierten Datei dupliziert werden.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 73,
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:f978a45a6af61565d36aaa4c46330aca83694485249aa9e3a288483fce750fbe",
+        "originalExcerpt": "Alle globalen Gameplay-, Save-, UI- und technischen Konstanten liegen in versionierten, typisierten Konfigurationsmodulen. Kein Magic Number darf außerhalb der jeweils autorisierten Datei dupliziert werden."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-086"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0087",
+      "title": "Unterstützte Sprachen DE/EN",
+      "statement": "Unterstützte Sprachen sind Deutsch und Englisch.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 73,
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:6e9c2f6d7904774d3fd1c29d125fe9793265c5b07688ff9d4ebe2392cc461c38",
+        "originalExcerpt": "supportedLocales: ['de', 'en']"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-087"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0088",
+      "title": "ID-Präfixe verbindlich",
+      "statement": "Verbindliche ID-Präfixe: hero_, troop_, summon_, enemy_, boss_, ability_, attack_, status_, trait_, synergy_, item_, talisman_, kit_, banner_, relic_, mission_, encounter_, event_, modifier_, achievement_, mastery_, screen_, audio_, visual_.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 73,
+        "section": null,
+        "locator": "block:1977",
+        "quoteHash": "sha256:75bc79a682ca17672424aa15769a385c5441e6f6ead4b7b836894e07c597a893",
+        "originalExcerpt": "Präfixe: hero_, troop_, summon_, enemy_, boss_, ability_, attack_, status_, trait_, synergy_, item_, talisman_, kit_, banner_, relic_, mission_, encounter_, event_, modifier_, achievement_, mastery_, screen_, audio_, visual_."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-088"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0089",
+      "title": "Eindeutige IDs über Dateien",
+      "statement": "Eine ID darf nur einem Inhaltstyp gehören; doppelte IDs werden über Dateien hinweg von der Buildvalidierung verworfen.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 73,
+        "section": null,
+        "locator": "block:1978",
+        "quoteHash": "sha256:fd5884f327ab31639ec2bad733e548ca4c486737a57d1988f267e31d31f38d7a",
+        "originalExcerpt": "Eine ID darf nur einem Inhaltstyp gehören. Buildvalidierung verwirft doppelte IDs auch über unterschiedliche Dateien."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-089"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0090",
+      "title": "Keine ID-Löschung",
+      "statement": "Veröffentlichte IDs dürfen nicht entfernt oder umgedeutet werden; nicht mehr genutzte Inhalte werden deprecated und über Migration/Replacement-ID behandelt.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 73,
+        "section": null,
+        "locator": "block:1980",
+        "quoteHash": "sha256:2cf28f1745b4c320b5643077f1297e4bd6e8c2ccbbfce4ba1c2d60d38d35b23e",
+        "originalExcerpt": "Entfernen oder Umdeuten einer veröffentlichten ID ist verboten. Nicht mehr genutzte Inhalte werden deprecated und durch Migration/Replacement-ID behandelt."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-090"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0091",
+      "title": "Lokalisierungskey-Schema",
+      "statement": "Lokalisierungskeys folgen content.<type>.<id>.<field> bzw. ui.<screen>.<element>; fehlende Keys sind Release-Buildfehler.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 73,
+        "section": null,
+        "locator": "block:1981",
+        "quoteHash": "sha256:8ed789c0f53dc48836943336f9bf0e1ab55d4277c11a1fc7888c68f19a708815",
+        "originalExcerpt": "Lokalisierungskeys folgen content.<type>.<id>.<field> beziehungsweise ui.<screen>.<element>. Fehlende Keys sind Release-Buildfehler."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-091"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0092",
+      "title": "Kein undefined für Pflichtfelder",
+      "statement": "Ein Pflichtfeld fehlt niemals; undefined ist ausschließlich für technisch optionale, nicht serialisierte Funktionsparameter zulässig.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 75,
+        "section": null,
+        "locator": "block:2001",
+        "quoteHash": "sha256:8ff118e561535bba1044df3f949b7d1545da861e85c5cf3d608fefcd148da0de",
+        "originalExcerpt": "Ein Pflichtfeld fehlt niemals. undefined ist ausschließlich für technisch optionale, nicht serialisierte Funktionsparameter zulässig."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-092"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0093",
+      "title": "Null/Optional Semantik",
+      "statement": "JSON verwendet null nur, wenn „bewusst kein Wert“ fachlich gemeint ist; leere Arrays bedeuten „gültig, aber keine Einträge“.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 75,
+        "section": null,
+        "locator": "block:2002",
+        "quoteHash": "sha256:c72a92d089727f217a34d6eb6710e0dc4dfdf27d173b777903007d7df9d9b489",
+        "originalExcerpt": "JSON verwendet null nur, wenn „bewusst kein Wert“ eine fachliche Aussage ist. Leere Arrays bedeuten „gültig, aber keine Einträge“."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-093"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0094",
+      "title": "Explizite Defaults",
+      "statement": "Defaults werden beim Source-Content nicht still ergänzt; der Compiler materialisiert explizite Defaults in generated content, damit Runtime und Tests denselben Wert sehen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 75,
+        "section": null,
+        "locator": "block:2003",
+        "quoteHash": "sha256:a78585f09b83317185a0374fb2b17ee13a506e94dfd0d56a7af510d74261b52b",
+        "originalExcerpt": "Defaults werden beim Source-Content nicht still ergänzt. Der Compiler materialisiert explizite Defaults in generated content, damit Runtime und Tests denselben Wert sehen."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-094"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0095",
+      "title": "Unbekannte Felder Fehler",
+      "statement": "Unbekannte Felder sind in Source-, Save- und Importdaten Fehler; Forward Compatibility erfolgt über schemaVersion und Migration, nicht durch Ignorieren.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 75,
+        "section": null,
+        "locator": "block:2004",
+        "quoteHash": "sha256:a3d099998418fe03b805ff3e7c00904c0dbe1275ff31069a14f326c1d6399fd6",
+        "originalExcerpt": "Unbekannte Felder sind in Source-, Save- und Importdaten Fehler. Forward Compatibility erfolgt über schemaVersion und Migration, nicht durch Ignorieren."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-095"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0096",
+      "title": "Unit-Referenzen vollständig",
+      "statement": "Jede reguläre Einheit besitzt genau einen Standardangriff, mindestens ein Zielprofil, vollständige Visual-/Audio-/Codexreferenzen und eine gültige Startzone.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 75,
+        "section": null,
+        "locator": "block:2021",
+        "quoteHash": "sha256:bfa5b4ae4ca15e70214c2033e282a8edc788b33582f1457d738977708275d245",
+        "originalExcerpt": "Jede reguläre Einheit besitzt genau einen Standardangriff, mindestens ein Zielprofil, vollständige Visual-/Audio-/Codexreferenzen und gültige Startzone."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-096"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0097",
+      "title": "Fähigkeitsspezifikation voll",
+      "statement": "Jede automatisch auslösende Fähigkeit besitzt Trigger, Ziel, Cast-/Recoveryzeit, InvalidTargetPolicy, Telegraphie und Effektliste.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 75,
+        "section": null,
+        "locator": "block:2022",
+        "quoteHash": "sha256:835e003402b66b9520b4e3eb563f473b1bec9017cab01e9774ac819001ece2bc",
+        "originalExcerpt": "Jede automatisch auslösende Fähigkeit besitzt Trigger, Ziel, Cast-/Recoveryzeit, InvalidTargetPolicy, Telegraphie und Effektliste."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONTENT-097"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0098",
+      "title": "Bossphasen vollständig",
+      "statement": "Jeder Boss besitzt vollständig abgedeckte LP-Phasen ohne Lücke/Überlappung, eine maximale Kampfdauer und Vorschau für alle strategisch relevanten Mechaniken.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 75,
+        "section": null,
+        "locator": "block:2023",
+        "quoteHash": "sha256:84afb90e8358e0d8a3546a6a9a50c66b82437b18d2b075c9d10c952f74ca8d22",
+        "originalExcerpt": "Jeder Boss besitzt vollständig abgedeckte LP-Phasen ohne Lücke/Überlappung, eine maximale Kampfdauer und Vorschau für alle strategisch relevanten Mechaniken."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-CONTENT-098"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0099",
+      "title": "Mission 5-8 Knoten",
+      "statement": "Jede Mission generiert 5-8 besuchte Knoten, garantiert ihre Pflichtknoten, hat mindestens drei gültige normale Encounter-Varianten pro Kampfslot und endet erreichbar.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 75,
+        "section": null,
+        "locator": "block:2024",
+        "quoteHash": "sha256:01acc938c85ff6c8649d0c8a4492a79125cd92cb071dacd3f585ad24bb98d6a9",
+        "originalExcerpt": "Jede Mission generiert 5-8 besuchte Knoten, garantiert ihre Pflichtknoten, hat mindestens drei gültige normale Encounter-Varianten pro Kampfslot und endet erreichbar."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-CONTENT-099"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "node",
+          "min": 5
+        },
+        {
+          "unit": "node",
+          "max": 8
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0100",
+      "title": "Ereignisspezifikation voll",
+      "statement": "Jedes Ereignis besitzt zwei oder drei Optionen, sichtbare Kosten/Folgen, deterministische Randomslots und eine valide Ablehn-/Fallbackfolge.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 75,
+        "section": null,
+        "locator": "block:2025",
+        "quoteHash": "sha256:fa586f8c10f7d59e57196455210c104f4db73cae8b9ccef20837df4c3ed606e1",
+        "originalExcerpt": "Jedes Ereignis besitzt zwei oder drei Optionen, sichtbare Kosten/Folgen, deterministische Randomslots und eine valide Ablehn-/Fallbackfolge."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-CONTENT-100"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0101",
+      "title": "Es existieren mindestens Golden-Screenshot-Zustände für: Titel, HQ nach jedem Akt, Missionsdetails, Formation normal und boss, Helden-/Trupp-/Itemdetail, Dungeonkarte, Ereignis, Händler, Pre-Battle, Kampf normal und boss, Ergebnis, Niederlage, Ascension, Endless Checkpoint, Settings und Recovery.",
+      "statement": "Es existieren mindestens Golden-Screenshot-Zustände für: Titel, HQ nach jedem Akt, Missionsdetails, Formation normal und boss, Helden-/Trupp-/Itemdetail, Dungeonkarte, Ereignis, Händler, Pre-Battle, Kampf normal und boss, Ergebnis, Niederlage, Ascension, Endless Checkpoint, Settings und Recovery.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 79,
+        "section": null,
+        "locator": "block:2103",
+        "quoteHash": "sha256:b6b38a791069e0e4de135188c6fbeb94a179a526d1494e8df2dceae1f7973313",
+        "originalExcerpt": "Mindestens: Titel, HQ nach jedem Akt, Missionsdetails, Formation normal/boss, Helden-/Trupp-/Itemdetail, Dungeonkarte, Ereignis, Händler, Pre-Battle, Kampf normal/boss, Ergebnis, Niederlage, Ascension, Endless Checkpoint, Settings, Recovery."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-CONTENT-101"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "goldenStates",
+          "value": 17
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0102",
+      "title": "Jede gefährliche Bodenfläche besitzt Vorwarnform, Countdown- oder Füllrichtung sowie Impact; Farbe allein reicht als Warnung nicht aus.",
+      "statement": "Jede gefährliche Bodenfläche besitzt Vorwarnform, Countdown- oder Füllrichtung sowie Impact; Farbe allein reicht als Warnung nicht aus.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 81,
+        "section": null,
+        "locator": "block:2134",
+        "quoteHash": "sha256:aa2eb03fbefe60faf70bc82169e15bce7e189ac5739b18a9e5a7b4b9cb1c4077",
+        "originalExcerpt": "Jede gefährliche Bodenfläche besitzt Vorwarnform, Countdown-/Füllrichtung und Impact. Farbe allein reicht nicht."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-CONTENT-102"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0103",
+      "title": "Gameplaygrafiken enthalten außer universellen Symbolen keine eingebetteten Texte; lokalisierbarer Text bleibt in der UI.",
+      "statement": "Gameplaygrafiken enthalten außer universellen Symbolen keine eingebetteten Texte; lokalisierbarer Text bleibt in der UI.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 81,
+        "section": null,
+        "locator": "block:2141",
+        "quoteHash": "sha256:01b315ccaab051e3adb072cc919e630293a860e39d0335fbdcd416154258efbc",
+        "originalExcerpt": "Keine eingebetteten Texte in Gameplaygrafiken außer universellen Symbolen; lokalisierbarer Text bleibt UI."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-CONTENT-103"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0104",
+      "title": "Alle Asset-Quellen besitzen einen Lizenz- und Provenienzdatensatz; KI-generierte Assets werden mit Tool, Modell, Datum, Prompt-ID und kommerzieller Rechteprüfung dokumentiert.",
+      "statement": "Alle Asset-Quellen besitzen einen Lizenz- und Provenienzdatensatz; KI-generierte Assets werden mit Tool, Modell, Datum, Prompt-ID und kommerzieller Rechteprüfung dokumentiert.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 81,
+        "section": null,
+        "locator": "block:2142",
+        "quoteHash": "sha256:0c8776c839d18a48fbdd155a62e44a1d11c10c7694d8a3a023fbbd7c05ca0164",
+        "originalExcerpt": "Alle Quellen besitzen Lizenz-/Provenienzdatensatz. KI-generierte Assets werden mit Tool/Modell/Datum/Prompt-ID und kommerzieller Rechteprüfung dokumentiert."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-CONTENT-104"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0105",
+      "title": "Pip spricht Tutorial-, Unlock-, Niederlagen- und Storykurztexte mit maximal zwei Sätzen; Untertitel sind immer vorhanden.",
+      "statement": "Pip spricht Tutorial-, Unlock-, Niederlagen- und Storykurztexte mit maximal zwei Sätzen; Untertitel sind immer vorhanden.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 82,
+        "section": null,
+        "locator": "block:2158",
+        "quoteHash": "sha256:d1522d5026618ba6cd64f995560acde81440490505bcf3d68e207d936037e321",
+        "originalExcerpt": "Bosse: Intro, Phase, Niederlage; strategisch relevante Warnung zusätzlich UI/Text, nie nur Sprache."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-CONTENT-105"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "pipSentences",
+          "value": 2
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0106",
+      "title": "Helden besitzen Voice-Cues für Einmarsch, Signatur, Level3, niedrige LP und Sieg mit 2 bis 4 Varianten je Kategorie und einem Wiederholungscooldown von 20 s.",
+      "statement": "Helden besitzen Voice-Cues für Einmarsch, Signatur, Level3, niedrige LP und Sieg mit 2 bis 4 Varianten je Kategorie und einem Wiederholungscooldown von 20 s.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 82,
+        "section": null,
+        "locator": "block:2159",
+        "quoteHash": "sha256:34e33de8e7da0df49f7e239fa3bbd07fd1b009e7b581bb2f0e5dc35b73bfd2cc",
+        "originalExcerpt": "Der Release besitzt eine begrenzte, aber verbindliche DE-/EN-Sprachausgabe: Pip vertont alle Tutorialhinweise und zentralen Storyübergänge; jeder Held vertont Einmarsch, Signatur, Level-3, niedrige LP und Sieg mit mindestens zwei Varianten je Kategorie; jeder Haupt- und Zwischenboss vertont Intro, Phasenwechsel und Niederlage. Ereignisse, Kodex, Händlertexte, HQ-Banter und längere Storyeinträge bleiben Text. Jeder semantische Voice-Cue besitzt wortgleichen Untertitel; strategische Warnungen erscheinen zusätzlich als Icon und lokalisierter Warntext. Nonverbale Ausrufe dürfen weitere Varianten ergänzen, ersetzen aber keinen Pflichtsatz."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-CONTENT-106"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "range",
+          "name": "heroVoiceVariantsPerCategory",
+          "min": 2,
+          "max": 4
+        },
+        {
+          "kind": "min",
+          "name": "heroVoiceCooldownSec",
+          "value": 20,
+          "unit": "s"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0107",
+      "title": "Bosse besitzen Voice-Cues für Intro, Phase und Niederlage; strategisch relevante Warnungen werden zusätzlich in UI und Text angezeigt, niemals nur per Sprache.",
+      "statement": "Bosse besitzen Voice-Cues für Intro, Phase und Niederlage; strategisch relevante Warnungen werden zusätzlich in UI und Text angezeigt, niemals nur per Sprache.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 82,
+        "section": null,
+        "locator": "block:2160",
+        "quoteHash": "sha256:387e55cf8149a4ca0d22660e625a52886c9873db84ecf1c2c8fb6b885cbbb2cb",
+        "originalExcerpt": "82.5 Audiofokus und Silent Mode"
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-CONTENT-107"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0108",
+      "title": "Der Release besitzt eine begrenzte, aber verbindliche DE- und EN-Sprachausgabe nach dem definierten Pflichtumfang für Pip, Helden und Bosse; Ereignisse, Kodex, Händlertexte, HQ-Banter und längere Storyeinträge bleiben Text; jeder semantische Voice-Cue besitzt wortgleichen Untertitel und strategische Warnungen erscheinen zusätzlich als Icon und lokalisierter Warntext.",
+      "statement": "Der Release besitzt eine begrenzte, aber verbindliche DE- und EN-Sprachausgabe nach dem definierten Pflichtumfang für Pip, Helden und Bosse; Ereignisse, Kodex, Händlertexte, HQ-Banter und längere Storyeinträge bleiben Text; jeder semantische Voice-Cue besitzt wortgleichen Untertitel und strategische Warnungen erscheinen zusätzlich als Icon und lokalisierter Warntext.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 82,
+        "section": null,
+        "locator": "block:2161",
+        "quoteHash": "sha256:2192932ec47602ba4c42eb9ec305ce524551181d02b6bd0f829d8169fa99b1de",
+        "originalExcerpt": "Android: transient loss pausiert/duckt gemäß Fokusart; loss pausiert und resettet keine Position. Resume nur nach gain und wenn App foreground."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-CONTENT-108"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0109",
+      "title": "Stationäre Konstruktionen zählen zum Beschwörungslimit nur, wenn ihre Definition countsTowardSummonLimit=true setzt.",
+      "statement": "Stationäre Konstruktionen zählen mit, wenn ihre Definition countsTowardSummonLimit=true setzt.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1557",
+        "quoteHash": "sha256:8b094a9306912adbf3e9d90c188992fd0d7b39ed754656f40d485f8c4b41b717",
+        "originalExcerpt": "Stationäre Konstruktionen zählen mit, wenn ihre Definition countsTowardSummonLimit=true setzt."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-CONTENT-109"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0110",
+      "title": "Ein Schlachtfeldmodifikator darf nie eine Bosskernmechanik vollständig neutralisieren oder deren Gegenstrategie unmöglich machen; der Encounter-Validator lehnt solche Kombinationen ab.",
+      "statement": "Ein Schlachtfeldmodifikator darf nie eine Bosskernmechanik vollständig neutralisieren oder deren angekündigte Gegenstrategie unmöglich machen. Der Encounter-Validator lehnt solche Kombinationen ab.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1577",
+        "quoteHash": "sha256:27e2b296c04ae745f3fc59d6abddcc8279a874c3415b2f2806811f7439108d8a",
+        "originalExcerpt": "Ein Schlachtfeldmodifikator darf nie eine Bosskernmechanik vollständig neutralisieren oder deren angekündigte Gegenstrategie unmöglich machen. Der Encounter-Validator lehnt solche Kombinationen ab."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-CONTENT-110"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0111",
+      "title": "Generator führt pro Modus Verlauf: letzte drei Kartenprofile, letzte acht Ereignisse, letzte sechs normale Formationen, letzte vier Modifikatoren.",
+      "statement": "Der Generator führt pro Modus einen Verlauf der letzten drei Kartenprofile, letzten acht Ereignisse, letzten sechs normalen Formationen und letzten vier Modifikatoren.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1579",
+        "quoteHash": "sha256:da05fcc6c9ce4531f5f1cc3e990c313025e0e8a3f4c33889c6210ab90d513ea6",
+        "originalExcerpt": "Der Generator führt pro Modus einen Verlauf der letzten drei Kartenprofile, letzten acht Ereignisse, letzten sechs normalen Formationen und letzten vier Modifikatoren."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-CONTENT-111"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "mapHistorySize",
+          "value": 3
+        },
+        {
+          "kind": "exact",
+          "name": "eventHistorySize",
+          "value": 8
+        },
+        {
+          "kind": "exact",
+          "name": "formationHistorySize",
+          "value": 6
+        },
+        {
+          "kind": "exact",
+          "name": "modifierHistorySize",
+          "value": 4
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0112",
+      "title": "Identische Ereignis-ID ist innerhalb einer Expedition verboten; außerhalb erst nach vier anderen Ereignissen, sofern der Pool mindestens fünf gültige Einträge besitzt.",
+      "statement": "Identische Ereignis-ID ist innerhalb einer Expedition verboten. Außerhalb darf sie erst nach vier anderen Ereignissen erneut erscheinen, sofern der Pool mindestens fünf gültige Einträge besitzt.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1580",
+        "quoteHash": "sha256:51c01aa10665e130fc13c1414e9cb6a1a9d4c2cf0c23108969e7fa31ecacb954",
+        "originalExcerpt": "Identische Ereignis-ID ist innerhalb einer Expedition verboten. Außerhalb darf sie erst nach vier anderen Ereignissen erneut erscheinen, sofern der Pool mindestens fünf gültige Einträge besitzt."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-CONTENT-112"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "eventsBetweenRepeats",
+          "value": 4
+        },
+        {
+          "kind": "min",
+          "name": "validPoolSize",
+          "value": 5
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0113",
+      "title": "Kann ein Pool die Regel nicht erfüllen, wird die geringste Wiederholungsstrafe gewählt; Karte darf nicht unendlich neu würfeln; maximal 50 Generierungsversuche, danach deterministisches Fallback-Profil.",
+      "statement": "Kann ein Pool wegen Freischaltungen oder Ausschlüssen die Regel nicht erfüllen, wird die geringste Wiederholungsstrafe gewählt; die Karte darf niemals unendlich neu würfeln. Maximal 50 Generierungsversuche, danach deterministisches Fallback-Profil.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1581",
+        "quoteHash": "sha256:bfdde77f10359c09c91727a72191237118b10a0cf8b62d97f099d3d024a822e7",
+        "originalExcerpt": "Kann ein Pool wegen Freischaltungen oder Ausschlüssen die Regel nicht erfüllen, wird die geringste Wiederholungsstrafe gewählt; die Karte darf niemals unendlich neu würfeln. Maximal 50 Generierungsversuche, danach deterministisches Fallback-Profil."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-CONTENT-113"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "maxGenerationAttempts",
+          "value": 50
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0114",
+      "title": "Fallback-Profil enthält genau sechs Ebenen, einen normalen Kampf, einen Händler oder Rekrutierungsknoten, einen Elitekampf, einen Anker, eine letzte Vorbereitung und das Ziel; immer erreichbar; keine Doppelmodifikatoren.",
+      "statement": "Das Fallback-Profil enthält genau sechs Ebenen, einen normalen Kampf, einen Händler oder Rekrutierungsknoten, einen Elitekampf, einen Anker, eine letzte Vorbereitung und das Ziel. Es ist immer erreichbar und verwendet keine Doppelmodifikatoren.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1582",
+        "quoteHash": "sha256:e0d44fe985c26446ff588b90d3edc2d44466b2ac57a9473afb67ba284c1e52f6",
+        "originalExcerpt": "Das Fallback-Profil enthält genau sechs Ebenen, einen normalen Kampf, einen Händler oder Rekrutierungsknoten, einen Elitekampf, einen Anker, eine letzte Vorbereitung und das Ziel. Es ist immer erreichbar und verwendet keine Doppelmodifikatoren."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-CONTENT-114"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "fallbackLevelCount",
+          "value": 6
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0115",
+      "title": "content lädt nur validierte Daten; fehlende Referenz ist im Dev/CI harter Fehler; Release startet bei korruptem Bundle in einen Recovery-Screen statt still zu ersetzen.",
+      "statement": "content lädt nur validierte Daten. Fehlende Referenz ist im Development/CI ein harter Fehler; Release startet bei korruptem Bundle in einen Recovery-Screen statt still zu ersetzen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 50,
+        "section": null,
+        "locator": "block:1611",
+        "quoteHash": "sha256:6ab8209a72ccc0a917ff6b6e136fd2934ffb2a33c65d4b888ab692b714decd14",
+        "originalExcerpt": "content lädt nur validierte Daten. Fehlende Referenz ist im Development/CI ein harter Fehler; Release startet bei korruptem Bundle in einen Recovery-Screen statt still zu ersetzen."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-CONTENT-115"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0116",
+      "title": "UI-Komponenten enthalten keine konkrete Helden-/Bosslogik; Inhaltsnamen, Werte und Beschreibungen kommen aus Daten und Localization Keys.",
+      "statement": "UI-Komponenten enthalten keine konkrete Helden-/Bosslogik. Inhaltsnamen, Werte und Beschreibungen kommen aus Daten und Localization Keys.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 50,
+        "section": null,
+        "locator": "block:1612",
+        "quoteHash": "sha256:4793b54775e2f647e178ec11bdcdd3af3b9a4c65ec85d62559c81675cbf12afd",
+        "originalExcerpt": "UI-Komponenten enthalten keine konkrete Helden-/Bosslogik. Inhaltsnamen, Werte und Beschreibungen kommen aus Daten und Localization Keys."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-CONTENT-116"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0117",
+      "title": "Inhaltsdaten sind validierte, versionierte JSON-Inhaltsdaten plus TypeScript-Schemas; jede Datenentität besitzt die geforderten semantischen Felder.",
+      "statement": "Die technische Speicherform gemäß Version 4 sind validierte, versionierte JSON-Inhaltsdaten plus TypeScript-Schemas. Jede Datenentität muss mindestens die spezifizierten semantischen Felder besitzen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 41,
+        "section": "41. Inhaltliche Datenverträge",
+        "locator": "block:1446",
+        "quoteHash": "sha256:1d4bd65bdc45bb3e285c4ed7abfd016b0d57275a935e53455955773c99bb2009",
+        "originalExcerpt": "Version 4 legt die technische Speicherform als validierte, versionierte JSON-Inhaltsdaten plus TypeScript-Schemas fest. Jede Datenentität muss mindestens die folgenden semantischen Felder besitzen. IDs sind stabile, kleingeschriebene ASCII-Schlüssel und dürfen nach Veröffentlichung nicht ohne explizite Migration umbenannt werden."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-CONTENT-117"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0118",
+      "title": "IDs sind stabile, kleingeschriebene ASCII-Schlüssel und dürfen nach Veröffentlichung nicht ohne explizite Migration umbenannt werden.",
+      "statement": "IDs sind stabile, kleingeschriebene ASCII-Schlüssel und dürfen nach Veröffentlichung nicht ohne explizite Migration umbenannt werden.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 41,
+        "section": "41. Inhaltliche Datenverträge",
+        "locator": "block:1446",
+        "quoteHash": "sha256:4c48143f10bbf30b8d3c29db24471926fbed9b4d466d992b7746ff9f29b58abd",
+        "originalExcerpt": "IDs sind stabile, kleingeschriebene ASCII-Schlüssel und dürfen nach Veröffentlichung nicht ohne explizite Migration umbenannt werden."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-CONTENT-118"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0119",
+      "title": "Stabile ID-Konvention: hero_<name>, troop_<rolle>, enemy_<name>, ability__; mission_<zone>_<idx>, event_; gear_main_, gear_talisman_, gear_kit_, gear_banner_.",
+      "statement": "Helden-IDs folgen hero_<name> (z. B. hero_aurel, hero_mira), Truppen troop_<rolle> (z. B. troop_shieldguard), Gegner enemy_<name> (z. B. enemy_ash_soldier) und Fähigkeiten ability__<…>. Missionen folgen mission_<zone>_<idx> (mission_1_1 … mission_4_5), Ereignisse event_<…> und Gegenstände gear_main_<…>, gear_talisman_<…>, gear_kit_<…>, gear_banner_<…>.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 41,
+        "section": "41.1 Stabile ID-Konvention",
+        "locator": "block:1447",
+        "quoteHash": "sha256:2c395e79e30b0fecb3102b9fe064a1005a262fc73915b9c698309ab242abb1e6",
+        "originalExcerpt": "Helden: hero_aurel, hero_mira usw.; Truppen: troop_shieldguard; Gegner: enemy_ash_soldier; Fähigkeiten: ability__."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-CONTENT-119"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0120",
+      "title": "Stabile ID-Konvention: Missionen mission_1_1 bis mission_4_5; Ereignisse event_; Gegenstände gear_main_, gear_talisman_, gear_kit_, gear_banner_.",
+      "statement": "Missionen-IDs reichen von mission_1_1 bis mission_4_5, Ereignisse verwenden das Präfix event_, Gegenstände die Präfixe gear_main_, gear_talisman_, gear_kit_, gear_banner_.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 41,
+        "section": "41.1 Stabile ID-Konvention",
+        "locator": "block:1448",
+        "quoteHash": "sha256:a06980d08eceaff7ff591bfc33bcb02ef46e7012f86ebb1ddaa957b3a480aab3",
+        "originalExcerpt": "Missionen: mission_1_1 bis mission_4_5; Ereignisse: event_; Gegenstände: gear_main_, gear_talisman_, gear_kit_, gear_banner_."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-CONTENT-120"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0121",
+      "title": "Lokalisierte Namen sind nie IDs und werden nicht für Savegame-Logik verwendet.",
+      "statement": "Lokalisierte Namen sind niemals IDs und werden nicht für Savegame-Logik verwendet.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 41,
+        "section": "41.1 Stabile ID-Konvention",
+        "locator": "block:1449",
+        "quoteHash": "sha256:73487eebd324a784b2e45660fc7a34a150f6df8afb168d7e3d9def586eb59758",
+        "originalExcerpt": "Lokalisierte Namen sind nie IDs und werden nicht für Savegame-Logik verwendet."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-CONTENT-121"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0122",
+      "title": "Alle Referenzen werden beim Build validiert; unbekannte ID ist harter Fehler, kein stilles Überspringen.",
+      "statement": "Alle Referenzen werden beim Build validiert. Eine unbekannte ID ist ein harter Fehler und wird nicht stillschweigend übersprungen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 41,
+        "section": "41.1 Stabile ID-Konvention",
+        "locator": "block:1450",
+        "quoteHash": "sha256:e855db3c309ddac5c8eb334107ae762b25073d8cc6393dc57c3bf7743e8ebfe9",
+        "originalExcerpt": "Alle Referenzen werden beim Build validiert; unbekannte ID ist harter Fehler, kein stilles Überspringen."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-CONTENT-122"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0123",
+      "title": "20 Missionen vollständig spielbar, alle Erst- und Wiederholungsbelohnungen korrekt.",
+      "statement": "20 Missionen vollständig spielbar, alle Erst- und Wiederholungsbelohnungen korrekt.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1495",
+        "quoteHash": "sha256:76f3be31b807674b723ddc4418e32a5684420247a70b829bc21be683c16db0fe",
+        "originalExcerpt": "20 Missionen vollständig spielbar, alle Erst-/Wiederholungsbelohnungen korrekt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-123"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "missionCount",
+          "value": 20
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0124",
+      "title": "Inhaltliche Mindestmenge implementiert: 10 Helden × 3 Stufen, 18 Truppen, 14 Beschwörungen, 28 Grundgegner, 12 Elites, 8 Champions, 4 Zwischen- und 4 Hauptbosse.",
+      "statement": "10 Helden x 3 Level, 18 Truppen, 14 Beschwörungen, 28 Grundgegner, 12 Elites, 8 Champions, 4 Zwischen- und 4 Hauptbosse implementiert.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1496",
+        "quoteHash": "sha256:6c5abff37c782226b8ec48c7ffce7d605eb87e6daa263fa8f34de24c9c2b43ba",
+        "originalExcerpt": "10 Helden x 3 Level, 18 Truppen, 14 Beschwörungen, 28 Grundgegner, 12 Elites, 8 Champions, 4 Zwischen- und 4 Hauptbosse implementiert."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-124"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "heroesCount",
+          "value": 10
+        },
+        {
+          "kind": "exact",
+          "name": "heroLevels",
+          "value": 3
+        },
+        {
+          "kind": "exact",
+          "name": "troopsCount",
+          "value": 18
+        },
+        {
+          "kind": "exact",
+          "name": "summonsCount",
+          "value": 14
+        },
+        {
+          "kind": "exact",
+          "name": "baseEnemiesCount",
+          "value": 28
+        },
+        {
+          "kind": "exact",
+          "name": "eliteEnemiesCount",
+          "value": 12
+        },
+        {
+          "kind": "exact",
+          "name": "championsCount",
+          "value": 8
+        },
+        {
+          "kind": "exact",
+          "name": "intermediateBossesCount",
+          "value": 4
+        },
+        {
+          "kind": "exact",
+          "name": "mainBossesCount",
+          "value": 4
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0125",
+      "title": "42 permanente Gegenstände, 36 Relikte, 30 Ereignisse, 18 Modifikatoren und 7 Kampfvarianten vollständig.",
+      "statement": "42 permanente Gegenstände, 36 Relikte, 30 Ereignisse, 18 Modifikatoren, 7 Kampfvarianten vollständig.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1497",
+        "quoteHash": "sha256:5de8adc11bf9c4fcfacf96f7e797aadd805cfae360f0d56dc35bc54a7fcfbf65",
+        "originalExcerpt": "42 permanente Gegenstände, 36 Relikte, 30 Ereignisse, 18 Modifikatoren, 7 Kampfvarianten vollständig."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-125"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "permanentItemsCount",
+          "value": 42
+        },
+        {
+          "kind": "exact",
+          "name": "relicsCount",
+          "value": 36
+        },
+        {
+          "kind": "exact",
+          "name": "eventsCount",
+          "value": 30
+        },
+        {
+          "kind": "exact",
+          "name": "modifiersCount",
+          "value": 18
+        },
+        {
+          "kind": "exact",
+          "name": "battleVariantsCount",
+          "value": 7
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0126",
+      "title": "Ascension 1-10, 28 Konstellationsknoten, Jenseits 1-20, Endlose Rift und alle Meilensteine funktionieren offline.",
+      "statement": "Ascension 1-10, 28 Konstellationsknoten, Jenseits 1-20, Endlose Rift und alle Meilensteine funktionieren offline.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1498",
+        "quoteHash": "sha256:a1ff3ca9e9217c0b0152dcc4de62f955f8c351596a81250e12f24f47e2d5c3dd",
+        "originalExcerpt": "Ascension 1-10, 28 Konstellationsknoten, Jenseits 1-20, Endlose Rift und alle Meilensteine funktionieren offline."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-126"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "ascensionTiers",
+          "value": 10
+        },
+        {
+          "kind": "exact",
+          "name": "constellationNodes",
+          "value": 28
+        },
+        {
+          "kind": "exact",
+          "name": "beyondTiers",
+          "value": 20
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-CONTENT-0127",
+      "title": "50 Meisterschaftsziele, Kodex und 36 Erfolge vollständig prüfbar.",
+      "statement": "50 Meisterschaftsziele, Kodex und 36 Erfolge vollständig prüfbar.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1499",
+        "quoteHash": "sha256:00960789a4c01bb27de03a4a0f0f74b3f846ff406af8bbb4b0031637179c7375",
+        "originalExcerpt": "50 Meisterschaftsziele, Kodex und 36 Erfolge vollständig prüfbar."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-CONTENT-127"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "masteryGoalsCount",
+          "value": 50
+        },
+        {
+          "kind": "exact",
+          "name": "achievementsCount",
+          "value": 36
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ]
+}

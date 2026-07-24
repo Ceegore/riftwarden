@@ -49,7 +49,9 @@ export function countPhysicalLines(text) {
 function validateGeneratedContracts(root) {
   /** @type {FileLengthFinding[]} */
   const findings = [];
-  for (const prefix of GENERATED_PREFIXES) {
+  // Only directory prefixes need README contract markers.
+  const dirPrefixes = GENERATED_PREFIXES.filter((p) => p.endsWith('/'));
+  for (const prefix of dirPrefixes) {
     const readme = resolve(root, prefix, 'README.md');
     if (!existsSync(readme) || !readFileSync(readme, 'utf8').includes(GENERATED_CONTRACT_MARKER)) {
       findings.push({

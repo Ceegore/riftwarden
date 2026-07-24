@@ -1,0 +1,24 @@
+# Chapter 58: Savegame, Migration, Import/Export und Recovery
+# blocks 1752..1776 (25 blocks)
+
+[Heading 2] 58. Savegame, Migration, Import/Export und Recovery
+[Heading 3] 58.1 Dateisatz
+[Heading 3] 58.2 Atomarer Commit
+[Compact] 1. In-Memory-State wird in kanonisches JSON serialisiert; Object Keys werden stabil sortiert.
+[Compact] 2. Payload erhält schemaVersion, contentVersion, simulationVersion, createdAt nur zur Anzeige, monotonicCommitId und SHA-256 über canonicalPayload.
+[Compact] 3. In next-slot.tmp schreiben, Datei erneut lesen, Hash prüfen.
+[Compact] 4. .tmp in Slotdatei umbenennen. Danach manifest.new schreiben und atomar in manifest.json umbenennen.
+[Compact] 5. Erst jetzt UI-Transaktion als abgeschlossen anzeigen. Bei Fehler bleibt alter Slot aktiv und es erscheint ein recoverable Fehler.
+[Heading 3] 58.3 Commitpunkte
+[Heading 3] 58.4 Import/Export
+[Compact] Export verwendet Custom SaveTransfer und System-Dateidialog. Dateiendung .rwsave, MIME application/vnd.riftwarden.save+json.
+[Compact] Import wird in Quarantäne gelesen, Größe <= 10 MB, ZIP/JSON-Bomben ausgeschlossen, Hash und Schema validiert. Es wird nie direkt über aktive Saves geschrieben.
+[Compact] Vor Import zeigt die App Quelle, Version, Fortschritt und Konfliktoptionen: aktuelles Backup exportieren, importieren, abbrechen. Merge ist verboten; Import ersetzt vollständig.
+[Compact] Neueres unbekanntes Schema wird abgelehnt, ohne aktiven Save zu verändern. Älteres Schema wird auf einer Kopie migriert und erst danach committed.
+[Compact] Android nutzt ACTION_OPEN_DOCUMENT/ACTION_CREATE_DOCUMENT, iOS UIDocumentPicker. Keine Speicher- oder Fotoberechtigung.
+[Heading 3] 58.5 Recovery-Entscheidung
+[Compact] 1. Manifest und aktiven Slot prüfen.
+[Compact] 2. Bei Fehler die anderen Slots nach höchster gültiger commitId prüfen.
+[Compact] 3. Bei gültigem Fallback diesen laden, beschädigten Slot nicht löschen und Spieler einmal informieren.
+[Compact] 4. Wenn Profile gültig, Run beschädigt: permanenter Fortschritt laden und Run als sicher beendet markieren; ungesicherter Runloot verfällt nur nach expliziter Bestätigung.
+[Compact] 5. Wenn kein Slot gültig: Import/Neues Profil anbieten. Keine automatische Löschung.

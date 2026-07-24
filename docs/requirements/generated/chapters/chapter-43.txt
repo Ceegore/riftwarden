@@ -1,0 +1,11 @@
+# Chapter 43: Balancing-Leitplanken
+# blocks 1468..1480 (13 blocks)
+
+[Heading 2] 43. Balancing-Leitplanken
+[Heading 3] 43.1 Verbotene Balance-Abkürzungen
+[Compact] Keine Begegnung wird nur durch massive LP-Skalierung schwierig; mindestens eine Formations-/Mechanikänderung.
+[Compact] Keine Fähigkeit erhält versteckte Trefferchance oder zufällige kritische Treffer, um Zielwerte zu erreichen.
+[Compact] Kein Boss wird gegen Kontrolle vollständig immun ohne sichtbares reduziertes Feedback.
+[Compact] Keine einzelne Synergie oder Heldengruppe darf alle vier Hauptbosse ohne Anpassung deutlich dominieren.
+[Compact] Keine Kampagnenfreischaltung verlangt wiederholtes Farmen derselben Mission auf Normal.
+[Compact] Keine Niederlage wird durch Reduzieren permanenter Progression „gelöst“; zuerst Lesbarkeit, Counter und Werte prüfen.

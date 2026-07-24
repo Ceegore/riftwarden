@@ -1,0 +1,42 @@
+# Chapter 7: Zielwahl, Bedrohung und Doktrinen
+# blocks 157..219 (63 blocks)
+
+[Heading 2] 7. Zielwahl, Bedrohung und Doktrinen
+[Heading 3] 7.1 Zielscore
+[First Paragraph] Jede offensive Einheit bewertet gültige Ziele. Basisscore = 100 - Distanz x 2. Dazu kommen Rollen-, Bahn-, Fähigkeits- und Doktrinwerte. Das höchste Ergebnis wird gewählt. Ein bestehendes Ziel erhält +18 Bindungsbonus, damit Einheiten nicht flackern. Ein Wechsel findet nur statt, wenn ein neues Ziel den aktuellen Score um mindestens 20 übertrifft oder das aktuelle Ziel ungültig wird.
+[Heading 3] 7.2 Rollenprioritäten
+[Heading 3] 7.3 Deckung und Schutzlinie
+[Compact] Eine reguläre Einheit bietet Deckung für Verbündete derselben Bahn, wenn sie zwischen Angreifer und Ziel steht und höchstens 9 X-Einheiten vor dem Ziel ist.
+[Compact] Deckung macht ein Ziel nicht ungültig, gibt aber -22 Zielscore für normale Fernkämpfer und reduziert eingehenden Projektilschaden um 12%.
+[Compact] Brecher, magische Flächenangriffe und als durchdringend markierte Angriffe ignorieren Deckungsreduktion.
+[Compact] Eine Einheit kann höchstens einen Verbündeten direkt hinter sich schützen. Bei mehreren zählt der nächstgelegene.
+[Heading 3] 7.4 Die sechs Doktrinen
+[Heading 4] Ausgewogen
+[First Paragraph] Mechanische Wirkung: Keine Scoreänderung. Bahnwechsel nur nach Grundregeln.
+[Body Text] Taktische Funktion: Starterdoktrin; Referenz für alle Tests.
+[Body Text] Grenzen: Keine Doktrin gewährt direkte Rüstung, Heilung oder Angriffskraft; feste Fähigkeitstargets haben Vorrang.
+[Heading 4] Linie halten
+[First Paragraph] Mechanische Wirkung: Verteidiger/Kämpfer: Zielbindungsbonus +15, Bahnwechselstrafe zusätzlich -20; maximale Vorwärtsdistanz vor nächstem Unterstützer 20.
+[Body Text] Taktische Funktion: Schützt Hinterlinie und stabilisiert Bahnen, reduziert Jagddruck.
+[Body Text] Grenzen: Keine Doktrin gewährt direkte Rüstung, Heilung oder Angriffskraft; feste Fähigkeitstargets haben Vorrang.
+[Heading 4] Durchbruch
+[First Paragraph] Mechanische Wirkung: Offensive Nahkämpfer: Bewegung +12%; Ziele unter 40% LP +22; Zielbindungsbonus -6. Verteidiger erhalten keine Änderung.
+[Body Text] Taktische Funktion: Ermöglicht schnellen Abschluss, erhöht Überdehnung; kein direkter Schadensbonus.
+[Body Text] Grenzen: Keine Doktrin gewährt direkte Rüstung, Heilung oder Angriffskraft; feste Fähigkeitstargets haben Vorrang.
+[Heading 4] Schutzformation
+[First Paragraph] Mechanische Wirkung: Gegner, die einen Heiler, Beschwörer oder Schützen angreifen, erhalten für mobile Verbündete +35 Score. Ein schützender Bahnwechsel darf alle 6 s erfolgen.
+[Body Text] Taktische Funktion: Reaktive Eskorte, kann Frontdruck verteilen.
+[Body Text] Grenzen: Keine Doktrin gewährt direkte Rüstung, Heilung oder Angriffskraft; feste Fähigkeitstargets haben Vorrang.
+[Heading 4] Fokusfeuer
+[First Paragraph] Mechanische Wirkung: Schützen und geeignete Magier geben ihrem aktuellen regulären Ziel einen Fokusmarker; weitere passende Einheiten erhalten +30 Score. Marker erlischt nach 1,5 s ohne Fernangriff.
+[Body Text] Taktische Funktion: Konzentriert Schaden, kann gegen Köder ineffizient sein.
+[Body Text] Grenzen: Keine Doktrin gewährt direkte Rüstung, Heilung oder Angriffskraft; feste Fähigkeitstargets haben Vorrang.
+[Heading 4] Jagd auf Zauberer
+[First Paragraph] Mechanische Wirkung: Mobile Nahkämpfer erhalten +38 gegen Unterstützer, Magier und Beschwörer; Bahnwechselstrafe halbiert. Nicht mobile Verteidiger unverändert.
+[Body Text] Taktische Funktion: Starke Backline-Jagd, schwächt lokale Frontbindung.
+[Body Text] Grenzen: Keine Doktrin gewährt direkte Rüstung, Heilung oder Angriffskraft; feste Fähigkeitstargets haben Vorrang.
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Doktrinwechsel ist vor jedem Kampf kostenlos und während des Kampfes unmöglich.
+[Compact] UI zeigt für jede Einheit eine kurze Vorschau, ob die gewählte Doktrin ihr Verhalten beeinflusst.
+[Compact] Eine Doktrin kann kein unerreichbares Ziel gültig machen und keine feste Bossregel überschreiben.
+[Compact] Zielwechsel im Replay sind anhand der Scorekomponenten debugbar; im normalen UI genügt ein kurzes Zielwechsel-Symbol bei wichtigen Sprüngen.

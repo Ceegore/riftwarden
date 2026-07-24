@@ -1,0 +1,11 @@
+# Chapter 2: Verbindliche Produktdefinition
+# blocks 30..42 (13 blocks)
+
+[Heading 2] 2. Verbindliche Produktdefinition
+[First Paragraph] Riftwarden: Auto RPG Roguelite ist ein kompaktes Fantasy-Roguelite mit vollständig automatischen Gruppenkämpfen in stilisierter Seitenansicht. Der Spieler ist der anonyme Riftwarden und Kommandant einer kleinen Abenteurerkompanie. Er stellt Gruppen aus einzigartigen Helden und mehrfach einsetzbaren Truppentypen zusammen, rüstet sie aus, bestimmt ihre Formation und wählt eine taktische Doktrin. Während eines Kampfes werden keine Fähigkeiten manuell ausgelöst und keine Einheiten bewegt.
+[Compact] Die eigentliche Spielerleistung besteht aus Lesen, Vergleichen, Planen, Beobachten, Analysieren und Anpassen.
+[Compact] Ein regulärer Kampf dauert normalerweise 20-45 Sekunden, ein Elitekampf 35-60 Sekunden und ein Bosskampf 60-100 Sekunden auf normaler Geschwindigkeit.
+[Compact] Das Spiel erzeugt keinerlei Fortschritt ohne aktives Spielen. Es gibt keine Energie, Wartezeit, Offline-Erträge, Tagesaufgaben oder Live-Service-Abhängigkeit.
+[Compact] Eine verlorene Expedition kostet einen Teil der ungesicherten Beute, aber niemals Helden, Verträge oder bereits freigeschaltete permanente Systeme.
+[Compact] Die Kampagne ist abgeschlossen und rechtfertigt den Kauf allein. Ascension und Endlose Rift sind substanzielle Endgame-Modi, keine Ausrede für fehlenden Kampagneninhalt.
+[Heading 3] 2.1 Release-Umfang

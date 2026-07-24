@@ -1,0 +1,10 @@
+# Chapter 40: Bedienung, Komfort und Barrierefreiheit
+# blocks 1434..1445 (12 blocks)
+
+[Heading 2] 40. Bedienung, Komfort und Barrierefreiheit
+[Heading 3] 40.1 Informationsdichte
+[Compact] Kurztooltips verwenden maximal 220 Zeichen; Detailansicht darf exakte Zahlen und Regeln enthalten.
+[Compact] Wichtige Begriffe sind antippbar und öffnen Glossar ohne Verlust der aktuellen Vorbereitung.
+[Compact] Komplexe Bossphase verwendet höchstens vier Kernbulletpoints plus optionale Details.
+[Compact] Keine horizontale Scrollpflicht auf Telefon. Vergleichstabellen werden in gestapelte Karten umgebaut.
+[Compact] Alle Menüs mit Controller/Tastatur navigierbar, auch wenn Android-Touch primär ist.

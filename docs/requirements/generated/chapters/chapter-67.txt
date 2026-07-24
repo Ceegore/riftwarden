@@ -1,0 +1,7 @@
+# Chapter 67: Produktionsphasen und sofortige Implementierungsreihenfolge
+# blocks 1895..1900 (6 blocks)
+
+[Heading 2] 67. Produktionsphasen und sofortige Implementierungsreihenfolge
+[Compact] Ein Agent beginnt nicht mit vollständiger Inhaltsproduktion, bevor Phase 4 beweist, dass Simulation und Beobachtbarkeit funktionieren.
+[Compact] Jede Phase baut auf produktionsnahen Daten und Komponenten; keine zweite Wegwerfarchitektur für Prototyp und Release.
+[Compact] Bei Blockern wird Scope nach V3 Kapitel 46 gekürzt, nicht Save-, Lesbarkeits-, Accessibility- oder Storequalität.

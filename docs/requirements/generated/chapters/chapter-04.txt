@@ -1,0 +1,24 @@
+# Chapter 4: Welt, Ton und Erzählrahmen
+# blocks 48..82 (35 blocks)
+
+[Heading 2] 4. Welt, Ton und Erzählrahmen
+[Heading 3] 4.1 Weltregel: Rifts und Echos
+[First Paragraph] Ein fehlgeschlagenes magisches Experiment zerriss die Übergänge zwischen vier verbundenen Regionen. Rifts enthalten verzerrte Kopien realer Orte, Erinnerungen und möglicher Zukünfte. Diese Kopien heißen Echos. Echos erklären prozedural variierende Dungeons, wiederkehrende Gegner und widersprüchlich wirkende, aber thematisch passende Szenen.
+[Heading 3] 4.2 Der Riftanker
+[Compact] Der Riftanker bindet jede Expedition an das Hauptquartier.
+[Compact] Nach einem Sieg rekonstruiert er alle gefallenen regulären Einheiten, heilt die Gruppe vollständig, entfernt normale Statuswirkungen und löscht Kampf-Beschwörungen.
+[Compact] Wenn keine reguläre Einheit der Spielergruppe kampffähig bleibt, bricht die Verbindung zusammen und die Expedition endet.
+[Compact] Die Rückkehr nach einer Niederlage ist erzählerisch eine Notrekonstruktion und kein Tod.
+[Compact] Der Anker ist die zentrale visuelle Metapher für Speichern, Rückkehr, Ascension und Endlose Rift.
+[Heading 3] 4.3 Der Riftwarden
+[First Paragraph] Der Spielercharakter bleibt unsichtbar, unbenannt und ohne festgelegtes Geschlecht. Figuren sprechen den Spieler als Riftwarden oder Kommandant an. Entscheidungen werden durch Missions-, Routen- und Ereigniswahl getroffen. Es existiert kein Dialograd und keine moralische Statistik.
+[Heading 3] 4.4 Pip
+[First Paragraph] Pip ist ein schwebendes Kristall-Echo, Tutorialbegleiter und kurzer Kommentator. Pip spricht in maximal zwei kurzen Sätzen am Stück, erklärt nie bereits sichtbare Informationen doppelt und unterbricht keine wiederholten Kämpfe. Humor: selbstüberschätzend, neugierig, freundlich, nie zynisch.
+[Heading 3] 4.5 Der Kurator
+[First Paragraph] Der Kurator möchte jede Region in einer idealisierten, unveränderlichen Echo-Fassung konservieren. Er ist höflich, theatralisch und überzeugt, Chaos sei ein Fehler. Sein Plan reduziert Menschen und Kreaturen auf feste Rollen und vernichtet mögliche Zukunftsvarianten. Humor entsteht aus seiner übertriebenen Inszenierung, nicht aus der Verharmlosung seines Ziels.
+[Heading 3] 4.6 Ton- und Altersregeln
+[Compact] Popcorn-Fantasy: leichte, charmante Figuren in einer echten, aber nicht deprimierenden Gefahr.
+[Compact] Kein Blut, keine Wunden, keine Zerstückelung, keine Leichen, keine realistischen Todesschreie.
+[Compact] Besiegte Figuren zerfallen in Echofunken, Rauch, Blätter, Metallteile oder humorvolle Knochenhaufen.
+[Compact] Keine harte Vulgärsprache, sexualisierten Inhalte, realen politischen/religiösen Konflikte oder diskriminierenden Aussagen.
+[Compact] Humor darf Bossauftritte, Ereignisse und Animationen auflockern, aber taktische Konsequenzen bleiben ernst und lesbar.

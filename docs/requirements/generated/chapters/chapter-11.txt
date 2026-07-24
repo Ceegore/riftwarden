@@ -1,0 +1,71 @@
+# Chapter 11: Helden, Ruhm und vollständige Heldenkits
+# blocks 269..372 (104 blocks)
+
+[Heading 2] 11. Helden, Ruhm und vollständige Heldenkits
+[Heading 3] 11.0 Gemeinsame Heldenregeln
+[Compact] Jeder Held ist einzigartig und darf höchstens einmal in der Gruppe vorkommen.
+[Compact] Jeder Held startet auf Level 1 mit vollständiger Kernrolle, Passiv und Signaturfähigkeit.
+[Compact] Ruhm ist kein Zahlungsmittel. Eine beendete Expedition mit mindestens drei besuchten Knoten gibt 1 Ruhm; ein gewonnener Hauptboss zusätzlich 1 Ruhm.
+[Compact] Level 2 bei 3 Ruhm: +8% Max-LP, +6% Angriffskraft und beschriebene Passivverbesserung.
+[Compact] Level 3 bei 8 Ruhm und mindestens einem gewonnenen Hauptboss mit diesem Helden: weitere +8% Max-LP, +6% Angriffskraft und Level-3-Sonderskill.
+[Compact] Werteboni sind multiplikativ auf Level-1-Basis und werden vor Ausrüstung angewendet.
+[Compact] Jeder Held besitzt einen Hauptausrüstungs- und einen Talismanplatz.
+[Compact] Einmal-pro-Kampf-Skills werden nach jedem Sieg vollständig zurückgesetzt und gehen bei Rückzug nicht dauerhaft verloren.
+[Block Text] Verbindlicher Hinweis: Die Basiswerte unten gelten für Level 1 auf Normal ohne Ausrüstung, Synergie, Relikt oder Modifikator. Alle Schadensprozente beziehen sich auf die Angriffskraft der ausführenden Einheit, soweit nicht ausdrücklich Max-LP genannt sind.
+[Heading 3] 11.1 Aurel, der Eidwächter
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Schutz gilt nur für den exakt ermittelten Verbündeten und aktualisiert sich höchstens alle 0,25 s.
+[Compact] Rettungssprung darf keine Kollision oder unzulässige Position erzeugen.
+[Compact] Kuppel zählt in der Auswertung als von Aurel erzeugter Schild.
+[Heading 3] 11.2 Mira, die Riftjägerin
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Fokusstapel entstehen nur nach bestätigtem Treffer.
+[Compact] Gefahrwert und Markenziel sind vor Kampf im Tooltip erklärt.
+[Compact] Perfekter Schuss wird bei Tod des Ziels nicht verbraucht, wenn der Treffer noch nicht erzeugt wurde.
+[Heading 3] 11.3 Veyra, die Glutweise
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Nachglut kann nicht rekursiv endlos triggern.
+[Compact] Jedes Ziel wird pro Glutwelle exakt einmal getroffen.
+[Compact] Reduzierte-Effekte-Modus ersetzt Explosionen durch klare Kreise und kurze Lichtimpulse.
+[Heading 3] 11.4 Morcant, der Grabsprecher
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Passiv zählt nur einmal pro Kampf und dokumentiert den auslösenden Gegner.
+[Compact] Knochenkommando respektiert globale Sechsergrenze.
+[Compact] Knochenwächter ersetzt nur ausdrücklich erlaubte eigene Beschwörung.
+[Heading 3] 11.5 Sable, die Klingentänzerin
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Seitensprung nur auf benachbarte Bahn.
+[Compact] Ausweichen verbraucht sich nur bei einem tatsächlich verhinderten gültigen Standardangriff.
+[Compact] Level-3 darf nicht mehrfach durch denselben Fähigkeitsstart triggern.
+[Heading 3] 11.6 Brunn, der Eisenmönch
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Passiv triggert beim Ende, nicht Beginn der Kontrolle.
+[Compact] Level-3 löst exakt einmal beim Schwellenübergang aus.
+[Compact] Rückstoß darf Gegner nicht außerhalb logischer Arenagrenzen schieben.
+[Heading 3] 11.7 Ilyra, die Morgenhüterin
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Erste-Hilfe-Marker wird pro Ziel korrekt gespeichert.
+[Compact] Wiederbelebte Einheit zählt in Auswertung als gefallen und wiederbelebt.
+[Compact] Keine Endlosschleife durch mehrere Ilyras, da Helden einzigartig sind.
+[Heading 3] 11.8 Thorn, der Rudelrufer
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Startwolf wird vor erstem Tick und nach Synergieprüfung erzeugt.
+[Compact] Rudelbonus zählt nur Thorn-Wölfe am selben Ziel.
+[Compact] Alphawolf ersetzt keine fremde Beschwörung.
+[Heading 3] 11.9 Orrik, der Runenbauer
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Konstruktionen besitzen eindeutige Besitzer- und Beschwörungs-IDs.
+[Compact] Barrikade blockiert nicht dauerhaft beide Seiten ohne Ausweichregel.
+[Compact] Überladung triggert Explosion nur einmal pro Konstruktion.
+[Heading 3] 11.10 Nyx, die Leerenseherin
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Passiv betrifft exakt die erste gültige Fähigkeit der gesamten Gegnerseite.
+[Compact] Zeitblase prüft Position kontinuierlich und entfernt Debuff beim Verlassen.
+[Compact] Level-3-Trigger fasst nur Starts im definierten Zeitfenster zusammen.
+[Heading 3] 11.11 Heldenübergreifende Balance- und Abnahmeregeln
+[Compact] Kein einzelner Held ist für eine Kampagnenmission zwingend. Bossvorschauen dürfen Rollen empfehlen, aber nie einen konkreten Helden voraussetzen.
+[Compact] Level 3 erhöht den erwarteten Gesamtbeitrag eines Helden gegenüber Level 1 im Durchschnitt um 18-28%, nicht um ein Vielfaches.
+[Compact] Jeder Held besitzt mindestens zwei natürliche Gegenstrategien und mindestens zwei klar passende Verbündetenrollen.
+[Compact] Automatische Fähigkeiten warten bei fehlendem sinnvollen Ziel, aber nicht länger als die im Kit genannte Wartezeit, sofern ein weniger ideales gültiges Ziel existiert.
+[Compact] Alle Sprünge, Beschwörungen und Wiederbelebungen verwenden eine gemeinsame Suche nach dem nächsten freien gültigen Punkt derselben Bahn.
+[Compact] Im Formationsscreen zeigt jeder Held drei kurze Karten: Kernrolle, stärkster Trigger, wichtigste Schwäche.

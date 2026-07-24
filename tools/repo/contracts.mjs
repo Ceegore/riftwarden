@@ -67,7 +67,7 @@ export const FORBIDDEN_ROOT_FILES = Object.freeze([
 ]);
 
 export const FORBIDDEN_SENSITIVE_PATTERNS = Object.freeze([
-  /(^|\/)\.env(?:\.|$)/i,
+  /(^|\/)\.env(?:\.(?!example$).+|$)/i,
   /\.(?:pem|key|p12|pfx|jks|keystore|mobileprovision|provisionprofile)$/i,
   /(^|\/)google-services\.json$/i,
   /(^|\/)GoogleService-Info\.plist$/i,

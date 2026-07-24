@@ -1,0 +1,17 @@
+# Chapter 13: Beschwörungen
+# blocks 463..481 (19 blocks)
+
+[Heading 2] 13. Beschwörungen
+[Heading 3] 13.1 Globale Regeln
+[Compact] Maximal sechs aktive Beschwörungen pro Seite. Stationäre Konstruktionen und Pflanzen zählen mit; reine Projektiltiere wie der Jagdfalke nicht.
+[Compact] Beschwörungen belegen keinen regulären Gruppenplatz, sammeln keinen Ruhm, tragen keine Gegenstände und verschwinden nach dem Kampf.
+[Compact] Beschwörungen können Ziel von Angriffen, Heilung und Effekten sein, sofern die Quelle nicht ausdrücklich nur reguläre Einheiten erlaubt.
+[Compact] Heilung auf Beschwörungen ist standardmäßig nur 50% wirksam. Wiederbelebung wirkt nicht auf Beschwörungen.
+[Compact] Beim Überschreiten der Grenze wird nichts erzeugt, außer die Fähigkeit benennt eine Ersetzungsregel. UI zeigt kurz „Beschwörungslimit“ an der Quelle.
+[Compact] Zeitlich begrenzte Beschwörungen zeigen einen dünnen Lebensdauerring. Ablauf zählt als Verschwinden, nicht als Tod, sofern ein Todeseffekt dies nicht ausdrücklich einschließt.
+[Compact] Beschwörungen allein verhindern kein Kampfende.
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Die Sechsergrenze wird bei simultanen Beschwörungen atomar und deterministisch aufgelöst.
+[Compact] Besitzer, Quelle und Kategorie jeder Beschwörung sind im Kampflog verfügbar.
+[Compact] Ablauf, Tod und Ersetzung sind getrennte Ereignistypen.
+[Compact] Große Beschwörungen dürfen die Lesbarkeit regulärer Einheiten nicht verdecken; maximale visuelle Höhe 130% eines Helden, außer Bossbeschwörung.

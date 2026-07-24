@@ -1,0 +1,24 @@
+# Chapter 59: Content-Pipeline, Schemas und Buildvalidierung
+# blocks 1777..1788 (12 blocks)
+
+[Heading 2] 59. Content-Pipeline, Schemas und Buildvalidierung
+[Heading 3] 59.1 Datenformat
+[Compact] Alle Gameplayinhalte liegen als UTF-8 JSON ohne Kommentare unter src/game/content/data. Eine Datei pro Entitätskategorie, große Pools nach Region geteilt.
+[Compact] Zod-Schemas sind SSOT. Aus ihnen werden TypeScript-Typen, JSON Schemas und Dokumentationsreports generiert.
+[Compact] Der Build erzeugt immutable ContentIndex-Maps nach ID. Runtime-Suche über frei formulierte Namen ist verboten.
+[Compact] Alle Sekundenwerte in Autorendaten dürfen Dezimalzahlen sein; Loader wandelt sie einmal in ganze Ticks und protokolliert Rundung > 0,01 s als Warnung.
+[Compact] Localization Keys müssen in de und en existieren. Pseudo-Localization muss jedes Layout ohne unersetzte Schlüssel rendern.
+[Heading 3] 59.2 Build-Validatoren
+[Heading 3] 59.3 Referenzschnittstellen
+[Code Block] interface ContentHeader {
+  schemaVersion: number; contentVersion: string; generatedAt: string;
+}
+interface BattleSnapshot {
+  simulationVersion: number; tick: number; rngStreams: RngStateMap;
+  entities: EntitySnapshot[]; scheduledEvents: ScheduledEvent[];
+  phase: BattlePhase; sequence: number; checksum: string;
+}
+interface ScreenContract {
+  screenId: ScreenId; entryReason: string; backTarget: ScreenId | 'EXIT';
+  requiredData: string[]; restoreKey?: string;
+}

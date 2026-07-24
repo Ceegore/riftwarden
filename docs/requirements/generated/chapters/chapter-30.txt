@@ -1,0 +1,25 @@
+# Chapter 30: Endlose Rift
+# blocks 1233..1269 (37 blocks)
+
+[Heading 2] 30. Endlose Rift
+[Heading 3] 30.1 Start und Ablauf
+[Compact] Freischaltung nach Kampagne. Start: vollständige Gruppe, genau drei permanente Gegenstände inklusive möglichem Banner, Doktrin und optional bereits abgeschlossener Ascension-Regelsatz.
+[Compact] Fortlaufende einzelne Kämpfe. Nach jedem Sieg Wahl aus drei Belohnungen: Relikt, temporäres Kit/Gegenstand, Rekrut, Heil-/Sicherungsdienst, Gold/Zyklusmünzen existieren hier nicht.
+[Compact] Nach jeweils fünf Kämpfen Checkpoint: Formation/Ausrüstung ordnen, freiwillig beenden, Rekord sichern. Gruppe darf nur mit im Lauf gewonnenen Rekruten verändert werden.
+[Compact] Niederlage beendet Lauf und speichert erreichte Tiefe. Freiwilliges Ende am Checkpoint gilt ebenfalls als gültiger Rekord.
+[Compact] Keine wiederholbare permanente Machtbelohnung. Erstmalige Meilensteine sind kosmetisch oder geringe einmalige Riftessenz.
+[Heading 3] 30.2 Tiefenskalierung
+[Heading 3] 30.3 Belohnungsrhythmus
+[Compact] Nach Kämpfen 1-4: mindestens zwei gewöhnliche und eine beliebige Option.
+[Compact] Jeder fünfte Kampf: mindestens eine seltene Option; Bosscheckpoint: eine von vier, davon mindestens zwei selten/legendär.
+[Compact] Reliktlimit sechs bis Tiefe 20, acht ab Tiefe 21. Darüber kein weiteres Wachstum.
+[Compact] Rekrutierungswahl kann Vertragsgrenze drei nicht überschreiten; temporärer Rekrut bleibt bis Laufende.
+[Compact] Alle zehn Tiefen wird eine Begegnung bewusst leichter als Erholungsfenster, danach Boss/harte Gruppe.
+[Heading 3] 30.4 Meilensteine
+[Heading 3] 30.5 Zusätzliche Rang-3-Meilensteine
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Endless-Generator wiederholt identische Encounter-ID nicht innerhalb der letzten acht Kämpfe.
+[Compact] Jeder Checkpoint speichert vollständig; Neustart kann keine Belohnung neu würfeln.
+[Compact] Skalierung bleibt numerisch berechenbar und besitzt keine versteckten Sprünge außerhalb Tabelle.
+[Compact] Tiefe 100 ist theoretisch erreichbar, aber nicht als durchschnittliches Balanceziel verlangt.
+[Compact] Alle Meilensteinbelohnungen werden einmalig vergeben und danach als abgeschlossen markiert.

@@ -1,0 +1,10 @@
+# Chapter 18: Riftinstabilität
+# blocks 771..780 (10 blocks)
+
+[Heading 2] 18. Riftinstabilität
+[First Paragraph] Jede Expedition besitzt eine Instabilitätsleiste von 0 bis 100. Der nächste Knoten zeigt seine garantierte Erhöhung vor Auswahl. Instabilität sinkt nicht automatisch und wird nur durch ausdrücklich benannte Dienste/Ereignisse reduziert.
+[Compact] Instabilität wird beim Betreten, nicht beim Abschluss eines Knotens erhöht; Laden eines Spielstands darf sie nicht doppelt anwenden.
+[Compact] Ein Wert über 100 ist unmöglich. Überschuss wird abgeschnitten, nicht in zusätzliche Strafe umgewandelt.
+[Compact] Knoten, die Instabilität reduzieren, zeigen neuen exakten Wert. Standardreduktionen: klein -8, mittel -15, stark -25.
+[Compact] Bossvorschau verwendet bereits den erwarteten Instabilitätswert nach Betreten des Bossknotens.
+[Compact] Auf Normal sollen sichere Routen gewöhnlich bei 35-60 enden; riskante Routen bei 70-95.

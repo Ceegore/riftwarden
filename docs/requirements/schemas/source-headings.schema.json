@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://riftwarden.local/schemas/source-headings.schema.json",
+  "$defs": {
+    "heading": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "chapter",
+        "title",
+        "locator",
+        "styleId",
+        "extractionMethod",
+        "confidence",
+        "reviewStatus",
+        "reviewedBy",
+        "reviewedAt"
+      ],
+      "properties": {
+        "chapter": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 87
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "styleId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "extractionMethod": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confidence": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewStatus": {
+          "enum": [
+            "verified",
+            "requires_review",
+            "rejected"
+          ]
+        },
+        "reviewedBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "schemaVersion",
+        "headings"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "sourceId": {
+          "type": "string"
+        },
+        "headings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/heading"
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "schemaVersion",
+        "files"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "sourceId": {
+          "type": "string"
+        },
+        "files": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ]
+}
