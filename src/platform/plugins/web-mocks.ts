@@ -19,41 +19,54 @@ function info(plugin: BridgeInfo['plugin'], capabilities: readonly string[]): Br
   };
 }
 
+// eslint-disable-next-line @typescript-eslint/require-await
+async function skeletonReject(plugin: string, phase: string): Promise<never> {
+  await Promise.resolve();
+  throw new Error(`${plugin} is implemented in Phase ${phase}.`);
+}
+
 export class NativeSaveStoreWeb extends WebPlugin implements NativeSaveStorePlugin {
+  // eslint-disable-next-line @typescript-eslint/require-await
   async getBridgeInfo(): Promise<BridgeInfo> {
     return info('NativeSaveStore', ['atomic_write', 'durable_flush', 'slot_rotation']);
   }
-  async read(_options: NativeSaveReadOptions): Promise<never> {
-    throw this.unimplemented('NativeSaveStore is implemented in Phase 23.');
+  async read(options: NativeSaveReadOptions): Promise<never> {
+    void options;
+    return skeletonReject('NativeSaveStore', '23');
   }
-  async writeAtomic(_options: NativeSaveWriteOptions): Promise<never> {
-    throw this.unimplemented('NativeSaveStore is implemented in Phase 23.');
+  async writeAtomic(options: NativeSaveWriteOptions): Promise<never> {
+    void options;
+    return skeletonReject('NativeSaveStore', '23');
   }
 }
 
 export class SaveTransferWeb extends WebPlugin implements SaveTransferPlugin {
+  // eslint-disable-next-line @typescript-eslint/require-await
   async getBridgeInfo(): Promise<BridgeInfo> {
     return info('SaveTransfer', ['pick_import', 'export_document']);
   }
   async pickImport(): Promise<never> {
-    throw this.unimplemented('SaveTransfer is implemented in Phase 24.');
+    return skeletonReject('SaveTransfer', '24');
   }
-  async exportDocument(_options: { readonly stagingToken: string; readonly suggestedName: string }): Promise<never> {
-    throw this.unimplemented('SaveTransfer is implemented in Phase 24.');
+  async exportDocument(options: { readonly stagingToken: string; readonly suggestedName: string }): Promise<never> {
+    void options;
+    return skeletonReject('SaveTransfer', '24');
   }
 }
 
 export class GameAudioSessionWeb extends WebPlugin implements GameAudioSessionPlugin {
+  // eslint-disable-next-line @typescript-eslint/require-await
   async getBridgeInfo(): Promise<BridgeInfo> {
     return info('GameAudioSession', ['audio_focus', 'interruption_events', 'silent_mode_policy']);
   }
-  async configure(_options: { readonly mode: 'ambient'; readonly respectSilentMode: true }): Promise<never> {
-    throw this.unimplemented('GameAudioSession is implemented in Phase 39.');
+  async configure(options: { readonly mode: 'ambient'; readonly respectSilentMode: true }): Promise<never> {
+    void options;
+    return skeletonReject('GameAudioSession', '39');
   }
   async activate(): Promise<never> {
-    throw this.unimplemented('GameAudioSession is implemented in Phase 39.');
+    return skeletonReject('GameAudioSession', '39');
   }
   async deactivate(): Promise<never> {
-    throw this.unimplemented('GameAudioSession is implemented in Phase 39.');
+    return skeletonReject('GameAudioSession', '39');
   }
 }

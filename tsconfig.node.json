@@ -37,6 +37,8 @@
     "tools/deps/**/*.mjs",
     "tools/security/**/*.mjs",
     "tools/repo/verify-phase03.mjs",
-    "tests/tooling/phase03/**/*.mjs"
+    "tests/tooling/phase03/**/*.mjs",
+    "tools/native/**/*.mjs",
+    "tests/tooling/phase04/**/*.mjs"
   ]
 }

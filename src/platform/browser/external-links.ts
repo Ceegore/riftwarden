@@ -14,9 +14,9 @@ function requiredHttpsUrl(name: string, value: string | undefined): string {
 export function getExternalLinks(): Readonly<Record<ExternalLinkId, string>> {
   const env = import.meta.env;
   return {
-    support: requiredHttpsUrl('VITE_SUPPORT_URL', env['VITE_SUPPORT_URL']),
-    privacy: requiredHttpsUrl('VITE_PRIVACY_URL', env['VITE_PRIVACY_URL']),
-    licenses: requiredHttpsUrl('VITE_LICENSES_URL', env['VITE_LICENSES_URL']),
+    support: requiredHttpsUrl('VITE_SUPPORT_URL', String(env['VITE_SUPPORT_URL'] ?? '')),
+    privacy: requiredHttpsUrl('VITE_PRIVACY_URL', String(env['VITE_PRIVACY_URL'] ?? '')),
+    licenses: requiredHttpsUrl('VITE_LICENSES_URL', String(env['VITE_LICENSES_URL'] ?? '')),
   };
 }
 

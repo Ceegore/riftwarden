@@ -11,7 +11,6 @@ const config: CapacitorConfig = {
   appId: 'com.ceegore.riftwarden',
   appName: 'Riftwarden',
   webDir: 'dist',
-  bundledWebRuntime: false,
   loggingBehavior: isRelease ? 'none' : 'debug',
   android: {
     path: 'android',
