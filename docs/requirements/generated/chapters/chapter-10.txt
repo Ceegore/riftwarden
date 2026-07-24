@@ -1,0 +1,10 @@
+# Chapter 10: Merkmale und Synergien
+# blocks 259..268 (10 blocks)
+
+[Heading 2] 10. Merkmale und Synergien
+[First Paragraph] Jede reguläre Einheit besitzt höchstens zwei Merkmale. Eine Synergie zählt eingesetzte reguläre Einheiten, nicht Kopien von Beschwörungen. Schwellen liegen bei zwei und drei Einheiten. Mehr als drei erhöht den Effekt nicht. Einheiten mit zwei Merkmalen zählen für beide.
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Aktive und beinahe aktive Synergien werden im Formationsscreen live berechnet.
+[Compact] Synergieeffekte werden im Kampflog als eigene Quelle ausgewiesen.
+[Compact] Keine Synergie ist Voraussetzung zum Gewinnen auf Normal; sie darf passende Gruppen spürbar verstärken, aber Rollenfehler nicht vollständig kompensieren.
+[Compact] Beschwörungen zählen niemals zur Schwelle, außer eine spätere explizite Inhaltserweiterung benennt dies.

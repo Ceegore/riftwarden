@@ -1,0 +1,15 @@
+# Chapter 64: Storegrafiken, App-Icon, Splash und Metadaten
+# blocks 1844..1857 (14 blocks)
+
+[Heading 2] 64. Storegrafiken, App-Icon, Splash und Metadaten
+[Heading 3] 64.1 Icon- und Splash-Vertrag
+[Compact] App-Icon zeigt ein einzelnes Riftwarden-Siegel: goldener gebrochener Ring um violetten Riftkern. Keine Schrift, keine kleine Figur, keine Transparenz im finalen Store-Icon.
+[Compact] Das Motiv muss bei 32 px erkennbar, in Schwarzweiß unterscheidbar und ohne plattformspezifische Masken vollständig sein. Android Adaptive Icon besitzt getrennten Vorder-/Hintergrund mit Safe Zone.
+[Compact] Native Splash verwendet bg-void, zentriertes Siegel und optional sehr subtile statische Glut. Kein langer Logo-Film und kein „Loading 100%“ ohne echten Fortschritt.
+[Compact] Alle Storebilder zeigen echte In-Game-Screens. Compositing darf Rahmen/Text ergänzen, aber keine nicht vorhandenen Funktionen oder Qualitätsstufen vortäuschen.
+[Heading 3] 64.2 Screenshotset
+[Heading 3] 64.3 Metadatenregeln
+[Compact] Der Storetitel bleibt innerhalb der jeweiligen 30-Zeichen-Grenze; falls ein Store den vollständigen Namen nicht akzeptiert, lautet die Storeform „Riftwarden: Auto RPG“ und der vollständige Untertitel erscheint in Beschreibung/Grafik.
+[Compact] Keine Preisangabe, Konkurrenznamen, „best“, „AAA“ oder unbelegbare Leistungsversprechen in Titel/Keywords.
+[Compact] Beschreibung nennt klar: automatische Kämpfe, Premiumkauf, Offline, keine Werbung/IAP, Kampagne und Endgame.
+[Compact] What’s New nennt funktionale Änderungen konkret; keine ausschließliche Floskel bei großen Updates.

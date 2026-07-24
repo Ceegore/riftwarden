@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "files": [
+    "docs/requirements/requirements/product.json",
+    "docs/requirements/requirements/content.json",
+    "docs/requirements/requirements/sim.json",
+    "docs/requirements/requirements/ux.json",
+    "docs/requirements/requirements/save.json",
+    "docs/requirements/requirements/a11y.json",
+    "docs/requirements/requirements/perf.json",
+    "docs/requirements/requirements/security.json",
+    "docs/requirements/requirements/android.json",
+    "docs/requirements/requirements/ios.json",
+    "docs/requirements/requirements/store.json",
+    "docs/requirements/requirements/qa.json"
+  ]
+}

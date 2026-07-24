@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "channel": "dev",
+  "files": [
+    {
+      "path": "assets/generated/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    {
+      "path": "assets/generated/README.md",
+      "sha256": "acb7da49a7f38c01c90fdebcb84692b9b27af1a7b76b4682e668955d6a5dbdfc",
+      "bytes": 157
+    },
+    {
+      "path": "assets/index-7446A-TR.css",
+      "sha256": "dda6fb678b83e03933954283aba078af8d4358e1c380525d5b5c63ccb6a2b782",
+      "bytes": 4659
+    },
+    {
+      "path": "assets/index-BELPBq-Q.js",
+      "sha256": "c26e4830d379be379bd24c32f86b0dd9f54df5deee85717607a4beec3a4adc28",
+      "bytes": 190887
+    },
+    {
+      "path": "assets/index-BELPBq-Q.js.map",
+      "sha256": "15f8f9c9d88bff925566550b316f2c7db8b9010bc55423f37cabfc204a07fc3a",
+      "bytes": 842713
+    },
+    {
+      "path": "index.html",
+      "sha256": "0ec858a1a962b594cd9b6cf323745a3c0b855ad8b6546846253a50a0a13a927f",
+      "bytes": 706
+    }
+  ]
+}

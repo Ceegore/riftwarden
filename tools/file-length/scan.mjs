@@ -3,15 +3,58 @@ import { existsSync, readFileSync } from 'node:fs';
 import { GENERATED_CONTRACT_MARKER, GENERATED_PREFIXES, HUMAN_EXTENSIONS, FAIL_AT, WARN_AT, isGeneratedPath } from './config.mjs';
 import { listGitVisibleFiles } from '../repo/git-files.mjs';
 
+/**
+ * @typedef {{
+ *   level: 'error'|'warning',
+ *   code: string,
+ *   path: string|null,
+ *   lines: number|null,
+ *   message: string
+ * }} FileLengthFinding
+ *
+ * @typedef {{
+ *   path: string,
+ *   lines: number,
+ *   generated: boolean
+ * }} FileLengthEntry
+ *
+ * @typedef {{
+ *   schemaVersion: number,
+ *   check: string,
+ *   root: string,
+ *   passed: boolean,
+ *   thresholds: { warning: number, failure: number },
+ *   summary: { scanned: number, errors: number, warnings: number },
+ *   findings: FileLengthFinding[],
+ *   top20: FileLengthEntry[]
+ * }} FileLengthReport
+ */
+
+/**
+ * Counts the physical lines of a UTF-8 string.
+ * @param {string} text Input text.
+ * @returns {number}
+ */
 export function countPhysicalLines(text) {
   if (text.length === 0) return 0;
   const newlineCount = [...text].reduce((count, char) => count + (char === '\n' ? 1 : 0), 0);
   return newlineCount + (text.endsWith('\n') ? 0 : 1);
 }
 
+/**
+ * Validates that every generated directory has a README contract marker.
+ * @param {string} root Repository root.
+ * @returns {FileLengthFinding[]}
+ */
 function validateGeneratedContracts(root) {
+  /** @type {FileLengthFinding[]} */
   const findings = [];
-  for (const prefix of GENERATED_PREFIXES) {
+  // Only directory prefixes that actually exist need README contract markers.
+  // Non-existent directories are skipped (they may not be present in all checkouts).
+  const dirPrefixes = GENERATED_PREFIXES.filter((p) => p.endsWith('/'));
+  for (const prefix of dirPrefixes) {
+    const dirPath = resolve(root, prefix);
+    if (!existsSync(dirPath)) continue; // skip non-existent dirs
     const readme = resolve(root, prefix, 'README.md');
     if (!existsSync(readme) || !readFileSync(readme, 'utf8').includes(GENERATED_CONTRACT_MARKER)) {
       findings.push({
@@ -26,8 +69,15 @@ function validateGeneratedContracts(root) {
   return findings;
 }
 
+/**
+ * Scans the repository for file-length violations.
+ * @param {string} [root] Repository root.
+ * @returns {FileLengthReport}
+ */
 export function scanFileLengths(root = process.cwd()) {
+  /** @type {FileLengthFinding[]} */
   const findings = validateGeneratedContracts(root);
+  /** @type {FileLengthEntry[]} */
   const files = [];
   for (const relative of listGitVisibleFiles(root)) {
     if (!HUMAN_EXTENSIONS.has(extname(relative).toLowerCase())) continue;
@@ -38,7 +88,8 @@ export function scanFileLengths(root = process.cwd()) {
     try {
       text = readFileSync(absolute, 'utf8');
     } catch (error) {
-      findings.push({ level: 'error', code: 'LENGTH_READ_ERROR', path: relative, lines: null, message: error.message });
+      const message = error instanceof Error ? error.message : String(error);
+      findings.push({ level: 'error', code: 'LENGTH_READ_ERROR', path: relative, lines: null, message });
       continue;
     }
     const lines = countPhysicalLines(text);

@@ -1,0 +1,5 @@
+# Chapter 3: Designpfeiler und Nicht-Ziele
+# blocks 43..47 (5 blocks)
+
+[Heading 2] 3. Designpfeiler und Nicht-Ziele
+[Body Text] Nicht Teil der Zielversion sind: manuelle Kampffähigkeiten, aktives Zielen, PvP, Online-Ranglisten, Accounts, Gilden, Chat, Cloud-Zwang, Live-Events, tägliche Aufgaben, saisonale Inhalte, Basisbau, offene Welt, frei begehbare Dungeons, weit verzweigte Dialogbäume, permanente Heldentode, Verletzungen zwischen Kämpfen, Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe, unbegrenzte Charakterlevel und Echtgeldshops.

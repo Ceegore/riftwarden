@@ -1,0 +1,1853 @@
+{
+  "schemaVersion": "1.0",
+  "category": "Save",
+  "requirements": [
+    {
+      "id": "REQ-SAVE-0001",
+      "title": "Eine verlorene Expedition darf niemals Helden, Verträge oder bereits freigesc...",
+      "statement": "Eine verlorene Expedition darf niemals Helden, Verträge oder bereits freigeschaltete permanente Systeme kosten.",
+      "norm": "MUST_NOT",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:34",
+        "quoteHash": "sha256:2a0a89e194341bc7531feb135a408d862e526fea97197b77f93d0f7d9a588b5f",
+        "originalExcerpt": "Eine verlorene Expedition kostet einen Teil der ungesicherten Beute, aber niemals Helden, Verträge oder bereits freigeschaltete permanente Systeme."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "GR-SAVE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0002",
+      "title": "Unterbrechung und lokales Fortsetzen müssen an jedem Knoten außerhalb eines l...",
+      "statement": "Unterbrechung und lokales Fortsetzen müssen an jedem Knoten außerhalb eines laufenden Kampfes möglich sein.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 5,
+        "section": null,
+        "locator": "block:84",
+        "quoteHash": "sha256:3264ab6bbf69632263b38d97faa17f9c0e70c42e3bad7787fb68653a29d720e6",
+        "originalExcerpt": "Eine Standardexpedition soll 12-25 Minuten dauern. Eine Kampagnenmission darf beim ersten Durchlauf einschließlich Story und Lesen 20-35 Minuten erreichen. Unterbrechung und lokales Fortsetzen müssen an jedem Knoten außerhalb eines laufenden Kampfes möglich sein; im Kampf wird beim App-Verlassen ein deterministischer Kampfsnapshot gespeichert."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "GR-SAVE-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0003",
+      "title": "Beim App-Verlassen während eines Kampfes muss ein deterministischer Kampfsnap...",
+      "statement": "Beim App-Verlassen während eines Kampfes muss ein deterministischer Kampfsnapshot gespeichert werden.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 5,
+        "section": null,
+        "locator": "block:84",
+        "quoteHash": "sha256:3264ab6bbf69632263b38d97faa17f9c0e70c42e3bad7787fb68653a29d720e6",
+        "originalExcerpt": "Eine Standardexpedition soll 12-25 Minuten dauern. Eine Kampagnenmission darf beim ersten Durchlauf einschließlich Story und Lesen 20-35 Minuten erreichen. Unterbrechung und lokales Fortsetzen müssen an jedem Knoten außerhalb eines laufenden Kampfes möglich sein; im Kampf wird beim App-Verlassen ein deterministischer Kampfsnapshot gespeichert."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "GR-SAVE-003"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "tempId": "REQ-TEMP-B-0008",
+      "statement": "Am Checkpoint kann der Lauf freiwillig beendet und ein Rekord gesichert werden.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1238",
+        "quoteHash": "sha256:e836141b6abfec40118efbaa70edb0f764b00f3fac12a05c6e637fda84f9007e",
+        "originalExcerpt": "Nach jeweils fünf Kämpfen Checkpoint: Formation/Ausrüstung ordnen, freiwillig beenden, Rekord sichern. Gruppe darf nur mit im Lauf gewonnenen Rekruten verändert werden."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "GR-SAVE-004"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-SAVE-0004",
+      "title": "Am Checkpoint kann der Lauf freiwillig beendet und ein Rekord gesichert werden."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0010",
+      "statement": "Eine Niederlage beendet den Lauf und speichert die erreichte Tiefe.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1239",
+        "quoteHash": "sha256:bc993b9a3f53af48a6adaf9621b48f90f2fce7902baa94e696ccd2ef9ae92aed",
+        "originalExcerpt": "Niederlage beendet Lauf und speichert erreichte Tiefe. Freiwilliges Ende am Checkpoint gilt ebenfalls als gültiger Rekord."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "GR-SAVE-005"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-SAVE-0005",
+      "title": "Eine Niederlage beendet den Lauf und speichert die erreichte Tiefe."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0011",
+      "statement": "Ein freiwilliges Ende am Checkpoint gilt als gültiger Rekord.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1239",
+        "quoteHash": "sha256:bc993b9a3f53af48a6adaf9621b48f90f2fce7902baa94e696ccd2ef9ae92aed",
+        "originalExcerpt": "Niederlage beendet Lauf und speichert erreichte Tiefe. Freiwilliges Ende am Checkpoint gilt ebenfalls als gültiger Rekord."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "GR-SAVE-006"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-SAVE-0006",
+      "title": "Ein freiwilliges Ende am Checkpoint gilt als gültiger Rekord."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0032",
+      "statement": "Jeder Checkpoint speichert vollständig.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1263",
+        "quoteHash": "sha256:a0d1418f78dfca85a72662212252b64b6907ae1c1c7ed03aff774b38aa2b2a60",
+        "originalExcerpt": "Jeder Checkpoint speichert vollständig; Neustart kann keine Belohnung neu würfeln."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "GR-SAVE-007"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-SAVE-0007",
+      "title": "Jeder Checkpoint speichert vollständig."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0036",
+      "statement": "Alle Meilensteinbelohnungen werden einmalig vergeben und danach als abgeschlossen markiert.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1266",
+        "quoteHash": "sha256:6fd19ac3d3f19b5ac30ae196660d12ea03acd25445b2daf03cfd8ee38ed6a643",
+        "originalExcerpt": "Alle Meilensteinbelohnungen werden einmalig vergeben und danach als abgeschlossen markiert."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "GR-SAVE-008"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-SAVE-0008",
+      "title": "Alle Meilensteinbelohnungen werden einmalig vergeben und danach als abgeschlosse"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0055",
+      "statement": "Meisterschaftsfortschritt wird unmittelbar nach Kampf angezeigt und persistent gespeichert.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1314",
+        "quoteHash": "sha256:8774fbad5c3f092c1e4bee95d9e262e2fede24635b512c969804f4ffbeaaf90f",
+        "originalExcerpt": "Fortschritt wird unmittelbar nach Kampf angezeigt und persistent gespeichert."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "GR-SAVE-009"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-SAVE-0009",
+      "title": "Meisterschaftsfortschritt wird unmittelbar nach Kampf angezeigt und persistent g"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0070",
+      "statement": "Erfolge werden nachträglich geprüft, wenn ein altes Savegame auf eine Version mit neuer Prüfung geladen wird.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 33,
+        "section": null,
+        "locator": "block:1333",
+        "quoteHash": "sha256:71159f3a11523f50c16d839476102f1fda74a56eff147a9a33d5f663f7559868",
+        "originalExcerpt": "Erfolge werden nachträglich geprüft, wenn ein altes Savegame auf eine Version mit neuer Prüfung geladen wird."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "GR-SAVE-010"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-SAVE-0010",
+      "title": "Erfolge werden nachträglich geprüft, wenn ein altes Savegame auf eine Version mi"
+    },
+    {
+      "id": "REQ-SAVE-0011",
+      "title": "Android Backup deaktiviert",
+      "statement": "android:allowBackup=false und DataExtractionRules schließen Saves aus Cloud-/Device-Transfer aus; manueller Export ist vorhanden.",
+      "norm": "MUST_NOT",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1819",
+        "quoteHash": "sha256:af3589bcfd14e4ed080c895a0aca22471287983d58e492a0c195e5f25ed38848",
+        "originalExcerpt": "Backup | android:allowBackup=false und DataExtractionRules schließen Saves aus Cloud-/Device-Transfer aus; manueller Export vorhanden."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "GR-SAVE-011"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0012",
+      "title": "iOS Files",
+      "statement": "Application Support für Saves, excludeFromBackup=true; UIDocumentPicker für Transfer.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1836",
+        "quoteHash": "sha256:b669c048cde6d06e364f12798c1f5eb1841596d3806623960dfd1c91f19870ef",
+        "originalExcerpt": "Files | Application Support für Saves, excludeFromBackup=true; UIDocumentPicker für Transfer."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "GR-SAVE-012"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0013",
+      "title": "Belohnungs-Commit idempotent",
+      "statement": "Eine Belohnung kann genau einmal committed werden; commitId ist monoton.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 65,
+        "section": null,
+        "locator": "block:1866",
+        "quoteHash": "sha256:ed89c225f7d284031a4309612c3a6606f42b72e7a1c1a21f23ed42139003c843",
+        "originalExcerpt": "Belohnung kann genau einmal committed werden; commitId ist monoton."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "GR-SAVE-013"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0014",
+      "title": "Saves nie absichtlich zurücksetzen",
+      "statement": "Ein Update darf Saves nie absichtlich zurücksetzen; jede schemaVersion besitzt Migrationstests aus allen veröffentlichten Versionen.",
+      "norm": "MUST_NOT",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 68,
+        "section": null,
+        "locator": "block:1919",
+        "quoteHash": "sha256:14fa3d45764e896968361767672c16b04ee0c2f1478325f59d88c51bb5872840",
+        "originalExcerpt": "Ein Update darf Saves nie absichtlich zurücksetzen. Jede schemaVersion besitzt Migrationstests aus allen veröffentlichten Versionen."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "GR-SAVE-014"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0015",
+      "title": "Fallback erhält Progression",
+      "statement": "Ein Fallback darf niemals Progression verlieren, Gameplay verändern oder still eine schlechtere Datenquelle verwenden; jeder Recovery-Pfad ist sichtbar und testbar.",
+      "norm": "MUST_NOT",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 72,
+        "section": null,
+        "locator": "block:1964",
+        "quoteHash": "sha256:ceff96f3de60f72ad9be6ecaa44c8631466ce05766bd51ec69b4040264131ab6",
+        "originalExcerpt": "Ein Fallback darf niemals Progression verlieren, Gameplay verändern oder still eine schlechtere Datenquelle verwenden. Jeder Recovery-Pfad ist sichtbar und testbar."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-SAVE-015"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0016",
+      "title": "3 Autosave-Slots",
+      "statement": "Die Autosave-Rotation verwendet 3 Slots.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 73,
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:c28be745567c9bfacbc990941c23c40692f5b79119757d4102987bef4c5cb0ba",
+        "originalExcerpt": "autosaveRotationSlots: 3"
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "GR-SAVE-016"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0017",
+      "title": "Stabile ID-Referenzen",
+      "statement": "Referenzen werden niemals über Arrayposition oder Anzeigenamen gespeichert; Savegames speichern ausschließlich stabile IDs, schemaVersion und contentVersion.",
+      "norm": "MUST_NOT",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 73,
+        "section": null,
+        "locator": "block:1979",
+        "quoteHash": "sha256:2e02fe53558009937200403ea43dbf020b3e4122017dd78105664ca57d62bac6",
+        "originalExcerpt": "Referenzen werden niemals über Arrayposition oder Anzeigenamen gespeichert. Savegames speichern ausschließlich stabile IDs und schemaVersion/contentVersion."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "GR-SAVE-017"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0018",
+      "title": "Transaktionssperre",
+      "statement": "Käufe und Belohnungen erzeugen transactionId; UI sperrt nur die betroffene Aktion, wartet auf Save-Commit und zeigt das Ergebnis erst danach.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 78,
+        "section": null,
+        "locator": "block:2080",
+        "quoteHash": "sha256:1d3a52a459bf8fb84f610489a18cae18a668bc0f40a74b90f310ae867e452d8d",
+        "originalExcerpt": "Käufe und Belohnungen erzeugen transactionId. UI sperrt nur betroffene Aktion, wartet auf Save-Commit und zeigt Ergebnis erst danach."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "GR-SAVE-018"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0019",
+      "title": "Für atomare Rename- und fsync-Semantik wird ein eigener NativeSaveStore-Adapter verwendet; @capacitor/filesystem allein ist keine Autorität für die Atomizitätsgarantie.",
+      "statement": "Für atomare Rename- und fsync-Semantik wird ein eigener NativeSaveStore-Adapter verwendet; @capacitor/filesystem allein ist keine Autorität für die Atomizitätsgarantie.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 83,
+        "section": null,
+        "locator": "block:2172",
+        "quoteHash": "sha256:134775b187a88366c1d5db4043c41cd47b831e20a3129a453fafd06ad31a7529",
+        "originalExcerpt": "Für atomare Rename-/fsync-Semantik wird ein eigener NativeSaveStore-Adapter verwendet. @capacitor/filesystem allein ist keine Autorität für die Atomizitätsgarantie."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "GR-SAVE-019"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0020",
+      "title": "Kanonische Serialisierung: UTF-8 ohne BOM, LF-Zeilenenden, sortierte Objektschlüssel, keine NaN/Infinity/-0-Werte und keine Kommentare; Arrays behalten fachliche Reihenfolge.",
+      "statement": "Kanonische Serialisierung: UTF-8 ohne BOM, LF-Zeilenenden, sortierte Objektschlüssel, keine NaN/Infinity/-0-Werte und keine Kommentare; Arrays behalten fachliche Reihenfolge.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 83,
+        "section": null,
+        "locator": "block:2176",
+        "quoteHash": "sha256:bfcb8864f49bfc89727fbfde846c7925f0340684e23dd345d2b7527c6ac66b87",
+        "originalExcerpt": "UTF-8 ohne BOM, LF, sortierte Objektschlüssel, keine NaN/Infinity/-0, keine Kommentare. Arrays behalten fachliche Reihenfolge."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "GR-SAVE-020"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0021",
+      "title": "payloadSha256 wird über die kanonische Serialisierung des payload berechnet; Envelopemetadaten sind nicht Teil des Payloadhashes.",
+      "statement": "payloadSha256 wird über die kanonische Serialisierung des payload berechnet; Envelopemetadaten sind nicht Teil des Payloadhashes.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 83,
+        "section": null,
+        "locator": "block:2177",
+        "quoteHash": "sha256:b2b64b948d62d593fc7323d46eac9411caef89c9ee28690ebc20290f26750774",
+        "originalExcerpt": "payloadSha256 wird über kanonische Serialisierung von payload berechnet. Envelopemetadaten sind nicht Teil des Payloadhashes."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "GR-SAVE-021"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0022",
+      "title": "commitId ist monoton pro Profil; Zeitstempel dient ausschließlich Anzeige und Diagnose und niemals als Tie-Break bei Recovery.",
+      "statement": "commitId ist monoton pro Profil; Zeitstempel dient ausschließlich Anzeige und Diagnose und niemals als Tie-Break bei Recovery.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 83,
+        "section": null,
+        "locator": "block:2178",
+        "quoteHash": "sha256:85bd23d0851ca0767784efac57642af957377371dab5c1cc95e27089ff8eebc7",
+        "originalExcerpt": "commitId ist monoton pro Profil. Zeitstempel ist Anzeige/Diagnose und niemals Tie-Break für Recovery."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "GR-SAVE-022"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0023",
+      "title": "NativeSaveStore schreibt tmp, führt flush/fsync durch, liest zurück, prüft den Hash, führt atomares rename durch, flusht Verzeichnis-Metadaten soweit von der Plattform unterstützt und führt das Manifest analog aus.",
+      "statement": "NativeSaveStore schreibt tmp, führt flush/fsync durch, liest zurück, prüft den Hash, führt atomares rename durch, flusht Verzeichnis-Metadaten soweit von der Plattform unterstützt und führt das Manifest analog aus.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 83,
+        "section": null,
+        "locator": "block:2179",
+        "quoteHash": "sha256:edf06a8f81a826be781c2acfc4449ae6e4614d351fe9950ed3f91f47a8f2f6d7",
+        "originalExcerpt": "NativeSaveStore schreibt tmp, flush/fsync, liest zurück, prüft Hash, atomarer rename, Verzeichnis-Metadaten flush soweit Plattform unterstützt, dann Manifest analog."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "GR-SAVE-023"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0024",
+      "title": "Export-Dateiendung ist .riftwarden-save; das ZIP enthält keinen ausführbaren Inhalt und besteht aus export-manifest.json, profile.json, optional settings.json und checksums.txt.",
+      "statement": "Export-Dateiendung ist .riftwarden-save; das ZIP enthält keinen ausführbaren Inhalt und besteht aus export-manifest.json, profile.json, optional settings.json und checksums.txt.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 83,
+        "section": null,
+        "locator": "block:2182",
+        "quoteHash": "sha256:4440c746e038e75622646f859c08c1d09b43ca70b221f5badd9fffe184bfd7f2",
+        "originalExcerpt": "Dateiendung .riftwarden-save; ZIP ohne ausführbaren Inhalt mit export-manifest.json, profile.json, optional settings.json und checksums.txt."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "GR-SAVE-024"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0025",
+      "title": "Der Standard-Export enthält keine Logs oder Replays; der Diagnoseexport verwendet die separate Endung .riftwarden-diagnostic und zeigt vor dem Systemdialog eine Inhaltsliste an.",
+      "statement": "Der Standard-Export enthält keine Logs oder Replays; der Diagnoseexport verwendet die separate Endung .riftwarden-diagnostic und zeigt vor dem Systemdialog eine Inhaltsliste an.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 83,
+        "section": null,
+        "locator": "block:2183",
+        "quoteHash": "sha256:feb9c70ef8a1bb0cc224695d9bf0a0703fed64657556cda20a13778ac9ff34bf",
+        "originalExcerpt": "Export enthält keine Logs/Replays standardmäßig. Diagnoseexport ist separate .riftwarden-diagnostic und zeigt Inhaltsliste vor Systemdialog."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "GR-SAVE-025"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0026",
+      "title": "Beim Import werden ausschließlich bekannte Dateinamen entpackt; maximale Gesamtgröße 10 MiB, maximale Einzeldatei 8 MiB, keine Pfadsegmente, Symlinks oder verschachtelten Archive.",
+      "statement": "Beim Import werden ausschließlich bekannte Dateinamen entpackt; maximale Gesamtgröße 10 MiB, maximale Einzeldatei 8 MiB, keine Pfadsegmente, Symlinks oder verschachtelten Archive.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 83,
+        "section": null,
+        "locator": "block:2184",
+        "quoteHash": "sha256:11afe1bd4510e32368275dc0d018168e20ca9f2dd30ca2b1c02faaa8c07d5607",
+        "originalExcerpt": "Import entpackt ausschließlich bekannte Dateinamen, maximale Gesamtgröße 10 MiB, maximale Einzeldatei 8 MiB, keine Pfadsegmente, Symlinks oder verschachtelten Archive."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "GR-SAVE-026"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "importTotalBytes",
+          "value": 10485760,
+          "unit": "B"
+        },
+        {
+          "kind": "max",
+          "name": "importSingleFileBytes",
+          "value": 8388608,
+          "unit": "B"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0027",
+      "title": "Der Import wird vollständig im Staging validiert und migriert; erst nach Nutzerbestätigung ersetzt ein atomarer Commit das aktive Profil und ein automatisches Backup wird vorher erstellt.",
+      "statement": "Der Import wird vollständig im Staging validiert und migriert; erst nach Nutzerbestätigung ersetzt ein atomarer Commit das aktive Profil und ein automatisches Backup wird vorher erstellt.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 83,
+        "section": null,
+        "locator": "block:2185",
+        "quoteHash": "sha256:6ec5a33d2bc566b4a5a722c449190f728585480c9382286c3307ed4dcc2c93d8",
+        "originalExcerpt": "Import wird vollständig in Staging validiert/migriert. Erst nach Nutzerbestätigung ersetzt ein atomarer Commit das aktive Profil; automatisches Backup wird vorher erstellt."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "GR-SAVE-027"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0028",
+      "title": "Der Diagnoseexport listet App-, Content- und Simulationversion, Saveintegrität, Rendererinformationen, Speicher- und Qualitätsstatus sowie letzte Fehler; Savepayload und Replays nur per separater Checkbox.",
+      "statement": "Der Diagnoseexport listet App-, Content- und Simulationversion, Saveintegrität, Rendererinformationen, Speicher- und Qualitätsstatus sowie letzte Fehler; Savepayload und Replays nur per separater Checkbox.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 83,
+        "section": null,
+        "locator": "block:2190",
+        "quoteHash": "sha256:2c7356b8f5d444c5b454694d1edad8bbfe6295ca384345424837b6bce77e608b",
+        "originalExcerpt": "Diagnoseexport listet App-/Content-/Simulationversion, Saveintegrität, Rendererinfo, Speicher-/Qualitätsstatus und letzte Fehler. Savepayload/Replays nur per separater Checkbox."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "GR-SAVE-028"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0029",
+      "title": "Belohnungen werden vor der nächsten Navigation persistent committed; Prozessabbruch zwischen Wahl und Animation lädt den bereits committed Zustand und zeigt nur die Abschlussanimation erneut.",
+      "statement": "Belohnungen werden vor der nächsten Navigation persistent committed. Ein Prozessabbruch zwischen Wahl und Animation lädt den bereits committed Zustand und zeigt nur die Abschlussanimation erneut.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1572",
+        "quoteHash": "sha256:754dc4e4e11192e6e7486267bdb769399cde2988692afa20dff739bf22ef6c0e",
+        "originalExcerpt": "Belohnungen werden vor der nächsten Navigation persistent committed. Ein Prozessabbruch zwischen Wahl und Animation lädt den bereits committed Zustand und zeigt nur die Abschlussanimation erneut."
+      },
+      "ownerPhases": [
+        "PHASE-03"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-03",
+          "testIds": [
+            "GR-SAVE-029"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0030",
+      "title": "Debug-Replays können vollständiges Eventlog speichern; normale Saves speichern nur Snapshot plus Entscheidungen zur Dateigrößenbegrenzung.",
+      "statement": "Debug-Replays können das vollständige Eventlog speichern; normale Saves speichern nur Snapshot plus Entscheidungen, um Dateigröße zu begrenzen.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 51,
+        "section": null,
+        "locator": "block:1645",
+        "quoteHash": "sha256:137aeffc923e5dcde802f605429d89c8a8b782017a0205642ef1e49ffcfdfb25",
+        "originalExcerpt": "Debug-Replays können das vollständige Eventlog speichern; normale Saves speichern nur Snapshot plus Entscheidungen, um Dateigröße zu begrenzen."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "GR-SAVE-030"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0031",
+      "title": "Snapshot muss innerhalb 250 ms in Memory erzeugt werden; Persistenz darf asynchron fortgesetzt werden; letzter Safe-Save bleibt gültig.",
+      "statement": "Der Snapshot muss innerhalb 250 ms in Memory erzeugt werden. Persistenz darf anschließend asynchron fortgesetzt werden; ein bereits existierender letzter Safe-Save bleibt gültig.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 53,
+        "section": null,
+        "locator": "block:1669",
+        "quoteHash": "sha256:4b5a138dd72e941572face9121bdb50eb51e001edae5ddf5e14c70d3558c174a",
+        "originalExcerpt": "Der Snapshot muss innerhalb 250 ms in Memory erzeugt werden. Persistenz darf anschließend asynchron fortgesetzt werden; ein bereits existierender letzter Safe-Save bleibt gültig."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-SAVE-031"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "snapshotMemoryMs",
+          "value": 250,
+          "unit": "ms"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0032",
+      "title": "OS-Kill ohne Pause-Callback darf höchstens Fortschritt seit dem letzten definierten Commit verlieren, niemals eine gesamte Expedition.",
+      "statement": "Ein OS-Kill ohne Pause-Callback darf höchstens Fortschritt seit dem letzten definierten Commit verlieren, niemals eine gesamte Expedition.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 53,
+        "section": null,
+        "locator": "block:1671",
+        "quoteHash": "sha256:7aba768fbb0a3e506c225ab2fa2d5f1d2001f1e771558c0fe410dd65ae8ac233",
+        "originalExcerpt": "Ein OS-Kill ohne Pause-Callback darf höchstens Fortschritt seit dem letzten definierten Commit verlieren, niemals eine gesamte Expedition."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "GR-SAVE-032"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0033",
+      "title": "Atomarer Commit Schritt 1: In-Memory-State wird in kanonisches JSON serialisiert; Object Keys werden stabil sortiert.",
+      "statement": "1. In-Memory-State wird in kanonisches JSON serialisiert; Object Keys werden stabil sortiert.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 58,
+        "section": null,
+        "locator": "block:1755",
+        "quoteHash": "sha256:6207ddd97d0f3b462d4a4f02fe71c4cf5068e7dc3dde0c211908a04bdceaa59b",
+        "originalExcerpt": "1. In-Memory-State wird in kanonisches JSON serialisiert; Object Keys werden stabil sortiert."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "GR-SAVE-033"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0034",
+      "title": "Atomarer Commit Schritt 2: Payload erhält schemaVersion, contentVersion, simulationVersion, createdAt (nur Anzeige), monotonicCommitId und SHA-256 über canonicalPayload.",
+      "statement": "2. Payload erhält schemaVersion, contentVersion, simulationVersion, createdAt nur zur Anzeige, monotonicCommitId und SHA-256 über canonicalPayload.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 58,
+        "section": null,
+        "locator": "block:1756",
+        "quoteHash": "sha256:9975b833363d4ea2f475f295977b11c98e85108d4d54b43e4164e7ea0a88f740",
+        "originalExcerpt": "2. Payload erhält schemaVersion, contentVersion, simulationVersion, createdAt nur zur Anzeige, monotonicCommitId und SHA-256 über canonicalPayload."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "GR-SAVE-034"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0035",
+      "title": "Atomarer Commit Schritt 3: In next-slot.tmp schreiben, Datei erneut lesen, Hash prüfen.",
+      "statement": "3. In next-slot.tmp schreiben, Datei erneut lesen, Hash prüfen.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 58,
+        "section": null,
+        "locator": "block:1757",
+        "quoteHash": "sha256:170095068fe22e0fe575627e63eab092d7252a2d64de57c93468da543d4ea7a8",
+        "originalExcerpt": "3. In next-slot.tmp schreiben, Datei erneut lesen, Hash prüfen."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "GR-SAVE-035"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0036",
+      "title": "Atomarer Commit Schritt 4: .tmp in Slotdatei umbenennen; danach manifest.new schreiben und atomar in manifest.json umbenennen.",
+      "statement": "4. .tmp in Slotdatei umbenennen. Danach manifest.new schreiben und atomar in manifest.json umbenennen.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 58,
+        "section": null,
+        "locator": "block:1758",
+        "quoteHash": "sha256:1dc71e296b6382e4874a4ee0ce704cceb739baf5d46f69bf4faf62fbdf838288",
+        "originalExcerpt": "4. .tmp in Slotdatei umbenennen. Danach manifest.new schreiben und atomar in manifest.json umbenennen."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "GR-SAVE-036"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0037",
+      "title": "Atomarer Commit Schritt 5: Erst jetzt UI-Transaktion als abgeschlossen anzeigen; bei Fehler bleibt alter Slot aktiv und es erscheint ein recoverable Fehler.",
+      "statement": "5. Erst jetzt UI-Transaktion als abgeschlossen anzeigen. Bei Fehler bleibt alter Slot aktiv und es erscheint ein recoverable Fehler.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 58,
+        "section": null,
+        "locator": "block:1759",
+        "quoteHash": "sha256:d799e0ee9e5d0644e7553af0999595d76153937749ee0cd92f5a8684f9da094f",
+        "originalExcerpt": "5. Erst jetzt UI-Transaktion als abgeschlossen anzeigen. Bei Fehler bleibt alter Slot aktiv und es erscheint ein recoverable Fehler."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "GR-SAVE-037"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0038",
+      "title": "Export verwendet Custom SaveTransfer und System-Dateidialog; Dateiendung .rwsave, MIME application/vnd.riftwarden.save+json.",
+      "statement": "Export verwendet Custom SaveTransfer und System-Dateidialog. Dateiendung .rwsave, MIME application/vnd.riftwarden.save+json.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 58,
+        "section": null,
+        "locator": "block:1763",
+        "quoteHash": "sha256:8cbade8ec5ff36b2aef070972c77f5893ca8da1ed27bc4c87a11e244f8954dca",
+        "originalExcerpt": "Export verwendet Custom SaveTransfer und System-Dateidialog. Dateiendung .rwsave, MIME application/vnd.riftwarden.save+json."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "GR-SAVE-038"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0039",
+      "title": "Import wird in Quarantäne gelesen, Größe <= 10 MB, ZIP/JSON-Bomben ausgeschlossen, Hash und Schema validiert; nie direkt über aktive Saves geschrieben.",
+      "statement": "Import wird in Quarantäne gelesen, Größe <= 10 MB, ZIP/JSON-Bomben ausgeschlossen, Hash und Schema validiert. Es wird nie direkt über aktive Saves geschrieben.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 58,
+        "section": null,
+        "locator": "block:1764",
+        "quoteHash": "sha256:71b7fe8cbd9e14747b4d88c1ce8c11f0bf58fa3de41f725aeeb839f1b1a827b1",
+        "originalExcerpt": "Import wird in Quarantäne gelesen, Größe <= 10 MB, ZIP/JSON-Bomben ausgeschlossen, Hash und Schema validiert. Es wird nie direkt über aktive Saves geschrieben."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "GR-SAVE-039"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "importSizeMB",
+          "value": 10
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0040",
+      "title": "Vor Import zeigt App Quelle, Version, Fortschritt und Konfliktoptionen: aktuelles Backup exportieren, importieren, abbrechen; Merge verboten; Import ersetzt vollständig.",
+      "statement": "Vor Import zeigt die App Quelle, Version, Fortschritt und Konfliktoptionen: aktuelles Backup exportieren, importieren, abbrechen. Merge ist verboten; Import ersetzt vollständig.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 58,
+        "section": null,
+        "locator": "block:1765",
+        "quoteHash": "sha256:bd48655f8d51b09d3e731d7d164806c9b25a82e907332ed75f660b7260e2b77f",
+        "originalExcerpt": "Vor Import zeigt die App Quelle, Version, Fortschritt und Konfliktoptionen: aktuelles Backup exportieren, importieren, abbrechen. Merge ist verboten; Import ersetzt vollständig."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "GR-SAVE-040"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0041",
+      "title": "Neueres unbekanntes Schema wird abgelehnt ohne aktiven Save zu verändern; älteres Schema wird auf einer Kopie migriert und erst danach committed.",
+      "statement": "Neueres unbekanntes Schema wird abgelehnt, ohne aktiven Save zu verändern. Älteres Schema wird auf einer Kopie migriert und erst danach committed.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 58,
+        "section": null,
+        "locator": "block:1766",
+        "quoteHash": "sha256:4590a2e5125e02ee81b456d63f0a327ee740e2f789b688784d3ae115e5cba0a2",
+        "originalExcerpt": "Neueres unbekanntes Schema wird abgelehnt, ohne aktiven Save zu verändern. Älteres Schema wird auf einer Kopie migriert und erst danach committed."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "GR-SAVE-041"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0042",
+      "title": "Recovery Schritt 1: Manifest und aktiven Slot prüfen.",
+      "statement": "1. Manifest und aktiven Slot prüfen.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 58,
+        "section": null,
+        "locator": "block:1769",
+        "quoteHash": "sha256:df1fffae6bb9d34fb420ac55f0e83fd0e8b6890ba5fa53a5d0b0e25ea74ed3ae",
+        "originalExcerpt": "1. Manifest und aktiven Slot prüfen."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "GR-SAVE-042"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0043",
+      "title": "Recovery Schritt 2: Bei Fehler andere Slots nach höchster gültiger commitId prüfen.",
+      "statement": "2. Bei Fehler die anderen Slots nach höchster gültiger commitId prüfen.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 58,
+        "section": null,
+        "locator": "block:1770",
+        "quoteHash": "sha256:09d932787c5bcb5031d3b6298e115f3d5221391a2beefed994b18a3d87611d1a",
+        "originalExcerpt": "2. Bei Fehler die anderen Slots nach höchster gültiger commitId prüfen."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "GR-SAVE-043"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0044",
+      "title": "Recovery Schritt 3: Bei gültigem Fallback diesen laden, beschädigten Slot nicht löschen, Spieler einmal informieren.",
+      "statement": "3. Bei gültigem Fallback diesen laden, beschädigten Slot nicht löschen und Spieler einmal informieren.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 58,
+        "section": null,
+        "locator": "block:1771",
+        "quoteHash": "sha256:7b687e59d1e54eb1e3e8cda64c6c0677845bea33c1ce5b24bd350ede93a3967e",
+        "originalExcerpt": "3. Bei gültigem Fallback diesen laden, beschädigten Slot nicht löschen und Spieler einmal informieren."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "GR-SAVE-044"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0045",
+      "title": "Recovery Schritt 4: Wenn Profil gültig und Run beschädigt, permanenten Fortschritt laden und Run als sicher beendet markieren; ungesicherter Runloot verfällt nur nach expliziter Bestätigung.",
+      "statement": "4. Wenn Profile gültig, Run beschädigt: permanenter Fortschritt laden und Run als sicher beendet markieren; ungesicherter Runloot verfällt nur nach expliziter Bestätigung.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 58,
+        "section": null,
+        "locator": "block:1772",
+        "quoteHash": "sha256:01a32c20e4600085671b490608b69192396196a01029acfe3d855306b5d89b2d",
+        "originalExcerpt": "4. Wenn Profile gültig, Run beschädigt: permanenter Fortschritt laden und Run als sicher beendet markieren; ungesicherter Runloot verfällt nur nach expliziter Bestätigung."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "GR-SAVE-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0046",
+      "title": "Recovery Schritt 5: Wenn kein Slot gültig, Import/Neues Profil anbieten; keine automatische Löschung.",
+      "statement": "5. Wenn kein Slot gültig: Import/Neues Profil anbieten. Keine automatische Löschung.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 58,
+        "section": null,
+        "locator": "block:1773",
+        "quoteHash": "sha256:ebd29cdc69c998e389c9ca04f9ca464a55fe96dc66e2f137d080b100db2d81f9",
+        "originalExcerpt": "5. Wenn kein Slot gültig: Import/Neues Profil anbieten. Keine automatische Löschung."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "GR-SAVE-046"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0047",
+      "title": "Mindestens drei rotierende lokale Autosave-Slots plus ein manuelles Profil-Backup im App-Speicher.",
+      "statement": "Mindestens drei rotierende lokale Autosave-Slots plus ein manuelles Profil-Backup im App-Speicher.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 42,
+        "section": null,
+        "locator": "block:1458",
+        "quoteHash": "sha256:8b7a393a75ac0e9857eda12ed86400eb7ff7be6eec573664663a8fb8b39d8c1a",
+        "originalExcerpt": "Mindestens drei rotierende lokale Autosave-Slots plus ein manuelles Profil-Backup im App-Speicher."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "GR-SAVE-047"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "autoSaveSlots",
+          "value": 3
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0048",
+      "title": "Save enthält schemaVersion, contentVersion, simulationVersion, Fortschritt, Inventarfreischaltungen, Politur, Ruhm, Meisterschaft, Erfolge, Einstellungen, aktuelle Expedition und deterministische Seeds.",
+      "statement": "Save enthält schemaVersion, contentVersion, simulationVersion, Fortschritt, Inventarfreischaltungen, Politur, Ruhm, Meisterschaft, Erfolge, Einstellungen, aktuelle Expedition und deterministische Seeds.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 42,
+        "section": null,
+        "locator": "block:1459",
+        "quoteHash": "sha256:16716b4b4685c9231b6f43b087eb12d486ab20a8d6064470e909bc46208ed349",
+        "originalExcerpt": "Save enthält schemaVersion, contentVersion, simulationVersion, Fortschritt, Inventarfreischaltungen, Politur, Ruhm, Meisterschaft, Erfolge, Einstellungen, aktuelle Expedition und deterministische Seeds."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "GR-SAVE-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0049",
+      "title": "Schreibvorgang atomar: in temporäre Datei, Prüfsumme, dann ersetzen; beschädigter neuester Slot fällt auf vorherigen zurück und informiert den Spieler.",
+      "statement": "Schreibvorgang ist atomar: erst temporäre Datei, dann Prüfsumme, dann ersetzen. Ein beschädigter neuester Slot fällt auf den vorherigen Slot zurück und informiert den Spieler.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 42,
+        "section": null,
+        "locator": "block:1460",
+        "quoteHash": "sha256:27a53f1750a416a230ea5ccfe6d58209cff39b2da1b7ad1b9f7bc82879113068",
+        "originalExcerpt": "Schreibvorgang atomar: in temporäre Datei, Prüfsumme, dann ersetzen. Beschädigter neuester Slot fällt auf vorherigen zurück und informiert den Spieler."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "GR-SAVE-049"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0050",
+      "title": "Migrationen sind vorwärtsgerichtet und idempotent; ein Save wird vor Migration gesichert.",
+      "statement": "Migrationen sind vorwärtsgerichtet und idempotent. Ein Save wird vor Migration gesichert.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 42,
+        "section": null,
+        "locator": "block:1461",
+        "quoteHash": "sha256:9d0c3102dc945f1aa147c3f49e2bb3098d973cae025c18b51375474d5e7fa8fb",
+        "originalExcerpt": "Migrationen sind vorwärtsgerichtet und idempotent. Ein Save wird vor Migration gesichert."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "GR-SAVE-050"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0051",
+      "title": "Laufender Kampf speichert Startsnapshot plus aktuellen Simulationszustand; Fortsetzen darf nicht neu würfeln oder zum Kampfbeginn zurücksetzen, außer Snapshot ist technisch ungültig.",
+      "statement": "Ein laufender Kampf speichert Startsnapshot plus aktuellen Simulationszustand. Fortsetzen darf nicht neu würfeln oder zum Kampfbeginn zurücksetzen, außer der Snapshot ist technisch ungültig.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 42,
+        "section": null,
+        "locator": "block:1462",
+        "quoteHash": "sha256:f7308de3e71d23eee67d487e42c9576da0314794b58042f6a19e437703f97661",
+        "originalExcerpt": "Laufender Kampf speichert Startsnapshot plus aktuellen Simulationszustand; Fortsetzen darf nicht neu würfeln oder zum Kampfbeginn zurücksetzen, außer Snapshot ist technisch ungültig. Dann wird der Kampf mit demselben Seed vom Beginn wiederholt und klar erklärt."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "GR-SAVE-051"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0052",
+      "title": "Bei technisch ungültigem Snapshot wird der Kampf mit demselben Seed vom Beginn wiederholt und dem Spieler klar erklärt.",
+      "statement": "Ist der Snapshot technisch ungültig, wird der Kampf mit demselben Seed vom Beginn wiederholt und dem Spieler klar erklärt.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 42,
+        "section": null,
+        "locator": "block:1462",
+        "quoteHash": "sha256:fa35577ec2fbc7e6e4fd246826d6281d96d3f527aaca431cded824e19b2a3ca4",
+        "originalExcerpt": "Dann wird der Kampf mit demselben Seed vom Beginn wiederholt und klar erklärt."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "GR-SAVE-052"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0053",
+      "title": "Kein Fortschritt hängt von Uhrzeit, Zeitzone, Geräte-ID, Account oder Internet ab.",
+      "statement": "Kein Fortschritt hängt von Uhrzeit, Zeitzone, Geräte-ID, Account oder Internet ab.",
+      "norm": "MUST_NOT",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 42,
+        "section": null,
+        "locator": "block:1463",
+        "quoteHash": "sha256:c7d99dc97e907c5f67e1e8b9cdee42961830ad1c7bf2ba275f04ac24b4a28347",
+        "originalExcerpt": "Kein Fortschritt hängt von Uhrzeit, Zeitzone, Geräte-ID, Account oder Internet ab."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "GR-SAVE-053"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0054",
+      "title": "Export/Import eines Savefiles ist als Komfortfunktion vorgesehen, jedoch keine Cloudpflicht.",
+      "statement": "Export und Import eines Savefiles sind als Komfortfunktion vorgesehen, jedoch keine Cloudpflicht.",
+      "norm": "MAY",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 42,
+        "section": null,
+        "locator": "block:1464",
+        "quoteHash": "sha256:47423a74b7434afc537005ed4799f870fff243bdc49b1d65593ec8716ff5b892",
+        "originalExcerpt": "Export/Import eines Savefiles ist als Komfortfunktion vorgesehen, aber keine Cloudpflicht."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "GR-SAVE-054"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0055",
+      "title": "Alle Käufe, Belohnungen, Saves und Migrationen sind crash- und duplikationssicher.",
+      "statement": "Alle Käufe, Belohnungen, Saves und Migrationen sind crash- und duplikationssicher.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1504",
+        "quoteHash": "sha256:1fdac9d5ef10be3a51265b64c72f4b7006f83751d9e6b7f4a3f314a7fe909643",
+        "originalExcerpt": "Alle Käufe, Belohnungen, Saves und Migrationen sind crash- und duplikationssicher."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "GR-SAVE-055"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0056",
+      "title": "App startet und alle Inhalte funktionieren im Flugmodus ohne Netzwerkdialog.",
+      "statement": "App startet und alle Inhalte funktionieren im Flugmodus ohne Netzwerkdialog.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1509",
+        "quoteHash": "sha256:4a0b00bb432a84344ef9ebeef0edb57ec62f6ca74a9a8084a92bbbcfbaef000f",
+        "originalExcerpt": "App startet und alle Inhalte funktionieren im Flugmodus ohne Netzwerkdialog."
+      },
+      "ownerPhases": [
+        "PHASE-22"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-22",
+          "testIds": [
+            "GR-SAVE-056"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-SAVE-0057",
+      "title": "Unterbrechung oder Prozessbeendigung an jedem Knoten und in jedem Kampf führt zu gültigem Fortsetzen.",
+      "statement": "Unterbrechung oder Prozessbeendigung an jedem Knoten und in jedem Kampf führt zu gültigem Fortsetzen.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1510",
+        "quoteHash": "sha256:f4286a561a22636fdb757050e04bd3cca00b0dc082e56cb714f2ecb187c771d7",
+        "originalExcerpt": "Unterbrechung/Prozessbeendigung an jedem Knoten und in jedem Kampf führt zu gültigem Fortsetzen."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "golden",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "GR-SAVE-057"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ]
+}

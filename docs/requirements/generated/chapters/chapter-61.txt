@@ -1,0 +1,22 @@
+# Chapter 61: Datenschutz, Sicherheit und Netzwerkfreiheit
+# blocks 1798..1816 (19 blocks)
+
+[Heading 2] 61. Datenschutz, Sicherheit und Netzwerkfreiheit
+[Heading 3] 61.1 Datenpraxis
+[Compact] Die Release-App sammelt, überträgt oder teilt keine Nutzer-, Geräte-, Werbe-, Standort-, Nutzungs- oder Diagnosedaten. Es existiert kein Backend.
+[Compact] Alle Statistiken, Replays und Logs bleiben lokal. Diagnoseexport erfolgt nur nach expliziter Nutzeraktion und zeigt vor dem Systemdialog den enthaltenen Umfang.
+[Compact] Keine Advertising ID, IDFV, Android ID, Install Referrer, IP-Logging, Fingerprinting oder Geräteidentifier werden gelesen.
+[Compact] Die Datenschutzseite und die Store-Deklarationen müssen „keine Datenerhebung/-weitergabe“ widerspruchsfrei abbilden. Drittbibliotheken werden vor Release auf Netzwerk- und Identifierzugriff geprüft.
+[Compact] Externe Datenschutz-, Support- und Lizenzlinks öffnen im Systembrowser. Die App lädt deren Inhalte nicht in einen kontrollierten WebView.
+[Heading 3] 61.2 Produktions-CSP und WebView-Härtung
+[Code Block] default-src 'self'; img-src 'self' data: blob:; media-src 'self' blob:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'
+[Compact] connect-src none ist im Produktionsbuild Pflicht. Jeder unbeabsichtigte fetch/WebSocket/EventSource schlägt sichtbar im Test fehl.
+[Compact] capacitor.config enthält im Release keine server.url, cleartext, allowNavigation oder mixed content. WebView-Debugging ist deaktiviert.
+[Compact] Android INTERNET-Permission wird im finalen Manifest entfernt. VIBRATE ist die einzige optionale normale Permission; keine Runtime-Permissions.
+[Compact] iOS besitzt keine unnötigen Entitlements. PrivacyInfo.xcprivacy nennt nur tatsächlich genutzte Required-Reason APIs aus Capacitor/Plugins.
+[Compact] Keine eval/new Function/dynamische Scriptinjektion. Sourcemaps werden intern archiviert, nicht öffentlich mitgeliefert.
+[Heading 3] 61.3 Dependency- und Supply-Chain-Regeln
+[Compact] Nur direkte Dependencies mit klarer Funktion. Neue Dependency benötigt Lizenz-, Größe-, Netzwerk-, Permission- und Maintenance-Prüfung.
+[Compact] CI führt pnpm audit oder gleichwertigen Advisory-Scan aus. Kritische/hohe ausnutzbare Findings blockieren Release.
+[Compact] Alle Store-Artefakte werden aus clean checkout mit frozen lockfile gebaut. Buildprovenienz, Commit und Dependencyliste werden archiviert.
+[Compact] Drittanbieterassets benötigen Lizenzdatei, Quelle, Autor und kommerzielle Nutzungsfreigabe im Assetmanifest.

@@ -1,0 +1,12 @@
+# Chapter 44: Vertikaler Inhaltsprototyp
+# blocks 1481..1494 (14 blocks)
+
+[Heading 2] 44. Vertikaler Inhaltsprototyp
+[First Paragraph] Vor Vollproduktion muss ein vertikaler Prototyp beweisen, dass der beobachtete Kampf als Kernfantasie funktioniert. Er ist kein Wegwerf-Mockup, sondern verwendet die spätere Simulationslogik und Datenstruktur.
+[Heading 3] 44.1 Prototyp-Gates
+[Compact] Mindestens 80% interner Tester können nach einer Niederlage eine zutreffende Ursache nennen.
+[Compact] Mindestens 70% verändern vor einem Retry bewusst Formation, Doktrin, Einheit oder Ausrüstung.
+[Compact] Zielwechsel werden überwiegend als nachvollziehbar bewertet; keine wiederkehrenden sichtbaren KI-Aussetzer.
+[Compact] Der Aschenkönig ist ohne Entwicklererklärung nach Vorschau lernbar.
+[Compact] Kampf bei 3x bleibt lesbar und identisch im Ergebnis.
+[Compact] Mobile Zielhardware hält 60 FPS im Normalfall und mindestens 45 FPS bei maximaler Beschwörungs-/Effektlast; Simulation darf keine Ticks verlieren.

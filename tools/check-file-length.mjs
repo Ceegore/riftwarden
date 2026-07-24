@@ -4,17 +4,45 @@ import { dirname, resolve } from 'node:path';
 import { humanReport, sarifReport } from './file-length/reporters.mjs';
 import { scanFileLengths } from './file-length/scan.mjs';
 
+/**
+ * @typedef {Object} FileLengthOptions
+ * @property {string} root Repository root.
+ * @property {'human'|'json'|'sarif'} format Output format.
+ * @property {string|null} output Optional output file path.
+ */
+
+/**
+ * Parses CLI arguments for the file-length checker.
+ * @param {string[]} argv Process argv slice.
+ * @returns {FileLengthOptions}
+ */
 function parseArgs(argv) {
+  /** @type {FileLengthOptions} */
   const options = { root: process.cwd(), format: 'human', output: null };
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
-    if (arg === '--root') options.root = resolve(argv[++index]);
-    else if (arg.startsWith('--root=')) options.root = resolve(arg.slice(7));
-    else if (arg === '--format') options.format = argv[++index];
-    else if (arg.startsWith('--format=')) options.format = arg.slice(9);
-    else if (arg === '--output') options.output = resolve(argv[++index]);
-    else if (arg.startsWith('--output=')) options.output = resolve(arg.slice(9));
-    else throw new Error(`Unknown argument: ${arg}`);
+    if (arg === undefined) continue;
+    if (arg === '--root') {
+      const next = argv[index + 1];
+      index += 1;
+      if (next !== undefined) options.root = resolve(next);
+    } else if (arg.startsWith('--root=')) {
+      options.root = resolve(arg.slice(7));
+    } else if (arg === '--format') {
+      const next = argv[index + 1];
+      index += 1;
+      if (next !== undefined) options.format = /** @type {'human'|'json'|'sarif'} */ (next);
+    } else if (arg.startsWith('--format=')) {
+      options.format = /** @type {'human'|'json'|'sarif'} */ (arg.slice(9));
+    } else if (arg === '--output') {
+      const next = argv[index + 1];
+      index += 1;
+      if (next !== undefined) options.output = resolve(next);
+    } else if (arg.startsWith('--output=')) {
+      options.output = resolve(arg.slice(9));
+    } else {
+      throw new Error(`Unknown argument: ${arg}`);
+    }
   }
   if (!['human', 'json', 'sarif'].includes(options.format)) throw new Error(`Unsupported format: ${options.format}`);
   return options;
@@ -34,6 +62,7 @@ try {
   }
   process.exitCode = report.passed ? 0 : 1;
 } catch (error) {
-  process.stderr.write(`check-file-length failed: ${error.message}\n`);
+  const message = error instanceof Error ? error.message : String(error);
+  process.stderr.write(`check-file-length failed: ${message}\n`);
   process.exitCode = 2;
 }

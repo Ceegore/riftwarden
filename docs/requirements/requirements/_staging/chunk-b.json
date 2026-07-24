@@ -1,0 +1,2603 @@
+{
+  "schemaVersion": "1.0",
+  "chunk": "b",
+  "chapterRange": {
+    "lo": 30,
+    "hi": 58
+  },
+  "requirements": [
+    {
+      "tempId": "REQ-TEMP-B-0001",
+      "statement": "Endlose Rift wird nach Abschluss der Kampagne freigeschaltet.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1236",
+        "quoteHash": "sha256:38672aabb655ef95d0a643ce4d24bb6717dc7afa8bed3a4775771df3f9d313cf",
+        "originalExcerpt": "Freischaltung nach Kampagne. Start: vollständige Gruppe, genau drei permanente Gegenstände inklusive möglichem Banner, Doktrin und optional bereits abgeschlossener Ascension-Regelsatz."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-007"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0002",
+      "statement": "Beim Start der Endlosen Rift werden genau drei permanente Gegenstände inklusive möglichem Banner ausgerüstet.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1236",
+        "quoteHash": "sha256:38672aabb655ef95d0a643ce4d24bb6717dc7afa8bed3a4775771df3f9d313cf",
+        "originalExcerpt": "Freischaltung nach Kampagne. Start: vollständige Gruppe, genau drei permanente Gegenstände inklusive möglichem Banner, Doktrin und optional bereits abgeschlossener Ascension-Regelsatz."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-008"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0003",
+      "statement": "Endlose Rift darf nicht ohne Doktrin starten.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1236",
+        "quoteHash": "sha256:38672aabb655ef95d0a643ce4d24bb6717dc7afa8bed3a4775771df3f9d313cf",
+        "originalExcerpt": "Freischaltung nach Kampagne. Start: vollständige Gruppe, genau drei permanente Gegenstände inklusive möglichem Banner, Doktrin und optional bereits abgeschlossener Ascension-Regelsatz."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-009"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0004",
+      "statement": "In der Endlosen Rift finden fortlaufend einzelne Kämpfe statt.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1237",
+        "quoteHash": "sha256:cd4860149c29dfa8a8d616ee439a7147404597863b5527a9f8594664324ff537",
+        "originalExcerpt": "Fortlaufende einzelne Kämpfe. Nach jedem Sieg Wahl aus drei Belohnungen: Relikt, temporäres Kit/Gegenstand, Rekrut, Heil-/Sicherungsdienst, Gold/Zyklusmünzen existieren hier nicht."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-010"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0005",
+      "statement": "Nach jedem Sieg werden drei Belohnungen zur Wahl angeboten.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1237",
+        "quoteHash": "sha256:cd4860149c29dfa8a8d616ee439a7147404597863b5527a9f8594664324ff537",
+        "originalExcerpt": "Fortlaufende einzelne Kämpfe. Nach jedem Sieg Wahl aus drei Belohnungen: Relikt, temporäres Kit/Gegenstand, Rekrut, Heil-/Sicherungsdienst, Gold/Zyklusmünzen existieren hier nicht."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-011"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0006",
+      "statement": "In der Endlosen Rift existieren Gold und Zyklusmünzen nicht.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1237",
+        "quoteHash": "sha256:cd4860149c29dfa8a8d616ee439a7147404597863b5527a9f8594664324ff537",
+        "originalExcerpt": "Fortlaufende einzelne Kämpfe. Nach jedem Sieg Wahl aus drei Belohnungen: Relikt, temporäres Kit/Gegenstand, Rekrut, Heil-/Sicherungsdienst, Gold/Zyklusmünzen existieren hier nicht."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-012"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0007",
+      "statement": "Nach jeweils fünf Kämpfen erscheint ein Checkpoint.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1238",
+        "quoteHash": "sha256:e836141b6abfec40118efbaa70edb0f764b00f3fac12a05c6e637fda84f9007e",
+        "originalExcerpt": "Nach jeweils fünf Kämpfen Checkpoint: Formation/Ausrüstung ordnen, freiwillig beenden, Rekord sichern. Gruppe darf nur mit im Lauf gewonnenen Rekruten verändert werden."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-013"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0008",
+      "statement": "Am Checkpoint kann der Lauf freiwillig beendet und ein Rekord gesichert werden.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1238",
+        "quoteHash": "sha256:e836141b6abfec40118efbaa70edb0f764b00f3fac12a05c6e637fda84f9007e",
+        "originalExcerpt": "Nach jeweils fünf Kämpfen Checkpoint: Formation/Ausrüstung ordnen, freiwillig beenden, Rekord sichern. Gruppe darf nur mit im Lauf gewonnenen Rekruten verändert werden."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "IT-PHASE12-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0009",
+      "statement": "Die Gruppe darf nur mit im Lauf gewonnenen Rekruten verändert werden.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1238",
+        "quoteHash": "sha256:e836141b6abfec40118efbaa70edb0f764b00f3fac12a05c6e637fda84f9007e",
+        "originalExcerpt": "Nach jeweils fünf Kämpfen Checkpoint: Formation/Ausrüstung ordnen, freiwillig beenden, Rekord sichern. Gruppe darf nur mit im Lauf gewonnenen Rekruten verändert werden."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-014"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0010",
+      "statement": "Eine Niederlage beendet den Lauf und speichert die erreichte Tiefe.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1239",
+        "quoteHash": "sha256:bc993b9a3f53af48a6adaf9621b48f90f2fce7902baa94e696ccd2ef9ae92aed",
+        "originalExcerpt": "Niederlage beendet Lauf und speichert erreichte Tiefe. Freiwilliges Ende am Checkpoint gilt ebenfalls als gültiger Rekord."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "IT-PHASE12-003"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0011",
+      "statement": "Ein freiwilliges Ende am Checkpoint gilt als gültiger Rekord.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1239",
+        "quoteHash": "sha256:bc993b9a3f53af48a6adaf9621b48f90f2fce7902baa94e696ccd2ef9ae92aed",
+        "originalExcerpt": "Niederlage beendet Lauf und speichert erreichte Tiefe. Freiwilliges Ende am Checkpoint gilt ebenfalls als gültiger Rekord."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "IT-PHASE12-004"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0012",
+      "statement": "In der Endlosen Rift existieren keine wiederholbaren permanenten Machtbelohnungen.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1240",
+        "quoteHash": "sha256:6f67e6d0fbeb049570fdcb214e1b99bc543bf2fd360b53b398bf6a2ab5d8a73a",
+        "originalExcerpt": "Keine wiederholbare permanente Machtbelohnung. Erstmalige Meilensteine sind kosmetisch oder geringe einmalige Riftessenz."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-015"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0013",
+      "statement": "Erstmalige Meilensteine sind kosmetisch oder geringe einmalige Riftessenz.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1240",
+        "quoteHash": "sha256:6f67e6d0fbeb049570fdcb214e1b99bc543bf2fd360b53b398bf6a2ab5d8a73a",
+        "originalExcerpt": "Keine wiederholbare permanente Machtbelohnung. Erstmalige Meilensteine sind kosmetisch oder geringe einmalige Riftessenz."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-016"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0014",
+      "statement": "In Tiefe 1-5 beträgt die Gegnerbaseline 0,90 der Kampagnenend-Werte.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:2e28fae0d4f77ff23dbcb03339f097330c9ea64a27c2550e0a3b2119d6dcc580",
+        "originalExcerpt": "Baseline Kampagnenende x0,90"
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-009"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0015",
+      "statement": "In Tiefe 1-5 gilt: eine Region, keine Champions, maximal 1 Modifikator.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:c938ff675cae087b86045160ea615663d125915d3835cced56ef129be01f6f79",
+        "originalExcerpt": "Eine Region, keine Champions, max. 1 Modifikator."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-017"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0016",
+      "statement": "In Tiefe 6-10 beträgt die Elitechance 25 Prozent und der erste Zwischenboss erscheint auf Tiefe 10.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:50e64d88a7af6983d755fc68b088edebd314c2ed68c28d3e952e881f606a7342",
+        "originalExcerpt": "Elitechance 25%, erster Zwischenboss auf 10."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-010"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0017",
+      "statement": "In Tiefe 11-20 steigt pro Tiefe das gegnerische LP um 2 Prozent und der Angriff um 1,2 Prozent.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:00ff5b4db4d592db453a462173e836465b14c2234be725cd436007e512335021",
+        "originalExcerpt": "Je Tiefe +2% LP/+1,2% Angriff ab 11"
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-011"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0018",
+      "statement": "In Tiefe 11-20 werden zwei Regionen gemischt, die Championchance beträgt 15 Prozent und der Boss erscheint auf Tiefe 20.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:62733ad5708f618ffd7bd5962e2bad6f6a86a11dd5d7990a633576ab80b2a2eb",
+        "originalExcerpt": "Zwei Regionen gemischt; Championchance 15%; Boss auf 20."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-018"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0019",
+      "statement": "In Tiefe 21-30 werden Eliteattribute kombiniert und ab Tiefe 26 sind alle Regionen verfügbar.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:67c22ef33f02f3aee79442aee6bf4b1eda17cbc7a6010af5d7ff389c0ea8d31b",
+        "originalExcerpt": "Eliteattribute kombiniert; alle Regionen ab 26."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-019"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0020",
+      "statement": "In Tiefe 31-40 sind bis zu 2 Modifikatoren aktiv, die Championchance beträgt 30 Prozent und Bossvarianten erscheinen auf Tiefe 35 und 40.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:748cacb454ead6bed87951fa3974eff1f99debd585d7d543e1f51e235e34b408",
+        "originalExcerpt": "Bis 2 Modifikatoren; Championchance 30%; Bossvarianten 35/40."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-020"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0021",
+      "statement": "In Tiefe 41-60 sind ab Tiefe 51 maximal 2 Champions erlaubt, jedoch nie mit zwei Eliteattributen auf beiden.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:005aa31cb6119d63e76838460f754aa8ad11749052058f7fbd9633d4a7de0f57",
+        "originalExcerpt": "Bis 2 Champions ab 51, aber nie plus zwei Eliteattribute auf beiden."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-021"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0022",
+      "statement": "In Tiefe 61+ werden ausschließlich kuratierte Rotationen verwendet und keine neuen Mechaniken eingeführt.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1244",
+        "quoteHash": "sha256:fb334a54943309402bd8fedad612f24277dd7d3b7188ac0d80feb27972ec214c",
+        "originalExcerpt": "Kuratierte Rotationen; keine neue Mechanik, nur Rekorddruck."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-022"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0023",
+      "statement": "Nach Kämpfen 1-4 werden mindestens zwei gewöhnliche und eine beliebige Option angeboten.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1248",
+        "quoteHash": "sha256:e65bde4c3b5f902c37a078c16281324d5d5f8c95a23a70d0a5e9c9fd8e1fef23",
+        "originalExcerpt": "Nach Kämpfen 1-4: mindestens zwei gewöhnliche und eine beliebige Option."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-023"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0024",
+      "statement": "Jeder fünfte Kampf enthält mindestens eine seltene Option.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1249",
+        "quoteHash": "sha256:c4c9b02e499c410eb100f97d466d7a0d2ec2e16709f5e549ebd7177125a6ddb5",
+        "originalExcerpt": "Jeder fünfte Kampf: mindestens eine seltene Option; Bosscheckpoint: eine von vier, davon mindestens zwei selten/legendär."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-024"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0025",
+      "statement": "An einem Bosscheckpoint wird eine von vier Optionen angeboten, davon mindestens zwei selten oder legendär.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1249",
+        "quoteHash": "sha256:c4c9b02e499c410eb100f97d466d7a0d2ec2e16709f5e549ebd7177125a6ddb5",
+        "originalExcerpt": "Jeder fünfte Kampf: mindestens eine seltene Option; Bosscheckpoint: eine von vier, davon mindestens zwei selten/legendär."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-025"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0026",
+      "statement": "Das Reliktlimit beträgt sechs bis Tiefe 20.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1250",
+        "quoteHash": "sha256:83d7e404588585d0bcf492bfab25ac7f1b04b2f93ace873a7d6210bd8e763806",
+        "originalExcerpt": "Reliktlimit sechs bis Tiefe 20, acht ab Tiefe 21. Darüber kein weiteres Wachstum."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-026"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0027",
+      "statement": "Das Reliktlimit beträgt acht ab Tiefe 21 und wächst darüber nicht weiter.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1250",
+        "quoteHash": "sha256:83d7e404588585d0bcf492bfab25ac7f1b04b2f93ace873a7d6210bd8e763806",
+        "originalExcerpt": "Reliktlimit sechs bis Tiefe 20, acht ab Tiefe 21. Darüber kein weiteres Wachstum."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-027"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0028",
+      "statement": "Eine Rekrutierungswahl darf die Vertragsgrenze von drei nicht überschreiten.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1251",
+        "quoteHash": "sha256:6fd077a3318c22c1029c7d24d4e66d070354129f6efe0d840cd14bef596c00e3",
+        "originalExcerpt": "Rekrutierungswahl kann Vertragsgrenze drei nicht überschreiten; temporärer Rekrut bleibt bis Laufende."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-028"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0029",
+      "statement": "Ein temporärer Rekrut bleibt bis zum Laufende erhalten.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1251",
+        "quoteHash": "sha256:6fd077a3318c22c1029c7d24d4e66d070354129f6efe0d840cd14bef596c00e3",
+        "originalExcerpt": "Rekrutierungswahl kann Vertragsgrenze drei nicht überschreiten; temporärer Rekrut bleibt bis Laufende."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-029"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0030",
+      "statement": "Alle zehn Tiefen wird eine Begegnung als Erholungsfenster leichter gestaltet.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1252",
+        "quoteHash": "sha256:7a0cdb67fc96c934cfc53811afebeda3ba5ad19adbeadfd17b87bcc9ed5898d2",
+        "originalExcerpt": "Alle zehn Tiefen wird eine Begegnung bewusst leichter als Erholungsfenster, danach Boss/harte Gruppe."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-030"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0031",
+      "statement": "Der Endless-Generator wiederholt keine identische Encounter-ID innerhalb der letzten acht Kämpfe.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1262",
+        "quoteHash": "sha256:586dc844e427d7c2edbb1c95affd7add35ff77a6f1dc4a37454108b3b13a6f43",
+        "originalExcerpt": "Endless-Generator wiederholt identische Encounter-ID nicht innerhalb der letzten acht Kämpfe."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-012"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0032",
+      "statement": "Jeder Checkpoint speichert vollständig.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1263",
+        "quoteHash": "sha256:a0d1418f78dfca85a72662212252b64b6907ae1c1c7ed03aff774b38aa2b2a60",
+        "originalExcerpt": "Jeder Checkpoint speichert vollständig; Neustart kann keine Belohnung neu würfeln."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "IT-PHASE12-005"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0033",
+      "statement": "Ein Neustart darf keine Belohnung neu würfeln.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1263",
+        "quoteHash": "sha256:a0d1418f78dfca85a72662212252b64b6907ae1c1c7ed03aff774b38aa2b2a60",
+        "originalExcerpt": "Jeder Checkpoint speichert vollständig; Neustart kann keine Belohnung neu würfeln."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-031"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0034",
+      "statement": "Die Skalierung der Endlosen Rift bleibt numerisch berechenbar und enthält keine versteckten Sprünge außerhalb der Tabelle.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1264",
+        "quoteHash": "sha256:8c2d5394443efd495428df8915d2184e6bdf5e5da06396718370093d9a1b0986",
+        "originalExcerpt": "Skalierung bleibt numerisch berechenbar und besitzt keine versteckten Sprünge außerhalb Tabelle."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-013"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0035",
+      "statement": "Tiefe 100 ist theoretisch erreichbar, aber kein durchschnittliches Balanceziel.",
+      "norm": "SHOULD",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1265",
+        "quoteHash": "sha256:2bf604d8b3ad20919146f8d5c1fb1215db879ed6c6ec317e7421b575f82725d4",
+        "originalExcerpt": "Tiefe 100 ist theoretisch erreichbar, aber nicht als durchschnittliches Balanceziel verlangt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-032"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0036",
+      "statement": "Alle Meilensteinbelohnungen werden einmalig vergeben und danach als abgeschlossen markiert.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1266",
+        "quoteHash": "sha256:6fd19ac3d3f19b5ac30ae196660d12ea03acd25445b2daf03cfd8ee38ed6a643",
+        "originalExcerpt": "Alle Meilensteinbelohnungen werden einmalig vergeben und danach als abgeschlossen markiert."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "IT-PHASE12-006"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0037",
+      "statement": "Tiefe 5 schaltet den Porträtrahmen „Fünf Schritte“ frei.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1256",
+        "quoteHash": "sha256:ef2d127de37b942baad06145e54b0c619a1f22327b2ebbcfbec78f5564afe39d",
+        "originalExcerpt": "5"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-033"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null,
+          "target": "endless_depth_milestone"
+        }
+      ],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0038",
+      "statement": "Tiefe 10 gewährt 1 Riftessenz und einen Titel.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1256",
+        "quoteHash": "sha256:4a44dc15364204a80fe80e9039455cc1608281820fe2b24f1e5233ade6af1dd5",
+        "originalExcerpt": "10"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-034"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null,
+          "target": "endless_depth_milestone"
+        }
+      ],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0039",
+      "statement": "Tiefe 20 schaltet eine Kodexseite und 2 Riftessenz frei.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1256",
+        "quoteHash": "sha256:f5ca38f748a1d6eaf726b8a42fb575c3c71f1864a8143301782de13da2d9202b",
+        "originalExcerpt": "20"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-035"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null,
+          "target": "endless_depth_milestone"
+        }
+      ],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0040",
+      "statement": "Tiefe 30 gewährt 2 Riftessenz und einen Titel.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1256",
+        "quoteHash": "sha256:624b60c58c9d8bfb6ff1886c2fd605d2adeb6ea4da576068201b6c6958ce93f4",
+        "originalExcerpt": "30"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-036"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null,
+          "target": "endless_depth_milestone"
+        }
+      ],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0041",
+      "statement": "Tiefe 50 gewährt 3 Riftessenz und die gold-violette Arenafarbe.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1256",
+        "quoteHash": "sha256:1a6562590ef19d1045d06c4055742d38288e9e6dcd71ccde5cee80f1d5a774eb",
+        "originalExcerpt": "50"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-037"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null,
+          "target": "endless_depth_milestone"
+        }
+      ],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0042",
+      "statement": "Tiefe 75 gewährt 4 Riftessenz und eine Bossfarbvariante.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1256",
+        "quoteHash": "sha256:f369cb89fc627e668987007d121ed1eacdc01db9e28f8bb26f358b7d8c4f08ac",
+        "originalExcerpt": "75"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-038"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null,
+          "target": "endless_depth_milestone"
+        }
+      ],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0043",
+      "statement": "Tiefe 100 gewährt einen legendären rein kosmetischen Rahmen und eine Statistikplakette.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1256",
+        "quoteHash": "sha256:ad57366865126e55649ecb23ae1d48887544976efea46a48eb5d85a6eeb4d306",
+        "originalExcerpt": "100"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-039"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null,
+          "target": "endless_depth_milestone"
+        }
+      ],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0044",
+      "statement": "Jeder Held besitzt genau fünf Kernziele.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1271",
+        "quoteHash": "sha256:54e811d7920510c4055b647744243bd4a91c40b034076e07518aedadc1195d59",
+        "originalExcerpt": "Jeder Held besitzt fünf Kernziele. Ziele werden sichtbar, sobald der Held freigeschaltet ist; Ziel 4 nach Kampagnenabschluss, Ziel 5 nach Level 3. Fortschritt wird nur in gewonnenen Kämpfen oder erfolgreich abgeschlossenen Modi gewertet, außer reiner Teilnahmecounter. Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-040"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0045",
+      "statement": "Ziele werden sichtbar, sobald der Held freigeschaltet ist.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1271",
+        "quoteHash": "sha256:54e811d7920510c4055b647744243bd4a91c40b034076e07518aedadc1195d59",
+        "originalExcerpt": "Jeder Held besitzt fünf Kernziele. Ziele werden sichtbar, sobald der Held freigeschaltet ist; Ziel 4 nach Kampagnenabschluss, Ziel 5 nach Level 3. Fortschritt wird nur in gewonnenen Kämpfen oder erfolgreich abgeschlossenen Modi gewertet, außer reiner Teilnahmecounter. Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0046",
+      "statement": "Ziel 4 wird erst nach Kampagnenabschluss sichtbar.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1271",
+        "quoteHash": "sha256:54e811d7920510c4055b647744243bd4a91c40b034076e07518aedadc1195d59",
+        "originalExcerpt": "Jeder Held besitzt fünf Kernziele. Ziele werden sichtbar, sobald der Held freigeschaltet ist; Ziel 4 nach Kampagnenabschluss, Ziel 5 nach Level 3. Fortschritt wird nur in gewonnenen Kämpfen oder erfolgreich abgeschlossenen Modi gewertet, außer reiner Teilnahmecounter. Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-041"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0047",
+      "statement": "Ziel 5 wird erst nach Erreichen von Level 3 sichtbar.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1271",
+        "quoteHash": "sha256:54e811d7920510c4055b647744243bd4a91c40b034076e07518aedadc1195d59",
+        "originalExcerpt": "Jeder Held besitzt fünf Kernziele. Ziele werden sichtbar, sobald der Held freigeschaltet ist; Ziel 4 nach Kampagnenabschluss, Ziel 5 nach Level 3. Fortschritt wird nur in gewonnenen Kämpfen oder erfolgreich abgeschlossenen Modi gewertet, außer reiner Teilnahmecounter. Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-042"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0048",
+      "statement": "Fortschritt wird nicht in verlorenen Kämpfen gewertet, außer bei reinen Teilnahmecountern.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1271",
+        "quoteHash": "sha256:54e811d7920510c4055b647744243bd4a91c40b034076e07518aedadc1195d59",
+        "originalExcerpt": "Jeder Held besitzt fünf Kernziele. Ziele werden sichtbar, sobald der Held freigeschaltet ist; Ziel 4 nach Kampagnenabschluss, Ziel 5 nach Level 3. Fortschritt wird nur in gewonnenen Kämpfen oder erfolgreich abgeschlossenen Modi gewertet, außer reiner Teilnahmecounter. Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-043"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0049",
+      "statement": "Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1271",
+        "quoteHash": "sha256:54e811d7920510c4055b647744243bd4a91c40b034076e07518aedadc1195d59",
+        "originalExcerpt": "Jeder Held besitzt fünf Kernziele. Ziele werden sichtbar, sobald der Held freigeschaltet ist; Ziel 4 nach Kampagnenabschluss, Ziel 5 nach Level 3. Fortschritt wird nur in gewonnenen Kämpfen oder erfolgreich abgeschlossenen Modi gewertet, außer reiner Teilnahmecounter. Kein Ziel verlangt Onlinefunktionen oder zeitlich begrenzte Inhalte."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-044"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0050",
+      "statement": "Stufe I einer Heldenmeisterschaft gewährt eine alternative Farbvariante.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1272",
+        "quoteHash": "sha256:27c6f35f4ed3f140b12ead37c6251db241db02aa70e5c8620543345fe6598d23",
+        "originalExcerpt": "Alternative Farbvariante"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0051",
+      "statement": "Stufe II einer Heldenmeisterschaft gewährt einen Porträtrahmen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1272",
+        "quoteHash": "sha256:854e2a8fae5f2858bf88fdc9fd9efeae4fe92cf4e848beba12b2cad112bd47a6",
+        "originalExcerpt": "Porträtrahmen"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-046"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0052",
+      "statement": "Stufe III einer Heldenmeisterschaft gewährt eine kurze Charaktergeschichte im Archiv.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1272",
+        "quoteHash": "sha256:e6c3d75df875dae63326bd686ac361cf34b500ae5b39e069d962f8835456650c",
+        "originalExcerpt": "Kurze Charaktergeschichte im Archiv"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-047"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0053",
+      "statement": "Stufe IV einer Heldenmeisterschaft gewährt einen kosmetischen Signaturfähigkeitseffekt.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1272",
+        "quoteHash": "sha256:149316a2c5e81ef0e9d6d43e1beed36f83ec18da0c664445e4b23ec478ae5a6c",
+        "originalExcerpt": "Kosmetischer Signaturfähigkeitseffekt"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0054",
+      "statement": "Stufe V einer Heldenmeisterschaft gewährt einen Heldentitel und 2 Riftessenz.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1272",
+        "quoteHash": "sha256:754dfe220095f2853221b0a80220b3c09a1b9383ab3418b2684446bde6f7183a",
+        "originalExcerpt": "Heldentitel und 2 Riftessenz"
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-049"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null,
+          "target": "rift_essence_mastery_v"
+        }
+      ],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0055",
+      "statement": "Meisterschaftsfortschritt wird unmittelbar nach Kampf angezeigt und persistent gespeichert.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1314",
+        "quoteHash": "sha256:8774fbad5c3f092c1e4bee95d9e262e2fede24635b512c969804f4ffbeaaf90f",
+        "originalExcerpt": "Fortschritt wird unmittelbar nach Kampf angezeigt und persistent gespeichert."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "IT-PHASE12-007"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0056",
+      "statement": "Kosmetische Effekte aus Meisterschaften verändern Trefferzeit, Fläche und Lesbarkeit nicht.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1315",
+        "quoteHash": "sha256:a134b632d71db8d0114e1cdb721b182b46f1f23a931c91a77e6478454b5b3106",
+        "originalExcerpt": "Kosmetische Effekte verändern Trefferzeit, Fläche und Lesbarkeit nicht."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-014"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0057",
+      "statement": "Kein Meisterschaftsziel darf durch dauerhaft verpassbaren Inhalt blockierbar sein.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 31,
+        "section": null,
+        "locator": "block:1316",
+        "quoteHash": "sha256:6c746e829d3905c6d1be871504a8edcd0e62b0b3d1f228d781901ff4e468d5ee",
+        "originalExcerpt": "Kein Ziel ist durch dauerhaft verpassbaren Inhalt blockierbar."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-050"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0058",
+      "statement": "Der Kodex umfasst die Kategorien 10 Helden, 18 Truppen, 14 Beschwörungen, 28 Grundgegner, 12 Eliteattribute, 8 Champions, 4 Zwischenbosse, 4 Hauptbosse, 42 Gegenstände, 36 Relikte, 30 Ereignisse, 4 Regionen, Story, Ascension-Regeln und Modifikatoren.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 32,
+        "section": null,
+        "locator": "block:1321",
+        "quoteHash": "sha256:12f9e74613d27ce81d57d61f69983b291a9eca2f40311440b23bb1b0684afef2",
+        "originalExcerpt": "Kategorien: 10 Helden, 18 Truppen, 14 Beschwörungen, 28 Grundgegner, 12 Eliteattribute, 8 Champions, 4 Zwischenbosse, 4 Hauptbosse, 42 Gegenstände, 36 Relikte, 30 Ereignisse, 4 Regionen, Story, Ascension-Regeln und Modifikatoren."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-051"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0059",
+      "statement": "Unbekannte Kodex-Einträge erscheinen als Silhouette mit Entdeckungsquelle, sofern die Quelle bereits zugänglich ist.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 32,
+        "section": null,
+        "locator": "block:1322",
+        "quoteHash": "sha256:079ecdf36754f2576183faa15bbf500a27de1356a659b1c19713e88cdbb99350",
+        "originalExcerpt": "Unbekannte Einträge erscheinen als Silhouette mit Entdeckungsquelle, sofern die Quelle bereits zugänglich ist."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-003"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0060",
+      "statement": "Eine erste Begegnung schaltet Namen, Rolle, Kurzmechanik und Gegenstrategie frei.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 32,
+        "section": null,
+        "locator": "block:1323",
+        "quoteHash": "sha256:3720f5d8c927f94815d5108a14ee7e85f018b52dea25af358db31d350287d51d",
+        "originalExcerpt": "Erste Begegnung schaltet Namen, Rolle, Kurzmechanik und Gegenstrategie frei. Erster Sieg schaltet vollständige Baselinewerte und Fähigkeiten frei."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-052"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0061",
+      "statement": "Ein erster Sieg schaltet vollständige Baselinewerte und Fähigkeiten frei.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 32,
+        "section": null,
+        "locator": "block:1323",
+        "quoteHash": "sha256:3720f5d8c927f94815d5108a14ee7e85f018b52dea25af358db31d350287d51d",
+        "originalExcerpt": "Erste Begegnung schaltet Namen, Rolle, Kurzmechanik und Gegenstrategie frei. Erster Sieg schaltet vollständige Baselinewerte und Fähigkeiten frei."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-053"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0062",
+      "statement": "Der Boss-Kodex zeigt normale, Veteran-, Rang-4- und Rang-9-Regeln getrennt.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 32,
+        "section": null,
+        "locator": "block:1324",
+        "quoteHash": "sha256:6c6652fc682cfa554133a586fa0adf525bcb6a8af6e6f441385d04be2a3f11ae",
+        "originalExcerpt": "Boss-Kodex zeigt normale, Veteran-, Rang-4- und Rang-9-Regeln getrennt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-054"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0063",
+      "statement": "Kodex-Einträge enthalten keine versteckten aktuellen Endwerte nach Schwierigkeit, sondern Basis plus aktive Multiplikatoren.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 32,
+        "section": null,
+        "locator": "block:1325",
+        "quoteHash": "sha256:c1611dbdefc71f770827b24e6f5de808ccfcb3c63684acd5b8e202588d8920d1",
+        "originalExcerpt": "Einträge enthalten niemals versteckte aktuelle Endwerte nach Schwierigkeit; stattdessen Basis plus aktive Multiplikatoren."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-055"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0064",
+      "statement": "Der Kodex unterstützt Suche und Filter nach Name, Rolle, Merkmal, Region, Schadenstyp, Beschwörung/Konstruktion und Status freigeschaltet/ungesehen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 32,
+        "section": null,
+        "locator": "block:1326",
+        "quoteHash": "sha256:849be9ff471bbb0d5d0d0911c4857b8a78c3eff0bf91f210b2f9bdffcefd6e88",
+        "originalExcerpt": "Such-/Filteroptionen: Name, Rolle, Merkmal, Region, Schadenstyp, Beschwörung/Konstruktion, freigeschaltet/ungesehen."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-004"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0065",
+      "statement": "Erfolge sind lokal, offline und rein intern.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 33,
+        "section": null,
+        "locator": "block:1330",
+        "quoteHash": "sha256:d1ace74389d6903d0cd3460625de3bc156348c9beb403da3e277399f2d6e7903",
+        "originalExcerpt": "Erfolge sind lokal, offline und rein intern. Sie geben Kosmetik, Titel oder kleine einmalige Gold-/Riftessenzbeträge, niemals exklusive notwendige Macht. Versteckte Erfolge sind erlaubt, dürfen aber keine ernsthafte Fehlhandlung verlangen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-056"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0066",
+      "statement": "Erfolge gewähren niemals exklusive notwendige Macht.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 33,
+        "section": null,
+        "locator": "block:1330",
+        "quoteHash": "sha256:d1ace74389d6903d0cd3460625de3bc156348c9beb403da3e277399f2d6e7903",
+        "originalExcerpt": "Erfolge sind lokal, offline und rein intern. Sie geben Kosmetik, Titel oder kleine einmalige Gold-/Riftessenzbeträge, niemals exklusive notwendige Macht. Versteckte Erfolge sind erlaubt, dürfen aber keine ernsthafte Fehlhandlung verlangen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-057"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0067",
+      "statement": "Versteckte Erfolge dürfen keine ernsthafte Fehlhandlung verlangen.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 33,
+        "section": null,
+        "locator": "block:1330",
+        "quoteHash": "sha256:d1ace74389d6903d0cd3460625de3bc156348c9beb403da3e277399f2d6e7903",
+        "originalExcerpt": "Erfolge sind lokal, offline und rein intern. Sie geben Kosmetik, Titel oder kleine einmalige Gold-/Riftessenzbeträge, niemals exklusive notwendige Macht. Versteckte Erfolge sind erlaubt, dürfen aber keine ernsthafte Fehlhandlung verlangen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-058"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0068",
+      "statement": "Normale Erfolge gewähren 100 Gold oder ein kosmetisches Abzeichen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 33,
+        "section": null,
+        "locator": "block:1332",
+        "quoteHash": "sha256:dcdefaea39108adfbf971f412f5d6f4e5d8f6e60ee9977e615967c2df0bdc96e",
+        "originalExcerpt": "Normale Erfolge: 100 Gold oder kosmetisches Abzeichen. Kampagnen-/Endgame-Meilensteine: Titel/Rahmen und höchstens 1-3 Riftessenz."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-059"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0069",
+      "statement": "Kampagnen- oder Endgame-Erfolge gewähren Titel oder Rahmen und höchstens 1-3 Riftessenz.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 33,
+        "section": null,
+        "locator": "block:1332",
+        "quoteHash": "sha256:dcdefaea39108adfbf971f412f5d6f4e5d8f6e60ee9977e615967c2df0bdc96e",
+        "originalExcerpt": "Normale Erfolge: 100 Gold oder kosmetisches Abzeichen. Kampagnen-/Endgame-Meilensteine: Titel/Rahmen und höchstens 1-3 Riftessenz."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-060"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 3,
+          "target": "endgame_achievement_essence"
+        }
+      ],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0070",
+      "statement": "Erfolge werden nachträglich geprüft, wenn ein altes Savegame auf eine Version mit neuer Prüfung geladen wird.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 33,
+        "section": null,
+        "locator": "block:1333",
+        "quoteHash": "sha256:71159f3a11523f50c16d839476102f1fda74a56eff147a9a33d5f663f7559868",
+        "originalExcerpt": "Erfolge werden nachträglich geprüft, wenn ein altes Savegame auf eine Version mit neuer Prüfung geladen wird."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "IT-PHASE12-008"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0071",
+      "statement": "Die Erfolge „Pip hatte recht/nicht recht\" verwenden ausschließlich die explizit zufälligen Pip-Optionen und keine versteckten Wertungen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 33,
+        "section": null,
+        "locator": "block:1334",
+        "quoteHash": "sha256:9eda21812e76a2527dbc480586dbb979598b066aa8fb4f365712542c83b30c3c",
+        "originalExcerpt": "„Pip hatte recht/nicht recht\" verwendet ausschließlich die explizit zufälligen Pip-Optionen und keine versteckten Wertungen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-061"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0072",
+      "statement": "Nach jedem Kampf werden maximal zwei Hinweise aus objektiven Regeln gewählt.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1348",
+        "quoteHash": "sha256:30b0ad4b64c384cc2378e6aa55e7106bfa04201bb28e54cb42cd0c228749481a",
+        "originalExcerpt": "Nach jedem Kampf werden maximal zwei Hinweise aus objektiven Regeln gewählt. Ein Hinweis benötigt eine Mindestkonfidenz und darf keine einzige perfekte Lösung behaupten. Priorität: unmittelbare Niederlagenursache; ungenutzter klarer Counter; Positionsproblem; Wirtschaft/Belohnung nie als Kampfhinweis."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-005"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0073",
+      "statement": "Ein Hinweis benötigt eine Mindestkonfidenz und darf keine einzige perfekte Lösung behaupten.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1348",
+        "quoteHash": "sha256:30b0ad4b64c384cc2378e6aa55e7106bfa04201bb28e54cb42cd0c228749481a",
+        "originalExcerpt": "Nach jedem Kampf werden maximal zwei Hinweise aus objektiven Regeln gewählt. Ein Hinweis benötigt eine Mindestkonfidenz und darf keine einzige perfekte Lösung behaupten. Priorität: unmittelbare Niederlagenursache; ungenutzter klarer Counter; Positionsproblem; Wirtschaft/Belohnung nie als Kampfhinweis."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-006"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0074",
+      "statement": "Wirtschaft und Belohnung werden niemals als Kampfhinweis verwendet.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1348",
+        "quoteHash": "sha256:30b0ad4b64c384cc2378e6aa55e7106bfa04201bb28e54cb42cd0c228749481a",
+        "originalExcerpt": "Nach jedem Kampf werden maximal zwei Hinweise aus objektiven Regeln gewählt. Ein Hinweis benötigt eine Mindestkonfidenz und darf keine einzige perfekte Lösung behaupten. Priorität: unmittelbare Niederlagenursache; ungenutzter klarer Counter; Positionsproblem; Wirtschaft/Belohnung nie als Kampfhinweis."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-007"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0075",
+      "statement": "Auswertungswerte stimmen mit dem Kampflog auf Rundungsdifferenz unter 0,1 Prozent überein.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1351",
+        "quoteHash": "sha256:758026dcfd4312b65ae18ec2c8d4dd827a6b4a0b96ce285243ec855f93868aea",
+        "originalExcerpt": "Auswertungswerte stimmen mit Kampflog auf Rundungsdifferenz unter 0,1% überein."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-015"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "%",
+          "max": 0.1,
+          "target": "eval_log_deviation"
+        }
+      ],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0076",
+      "statement": "Der MVP-Algorithmus bevorzugt nicht automatisch reine DPS über essentielle Heilung oder Tankleistung.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1352",
+        "quoteHash": "sha256:b2b8f9674def8fedcbd38e94ce3544b839e88a62ee14ed89fbd0c7204b720fc4",
+        "originalExcerpt": "MVP-Algorithmus bevorzugt nicht automatisch reine DPS über essentielle Heilung/Tankleistung."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "PT-PHASE08-016"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0077",
+      "statement": "Hinweise werden nur bei vollständig erfüllten Triggern gezeigt und nennen keine nicht vorhandene Fähigkeit.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1353",
+        "quoteHash": "sha256:ad9a70a7551a94f7fdeb8f33a5f00af792bd54688c9b2bf85e3c129a2b17f77c",
+        "originalExcerpt": "Hinweise werden nur bei vollständig erfüllten Triggern gezeigt und nennen keine nicht vorhandene Fähigkeit."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-008"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0078",
+      "statement": "Der Spieler kann von jeder Metrik direkt zur Ereignis-Timeline springen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1354",
+        "quoteHash": "sha256:50f6857af7f9de41dc6f3536f728845d0935272155987bc90e16b3b9134542e2",
+        "originalExcerpt": "Spieler kann von jeder Metrik direkt zur Ereignis-Timeline springen."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-009"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0079",
+      "statement": "Die Kampfbewertung „Überlegen\" gewährt 15 Prozent mehr Gold und eine höhere Reliktgewichtung klein.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1344",
+        "quoteHash": "sha256:28e02e66035755b4fc5c5df3aa5ab3434f6d64b0a409d6fb4d90fbab79f36e02",
+        "originalExcerpt": "+15% Gold, höhere Reliktgewichtung klein."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-062"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "%",
+          "value": null,
+          "target": "superior_gold_bonus"
+        }
+      ],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0080",
+      "statement": "Die Kampfbewertung „Kontrolliert\" gewährt 8 Prozent mehr Gold.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1344",
+        "quoteHash": "sha256:0c9c9950e42c6059d30a07da1c7429f7947334972db603bf3153f6af16bde02b",
+        "originalExcerpt": "+8% Gold."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-063"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "%",
+          "value": null,
+          "target": "controlled_gold_bonus"
+        }
+      ],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0081",
+      "statement": "Die Kampfbewertung „Hart erkämpft\" gewährt weder Bonus noch Malus.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1344",
+        "quoteHash": "sha256:2f6560be6f112c92793eb2b4bcf5b5349ac9472dbcf04af6d2e0730cabeea7c3",
+        "originalExcerpt": "Kein Bonus/Malus."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-064"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0082",
+      "statement": "Die Kampfbewertung „Letzter Stand\" gewährt keinen Malus, aber einen eigenen Statistikmarker.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 34,
+        "section": null,
+        "locator": "block:1344",
+        "quoteHash": "sha256:398712629a883f9ec97e064b49e8d5969fa627ac56631e7213d1997928c0b65d",
+        "originalExcerpt": "Kein Malus; eigener Statistikmarker."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-PHASE10-065"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0083",
+      "statement": "Das Hauptquartier ist eine kompakte, visuell zusammenhängende Menüumgebung.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 35,
+        "section": null,
+        "locator": "block:1359",
+        "quoteHash": "sha256:bcff5dde29d9e9b728eac61fabf8043941311b2a55b5b91133eca0f853e9ec56",
+        "originalExcerpt": "Das Hauptquartier ist eine kompakte, visuell zusammenhängende Menüumgebung und keine frei begehbare Basis. Jeder Bereich öffnet eine klar fokussierte Oberfläche; der Spieler baut keine Räume manuell."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-010"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0084",
+      "statement": "Der Spieler baut keine Räume im Hauptquartier manuell.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 35,
+        "section": null,
+        "locator": "block:1359",
+        "quoteHash": "sha256:bcff5dde29d9e9b728eac61fabf8043941311b2a55b5b91133eca0f853e9ec56",
+        "originalExcerpt": "Das Hauptquartier ist eine kompakte, visuell zusammenhängende Menüumgebung und keine frei begehbare Basis. Jeder Bereich öffnet eine klar fokussierte Oberfläche; der Spieler baut keine Räume manuell."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-011"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0085",
+      "statement": "Vom Hauptquartier ist jeder Hauptbereich mit einem Tap erreichbar.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 35,
+        "section": null,
+        "locator": "block:1363",
+        "quoteHash": "sha256:6014d1a3ad02546c60b37879bbe0302ba11699416964be49f900111d1d9c91e9",
+        "originalExcerpt": "Vom Hauptquartier ist jeder Hauptbereich mit einem Tap erreichbar; keine verschachtelte Navigation tiefer als drei Ebenen."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-012"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0086",
+      "statement": "Die Navigation ist nicht tiefer als drei Ebenen verschachtelt.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 35,
+        "section": null,
+        "locator": "block:1363",
+        "quoteHash": "sha256:6014d1a3ad02546c60b37879bbe0302ba11699416964be49f900111d1d9c91e9",
+        "originalExcerpt": "Vom Hauptquartier ist jeder Hauptbereich mit einem Tap erreichbar; keine verschachtelte Navigation tiefer als drei Ebenen."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-013"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0087",
+      "statement": "Zurück führt immer eine Ebene zurück.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 35,
+        "section": null,
+        "locator": "block:1364",
+        "quoteHash": "sha256:bc849e5fcf35a3ea3e624fc649b7b481ceee7aeb2ac0ed520a7f927df9b4ee82",
+        "originalExcerpt": "Zurück führt immer eine Ebene zurück und verwirft nie unbestätigte Käufe ohne Dialog."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-014"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0088",
+      "statement": "Unbestätigte Käufe werden nicht ohne Dialog verworfen.",
+      "norm": "MUST_NOT",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 35,
+        "section": null,
+        "locator": "block:1364",
+        "quoteHash": "sha256:bc849e5fcf35a3ea3e624fc649b7b481ceee7aeb2ac0ed520a7f927df9b4ee82",
+        "originalExcerpt": "Zurück führt immer eine Ebene zurück und verwirft nie unbestätigte Käufe ohne Dialog."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-015"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0089",
+      "statement": "Neue Inhalte erhalten einen einmaligen Punkt, der nach Öffnen des relevanten Details verschwindet.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 35,
+        "section": null,
+        "locator": "block:1365",
+        "quoteHash": "sha256:42969c1fd36e692dc616483343d7ae91c211cb5fe2c40f8a7c47c97381a9a0bd",
+        "originalExcerpt": "Neue Inhalte erhalten einen einmaligen Punkt; der Punkt verschwindet nach Öffnen des relevanten Details, nicht bloß des Obermenüs."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-016"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    },
+    {
+      "tempId": "REQ-TEMP-B-0090",
+      "statement": "Gold, Riftessenz und aktueller Modus sind auf allen Verwaltungsseiten sichtbar.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 35,
+        "section": null,
+        "locator": "block:1366",
+        "quoteHash": "sha256:46ec0b3b3af5a33cc84dab5b677a74df4a57b981adfdc01f0891631b584d5271",
+        "originalExcerpt": "Gold, Riftessenz und aktueller Modus sind auf allen Verwaltungsseiten sichtbar."
+      },
+      "ownerPhases": [
+        "PHASE-15"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-15",
+          "testIds": [
+            "VIS-PHASE15-017"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned"
+    }
+  ],
+  "contextOnly": []
+}

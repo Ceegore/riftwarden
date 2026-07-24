@@ -1,0 +1,15 @@
+# Chapter 65: Teststrategie, QA und automatisierte Gates
+# blocks 1858..1875 (18 blocks)
+
+[Heading 2] 65. Teststrategie, QA und automatisierte Gates
+[Heading 3] 65.1 Testpyramide
+[Heading 3] 65.2 Simulationsinvarianten
+[Compact] LP und Schild nie negativ; keine Entity gleichzeitig ACTIVE und DEFEATED.
+[Compact] Maximal sieben reguläre Einheiten, drei Helden, drei gleiche Truppen und sechs Beschwörungen pro Seite.
+[Compact] Jede geplante Aktion endet, wird unterbrochen oder verfällt innerhalb ihres Safety Caps.
+[Compact] Keine Fähigkeit kann sich im selben Tick unbegrenzt selbst triggern; globale Eventobergrenze 10.000 je Kampf, danach harter Testfehler.
+[Compact] Gleicher Startsnapshot + Entscheidungen + Version erzeugt identischen Endchecksum, Eventcount und Ergebnis.
+[Compact] Jeder Kampf endet bis Tick 5400; jeder Dungeon-Generator endet bis Versuch 50.
+[Compact] Belohnung kann genau einmal committed werden; commitId ist monoton.
+[Heading 3] 65.3 Geräte- und Browsermatrix
+[Heading 3] 65.4 Fehlerprioritäten

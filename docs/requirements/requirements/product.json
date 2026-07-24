@@ -1,0 +1,3105 @@
+{
+  "schemaVersion": "1.0",
+  "category": "Product",
+  "requirements": [
+    {
+      "id": "REQ-PRODUCT-0001",
+      "title": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "statement": "Es dürfen keine nicht beschriebenen Kernmechaniken ergänzt werden.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:1b3cf489379516ebdd87d78af51616dc25a1a033cd2ef891a54ab2732514ba96",
+        "originalExcerpt": "Ein Agent darf keine nicht beschriebenen Kernmechaniken ergänzen, keine festgelegten Obergrenzen aufweichen, keine manuelle Kampfsteuerung einführen und keine technische Grundsatzentscheidung eigenmächtig austauschen."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0002",
+      "title": "Festgelegte Obergrenzen dürfen nicht aufgeweicht werden.",
+      "statement": "Festgelegte Obergrenzen dürfen nicht aufgeweicht werden.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:1b3cf489379516ebdd87d78af51616dc25a1a033cd2ef891a54ab2732514ba96",
+        "originalExcerpt": "Ein Agent darf keine nicht beschriebenen Kernmechaniken ergänzen, keine festgelegten Obergrenzen aufweichen, keine manuelle Kampfsteuerung einführen und keine technische Grundsatzentscheidung eigenmächtig austauschen."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0003",
+      "title": "Technische Grundsatzentscheidungen dürfen nicht eigenmächtig ausgetauscht wer...",
+      "statement": "Technische Grundsatzentscheidungen dürfen nicht eigenmächtig ausgetauscht werden.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:1b3cf489379516ebdd87d78af51616dc25a1a033cd2ef891a54ab2732514ba96",
+        "originalExcerpt": "Ein Agent darf keine nicht beschriebenen Kernmechaniken ergänzen, keine festgelegten Obergrenzen aufweichen, keine manuelle Kampfsteuerung einführen und keine technische Grundsatzentscheidung eigenmächtig austauschen."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-003"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0004",
+      "title": "Die Zielversion muss klein genug für ein hochpoliertes Premiumspiel bleiben.",
+      "statement": "Die Zielversion muss klein genug für ein hochpoliertes Premiumspiel bleiben.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:12",
+        "quoteHash": "sha256:f17e21586442e0eecdd75dabf883ed84cf4c4f4c02094b0f574f7c04dca04293",
+        "originalExcerpt": "Die Zielversion bleibt klein genug für ein hochpoliertes Premiumspiel."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-004"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0005",
+      "title": "Rechts-, Steuer- und Inhaberfragen bleiben beim Publisher und sind nicht Inha...",
+      "statement": "Rechts-, Steuer- und Inhaberfragen bleiben beim Publisher und sind nicht Inhalt der Implementierung.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 1,
+        "section": null,
+        "locator": "block:21",
+        "quoteHash": "sha256:5e8057a66d92b3001bfa560da0234c250c8abef5af4fbdafcf869d5c0c771ccf",
+        "originalExcerpt": "Rechtsberatung, verbindliche Steuer- oder Unternehmensentscheidungen und die endgültige Inhaberidentität für Storekonten; diese bleiben beim Publisher."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-005"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0006",
+      "title": "Das Produkt ist ein kompaktes Fantasy-Roguelite mit vollständig automatischen...",
+      "statement": "Das Produkt ist ein kompaktes Fantasy-Roguelite mit vollständig automatischen Gruppenkämpfen in stilisierter Seitenansicht.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:31",
+        "quoteHash": "sha256:7e1ebcffdb8c5f77510c28abaec13e0ec33730d5968e6a5ad79f15ea054cc60f",
+        "originalExcerpt": "Riftwarden: Auto RPG Roguelite ist ein kompaktes Fantasy-Roguelite mit vollständig automatischen Gruppenkämpfen in stilisierter Seitenansicht."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PROD-006"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0007",
+      "title": "Das Spiel darf keinerlei Fortschritt ohne aktives Spielen erzeugen.",
+      "statement": "Das Spiel darf keinerlei Fortschritt ohne aktives Spielen erzeugen.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:33",
+        "quoteHash": "sha256:7263fd9c6a998517d6f9ed0be2f31ce3c74f41828514ee213f9a9939c394469d",
+        "originalExcerpt": "Das Spiel erzeugt keinerlei Fortschritt ohne aktives Spielen. Es gibt keine Energie, Wartezeit, Offline-Erträge, Tagesaufgaben oder Live-Service-Abhängigkeit."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PROD-007"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0008",
+      "title": "Es dürfen keine Energie, Wartezeit, Offline-Erträge, Tagesaufgaben oder Live-...",
+      "statement": "Es dürfen keine Energie, Wartezeit, Offline-Erträge, Tagesaufgaben oder Live-Service-Abhängigkeit existieren.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:33",
+        "quoteHash": "sha256:7263fd9c6a998517d6f9ed0be2f31ce3c74f41828514ee213f9a9939c394469d",
+        "originalExcerpt": "Das Spiel erzeugt keinerlei Fortschritt ohne aktives Spielen. Es gibt keine Energie, Wartezeit, Offline-Erträge, Tagesaufgaben oder Live-Service-Abhängigkeit."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PROD-008"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0009",
+      "title": "Die Kampagne muss abgeschlossen sein und den Kauf allein rechtfertigen.",
+      "statement": "Die Kampagne muss abgeschlossen sein und den Kauf allein rechtfertigen.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 2,
+        "section": null,
+        "locator": "block:35",
+        "quoteHash": "sha256:726ab5ac14593365cdf459c0f2ee6dc3a501163810f5fab2cad6a805c3934ce5",
+        "originalExcerpt": "Die Kampagne ist abgeschlossen und rechtfertigt den Kauf allein. Ascension und Endlose Rift sind substanzielle Endgame-Modi, keine Ausrede für fehlenden Kampagneninhalt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PROD-009"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0010",
+      "title": "PvP, Online-Ranglisten, Accounts, Gilden und Chat sind nicht Teil der Zielver...",
+      "statement": "PvP, Online-Ranglisten, Accounts, Gilden und Chat sind nicht Teil der Zielversion.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 3,
+        "section": null,
+        "locator": "block:44",
+        "quoteHash": "sha256:6840b8ac0feb20c676daa84d72119f92d703ba700d4f729a7ecbba5dbfd9efc2",
+        "originalExcerpt": "Nicht Teil der Zielversion sind: manuelle Kampffähigkeiten, aktives Zielen, PvP, Online-Ranglisten, Accounts, Gilden, Chat, Cloud-Zwang, Live-Events, tägliche Aufgaben, saisonale Inhalte, Basisbau, offene Welt, frei begehbare Dungeons, weit verzweigte Dialogbäume, permanente Heldentode, Verletzungen zwischen Kämpfen, Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe, unbegrenzte Charakterlevel und Echtgeldshops."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-010"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0011",
+      "title": "Cloud-Zwang, Live-Events, tägliche Aufgaben und saisonale Inhalte sind nicht ...",
+      "statement": "Cloud-Zwang, Live-Events, tägliche Aufgaben und saisonale Inhalte sind nicht Teil der Zielversion.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 3,
+        "section": null,
+        "locator": "block:44",
+        "quoteHash": "sha256:6840b8ac0feb20c676daa84d72119f92d703ba700d4f729a7ecbba5dbfd9efc2",
+        "originalExcerpt": "Nicht Teil der Zielversion sind: manuelle Kampffähigkeiten, aktives Zielen, PvP, Online-Ranglisten, Accounts, Gilden, Chat, Cloud-Zwang, Live-Events, tägliche Aufgaben, saisonale Inhalte, Basisbau, offene Welt, frei begehbare Dungeons, weit verzweigte Dialogbäume, permanente Heldentode, Verletzungen zwischen Kämpfen, Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe, unbegrenzte Charakterlevel und Echtgeldshops."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-011"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0012",
+      "title": "Basisbau, offene Welt und frei begehbare Dungeons sind nicht Teil der Zielver...",
+      "statement": "Basisbau, offene Welt und frei begehbare Dungeons sind nicht Teil der Zielversion.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 3,
+        "section": null,
+        "locator": "block:44",
+        "quoteHash": "sha256:6840b8ac0feb20c676daa84d72119f92d703ba700d4f729a7ecbba5dbfd9efc2",
+        "originalExcerpt": "Nicht Teil der Zielversion sind: manuelle Kampffähigkeiten, aktives Zielen, PvP, Online-Ranglisten, Accounts, Gilden, Chat, Cloud-Zwang, Live-Events, tägliche Aufgaben, saisonale Inhalte, Basisbau, offene Welt, frei begehbare Dungeons, weit verzweigte Dialogbäume, permanente Heldentode, Verletzungen zwischen Kämpfen, Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe, unbegrenzte Charakterlevel und Echtgeldshops."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-012"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0013",
+      "title": "Eine Standardexpedition muss 12-25 Minuten dauern.",
+      "statement": "Eine Standardexpedition muss 12-25 Minuten dauern.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 5,
+        "section": null,
+        "locator": "block:84",
+        "quoteHash": "sha256:3264ab6bbf69632263b38d97faa17f9c0e70c42e3bad7787fb68653a29d720e6",
+        "originalExcerpt": "Eine Standardexpedition soll 12-25 Minuten dauern. Eine Kampagnenmission darf beim ersten Durchlauf einschließlich Story und Lesen 20-35 Minuten erreichen. Unterbrechung und lokales Fortsetzen müssen an jedem Knoten außerhalb eines laufenden Kampfes möglich sein; im Kampf wird beim App-Verlassen ein deterministischer Kampfsnapshot gespeichert."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PROD-013"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "minutes",
+          "min": 12,
+          "max": 25,
+          "target": "standard_expedition_duration"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0014",
+      "title": "Eine Kampagnenmission darf beim ersten Durchlauf einschließlich Story und Les...",
+      "statement": "Eine Kampagnenmission darf beim ersten Durchlauf einschließlich Story und Lesen 20-35 Minuten erreichen.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 5,
+        "section": null,
+        "locator": "block:84",
+        "quoteHash": "sha256:3264ab6bbf69632263b38d97faa17f9c0e70c42e3bad7787fb68653a29d720e6",
+        "originalExcerpt": "Eine Standardexpedition soll 12-25 Minuten dauern. Eine Kampagnenmission darf beim ersten Durchlauf einschließlich Story und Lesen 20-35 Minuten erreichen. Unterbrechung und lokales Fortsetzen müssen an jedem Knoten außerhalb eines laufenden Kampfes möglich sein; im Kampf wird beim App-Verlassen ein deterministischer Kampfsnapshot gespeichert."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PROD-014"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "minutes",
+          "min": 20,
+          "max": 35,
+          "target": "first_campaign_run_duration"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "tempId": "REQ-TEMP-B-0001",
+      "statement": "Endlose Rift wird nach Abschluss der Kampagne freigeschaltet.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1236",
+        "quoteHash": "sha256:38672aabb655ef95d0a643ce4d24bb6717dc7afa8bed3a4775771df3f9d313cf",
+        "originalExcerpt": "Freischaltung nach Kampagne. Start: vollständige Gruppe, genau drei permanente Gegenstände inklusive möglichem Banner, Doktrin und optional bereits abgeschlossener Ascension-Regelsatz."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PROD-015"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-PRODUCT-0015",
+      "title": "Endlose Rift wird nach Abschluss der Kampagne freigeschaltet."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0003",
+      "statement": "Endlose Rift darf nicht ohne Doktrin starten.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1236",
+        "quoteHash": "sha256:38672aabb655ef95d0a643ce4d24bb6717dc7afa8bed3a4775771df3f9d313cf",
+        "originalExcerpt": "Freischaltung nach Kampagne. Start: vollständige Gruppe, genau drei permanente Gegenstände inklusive möglichem Banner, Doktrin und optional bereits abgeschlossener Ascension-Regelsatz."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PROD-016"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-PRODUCT-0016",
+      "title": "Endlose Rift darf nicht ohne Doktrin starten."
+    },
+    {
+      "tempId": "REQ-TEMP-B-0035",
+      "statement": "Tiefe 100 ist theoretisch erreichbar, aber kein durchschnittliches Balanceziel.",
+      "norm": "SHOULD",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 30,
+        "section": null,
+        "locator": "block:1265",
+        "quoteHash": "sha256:2bf604d8b3ad20919146f8d5c1fb1215db879ed6c6ec317e7421b575f82725d4",
+        "originalExcerpt": "Tiefe 100 ist theoretisch erreichbar, aber nicht als durchschnittliches Balanceziel verlangt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PROD-017"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "status": "planned",
+      "id": "REQ-PRODUCT-0017",
+      "title": "Tiefe 100 ist theoretisch erreichbar, aber kein durchschnittliches Balanceziel."
+    },
+    {
+      "id": "REQ-PRODUCT-0018",
+      "title": "Keine Inhaltsproduktion vor Phase 4",
+      "statement": "Ein Agent beginnt nicht mit vollständiger Inhaltsproduktion, bevor Phase 4 beweist, dass Simulation und Beobachtbarkeit funktionieren.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 67,
+        "section": null,
+        "locator": "block:1896",
+        "quoteHash": "sha256:00155c531bd6c25cffb3ce7e8782e0097edbc9587ef31625154095dab50d4cdb",
+        "originalExcerpt": "Ein Agent beginnt nicht mit vollständiger Inhaltsproduktion, bevor Phase 4 beweist, dass Simulation und Beobachtbarkeit funktionieren."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-018"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0019",
+      "title": "Keine Wegwerfarchitektur",
+      "statement": "Jede Phase baut auf produktionsnahen Daten und Komponenten; eine zweite Wegwerfarchitektur für Prototyp und Release ist verboten.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 67,
+        "section": null,
+        "locator": "block:1897",
+        "quoteHash": "sha256:b75148b4fef2630ea2c96124b7a4636321b554dc4a0da034efc62444d9f4914b",
+        "originalExcerpt": "Jede Phase baut auf produktionsnahen Daten und Komponenten; keine zweite Wegwerfarchitektur für Prototyp und Release."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-019"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0020",
+      "title": "Scope nach V3 Kapitel 46 kürzen",
+      "statement": "Bei Blockern wird Scope nach V3 Kapitel 46 gekürzt; Save-, Lesbarkeits-, Accessibility- und Storequalität bleiben unangetastet.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 67,
+        "section": null,
+        "locator": "block:1898",
+        "quoteHash": "sha256:c204139667988eb5cca64928a8be4a40d11b62809588464c8626c348336470b0",
+        "originalExcerpt": "Bei Blockern wird Scope nach V3 Kapitel 46 gekürzt, nicht Save-, Lesbarkeits-, Accessibility- oder Storequalität."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-020"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0021",
+      "title": "Kein Live-Service",
+      "statement": "Es gibt keine tägliche Betriebsverpflichtung, keinen Server und keinen Contentkalender; Wartung umfasst nur OS/Store-Kompatibilität, kritische Fehler und optionale Qualitätsupdates.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 68,
+        "section": null,
+        "locator": "block:1917",
+        "quoteHash": "sha256:8ae9bd4ed2b15ca2ae3e852dca9b5785dc0baf5b36593f891790a72ab4975c1f",
+        "originalExcerpt": "Es gibt keine tägliche Betriebsverpflichtung, Server oder Contentkalender. Wartung betrifft OS/Store-Kompatibilität, kritische Fehler und optionale Qualitätsupdates."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PROD-021"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0022",
+      "title": "Manuelle Post-Launch-Prüfung",
+      "statement": "Android Vitals, Play Reviews, App Store Crashes und Supportmails werden manuell geprüft; App-Telemetrie wird nicht ohne Produkt-/Datenschutzentscheidung nachgerüstet.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 68,
+        "section": null,
+        "locator": "block:1918",
+        "quoteHash": "sha256:a47025ec6f50b54056df9c75a5b90f9aaea58c4d98bad55224ac074d0eb871aa",
+        "originalExcerpt": "Android Vitals, Play Reviews, App Store Crashes und Supportmails werden manuell geprüft; keine App-Telemetrie wird nachgerüstet, ohne Produkt-/Datenschutzentscheidung."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PROD-022"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0023",
+      "title": "Plattform-Drop ankündigen",
+      "statement": "Wird eine Plattformversion nicht mehr unterstützt, wird dies in Storemetadata und Release Notes angekündigt; bestehende Offlinefunktion darf nicht künstlich deaktiviert werden.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 68,
+        "section": null,
+        "locator": "block:1920",
+        "quoteHash": "sha256:9de16e8c7de6f3e2ae6db4b752e2b2c9226ef7609a9969d150db76965e0b4479",
+        "originalExcerpt": "Wird eine Plattformversion nicht mehr unterstützt, muss dies in Storemetadata und Release Notes angekündigt werden; bestehende Offlinefunktion darf nicht künstlich deaktiviert werden."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PROD-023"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0024",
+      "title": "Externer Recheck vor Upload",
+      "statement": "Spätestens 14 Tage vor jedem Produktionsupload werden die offiziellen Plattformregeln erneut geprüft und die Release-Checkliste aktualisiert; eine neuere Plattformpflicht überschreibt nur den technischen Mindestwert, nicht die Produktidentität oder Datenschutzgrenzen.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 69,
+        "section": null,
+        "locator": "block:1921",
+        "quoteHash": "sha256:34eb926084a909b6d16bc55ceb3b08d74eb9d97bcdc1b81d2efa74c45fc9ec23",
+        "originalExcerpt": "Die folgenden externen Regeln sind der dokumentierte Prüfstand vom 16. Juli 2026. Storeanforderungen ändern sich. Spätestens 14 Tage vor jedem Produktionsupload müssen die offiziellen Seiten erneut geprüft und die Release-Checkliste aktualisiert werden. Eine neuere Plattformpflicht überschreibt nur den technischen Mindestwert, nicht die Produktidentität oder Datenschutzgrenzen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PROD-024"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "days",
+          "max": 14
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0025",
+      "title": "V3-Obergrenzen unverändert",
+      "statement": "Keine V3-Obergrenze darf erhöht werden: sieben reguläre Einheiten, drei Helden, drei gleiche Truppen, sechs Beschwörungen, drei Heldenlevel und drei Ascension-Startgegenstände bleiben verbindlich.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 70,
+        "section": null,
+        "locator": "block:1937",
+        "quoteHash": "sha256:0ba16addb56b015c7209597517666b5fee9f1503f2a8eb16f770222aff23341a",
+        "originalExcerpt": "Keine V3-Obergrenze wurde erhöht: sieben reguläre Einheiten, drei Helden, drei gleiche Truppen, sechs Beschwörungen, drei Heldenlevel und drei Ascension-Startgegenstände bleiben verbindlich."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PROD-025"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 7
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0026",
+      "title": "V3-Geschäftsmodell unverändert",
+      "statement": "Premium-Einmalkaufmodell, vollständige Offlinefunktion, Verbot von Werbung/IAP/Accounts/Server und Verbot manueller Kampfsteuerung bleiben unverändert.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 70,
+        "section": null,
+        "locator": "block:1938",
+        "quoteHash": "sha256:19dd4104f4bd8f18556d01836ca2a0fc591f80074323504ae831150355f1d3eb",
+        "originalExcerpt": "Das Premium-Einmalkaufmodell, vollständige Offlinefunktion, keine Werbung/IAP/Accounts/Server und keine manuelle Kampfsteuerung bleiben unverändert."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PROD-026"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0027",
+      "title": "Produktionsreife Definition",
+      "statement": "Riftwarden ist produktionsreif spezifiziert, wenn ein Implementierungsagent aus dem Dokument Repository, Datenmodelle, deterministische Simulation, Mobile-App-Shell, alle Screens, responsive GUIs, Save- und Recoverylogik, Android-/iOS-Projekte, Tests und Storeartefakte ohne inhaltliche oder technische Grundsatzentscheidung erstellen kann; V3 bleibt Inhaltsautorität, Kapitel 48-70 sind Autorität für Restklarstellungen, Technik, UX, Plattformen und Release.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 71,
+        "section": null,
+        "locator": "block:1946",
+        "quoteHash": "sha256:85e24820979588c072d48978d6116b21aebd907e59bcf90f840259054964ef62",
+        "originalExcerpt": "Riftwarden: Auto RPG Roguelite ist produktionsreif spezifiziert, wenn ein Implementierungsagent aus diesem Dokument Repository, Datenmodelle, deterministische Simulation, Mobile-App-Shell, sämtliche Screens, responsive GUIs, Save- und Recoverylogik, Android-/iOS-Projekte, Tests und Storeartefakte erstellen kann, ohne eine inhaltliche oder technische Grundsatzentscheidung zu erfinden. Die vollständige V3-Spieldefinition bleibt die Autorität für Inhalt und Balance; die Kapitel 48 bis 70 sind die Autorität für Restklarstellungen, Technik, UX, Plattformen und Release."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-027"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0028",
+      "title": "Erster Meilenstein Phase 0-2",
+      "statement": "Der erste ausführbare Meilenstein ist Phase 0-2 mit validiertem Content, reproduzierbarer Simulation und beiden startbaren Capacitor-Containern, nicht ein Mockup.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 71,
+        "section": null,
+        "locator": "block:1947",
+        "quoteHash": "sha256:2ba52fc671f156ae97625fe9bff5267e0b87eb1d79c6b8bd6397aef663421678",
+        "originalExcerpt": "Der erste ausführbare Meilenstein ist nicht ein Mockup, sondern Phase 0-2 mit validiertem Content, reproduzierbarer Simulation und beiden startbaren Capacitor-Containern."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-028"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0029",
+      "title": "Keine Beschleunigungs-Shortcuts",
+      "statement": "Kein Agent darf Remote-Code, Analytics, Werbung, manuelle Fähigkeiten, Accountzwang, ungesicherte Saves oder nicht adaptive Webview-Hacks zur Beschleunigung einführen.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 71,
+        "section": null,
+        "locator": "block:1950",
+        "quoteHash": "sha256:890022f4759b415ee248903c114f89d079c99ce2ce5fb375c114fec9ea42f7fe",
+        "originalExcerpt": "Kein Agent darf zur Beschleunigung Remote-Code, Analytics, Werbung, manuelle Fähigkeiten, Accountzwang, ungesicherte Saves oder nicht adaptive Webview-Hacks einführen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PROD-029"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0030",
+      "title": "V5 als Source of Truth",
+      "statement": "Version 5 ist Source of Truth für Produkt, Inhalt, Simulation, UX, Daten, Native-Container, Qualität und Release; der spätere Entwicklungsplan darf keine hier definierte Produktentscheidung neu treffen.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 72,
+        "section": null,
+        "locator": "block:1954",
+        "quoteHash": "sha256:fb3c8d736ccf7b0362132918fb37a4400244a36d40148a3e0e34f9b324bdb40a",
+        "originalExcerpt": "Version 5 ist die letzte Designspezifikation vor der Erstellung eines getrennten Entwicklungsplans. Sie ist keine Ideensammlung und kein unverbindliches Briefing. Ein Implementierungsagent verwendet sie als Source of Truth für Produkt, Inhalt, Simulation, UX, Daten, Native-Container, Qualität und Release. Der spätere Entwicklungsplan darf Reihenfolge, Arbeitspakete, Verantwortliche und Schätzungen festlegen, aber keine hier definierte Produktentscheidung neu treffen."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-030"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0031",
+      "title": "Erlaubte technische Eigenentscheidungen",
+      "statement": "Der Agent darf lokale Funktionsnamen, private Hilfsfunktionen, interne Dateiaufteilung innerhalb der festgelegten Module und äquivalente reine Algorithmen wählen.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 72,
+        "section": null,
+        "locator": "block:1962",
+        "quoteHash": "sha256:8d6895d90fcaca43d7a932fa0262cb585768e6e59df3e34a8f8cb5a0fd79428b",
+        "originalExcerpt": "Der Agent darf lokale Funktionsnamen, private Hilfsfunktionen, interne Dateiaufteilung innerhalb der festgelegten Module und äquivalente reine Algorithmen wählen."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-031"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0032",
+      "title": "Verbotene Erweiterungen",
+      "statement": "Der Agent darf keine Dependency hinzufügen, kein Schemafeld umdeuten, keine Währung/Einheit/Fähigkeit ergänzen und keine UI-Funktion verstecken, um Aufwand zu sparen.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 72,
+        "section": null,
+        "locator": "block:1962",
+        "quoteHash": "sha256:783c3021b31be1b519a8a273b360f26b7e8303935de75e913f0af3abb61e2128",
+        "originalExcerpt": "Der Agent darf keine Dependency hinzufügen, kein Schemafeld umdeuten, keine Währung/Einheit/Fähigkeit ergänzen und keine UI-Funktion verstecken, um Aufwand zu sparen."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-032"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0033",
+      "title": "Tiebreak-Reihenfolge technisch",
+      "statement": "Bei mehreren technisch gleichwertigen Lösungen gilt in dieser Reihenfolge: deterministisch, testbar, ohne Native-Zusatzpermission, ohne Netzwerk, kleineres Bundle, einfacher zu warten.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 72,
+        "section": null,
+        "locator": "block:1963",
+        "quoteHash": "sha256:4d4c5336a272ee9795a9600e48f57142571b665c9a663e75fa9342f95dade0b1",
+        "originalExcerpt": "Bei mehreren technisch gleichwertigen Lösungen gilt in dieser Reihenfolge: deterministisch, testbar, ohne Native-Zusatzpermission, ohne Netzwerk, kleineres Bundle, einfacher zu warten."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-033"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0034",
+      "title": "pnpm Single-Repo Struktur",
+      "statement": "Das Projekt ist ein einzelnes pnpm-Repository ohne Workspace-Packages und ohne Monorepo-Tooling; die Simulation liegt unter /src/game/sim, wird über TypeScript-Pfadaliase importiert und nie als separates Package veröffentlicht.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 74,
+        "section": null,
+        "locator": "block:1982",
+        "quoteHash": "sha256:84898d01849ede72589609c2b465faae9b7739f0d070c460e1d00f615a3ad38a",
+        "originalExcerpt": "Das Projekt ist verbindlich ein einzelnes pnpm-Repository ohne Workspace-Packages und ohne Monorepo-Tooling. Die reine Simulation liegt unter /src/game/sim, wird über normale TypeScript-Pfadaliase importiert und niemals als separates Package veröffentlicht."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-PROD-034"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0035",
+      "title": "Capacitor Config Baseline",
+      "statement": "capacitor.config.ts verwendet webDir=dist, bundledWebRuntime=false, kein server.url und keine allowNavigation-Einträge im Release.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 74,
+        "section": null,
+        "locator": "block:1987",
+        "quoteHash": "sha256:8a436e0ee80f96365c4f9d040a5d5db8995f59894504ccf5b954ade28f1501eb",
+        "originalExcerpt": "capacitor.config.ts verwendet webDir=dist, bundledWebRuntime=false, kein server.url und keine allowNavigation-Einträge im Release."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-PROD-035"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0036",
+      "title": "Vite Base Manifest",
+      "statement": "Vite base ist ./ für den Capacitor-Build; Asset-URLs werden ausschließlich über den generierten Manifestresolver aufgebaut.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 74,
+        "section": null,
+        "locator": "block:1988",
+        "quoteHash": "sha256:e04c3dab194177d26f079e14f66004a854c4a8595b5d1b126af2a8aa2772c701",
+        "originalExcerpt": "Vite base ist ./ für den Capacitor-Build. Asset-URLs werden ausschließlich über den generierten Manifestresolver aufgebaut."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-PROD-036"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0037",
+      "title": "Debug compile-time entfernt",
+      "statement": "Debugtools, Seedpicker, Replayinspektor und FPS-HUD sind compile-time aus Release entfernt, nicht nur per verstecktem Schalter deaktiviert.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 74,
+        "section": null,
+        "locator": "block:1990",
+        "quoteHash": "sha256:c347ca60107f4c74a339e1a809f39a22279789504932392ca52a1d42bfab0a3b",
+        "originalExcerpt": "Debugtools, Seedpicker, Replayinspektor und FPS-HUD sind compile-time aus Release entfernt, nicht nur per verstecktem Schalter deaktiviert."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-PROD-037"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0038",
+      "title": "Native Projekte committed",
+      "statement": "Native Projekte bleiben committed; npx cap sync darf keine handgeschriebenen Native-Dateien überschreiben; Custom Plugins besitzen eigene Tests.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 74,
+        "section": null,
+        "locator": "block:1991",
+        "quoteHash": "sha256:fb3c4575bc4a92e8e6c881201ed2ac2cc65fc717a948c6a61b1f719649aa2907",
+        "originalExcerpt": "Native Projekte bleiben committed. npx cap sync darf keine handgeschriebenen Native-Dateien überschreiben; Custom Plugins besitzen eigene Tests."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-PROD-038"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0039",
+      "title": "Dependency Freeze exakt",
+      "statement": "Beim Bootstrap wird die neueste stabile Patchversion innerhalb der freigegebenen Major-Linie aufgelöst und jede Dependency exakt ohne Caret/Tilde in package.json und Lockfile geschrieben.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 74,
+        "section": null,
+        "locator": "block:1994",
+        "quoteHash": "sha256:35d2837bf272269e705ac2e319be8687f3e92ea29786cd3ec8e16dc307339392",
+        "originalExcerpt": "Bootstrap löst einmalig die neueste stabile Patchversion innerhalb der freigegebenen Major-Linie am Implementierungsstart auf und schreibt jede Dependency exakt ohne Caret/Tilde in package.json sowie ins Lockfile."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-PROD-039"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0040",
+      "title": "Keine Auto-Upgrades",
+      "statement": "Upgrades erfolgen nur als eigene PR mit Changelog-, Native-Build-, Bundle-, Determinismus- und Regressionprüfung; automatische Major-/Minor-Upgrades sind deaktiviert.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 74,
+        "section": null,
+        "locator": "block:1995",
+        "quoteHash": "sha256:1126c955ef6eb5a7349c92f4dd1ad2b69e32fefb9e88a7e8c10277fbf8d3a1fe",
+        "originalExcerpt": "Danach erfolgen Upgrades ausschließlich als eigene PR mit Changelog-, Native-Build-, Bundle-, Determinismus- und Regressionprüfung. Automatische Major-/Minor-Upgrades sind deaktiviert."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-PROD-040"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0041",
+      "title": "Konkrete Sprint- und Taskzerlegung, Aufwandsschätzung, personelle Zuordnung und Kalendertermine gehören in den nachfolgenden Entwicklungsplan und sind nicht Inhalt des GDD.",
+      "statement": "Konkrete Sprint- und Taskzerlegung, Aufwandsschätzung, personelle Zuordnung und Kalendertermine gehören in den nachfolgenden Entwicklungsplan und sind nicht Inhalt des GDD.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 86,
+        "section": null,
+        "locator": "block:2252",
+        "quoteHash": "sha256:ac0835e6590040d21622bba65a9151cef013e0cae6515fc55915c84e381cf7ee",
+        "originalExcerpt": "Konkrete Sprint-/Taskzerlegung, Aufwandsschätzung, personelle Zuordnung und Kalendertermine: gehören in den nachfolgenden Entwicklungsplan."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PROD-041"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0042",
+      "title": "Publisheridentität, Signing-Secrets, endgültige Storepreisstufen und rechtsverbindliche Texte sind externe Releaseinputs mit Gates aus Kapitel 72.4 und nicht Inhalt des GDD.",
+      "statement": "Publisheridentität, Signing-Secrets, endgültige Storepreisstufen und rechtsverbindliche Texte sind externe Releaseinputs mit Gates aus Kapitel 72.4 und nicht Inhalt des GDD.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 86,
+        "section": null,
+        "locator": "block:2253",
+        "quoteHash": "sha256:80a08dc5f66ff017ccf149d2f5021c3540dba3482edeb29482ee19945063c508",
+        "originalExcerpt": "Publisheridentität, Signing-Secrets, endgültige Storepreisstufen und rechtsverbindliche Texte: externe Releaseinputs mit Gates aus Kapitel 72.4."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PROD-042"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0043",
+      "title": "Feintuning außerhalb der Baseline erfolgt evidenzbasiert über Simulation und Playtest innerhalb der dokumentierten Korridore und führt keine neue Mechanik ein.",
+      "statement": "Feintuning außerhalb der Baseline erfolgt evidenzbasiert über Simulation und Playtest innerhalb der dokumentierten Korridore und führt keine neue Mechanik ein.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 86,
+        "section": null,
+        "locator": "block:2254",
+        "quoteHash": "sha256:cec317ee43f1f710ee20a60930f759d9b9e36f1964278dcd38371b2d45c83206",
+        "originalExcerpt": "Feintuning außerhalb der Baseline: erfolgt evidenzbasiert über Simulation/Playtest innerhalb der dokumentierten Korridore; keine neue Mechanik."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PROD-043"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0044",
+      "title": "Nach V5 darf der Entwicklungsplan das Werk in Phasen, Epics, Tickets, Abhängigkeiten und Abnahmebündel zerlegen, jedoch keine neue Designentscheidung einführen; jeder Implementierungsagent muss für jede Aufgabe auf eine konkrete Kapitel-, Datensatz-, Screen-, Interface- oder Gate-Referenz zeigen können.",
+      "statement": "Nach V5 darf der Entwicklungsplan das Werk in Phasen, Epics, Tickets, Abhängigkeiten und Abnahmebündel zerlegen, jedoch keine neue Designentscheidung einführen; jeder Implementierungsagent muss für jede Aufgabe auf eine konkrete Kapitel-, Datensatz-, Screen-, Interface- oder Gate-Referenz zeigen können.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 87,
+        "section": null,
+        "locator": "block:2258",
+        "quoteHash": "sha256:b54b5f246f66efd9d65f7a7363bba7fa607f208ff86219c9c71ff829de6dc4bf",
+        "originalExcerpt": "Nach V5 darf der Entwicklungsplan das Werk in Phasen, Epics, Tickets, Abhängigkeiten und Abnahmebündel zerlegen. Er darf keine neue Designentscheidung einführen. Ein mittlerer Implementierungsagent muss für jede Aufgabe auf eine konkrete Kapitel-, Datensatz-, Screen-, Interface- oder Gate-Referenz zeigen können."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PROD-044"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0045",
+      "title": "Der Entwicklungsplan darf entscheiden: Reihenfolge innerhalb der bereits definierten Abhängigkeiten, Ticketgröße, Branch- und PR-Schnitt und parallele Arbeitspakete.",
+      "statement": "Der Entwicklungsplan darf entscheiden: Reihenfolge innerhalb der bereits definierten Abhängigkeiten, Ticketgröße, Branch- und PR-Schnitt und parallele Arbeitspakete.",
+      "norm": "MAY",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 87,
+        "section": null,
+        "locator": "block:2260",
+        "quoteHash": "sha256:4c83e041227b5186ff8552ca7435d865a14cc40a8a37f197d0f0a8415bef6b4f",
+        "originalExcerpt": "Reihenfolge innerhalb der bereits definierten Abhängigkeiten, Ticketgröße, Branch-/PR-Schnitt und parallele Arbeitspakete."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PROD-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0046",
+      "title": "Der Entwicklungsplan darf entscheiden: konkrete interne Algorithmen und Dateiaufteilung, sofern Schnittstellen, Determinismus, Performance und Tests eingehalten werden.",
+      "statement": "Der Entwicklungsplan darf entscheiden: konkrete interne Algorithmen und Dateiaufteilung, sofern Schnittstellen, Determinismus, Performance und Tests eingehalten werden.",
+      "norm": "MAY",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 87,
+        "section": null,
+        "locator": "block:2261",
+        "quoteHash": "sha256:bf4f751268d7b8aa47308077017fc67a9cf1a434742e3f007bbc87b24c4f8f34",
+        "originalExcerpt": "Konkrete interne Algorithmen/Dateiaufteilung, sofern Schnittstellen, Determinismus, Performance und Tests eingehalten werden."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PROD-046"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0047",
+      "title": "Der Entwicklungsplan darf entscheiden: welche V5-Tests in welchem Implementierungsschritt zuerst grün werden, solange kein Gate übersprungen wird.",
+      "statement": "Der Entwicklungsplan darf entscheiden: welche V5-Tests in welchem Implementierungsschritt zuerst grün werden, solange kein Gate übersprungen wird.",
+      "norm": "MAY",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 87,
+        "section": null,
+        "locator": "block:2262",
+        "quoteHash": "sha256:8c9a853e95e85fd319b719bd215ed93a9b82f90b8b65888aac7cac896f20f13c",
+        "originalExcerpt": "Welche V5-Tests in welchem Implementierungsschritt zuerst grün werden, solange kein Gate übersprungen wird."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PROD-047"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0048",
+      "title": "Der Entwicklungsplan darf nicht entscheiden: neue oder entfernte Features, geänderte Obergrenzen, manuelle Kampfsteuerung, andere Währungen, Live-Service, Telemetrie, Accounts oder Netzwerkabhängigkeit.",
+      "statement": "Der Entwicklungsplan darf nicht entscheiden: neue oder entfernte Features, geänderte Obergrenzen, manuelle Kampfsteuerung, andere Währungen, Live-Service, Telemetrie, Accounts oder Netzwerkabhängigkeit.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 87,
+        "section": null,
+        "locator": "block:2264",
+        "quoteHash": "sha256:d97f44c389fffc8c534283627da93621ae14cf81cd170e5c9a92a7bd1aae58a9",
+        "originalExcerpt": "Neue oder entfernte Features, geänderte Obergrenzen, manuelle Kampfsteuerung, andere Währungen, Live-Service, Telemetrie, Accounts oder Netzwerkabhängigkeit."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PROD-048"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0049",
+      "title": "Der Entwicklungsplan darf nicht entscheiden: andere Stack-Majors, Rendererautorität, nicht deterministische Simulation, schwächere Savegarantien oder nicht adaptive Mobile-UI.",
+      "statement": "Der Entwicklungsplan darf nicht entscheiden: andere Stack-Majors, Rendererautorität, nicht deterministische Simulation, schwächere Savegarantien oder nicht adaptive Mobile-UI.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 87,
+        "section": null,
+        "locator": "block:2265",
+        "quoteHash": "sha256:02f085af830f7ee06db86241b562d4e1c3c3152e65d0c101bc4ece9224109274",
+        "originalExcerpt": "Andere Stack-Majors, Rendererautorität, nicht deterministische Simulation, schwächere Savegarantien oder nicht adaptive Mobile-UI."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PROD-049"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0050",
+      "title": "Der Entwicklungsplan darf nicht entscheiden: das Weglassen von Screens, States, Accessibility- oder Storetests unter Verweis auf MVP, wenn V5 sie als Pflicht definiert.",
+      "statement": "Der Entwicklungsplan darf nicht entscheiden: das Weglassen von Screens, States, Accessibility- oder Storetests unter Verweis auf MVP, wenn V5 sie als Pflicht definiert.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 87,
+        "section": null,
+        "locator": "block:2266",
+        "quoteHash": "sha256:a310b459162db76f3a24d67bbc053c6bd6a7899ef308c25d4db767573d0ae167",
+        "originalExcerpt": "Weglassen von Screens/States/Accessibility/Storetests unter Verweis auf MVP, wenn V5 sie als Pflicht definiert."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PROD-050"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0051",
+      "title": "Riftwarden: Auto RPG Roguelite ist mit Version 5 ausreichend eindeutig spezifiziert, wenn die Implementierung aus den vorliegenden Regeln einen deterministischen, vollständig offline spielbaren, hochpolierten Mobile-Auto-RPG-Roguelite-Titel erzeugen kann; jeder Inhalt, Screen, Zustand, Datensatz, Savepfad, Rendererfall, Accessibilityflow und Store-Gate besitzt eine festgelegte fachliche Bedeutung und keine nicht dokumentierte Produktentscheidung ist notwendig.",
+      "statement": "Riftwarden: Auto RPG Roguelite ist mit Version 5 ausreichend eindeutig spezifiziert, wenn die Implementierung aus den vorliegenden Regeln einen deterministischen, vollständig offline spielbaren, hochpolierten Mobile-Auto-RPG-Roguelite-Titel erzeugen kann; jeder Inhalt, Screen, Zustand, Datensatz, Savepfad, Rendererfall, Accessibilityflow und Store-Gate besitzt eine festgelegte fachliche Bedeutung und keine nicht dokumentierte Produktentscheidung ist notwendig.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 87,
+        "section": null,
+        "locator": "block:2269",
+        "quoteHash": "sha256:a7851a2ea57bc50fce6dc9071e7c2eefafaea7364c554311d22ecb97cf2217d3",
+        "originalExcerpt": "Riftwarden: Auto RPG Roguelite ist mit Version 5 ausreichend eindeutig spezifiziert, wenn die Implementierung aus den vorliegenden Regeln einen deterministischen, vollständig offline spielbaren, hochpolierten Mobile-Auto-RPG-Roguelite-Titel erzeugen kann; jeder Inhalt, Screen, Zustand, Datensatz, Savepfad, Rendererfall, Accessibilityflow und Store-Gate besitzt eine festgelegte fachliche Bedeutung; und keine nicht dokumentierte Produktentscheidung notwendig ist. Tritt während der Umsetzung dennoch eine echte Designlücke auf, wird sie nicht improvisiert, sondern als dokumentierte V5-Change-Request mit betroffenen Regeln, Alternativen, gewählter Entscheidung, Migration und Regression behandelt."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PROD-051"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0052",
+      "title": "Tritt während der Umsetzung dennoch eine echte Designlücke auf, wird sie nicht improvisiert, sondern als dokumentierte V5-Change-Request mit betroffenen Regeln, Alternativen, gewählter Entscheidung, Migration und Regression behandelt.",
+      "statement": "Tritt während der Umsetzung dennoch eine echte Designlücke auf, wird sie nicht improvisiert, sondern als dokumentierte V5-Change-Request mit betroffenen Regeln, Alternativen, gewählter Entscheidung, Migration und Regression behandelt.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 87,
+        "section": null,
+        "locator": "block:2270",
+        "quoteHash": "sha256:307b8dc3cf5b0cf940c43903ee8e9ca60092f88c447b17ca8f3f8be6c48f74db",
+        "originalExcerpt": "Ende der finalen Pre-Implementation-Spezifikation. Nächster separater Artefaktschritt: Entwicklungsplan und Implementierungsphasen auf Basis dieser V5."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PROD-052"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0053",
+      "title": "Konflikt-Prioritätsreihenfolge: V4-Klarstellung > V3; konkrete Einheiten/Bossregel > global; Sicherheit/Save/Store > Komfort; harte Obergrenze > Bonus; deterministischer Tie-Break > Zufall.",
+      "statement": "Bei Widersprüchen gilt die folgende Prioritätsreihenfolge: explizite V4-Klarstellung vor älterer V3-Formulierung; konkrete Einheiten- oder Bossregel vor globaler Standardregel; Sicherheits-, Save- und Store-Regel vor Komfortregel; feste Obergrenze vor Bonus; deterministischer Tie-Break vor zufälliger Auswahl.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1547",
+        "quoteHash": "sha256:078ad14c6d4c9a7342e54506fb187ad7d4c6d3dcbd21480b867d6eebca1ee747",
+        "originalExcerpt": "Bei Widersprüchen gilt die folgende Prioritätsreihenfolge: explizite V4-Klarstellung vor älterer V3-Formulierung; konkrete Einheiten- oder Bossregel vor globaler Standardregel; Sicherheits-, Save- und Store-Regel vor Komfortregel; feste Obergrenze vor Bonus; deterministischer Tie-Break vor zufälliger Auswahl."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-053"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0054",
+      "title": "Kein Implementierungsagent darf aus unklaren Formulierungen neue Inhalte, Währungen, Slots oder Live-Systeme ableiten.",
+      "statement": "Kein Implementierungsagent darf aus einer unklaren Formulierung neue Inhalte, neue Währungen, weitere Slots oder zusätzliche Live-Systeme ableiten.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1547",
+        "quoteHash": "sha256:d3a95c95c0c35efa9a6b2178cb0a67856190206413a18a3b24fc9baca4b0fdb9",
+        "originalExcerpt": "Kein Implementierungsagent darf aus einer unklaren Formulierung neue Inhalte, neue Währungen, weitere Slots oder zusätzliche Live-Systeme ableiten."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-054"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0055",
+      "title": "Permanentes Inventar hat keine Gesamtplatzgrenze; ein dauerhafter Gegenstand wird nur einmal besessen, ein Duplikat wird unmittelbar in den im Gegenstandsdatensatz definierten Goldwert umgewandelt.",
+      "statement": "Das permanente Inventar besitzt keine Gesamtplatzgrenze. Ein Gegenstand kann nur einmal dauerhaft besessen werden; ein Duplikat wird unmittelbar in den im Gegenstandsdatensatz definierten Goldwert umgewandelt.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1569",
+        "quoteHash": "sha256:310c804e8715f6cac74d1faabe356989418c434962431eada1e161de7d12caa1",
+        "originalExcerpt": "Das permanente Inventar besitzt keine Gesamtplatzgrenze. Ein Gegenstand kann nur einmal dauerhaft besessen werden; ein Duplikat wird unmittelbar in den im Gegenstandsdatensatz definierten Goldwert umgewandelt."
+      },
+      "ownerPhases": [
+        "PHASE-03"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-03",
+          "testIds": [
+            "UT-PROD-055"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0056",
+      "title": "Politur ist ein boolescher permanenter Zustand je Gegenstands-ID; ein poliertes Duplikat erzeugt nicht mehr Gold als ein unpoliertes Duplikat.",
+      "statement": "Politur ist ein boolescher permanenter Zustand je Gegenstands-ID. Ein poliertes Duplikat erzeugt nicht mehr Gold als ein unpoliertes Duplikat.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1570",
+        "quoteHash": "sha256:66719db701235926e38704f1623a7fbc730952b6421ece1ec7cd4f818ee2ab7d",
+        "originalExcerpt": "Politur ist ein boolescher permanenter Zustand je Gegenstands-ID. Ein poliertes Duplikat erzeugt nicht mehr Gold als ein unpoliertes Duplikat."
+      },
+      "ownerPhases": [
+        "PHASE-03"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-03",
+          "testIds": [
+            "UT-PROD-056"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0057",
+      "title": "Temporäre Relikte: maximal acht unterschiedliche aktive Karten; ein neuntes Relikt öffnet Ersetzen oder Ablehnen; Ablehnen gibt 20 % des Relikt-Händlerwerts in Zyklus-/Dungeonwährung.",
+      "statement": "Temporäre Relikte dürfen bis zu acht unterschiedliche aktive Karten besitzen. Ein neuntes Relikt öffnet zwingend Ersetzen oder Ablehnen; Ablehnen gibt 20% des Relikt-Händlerwerts in Zyklus-/Dungeonwährung.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1571",
+        "quoteHash": "sha256:c068d615532378b1b6ab4778208f2fd6c8e12bf6b370bbc807325a065e08697a",
+        "originalExcerpt": "Temporäre Relikte dürfen bis zu acht unterschiedliche aktive Karten besitzen. Ein neuntes Relikt öffnet zwingend Ersetzen oder Ablehnen; Ablehnen gibt 20% des Relikt-Händlerwerts in Zyklus-/Dungeonwährung."
+      },
+      "ownerPhases": [
+        "PHASE-03"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-03",
+          "testIds": [
+            "UT-PROD-057"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "max",
+          "name": "activeRelics",
+          "value": 8
+        },
+        {
+          "kind": "exact",
+          "name": "refusePctOfVendorValue",
+          "value": 20,
+          "unit": "%"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0058",
+      "title": "Erstbelohnung wegen bereits freigeschaltetem Inhalt wird durch exakt dokumentierte Ersatzbelohnung ersetzt; niemals zufälliger anderer permanenter Inhalt.",
+      "statement": "Kann eine Erstbelohnung wegen bereits freigeschaltetem Inhalt nicht erneut vergeben werden, wird exakt die dokumentierte Ersatzbelohnung genutzt; niemals wird zufällig ein anderer permanenter Inhalt vergeben.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1573",
+        "quoteHash": "sha256:f7ac2a22f99990ee804bace303f97f3c5655e73c0e807260ef83f691bce8943d",
+        "originalExcerpt": "Kann eine Erstbelohnung wegen bereits freigeschaltetem Inhalt nicht erneut vergeben werden, wird exakt die dokumentierte Ersatzbelohnung genutzt; niemals wird zufällig ein anderer permanenter Inhalt vergeben."
+      },
+      "ownerPhases": [
+        "PHASE-03"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-03",
+          "testIds": [
+            "UT-PROD-058"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0059",
+      "title": "Entdecker/Normal/Veteran gelten nur für Kampagne und Kampagnenwiederholung; Ascension verwendet eigene Baseline und ignoriert Kampagnenschwierigkeit.",
+      "statement": "Entdecker, Normal und Veteran gelten nur für Kampagne und Kampagnenwiederholung. Ascension verwendet seine eigene Baseline und ignoriert die Kampagnenschwierigkeit.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1575",
+        "quoteHash": "sha256:61865461ed91cb760df55669fd04a15b8d97f8c49ce378a58e731f40216960f1",
+        "originalExcerpt": "Entdecker, Normal und Veteran gelten nur für Kampagne und Kampagnenwiederholung. Ascension verwendet seine eigene Baseline und ignoriert die Kampagnenschwierigkeit."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-PROD-059"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0060",
+      "title": "Endlose Rift nutzt Normal-Baseline plus Tiefenskalierung und optional gewählten bereits freigeschalteten Ascension-Regelsatz; Jenseitsgrad darf nicht zusätzlich auf Endlose Rift angewendet werden.",
+      "statement": "Endlose Rift nutzt Normal-Baseline plus Tiefenskalierung und optional gewählten bereits freigeschalteten Ascension-Regelsatz. Jenseitsgrad darf nicht zusätzlich auf Endlose Rift angewendet werden.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1576",
+        "quoteHash": "sha256:0f70f26b0cf63d69599a0742917423783aa31ae545c72f93f757427a56f814ad",
+        "originalExcerpt": "Endlose Rift nutzt Normal-Baseline plus Tiefenskalierung und optional gewählten bereits freigeschalteten Ascension-Regelsatz. Jenseitsgrad darf nicht zusätzlich auf Endlose Rift angewendet werden."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-PROD-060"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0061",
+      "title": "Generatorfehler werden lokal protokolliert; der Spieler sieht nur \"Die Rift wurde stabilisiert\"; Fortschritt und Seed bleiben erhalten.",
+      "statement": "Generatorfehler werden lokal protokolliert, aber der Spieler sieht nur „Die Rift wurde stabilisiert“; Fortschritt und Seed bleiben erhalten.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 48,
+        "section": null,
+        "locator": "block:1583",
+        "quoteHash": "sha256:1b4550976efc177298845345ed34c156812dbb5a7d8c48f11073e93fe68aeeb4",
+        "originalExcerpt": "Generatorfehler werden lokal protokolliert, aber der Spieler sieht nur „Die Rift wurde stabilisiert“; Fortschritt und Seed bleiben erhalten."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-PROD-061"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0062",
+      "title": "Release-App wird als lokal gebündelte Web-App in Capacitor 8 gebaut; React rendert Menüs/Overlays; PixiJS rendert ausschließlich Kampffeld und dekorative HQ-Szenen; Simulation ist eine pure TypeScript-Bibliothek ohne React-, DOM-, Pixi- oder Native-Abhängigkeit.",
+      "statement": "Die Release-App wird als lokal gebündelte Web-App in Capacitor 8 gebaut. React rendert sämtliche Menüs und Overlays; PixiJS rendert ausschließlich das Kampffeld und dekorative HQ-Szenen. Die Simulation ist eine pure TypeScript-Bibliothek ohne React-, DOM-, Pixi- oder Native-Abhängigkeit.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 49,
+        "section": null,
+        "locator": "block:1593",
+        "quoteHash": "sha256:b5654a13692af1baab1846910561e028d842fe5dfc62d13e800d08dbf1f2315c",
+        "originalExcerpt": "Die Release-App wird als lokal gebündelte Web-App in Capacitor 8 gebaut. React rendert sämtliche Menüs und Overlays; PixiJS rendert ausschließlich das Kampffeld und dekorative HQ-Szenen. Die Simulation ist eine pure TypeScript-Bibliothek ohne React-, DOM-, Pixi- oder Native-Abhängigkeit."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-PROD-062"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0063",
+      "title": "Patch- und Minor-Versionen werden beim Repository-Bootstrap auf die neuesten kompatiblen stabilen Releases festgesetzt und im Lockfile eingefroren; kein Major-Version-Swap ohne ADR, vollständigen Testlauf und Store-Build.",
+      "statement": "Versionsregel: Patch- und Minor-Versionen werden beim Repository-Bootstrap auf die neuesten kompatiblen stabilen Releases festgesetzt und anschließend im Lockfile eingefroren. Ein Agent darf keine Major-Version austauschen, ohne ADR, vollständigen Testlauf und Store-Build.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 49,
+        "section": null,
+        "locator": "block:1595",
+        "quoteHash": "sha256:3bd24430adfa64028486e8b6bab39618bc95c786bd93372028fe2aa7b086ab10",
+        "originalExcerpt": "Versionsregel: Patch- und Minor-Versionen werden beim Repository-Bootstrap auf die neuesten kompatiblen stabilen Releases festgesetzt und anschließend im Lockfile eingefroren. Ein Agent darf keine Major-Version austauschen, ohne ADR, vollständigen Testlauf und Store-Build."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-PROD-063"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0064",
+      "title": "Screens verwenden Feature-Services und Stores; direkter Zugriff auf Filesystem, Preferences oder Native-Plugins außerhalb platform/storage ist verboten.",
+      "statement": "screens verwenden feature services und Stores. Direkter Zugriff auf Filesystem, Preferences oder Native-Plugins außerhalb platform/storage ist verboten.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 50,
+        "section": null,
+        "locator": "block:1610",
+        "quoteHash": "sha256:de1933adf562eb4500c27b7c57819dbf805fc7d804e9b3fe19a8881a8cad7ae6",
+        "originalExcerpt": "screens verwenden feature services und Stores. Direkter Zugriff auf Filesystem, Preferences oder Native-Plugins außerhalb platform/storage ist verboten."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-PROD-064"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0065",
+      "title": "Kein any außer eng begrenztem Adapter mit Kommentar und unmittelbar anschließender Validierung; unknown ist für externe Daten Pflicht.",
+      "statement": "Kein any außer eng begrenztem Adapter mit Kommentar und unmittelbar anschließender Validierung. unknown ist für externe Daten Pflicht.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 50,
+        "section": null,
+        "locator": "block:1614",
+        "quoteHash": "sha256:3a4ab3af7e2fa64551242ab1337e3d160ae976ca6f464e3f7b12352366511a71",
+        "originalExcerpt": "Kein any außer eng begrenztem Adapter mit Kommentar und unmittelbar anschließender Validierung. unknown ist für externe Daten Pflicht."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-PROD-065"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0066",
+      "title": "Keine non-null Assertions in Save-, Content-, Reward- oder Combat-Code; exhaustive switch mit assertNever für Zustandsautomaten.",
+      "statement": "Keine nicht-null Assertions in Save-, Content-, Reward- oder Combat-Code. Exhaustive switch mit assertNever für Zustandsautomaten.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 50,
+        "section": null,
+        "locator": "block:1615",
+        "quoteHash": "sha256:cf1eb46180bcd531ccb73886c8887d8b8e26244bd2e5d9a72409d1e1b78ae62c",
+        "originalExcerpt": "Keine nicht-null Assertions in Save-, Content-, Reward- oder Combat-Code. Exhaustive switch mit assertNever für Zustandsautomaten."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-PROD-066"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0067",
+      "title": "Alle Geld-, Statistik-, Tick- und ID-Werte sind Integer; UI-Formatierung ist von interner Einheit getrennt.",
+      "statement": "Alle Geld-, Statistik-, Tick- und ID-Werte sind Integer. UI-Formatierung ist von interner Einheit getrennt.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 50,
+        "section": null,
+        "locator": "block:1616",
+        "quoteHash": "sha256:e74f8e1cfbdca45aac046f52379ac4ce4392f5f7af774d56571acfc966b6431c",
+        "originalExcerpt": "Alle Geld-, Statistik-, Tick- und ID-Werte sind Integer. UI-Formatierung ist von interner Einheit getrennt."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-PROD-067"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0068",
+      "title": "Funktionen mit Seiteneffekt tragen dies im Namen oder liegen in Service-/Adaptermodulen; pure Simulationsfunktionen verändern keine externen Objekte.",
+      "statement": "Funktionen mit Seiteneffekt tragen dies im Namen oder liegen in Service-/Adaptermodulen. Pure Simulationsfunktionen verändern keine externen Objekte.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 50,
+        "section": null,
+        "locator": "block:1617",
+        "quoteHash": "sha256:c92a10a0f699637ac9a7dd3b4bd2b87022aacb832593699040efd609e480cb5b",
+        "originalExcerpt": "Funktionen mit Seiteneffekt tragen dies im Namen oder liegen in Service-/Adaptermodulen. Pure Simulationsfunktionen verändern keine externen Objekte."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-PROD-068"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0069",
+      "title": "ESLint behandelt floating promises, unhandled switch cases, direkte Math.random-/Date.now-Nutzung in Simulation und unsichere HTML-Injektion als Fehler.",
+      "statement": "ESLint behandelt floating promises, unhandled switch cases, direkte Math.random-/Date.now-Nutzung in Simulation und unsichere HTML-Injektion als Fehler.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 50,
+        "section": null,
+        "locator": "block:1618",
+        "quoteHash": "sha256:31e51f13a87fe9a7fe68dde2a0fb276fd1e306310fa847c1e902a1b04e618303",
+        "originalExcerpt": "ESLint behandelt floating promises, unhandled switch cases, direkte Math.random-/Date.now-Nutzung in Simulation und unsichere HTML-Injektion als Fehler."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-PROD-069"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0070",
+      "title": "Main ist jederzeit baubar; Featurebranches werden über Pull Request mit grünen Pflichtchecks integriert.",
+      "statement": "Main ist jederzeit baubar. Featurebranches werden über Pull Request mit grünen Pflichtchecks integriert.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 50,
+        "section": null,
+        "locator": "block:1621",
+        "quoteHash": "sha256:609b66f696355a941a84ea9ccf57e7383c58ba40b5ade3fa9ee3becbd1fdbb09",
+        "originalExcerpt": "Main ist jederzeit baubar. Featurebranches werden über Pull Request mit grünen Pflichtchecks integriert."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-PROD-070"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0071",
+      "title": "Architekturänderungen, neue Native-Plugins, neue Permissions, Save-Schemaänderungen und Inhaltsobergrenzen benötigen eine ADR-Datei.",
+      "statement": "Architekturänderungen, neue Native-Plugins, neue Permissions, Save-Schemaänderungen und Inhaltsobergrenzen benötigen eine ADR-Datei.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 50,
+        "section": null,
+        "locator": "block:1622",
+        "quoteHash": "sha256:e7227ef62a88e1c793e36e097eeb785f8d3c939f263f116e0f4614b9d26b3dff",
+        "originalExcerpt": "Architekturänderungen, neue Native-Plugins, neue Permissions, Save-Schemaänderungen und Inhaltsobergrenzen benötigen eine ADR-Datei."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-PROD-071"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0072",
+      "title": "package-lock.json ist verboten; pnpm-lock.yaml ist SSOT; native Lockfiles und Package.resolved werden committet.",
+      "statement": "package-lock.json ist verboten; pnpm-lock.yaml ist SSOT. Native Lockfiles und Package.resolved werden committet.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 50,
+        "section": null,
+        "locator": "block:1624",
+        "quoteHash": "sha256:06513d5acd22d21beba2335811eac815d692e267b1dfeead6900e141e657e5e7",
+        "originalExcerpt": "package-lock.json ist verboten; pnpm-lock.yaml ist SSOT. Native Lockfiles und Package.resolved werden committet."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-PROD-072"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0073",
+      "title": "Bei appStateChange zu inactive/background: Simulation am letzten vollständigen Tick pausieren, Audio ausgeblendet, Snapshot angefordert, UI-Animationen stoppen.",
+      "statement": "Bei appStateChange zu inactive/background wird die Simulation am letzten vollständigen Tick pausiert, Audio ausgeblendet und ein Snapshot angefordert. UI-Animationen stoppen.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 53,
+        "section": null,
+        "locator": "block:1668",
+        "quoteHash": "sha256:92198d7a7638bae67569d194a54bb48e2c21aad02b0bdddbdfc764d57fd984ce",
+        "originalExcerpt": "Bei appStateChange zu inactive/background wird die Simulation am letzten vollständigen Tick pausiert, Audio ausgeblendet und ein Snapshot angefordert. UI-Animationen stoppen."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-PROD-073"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0074",
+      "title": "Beim Resume wird niemals automatisch ein Kampf fortgesetzt, bevor Renderer, Audio und Input bereit sind; Kampf erscheint pausiert mit \"Fortsetzen\".",
+      "statement": "Beim Resume wird niemals automatisch ein Kampf fortgesetzt, bevor Renderer, Audio und Input bereit sind. Der Kampf erscheint pausiert mit „Fortsetzen“.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 53,
+        "section": null,
+        "locator": "block:1670",
+        "quoteHash": "sha256:11701a40dc9453db819ea71a80a5ee4625afa1e12d0a33106b4df3a864129812",
+        "originalExcerpt": "Beim Resume wird niemals automatisch ein Kampf fortgesetzt, bevor Renderer, Audio und Input bereit sind. Der Kampf erscheint pausiert mit „Fortsetzen“."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-PROD-074"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0075",
+      "title": "Native Splash verschwindet erst nach erstem stabilen React-Frame und nachdem ein Recoveryfehler als UI dargestellt werden kann.",
+      "statement": "Native Splash verschwindet erst nach erstem stabilen React-Frame und nachdem ein Recoveryfehler als UI dargestellt werden kann.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 53,
+        "section": null,
+        "locator": "block:1672",
+        "quoteHash": "sha256:0225083bcc8cea07f69fc86f0f0b357e92eacb62d66a68a2ec140eafba361208",
+        "originalExcerpt": "Native Splash verschwindet erst nach erstem stabilen React-Frame und nachdem ein Recoveryfehler als UI dargestellt werden kann."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-PROD-075"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0076",
+      "title": "Spiel spielt Audio ausschließlich im Vordergrund; bei Background, Telefonanruf, Siri/Assistant, Kopfhörerabzug oder Audiofokusverlust wird sofort weich pausiert; der Kampf wird ebenfalls pausiert.",
+      "statement": "Das Spiel spielt Audio ausschließlich im Vordergrund. Bei Background, Telefonanruf, Siri/Assistant, Kopfhörerabzug oder Audiofokusverlust wird sofort weich pausiert; der Kampf wird ebenfalls pausiert.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 57,
+        "section": null,
+        "locator": "block:1746",
+        "quoteHash": "sha256:7d45a63383f8f4ccd4183aa241269aba50d5686c133b8db2a86bd90b01bce372",
+        "originalExcerpt": "Das Spiel spielt Audio ausschließlich im Vordergrund. Bei Background, Telefonanruf, Siri/Assistant, Kopfhörerabzug oder Audiofokusverlust wird sofort weich pausiert; der Kampf wird ebenfalls pausiert."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PROD-076"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0077",
+      "title": "Audio wird in vier Bussen gemischt: master, music, sfx, voice; Gameplay-Warnungen liegen im SFX-Bus und werden bei wichtigen Warnungen gegenüber Musik um 3 dB priorisiert.",
+      "statement": "Audio wird in vier Bussen gemischt: master, music, sfx, voice. Gameplay-Warnungen liegen im SFX-Bus und werden bei wichtigen Warnungen gegenüber Musik um 3 dB priorisiert.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 57,
+        "section": null,
+        "locator": "block:1749",
+        "quoteHash": "sha256:69cff61f5adaff40a26a40599c7db241221b4736952468722b3fe2e3ed4093d2",
+        "originalExcerpt": "Audio wird in vier Bussen gemischt: master, music, sfx, voice. Gameplay-Warnungen liegen im SFX-Bus und werden bei wichtigen Warnungen gegenüber Musik um 3 dB priorisiert."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PROD-077"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0078",
+      "title": "Gleichartige SFX verwenden mindestens vier Varianten und einen 80-ms-Cooldown pro Cue; Beschwörungswellen dürfen nicht clippen.",
+      "statement": "Gleichartige SFX verwenden mindestens vier Varianten und einen 80-ms-Cooldown pro Cue, damit Beschwörungswellen nicht clippen.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 57,
+        "section": null,
+        "locator": "block:1750",
+        "quoteHash": "sha256:6960018ed8d1ebaafa68dd232aa97b1c4dbf9ba64f0ce3a7e61bb198c1835f38",
+        "originalExcerpt": "Gleichartige SFX verwenden mindestens vier Varianten und einen 80-ms-Cooldown pro Cue, damit Beschwörungswellen nicht clippen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PROD-078"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "sfxVariants",
+          "value": 4
+        },
+        {
+          "kind": "min",
+          "name": "sfxCooldownMs",
+          "value": 80
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0079",
+      "title": "Haptik wird nur bei starkem eigenen Treffer, Schildbruch, Bossphase, Unlock und Bestätigung eines riskanten Altars genutzt; maximal ein Impuls je 120 ms.",
+      "statement": "Haptik wird nur bei starkem eigenen Treffer, Schildbruch, Bossphase, Unlock und Bestätigung eines riskanten Altars genutzt; maximal ein Impuls je 120 ms.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 57,
+        "section": null,
+        "locator": "block:1751",
+        "quoteHash": "sha256:be906b1edc9b0cafb1dc7d8b4558abb2b2a947844a3e5c0b5b82c738dc8f1e77",
+        "originalExcerpt": "Haptik wird nur bei starkem eigenen Treffer, Schildbruch, Bossphase, Unlock und Bestätigung eines riskanten Altars genutzt; maximal ein Impuls je 120 ms."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PROD-079"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "hapticImpulseGapMs",
+          "value": 120
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0080",
+      "title": "Android nutzt ACTION_OPEN_DOCUMENT/ACTION_CREATE_DOCUMENT, iOS UIDocumentPicker; keine Speicher- oder Fotoberechtigung.",
+      "statement": "Android nutzt ACTION_OPEN_DOCUMENT/ACTION_CREATE_DOCUMENT, iOS UIDocumentPicker. Keine Speicher- oder Fotoberechtigung.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 58,
+        "section": null,
+        "locator": "block:1767",
+        "quoteHash": "sha256:08f6241ffa4c066ebb13e3ebe56aa44601c0651852fe9328cc6f2ded0f420ee8",
+        "originalExcerpt": "Android nutzt ACTION_OPEN_DOCUMENT/ACTION_CREATE_DOCUMENT, iOS UIDocumentPicker. Keine Speicher- oder Fotoberechtigung."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-PROD-080"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0081",
+      "title": "Keine Kampagnenfreischaltung verlangt wiederholtes Farmen derselben Mission auf Normal.",
+      "statement": "Keine Kampagnenfreischaltung verlangt wiederholtes Farmen derselben Mission auf Normal.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 43,
+        "section": null,
+        "locator": "block:1472",
+        "quoteHash": "sha256:cf4ab5fe0ebe437c7ca511cfbc85d0bc4f7b03a087d12213c12052e610959ad5",
+        "originalExcerpt": "Keine Kampagnenfreischaltung verlangt wiederholtes Farmen derselben Mission auf Normal."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-PROD-081"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0082",
+      "title": "Keine Niederlage wird durch Reduzieren permanenter Progression \"gelöst\"; zuerst werden Lesbarkeit, Counter und Werte geprüft.",
+      "statement": "Keine Niederlage wird durch Reduzieren permanenter Progression gelöst; zuerst werden Lesbarkeit, Counter und Werte geprüft.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 43,
+        "section": null,
+        "locator": "block:1473",
+        "quoteHash": "sha256:89cdab86ac22f5dba500db8ac5876aaf6e1e6a11eafffa085f38b1cc60ff968f",
+        "originalExcerpt": "Keine Niederlage wird durch Reduzieren permanenter Progression „gelöst\"; zuerst Lesbarkeit, Counter und Werte prüfen."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-PROD-082"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0083",
+      "title": "Neue Inhalte werden nur aufgenommen, wenn sie eine erkennbare strategische Lücke schließen und keine Kernqualität gefährden.",
+      "statement": "Neue Inhalte dürfen nur aufgenommen werden, wenn sie eine erkennbare strategische Lücke schließen und keine Kernqualität gefährden.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1524",
+        "quoteHash": "sha256:12ea7a1d782d84e1406b0102f1a4a169edcccb8d27d8d75dbaff0b23f719d55c",
+        "originalExcerpt": "Neue Inhalte dürfen nur aufgenommen werden, wenn sie eine erkennbare strategische Lücke schließen und keine Kernqualität gefährden."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-083"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0084",
+      "title": "Vor Release werden keine weiteren Helden, Regionen, Hauptbosse, Talentbäume, Gegenstandsaffixe oder Onlinefunktionen ergänzt.",
+      "statement": "Vor Release werden keine weiteren Helden, Regionen, Hauptbosse, Talentbäume, Gegenstandsaffixe oder Onlinefunktionen ergänzt.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1524",
+        "quoteHash": "sha256:8a35505a2c6b2cebab2bb6837bc8d25f3048cbf7b2f42ce028f490fe11007b37",
+        "originalExcerpt": "Vor Release werden keine weiteren Helden, Regionen, Hauptbosse, Talentbäume, Gegenstandsaffixe oder Onlinefunktionen ergänzt."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-084"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0085",
+      "title": "Ein späteres Update ist optional und nicht Bestandteil des Produktversprechens.",
+      "statement": "Ein späteres Update ist optional und nicht Bestandteil des Produktversprechens.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1524",
+        "quoteHash": "sha256:ff2f8c18bc8d7d31497445d74c84a6c91636ca9c15fe864ce90e12d4ac59cca4",
+        "originalExcerpt": "Ein späteres Update ist optional und nicht Bestandteil des Produktversprechens."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-085"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0086",
+      "title": "Priorität 1 unter Produktionsdruck: Kampfsimulation, Zielwahl und Lesbarkeit.",
+      "statement": "Priorität 1 unter Produktionsdruck: Kampfsimulation, Zielwahl und Lesbarkeit.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1527",
+        "quoteHash": "sha256:1e43d1e92fbd45ee699b74da7e7240db9bb2b6fcf52a09b30b9b90e2911a628f",
+        "originalExcerpt": "Kampfsimulation, Zielwahl und Lesbarkeit."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-086"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0087",
+      "title": "Priorität 2 unter Produktionsdruck: vollständige Kampagne inklusive vier Bosse.",
+      "statement": "Priorität 2 unter Produktionsdruck: vollständige Kampagne inklusive vier Bosse.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1528",
+        "quoteHash": "sha256:8a33607e5862cab809168d0669ce6f8aea74f6100cdcbab5712fafdfa813e3eb",
+        "originalExcerpt": "Vollständige Kampagne inklusive vier Bosse."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-087"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "campaignBossCount",
+          "value": 4
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0088",
+      "title": "Priorität 3 unter Produktionsdruck: Formation, Doktrinen, Helden/Truppen und Ausrüstung.",
+      "statement": "Priorität 3 unter Produktionsdruck: Formation, Doktrinen, Helden/Truppen und Ausrüstung.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1529",
+        "quoteHash": "sha256:219b2b2d551d7067bb6c73d9fec2ea1f9fcf2bdf9c14b3fe6a82cf48818762d5",
+        "originalExcerpt": "Formation, Doktrinen, Helden/Truppen und Ausrüstung."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-088"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0089",
+      "title": "Priorität 4 unter Produktionsdruck: Savegame, Offlinequalität, Bedienung und Barrierefreiheit.",
+      "statement": "Priorität 4 unter Produktionsdruck: Savegame, Offlinequalität, Bedienung und Barrierefreiheit.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1530",
+        "quoteHash": "sha256:8615c819f18eca3143be7d3a27bc69bda3bda4cf1f5f3d461c71773d47c22e4b",
+        "originalExcerpt": "Savegame, Offlinequalität, Bedienung und Barrierefreiheit."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-089"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0090",
+      "title": "Priorität 5 unter Produktionsdruck: Ascension 1-10 und Konstellation.",
+      "statement": "Priorität 5 unter Produktionsdruck: Ascension 1-10 und Konstellation.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1531",
+        "quoteHash": "sha256:fcd6845a12ca184fbdedfbb3534ae01f1cec1175a7af126ef05e66621c805fc0",
+        "originalExcerpt": "Ascension 1-10 und Konstellation."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-090"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "ascensionMax",
+          "value": 10
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0091",
+      "title": "Priorität 6 unter Produktionsdruck: Endlose Rift, Meisterschaften, Kodex und Erfolge.",
+      "statement": "Priorität 6 unter Produktionsdruck: Endlose Rift, Meisterschaften, Kodex und Erfolge.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1532",
+        "quoteHash": "sha256:0e8f39c5d9df39d20f5bb493410b26ddc362dd6f031c7508c2e109a93bde0f2e",
+        "originalExcerpt": "Endlose Rift, Meisterschaften, Kodex, Erfolge."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-091"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0092",
+      "title": "Priorität 7 unter Produktionsdruck: zusätzliche Kosmetik und Dialogvarianten.",
+      "statement": "Priorität 7 unter Produktionsdruck: zusätzliche Kosmetik und Dialogvarianten.",
+      "norm": "MAY",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1533",
+        "quoteHash": "sha256:2c3e09499cfe4e98de863c79318523edce341b20c8257f278ca18c4192cd2a7b",
+        "originalExcerpt": "Zusätzliche Kosmetik und Dialogvarianten."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-092"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0093",
+      "title": "Bei Scope-Reduktion werden zuerst kosmetische Varianten und optionale Textvarianten gekürzt, niemals Bosslesbarkeit, vollständige Fähigkeiten, Save-Sicherheit oder notwendige Gegenstrategien.",
+      "statement": "Wird Scope reduziert, werden zuerst kosmetische Varianten und optionale Textvarianten gekürzt; niemals Bosslesbarkeit, vollständige Fähigkeiten, Save-Sicherheit oder notwendige Gegenstrategien.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1534",
+        "quoteHash": "sha256:089ef4767c08ffbd2ce944de9c589067c0104983c2e5f8ebc5d3b7fde403a13f",
+        "originalExcerpt": "Wird Scope reduziert, werden zuerst kosmetische Varianten und optionale Textvarianten gekürzt, niemals Bosslesbarkeit, vollständige Fähigkeiten, Save-Sicherheit oder notwendige Gegenstrategien."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-093"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0094",
+      "title": "Riftwarden ist releasebereit, wenn der Spieler eine ungewöhnliche Gruppe aufbauen, Gegner vollständig verstehen, einen Plan durch Formation/Doktrin/Ausrüstung formulieren und automatisch umsetzen sehen kann; Siege und Niederlagen sind erklärbar; die Kampagne ist abgeschlossen; das Endgame ist substanziell; die Präsentation ist poliert; jede Funktion ist vollständig offline nutzbar.",
+      "statement": "Riftwarden: Auto RPG Roguelite ist releasebereit, wenn der Spieler eine ungewöhnliche Gruppe aufbauen, Gegner vollständig verstehen, einen Plan durch Formation/Doktrin/Ausrüstung formulieren und anschließend klar beobachten kann, wie dieser Plan automatisch umgesetzt wird. Siege und Niederlagen müssen erklärbar sein. Die Kampagne muss abgeschlossen, das Endgame substanziell, die Präsentation poliert und jede Funktion vollständig offline nutzbar sein.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 47,
+        "section": null,
+        "locator": "block:1540",
+        "quoteHash": "sha256:1d304942e9e72a714a1951cbc1a5c64e6874537f5c85c6872ea3ac9cb3846a2a",
+        "originalExcerpt": "Riftwarden: Auto RPG Roguelite ist releasebereit, wenn der Spieler eine ungewöhnliche Gruppe aufbauen, Gegner vollständig verstehen, einen Plan durch Formation/Doktrin/Ausrüstung formulieren und anschließend klar beobachten kann, wie dieser Plan automatisch umgesetzt wird. Siege und Niederlagen müssen erklärbar sein. Die Kampagne muss abgeschlossen, das Endgame substanziell, die Präsentation poliert und jede Funktion vollständig offline nutzbar sein."
+      },
+      "ownerPhases": [
+        "PHASE-22"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-22",
+          "testIds": [
+            "UT-PROD-094"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-PRODUCT-0095",
+      "title": "Zentrale Qualitätsfrage: \"Kann der Spieler erkennen, welche Vorbereitung zu welchem Kampfverhalten und welchem Ergebnis geführt hat?\" Ist die Antwort nicht eindeutig, muss zuerst Lesbarkeit oder Regeldefinition verbessert werden, nicht zusätzlicher Content ergänzt werden.",
+      "statement": "Die zentrale Qualitätsfrage lautet bei jeder Implementierungsentscheidung: \"Kann der Spieler erkennen, welche Vorbereitung zu welchem Kampfverhalten und welchem Ergebnis geführt hat?\" Ist die Antwort nicht eindeutig, muss zuerst Lesbarkeit oder Regeldefinition verbessert werden, nicht zusätzlicher Content ergänzt.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 47,
+        "section": null,
+        "locator": "block:1541",
+        "quoteHash": "sha256:4fe2ca6bb738793974c5eb326ce3ee65b65c703165901adefbc75a9375feeca1",
+        "originalExcerpt": "Die zentrale Qualitätsfrage lautet bei jeder Implementierungsentscheidung: „Kann der Spieler erkennen, welche Vorbereitung zu welchem Kampfverhalten und welchem Ergebnis geführt hat?\" Ist die Antwort nicht eindeutig, muss zuerst Lesbarkeit oder Regeldefinition verbessert werden, nicht zusätzlicher Content ergänzt."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "UT-PROD-095"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ]
+}

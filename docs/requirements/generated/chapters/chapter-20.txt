@@ -1,0 +1,78 @@
+# Chapter 20: Ereignissystem und 30 vollständige Ereignisse
+# blocks 820..988 (169 blocks)
+
+[Heading 2] 20. Ereignissystem und 30 vollständige Ereignisse
+[Heading 3] 20.1 Globale Ereignisregeln
+[Compact] Jedes Ereignis besitzt Illustration, Titel, maximal 120 Wörter Situationstext, zwei oder drei Optionen und eine sichtbare Risikostufe.
+[Compact] Jede Option zeigt garantierte Kosten, garantierte Folgen, mögliche Zufallsresultate und exakte Wahrscheinlichkeiten vor Bestätigung.
+[Compact] Ein Ereignis darf nie permanent einen Helden, Vertrag, freigeschalteten Gegenstand oder Ruhm entfernen.
+[Compact] Zufallsergebnis wird beim Öffnen des Ereignisses deterministisch festgelegt und durch Neustart nicht neu gewürfelt.
+[Compact] Nicht erfüllbare Optionen bleiben sichtbar, ausgegraut und erklären die Voraussetzung. Es gibt immer mindestens eine kostenlose wählbare Option.
+[Compact] Identisches Ereignis erscheint höchstens einmal pro Expedition. Regionsereignisse besitzen höheres Gewicht in ihrer Region.
+[Compact] Einmalige Kodex/Kosmetik-Belohnungen werden nach Freischaltung durch 40-80 Gold oder gleichwertigen Dienst ersetzt.
+[Heading 3] 20.2 Verlassene Waffenkammer
+[First Paragraph] Pool: Allgemein. Risiko: Niedrig.
+[Heading 3] 20.3 Der verwundete Söldner
+[First Paragraph] Pool: Allgemein. Risiko: Niedrig.
+[Heading 3] 20.4 Flüsternder Altar
+[First Paragraph] Pool: Allgemein. Risiko: Mittel.
+[Heading 3] 20.5 Pips hervorragende Abkürzung
+[First Paragraph] Pool: Allgemein. Risiko: Mittel.
+[Heading 3] 20.6 Der beleidigte Händler
+[First Paragraph] Pool: Allgemein. Risiko: Niedrig.
+[Heading 3] 20.7 Die riesige Picknickdecke
+[First Paragraph] Pool: Allgemein. Risiko: Mittel.
+[Heading 3] 20.8 Falsch zusammengesetztes Skelett
+[First Paragraph] Pool: Aschenstraße. Risiko: Niedrig.
+[Heading 3] 20.9 Der rauchende Wegweiser
+[First Paragraph] Pool: Aschenstraße. Risiko: Mittel.
+[Heading 3] 20.10 Die letzte Parade
+[First Paragraph] Pool: Aschenstraße. Risiko: Hoch.
+[Heading 3] 20.11 Krone im Staub
+[First Paragraph] Pool: Aschenstraße. Risiko: Mittel.
+[Heading 3] 20.12 Hungrige Ranken
+[First Paragraph] Pool: Dornenhain. Risiko: Mittel.
+[Heading 3] 20.13 Das höfliche Wolfsrudel
+[First Paragraph] Pool: Dornenhain. Risiko: Niedrig.
+[Heading 3] 20.14 Schlafende Heilblüte
+[First Paragraph] Pool: Dornenhain. Risiko: Niedrig.
+[Heading 3] 20.15 Pollenorakel
+[First Paragraph] Pool: Dornenhain. Risiko: Mittel.
+[Heading 3] 20.16 Der unmögliche Teich
+[First Paragraph] Pool: Dornenhain. Risiko: Hoch.
+[Heading 3] 20.17 Streikende Zahnräder
+[First Paragraph] Pool: Eisenschmiede. Risiko: Niedrig.
+[Heading 3] 20.18 Der viel zu große Knopf
+[First Paragraph] Pool: Eisenschmiede. Risiko: Hoch.
+[Heading 3] 20.19 Runenprüfstelle
+[First Paragraph] Pool: Eisenschmiede. Risiko: Mittel.
+[Heading 3] 20.20 Abgekühlter Ofenkern
+[First Paragraph] Pool: Eisenschmiede. Risiko: Mittel.
+[Heading 3] 20.21 Mechaniker ohne Plan
+[First Paragraph] Pool: Eisenschmiede. Risiko: Niedrig.
+[Heading 3] 20.22 Die Tür von gestern
+[First Paragraph] Pool: Zitadelle. Risiko: Mittel.
+[Heading 3] 20.23 Drei identische Pips
+[First Paragraph] Pool: Zitadelle. Risiko: Niedrig.
+[Heading 3] 20.24 Redigierte Schatzkarte
+[First Paragraph] Pool: Zitadelle. Risiko: Mittel.
+[Heading 3] 20.25 Stillgelegte Zukunft
+[First Paragraph] Pool: Zitadelle. Risiko: Hoch.
+[Heading 3] 20.26 Der Spiegel, der zuerst blinzelt
+[First Paragraph] Pool: Zitadelle. Risiko: Mittel.
+[Heading 3] 20.27 Anker mit Schluckauf
+[First Paragraph] Pool: Allgemein. Risiko: Mittel.
+[Heading 3] 20.28 Die singende Rüstung
+[First Paragraph] Pool: Allgemein. Risiko: Niedrig.
+[Heading 3] 20.29 Riftpost ohne Empfänger
+[First Paragraph] Pool: Allgemein. Risiko: Niedrig.
+[Heading 3] 20.30 Tauschbörse der Echos
+[First Paragraph] Pool: Allgemein. Risiko: Mittel.
+[Heading 3] 20.31 Die letzte sichere Bank
+[First Paragraph] Pool: Allgemein. Risiko: Hoch.
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Alle 30 Ereignisse können in automatisierten Tests mit jeder Option ohne ungültigen Zustand abgeschlossen werden.
+[Compact] Keine Option erzeugt Gold, Gegenstände oder Knoten doppelt nach Speichern/Laden.
+[Compact] Ausgegraute Optionen besitzen konkrete Voraussetzung statt generischem Fehler.
+[Compact] Zufallsoptionen zeigen Prozentwerte und verwenden gespeicherten Event-Seed.
+[Compact] Ereignistexte bleiben kurz; mechanische Details stehen strukturiert unter der Option und nicht versteckt im Fließtext.

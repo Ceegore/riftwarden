@@ -1,0 +1,369 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "id": "NORM-008",
+      "topic": "Saveexport",
+      "canonicalRule": ".riftwarden-save; separater .riftwarden-diagnostic. Keine ältere .rwsave-Endung in V1.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-008",
+        "GDD chapter 83"
+      ],
+      "affectedRequirementIds": [
+        "REQ-A11Y-0008",
+        "REQ-CONTENT-0067",
+        "REQ-CONTENT-0068",
+        "REQ-CONTENT-0086",
+        "REQ-CONTENT-0090",
+        "REQ-CONTENT-0093",
+        "REQ-CONTENT-0095",
+        "REQ-CONTENT-0117",
+        "REQ-CONTENT-0118",
+        "REQ-CONTENT-0121",
+        "REQ-PERF-0002",
+        "REQ-PRODUCT-0020",
+        "REQ-PRODUCT-0027",
+        "REQ-PRODUCT-0029",
+        "REQ-PRODUCT-0039",
+        "REQ-PRODUCT-0049",
+        "REQ-PRODUCT-0051",
+        "REQ-PRODUCT-0052",
+        "REQ-PRODUCT-0053",
+        "REQ-PRODUCT-0066",
+        "REQ-PRODUCT-0071",
+        "REQ-PRODUCT-0072",
+        "REQ-PRODUCT-0089",
+        "REQ-PRODUCT-0093",
+        "REQ-QA-0005",
+        "REQ-QA-0022",
+        "REQ-QA-0026",
+        "REQ-QA-0033",
+        "REQ-QA-0035",
+        "REQ-SAVE-0001"
+      ],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "NORM-009",
+      "topic": "Textscale",
+      "canonicalRule": "100/125/150/175/200 Prozent.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-009",
+        "GDD chapter 83"
+      ],
+      "affectedRequirementIds": [
+        "REQ-A11Y-0002",
+        "REQ-A11Y-0009",
+        "REQ-A11Y-0013",
+        "REQ-A11Y-0017",
+        "REQ-A11Y-0018",
+        "REQ-A11Y-0027",
+        "REQ-ANDROID-0011",
+        "REQ-CONTENT-0003",
+        "REQ-CONTENT-0040",
+        "REQ-CONTENT-0060",
+        "REQ-CONTENT-0072",
+        "REQ-CONTENT-0076",
+        "REQ-CONTENT-0078",
+        "REQ-CONTENT-0079",
+        "REQ-CONTENT-0080",
+        "REQ-CONTENT-0081",
+        "REQ-CONTENT-0082",
+        "REQ-CONTENT-0103",
+        "REQ-CONTENT-0105",
+        "REQ-CONTENT-0107",
+        "REQ-CONTENT-0108",
+        "REQ-PERF-0002",
+        "REQ-PERF-0004",
+        "REQ-PERF-0009",
+        "REQ-PRODUCT-0017",
+        "REQ-PRODUCT-0020",
+        "REQ-PRODUCT-0042",
+        "REQ-PRODUCT-0050",
+        "REQ-PRODUCT-0051",
+        "REQ-PRODUCT-0093"
+      ],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "NORM-010",
+      "topic": "Contentpfad",
+      "canonicalRule": "/content/source, /content/schemas, /content/generated. Runtime-Index unter src/game/content; keine manuellen Datenobjekte im UI-Code.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-010",
+        "GDD chapter 72/74/87 authority review required"
+      ],
+      "affectedRequirementIds": [
+        "REQ-CONTENT-0001",
+        "REQ-CONTENT-0002",
+        "REQ-CONTENT-0003",
+        "REQ-CONTENT-0004",
+        "REQ-CONTENT-0005",
+        "REQ-CONTENT-0006",
+        "REQ-CONTENT-0007",
+        "REQ-CONTENT-0008",
+        "REQ-CONTENT-0009",
+        "REQ-CONTENT-0010",
+        "REQ-CONTENT-0011",
+        "REQ-CONTENT-0012",
+        "REQ-CONTENT-0013",
+        "REQ-CONTENT-0014",
+        "REQ-CONTENT-0015",
+        "REQ-CONTENT-0016",
+        "REQ-CONTENT-0017",
+        "REQ-CONTENT-0018",
+        "REQ-CONTENT-0019",
+        "REQ-CONTENT-0020",
+        "REQ-CONTENT-0021",
+        "REQ-CONTENT-0022",
+        "REQ-CONTENT-0023",
+        "REQ-CONTENT-0024",
+        "REQ-CONTENT-0025",
+        "REQ-CONTENT-0026",
+        "REQ-CONTENT-0027",
+        "REQ-CONTENT-0028",
+        "REQ-CONTENT-0029",
+        "REQ-CONTENT-0030"
+      ],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "NORM-011",
+      "topic": "Installationsbudget",
+      "canonicalRule": "250 MiB Ziel, 350 MiB harter Releaseblocker ohne ADR.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-011",
+        "GDD chapter 84"
+      ],
+      "affectedRequirementIds": [
+        "REQ-A11Y-0013",
+        "REQ-ANDROID-0004",
+        "REQ-ANDROID-0006",
+        "REQ-CONTENT-0021",
+        "REQ-CONTENT-0086",
+        "REQ-CONTENT-0103",
+        "REQ-CONTENT-0110",
+        "REQ-CONTENT-0115",
+        "REQ-CONTENT-0118",
+        "REQ-IOS-0005",
+        "REQ-IOS-0006",
+        "REQ-IOS-0009",
+        "REQ-IOS-0010",
+        "REQ-PRODUCT-0033",
+        "REQ-PRODUCT-0035",
+        "REQ-PRODUCT-0040",
+        "REQ-PRODUCT-0066",
+        "REQ-QA-0011",
+        "REQ-QA-0012",
+        "REQ-QA-0013",
+        "REQ-QA-0017",
+        "REQ-QA-0031",
+        "REQ-SAVE-0012",
+        "REQ-SAVE-0036",
+        "REQ-SAVE-0039",
+        "REQ-SECURITY-0003",
+        "REQ-SIM-0093",
+        "REQ-SIM-0121",
+        "REQ-STORE-0013",
+        "REQ-UX-0030"
+      ],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "NORM-012",
+      "topic": "Coverage",
+      "canonicalRule": ">=95% Branch-Coverage in game/sim und storage/migrations; kritische Regeln vollständig abgedeckt.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-012",
+        "GDD chapter 85"
+      ],
+      "affectedRequirementIds": [
+        "REQ-ANDROID-0006",
+        "REQ-CONTENT-0078",
+        "REQ-CONTENT-0094",
+        "REQ-CONTENT-0096",
+        "REQ-IOS-0008",
+        "REQ-PERF-0009",
+        "REQ-PRODUCT-0024",
+        "REQ-PRODUCT-0027",
+        "REQ-PRODUCT-0033",
+        "REQ-PRODUCT-0038",
+        "REQ-PRODUCT-0043",
+        "REQ-PRODUCT-0046",
+        "REQ-PRODUCT-0047",
+        "REQ-PRODUCT-0050",
+        "REQ-PRODUCT-0063",
+        "REQ-QA-0003",
+        "REQ-QA-0011",
+        "REQ-QA-0012",
+        "REQ-QA-0016",
+        "REQ-QA-0018",
+        "REQ-QA-0021",
+        "REQ-QA-0022",
+        "REQ-QA-0026",
+        "REQ-QA-0027",
+        "REQ-QA-0031",
+        "REQ-QA-0033",
+        "REQ-QA-0036",
+        "REQ-SAVE-0014",
+        "REQ-SAVE-0015",
+        "REQ-SECURITY-0006"
+      ],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "NORM-013",
+      "topic": "Massensimulation",
+      "canonicalRule": "Mindestens 100.000 Kämpfe pro RC. Zusätzlich mindestens 1.000 generierte Fälle pro definierter Property-Invariante.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-013",
+        "GDD chapter 85"
+      ],
+      "affectedRequirementIds": [
+        "REQ-A11Y-0006",
+        "REQ-A11Y-0018",
+        "REQ-CONTENT-0070",
+        "REQ-PERF-0005",
+        "REQ-PERF-0007",
+        "REQ-PERF-0010",
+        "REQ-PRODUCT-0018",
+        "REQ-PRODUCT-0027",
+        "REQ-PRODUCT-0028",
+        "REQ-PRODUCT-0030",
+        "REQ-PRODUCT-0034",
+        "REQ-PRODUCT-0043",
+        "REQ-PRODUCT-0044",
+        "REQ-PRODUCT-0045",
+        "REQ-PRODUCT-0049",
+        "REQ-PRODUCT-0062",
+        "REQ-PRODUCT-0067",
+        "REQ-PRODUCT-0068",
+        "REQ-PRODUCT-0069",
+        "REQ-PRODUCT-0073",
+        "REQ-PRODUCT-0086",
+        "REQ-QA-0003",
+        "REQ-SAVE-0028",
+        "REQ-SAVE-0034",
+        "REQ-SAVE-0048",
+        "REQ-SAVE-0051",
+        "REQ-SIM-0027",
+        "REQ-SIM-0047",
+        "REQ-SIM-0049",
+        "REQ-SIM-0051"
+      ],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "id": "NORM-014",
+      "topic": "Dungeon-QA",
+      "canonicalRule": "100.000 Karten über Missions-/Modusprofile; null Sackgassen, Pflichtknoten- oder Längenverletzungen.",
+      "status": "active",
+      "authorityPriority": 1,
+      "authorityReferences": [
+        "Development Plan V2.0 §1 NORM-014",
+        "GDD chapter 85"
+      ],
+      "affectedRequirementIds": [
+        "REQ-ANDROID-0005",
+        "REQ-CONTENT-0101",
+        "REQ-PRODUCT-0012",
+        "REQ-PRODUCT-0037",
+        "REQ-PRODUCT-0057",
+        "REQ-QA-0001",
+        "REQ-QA-0002",
+        "REQ-QA-0003",
+        "REQ-QA-0004",
+        "REQ-QA-0005",
+        "REQ-QA-0006",
+        "REQ-QA-0007",
+        "REQ-QA-0008",
+        "REQ-QA-0009",
+        "REQ-QA-0010",
+        "REQ-QA-0011",
+        "REQ-QA-0012",
+        "REQ-QA-0013",
+        "REQ-QA-0014",
+        "REQ-QA-0015",
+        "REQ-QA-0016",
+        "REQ-QA-0017",
+        "REQ-QA-0018",
+        "REQ-QA-0019",
+        "REQ-QA-0020",
+        "REQ-QA-0021",
+        "REQ-QA-0022",
+        "REQ-QA-0023",
+        "REQ-QA-0024",
+        "REQ-QA-0025"
+      ],
+      "supersededStatements": [
+        {
+          "source": "REPLACE_WITH_EXACT_OLDER_OR_CONFLICTING_SOURCE_LOCATOR",
+          "summary": "TEMPLATE: record the older or more general statement without deleting it."
+        }
+      ],
+      "reviewStatus": "verified",
+      "reviewedBy": "GLM_ORCHESTRATOR",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    }
+  ]
+}

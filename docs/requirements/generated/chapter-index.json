@@ -1,0 +1,876 @@
+{
+  "schemaVersion": "1.0",
+  "sourceId": "gdd-v5",
+  "chapters": [
+    {
+      "chapter": 1,
+      "title": "Zweck, Leseregeln und Definition von Implementierungsreife",
+      "file": "docs/requirements/generated/chapters/chapter-01.txt",
+      "blockStart": 11,
+      "blockEnd": 30,
+      "blocks": 19,
+      "lines": 18,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 2,
+      "title": "Verbindliche Produktdefinition",
+      "file": "docs/requirements/generated/chapters/chapter-02.txt",
+      "blockStart": 30,
+      "blockEnd": 43,
+      "blocks": 13,
+      "lines": 11,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 3,
+      "title": "Designpfeiler und Nicht-Ziele",
+      "file": "docs/requirements/generated/chapters/chapter-03.txt",
+      "blockStart": 43,
+      "blockEnd": 48,
+      "blocks": 5,
+      "lines": 5,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 4,
+      "title": "Welt, Ton und Erzählrahmen",
+      "file": "docs/requirements/generated/chapters/chapter-04.txt",
+      "blockStart": 48,
+      "blockEnd": 83,
+      "blocks": 35,
+      "lines": 24,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 5,
+      "title": "Gesamtschleife und Sitzungsstruktur",
+      "file": "docs/requirements/generated/chapters/chapter-05.txt",
+      "blockStart": 83,
+      "blockEnd": 88,
+      "blocks": 5,
+      "lines": 5,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 6,
+      "title": "Verbindliches Kampfsimulationsmodell",
+      "file": "docs/requirements/generated/chapters/chapter-06.txt",
+      "blockStart": 88,
+      "blockEnd": 157,
+      "blocks": 69,
+      "lines": 55,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 7,
+      "title": "Zielwahl, Bedrohung und Doktrinen",
+      "file": "docs/requirements/generated/chapters/chapter-07.txt",
+      "blockStart": 157,
+      "blockEnd": 220,
+      "blocks": 63,
+      "lines": 42,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 8,
+      "title": "Statuswirkungen, Buffs und Kontrolle",
+      "file": "docs/requirements/generated/chapters/chapter-08.txt",
+      "blockStart": 220,
+      "blockEnd": 241,
+      "blocks": 21,
+      "lines": 17,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 9,
+      "title": "Formation, Gruppengröße und Plätze",
+      "file": "docs/requirements/generated/chapters/chapter-09.txt",
+      "blockStart": 241,
+      "blockEnd": 259,
+      "blocks": 18,
+      "lines": 17,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 10,
+      "title": "Merkmale und Synergien",
+      "file": "docs/requirements/generated/chapters/chapter-10.txt",
+      "blockStart": 259,
+      "blockEnd": 269,
+      "blocks": 10,
+      "lines": 10,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 11,
+      "title": "Helden, Ruhm und vollständige Heldenkits",
+      "file": "docs/requirements/generated/chapters/chapter-11.txt",
+      "blockStart": 269,
+      "blockEnd": 373,
+      "blocks": 104,
+      "lines": 71,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 12,
+      "title": "Truppenverträge und die 18 Truppentypen",
+      "file": "docs/requirements/generated/chapters/chapter-12.txt",
+      "blockStart": 373,
+      "blockEnd": 463,
+      "blocks": 90,
+      "lines": 34,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 13,
+      "title": "Beschwörungen",
+      "file": "docs/requirements/generated/chapters/chapter-13.txt",
+      "blockStart": 463,
+      "blockEnd": 482,
+      "blocks": 19,
+      "lines": 17,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 14,
+      "title": "Gegnerroster und regionale Kampfidentitäten",
+      "file": "docs/requirements/generated/chapters/chapter-14.txt",
+      "blockStart": 482,
+      "blockEnd": 522,
+      "blocks": 40,
+      "lines": 29,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 15,
+      "title": "Eliteeigenschaften, Champions und Zwischenbosse",
+      "file": "docs/requirements/generated/chapters/chapter-15.txt",
+      "blockStart": 522,
+      "blockEnd": 553,
+      "blocks": 31,
+      "lines": 21,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 16,
+      "title": "Vollständiges Bossdesign",
+      "file": "docs/requirements/generated/chapters/chapter-16.txt",
+      "blockStart": 553,
+      "blockEnd": 745,
+      "blocks": 192,
+      "lines": 133,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 17,
+      "title": "Kampfvarianten und Schlachtfeldmodifikatoren",
+      "file": "docs/requirements/generated/chapters/chapter-17.txt",
+      "blockStart": 745,
+      "blockEnd": 771,
+      "blocks": 26,
+      "lines": 19,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 18,
+      "title": "Riftinstabilität",
+      "file": "docs/requirements/generated/chapters/chapter-18.txt",
+      "blockStart": 771,
+      "blockEnd": 781,
+      "blocks": 10,
+      "lines": 10,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 19,
+      "title": "Dungeonkarten und Knoten",
+      "file": "docs/requirements/generated/chapters/chapter-19.txt",
+      "blockStart": 781,
+      "blockEnd": 820,
+      "blocks": 39,
+      "lines": 33,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 20,
+      "title": "Ereignissystem und 30 vollständige Ereignisse",
+      "file": "docs/requirements/generated/chapters/chapter-20.txt",
+      "blockStart": 820,
+      "blockEnd": 989,
+      "blocks": 169,
+      "lines": 78,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 21,
+      "title": "Permanente Ausrüstung",
+      "file": "docs/requirements/generated/chapters/chapter-21.txt",
+      "blockStart": 989,
+      "blockEnd": 1022,
+      "blocks": 33,
+      "lines": 20,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 22,
+      "title": "Temporäre Relikte",
+      "file": "docs/requirements/generated/chapters/chapter-22.txt",
+      "blockStart": 1022,
+      "blockEnd": 1031,
+      "blocks": 9,
+      "lines": 9,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 23,
+      "title": "Wirtschaft, Beute und Sicherung",
+      "file": "docs/requirements/generated/chapters/chapter-23.txt",
+      "blockStart": 1031,
+      "blockEnd": 1060,
+      "blocks": 29,
+      "lines": 19,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 24,
+      "title": "Kampagne: 4 Akte und 20 implementierungsreife Expeditionen",
+      "file": "docs/requirements/generated/chapters/chapter-24.txt",
+      "blockStart": 1060,
+      "blockEnd": 1157,
+      "blocks": 97,
+      "lines": 33,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 25,
+      "title": "Kampagnenschwierigkeiten",
+      "file": "docs/requirements/generated/chapters/chapter-25.txt",
+      "blockStart": 1157,
+      "blockEnd": 1165,
+      "blocks": 8,
+      "lines": 8,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 26,
+      "title": "Onboarding und progressive Offenlegung",
+      "file": "docs/requirements/generated/chapters/chapter-26.txt",
+      "blockStart": 1165,
+      "blockEnd": 1178,
+      "blocks": 13,
+      "lines": 13,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 27,
+      "title": "Ascension-Endgame",
+      "file": "docs/requirements/generated/chapters/chapter-27.txt",
+      "blockStart": 1178,
+      "blockEnd": 1213,
+      "blocks": 35,
+      "lines": 26,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 28,
+      "title": "Ascension-Konstellation - 28 Knoten",
+      "file": "docs/requirements/generated/chapters/chapter-28.txt",
+      "blockStart": 1213,
+      "blockEnd": 1225,
+      "blocks": 12,
+      "lines": 10,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 29,
+      "title": "Jenseits-Modus",
+      "file": "docs/requirements/generated/chapters/chapter-29.txt",
+      "blockStart": 1225,
+      "blockEnd": 1233,
+      "blocks": 8,
+      "lines": 9,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 30,
+      "title": "Endlose Rift",
+      "file": "docs/requirements/generated/chapters/chapter-30.txt",
+      "blockStart": 1233,
+      "blockEnd": 1270,
+      "blocks": 37,
+      "lines": 25,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 31,
+      "title": "Heldenmeisterschaften",
+      "file": "docs/requirements/generated/chapters/chapter-31.txt",
+      "blockStart": 1270,
+      "blockEnd": 1320,
+      "blocks": 50,
+      "lines": 20,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 32,
+      "title": "Kodex",
+      "file": "docs/requirements/generated/chapters/chapter-32.txt",
+      "blockStart": 1320,
+      "blockEnd": 1329,
+      "blocks": 9,
+      "lines": 10,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 33,
+      "title": "Interne Erfolge",
+      "file": "docs/requirements/generated/chapters/chapter-33.txt",
+      "blockStart": 1329,
+      "blockEnd": 1337,
+      "blocks": 8,
+      "lines": 8,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 34,
+      "title": "Kampfauswertung und automatische Hinweise",
+      "file": "docs/requirements/generated/chapters/chapter-34.txt",
+      "blockStart": 1337,
+      "blockEnd": 1358,
+      "blocks": 21,
+      "lines": 13,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 35,
+      "title": "Hauptquartier und dauerhafte Progressionsoberfläche",
+      "file": "docs/requirements/generated/chapters/chapter-35.txt",
+      "blockStart": 1358,
+      "blockEnd": 1375,
+      "blocks": 17,
+      "lines": 12,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 36,
+      "title": "UX für Formation, Vorschau und Kampf",
+      "file": "docs/requirements/generated/chapters/chapter-36.txt",
+      "blockStart": 1375,
+      "blockEnd": 1405,
+      "blocks": 30,
+      "lines": 24,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 37,
+      "title": "Visuelle Ausrichtung",
+      "file": "docs/requirements/generated/chapters/chapter-37.txt",
+      "blockStart": 1405,
+      "blockEnd": 1418,
+      "blocks": 13,
+      "lines": 11,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 38,
+      "title": "Kampfpolish und Feedbackbudget",
+      "file": "docs/requirements/generated/chapters/chapter-38.txt",
+      "blockStart": 1418,
+      "blockEnd": 1426,
+      "blocks": 8,
+      "lines": 8,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 39,
+      "title": "Audioausrichtung",
+      "file": "docs/requirements/generated/chapters/chapter-39.txt",
+      "blockStart": 1426,
+      "blockEnd": 1434,
+      "blocks": 8,
+      "lines": 8,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 40,
+      "title": "Bedienung, Komfort und Barrierefreiheit",
+      "file": "docs/requirements/generated/chapters/chapter-40.txt",
+      "blockStart": 1434,
+      "blockEnd": 1446,
+      "blocks": 12,
+      "lines": 10,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 41,
+      "title": "Inhaltliche Datenverträge",
+      "file": "docs/requirements/generated/chapters/chapter-41.txt",
+      "blockStart": 1446,
+      "blockEnd": 1458,
+      "blocks": 12,
+      "lines": 10,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 42,
+      "title": "Savegame, Versionierung und Offline-Verhalten",
+      "file": "docs/requirements/generated/chapters/chapter-42.txt",
+      "blockStart": 1458,
+      "blockEnd": 1468,
+      "blocks": 10,
+      "lines": 11,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 43,
+      "title": "Balancing-Leitplanken",
+      "file": "docs/requirements/generated/chapters/chapter-43.txt",
+      "blockStart": 1468,
+      "blockEnd": 1481,
+      "blocks": 13,
+      "lines": 11,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 44,
+      "title": "Vertikaler Inhaltsprototyp",
+      "file": "docs/requirements/generated/chapters/chapter-44.txt",
+      "blockStart": 1481,
+      "blockEnd": 1495,
+      "blocks": 14,
+      "lines": 12,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 45,
+      "title": "Release-Abnahmekriterien",
+      "file": "docs/requirements/generated/chapters/chapter-45.txt",
+      "blockStart": 1495,
+      "blockEnd": 1524,
+      "blocks": 29,
+      "lines": 24,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 46,
+      "title": "Zielumfang, Spielzeit und Scope-Schutz",
+      "file": "docs/requirements/generated/chapters/chapter-46.txt",
+      "blockStart": 1524,
+      "blockEnd": 1540,
+      "blocks": 16,
+      "lines": 14,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 47,
+      "title": "Definition der vollständigen inhaltlichen Zielversion",
+      "file": "docs/requirements/generated/chapters/chapter-47.txt",
+      "blockStart": 1540,
+      "blockEnd": 1546,
+      "blocks": 6,
+      "lines": 6,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 48,
+      "title": "Verbindliche Restklarstellungen und Konfliktauflösung",
+      "file": "docs/requirements/generated/chapters/chapter-48.txt",
+      "blockStart": 1546,
+      "blockEnd": 1592,
+      "blocks": 46,
+      "lines": 42,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 49,
+      "title": "Verbindliche technische Produktbaseline",
+      "file": "docs/requirements/generated/chapters/chapter-49.txt",
+      "blockStart": 1592,
+      "blockEnd": 1605,
+      "blocks": 13,
+      "lines": 10,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 50,
+      "title": "Repository, Module und Coding-Verträge",
+      "file": "docs/requirements/generated/chapters/chapter-50.txt",
+      "blockStart": 1605,
+      "blockEnd": 1627,
+      "blocks": 22,
+      "lines": 25,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 51,
+      "title": "Deterministische Simulation und Replay-Architektur",
+      "file": "docs/requirements/generated/chapters/chapter-51.txt",
+      "blockStart": 1627,
+      "blockEnd": 1649,
+      "blocks": 22,
+      "lines": 21,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 52,
+      "title": "Rendering-, Asset- und Performancearchitektur",
+      "file": "docs/requirements/generated/chapters/chapter-52.txt",
+      "blockStart": 1649,
+      "blockEnd": 1665,
+      "blocks": 16,
+      "lines": 9,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 53,
+      "title": "App-Lifecycle, Navigation und globale Zustände",
+      "file": "docs/requirements/generated/chapters/chapter-53.txt",
+      "blockStart": 1665,
+      "blockEnd": 1679,
+      "blocks": 14,
+      "lines": 13,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 54,
+      "title": "Vollständiger Screenkatalog und Funktionsumfang",
+      "file": "docs/requirements/generated/chapters/chapter-54.txt",
+      "blockStart": 1679,
+      "blockEnd": 1699,
+      "blocks": 20,
+      "lines": 15,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 55,
+      "title": "GUI-Designsystem und responsive Layouts",
+      "file": "docs/requirements/generated/chapters/chapter-55.txt",
+      "blockStart": 1699,
+      "blockEnd": 1723,
+      "blocks": 24,
+      "lines": 17,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 56,
+      "title": "Eingabe, Controller und Barrierefreiheit",
+      "file": "docs/requirements/generated/chapters/chapter-56.txt",
+      "blockStart": 1723,
+      "blockEnd": 1745,
+      "blocks": 22,
+      "lines": 21,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 57,
+      "title": "Audio-, Haptik- und Unterbrechungsverhalten",
+      "file": "docs/requirements/generated/chapters/chapter-57.txt",
+      "blockStart": 1745,
+      "blockEnd": 1752,
+      "blocks": 7,
+      "lines": 10,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 58,
+      "title": "Savegame, Migration, Import/Export und Recovery",
+      "file": "docs/requirements/generated/chapters/chapter-58.txt",
+      "blockStart": 1752,
+      "blockEnd": 1777,
+      "blocks": 25,
+      "lines": 24,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 59,
+      "title": "Content-Pipeline, Schemas und Buildvalidierung",
+      "file": "docs/requirements/generated/chapters/chapter-59.txt",
+      "blockStart": 1777,
+      "blockEnd": 1789,
+      "blocks": 12,
+      "lines": 13,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 60,
+      "title": "Lokalisierung, Copy und Textproduktion",
+      "file": "docs/requirements/generated/chapters/chapter-60.txt",
+      "blockStart": 1789,
+      "blockEnd": 1798,
+      "blocks": 9,
+      "lines": 10,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 61,
+      "title": "Datenschutz, Sicherheit und Netzwerkfreiheit",
+      "file": "docs/requirements/generated/chapters/chapter-61.txt",
+      "blockStart": 1798,
+      "blockEnd": 1817,
+      "blocks": 19,
+      "lines": 22,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 62,
+      "title": "Android-Konfiguration und Google-Play-Abnahme",
+      "file": "docs/requirements/generated/chapters/chapter-62.txt",
+      "blockStart": 1817,
+      "blockEnd": 1834,
+      "blocks": 17,
+      "lines": 14,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 63,
+      "title": "iOS/iPadOS-Konfiguration und App-Store-Abnahme",
+      "file": "docs/requirements/generated/chapters/chapter-63.txt",
+      "blockStart": 1834,
+      "blockEnd": 1844,
+      "blocks": 10,
+      "lines": 7,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 64,
+      "title": "Storegrafiken, App-Icon, Splash und Metadaten",
+      "file": "docs/requirements/generated/chapters/chapter-64.txt",
+      "blockStart": 1844,
+      "blockEnd": 1858,
+      "blocks": 14,
+      "lines": 15,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 65,
+      "title": "Teststrategie, QA und automatisierte Gates",
+      "file": "docs/requirements/generated/chapters/chapter-65.txt",
+      "blockStart": 1858,
+      "blockEnd": 1876,
+      "blocks": 18,
+      "lines": 15,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 66,
+      "title": "CI/CD, Buildvarianten und Releaseprozess",
+      "file": "docs/requirements/generated/chapters/chapter-66.txt",
+      "blockStart": 1876,
+      "blockEnd": 1895,
+      "blocks": 19,
+      "lines": 20,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 67,
+      "title": "Produktionsphasen und sofortige Implementierungsreihenfolge",
+      "file": "docs/requirements/generated/chapters/chapter-67.txt",
+      "blockStart": 1895,
+      "blockEnd": 1901,
+      "blocks": 6,
+      "lines": 7,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 68,
+      "title": "Store- und Release-Checklisten als harte Gates",
+      "file": "docs/requirements/generated/chapters/chapter-68.txt",
+      "blockStart": 1901,
+      "blockEnd": 1920,
+      "blocks": 19,
+      "lines": 22,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 69,
+      "title": "Quellen- und Anforderungsstand der Plattformregeln",
+      "file": "docs/requirements/generated/chapters/chapter-69.txt",
+      "blockStart": 1920,
+      "blockEnd": 1935,
+      "blocks": 15,
+      "lines": 18,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 70,
+      "title": "V3-Inhaltserhaltungs- und Abweichungsaudit",
+      "file": "docs/requirements/generated/chapters/chapter-70.txt",
+      "blockStart": 1935,
+      "blockEnd": 1945,
+      "blocks": 10,
+      "lines": 11,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 71,
+      "title": "Definition der finalen produktionsreifen Zielversion",
+      "file": "docs/requirements/generated/chapters/chapter-71.txt",
+      "blockStart": 1945,
+      "blockEnd": 1953,
+      "blocks": 8,
+      "lines": 10,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 72,
+      "title": "V5-Autorität, Null-Unklarheits-Protokoll und externe Restwerte",
+      "file": "docs/requirements/generated/chapters/chapter-72.txt",
+      "blockStart": 1953,
+      "blockEnd": 1967,
+      "blocks": 14,
+      "lines": 14,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 73,
+      "title": "Kanonische Konstanten, Einheiten, Enums und ID-Regeln",
+      "file": "docs/requirements/generated/chapters/chapter-73.txt",
+      "blockStart": 1967,
+      "blockEnd": 1981,
+      "blocks": 14,
+      "lines": 15,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 74,
+      "title": "Exakter Repository-Bootstrap, Befehle und Konfigurationsbaseline",
+      "file": "docs/requirements/generated/chapters/chapter-74.txt",
+      "blockStart": 1981,
+      "blockEnd": 2000,
+      "blocks": 19,
+      "lines": 19,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 75,
+      "title": "Konkrete Datenmodelle, Schemas und Inhaltskompilierung",
+      "file": "docs/requirements/generated/chapters/chapter-75.txt",
+      "blockStart": 2000,
+      "blockEnd": 2020,
+      "blocks": 20,
+      "lines": 22,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 76,
+      "title": "Vollständig geschlossene Simulations- und Ereignisreihenfolge",
+      "file": "docs/requirements/generated/chapters/chapter-76.txt",
+      "blockStart": 2020,
+      "blockEnd": 2048,
+      "blocks": 28,
+      "lines": 28,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 77,
+      "title": "Verbindliche Einheiten-KI, Navigation und Anti-Stuck-Regeln",
+      "file": "docs/requirements/generated/chapters/chapter-77.txt",
+      "blockStart": 2048,
+      "blockEnd": 2068,
+      "blocks": 20,
+      "lines": 21,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 78,
+      "title": "Navigations-, Screen-, Modal- und Wiederherstellungsverträge",
+      "file": "docs/requirements/generated/chapters/chapter-78.txt",
+      "blockStart": 2068,
+      "blockEnd": 2087,
+      "blocks": 19,
+      "lines": 19,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 79,
+      "title": "Finales GUI-, Komponenten- und Visual-Polish-System",
+      "file": "docs/requirements/generated/chapters/chapter-79.txt",
+      "blockStart": 2087,
+      "blockEnd": 2109,
+      "blocks": 22,
+      "lines": 22,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 80,
+      "title": "Vollständige Accessibility- und Eingabe-Abnahmematrix",
+      "file": "docs/requirements/generated/chapters/chapter-80.txt",
+      "blockStart": 2109,
+      "blockEnd": 2127,
+      "blocks": 18,
+      "lines": 19,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 81,
+      "title": "Asset-, Animation-, VFX- und Produktionspakete",
+      "file": "docs/requirements/generated/chapters/chapter-81.txt",
+      "blockStart": 2127,
+      "blockEnd": 2147,
+      "blocks": 20,
+      "lines": 20,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 82,
+      "title": "Audio-, Musik-, Sprach- und Haptik-Spezifikation",
+      "file": "docs/requirements/generated/chapters/chapter-82.txt",
+      "blockStart": 2147,
+      "blockEnd": 2169,
+      "blocks": 22,
+      "lines": 22,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 83,
+      "title": "Konkretes Save-, Settings-, Diagnose- und Recovery-Protokoll",
+      "file": "docs/requirements/generated/chapters/chapter-83.txt",
+      "blockStart": 2169,
+      "blockEnd": 2196,
+      "blocks": 27,
+      "lines": 27,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 84,
+      "title": "Performance-, Speicher-, GPU-, Akku- und Gerätebudgets",
+      "file": "docs/requirements/generated/chapters/chapter-84.txt",
+      "blockStart": 2196,
+      "blockEnd": 2217,
+      "blocks": 21,
+      "lines": 21,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 85,
+      "title": "Testkatalog, Golden Seeds, Coverage und Go/No-Go",
+      "file": "docs/requirements/generated/chapters/chapter-85.txt",
+      "blockStart": 2217,
+      "blockEnd": 2241,
+      "blocks": 24,
+      "lines": 24,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 86,
+      "title": "V4-Inhaltserhalt, Korrekturen und Vollständigkeitsaudit",
+      "file": "docs/requirements/generated/chapters/chapter-86.txt",
+      "blockStart": 2241,
+      "blockEnd": 2257,
+      "blocks": 16,
+      "lines": 17,
+      "headingConfidence": "high"
+    },
+    {
+      "chapter": 87,
+      "title": "Finaler Handoff-Vertrag vor Entwicklungsplan und Implementierung",
+      "file": "docs/requirements/generated/chapters/chapter-87.txt",
+      "blockStart": 2257,
+      "blockEnd": 2272,
+      "blocks": 15,
+      "lines": 17,
+      "headingConfidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+# Chapter 48: Verbindliche Restklarstellungen und Konfliktauflösung
+# blocks 1546..1591 (46 blocks)
+
+[Heading 2] 48. Verbindliche Restklarstellungen und Konfliktauflösung
+[First Paragraph] Dieses Kapitel beseitigt die letzten Interpretationsräume der inhaltlichen Version 3. Bei Widersprüchen gilt die folgende Prioritätsreihenfolge: explizite V4-Klarstellung vor älterer V3-Formulierung; konkrete Einheiten- oder Bossregel vor globaler Standardregel; Sicherheits-, Save- und Store-Regel vor Komfortregel; feste Obergrenze vor Bonus; deterministischer Tie-Break vor zufälliger Auswahl. Kein Implementierungsagent darf aus einer unklaren Formulierung neue Inhalte, neue Währungen, weitere Slots oder zusätzliche Live-Systeme ableiten.
+[Heading 3] 48.1 Begriffe und verbindliche Zeitbasis
+[Heading 3] 48.2 Priorität gleichzeitiger Ereignisse
+[Compact] 1. Ein Simulations-Tick sammelt zunächst Eingaben und bereits geplante Ereignisse, verändert aber noch keinen Zustand.
+[Compact] 2. Zuerst werden Kampfende- und Phasenübergangsbedingungen geprüft. Ein Bossphasenwechsel verhindert Schaden über die Phasengrenze nur, wenn die Bossdefinition ausdrücklich eine Übergangssperre besitzt.
+[Compact] 3. Danach werden Wiederbelebungen, Todesverhinderungen und Schild-vor-LP-Regeln aufgelöst.
+[Compact] 4. Danach werden Schaden, Heilung, Kontrolle, Bewegung und Beschwörungen in der Ereignispriorität ausgeführt.
+[Compact] 5. Gleichrangige Ereignisse werden nach scheduledTick, priority, sourceEntityId, abilityId und eventSequence sortiert. Entity-IDs sind stabil; Array- oder Renderreihenfolge ist niemals ein Tie-Break.
+[Compact] 6. Erreicht eine Seite im selben Tick den Zustand ohne reguläre kampffähige Einheit, gilt: Boss-/Missionssonderregel, sonst Doppelniederlage. Eine Doppelniederlage zählt als Niederlage des Spielers und erzeugt keinen Siegloot.
+[Heading 3] 48.3 Beschwörungslimit und Ersatz
+[Compact] Jede Seite besitzt exakt sechs aktive Beschwörungs-Slots. Stationäre Konstruktionen zählen mit, wenn ihre Definition countsTowardSummonLimit=true setzt.
+[Compact] Kann eine Fähigkeit mehrere Einheiten erzeugen, werden freie Slots in der definierten Spawn-Reihenfolge belegt. Nicht erzeugte Einheiten verursachen weder Explosion noch OnSpawn-Effekt.
+[Compact] Ersatz ist nur erlaubt, wenn die Fähigkeit replacementPolicy=replace_lower_priority besitzt. Ersetzt wird die eigene aktive Beschwörung mit niedrigstem replacementPriority; Gleichstand: kürzeste Restlebenszeit, dann älteste Spawn-Sequenz.
+[Compact] Ein ersetztes Wesen erhält expirationReason=replaced und löst keine Effekte aus, die nur bei defeated gelten. Ausdrücklich auf expiration reagierende Effekte dürfen auslösen.
+[Compact] Beschwörungen können einen Gegner besiegen, aber der Kampf endet sofort, wenn ihre Seite keine reguläre Einheit mehr besitzt; nach Kampfende werden keine nachlaufenden Geschosse gewertet.
+[Heading 3] 48.4 Kontrolle, Immunität und Bossinteraktion
+[Compact] Betäubung, Stille, Rückstoß und erzwungener Bahnwechsel sind harte Kontrolle. Verlangsamung, Schwächung, Markierung, Brennen und Gift sind weiche Effekte.
+[Compact] Kontrollresistenz reduziert nur Dauer, nie die sichtbare Auslösung. Eine auf 0,15 s oder weniger reduzierte harte Kontrolle wird als 0,15-s-Unterbrechungsimpuls dargestellt.
+[Compact] Phasenübergänge reinigen harte Kontrolle, unterbrechen gegnerische Projektile jedoch nicht. Bereits abgeschossene Geschosse dürfen treffen, sofern die Phase nicht ausdrücklich unverwundbar ist.
+[Compact] Bosse können nicht von normalen Effekten die Bahn wechseln. Rückstoß wird in 0,25 s Unterbrechung umgewandelt, sofern keine Bossfähigkeit gerade als uninterruptible markiert ist.
+[Compact] Mehrere Reinigungen im selben Tick entfernen einen Effekt nur einmal. Die Quelle der zuerst sortierten Reinigung erhält die Statistikgutschrift.
+[Heading 3] 48.5 Beute, Duplikate und volle Inventare
+[Compact] Das permanente Inventar besitzt keine Gesamtplatzgrenze. Ein Gegenstand kann nur einmal dauerhaft besessen werden; ein Duplikat wird unmittelbar in den im Gegenstandsdatensatz definierten Goldwert umgewandelt.
+[Compact] Politur ist ein boolescher permanenter Zustand je Gegenstands-ID. Ein poliertes Duplikat erzeugt nicht mehr Gold als ein unpoliertes Duplikat.
+[Compact] Temporäre Relikte dürfen bis zu acht unterschiedliche aktive Karten besitzen. Ein neuntes Relikt öffnet zwingend Ersetzen oder Ablehnen; Ablehnen gibt 20% des Relikt-Händlerwerts in Zyklus-/Dungeonwährung.
+[Compact] Belohnungen werden vor der nächsten Navigation persistent committed. Ein Prozessabbruch zwischen Wahl und Animation lädt den bereits committed Zustand und zeigt nur die Abschlussanimation erneut.
+[Compact] Kann eine Erstbelohnung wegen bereits freigeschaltetem Inhalt nicht erneut vergeben werden, wird exakt die dokumentierte Ersatzbelohnung genutzt; niemals wird zufällig ein anderer permanenter Inhalt vergeben.
+[Heading 3] 48.6 Schwierigkeit, Instabilität und Ascension
+[Compact] Entdecker, Normal und Veteran gelten nur für Kampagne und Kampagnenwiederholung. Ascension verwendet seine eigene Baseline und ignoriert die Kampagnenschwierigkeit.
+[Compact] Endlose Rift nutzt Normal-Baseline plus Tiefenskalierung und optional gewählten bereits freigeschalteten Ascension-Regelsatz. Jenseitsgrad darf nicht zusätzlich auf Endlose Rift angewendet werden.
+[Compact] Ein Schlachtfeldmodifikator darf nie eine Bosskernmechanik vollständig neutralisieren oder deren angekündigte Gegenstrategie unmöglich machen. Der Encounter-Validator lehnt solche Kombinationen ab.
+[Heading 3] 48.7 Anti-Wiederholung und Generator-Fallback
+[Compact] Der Generator führt pro Modus einen Verlauf der letzten drei Kartenprofile, letzten acht Ereignisse, letzten sechs normalen Formationen und letzten vier Modifikatoren.
+[Compact] Identische Ereignis-ID ist innerhalb einer Expedition verboten. Außerhalb darf sie erst nach vier anderen Ereignissen erneut erscheinen, sofern der Pool mindestens fünf gültige Einträge besitzt.
+[Compact] Kann ein Pool wegen Freischaltungen oder Ausschlüssen die Regel nicht erfüllen, wird die geringste Wiederholungsstrafe gewählt; die Karte darf niemals unendlich neu würfeln. Maximal 50 Generierungsversuche, danach deterministisches Fallback-Profil.
+[Compact] Das Fallback-Profil enthält genau sechs Ebenen, einen normalen Kampf, einen Händler oder Rekrutierungsknoten, einen Elitekampf, einen Anker, eine letzte Vorbereitung und das Ziel. Es ist immer erreichbar und verwendet keine Doppelmodifikatoren.
+[Compact] Generatorfehler werden lokal protokolliert, aber der Spieler sieht nur „Die Rift wurde stabilisiert“; Fortschritt und Seed bleiben erhalten.
+[Heading 3] 48.8 Abschlusszustände

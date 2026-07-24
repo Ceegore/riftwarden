@@ -1,0 +1,22 @@
+# Chapter 82: Audio-, Musik-, Sprach- und Haptik-Spezifikation
+# blocks 2147..2168 (22 blocks)
+
+[Heading 2] 82. Audio-, Musik-, Sprach- und Haptik-Spezifikation
+[Heading 3] 82.1 Audio-Busse und Defaults
+[Heading 3] 82.2 Lautheit und Mixing
+[Compact] Music Masterziel -16 LUFS integrated, True Peak <= -1 dBTP. SFX werden nach Wahrnehmungsgruppe normalisiert; kein Einzelclip clippt.
+[Compact] Maximal 24 gleichzeitige SFX-Voices High, 16 Medium, 10 Low. Gleiche Cue-ID besitzt 60 ms Retrigger-Sperre, sofern nicht ausdrücklich Burst.
+[Compact] Bei Bosswarnung oder Sprache duckt Music um 3 dB und Ambient um 5 dB für Cue-Dauer +200 ms. SFX bleiben, außer Warnpriorität definiert Sidechain.
+[Compact] Audioengine verwendet keine zufällige Gameplayentscheidung. Pitch-/Variantenauswahl stammt aus combatCosmetic und beeinflusst Replay nicht.
+[Heading 3] 82.3 Musikstruktur
+[Heading 3] 82.4 Sprachumfang
+[Compact] Pip: Tutorial-, Unlock-, Niederlagen- und Storykurztexte. Maximal zwei Sätze; Untertitel immer vorhanden.
+[Compact] Helden: Einmarsch, Signatur, Level3, niedrige LP, Sieg; pro Kategorie 2-4 Varianten, Wiederholungscooldown 20 s.
+[Compact] Bosse: Intro, Phase, Niederlage; strategisch relevante Warnung zusätzlich UI/Text, nie nur Sprache.
+[Compact] Der Release besitzt eine begrenzte, aber verbindliche DE-/EN-Sprachausgabe: Pip vertont alle Tutorialhinweise und zentralen Storyübergänge; jeder Held vertont Einmarsch, Signatur, Level-3, niedrige LP und Sieg mit mindestens zwei Varianten je Kategorie; jeder Haupt- und Zwischenboss vertont Intro, Phasenwechsel und Niederlage. Ereignisse, Kodex, Händlertexte, HQ-Banter und längere Storyeinträge bleiben Text. Jeder semantische Voice-Cue besitzt wortgleichen Untertitel; strategische Warnungen erscheinen zusätzlich als Icon und lokalisierter Warntext. Nonverbale Ausrufe dürfen weitere Varianten ergänzen, ersetzen aber keinen Pflichtsatz.
+[Heading 3] 82.5 Audiofokus und Silent Mode
+[Compact] Android: transient loss pausiert/duckt gemäß Fokusart; loss pausiert und resettet keine Position. Resume nur nach gain und wenn App foreground.
+[Compact] iOS: AVAudioSession ambient; Hardware-Silent-Switch stummschaltet Spielaudio. Andere Audioquellen dürfen weiterlaufen/mixen entsprechend ambient.
+[Compact] Kopfhörerabzug pausiert laufenden Kampf automatisch und zeigt Hinweis. Bluetooth-Routenwechsel darf keinen doppelten Cue auslösen.
+[Compact] App Background stoppt SFX/Voice und pausiert Musikposition. Simulation ist bereits pausiert/snapshotted.
+[Heading 3] 82.6 Haptikmatrix

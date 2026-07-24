@@ -1,0 +1,11 @@
+# Chapter 37: Visuelle Ausrichtung
+# blocks 1405..1417 (13 blocks)
+
+[Heading 2] 37. Visuelle Ausrichtung
+[First Paragraph] Ziel ist stilisierte, hochwertige Fantasy mit klaren 2D/2.5D-Silhouetten, kräftigen Formen und kontrollierter Effektmenge. Das Spiel darf nicht wie ein generischer Browser-Autobattler, eine Asset-Sammlung oder ein UI-lastiges Idle-Spiel wirken.
+[Heading 3] 37.1 Silhouetten- und Lesbarkeitstest
+[Compact] Jeder Held ist in schwarzer Silhouette bei 96 px Höhe eindeutig identifizierbar.
+[Compact] Jede Truppenrolle ist bei 64 px grob erkennbar: Schild, Speer, Bogen, Stab, Banner, Werkzeug.
+[Compact] Bossphasen ändern mindestens ein großes Formelement oder Arenaelement, nicht nur Farbe.
+[Compact] Beschwörungen unterscheiden sich durch Körperform und Besitzer-Rune; keine zwei Kategorien verwenden dieselbe Silhouette.
+[Compact] Warnflächen besitzen Rand, Muster und Symbol. Farbe allein ist nie die einzige Information.

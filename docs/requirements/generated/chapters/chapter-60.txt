@@ -1,0 +1,10 @@
+# Chapter 60: Lokalisierung, Copy und Textproduktion
+# blocks 1789..1797 (9 blocks)
+
+[Heading 2] 60. Lokalisierung, Copy und Textproduktion
+[Compact] Release-Sprachen sind Deutsch und Englisch. Deutsch ist narrative Autorensprache; Englisch ist vollständig geprüfte Parität, keine maschinelle Rohübersetzung im Release.
+[Compact] Alle sichtbaren Strings liegen außerhalb des Codes. ICU MessageFormat wird für Plural, Zahl und grammatische Varianten verwendet.
+[Compact] Richtungsbegriffe links/rechts werden in Gameplaytexten vermieden; Spieler/Gegner, oben/Mitte/unten bleiben eindeutig bei Spiegelung.
+[Compact] UI-Labels besitzen eine kurze und optional compact Variante. Kein Agent darf Text durch kleinere Schrift passend machen, solange eine Reflow-/Compact-Lösung möglich ist.
+[Compact] Fehlende Übersetzung zeigt im Development den Key in Magenta und ist im Release ein Buildfehler.
+[Compact] Pseudo-Locale erweitert Texte um 35%, setzt Akzente und markiert Start/Ende. Alle Screens werden damit im visuellen Test gerendert.

@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "files": [
+    "docs/requirements/chapter-dispositions/chapters-01-30.json",
+    "docs/requirements/chapter-dispositions/chapters-31-60.json",
+    "docs/requirements/chapter-dispositions/chapters-61-87.json"
+  ]
+}

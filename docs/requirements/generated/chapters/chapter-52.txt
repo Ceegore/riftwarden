@@ -1,0 +1,9 @@
+# Chapter 52: Rendering-, Asset- und Performancearchitektur
+# blocks 1649..1664 (16 blocks)
+
+[Heading 2] 52. Rendering-, Asset- und Performancearchitektur
+[Heading 3] 52.1 Pixi-Szenenaufbau
+[Heading 3] 52.2 Assetformate und Budgets
+[Heading 3] 52.3 Animationsvertrag je Einheit
+[Heading 3] 52.4 Qualitätsstufen
+[Heading 3] 52.5 Harte Performance-Gates

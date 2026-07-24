@@ -1,0 +1,720 @@
+{
+  "schemaVersion": "1.0",
+  "category": "Store",
+  "requirements": [
+    {
+      "id": "REQ-STORE-0001",
+      "title": "Echtgeldshops sind nicht Teil der Zielversion.",
+      "statement": "Echtgeldshops sind nicht Teil der Zielversion.",
+      "norm": "MUST_NOT",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 3,
+        "section": null,
+        "locator": "block:44",
+        "quoteHash": "sha256:6840b8ac0feb20c676daa84d72119f92d703ba700d4f729a7ecbba5dbfd9efc2",
+        "originalExcerpt": "Nicht Teil der Zielversion sind: manuelle Kampffähigkeiten, aktives Zielen, PvP, Online-Ranglisten, Accounts, Gilden, Chat, Cloud-Zwang, Live-Events, tägliche Aufgaben, saisonale Inhalte, Basisbau, offene Welt, frei begehbare Dungeons, weit verzweigte Dialogbäume, permanente Heldentode, Verletzungen zwischen Kämpfen, Ausdauer/Hunger, Waffenverschleiß, zufällige Gegenstandsaffixe, unbegrenzte Charakterlevel und Echtgeldshops."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "FQA-STORE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0002",
+      "title": "Build-Validator Store",
+      "statement": "Build-Validator „Store\": harter Fehler, wenn Produktionsbuild server.url, INTERNET-Permission, Debuggable, Remote Script oder verbotenen SDK-Identifier enthält.",
+      "norm": "MUST_NOT",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 59,
+        "section": null,
+        "locator": "block:1785",
+        "quoteHash": "sha256:193dd976e9d61f997a11bf68ecb3437b581f4c26a3e022b7b902dd0c98e402a4",
+        "originalExcerpt": "Store: Produktionsbuild enthält server.url, INTERNET-Permission, Debuggable, Remote Script oder verbotenen SDK-Identifier."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-002"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0003",
+      "title": "Play-Console-Deklarationen",
+      "statement": "Play-Console-Deklarationen: Spiel, Einmalkauf, Data Safety keine Erhebung, keine Ads, kein Login, Fantasygewalt stilisiert, allgemeines Publikum.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1822",
+        "quoteHash": "sha256:31600e89fb4b37002cf1332ded05b185545a50176c6f4b1322681f3df89e7e56",
+        "originalExcerpt": "Play-Console-Deklarationen | Spiel, Einmalkauf, Data Safety keine Erhebung, keine Ads, kein Login, Fantasygewalt stilisiert, allgemeines Publikum."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-003"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0004",
+      "title": "Android Veröffentlichungsschritte",
+      "statement": "Android-Veröffentlichung folgt: Play-Developerkonto, interner Track, ggf. geschlossener Test, Data Safety, Production Access, gestaffelter Rollout 10%->25%->50%->100% nur wenn Vitals und Bewertungen keine Blocker zeigen.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 62,
+        "section": null,
+        "locator": "block:1833",
+        "quoteHash": "sha256:6a451ce9ec021532b4ee2ea20a7146277e1d1e5783cf732ee82e8d63e75da95e",
+        "originalExcerpt": "Veröffentlichungsschritte: Play-Developerkonto, internen Track, ggf. geschlossener Test, Data Safety, Production Access, gestaffelter Rollout 10% -> 25% -> 50% -> 100%."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-004"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0005",
+      "title": "iOS ASC-Deklarationen",
+      "statement": "App-Store-Connect-Deklarationen: Data Not Collected; Age Rating Fantasy Violence infrequent/mild; Paid App ohne IAP; vollständige Review Notes mit Offline-Hinweis; öffentliche Support- und Privacy-URLs; EU Traderstatus vor Veröffentlichung bestätigt.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 63,
+        "section": null,
+        "locator": "block:1839",
+        "quoteHash": "sha256:7b9e19d43d9287008d28036d17da22ea729d3be86040ca62eff149e2f0b5f51c",
+        "originalExcerpt": "App-Store-Connect-Deklarationen: Data Not Collected, Age Rating Fantasy Violence: infrequent/mild nach tatsächlicher Darstellung; Paid App; vollständige Review Notes; öffentliche Support- und Privacy-URLs; EU Traderstatus."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-005"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0006",
+      "title": "App-Icon Siegelmotiv",
+      "statement": "Das App-Icon zeigt ein einzelnes Riftwarden-Siegel als goldener gebrochener Ring um violetten Riftkern; finale Store-Icons enthalten keine Schrift, keine kleine Figur und keine Transparenz.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 64,
+        "section": null,
+        "locator": "block:1845",
+        "quoteHash": "sha256:b1a3111f2b50b179ec38339ca22cad68464ccb223cdb6b676087e4e5d1905f60",
+        "originalExcerpt": "App-Icon zeigt ein einzelnes Riftwarden-Siegel: goldener gebrochener Ring um violetten Riftkern. Keine Schrift, keine kleine Figur, keine Transparenz im finalen Store-Icon."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-006"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0007",
+      "title": "Icon Lesbarkeit 32px",
+      "statement": "Das Icon-Motiv ist bei 32 px erkennbar, in Schwarzweiß unterscheidbar und ohne plattformspezifische Masken vollständig; Android Adaptive Icon besitzt getrennten Vorder-/Hintergrund mit Safe Zone.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 64,
+        "section": null,
+        "locator": "block:1846",
+        "quoteHash": "sha256:247cf1bbc037543cccf33d940003b05db302c57bf0c998d588955e702494b137",
+        "originalExcerpt": "Das Motiv muss bei 32 px erkennbar, in Schwarzweiß unterscheidbar und ohne plattformspezifische Masken vollständig sein. Android Adaptive Icon besitzt getrennten Vorder-/Hintergrund mit Safe Zone."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-007"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "px",
+          "min": 32
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0008",
+      "title": "Keine vorgetäuschten Funktionen",
+      "statement": "Storebilder dürfen keine nicht vorhandenen Funktionen oder Qualitätsstufen vortäuschen; Compositing darf nur Rahmen/Text ergänzen.",
+      "norm": "MUST_NOT",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 64,
+        "section": null,
+        "locator": "block:1848",
+        "quoteHash": "sha256:3cdd7963d0f4af3c85fd1f3908b196de006a663463ca0722a6b0339a28a71f58",
+        "originalExcerpt": "Alle Storebilder zeigen echte In-Game-Screens. Compositing darf Rahmen/Text ergänzen, aber keine nicht vorhandenen Funktionen oder Qualitätsstufen vortäuschen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-008"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0009",
+      "title": "Storetitel max 30 Zeichen",
+      "statement": "Der Storetitel bleibt innerhalb der jeweiligen 30-Zeichen-Grenze; bei Stores, die den vollständigen Namen nicht akzeptieren, lautet die Storeform „Riftwarden: Auto RPG“ und der vollständige Untertitel erscheint in Beschreibung/Grafik.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 64,
+        "section": null,
+        "locator": "block:1852",
+        "quoteHash": "sha256:ede22732928998936e8ac97307c33e08eed32fbd481e4a81054bfbc0f197dae4",
+        "originalExcerpt": "Der Storetitel bleibt innerhalb der jeweiligen 30-Zeichen-Grenze; falls ein Store den vollständigen Namen nicht akzeptiert, lautet die Storeform „Riftwarden: Auto RPG“ und der vollständige Untertitel erscheint in Beschreibung/Grafik."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-009"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 30
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0010",
+      "title": "Verbot unbelegbarer Werbeversprechen",
+      "statement": "In Titel/Keywords dürfen keine Preisangabe, Konkurrenznamen, „best“, „AAA“ oder unbelegbare Leistungsversprechen erscheinen.",
+      "norm": "MUST_NOT",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 64,
+        "section": null,
+        "locator": "block:1853",
+        "quoteHash": "sha256:db454c109ab8e59286bc959133dda2768ba0bcd2af28fbcee62d109a32fe4871",
+        "originalExcerpt": "Keine Preisangabe, Konkurrenznamen, „best“, „AAA“ oder unbelegbare Leistungsversprechen in Titel/Keywords."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-010"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0011",
+      "title": "Storebeschreibung Pflichtinhalte",
+      "statement": "Die Storebeschreibung nennt klar: automatische Kämpfe, Premiumkauf, Offline, keine Werbung/IAP, Kampagne und Endgame.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 64,
+        "section": null,
+        "locator": "block:1854",
+        "quoteHash": "sha256:ed4e371e8184d325d16eeb6478ee5e8ee24a075b03deadd36553c523b759a478",
+        "originalExcerpt": "Beschreibung nennt klar: automatische Kämpfe, Premiumkauf, Offline, keine Werbung/IAP, Kampagne und Endgame."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-011"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0012",
+      "title": "What’s New konkret",
+      "statement": "What’s New nennt funktionale Änderungen konkret; eine ausschließliche Floskel ist bei großen Updates unzulässig.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 64,
+        "section": null,
+        "locator": "block:1855",
+        "quoteHash": "sha256:fdfc12b72d6170fc57f596fb4bdbec5de883106d398d2facddbddc40e348e51b",
+        "originalExcerpt": "What’s New nennt funktionale Änderungen konkret; keine ausschließliche Floskel bei großen Updates."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-012"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0013",
+      "title": "Binary-Preflight Metadaten",
+      "statement": "Appname, Version, Package/Bundle ID, Icons, Splash, Copyright und Supportkontakt sind korrekt.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 68,
+        "section": null,
+        "locator": "block:1902",
+        "quoteHash": "sha256:f11ce0594de11eae25863e85a394462a65d2473e84dd8722c6775efe0718fc41",
+        "originalExcerpt": "Appname, Version, Package/Bundle ID, Icons, Splash, Copyright und Supportkontakt korrekt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-013"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0014",
+      "title": "Keine Debugartefakte im Release",
+      "statement": "Im Release sind kein Debugmenü, Testseed, Platzhaltertext, ungenutzter Button, leere Sammlung oder Entwickler-URL sichtbar.",
+      "norm": "MUST_NOT",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 68,
+        "section": null,
+        "locator": "block:1903",
+        "quoteHash": "sha256:715b65f01cce3f6a4a442c17cd0aaba8fe03aaf9081d654167ea891ec1cba46b",
+        "originalExcerpt": "Kein Debugmenü, Testseed, Platzhaltertext, ungenutzter Button, leere Sammlung oder Entwickler-URL sichtbar."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-014"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0015",
+      "title": "Review Notes vollständig",
+      "statement": "Release Notes und Review Notes nennen nicht offensichtliche Funktionen und den Testweg.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 68,
+        "section": null,
+        "locator": "block:1908",
+        "quoteHash": "sha256:a15be563013d19f1763b0c02f53497fb108f124682c1cef0c97f3d187cb53e83",
+        "originalExcerpt": "Release Notes und Review Notes nennen nicht offensichtliche Funktionen und Testweg."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-015"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0016",
+      "title": "Keine irreführenden Features",
+      "statement": "Screenshots und Metadaten dürfen keine irreführenden Währungen, Käufe, Onlinefunktionen, Controllerpflicht oder nicht enthaltene Sprache zeigen.",
+      "norm": "MUST_NOT",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 68,
+        "section": null,
+        "locator": "block:1912",
+        "quoteHash": "sha256:37c312bb4fea17a1a976c0d91e443f6b6122cf41446f867a9186221ed822c702",
+        "originalExcerpt": "Keine irreführenden Währungen, Käufe, Onlinefunktionen, Controllerpflicht oder nicht enthaltene Sprache."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-016"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0017",
+      "title": "Store-Texte lokalisiert lesbar",
+      "statement": "Texte sind in der Zielsprache des Zielstores lokalisiert, lesbar und nicht durch Store-Crops abgeschnitten.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 68,
+        "section": null,
+        "locator": "block:1913",
+        "quoteHash": "sha256:29a5802a3ce1e450b033bc51d928a9614d89a850e6286152a4b2723490bb4d77",
+        "originalExcerpt": "Texte sind in Zielstore lokalisiert, lesbar und nicht durch Store-Crops abgeschnitten."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-017"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0018",
+      "title": "Rating-konforme Storegrafiken",
+      "statement": "Icon und Screenshots vermeiden grausame Gewaltdarstellung und bleiben für das deklarierte Rating passend.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 68,
+        "section": null,
+        "locator": "block:1914",
+        "quoteHash": "sha256:796846e94f1572ca771b45fac0fb83db5e2efc02d07272af38e9f6da44579dfe",
+        "originalExcerpt": "Icon und Screenshots vermeiden grausame Gewaltdarstellung und bleiben für das deklarierte Rating passend."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-018"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0019",
+      "title": "Storebuild Gates bestanden",
+      "statement": "Ein Storebuild ist erst zulässig, wenn gemeinsame, Android- und iOS-Gates bestanden, Datenschutzdeklarationen mit dem Binary identisch und keine P0/P1-Fehler offen sind.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 71,
+        "section": null,
+        "locator": "block:1949",
+        "quoteHash": "sha256:0d77d30ec50e757372a84ba198958c1d7cbe2e2287b398f53007be9a9ea5366c",
+        "originalExcerpt": "Ein Storebuild ist erst zulässig, wenn gemeinsame, Android- und iOS-Gates bestanden, Datenschutzdeklarationen mit dem Binary identisch und keine P0/P1-Fehler offen sind."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "FQA-STORE-019"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0020",
+      "title": "Publisher bestätigt Produktionskennungen vor dem ersten Store-Upload einmal; danach verbindliche Entwicklungskennungen, nach Upload unveränderlich.",
+      "statement": "Der Publisher muss die Kennungen vor dem ersten Store-Upload einmal bestätigen. Bis dahin sind sie verbindliche Entwicklungskennungen; nach erstem Upload dürfen sie nicht geändert werden.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 49,
+        "section": null,
+        "locator": "block:1597",
+        "quoteHash": "sha256:97f9614115993d14219bcfcc99fb567149068779469698e89c35f87e358a8ada",
+        "originalExcerpt": "Der Publisher muss die Kennungen vor dem ersten Store-Upload einmal bestätigen. Bis dahin sind sie verbindliche Entwicklungskennungen; nach erstem Upload dürfen sie nicht geändert werden."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "FQA-STORE-020"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0021",
+      "title": "Release-Tags lauten vMAJOR.MINOR.PATCH und verweisen auf exakt den Store-Quellstand.",
+      "statement": "Release-Tags lauten vMAJOR.MINOR.PATCH und verweisen auf exakt den Store-Quellstand.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 50,
+        "section": null,
+        "locator": "block:1625",
+        "quoteHash": "sha256:42b3b26ca990b9b7241bbee6d19828ebe9f363065e359e4a43bc6587330deca1",
+        "originalExcerpt": "Release-Tags lauten vMAJOR.MINOR.PATCH und verweisen auf exakt den Store-Quellstand."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "FQA-STORE-021"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-STORE-0022",
+      "title": "Keine Werbung, IAP, Accountpflicht, Trackingpflicht oder künstliche Wartezeit vorhanden.",
+      "statement": "Keine Werbung, IAP, Accountpflicht, Trackingpflicht oder künstliche Wartezeit vorhanden.",
+      "norm": "MUST_NOT",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1511",
+        "quoteHash": "sha256:8262d74d4ac500686d824bfc0ff4882c0eeb86a21beb5523a3c0961cf1985b57",
+        "originalExcerpt": "Keine Werbung, IAP, Accountpflicht, Trackingpflicht oder künstliche Wartezeit vorhanden."
+      },
+      "ownerPhases": [
+        "PHASE-22"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-22",
+          "testIds": [
+            "FQA-STORE-022"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ]
+}

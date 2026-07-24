@@ -1,0 +1,1804 @@
+{
+  "schemaVersion": "1.0",
+  "chunk": "k",
+  "chapterRange": {
+    "lo": 42,
+    "hi": 47
+  },
+  "requirements": [
+    {
+      "id": "REQ-TEMP-K-0001",
+      "title": "Mindestens drei rotierende lokale Autosave-Slots plus ein manuelles Profil-Backup im App-Speicher.",
+      "statement": "Mindestens drei rotierende lokale Autosave-Slots plus ein manuelles Profil-Backup im App-Speicher.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 42,
+        "section": null,
+        "locator": "block:1458",
+        "quoteHash": "sha256:8b7a393a75ac0e9857eda12ed86400eb7ff7be6eec573664663a8fb8b39d8c1a",
+        "originalExcerpt": "Mindestens drei rotierende lokale Autosave-Slots plus ein manuelles Profil-Backup im App-Speicher."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-AUTOSLOT-COUNT-042"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "autoSaveSlots",
+          "value": 3
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0002",
+      "title": "Save enthält schemaVersion, contentVersion, simulationVersion, Fortschritt, Inventarfreischaltungen, Politur, Ruhm, Meisterschaft, Erfolge, Einstellungen, aktuelle Expedition und deterministische Seeds.",
+      "statement": "Save enthält schemaVersion, contentVersion, simulationVersion, Fortschritt, Inventarfreischaltungen, Politur, Ruhm, Meisterschaft, Erfolge, Einstellungen, aktuelle Expedition und deterministische Seeds.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 42,
+        "section": null,
+        "locator": "block:1459",
+        "quoteHash": "sha256:16716b4b4685c9231b6f43b087eb12d486ab20a8d6064470e909bc46208ed349",
+        "originalExcerpt": "Save enthält schemaVersion, contentVersion, simulationVersion, Fortschritt, Inventarfreischaltungen, Politur, Ruhm, Meisterschaft, Erfolge, Einstellungen, aktuelle Expedition und deterministische Seeds."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-SAVE-FIELDS-042"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0003",
+      "title": "Schreibvorgang atomar: in temporäre Datei, Prüfsumme, dann ersetzen; beschädigter neuester Slot fällt auf vorherigen zurück und informiert den Spieler.",
+      "statement": "Schreibvorgang ist atomar: erst temporäre Datei, dann Prüfsumme, dann ersetzen. Ein beschädigter neuester Slot fällt auf den vorherigen Slot zurück und informiert den Spieler.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 42,
+        "section": null,
+        "locator": "block:1460",
+        "quoteHash": "sha256:27a53f1750a416a230ea5ccfe6d58209cff39b2da1b7ad1b9f7bc82879113068",
+        "originalExcerpt": "Schreibvorgang atomar: in temporäre Datei, Prüfsumme, dann ersetzen. Beschädigter neuester Slot fällt auf vorherigen zurück und informiert den Spieler."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-ATOMIC-WRITE-042"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0004",
+      "title": "Migrationen sind vorwärtsgerichtet und idempotent; ein Save wird vor Migration gesichert.",
+      "statement": "Migrationen sind vorwärtsgerichtet und idempotent. Ein Save wird vor Migration gesichert.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 42,
+        "section": null,
+        "locator": "block:1461",
+        "quoteHash": "sha256:9d0c3102dc945f1aa147c3f49e2bb3098d973cae025c18b51375474d5e7fa8fb",
+        "originalExcerpt": "Migrationen sind vorwärtsgerichtet und idempotent. Ein Save wird vor Migration gesichert."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-MIGRATION-IDEMPOTENT-042"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0005",
+      "title": "Laufender Kampf speichert Startsnapshot plus aktuellen Simulationszustand; Fortsetzen darf nicht neu würfeln oder zum Kampfbeginn zurücksetzen, außer Snapshot ist technisch ungültig.",
+      "statement": "Ein laufender Kampf speichert Startsnapshot plus aktuellen Simulationszustand. Fortsetzen darf nicht neu würfeln oder zum Kampfbeginn zurücksetzen, außer der Snapshot ist technisch ungültig.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 42,
+        "section": null,
+        "locator": "block:1462",
+        "quoteHash": "sha256:f7308de3e71d23eee67d487e42c9576da0314794b58042f6a19e437703f97661",
+        "originalExcerpt": "Laufender Kampf speichert Startsnapshot plus aktuellen Simulationszustand; Fortsetzen darf nicht neu würfeln oder zum Kampfbeginn zurücksetzen, außer Snapshot ist technisch ungültig. Dann wird der Kampf mit demselben Seed vom Beginn wiederholt und klar erklärt."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-COMBAT-RESUME-042"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0006",
+      "title": "Bei technisch ungültigem Snapshot wird der Kampf mit demselben Seed vom Beginn wiederholt und dem Spieler klar erklärt.",
+      "statement": "Ist der Snapshot technisch ungültig, wird der Kampf mit demselben Seed vom Beginn wiederholt und dem Spieler klar erklärt.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 42,
+        "section": null,
+        "locator": "block:1462",
+        "quoteHash": "sha256:fa35577ec2fbc7e6e4fd246826d6281d96d3f527aaca431cded824e19b2a3ca4",
+        "originalExcerpt": "Dann wird der Kampf mit demselben Seed vom Beginn wiederholt und klar erklärt."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-INVALID-SNAPSHOT-042"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0007",
+      "title": "Kein Fortschritt hängt von Uhrzeit, Zeitzone, Geräte-ID, Account oder Internet ab.",
+      "statement": "Kein Fortschritt hängt von Uhrzeit, Zeitzone, Geräte-ID, Account oder Internet ab.",
+      "norm": "MUST_NOT",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 42,
+        "section": null,
+        "locator": "block:1463",
+        "quoteHash": "sha256:c7d99dc97e907c5f67e1e8b9cdee42961830ad1c7bf2ba275f04ac24b4a28347",
+        "originalExcerpt": "Kein Fortschritt hängt von Uhrzeit, Zeitzone, Geräte-ID, Account oder Internet ab."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-NO-CLOCK-DEP-042"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0008",
+      "title": "Export/Import eines Savefiles ist als Komfortfunktion vorgesehen, jedoch keine Cloudpflicht.",
+      "statement": "Export und Import eines Savefiles sind als Komfortfunktion vorgesehen, jedoch keine Cloudpflicht.",
+      "norm": "MAY",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 42,
+        "section": null,
+        "locator": "block:1464",
+        "quoteHash": "sha256:47423a74b7434afc537005ed4799f870fff243bdc49b1d65593ec8716ff5b892",
+        "originalExcerpt": "Export/Import eines Savefiles ist als Komfortfunktion vorgesehen, aber keine Cloudpflicht."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "REV-EXPORT-IMPORT-042"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0009",
+      "title": "Keine Begegnung wird nur durch massive LP-Skalierung schwierig; es ist mindestens eine Formations- oder Mechanikänderung erforderlich.",
+      "statement": "Keine Begegnung wird nur durch massive LP-Skalierung schwierig; mindestens eine Formations- oder Mechanikänderung.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 43,
+        "section": null,
+        "locator": "block:1468",
+        "quoteHash": "sha256:f60cbc045580c2706ed51798c6422e32e75ceb9a68da97bb2a88ee201d020551",
+        "originalExcerpt": "Keine Begegnung wird nur durch massive LP-Skalierung schwierig; mindestens eine Formations-/Mechanikänderung."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "GR-NO-LP-ONLY-043"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0010",
+      "title": "Keine Fähigkeit darf eine versteckte Trefferchance oder zufällige kritische Treffer erhalten, um Zielwerte zu erreichen.",
+      "statement": "Keine Fähigkeit erhält versteckte Trefferchance oder zufällige kritische Treffer, um Zielwerte zu erreichen.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 43,
+        "section": null,
+        "locator": "block:1469",
+        "quoteHash": "sha256:21777cbde411feb9572aa61e877ddcc9cc2143b41e4b719cfced32a7fddfb86a",
+        "originalExcerpt": "Keine Fähigkeit erhält versteckte Trefferchance oder zufällige kritische Treffer, um Zielwerte zu erreichen."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "GR-NO-HIDDEN-RNG-043"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0011",
+      "title": "Kein Boss wird gegen Kontrolle vollständig immun ohne sichtbares reduziertes Feedback.",
+      "statement": "Kein Boss wird gegen Kontrolle vollständig immun ohne sichtbares reduziertes Feedback.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 43,
+        "section": null,
+        "locator": "block:1470",
+        "quoteHash": "sha256:b180c80d1b21d6c9ca69e89a95aa0f78103b90099fb7f168f64e7cd3bcb0fd8e",
+        "originalExcerpt": "Kein Boss wird gegen Kontrolle vollständig immun ohne sichtbares reduziertes Feedback."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-BOSS-CONTROL-FEEDBACK-043"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0012",
+      "title": "Keine einzelne Synergie oder Heldengruppe darf alle vier Hauptbosse ohne Anpassung deutlich dominieren.",
+      "statement": "Keine einzelne Synergie oder Heldengruppe darf alle vier Hauptbosse ohne Anpassung deutlich dominieren.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 43,
+        "section": null,
+        "locator": "block:1471",
+        "quoteHash": "sha256:fd54a3cbd01db93a92b623364b9d3d9cec459103c3c94b9431b939f8a9c20d72",
+        "originalExcerpt": "Keine einzelne Synergie oder Heldengruppe darf alle vier Hauptbosse ohne Anpassung deutlich dominieren."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "GR-NO-DOMINANT-043"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0013",
+      "title": "Keine Kampagnenfreischaltung verlangt wiederholtes Farmen derselben Mission auf Normal.",
+      "statement": "Keine Kampagnenfreischaltung verlangt wiederholtes Farmen derselben Mission auf Normal.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 43,
+        "section": null,
+        "locator": "block:1472",
+        "quoteHash": "sha256:cf4ab5fe0ebe437c7ca511cfbc85d0bc4f7b03a087d12213c12052e610959ad5",
+        "originalExcerpt": "Keine Kampagnenfreischaltung verlangt wiederholtes Farmen derselben Mission auf Normal."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "GR-NO-FARM-GATE-043"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0014",
+      "title": "Keine Niederlage wird durch Reduzieren permanenter Progression \"gelöst\"; zuerst werden Lesbarkeit, Counter und Werte geprüft.",
+      "statement": "Keine Niederlage wird durch Reduzieren permanenter Progression gelöst; zuerst werden Lesbarkeit, Counter und Werte geprüft.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 43,
+        "section": null,
+        "locator": "block:1473",
+        "quoteHash": "sha256:89cdab86ac22f5dba500db8ac5876aaf6e1e6a11eafffa085f38b1cc60ff968f",
+        "originalExcerpt": "Keine Niederlage wird durch Reduzieren permanenter Progression „gelöst\"; zuerst Lesbarkeit, Counter und Werte prüfen."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "GR-NO-NERF-PROGRESSION-043"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0015",
+      "title": "Vor Vollproduktion muss ein vertikaler Prototyp beweisen, dass der beobachtete Kampf als Kernfantasie funktioniert, und nutzt die spätere Simulationslogik und Datenstruktur.",
+      "statement": "Vor Vollproduktion muss ein vertikaler Prototyp beweisen, dass der beobachtete Kampf als Kernfantasie funktioniert. Er verwendet die spätere Simulationslogik und Datenstruktur.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 44,
+        "section": null,
+        "locator": "block:1481",
+        "quoteHash": "sha256:09ea30b55fc142571e4e4e2e803592a0c8f65b52d1e3590c3a6b9c007485256b",
+        "originalExcerpt": "Vor Vollproduktion muss ein vertikaler Prototyp beweisen, dass der beobachtete Kampf als Kernfantasie funktioniert. Er ist kein Wegwerf-Mockup, sondern verwendet die spätere Simulationslogik und Datenstruktur."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "REV-VERTICAL-PROTOTYPE-044"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0016",
+      "title": "Mindestens 80% interner Tester können nach einer Niederlage eine zutreffende Ursache nennen.",
+      "statement": "Mindestens 80% interner Tester können nach einer Niederlage eine zutreffende Ursache nennen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 44,
+        "section": null,
+        "locator": "block:1483",
+        "quoteHash": "sha256:8b3e1c1dd8fde64256641903eb010c25c672b491e6a611e95bd20f3fb6721634",
+        "originalExcerpt": "Mindestens 80% interner Tester können nach einer Niederlage eine zutreffende Ursache nennen."
+      },
+      "ownerPhases": [
+        "PHASE-19"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-19",
+          "testIds": [
+            "FQA-DEF-CAUSE-044"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "defeatCauseTestersPct",
+          "value": 80,
+          "unit": "percent"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0017",
+      "title": "Mindestens 70% der Spieler verändern vor einem Retry bewusst Formation, Doktrin, Einheit oder Ausrüstung.",
+      "statement": "Mindestens 70% verändern vor einem Retry bewusst Formation, Doktrin, Einheit oder Ausrüstung.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 44,
+        "section": null,
+        "locator": "block:1484",
+        "quoteHash": "sha256:fdeeb6f69f7c8614786b09b2b7e38f1dc36d086fc52bc996e468061f75e32909",
+        "originalExcerpt": "Mindestens 70% verändern vor einem Retry bewusst Formation, Doktrin, Einheit oder Ausrüstung."
+      },
+      "ownerPhases": [
+        "PHASE-19"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-19",
+          "testIds": [
+            "FQA-RETRY-ADAPT-044"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "retryAdaptTestersPct",
+          "value": 70,
+          "unit": "percent"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0018",
+      "title": "Zielwechsel werden überwiegend als nachvollziehbar bewertet; es treten keine wiederkehrenden sichtbaren KI-Aussetzer auf.",
+      "statement": "Zielwechsel werden überwiegend als nachvollziehbar bewertet; keine wiederkehrenden sichtbaren KI-Aussetzer.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 44,
+        "section": null,
+        "locator": "block:1485",
+        "quoteHash": "sha256:bcea378efb4e4669d0f09b215b366508631ea178755798ae7f084249cbd913f8",
+        "originalExcerpt": "Zielwechsel werden überwiegend als nachvollziehbar bewertet; keine wiederkehrenden sichtbaren KI-Aussetzer."
+      },
+      "ownerPhases": [
+        "PHASE-19"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-19",
+          "testIds": [
+            "FQA-TARGETING-044"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0019",
+      "title": "Der Aschenkönig ist ohne Entwicklererklärung nach Vorschau lernbar.",
+      "statement": "Der Aschenkönig ist ohne Entwicklererklärung nach Vorschau lernbar.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 44,
+        "section": null,
+        "locator": "block:1486",
+        "quoteHash": "sha256:3e4f592ddb0cd37a9e4ce3a3de9f1d6b0560cf52ae1e1ba0c1afadda5a633565",
+        "originalExcerpt": "Der Aschenkönig ist ohne Entwicklererklärung nach Vorschau lernbar."
+      },
+      "ownerPhases": [
+        "PHASE-19"
+      ],
+      "verification": [
+        {
+          "type": "manual",
+          "plannedPhase": "PHASE-19",
+          "testIds": [
+            "FQA-BOSS-LEARNABLE-044"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0020",
+      "title": "Kampf bei 3x bleibt lesbar und identisch im Ergebnis.",
+      "statement": "Kampf bei 3x bleibt lesbar und identisch im Ergebnis.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 44,
+        "section": null,
+        "locator": "block:1487",
+        "quoteHash": "sha256:03096fefff12ab703516fdb499be9ed38bd011aa6be43ac5526cc27685bb3717",
+        "originalExcerpt": "Kampf bei 3x bleibt lesbar und identisch im Ergebnis."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-SPEED-3X-044"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "speedMultiplierReadable",
+          "value": 3
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0021",
+      "title": "Mobile Zielhardware hält 60 FPS im Normalfall und mindestens 45 FPS bei maximaler Beschwörungs- oder Effektlast; Simulation darf keine Ticks verlieren.",
+      "statement": "Mobile Zielhardware hält 60 FPS im Normalfall und mindestens 45 FPS bei maximaler Beschwörungs- oder Effektlast; die Simulation darf keine Ticks verlieren.",
+      "norm": "MUST",
+      "category": "Perf",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 44,
+        "section": null,
+        "locator": "block:1488",
+        "quoteHash": "sha256:5aeaa7210ba877392c9885d60b3328a9694a73c511f894b60eb19fc162f63246",
+        "originalExcerpt": "Mobile Zielhardware hält 60 FPS im Normalfall und mindestens 45 FPS bei maximaler Beschwörungs-/Effektlast; Simulation darf keine Ticks verlieren."
+      },
+      "ownerPhases": [
+        "PHASE-21"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-21",
+          "testIds": [
+            "PERF-MOBILE-FPS-044"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "min",
+          "name": "mobileFpsNormal",
+          "value": 60
+        },
+        {
+          "kind": "min",
+          "name": "mobileFpsMaxLoad",
+          "value": 45
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0022",
+      "title": "20 Missionen vollständig spielbar, alle Erst- und Wiederholungsbelohnungen korrekt.",
+      "statement": "20 Missionen vollständig spielbar, alle Erst- und Wiederholungsbelohnungen korrekt.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1495",
+        "quoteHash": "sha256:76f3be31b807674b723ddc4418e32a5684420247a70b829bc21be683c16db0fe",
+        "originalExcerpt": "20 Missionen vollständig spielbar, alle Erst-/Wiederholungsbelohnungen korrekt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-MISSIONS-045"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "missionCount",
+          "value": 20
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0023",
+      "title": "Inhaltliche Mindestmenge implementiert: 10 Helden × 3 Stufen, 18 Truppen, 14 Beschwörungen, 28 Grundgegner, 12 Elites, 8 Champions, 4 Zwischen- und 4 Hauptbosse.",
+      "statement": "10 Helden x 3 Level, 18 Truppen, 14 Beschwörungen, 28 Grundgegner, 12 Elites, 8 Champions, 4 Zwischen- und 4 Hauptbosse implementiert.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1496",
+        "quoteHash": "sha256:6c5abff37c782226b8ec48c7ffce7d605eb87e6daa263fa8f34de24c9c2b43ba",
+        "originalExcerpt": "10 Helden x 3 Level, 18 Truppen, 14 Beschwörungen, 28 Grundgegner, 12 Elites, 8 Champions, 4 Zwischen- und 4 Hauptbosse implementiert."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-CONTENT-COUNT-045"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "heroesCount",
+          "value": 10
+        },
+        {
+          "kind": "exact",
+          "name": "heroLevels",
+          "value": 3
+        },
+        {
+          "kind": "exact",
+          "name": "troopsCount",
+          "value": 18
+        },
+        {
+          "kind": "exact",
+          "name": "summonsCount",
+          "value": 14
+        },
+        {
+          "kind": "exact",
+          "name": "baseEnemiesCount",
+          "value": 28
+        },
+        {
+          "kind": "exact",
+          "name": "eliteEnemiesCount",
+          "value": 12
+        },
+        {
+          "kind": "exact",
+          "name": "championsCount",
+          "value": 8
+        },
+        {
+          "kind": "exact",
+          "name": "intermediateBossesCount",
+          "value": 4
+        },
+        {
+          "kind": "exact",
+          "name": "mainBossesCount",
+          "value": 4
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0024",
+      "title": "42 permanente Gegenstände, 36 Relikte, 30 Ereignisse, 18 Modifikatoren und 7 Kampfvarianten vollständig.",
+      "statement": "42 permanente Gegenstände, 36 Relikte, 30 Ereignisse, 18 Modifikatoren, 7 Kampfvarianten vollständig.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1497",
+        "quoteHash": "sha256:5de8adc11bf9c4fcfacf96f7e797aadd805cfae360f0d56dc35bc54a7fcfbf65",
+        "originalExcerpt": "42 permanente Gegenstände, 36 Relikte, 30 Ereignisse, 18 Modifikatoren, 7 Kampfvarianten vollständig."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-ITEM-COUNT-045"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "permanentItemsCount",
+          "value": 42
+        },
+        {
+          "kind": "exact",
+          "name": "relicsCount",
+          "value": 36
+        },
+        {
+          "kind": "exact",
+          "name": "eventsCount",
+          "value": 30
+        },
+        {
+          "kind": "exact",
+          "name": "modifiersCount",
+          "value": 18
+        },
+        {
+          "kind": "exact",
+          "name": "battleVariantsCount",
+          "value": 7
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0025",
+      "title": "Ascension 1-10, 28 Konstellationsknoten, Jenseits 1-20, Endlose Rift und alle Meilensteine funktionieren offline.",
+      "statement": "Ascension 1-10, 28 Konstellationsknoten, Jenseits 1-20, Endlose Rift und alle Meilensteine funktionieren offline.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1498",
+        "quoteHash": "sha256:a1ff3ca9e9217c0b0152dcc4de62f955f8c351596a81250e12f24f47e2d5c3dd",
+        "originalExcerpt": "Ascension 1-10, 28 Konstellationsknoten, Jenseits 1-20, Endlose Rift und alle Meilensteine funktionieren offline."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-ENDGAME-OFFLINE-045"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "ascensionTiers",
+          "value": 10
+        },
+        {
+          "kind": "exact",
+          "name": "constellationNodes",
+          "value": 28
+        },
+        {
+          "kind": "exact",
+          "name": "beyondTiers",
+          "value": 20
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0026",
+      "title": "50 Meisterschaftsziele, Kodex und 36 Erfolge vollständig prüfbar.",
+      "statement": "50 Meisterschaftsziele, Kodex und 36 Erfolge vollständig prüfbar.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1499",
+        "quoteHash": "sha256:00960789a4c01bb27de03a4a0f0f74b3f846ff406af8bbb4b0031637179c7375",
+        "originalExcerpt": "50 Meisterschaftsziele, Kodex und 36 Erfolge vollständig prüfbar."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-META-COUNT-045"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "masteryGoalsCount",
+          "value": 50
+        },
+        {
+          "kind": "exact",
+          "name": "achievementsCount",
+          "value": 36
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0027",
+      "title": "Keine nicht deterministische Abweichung bei identischem Seed und Snapshot.",
+      "statement": "Keine nicht deterministische Abweichung bei identischem Seed und Snapshot.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1500",
+        "quoteHash": "sha256:7e3e418f59982c6eb3c0521909c61393ffece9fa41bcb71d4434f5dae6dfd727",
+        "originalExcerpt": "Keine nicht deterministische Abweichung bei identischem Seed und Snapshot."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "GR-DETERMINISM-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0028",
+      "title": "Keine Endlosschleife durch Heilung, Wiederbelebung, Beschwörung oder unzugängliche Position.",
+      "statement": "Keine Endlosschleife durch Heilung, Wiederbelebung, Beschwörung oder unzugängliche Position.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1501",
+        "quoteHash": "sha256:1bbe6ecaffefe67974a53ecbb350868920972431a06e04fb09d40444b5a0ec82",
+        "originalExcerpt": "Keine Endlosschleife durch Heilung, Wiederbelebung, Beschwörung oder unzugängliche Position."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-NO-INFINITE-LOOP-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0029",
+      "title": "Keine Einheit oder Fähigkeit kann globale Gruppen- oder Beschwörungsgrenzen umgehen.",
+      "statement": "Keine Einheit oder Fähigkeit kann globale Gruppen- oder Beschwörungsgrenzen umgehen.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1502",
+        "quoteHash": "sha256:4c14453233fada4285af9bceb519fac4b394f29ab87aaf8a934f12db603ec583",
+        "originalExcerpt": "Keine Einheit oder Fähigkeit kann globale Gruppen-/Beschwörungsgrenzen umgehen."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-NO-LIMIT-BYPASS-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0030",
+      "title": "Alle strategisch relevanten Boss-, Modifikator- und Championfähigkeiten sind vor Kampf sichtbar.",
+      "statement": "Alle strategisch relevanten Boss-, Modifikator- und Championfähigkeiten sind vor Kampf sichtbar.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1503",
+        "quoteHash": "sha256:6b08e7e557b262b9f5a34b349b2f0cccedc69b59c064360e80e7448b0be31b3c",
+        "originalExcerpt": "Alle strategisch relevanten Boss-/Modifikator-/Championfähigkeiten vor Kampf sichtbar."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-PRECOMBAT-VISIBILITY-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0031",
+      "title": "Alle Käufe, Belohnungen, Saves und Migrationen sind crash- und duplikationssicher.",
+      "statement": "Alle Käufe, Belohnungen, Saves und Migrationen sind crash- und duplikationssicher.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1504",
+        "quoteHash": "sha256:1fdac9d5ef10be3a51265b64c72f4b7006f83751d9e6b7f4a3f314a7fe909643",
+        "originalExcerpt": "Alle Käufe, Belohnungen, Saves und Migrationen sind crash- und duplikationssicher."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-CRASH-DUP-SAFE-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0032",
+      "title": "Alle Kampfauswertungen und Hinweise basieren auf tatsächlichen Events.",
+      "statement": "Alle Kampfauswertungen und Hinweise basieren auf tatsächlichen Events.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1505",
+        "quoteHash": "sha256:f6a4cda80db3960b83fa3ccc91345084128bbcb4ef748c9c2e6761598501e8b8",
+        "originalExcerpt": "Alle Kampfauswertungen und Hinweise basieren auf tatsächlichen Events."
+      },
+      "ownerPhases": [
+        "PHASE-08"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-08",
+          "testIds": [
+            "UT-EVAL-AUTHENTIC-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0033",
+      "title": "Alle Kernflows sind mit Touch, Maus und Controller/Tastatur vollständig bedienbar.",
+      "statement": "Alle Kernflows mit Touch, Maus und Controller/Tastatur vollständig bedienbar.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1506",
+        "quoteHash": "sha256:aab01c63ed8a5eb3617094289bf2328c03dc4e73398530359d04140e3af1e820",
+        "originalExcerpt": "Alle Kernflows mit Touch, Maus und Controller/Tastatur vollständig bedienbar."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "IT-INPUT-MODES-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0034",
+      "title": "Keine abgeschnittenen Texte bei 150% Textgröße auf unterstützten Mindestauflösungen.",
+      "statement": "Keine abgeschnittenen Texte bei 150% Textgröße auf unterstützten Mindestauflösungen.",
+      "norm": "MUST_NOT",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1507",
+        "quoteHash": "sha256:34408fbdfa57ad6f693415812d367238bf999e927cba1a04075b1369aa3d2419",
+        "originalExcerpt": "Keine abgeschnittenen Texte bei 150% Textgröße auf unterstützten Mindestauflösungen."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "VIS-TEXT-150-045"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "textScaleTest",
+          "value": 150,
+          "unit": "percent"
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0035",
+      "title": "Alle Warnungen sind ohne Farbinformation verständlich; reduzierte Bewegung und Effekte funktionieren vollständig.",
+      "statement": "Alle Warnungen ohne Farbinformation verständlich; reduzierte Bewegung und Effekte funktionieren vollständig.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1508",
+        "quoteHash": "sha256:e55cdd959115167e890203e84329ea64cd2797053a6d0d36b08a1205cd6e59e6",
+        "originalExcerpt": "Alle Warnungen ohne Farbinformation verständlich; reduzierte Bewegung/Effekte funktionieren vollständig."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "IT-A11Y-WARNINGS-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0036",
+      "title": "App startet und alle Inhalte funktionieren im Flugmodus ohne Netzwerkdialog.",
+      "statement": "App startet und alle Inhalte funktionieren im Flugmodus ohne Netzwerkdialog.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1509",
+        "quoteHash": "sha256:4a0b00bb432a84344ef9ebeef0edb57ec62f6ca74a9a8084a92bbbcfbaef000f",
+        "originalExcerpt": "App startet und alle Inhalte funktionieren im Flugmodus ohne Netzwerkdialog."
+      },
+      "ownerPhases": [
+        "PHASE-22"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-22",
+          "testIds": [
+            "IT-AIRPLANE-MODE-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0037",
+      "title": "Unterbrechung oder Prozessbeendigung an jedem Knoten und in jedem Kampf führt zu gültigem Fortsetzen.",
+      "statement": "Unterbrechung oder Prozessbeendigung an jedem Knoten und in jedem Kampf führt zu gültigem Fortsetzen.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1510",
+        "quoteHash": "sha256:f4286a561a22636fdb757050e04bd3cca00b0dc082e56cb714f2ecb187c771d7",
+        "originalExcerpt": "Unterbrechung/Prozessbeendigung an jedem Knoten und in jedem Kampf führt zu gültigem Fortsetzen."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-INTERRUPT-RESUME-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0038",
+      "title": "Keine Werbung, IAP, Accountpflicht, Trackingpflicht oder künstliche Wartezeit vorhanden.",
+      "statement": "Keine Werbung, IAP, Accountpflicht, Trackingpflicht oder künstliche Wartezeit vorhanden.",
+      "norm": "MUST_NOT",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 45,
+        "section": null,
+        "locator": "block:1511",
+        "quoteHash": "sha256:8262d74d4ac500686d824bfc0ff4882c0eeb86a21beb5523a3c0961cf1985b57",
+        "originalExcerpt": "Keine Werbung, IAP, Accountpflicht, Trackingpflicht oder künstliche Wartezeit vorhanden."
+      },
+      "ownerPhases": [
+        "PHASE-22"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-22",
+          "testIds": [
+            "REV-NO-MONETIZATION-045"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0039",
+      "title": "Neue Inhalte werden nur aufgenommen, wenn sie eine erkennbare strategische Lücke schließen und keine Kernqualität gefährden.",
+      "statement": "Neue Inhalte dürfen nur aufgenommen werden, wenn sie eine erkennbare strategische Lücke schließen und keine Kernqualität gefährden.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1524",
+        "quoteHash": "sha256:12ea7a1d782d84e1406b0102f1a4a169edcccb8d27d8d75dbaff0b23f719d55c",
+        "originalExcerpt": "Neue Inhalte dürfen nur aufgenommen werden, wenn sie eine erkennbare strategische Lücke schließen und keine Kernqualität gefährden."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "REV-SCOPE-GATE-046"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0040",
+      "title": "Vor Release werden keine weiteren Helden, Regionen, Hauptbosse, Talentbäume, Gegenstandsaffixe oder Onlinefunktionen ergänzt.",
+      "statement": "Vor Release werden keine weiteren Helden, Regionen, Hauptbosse, Talentbäume, Gegenstandsaffixe oder Onlinefunktionen ergänzt.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1524",
+        "quoteHash": "sha256:8a35505a2c6b2cebab2bb6837bc8d25f3048cbf7b2f42ce028f490fe11007b37",
+        "originalExcerpt": "Vor Release werden keine weiteren Helden, Regionen, Hauptbosse, Talentbäume, Gegenstandsaffixe oder Onlinefunktionen ergänzt."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "REV-NO-NEW-SCOPE-046"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0041",
+      "title": "Ein späteres Update ist optional und nicht Bestandteil des Produktversprechens.",
+      "statement": "Ein späteres Update ist optional und nicht Bestandteil des Produktversprechens.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1524",
+        "quoteHash": "sha256:ff2f8c18bc8d7d31497445d74c84a6c91636ca9c15fe864ce90e12d4ac59cca4",
+        "originalExcerpt": "Ein späteres Update ist optional und nicht Bestandteil des Produktversprechens."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "REV-NO-UPDATE-PROMISE-046"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0042",
+      "title": "Priorität 1 unter Produktionsdruck: Kampfsimulation, Zielwahl und Lesbarkeit.",
+      "statement": "Priorität 1 unter Produktionsdruck: Kampfsimulation, Zielwahl und Lesbarkeit.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1527",
+        "quoteHash": "sha256:1e43d1e92fbd45ee699b74da7e7240db9bb2b6fcf52a09b30b9b90e2911a628f",
+        "originalExcerpt": "Kampfsimulation, Zielwahl und Lesbarkeit."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "REV-PRIO-1-046"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0043",
+      "title": "Priorität 2 unter Produktionsdruck: vollständige Kampagne inklusive vier Bosse.",
+      "statement": "Priorität 2 unter Produktionsdruck: vollständige Kampagne inklusive vier Bosse.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1528",
+        "quoteHash": "sha256:8a33607e5862cab809168d0669ce6f8aea74f6100cdcbab5712fafdfa813e3eb",
+        "originalExcerpt": "Vollständige Kampagne inklusive vier Bosse."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "REV-PRIO-2-046"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "campaignBossCount",
+          "value": 4
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0044",
+      "title": "Priorität 3 unter Produktionsdruck: Formation, Doktrinen, Helden/Truppen und Ausrüstung.",
+      "statement": "Priorität 3 unter Produktionsdruck: Formation, Doktrinen, Helden/Truppen und Ausrüstung.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1529",
+        "quoteHash": "sha256:219b2b2d551d7067bb6c73d9fec2ea1f9fcf2bdf9c14b3fe6a82cf48818762d5",
+        "originalExcerpt": "Formation, Doktrinen, Helden/Truppen und Ausrüstung."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "REV-PRIO-3-046"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0045",
+      "title": "Priorität 4 unter Produktionsdruck: Savegame, Offlinequalität, Bedienung und Barrierefreiheit.",
+      "statement": "Priorität 4 unter Produktionsdruck: Savegame, Offlinequalität, Bedienung und Barrierefreiheit.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1530",
+        "quoteHash": "sha256:8615c819f18eca3143be7d3a27bc69bda3bda4cf1f5f3d461c71773d47c22e4b",
+        "originalExcerpt": "Savegame, Offlinequalität, Bedienung und Barrierefreiheit."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "REV-PRIO-4-046"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0046",
+      "title": "Priorität 5 unter Produktionsdruck: Ascension 1-10 und Konstellation.",
+      "statement": "Priorität 5 unter Produktionsdruck: Ascension 1-10 und Konstellation.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1531",
+        "quoteHash": "sha256:fcd6845a12ca184fbdedfbb3534ae01f1cec1175a7af126ef05e66621c805fc0",
+        "originalExcerpt": "Ascension 1-10 und Konstellation."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "REV-PRIO-5-046"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "kind": "exact",
+          "name": "ascensionMax",
+          "value": 10
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0047",
+      "title": "Priorität 6 unter Produktionsdruck: Endlose Rift, Meisterschaften, Kodex und Erfolge.",
+      "statement": "Priorität 6 unter Produktionsdruck: Endlose Rift, Meisterschaften, Kodex und Erfolge.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1532",
+        "quoteHash": "sha256:0e8f39c5d9df39d20f5bb493410b26ddc362dd6f031c7508c2e109a93bde0f2e",
+        "originalExcerpt": "Endlose Rift, Meisterschaften, Kodex, Erfolge."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "REV-PRIO-6-046"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0048",
+      "title": "Priorität 7 unter Produktionsdruck: zusätzliche Kosmetik und Dialogvarianten.",
+      "statement": "Priorität 7 unter Produktionsdruck: zusätzliche Kosmetik und Dialogvarianten.",
+      "norm": "MAY",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1533",
+        "quoteHash": "sha256:2c3e09499cfe4e98de863c79318523edce341b20c8257f278ca18c4192cd2a7b",
+        "originalExcerpt": "Zusätzliche Kosmetik und Dialogvarianten."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "REV-PRIO-7-046"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0049",
+      "title": "Bei Scope-Reduktion werden zuerst kosmetische Varianten und optionale Textvarianten gekürzt, niemals Bosslesbarkeit, vollständige Fähigkeiten, Save-Sicherheit oder notwendige Gegenstrategien.",
+      "statement": "Wird Scope reduziert, werden zuerst kosmetische Varianten und optionale Textvarianten gekürzt; niemals Bosslesbarkeit, vollständige Fähigkeiten, Save-Sicherheit oder notwendige Gegenstrategien.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 46,
+        "section": null,
+        "locator": "block:1534",
+        "quoteHash": "sha256:089ef4767c08ffbd2ce944de9c589067c0104983c2e5f8ebc5d3b7fde403a13f",
+        "originalExcerpt": "Wird Scope reduziert, werden zuerst kosmetische Varianten und optionale Textvarianten gekürzt, niemals Bosslesbarkeit, vollständige Fähigkeiten, Save-Sicherheit oder notwendige Gegenstrategien."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "REV-SCOPE-CUT-RULES-046"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0050",
+      "title": "Riftwarden ist releasebereit, wenn der Spieler eine ungewöhnliche Gruppe aufbauen, Gegner vollständig verstehen, einen Plan durch Formation/Doktrin/Ausrüstung formulieren und automatisch umsetzen sehen kann; Siege und Niederlagen sind erklärbar; die Kampagne ist abgeschlossen; das Endgame ist substanziell; die Präsentation ist poliert; jede Funktion ist vollständig offline nutzbar.",
+      "statement": "Riftwarden: Auto RPG Roguelite ist releasebereit, wenn der Spieler eine ungewöhnliche Gruppe aufbauen, Gegner vollständig verstehen, einen Plan durch Formation/Doktrin/Ausrüstung formulieren und anschließend klar beobachten kann, wie dieser Plan automatisch umgesetzt wird. Siege und Niederlagen müssen erklärbar sein. Die Kampagne muss abgeschlossen, das Endgame substanziell, die Präsentation poliert und jede Funktion vollständig offline nutzbar sein.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 47,
+        "section": null,
+        "locator": "block:1540",
+        "quoteHash": "sha256:1d304942e9e72a714a1951cbc1a5c64e6874537f5c85c6872ea3ac9cb3846a2a",
+        "originalExcerpt": "Riftwarden: Auto RPG Roguelite ist releasebereit, wenn der Spieler eine ungewöhnliche Gruppe aufbauen, Gegner vollständig verstehen, einen Plan durch Formation/Doktrin/Ausrüstung formulieren und anschließend klar beobachten kann, wie dieser Plan automatisch umgesetzt wird. Siege und Niederlagen müssen erklärbar sein. Die Kampagne muss abgeschlossen, das Endgame substanziell, die Präsentation poliert und jede Funktion vollständig offline nutzbar sein."
+      },
+      "ownerPhases": [
+        "PHASE-22"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-22",
+          "testIds": [
+            "REV-DEFINITION-OF-DONE-047"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-K-0051",
+      "title": "Zentrale Qualitätsfrage: \"Kann der Spieler erkennen, welche Vorbereitung zu welchem Kampfverhalten und welchem Ergebnis geführt hat?\" Ist die Antwort nicht eindeutig, muss zuerst Lesbarkeit oder Regeldefinition verbessert werden, nicht zusätzlicher Content ergänzt werden.",
+      "statement": "Die zentrale Qualitätsfrage lautet bei jeder Implementierungsentscheidung: \"Kann der Spieler erkennen, welche Vorbereitung zu welchem Kampfverhalten und welchem Ergebnis geführt hat?\" Ist die Antwort nicht eindeutig, muss zuerst Lesbarkeit oder Regeldefinition verbessert werden, nicht zusätzlicher Content ergänzt.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": 47,
+        "section": null,
+        "locator": "block:1541",
+        "quoteHash": "sha256:4fe2ca6bb738793974c5eb326ce3ee65b65c703165901adefbc75a9375feeca1",
+        "originalExcerpt": "Die zentrale Qualitätsfrage lautet bei jeder Implementierungsentscheidung: „Kann der Spieler erkennen, welche Vorbereitung zu welchem Kampfverhalten und welchem Ergebnis geführt hat?\" Ist die Antwort nicht eindeutig, muss zuerst Lesbarkeit oder Regeldefinition verbessert werden, nicht zusätzlicher Content ergänzt."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "REV-CORE-QUALITY-047"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ],
+  "contextOnly": []
+}

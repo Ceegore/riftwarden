@@ -1,0 +1,28 @@
+# Chapter 76: Vollständig geschlossene Simulations- und Ereignisreihenfolge
+# blocks 2020..2047 (28 blocks)
+
+[Heading 2] 76. Vollständig geschlossene Simulations- und Ereignisreihenfolge
+[Heading 3] 76.1 Tick-Pipeline
+[First Paragraph] Ein Tick wird exakt in der folgenden Reihenfolge verarbeitet. Innerhalb einer Phase gilt die stabile Sortierung scheduledTick, eventPriority, sourceEntityId, abilityId, eventSequence. Kein Renderer- oder Arrayindex darf die Reihenfolge beeinflussen.
+[Heading 3] 76.2 Reichweite, Kollision und Treffergrenzen
+[Compact] Reichweite ist inklusive: distance <= range gilt als in Reichweite. Distanz ist Abstand der Kollisionsränder, nicht Mittelpunktdistanz.
+[Compact] Nahkämpfer stoppen bei targetRadius + ownRadius + attackStopGap. Baseline attackStopGap=0,10 X-Einheiten.
+[Compact] Verbündete dürfen sich überlappen, wenn Spawn/Knockback dies kurz erzwingt; Separation löst maximal 0,25 X pro Tick, ohne die Gegnergrenze zu durchdringen.
+[Compact] Projektile speichern Ziel-ID und Zielposition beim Abschuss. Homing=false trifft die gespeicherte Position; homing=true verfolgt bis maxTurn/expiry. Ist das Ziel entfernt, folgt die definierte lostTargetPolicy.
+[Compact] AoE nutzt einen einmaligen Samplepunkt beim Impact. Einheit gilt getroffen, wenn Kollisionskreis die AoE-Grenze berührt. Eine Fähigkeit trifft dieselbe Entity pro EffectIndex höchstens einmal.
+[Compact] True Damage ignoriert Rüstung/Widerstand, aber nicht Schilde oder explizite Unverwundbarkeit. Negative Endschäden werden auf 0 geklemmt.
+[Heading 3] 76.3 Cast, Unterbrechung und Zielverlust
+[Compact] invalidTargetPolicy=wait: Fähigkeit bleibt vollständig geladen und prüft jeden Tick, verbraucht keine Nutzung.
+[Compact] invalidTargetPolicy=retarget: Zielquery wird im selben Tick genau einmal neu ausgeführt; ohne Ziel verhält sie sich wie wait.
+[Compact] invalidTargetPolicy=consume_without_effect ist nur für ausdrücklich designte zufällige/risikobehaftete Fähigkeiten erlaubt und muss in Vorschau stehen.
+[Compact] Standardangriffe retargeten nach Zielverlust frühestens im nächsten Tick. Kein sofortiger Doppelangriff durch Retarget.
+[Heading 3] 76.4 Statusstacking und periodische Effekte
+[Compact] Periodische Effekte ticken erstmals nach ihrem intervalTicks, niemals sofort beim Auftragen, außer initialTick=true ist ausdrücklich gesetzt.
+[Compact] Dispel entfernt nach Priorität: harte Kontrolle, stärkster negativer Effekt, längste Restdauer, Status-ID. Bannung positiver Effekte nutzt analog stärkster Buff zuerst.
+[Compact] Schilde bilden eine FIFO-Liste nach Auftragssequenz, außer shieldPriority ist gesetzt. Schaden verbraucht zuerst höchsten shieldPriority, dann ältesten Schild.
+[Compact] Überheilung erzeugt nur dann Schild, wenn eine Fähigkeit dies ausdrücklich definiert. Der erzeugte Schild ist ein neuer Effekt und übernimmt keine Heilmodifikatoren doppelt.
+[Heading 3] 76.5 Kampfende und nachlaufende Ereignisse
+[Compact] Sobald Phase L ein endgültiges Kampfende setzt, werden keine neuen Gameplayevents geplant. Bereits geplante Ereignisse späterer Ticks werden verworfen.
+[Compact] Render-/Audioevents dürfen ihre kurze Abschlussanimation abspielen, besitzen aber keine Gameplayautorität.
+[Compact] Bei Zeitlimit gewinnt die Seite mit höherem Verhältnis Summe aktuelle LP+Schilde / Summe maximale LP der regulären Einheiten. Gleichstand: mehr reguläre Einheiten, dann mehr Boss-/Zielschaden; sonst Doppelniederlage.
+[Compact] Ein Replayhash wird alle 30 Ticks und beim Kampfende erzeugt. Hash umfasst autoritativen Zustand, nicht Render-, Audio- oder Statistikformatierung.

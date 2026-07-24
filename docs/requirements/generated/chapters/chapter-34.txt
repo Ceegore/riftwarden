@@ -1,0 +1,13 @@
+# Chapter 34: Kampfauswertung und automatische Hinweise
+# blocks 1337..1357 (21 blocks)
+
+[Heading 2] 34. Kampfauswertung und automatische Hinweise
+[Heading 3] 34.1 Auswertungsdaten
+[Heading 3] 34.2 Kampfbewertung
+[Heading 3] 34.3 Hinweis-Engine
+[First Paragraph] Nach jedem Kampf werden maximal zwei Hinweise aus objektiven Regeln gewählt. Ein Hinweis benötigt eine Mindestkonfidenz und darf keine einzige perfekte Lösung behaupten. Priorität: unmittelbare Niederlagenursache; ungenutzter klarer Counter; Positionsproblem; Wirtschaft/Belohnung nie als Kampfhinweis.
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Auswertungswerte stimmen mit Kampflog auf Rundungsdifferenz unter 0,1% überein.
+[Compact] MVP-Algorithmus bevorzugt nicht automatisch reine DPS über essentielle Heilung/Tankleistung.
+[Compact] Hinweise werden nur bei vollständig erfüllten Triggern gezeigt und nennen keine nicht vorhandene Fähigkeit.
+[Compact] Spieler kann von jeder Metrik direkt zur Ereignis-Timeline springen.

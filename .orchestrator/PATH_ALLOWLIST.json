@@ -22,7 +22,9 @@
     "C:/Projects/_sortiert/Riftwarden/dist",
     "C:/Projects/_sortiert/Riftwarden/coverage"
   ],
-  "allowed_extensions": ["*"],
+  "allowed_extensions": [
+    "*"
+  ],
   "max_single_file_bytes": 10485760,
   "symlink_policy": "deny_write_through",
   "binary_write_policy": "contract_only",

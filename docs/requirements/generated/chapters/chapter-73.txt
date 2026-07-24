@@ -1,0 +1,38 @@
+# Chapter 73: Kanonische Konstanten, Einheiten, Enums und ID-Regeln
+# blocks 1967..1980 (14 blocks)
+
+[Heading 2] 73. Kanonische Konstanten, Einheiten, Enums und ID-Regeln
+[Heading 3] 73.1 Einzige Quelle globaler Regeln
+[First Paragraph] Alle globalen Gameplay-, Save-, UI- und technischen Konstanten liegen in versionierten, typisierten Konfigurationsmodulen. Kein Magic Number darf außerhalb der jeweils autorisierten Datei dupliziert werden.
+[Code Block] // src/game/rules/gameRules.ts
+export const GAME_RULES = {
+  simulationTicksPerSecond: 30,
+  formationLanes: 3,
+  formationDepths: 3,
+  maxRegularUnitsPerSide: 7,
+  maxHeroesPerPlayerGroup: 3,
+  maxCopiesPerTroopType: 3,
+  maxActiveSummonsPerSide: 6,
+  baseActiveRelics: 6,
+  deepEndlessActiveRelics: 8,
+  absoluteMaxActiveRelics: 8,
+  heroLevelMin: 1,
+  heroLevelMax: 3,
+  permanentEquipmentSlotsPerHero: 2,
+  formationPresetCount: 4,
+  normalRiftCollapseStartTicks: 90 * 30,
+  eliteRiftCollapseStartTicks: 90 * 30,
+  bossRiftCollapseStartTicks: 120 * 30,
+  riftCollapseDurationTicks: 15 * 30,
+  absoluteBattleAbortTicks: 180 * 30,
+  autosaveRotationSlots: 3,
+  supportedLocales: ['de', 'en'] as const,
+} as const;
+[Heading 3] 73.2 Autoritative Einheiten und Rundung
+[Heading 3] 73.3 Vollständige Kern-Enums
+[Heading 3] 73.4 ID-Namensräume und Referenzregeln
+[Compact] Präfixe: hero_, troop_, summon_, enemy_, boss_, ability_, attack_, status_, trait_, synergy_, item_, talisman_, kit_, banner_, relic_, mission_, encounter_, event_, modifier_, achievement_, mastery_, screen_, audio_, visual_.
+[Compact] Eine ID darf nur einem Inhaltstyp gehören. Buildvalidierung verwirft doppelte IDs auch über unterschiedliche Dateien.
+[Compact] Referenzen werden niemals über Arrayposition oder Anzeigenamen gespeichert. Savegames speichern ausschließlich stabile IDs und schemaVersion/contentVersion.
+[Compact] Entfernen oder Umdeuten einer veröffentlichten ID ist verboten. Nicht mehr genutzte Inhalte werden deprecated und durch Migration/Replacement-ID behandelt.
+[Compact] Lokalisierungskeys folgen content.<type>.<id>.<field> beziehungsweise ui.<screen>.<element>. Fehlende Keys sind Release-Buildfehler.

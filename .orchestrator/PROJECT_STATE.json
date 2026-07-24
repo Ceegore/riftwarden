@@ -2,31 +2,40 @@
   "schema_version": "1.0",
   "project_id": "riftwarden",
   "context_version": "phase00-setup-2026-07-22",
-  "status": "VALIDATING_EXECUTOR_ADAPTER",
+  "status": "EXECUTING",
   "source_lock_hash": "2ede1007f46d932456ab220f767906f6aeb5b1a2abbf5078ce5982fc2e058acb",
   "repository": {
     "root": "C:/Projects/_sortiert/Riftwarden",
-    "branch": "main",
-    "commit": "9f1c39fd67f3c9f20499dd60b91a49d932de4c54",
-    "tree_hash": "32d36c9e82367f0c5fcc95831843ba554cdc0771",
+    "branch": "feat/00-autorit-t-requirements-und-traceability",
+    "commit": "a1a8a31a909d17edb9c0451ccf7b8fddf3fa97ec",
+    "tree_hash": "3808d6511a12c06c45047256b1c404f6c75c91f4",
     "dirty": false
   },
-  "current_phase_id": null,
-  "current_work_package_id": null,
+  "current_phase_id": "PHASE-00",
+  "current_work_package_id": "P00-T01",
   "active_session_ids": [],
-  "accepted_decisions": [],
+  "accepted_decisions": [
+    "DEC-INIT-001: integration mode B (api-supervisor) selected and proven",
+    "DEC-P00T01-001: P00-T01 source-freeze accepted WITH DECLARED DEBT (chapter verification incomplete; draft validator green)"
+  ],
   "open_blockers": [],
   "open_risks": [
     {
       "severity": "P1",
       "description": "GAP-PUBLISHER-CONFIRMATION: no publisher confirmation that V5 is the final design spec. G00 cannot PASS until resolved.",
       "mitigation": "Phase 00 proceeds in draft mode; operator to provide confirmation artifact before G00 gate."
+    },
+    {
+      "severity": "P2",
+      "description": "M3 does not reliably self-finalize within the round budget (supervisor synthesizes report; work is still completed). Mitigated by finalization nudge + raised ceiling.",
+      "mitigation": "Raise round ceiling further for complex WPs; consider a finalize-only final turn."
     }
   ],
   "known_gaps": [
-    "GAP-PHASE-17-STARTERKIT (ZIP missing, handbook authoritative; resolved at phase 17)",
-    "GAP-PHASE-30-STARTERKIT (ZIP corrupt, handbook authoritative; resolved at phase 30)",
-    "GAP-PUBLISHER-CONFIRMATION (blocks G00; proceed draft-only)"
+    "GAP-PHASE-17-STARTERKIT (ZIP missing, handbook authoritative; first WP of phase 17 rebuilds scaffolding)",
+    "GAP-PHASE-30-STARTERKIT (ZIP corrupt, handbook authoritative; first WP of phase 30 rebuilds scaffolding)",
+    "GAP-PUBLISHER-CONFIRMATION (blocks G00 PASS; proceed draft-only)",
+    "P00-T01-DEBT: 87 chapter headings still requires_review (0/87 verified); chapterAudit.status in_progress"
   ],
   "budgets": {
     "glm_input_tokens": 0,
@@ -35,7 +44,7 @@
     "m3_input_tokens": 0,
     "m3_output_tokens": 0
   },
-  "last_valid_checkpoint": null,
-  "updated_at": "2026-07-22T00:52:00Z",
-  "state_hash": "83121d0482659cae50e91e4f4fc98e1d52681a6aa7a2664b43914b71bd06db0c"
+  "last_valid_checkpoint": "a1a8a31a909d17edb9c0451ccf7b8fddf3fa97ec",
+  "updated_at": "2026-07-22T01:00:00Z",
+  "state_hash": "a99b1cd6006ba68819bf2a28d864f6d9d37067b9f9dcb0a72fb77489567fce81"
 }

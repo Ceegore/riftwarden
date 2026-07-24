@@ -1,0 +1,17 @@
+# Chapter 87: Finaler Handoff-Vertrag vor Entwicklungsplan und Implementierung
+# blocks 2257..2271 (15 blocks)
+
+[Heading 2] 87. Finaler Handoff-Vertrag vor Entwicklungsplan und Implementierung
+[First Paragraph] Nach V5 darf der Entwicklungsplan das Werk in Phasen, Epics, Tickets, Abhängigkeiten und Abnahmebündel zerlegen. Er darf keine neue Designentscheidung einführen. Ein mittlerer Implementierungsagent muss für jede Aufgabe auf eine konkrete Kapitel-, Datensatz-, Screen-, Interface- oder Gate-Referenz zeigen können.
+[Heading 3] 87.1 Der Entwicklungsplan darf entscheiden
+[Compact] Reihenfolge innerhalb der bereits definierten Abhängigkeiten, Ticketgröße, Branch-/PR-Schnitt und parallele Arbeitspakete.
+[Compact] Konkrete interne Algorithmen/Dateiaufteilung, sofern Schnittstellen, Determinismus, Performance und Tests eingehalten werden.
+[Compact] Welche V5-Tests in welchem Implementierungsschritt zuerst grün werden, solange kein Gate übersprungen wird.
+[Heading 3] 87.2 Der Entwicklungsplan darf nicht entscheiden
+[Compact] Neue oder entfernte Features, geänderte Obergrenzen, manuelle Kampfsteuerung, andere Währungen, Live-Service, Telemetrie, Accounts oder Netzwerkabhängigkeit.
+[Compact] Andere Stack-Majors, Rendererautorität, nicht deterministische Simulation, schwächere Savegarantien oder nicht adaptive Mobile-UI.
+[Compact] Weglassen von Screens/States/Accessibility/Storetests unter Verweis auf MVP, wenn V5 sie als Pflicht definiert.
+[Heading 3] 87.3 Implementierungsstart-Gate
+[Heading 3] 87.4 Finale Definition
+[First Paragraph] Riftwarden: Auto RPG Roguelite ist mit Version 5 ausreichend eindeutig spezifiziert, wenn die Implementierung aus den vorliegenden Regeln einen deterministischen, vollständig offline spielbaren, hochpolierten Mobile-Auto-RPG-Roguelite-Titel erzeugen kann; jeder Inhalt, Screen, Zustand, Datensatz, Savepfad, Rendererfall, Accessibilityflow und Store-Gate besitzt eine festgelegte fachliche Bedeutung; und keine nicht dokumentierte Produktentscheidung notwendig ist. Tritt während der Umsetzung dennoch eine echte Designlücke auf, wird sie nicht improvisiert, sondern als dokumentierte V5-Change-Request mit betroffenen Regeln, Alternativen, gewählter Entscheidung, Migration und Regression behandelt.
+[Technical Note] Ende der finalen Pre-Implementation-Spezifikation. Nächster separater Artefaktschritt: Entwicklungsplan und Implementierungsphasen auf Basis dieser V5.

@@ -1,0 +1,4660 @@
+{
+  "schemaVersion": "1.0",
+  "chunk": "e",
+  "chapterRange": {
+    "lo": 64,
+    "hi": 78
+  },
+  "requirements": [
+    {
+      "id": "REQ-TEMP-E-0001",
+      "title": "App-Icon Siegelmotiv",
+      "statement": "Das App-Icon zeigt ein einzelnes Riftwarden-Siegel als goldener gebrochener Ring um violetten Riftkern; finale Store-Icons enthalten keine Schrift, keine kleine Figur und keine Transparenz.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "64",
+        "section": null,
+        "locator": "block:1845",
+        "quoteHash": "sha256:b1a3111f2b50b179ec38339ca22cad68464ccb223cdb6b676087e4e5d1905f60",
+        "originalExcerpt": "App-Icon zeigt ein einzelnes Riftwarden-Siegel: goldener gebrochener Ring um violetten Riftkern. Keine Schrift, keine kleine Figur, keine Transparenz im finalen Store-Icon."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-ICON-MOTIF-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0002",
+      "title": "Icon Lesbarkeit 32px",
+      "statement": "Das Icon-Motiv ist bei 32 px erkennbar, in Schwarzweiß unterscheidbar und ohne plattformspezifische Masken vollständig; Android Adaptive Icon besitzt getrennten Vorder-/Hintergrund mit Safe Zone.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "64",
+        "section": null,
+        "locator": "block:1846",
+        "quoteHash": "sha256:247cf1bbc037543cccf33d940003b05db302c57bf0c998d588955e702494b137",
+        "originalExcerpt": "Das Motiv muss bei 32 px erkennbar, in Schwarzweiß unterscheidbar und ohne plattformspezifische Masken vollständig sein. Android Adaptive Icon besitzt getrennten Vorder-/Hintergrund mit Safe Zone."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-ICON-LEGIB-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "px",
+          "min": 32
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0003",
+      "title": "Native Splash Vertrag",
+      "statement": "Native Splash verwendet bg-void, zentriertes Siegel und optional sehr subtile statische Glut; langer Logo-Film und „Loading 100%“ ohne echten Fortschritt sind verboten.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "64",
+        "section": null,
+        "locator": "block:1847",
+        "quoteHash": "sha256:9b4771168cefad6137867e7689acb9a299eeed7deb95aba7431e8e75d3be386a",
+        "originalExcerpt": "Native Splash verwendet bg-void, zentriertes Siegel und optional sehr subtile statische Glut. Kein langer Logo-Film und kein „Loading 100%“ ohne echten Fortschritt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-SPLASH-NATIVE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0004",
+      "title": "Keine vorgetäuschten Funktionen",
+      "statement": "Storebilder dürfen keine nicht vorhandenen Funktionen oder Qualitätsstufen vortäuschen; Compositing darf nur Rahmen/Text ergänzen.",
+      "norm": "MUST_NOT",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "64",
+        "section": null,
+        "locator": "block:1848",
+        "quoteHash": "sha256:3cdd7963d0f4af3c85fd1f3908b196de006a663463ca0722a6b0339a28a71f58",
+        "originalExcerpt": "Alle Storebilder zeigen echte In-Game-Screens. Compositing darf Rahmen/Text ergänzen, aber keine nicht vorhandenen Funktionen oder Qualitätsstufen vortäuschen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-STORE-FAKES-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0005",
+      "title": "Storetitel max 30 Zeichen",
+      "statement": "Der Storetitel bleibt innerhalb der jeweiligen 30-Zeichen-Grenze; bei Stores, die den vollständigen Namen nicht akzeptieren, lautet die Storeform „Riftwarden: Auto RPG“ und der vollständige Untertitel erscheint in Beschreibung/Grafik.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "64",
+        "section": null,
+        "locator": "block:1852",
+        "quoteHash": "sha256:ede22732928998936e8ac97307c33e08eed32fbd481e4a81054bfbc0f197dae4",
+        "originalExcerpt": "Der Storetitel bleibt innerhalb der jeweiligen 30-Zeichen-Grenze; falls ein Store den vollständigen Namen nicht akzeptiert, lautet die Storeform „Riftwarden: Auto RPG“ und der vollständige Untertitel erscheint in Beschreibung/Grafik."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-STORE-TITLE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "chars",
+          "max": 30
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0006",
+      "title": "Verbot unbelegbarer Werbeversprechen",
+      "statement": "In Titel/Keywords dürfen keine Preisangabe, Konkurrenznamen, „best“, „AAA“ oder unbelegbare Leistungsversprechen erscheinen.",
+      "norm": "MUST_NOT",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "64",
+        "section": null,
+        "locator": "block:1853",
+        "quoteHash": "sha256:db454c109ab8e59286bc959133dda2768ba0bcd2af28fbcee62d109a32fe4871",
+        "originalExcerpt": "Keine Preisangabe, Konkurrenznamen, „best“, „AAA“ oder unbelegbare Leistungsversprechen in Titel/Keywords."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-STORE-METACL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0007",
+      "title": "Storebeschreibung Pflichtinhalte",
+      "statement": "Die Storebeschreibung nennt klar: automatische Kämpfe, Premiumkauf, Offline, keine Werbung/IAP, Kampagne und Endgame.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "64",
+        "section": null,
+        "locator": "block:1854",
+        "quoteHash": "sha256:ed4e371e8184d325d16eeb6478ee5e8ee24a075b03deadd36553c523b759a478",
+        "originalExcerpt": "Beschreibung nennt klar: automatische Kämpfe, Premiumkauf, Offline, keine Werbung/IAP, Kampagne und Endgame."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-STORE-DESC-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0008",
+      "title": "What’s New konkret",
+      "statement": "What’s New nennt funktionale Änderungen konkret; eine ausschließliche Floskel ist bei großen Updates unzulässig.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "64",
+        "section": null,
+        "locator": "block:1855",
+        "quoteHash": "sha256:fdfc12b72d6170fc57f596fb4bdbec5de883106d398d2facddbddc40e348e51b",
+        "originalExcerpt": "What’s New nennt funktionale Änderungen konkret; keine ausschließliche Floskel bei großen Updates."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-STORE-WHATSNEW-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0009",
+      "title": "LP/Schild nie negativ",
+      "statement": "LP und Schild dürfen nie negativ sein; keine Entity darf gleichzeitig ACTIVE und DEFEATED sein.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "65",
+        "section": null,
+        "locator": "block:1860",
+        "quoteHash": "sha256:b0e7194bfa1fae0376602d10b9394a06d97e5a83b0a91fbdc562ac45ddd45faa",
+        "originalExcerpt": "LP und Schild nie negativ; keine Entity gleichzeitig ACTIVE und DEFEATED."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-INV-NEGLP-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0010",
+      "title": "Sim-Obergrenzen pro Seite",
+      "statement": "Pro Seite gelten die Obergrenzen: maximal sieben reguläre Einheiten, drei Helden, drei gleiche Truppen und sechs Beschwörungen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "65",
+        "section": null,
+        "locator": "block:1861",
+        "quoteHash": "sha256:02b2058db4c54daa0d0d5116e6e219f87fb2e702482cdc07c16f869855a2ccc5",
+        "originalExcerpt": "Maximal sieben reguläre Einheiten, drei Helden, drei gleiche Truppen und sechs Beschwörungen pro Seite."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-INV-CAPS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 7
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0011",
+      "title": "Safety Cap für Aktionen",
+      "statement": "Jede geplante Aktion endet, wird unterbrochen oder verfällt innerhalb ihres Safety Caps.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "65",
+        "section": null,
+        "locator": "block:1862",
+        "quoteHash": "sha256:f4dbf4866fc69260d06bc566fae5eaf1c9247f53e51d47ba9cfb3e67437df61d",
+        "originalExcerpt": "Jede geplante Aktion endet, wird unterbrochen oder verfällt innerhalb ihres Safety Caps."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-INV-SAFETY-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0012",
+      "title": "Keine unbegrenzten Trigger",
+      "statement": "Keine Fähigkeit darf sich im selben Tick unbegrenzt selbst triggern; die globale Eventobergrenze ist 10.000 je Kampf, Überschreitung führt zu hartem Testfehler.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "65",
+        "section": null,
+        "locator": "block:1863",
+        "quoteHash": "sha256:84e584c2eda62a14a873cccb1ec8918fbae629471fbb12cc651800b592e4e6a1",
+        "originalExcerpt": "Keine Fähigkeit kann sich im selben Tick unbegrenzt selbst triggern; globale Eventobergrenze 10.000 je Kampf, danach harter Testfehler."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-INV-LOOP-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 10000
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0013",
+      "title": "Determinismus Invariante",
+      "statement": "Gleicher Startsnapshot, gleiche Entscheidungen und gleiche Version erzeugen identischen Endchecksum, Eventcount und Ergebnis.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "65",
+        "section": null,
+        "locator": "block:1864",
+        "quoteHash": "sha256:b80d9dff05fa35c28f563f926f66ecd6289625f61bb2e526fabf359fec000a62",
+        "originalExcerpt": "Gleicher Startsnapshot + Entscheidungen + Version erzeugt identischen Endchecksum, Eventcount und Ergebnis."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-INV-DET-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0014",
+      "title": "Kampfende bis Tick 5400",
+      "statement": "Jeder Kampf endet bis Tick 5400; jeder Dungeon-Generator endet bis Versuch 50.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "65",
+        "section": null,
+        "locator": "block:1865",
+        "quoteHash": "sha256:93a0270fd57c0203469fa000ca145e8858ca68d9e0e1ec97cc9e49206ee406c5",
+        "originalExcerpt": "Jeder Kampf endet bis Tick 5400; jeder Dungeon-Generator endet bis Versuch 50."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-INV-BOUND-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "tick",
+          "max": 5400
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0015",
+      "title": "Belohnungs-Commit idempotent",
+      "statement": "Eine Belohnung kann genau einmal committed werden; commitId ist monoton.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "65",
+        "section": null,
+        "locator": "block:1866",
+        "quoteHash": "sha256:ed89c225f7d284031a4309612c3a6606f42b72e7a1c1a21f23ed42139003c843",
+        "originalExcerpt": "Belohnung kann genau einmal committed werden; commitId ist monoton."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "UT-INV-COMMIT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0016",
+      "title": "CI Schritt 1 Clean checkout",
+      "statement": "Pipelineschritt 1: Clean checkout, Node/pnpm-Version prüfen, pnpm install --frozen-lockfile.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1878",
+        "quoteHash": "sha256:8955482848eb6a448b4fbb41c792aeb08d1fcb749c1aac81062fe60714b67e84",
+        "originalExcerpt": "1. Clean checkout, Node/pnpm-Version prüfen, pnpm install --frozen-lockfile."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-CLEAN-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0017",
+      "title": "CI Schritt 2 Lint/Audit",
+      "statement": "Pipelineschritt 2: Format/Lint/Typecheck und Lizenz-/Dependencyaudit.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1879",
+        "quoteHash": "sha256:f18cdd2971ec776b21cc69f25335944c8e9e3dc03a192e54c960d31189902aa5",
+        "originalExcerpt": "2. Format/Lint/Typecheck und Lizenz-/Dependencyaudit."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-LINT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0018",
+      "title": "CI Schritt 3 Validatoren",
+      "statement": "Pipelineschritt 3: Content-, Localization-, Asset- und Store-Manifestvalidatoren.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1880",
+        "quoteHash": "sha256:53f1790d727af7b0d2c2eb185b82a5990bbbdff57ff5be0cc9c95178b6194e3d",
+        "originalExcerpt": "3. Content-, Localization-, Asset- und Store-Manifestvalidatoren."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-VALID-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0019",
+      "title": "CI Schritt 4 Tests",
+      "statement": "Pipelineschritt 4: Unit-, Property-, Golden-Replay- und Integrationstests.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1881",
+        "quoteHash": "sha256:555a30b60eb45502eedf967972dd928545e339046e4aa58f4cacebef1510971c",
+        "originalExcerpt": "4. Unit-, Property-, Golden-Replay- und Integrationstests."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-TEST-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0020",
+      "title": "CI Schritt 5 Webbuild",
+      "statement": "Pipelineschritt 5: Web-Productionbuild, Bundlegrößen- und CSP-Prüfung.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1882",
+        "quoteHash": "sha256:0b130a59745a0311175a9004b399c616c0125c3acfca048b2a043d6d2f453a11",
+        "originalExcerpt": "5. Web-Productionbuild, Bundlegrößen- und CSP-Prüfung."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-BUILD-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0021",
+      "title": "CI Schritt 6 E2E",
+      "statement": "Pipelineschritt 6: Playwright E2E und visuelle Referenztests in DE, EN und Pseudo.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1883",
+        "quoteHash": "sha256:1dbfbf116f28c29b1f118e5c24b9e8e92efb99c3176d6607938e875c9130275a",
+        "originalExcerpt": "6. Playwright E2E und visuelle Referenztests in DE, EN und Pseudo."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-E2E-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0022",
+      "title": "CI Schritt 7 cap sync",
+      "statement": "Pipelineschritt 7: npx cap sync, Native-Config-Diff und Prüfung unerlaubter Permissions/Endpoints.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1884",
+        "quoteHash": "sha256:dff8c11e44452b526642eceeedccfc2ab6b68217e397c85434f7a17bba0310f2",
+        "originalExcerpt": "7. npx cap sync, Native-Config-Diff und unerlaubte Permission-/Endpointprüfung."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-CAPSYNC-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0023",
+      "title": "CI Schritt 8 Nativebuilds",
+      "statement": "Pipelineschritt 8: Android release AAB und iOS Archive bauen; Signatur, Entitlements und Privacy Manifest werden geprüft.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1885",
+        "quoteHash": "sha256:6a1c7a4a5513cbec656ee5baf5156b84eb96c745d1543ac5faaa8145f69bb58d",
+        "originalExcerpt": "8. Android release AAB und iOS Archive bauen; Signatur/Entitlements/Privacy Manifest prüfen."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-NATIVE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0024",
+      "title": "CI Schritt 9 Native-Smoke",
+      "statement": "Pipelineschritt 9: Native-Smokes auf mindestens einem Android- und iOS-Gerät; Artefakte, Checksums, SBOM und Testreport werden archiviert.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1886",
+        "quoteHash": "sha256:c1aedd963a8c2c53f7ea02a76c5f1bc6d49b568a0f01446bbe32a15c7b0a56c9",
+        "originalExcerpt": "9. Native-Smokes auf mindestens einem Android- und iOS-Gerät; Artefakte, Checksums, SBOM und Testreport archivieren."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-CICD-SMOKE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0025",
+      "title": "Secrets ausschließlich im Secret Store",
+      "statement": "Keystore, Passwörter, App Store Connect Keys und Provisioning Profiles liegen ausschließlich im Secret Store oder in geschütztem lokalen Setup.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1889",
+        "quoteHash": "sha256:15585ecc9d80445482f3141e4bc6995e96755711bafbd5cc6ca882f29d326421",
+        "originalExcerpt": "Keystore, Passwörter, App Store Connect Keys und Provisioning Profiles liegen ausschließlich im Secret Store/geschützten lokalen Setup."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-SECRETS-LOC-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0026",
+      "title": "Debugsignatur nie im Release",
+      "statement": "Entwicklerdebugsignatur darf niemals einen Release-Track erreichen; CI prüft Zertifikat und Fingerabdruck.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1890",
+        "quoteHash": "sha256:53c199bf6ee83ba01c34363ca4d73e6f5d3422b673b1a70bee427eea8a14591f",
+        "originalExcerpt": "Entwicklerdebugsignatur darf niemals einen Release-Track erreichen. CI prüft Zertifikat/Fingerprint."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-SECRETS-DEBUGREL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0027",
+      "title": "Play App Signing aktiv",
+      "statement": "Play App Signing wird verwendet; der Upload Key besitzt offline gesichertes Backup und dokumentierten Recoveryprozess.",
+      "norm": "MUST",
+      "category": "Android",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1891",
+        "quoteHash": "sha256:7cf18e34c3cb2bee3553f53c44bf460bff7d7c2e3072d3e323251cb73525a0ad",
+        "originalExcerpt": "Play App Signing wird verwendet; Upload Key besitzt offline gesichertes Backup und dokumentierten Recoveryprozess."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-PLAY-SIGN-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0028",
+      "title": "iOS Distribution via App Store Connect",
+      "statement": "iOS Distribution erfolgt über App Store Connect/TestFlight; Ad-hoc-Binaries sind keine öffentliche Releasequelle.",
+      "norm": "MUST",
+      "category": "iOS",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "66",
+        "section": null,
+        "locator": "block:1892",
+        "quoteHash": "sha256:037b32cc2a77a923bf2d3771e43b23d742df4097e5b3799883bddade5400115e",
+        "originalExcerpt": "iOS Distribution über App Store Connect/TestFlight; keine Ad-hoc-Binaries als öffentliche Releasequelle."
+      },
+      "ownerPhases": [
+        "PHASE-20"
+      ],
+      "verification": [
+        {
+          "type": "native",
+          "plannedPhase": "PHASE-20",
+          "testIds": [
+            "UT-ASC-DISTRIB-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0029",
+      "title": "Keine Inhaltsproduktion vor Phase 4",
+      "statement": "Ein Agent beginnt nicht mit vollständiger Inhaltsproduktion, bevor Phase 4 beweist, dass Simulation und Beobachtbarkeit funktionieren.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "67",
+        "section": null,
+        "locator": "block:1896",
+        "quoteHash": "sha256:00155c531bd6c25cffb3ce7e8782e0097edbc9587ef31625154095dab50d4cdb",
+        "originalExcerpt": "Ein Agent beginnt nicht mit vollständiger Inhaltsproduktion, bevor Phase 4 beweist, dass Simulation und Beobachtbarkeit funktionieren."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-PHASE00-NOINHALT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0030",
+      "title": "Keine Wegwerfarchitektur",
+      "statement": "Jede Phase baut auf produktionsnahen Daten und Komponenten; eine zweite Wegwerfarchitektur für Prototyp und Release ist verboten.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "67",
+        "section": null,
+        "locator": "block:1897",
+        "quoteHash": "sha256:b75148b4fef2630ea2c96124b7a4636321b554dc4a0da034efc62444d9f4914b",
+        "originalExcerpt": "Jede Phase baut auf produktionsnahen Daten und Komponenten; keine zweite Wegwerfarchitektur für Prototyp und Release."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-PHASE00-NOPROTO-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0031",
+      "title": "Scope nach V3 Kapitel 46 kürzen",
+      "statement": "Bei Blockern wird Scope nach V3 Kapitel 46 gekürzt; Save-, Lesbarkeits-, Accessibility- und Storequalität bleiben unangetastet.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "67",
+        "section": null,
+        "locator": "block:1898",
+        "quoteHash": "sha256:c204139667988eb5cca64928a8be4a40d11b62809588464c8626c348336470b0",
+        "originalExcerpt": "Bei Blockern wird Scope nach V3 Kapitel 46 gekürzt, nicht Save-, Lesbarkeits-, Accessibility- oder Storequalität."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-PHASE00-SCOPECUT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0032",
+      "title": "Binary-Preflight Metadaten",
+      "statement": "Appname, Version, Package/Bundle ID, Icons, Splash, Copyright und Supportkontakt sind korrekt.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1902",
+        "quoteHash": "sha256:f11ce0594de11eae25863e85a394462a65d2473e84dd8722c6775efe0718fc41",
+        "originalExcerpt": "Appname, Version, Package/Bundle ID, Icons, Splash, Copyright und Supportkontakt korrekt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PREFLIGHT-META-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0033",
+      "title": "Keine Debugartefakte im Release",
+      "statement": "Im Release sind kein Debugmenü, Testseed, Platzhaltertext, ungenutzter Button, leere Sammlung oder Entwickler-URL sichtbar.",
+      "norm": "MUST_NOT",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1903",
+        "quoteHash": "sha256:715b65f01cce3f6a4a442c17cd0aaba8fe03aaf9081d654167ea891ec1cba46b",
+        "originalExcerpt": "Kein Debugmenü, Testseed, Platzhaltertext, ungenutzter Button, leere Sammlung oder Entwickler-URL sichtbar."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PREFLIGHT-CLEAN-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0034",
+      "title": "Vollständige Offline-Funktion",
+      "statement": "Alle Inhalte sind offline; der Trafficmonitor zeigt während vollständigem Durchlauf keinen App-Netzwerkverkehr.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1904",
+        "quoteHash": "sha256:64604edd6e8d538399ffe5d273672ade41818188b8c686b85c88ba5c6f6c997a",
+        "originalExcerpt": "Alle Inhalte offline; Trafficmonitor zeigt während vollständigem Durchlauf keinen App-Netzwerkverkehr."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PREFLIGHT-OFFLINE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0035",
+      "title": "Assets lizenziert und Credits",
+      "statement": "Alle Assets sind lizenziert; Credits und Lizenzen sind vollständig.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1905",
+        "quoteHash": "sha256:a1c7e4452cb76f6cdb62d8e634e5944cf395e2924df69b81932cbfee0b1a6e48",
+        "originalExcerpt": "Alle Assets lizenziert und Credits/Lizenzen vollständig."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PREFLIGHT-LICENSE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0036",
+      "title": "Smoke-Test Pflichtläufe",
+      "statement": "Smoke-Tests sind erfolgreich: neues Spiel bis Kampagnenende, Update-Migration, Import, Reset und Endgame.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1906",
+        "quoteHash": "sha256:039d04efc8efed7a06c6141203137ede8feff2f53b2696914b486300283ed547",
+        "originalExcerpt": "Neues Spiel bis Kampagnenende, Update-Migration, Import, Reset und Endgame-Smoke erfolgreich."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PREFLIGHT-SMOKE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0037",
+      "title": "Privacy-Antworten konsistent",
+      "statement": "Privacy-/Data-Safety-/App-Privacy-Antworten stimmen mit Binary, Plugins und Permissions überein.",
+      "norm": "MUST",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1907",
+        "quoteHash": "sha256:792dcb70a8365c892cf27620136c90a433ed5484c84633d18d9cf07855eae410",
+        "originalExcerpt": "Privacy-/Data-Safety-/App-Privacy-Antworten stimmen mit Binary, Plugins und Permissions überein."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PREFLIGHT-PRIVACY-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0038",
+      "title": "Review Notes vollständig",
+      "statement": "Release Notes und Review Notes nennen nicht offensichtliche Funktionen und den Testweg.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1908",
+        "quoteHash": "sha256:a15be563013d19f1763b0c02f53497fb108f124682c1cef0c97f3d187cb53e83",
+        "originalExcerpt": "Release Notes und Review Notes nennen nicht offensichtliche Funktionen und Testweg."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-PREFLIGHT-NOTES-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0039",
+      "title": "Screenshots echter UI-Stand",
+      "statement": "Jeder Screenshot ist auf tatsächlich unterstützter Gerätegröße aufgenommen und zeigt echten UI-Stand.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1911",
+        "quoteHash": "sha256:b2d8cfc62d7debf4f49391f04759db964ab2d16967649a9ad5630c0efb49dcb2",
+        "originalExcerpt": "Jeder Screenshot ist auf tatsächlich unterstützter Gerätegröße aufgenommen und zeigt echten UI-Stand."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-STORESS-REAL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0040",
+      "title": "Keine irreführenden Features",
+      "statement": "Screenshots und Metadaten dürfen keine irreführenden Währungen, Käufe, Onlinefunktionen, Controllerpflicht oder nicht enthaltene Sprache zeigen.",
+      "norm": "MUST_NOT",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1912",
+        "quoteHash": "sha256:37c312bb4fea17a1a976c0d91e443f6b6122cf41446f867a9186221ed822c702",
+        "originalExcerpt": "Keine irreführenden Währungen, Käufe, Onlinefunktionen, Controllerpflicht oder nicht enthaltene Sprache."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-STORESS-FEATURE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0041",
+      "title": "Store-Texte lokalisiert lesbar",
+      "statement": "Texte sind in der Zielsprache des Zielstores lokalisiert, lesbar und nicht durch Store-Crops abgeschnitten.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1913",
+        "quoteHash": "sha256:29a5802a3ce1e450b033bc51d928a9614d89a850e6286152a4b2723490bb4d77",
+        "originalExcerpt": "Texte sind in Zielstore lokalisiert, lesbar und nicht durch Store-Crops abgeschnitten."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-STORESS-LOCALIZED-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0042",
+      "title": "Rating-konforme Storegrafiken",
+      "statement": "Icon und Screenshots vermeiden grausame Gewaltdarstellung und bleiben für das deklarierte Rating passend.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1914",
+        "quoteHash": "sha256:796846e94f1572ca771b45fac0fb83db5e2efc02d07272af38e9f6da44579dfe",
+        "originalExcerpt": "Icon und Screenshots vermeiden grausame Gewaltdarstellung und bleiben für das deklarierte Rating passend."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-STORESS-RATING-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0043",
+      "title": "Kein Live-Service",
+      "statement": "Es gibt keine tägliche Betriebsverpflichtung, keinen Server und keinen Contentkalender; Wartung umfasst nur OS/Store-Kompatibilität, kritische Fehler und optionale Qualitätsupdates.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1917",
+        "quoteHash": "sha256:8ae9bd4ed2b15ca2ae3e852dca9b5785dc0baf5b36593f891790a72ab4975c1f",
+        "originalExcerpt": "Es gibt keine tägliche Betriebsverpflichtung, Server oder Contentkalender. Wartung betrifft OS/Store-Kompatibilität, kritische Fehler und optionale Qualitätsupdates."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-POSTLIVE-NOSVC-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0044",
+      "title": "Manuelle Post-Launch-Prüfung",
+      "statement": "Android Vitals, Play Reviews, App Store Crashes und Supportmails werden manuell geprüft; App-Telemetrie wird nicht ohne Produkt-/Datenschutzentscheidung nachgerüstet.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1918",
+        "quoteHash": "sha256:a47025ec6f50b54056df9c75a5b90f9aaea58c4d98bad55224ac074d0eb871aa",
+        "originalExcerpt": "Android Vitals, Play Reviews, App Store Crashes und Supportmails werden manuell geprüft; keine App-Telemetrie wird nachgerüstet, ohne Produkt-/Datenschutzentscheidung."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-POSTLIVE-MANUAL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0045",
+      "title": "Saves nie absichtlich zurücksetzen",
+      "statement": "Ein Update darf Saves nie absichtlich zurücksetzen; jede schemaVersion besitzt Migrationstests aus allen veröffentlichten Versionen.",
+      "norm": "MUST_NOT",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1919",
+        "quoteHash": "sha256:14fa3d45764e896968361767672c16b04ee0c2f1478325f59d88c51bb5872840",
+        "originalExcerpt": "Ein Update darf Saves nie absichtlich zurücksetzen. Jede schemaVersion besitzt Migrationstests aus allen veröffentlichten Versionen."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "UT-POSTSAVE-NORESET-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0046",
+      "title": "Plattform-Drop ankündigen",
+      "statement": "Wird eine Plattformversion nicht mehr unterstützt, wird dies in Storemetadata und Release Notes angekündigt; bestehende Offlinefunktion darf nicht künstlich deaktiviert werden.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "68",
+        "section": null,
+        "locator": "block:1920",
+        "quoteHash": "sha256:9de16e8c7de6f3e2ae6db4b752e2b2c9226ef7609a9969d150db76965e0b4479",
+        "originalExcerpt": "Wird eine Plattformversion nicht mehr unterstützt, muss dies in Storemetadata und Release Notes angekündigt werden; bestehende Offlinefunktion darf nicht künstlich deaktiviert werden."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-POSTLIVE-PLATFDROP-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0047",
+      "title": "Externer Recheck vor Upload",
+      "statement": "Spätestens 14 Tage vor jedem Produktionsupload werden die offiziellen Plattformregeln erneut geprüft und die Release-Checkliste aktualisiert; eine neuere Plattformpflicht überschreibt nur den technischen Mindestwert, nicht die Produktidentität oder Datenschutzgrenzen.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "69",
+        "section": null,
+        "locator": "block:1921",
+        "quoteHash": "sha256:34eb926084a909b6d16bc55ceb3b08d74eb9d97bcdc1b81d2efa74c45fc9ec23",
+        "originalExcerpt": "Die folgenden externen Regeln sind der dokumentierte Prüfstand vom 16. Juli 2026. Storeanforderungen ändern sich. Spätestens 14 Tage vor jedem Produktionsupload müssen die offiziellen Seiten erneut geprüft und die Release-Checkliste aktualisiert werden. Eine neuere Plattformpflicht überschreibt nur den technischen Mindestwert, nicht die Produktidentität oder Datenschutzgrenzen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-EXT-RECHECK-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "days",
+          "max": 14
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0048",
+      "title": "Keine V3-Inhalte entfernt",
+      "statement": "Es darf kein Held, Trupp, Gegner, Boss, Item, Relikt, Ereignis, Mission, Modus, Meisterschaftsziel oder Erfolg aus V3 entfernt werden.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "70",
+        "section": null,
+        "locator": "block:1936",
+        "quoteHash": "sha256:2a006fdfce8699973084905222bc4f1a149c5745f9f63184a80a44c68eff01d4",
+        "originalExcerpt": "Kein Held, Trupp, Gegner, Boss, Item, Relikt, Ereignis, Mission, Modus, Meisterschaftsziel oder Erfolg wurde entfernt."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-VAUDIT-NOREM-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0049",
+      "title": "V3-Obergrenzen unverändert",
+      "statement": "Keine V3-Obergrenze darf erhöht werden: sieben reguläre Einheiten, drei Helden, drei gleiche Truppen, sechs Beschwörungen, drei Heldenlevel und drei Ascension-Startgegenstände bleiben verbindlich.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "70",
+        "section": null,
+        "locator": "block:1937",
+        "quoteHash": "sha256:0ba16addb56b015c7209597517666b5fee9f1503f2a8eb16f770222aff23341a",
+        "originalExcerpt": "Keine V3-Obergrenze wurde erhöht: sieben reguläre Einheiten, drei Helden, drei gleiche Truppen, sechs Beschwörungen, drei Heldenlevel und drei Ascension-Startgegenstände bleiben verbindlich."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-VAUDIT-CAPS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 7
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0050",
+      "title": "V3-Geschäftsmodell unverändert",
+      "statement": "Premium-Einmalkaufmodell, vollständige Offlinefunktion, Verbot von Werbung/IAP/Accounts/Server und Verbot manueller Kampfsteuerung bleiben unverändert.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "70",
+        "section": null,
+        "locator": "block:1938",
+        "quoteHash": "sha256:19dd4104f4bd8f18556d01836ca2a0fc591f80074323504ae831150355f1d3eb",
+        "originalExcerpt": "Das Premium-Einmalkaufmodell, vollständige Offlinefunktion, keine Werbung/IAP/Accounts/Server und keine manuelle Kampfsteuerung bleiben unverändert."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-VAUDIT-MODEL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0051",
+      "title": "V4 implementiert ohne Ersatz",
+      "statement": "Die V4-Technik ersetzt keine Bossmechanik, Synergie, Belohnungslogik oder Kampagnenstruktur; sie implementiert nur die bestehenden Inhaltsregeln.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "70",
+        "section": null,
+        "locator": "block:1939",
+        "quoteHash": "sha256:1604ffe98ecc99d67c3482f7ed4a23e2cdc2dd663711b7341876cc5c886851c7",
+        "originalExcerpt": "Die V4-Technik implementiert die bestehenden Inhaltsregeln; sie ersetzt keine Bossmechanik, Synergie, Belohnungslogik oder Kampagnenstruktur."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "UT-VAUDIT-NOREP-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0052",
+      "title": "Produktionsreife Definition",
+      "statement": "Riftwarden ist produktionsreif spezifiziert, wenn ein Implementierungsagent aus dem Dokument Repository, Datenmodelle, deterministische Simulation, Mobile-App-Shell, alle Screens, responsive GUIs, Save- und Recoverylogik, Android-/iOS-Projekte, Tests und Storeartefakte ohne inhaltliche oder technische Grundsatzentscheidung erstellen kann; V3 bleibt Inhaltsautorität, Kapitel 48-70 sind Autorität für Restklarstellungen, Technik, UX, Plattformen und Release.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "71",
+        "section": null,
+        "locator": "block:1946",
+        "quoteHash": "sha256:85e24820979588c072d48978d6116b21aebd907e59bcf90f840259054964ef62",
+        "originalExcerpt": "Riftwarden: Auto RPG Roguelite ist produktionsreif spezifiziert, wenn ein Implementierungsagent aus diesem Dokument Repository, Datenmodelle, deterministische Simulation, Mobile-App-Shell, sämtliche Screens, responsive GUIs, Save- und Recoverylogik, Android-/iOS-Projekte, Tests und Storeartefakte erstellen kann, ohne eine inhaltliche oder technische Grundsatzentscheidung zu erfinden. Die vollständige V3-Spieldefinition bleibt die Autorität für Inhalt und Balance; die Kapitel 48 bis 70 sind die Autorität für Restklarstellungen, Technik, UX, Plattformen und Release."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-PHASE00-PRODUCTIONREADY-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0053",
+      "title": "Erster Meilenstein Phase 0-2",
+      "statement": "Der erste ausführbare Meilenstein ist Phase 0-2 mit validiertem Content, reproduzierbarer Simulation und beiden startbaren Capacitor-Containern, nicht ein Mockup.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "71",
+        "section": null,
+        "locator": "block:1947",
+        "quoteHash": "sha256:2ba52fc671f156ae97625fe9bff5267e0b87eb1d79c6b8bd6397aef663421678",
+        "originalExcerpt": "Der erste ausführbare Meilenstein ist nicht ein Mockup, sondern Phase 0-2 mit validiertem Content, reproduzierbarer Simulation und beiden startbaren Capacitor-Containern."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-PHASE00-FIRSTEXEC-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0054",
+      "title": "Vertikaler Slice Aschenkönig",
+      "statement": "Der erste spielbare Qualitätsbeweis ist der vertikale Slice mit dem vollständig definierten Aschenkönig und finalnaher Vorschau, Lesbarkeit, Audio- und Savequalität.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "71",
+        "section": null,
+        "locator": "block:1948",
+        "quoteHash": "sha256:b8e0dc12992824315575a7cc818bccc4b325b372886ae79440b860ae353829a0",
+        "originalExcerpt": "Der erste spielbare Qualitätsbeweis ist der vertikale Slice mit dem vollständig definierten Aschenkönig und finalnaher Vorschau, Lesbarkeit, Audio- und Savequalität."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-PHASE00-SLICE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0055",
+      "title": "Storebuild Gates bestanden",
+      "statement": "Ein Storebuild ist erst zulässig, wenn gemeinsame, Android- und iOS-Gates bestanden, Datenschutzdeklarationen mit dem Binary identisch und keine P0/P1-Fehler offen sind.",
+      "norm": "MUST",
+      "category": "Store",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "71",
+        "section": null,
+        "locator": "block:1949",
+        "quoteHash": "sha256:0d77d30ec50e757372a84ba198958c1d7cbe2e2287b398f53007be9a9ea5366c",
+        "originalExcerpt": "Ein Storebuild ist erst zulässig, wenn gemeinsame, Android- und iOS-Gates bestanden, Datenschutzdeklarationen mit dem Binary identisch und keine P0/P1-Fehler offen sind."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-STOREBUILD-GATE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0056",
+      "title": "Keine Beschleunigungs-Shortcuts",
+      "statement": "Kein Agent darf Remote-Code, Analytics, Werbung, manuelle Fähigkeiten, Accountzwang, ungesicherte Saves oder nicht adaptive Webview-Hacks zur Beschleunigung einführen.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "71",
+        "section": null,
+        "locator": "block:1950",
+        "quoteHash": "sha256:890022f4759b415ee248903c114f89d079c99ce2ce5fb375c114fec9ea42f7fe",
+        "originalExcerpt": "Kein Agent darf zur Beschleunigung Remote-Code, Analytics, Werbung, manuelle Fähigkeiten, Accountzwang, ungesicherte Saves oder nicht adaptive Webview-Hacks einführen."
+      },
+      "ownerPhases": [
+        "PHASE-10"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-10",
+          "testIds": [
+            "GR-NOSHORTCUT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0057",
+      "title": "V5 als Source of Truth",
+      "statement": "Version 5 ist Source of Truth für Produkt, Inhalt, Simulation, UX, Daten, Native-Container, Qualität und Release; der spätere Entwicklungsplan darf keine hier definierte Produktentscheidung neu treffen.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "72",
+        "section": null,
+        "locator": "block:1954",
+        "quoteHash": "sha256:fb3c8d736ccf7b0362132918fb37a4400244a36d40148a3e0e34f9b324bdb40a",
+        "originalExcerpt": "Version 5 ist die letzte Designspezifikation vor der Erstellung eines getrennten Entwicklungsplans. Sie ist keine Ideensammlung und kein unverbindliches Briefing. Ein Implementierungsagent verwendet sie als Source of Truth für Produkt, Inhalt, Simulation, UX, Daten, Native-Container, Qualität und Release. Der spätere Entwicklungsplan darf Reihenfolge, Arbeitspakete, Verantwortliche und Schätzungen festlegen, aber keine hier definierte Produktentscheidung neu treffen."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-AUTH-V5SOT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0058",
+      "title": "Erlaubte technische Eigenentscheidungen",
+      "statement": "Der Agent darf lokale Funktionsnamen, private Hilfsfunktionen, interne Dateiaufteilung innerhalb der festgelegten Module und äquivalente reine Algorithmen wählen.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "72",
+        "section": null,
+        "locator": "block:1962",
+        "quoteHash": "sha256:8d6895d90fcaca43d7a932fa0262cb585768e6e59df3e34a8f8cb5a0fd79428b",
+        "originalExcerpt": "Der Agent darf lokale Funktionsnamen, private Hilfsfunktionen, interne Dateiaufteilung innerhalb der festgelegten Module und äquivalente reine Algorithmen wählen."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-AUTH-AGENTLIM-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0059",
+      "title": "Verbotene Erweiterungen",
+      "statement": "Der Agent darf keine Dependency hinzufügen, kein Schemafeld umdeuten, keine Währung/Einheit/Fähigkeit ergänzen und keine UI-Funktion verstecken, um Aufwand zu sparen.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "72",
+        "section": null,
+        "locator": "block:1962",
+        "quoteHash": "sha256:783c3021b31be1b519a8a273b360f26b7e8303935de75e913f0af3abb61e2128",
+        "originalExcerpt": "Der Agent darf keine Dependency hinzufügen, kein Schemafeld umdeuten, keine Währung/Einheit/Fähigkeit ergänzen und keine UI-Funktion verstecken, um Aufwand zu sparen."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-AUTH-AGENTNOLIM-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0060",
+      "title": "Tiebreak-Reihenfolge technisch",
+      "statement": "Bei mehreren technisch gleichwertigen Lösungen gilt in dieser Reihenfolge: deterministisch, testbar, ohne Native-Zusatzpermission, ohne Netzwerk, kleineres Bundle, einfacher zu warten.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "72",
+        "section": null,
+        "locator": "block:1963",
+        "quoteHash": "sha256:4d4c5336a272ee9795a9600e48f57142571b665c9a663e75fa9342f95dade0b1",
+        "originalExcerpt": "Bei mehreren technisch gleichwertigen Lösungen gilt in dieser Reihenfolge: deterministisch, testbar, ohne Native-Zusatzpermission, ohne Netzwerk, kleineres Bundle, einfacher zu warten."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-AUTH-TIEBREAK-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0061",
+      "title": "Fallback erhält Progression",
+      "statement": "Ein Fallback darf niemals Progression verlieren, Gameplay verändern oder still eine schlechtere Datenquelle verwenden; jeder Recovery-Pfad ist sichtbar und testbar.",
+      "norm": "MUST_NOT",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "72",
+        "section": null,
+        "locator": "block:1964",
+        "quoteHash": "sha256:ceff96f3de60f72ad9be6ecaa44c8631466ce05766bd51ec69b4040264131ab6",
+        "originalExcerpt": "Ein Fallback darf niemals Progression verlieren, Gameplay verändern oder still eine schlechtere Datenquelle verwenden. Jeder Recovery-Pfad ist sichtbar und testbar."
+      },
+      "ownerPhases": [
+        "PHASE-00"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-00",
+          "testIds": [
+            "GR-AUTH-FALLBACK-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0062",
+      "title": "Magic Numbers verboten",
+      "statement": "Alle globalen Gameplay-, Save-, UI- und technischen Konstanten liegen in versionierten, typisierten Konfigurationsmodulen; kein Magic Number darf außerhalb der autorisierten Datei dupliziert werden.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:f978a45a6af61565d36aaa4c46330aca83694485249aa9e3a288483fce750fbe",
+        "originalExcerpt": "Alle globalen Gameplay-, Save-, UI- und technischen Konstanten liegen in versionierten, typisierten Konfigurationsmodulen. Kein Magic Number darf außerhalb der jeweils autorisierten Datei dupliziert werden."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-MODULE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0063",
+      "title": "Tickrate 30/s",
+      "statement": "Die Simulation läuft mit 30 Ticks pro Sekunde.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:c1ae570345a012414394aefb94b0887a07d13430ce2f189816874e15fbbf1eca",
+        "originalExcerpt": "simulationTicksPerSecond: 30"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-TICKRATE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "tps",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0064",
+      "title": "Formation 3x3",
+      "statement": "Die Formation besitzt 3 Bahnen und 3 Tiefen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:f46ba0ed44d67f4541c032ad72665a679b1bafc26deefe77efc4daddb241aed7",
+        "originalExcerpt": "formationLanes: 3, formationDepths: 3"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-FORM-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0065",
+      "title": "Max reguläre Einheiten",
+      "statement": "Pro Seite sind maximal 7 reguläre Einheiten erlaubt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:70bc30dab1430b934da72818405f7842aea0cf40b32e2121d9c5847fc14be171",
+        "originalExcerpt": "maxRegularUnitsPerSide: 7"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-REGULAR-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 7
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0066",
+      "title": "Max Helden 3",
+      "statement": "Pro Spielergruppe sind maximal 3 Helden erlaubt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:6b0ced8316b73bade4ebe0c594705e384673931788241de9a36eb3494b0c8ded",
+        "originalExcerpt": "maxHeroesPerPlayerGroup: 3"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-HEROES-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 3
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0067",
+      "title": "Max Truppenkopien 3",
+      "statement": "Pro Truppentyp sind maximal 3 Kopien erlaubt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:bddf5290bd39a31b5ec208609c9fdd9823cd872851a1208e245f0078d90410af",
+        "originalExcerpt": "maxCopiesPerTroopType: 3"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-COPIES-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 3
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0068",
+      "title": "Max Beschwörungen 6",
+      "statement": "Pro Seite sind maximal 6 aktive Beschwörungen erlaubt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:9c2e0dcd26da2e9abd3deb8f40d14eadd7a885aa831c786a16a6859af3887ca2",
+        "originalExcerpt": "maxActiveSummonsPerSide: 6"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-SUMMONS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 6
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0069",
+      "title": "Aktive Relikte Obergrenze 8",
+      "statement": "Aktive Relikte: Basis 6, tiefe Endlose Rift 8, absolutes Maximum 8.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:c59d001a1097ea5666686515e24690378e24f4e959be6fb8a65863cc45a224fe",
+        "originalExcerpt": "baseActiveRelics: 6, deepEndlessActiveRelics: 8, absoluteMaxActiveRelics: 8"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-RELICS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "max": 8
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0070",
+      "title": "Heldenlevel 1-3",
+      "statement": "Heldenlevel reichen von 1 bis 3.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:b2730bed89b95ceebc18288f8697ce7b4f7ba2de63373e021206e2d506d6ee82",
+        "originalExcerpt": "heroLevelMin: 1, heroLevelMax: 3"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-HEROLEVEL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "level",
+          "min": 1
+        },
+        {
+          "unit": "level",
+          "max": 3
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0071",
+      "title": "Heldenausrüstung 2 Slots",
+      "statement": "Jeder Held besitzt 2 permanente Ausrüstungsplätze.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:71ae61b3810fe4110ba562d24842e3686d78017850363b1ab3c9be850bbc7c6d",
+        "originalExcerpt": "permanentEquipmentSlotsPerHero: 2"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-EQSLOTS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0072",
+      "title": "4 Formation-Presets",
+      "statement": "Es gibt 4 Formation-Presets.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:e556608f4b849943b12497e52a4a6b6704019bc7759be7e27a0ae7551bc5081a",
+        "originalExcerpt": "formationPresetCount: 4"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-PRESETS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0073",
+      "title": "Riftkollaps Timing",
+      "statement": "Riftkollaps-Startticks: normal/elite 2700, Boss 3600; Dauer 450 Ticks.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:07284814c3c05d698a837f4c5d8d951d8125c2b766cc75ae14d0f43b7be658de",
+        "originalExcerpt": "normalRiftCollapseStartTicks: 90 * 30, eliteRiftCollapseStartTicks: 90 * 30, bossRiftCollapseStartTicks: 120 * 30, riftCollapseDurationTicks: 15 * 30"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-RIFTCOLLAPSE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "tick",
+          "value": null
+        },
+        {
+          "unit": "tick",
+          "value": null
+        },
+        {
+          "unit": "tick",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0074",
+      "title": "Schlachtabbruch 5400 Ticks",
+      "statement": "Die absolute Schlachtabbruchsobergrenze liegt bei 5400 Ticks.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:a6076e3c63db311980e16dcd1512d42d573f3ffc1691694a8e4e22218396666e",
+        "originalExcerpt": "absoluteBattleAbortTicks: 180 * 30"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-ABORT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "tick",
+          "max": 5400
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0075",
+      "title": "3 Autosave-Slots",
+      "statement": "Die Autosave-Rotation verwendet 3 Slots.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:c28be745567c9bfacbc990941c23c40692f5b79119757d4102987bef4c5cb0ba",
+        "originalExcerpt": "autosaveRotationSlots: 3"
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "UT-CONST-AUTOSAVE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "count",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0076",
+      "title": "Unterstützte Sprachen DE/EN",
+      "statement": "Unterstützte Sprachen sind Deutsch und Englisch.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1968",
+        "quoteHash": "sha256:6e9c2f6d7904774d3fd1c29d125fe9793265c5b07688ff9d4ebe2392cc461c38",
+        "originalExcerpt": "supportedLocales: ['de', 'en']"
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-CONST-LOCALES-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0077",
+      "title": "ID-Präfixe verbindlich",
+      "statement": "Verbindliche ID-Präfixe: hero_, troop_, summon_, enemy_, boss_, ability_, attack_, status_, trait_, synergy_, item_, talisman_, kit_, banner_, relic_, mission_, encounter_, event_, modifier_, achievement_, mastery_, screen_, audio_, visual_.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1977",
+        "quoteHash": "sha256:75bc79a682ca17672424aa15769a385c5441e6f6ead4b7b836894e07c597a893",
+        "originalExcerpt": "Präfixe: hero_, troop_, summon_, enemy_, boss_, ability_, attack_, status_, trait_, synergy_, item_, talisman_, kit_, banner_, relic_, mission_, encounter_, event_, modifier_, achievement_, mastery_, screen_, audio_, visual_."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-ID-PREFIXES-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0078",
+      "title": "Eindeutige IDs über Dateien",
+      "statement": "Eine ID darf nur einem Inhaltstyp gehören; doppelte IDs werden über Dateien hinweg von der Buildvalidierung verworfen.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1978",
+        "quoteHash": "sha256:fd5884f327ab31639ec2bad733e548ca4c486737a57d1988f267e31d31f38d7a",
+        "originalExcerpt": "Eine ID darf nur einem Inhaltstyp gehören. Buildvalidierung verwirft doppelte IDs auch über unterschiedliche Dateien."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-ID-UNIQUE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0079",
+      "title": "Stabile ID-Referenzen",
+      "statement": "Referenzen werden niemals über Arrayposition oder Anzeigenamen gespeichert; Savegames speichern ausschließlich stabile IDs, schemaVersion und contentVersion.",
+      "norm": "MUST_NOT",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1979",
+        "quoteHash": "sha256:2e02fe53558009937200403ea43dbf020b3e4122017dd78105664ca57d62bac6",
+        "originalExcerpt": "Referenzen werden niemals über Arrayposition oder Anzeigenamen gespeichert. Savegames speichern ausschließlich stabile IDs und schemaVersion/contentVersion."
+      },
+      "ownerPhases": [
+        "PHASE-12"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-12",
+          "testIds": [
+            "UT-ID-REFERENCES-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0080",
+      "title": "Keine ID-Löschung",
+      "statement": "Veröffentlichte IDs dürfen nicht entfernt oder umgedeutet werden; nicht mehr genutzte Inhalte werden deprecated und über Migration/Replacement-ID behandelt.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1980",
+        "quoteHash": "sha256:2cf28f1745b4c320b5643077f1297e4bd6e8c2ccbbfce4ba1c2d60d38d35b23e",
+        "originalExcerpt": "Entfernen oder Umdeuten einer veröffentlichten ID ist verboten. Nicht mehr genutzte Inhalte werden deprecated und durch Migration/Replacement-ID behandelt."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-ID-IMMUTABLE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0081",
+      "title": "Lokalisierungskey-Schema",
+      "statement": "Lokalisierungskeys folgen content.<type>.<id>.<field> bzw. ui.<screen>.<element>; fehlende Keys sind Release-Buildfehler.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "73",
+        "section": null,
+        "locator": "block:1981",
+        "quoteHash": "sha256:8ed789c0f53dc48836943336f9bf0e1ab55d4277c11a1fc7888c68f19a708815",
+        "originalExcerpt": "Lokalisierungskeys folgen content.<type>.<id>.<field> beziehungsweise ui.<screen>.<element>. Fehlende Keys sind Release-Buildfehler."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-ID-LOCKEYS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0082",
+      "title": "pnpm Single-Repo Struktur",
+      "statement": "Das Projekt ist ein einzelnes pnpm-Repository ohne Workspace-Packages und ohne Monorepo-Tooling; die Simulation liegt unter /src/game/sim, wird über TypeScript-Pfadaliase importiert und nie als separates Package veröffentlicht.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "74",
+        "section": null,
+        "locator": "block:1982",
+        "quoteHash": "sha256:84898d01849ede72589609c2b465faae9b7739f0d070c460e1d00f615a3ad38a",
+        "originalExcerpt": "Das Projekt ist verbindlich ein einzelnes pnpm-Repository ohne Workspace-Packages und ohne Monorepo-Tooling. Die reine Simulation liegt unter /src/game/sim, wird über normale TypeScript-Pfadaliase importiert und niemals als separates Package veröffentlicht."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-REPO-STRUCT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0083",
+      "title": "Capacitor Config Baseline",
+      "statement": "capacitor.config.ts verwendet webDir=dist, bundledWebRuntime=false, kein server.url und keine allowNavigation-Einträge im Release.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "74",
+        "section": null,
+        "locator": "block:1987",
+        "quoteHash": "sha256:8a436e0ee80f96365c4f9d040a5d5db8995f59894504ccf5b954ade28f1501eb",
+        "originalExcerpt": "capacitor.config.ts verwendet webDir=dist, bundledWebRuntime=false, kein server.url und keine allowNavigation-Einträge im Release."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-CAP-CONFIG-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0084",
+      "title": "Vite Base Manifest",
+      "statement": "Vite base ist ./ für den Capacitor-Build; Asset-URLs werden ausschließlich über den generierten Manifestresolver aufgebaut.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "74",
+        "section": null,
+        "locator": "block:1988",
+        "quoteHash": "sha256:e04c3dab194177d26f079e14f66004a854c4a8595b5d1b126af2a8aa2772c701",
+        "originalExcerpt": "Vite base ist ./ für den Capacitor-Build. Asset-URLs werden ausschließlich über den generierten Manifestresolver aufgebaut."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-VITE-BASE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0085",
+      "title": "Keine Secrets in Production",
+      "statement": "In Production werden process.env/Import-Meta nur zur Buildzeit definiert; es existieren keine geheimen Clientwerte, unbekannte Umgebungsvariablen brechen die Validierung.",
+      "norm": "MUST_NOT",
+      "category": "Security",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "74",
+        "section": null,
+        "locator": "block:1989",
+        "quoteHash": "sha256:5473685a33892d15cf9da3d9a2e581356e769092bf25c4979acebc203e8a74b1",
+        "originalExcerpt": "Production definiert process.env/Import-Meta nur zur Buildzeit. Es existieren keine geheimen Clientwerte; unbekannte Umgebungsvariablen brechen die Validierung."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-ENV-NOSEC-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0086",
+      "title": "Debug compile-time entfernt",
+      "statement": "Debugtools, Seedpicker, Replayinspektor und FPS-HUD sind compile-time aus Release entfernt, nicht nur per verstecktem Schalter deaktiviert.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "74",
+        "section": null,
+        "locator": "block:1990",
+        "quoteHash": "sha256:c347ca60107f4c74a339e1a809f39a22279789504932392ca52a1d42bfab0a3b",
+        "originalExcerpt": "Debugtools, Seedpicker, Replayinspektor und FPS-HUD sind compile-time aus Release entfernt, nicht nur per verstecktem Schalter deaktiviert."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-DEBUG-COMPILE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0087",
+      "title": "Native Projekte committed",
+      "statement": "Native Projekte bleiben committed; npx cap sync darf keine handgeschriebenen Native-Dateien überschreiben; Custom Plugins besitzen eigene Tests.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "74",
+        "section": null,
+        "locator": "block:1991",
+        "quoteHash": "sha256:fb3c4575bc4a92e8e6c881201ed2ac2cc65fc717a948c6a61b1f719649aa2907",
+        "originalExcerpt": "Native Projekte bleiben committed. npx cap sync darf keine handgeschriebenen Native-Dateien überschreiben; Custom Plugins besitzen eigene Tests."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-CAP-NATIVE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0088",
+      "title": "Dependency Freeze exakt",
+      "statement": "Beim Bootstrap wird die neueste stabile Patchversion innerhalb der freigegebenen Major-Linie aufgelöst und jede Dependency exakt ohne Caret/Tilde in package.json und Lockfile geschrieben.",
+      "norm": "MUST",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "74",
+        "section": null,
+        "locator": "block:1994",
+        "quoteHash": "sha256:35d2837bf272269e705ac2e319be8687f3e92ea29786cd3ec8e16dc307339392",
+        "originalExcerpt": "Bootstrap löst einmalig die neueste stabile Patchversion innerhalb der freigegebenen Major-Linie am Implementierungsstart auf und schreibt jede Dependency exakt ohne Caret/Tilde in package.json sowie ins Lockfile."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-DEPS-FROZEN-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0089",
+      "title": "Keine Auto-Upgrades",
+      "statement": "Upgrades erfolgen nur als eigene PR mit Changelog-, Native-Build-, Bundle-, Determinismus- und Regressionprüfung; automatische Major-/Minor-Upgrades sind deaktiviert.",
+      "norm": "MUST_NOT",
+      "category": "Product",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "74",
+        "section": null,
+        "locator": "block:1995",
+        "quoteHash": "sha256:1126c955ef6eb5a7349c92f4dd1ad2b69e32fefb9e88a7e8c10277fbf8d3a1fe",
+        "originalExcerpt": "Danach erfolgen Upgrades ausschließlich als eigene PR mit Changelog-, Native-Build-, Bundle-, Determinismus- und Regressionprüfung. Automatische Major-/Minor-Upgrades sind deaktiviert."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "review",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-DEPS-NOAUTO-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0090",
+      "title": "Lizenzreport Build-Gate",
+      "statement": "Lizenzreport enthält für jede direkte und transitive Dependency Name, Version, Lizenz und Quell-URL; unbekannte, copyleft-inkompatible oder nicht redistributierbare Lizenz blockiert den Build.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "74",
+        "section": null,
+        "locator": "block:1996",
+        "quoteHash": "sha256:7e2ec969208ed832fa0624454d696670c0786f85e92da32a3410c87b1083af45",
+        "originalExcerpt": "Lizenzreport muss für jede direkte und transitive Dependency Name, Version, Lizenz und Quell-URL enthalten; unbekannte, copyleft-inkompatible oder nicht redistributierbare Lizenz blockiert den Build."
+      },
+      "ownerPhases": [
+        "PHASE-05"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-05",
+          "testIds": [
+            "UT-DEPS-LICENSE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0091",
+      "title": "Kein undefined für Pflichtfelder",
+      "statement": "Ein Pflichtfeld fehlt niemals; undefined ist ausschließlich für technisch optionale, nicht serialisierte Funktionsparameter zulässig.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "75",
+        "section": null,
+        "locator": "block:2001",
+        "quoteHash": "sha256:8ff118e561535bba1044df3f949b7d1545da861e85c5cf3d608fefcd148da0de",
+        "originalExcerpt": "Ein Pflichtfeld fehlt niemals. undefined ist ausschließlich für technisch optionale, nicht serialisierte Funktionsparameter zulässig."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-DATA-NOUNDEF-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0092",
+      "title": "Null/Optional Semantik",
+      "statement": "JSON verwendet null nur, wenn „bewusst kein Wert“ fachlich gemeint ist; leere Arrays bedeuten „gültig, aber keine Einträge“.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "75",
+        "section": null,
+        "locator": "block:2002",
+        "quoteHash": "sha256:c72a92d089727f217a34d6eb6710e0dc4dfdf27d173b777903007d7df9d9b489",
+        "originalExcerpt": "JSON verwendet null nur, wenn „bewusst kein Wert“ eine fachliche Aussage ist. Leere Arrays bedeuten „gültig, aber keine Einträge“."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-DATA-NULLSEM-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0093",
+      "title": "Explizite Defaults",
+      "statement": "Defaults werden beim Source-Content nicht still ergänzt; der Compiler materialisiert explizite Defaults in generated content, damit Runtime und Tests denselben Wert sehen.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "75",
+        "section": null,
+        "locator": "block:2003",
+        "quoteHash": "sha256:a78585f09b83317185a0374fb2b17ee13a506e94dfd0d56a7af510d74261b52b",
+        "originalExcerpt": "Defaults werden beim Source-Content nicht still ergänzt. Der Compiler materialisiert explizite Defaults in generated content, damit Runtime und Tests denselben Wert sehen."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-DATA-DEFAULTS-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0094",
+      "title": "Unbekannte Felder Fehler",
+      "statement": "Unbekannte Felder sind in Source-, Save- und Importdaten Fehler; Forward Compatibility erfolgt über schemaVersion und Migration, nicht durch Ignorieren.",
+      "norm": "MUST_NOT",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "75",
+        "section": null,
+        "locator": "block:2004",
+        "quoteHash": "sha256:a3d099998418fe03b805ff3e7c00904c0dbe1275ff31069a14f326c1d6399fd6",
+        "originalExcerpt": "Unbekannte Felder sind in Source-, Save- und Importdaten Fehler. Forward Compatibility erfolgt über schemaVersion und Migration, nicht durch Ignorieren."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-DATA-UNKNOWN-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0095",
+      "title": "Releasecounts Gate",
+      "statement": "Releasecontents müssen den exakten Counts gemäß Kapitel 2.1 entsprechen; eine Abweichung blockiert release, außer eine neue Dokumentversion ändert den Umfang.",
+      "norm": "MUST",
+      "category": "QA",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "75",
+        "section": null,
+        "locator": "block:2020",
+        "quoteHash": "sha256:a4eb2901a37a89779574071ac298ddd101902de3ca33a8c1e1a259d20a095106",
+        "originalExcerpt": "Exakte Releasecounts gemäß Kapitel 2.1; eine Abweichung blockiert release, außer eine neue Dokumentversion ändert den Umfang."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "integration",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-DATA-RELEASECOUNT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0096",
+      "title": "Unit-Referenzen vollständig",
+      "statement": "Jede reguläre Einheit besitzt genau einen Standardangriff, mindestens ein Zielprofil, vollständige Visual-/Audio-/Codexreferenzen und eine gültige Startzone.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "75",
+        "section": null,
+        "locator": "block:2021",
+        "quoteHash": "sha256:bfa5b4ae4ca15e70214c2033e282a8edc788b33582f1457d738977708275d245",
+        "originalExcerpt": "Jede reguläre Einheit besitzt genau einen Standardangriff, mindestens ein Zielprofil, vollständige Visual-/Audio-/Codexreferenzen und gültige Startzone."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-DATA-UNITREF-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0097",
+      "title": "Fähigkeitsspezifikation voll",
+      "statement": "Jede automatisch auslösende Fähigkeit besitzt Trigger, Ziel, Cast-/Recoveryzeit, InvalidTargetPolicy, Telegraphie und Effektliste.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "75",
+        "section": null,
+        "locator": "block:2022",
+        "quoteHash": "sha256:835e003402b66b9520b4e3eb563f473b1bec9017cab01e9774ac819001ece2bc",
+        "originalExcerpt": "Jede automatisch auslösende Fähigkeit besitzt Trigger, Ziel, Cast-/Recoveryzeit, InvalidTargetPolicy, Telegraphie und Effektliste."
+      },
+      "ownerPhases": [
+        "PHASE-01"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-01",
+          "testIds": [
+            "UT-DATA-ABILITYSPEC-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0098",
+      "title": "Bossphasen vollständig",
+      "statement": "Jeder Boss besitzt vollständig abgedeckte LP-Phasen ohne Lücke/Überlappung, eine maximale Kampfdauer und Vorschau für alle strategisch relevanten Mechaniken.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "75",
+        "section": null,
+        "locator": "block:2023",
+        "quoteHash": "sha256:84afb90e8358e0d8a3546a6a9a50c66b82437b18d2b075c9d10c952f74ca8d22",
+        "originalExcerpt": "Jeder Boss besitzt vollständig abgedeckte LP-Phasen ohne Lücke/Überlappung, eine maximale Kampfdauer und Vorschau für alle strategisch relevanten Mechaniken."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-DATA-BOSSPHASES-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0099",
+      "title": "Mission 5-8 Knoten",
+      "statement": "Jede Mission generiert 5-8 besuchte Knoten, garantiert ihre Pflichtknoten, hat mindestens drei gültige normale Encounter-Varianten pro Kampfslot und endet erreichbar.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "75",
+        "section": null,
+        "locator": "block:2024",
+        "quoteHash": "sha256:01acc938c85ff6c8649d0c8a4492a79125cd92cb071dacd3f585ad24bb98d6a9",
+        "originalExcerpt": "Jede Mission generiert 5-8 besuchte Knoten, garantiert ihre Pflichtknoten, hat mindestens drei gültige normale Encounter-Varianten pro Kampfslot und endet erreichbar."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-DATA-MISSIONGEN-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "node",
+          "min": 5
+        },
+        {
+          "unit": "node",
+          "max": 8
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0100",
+      "title": "Ereignisspezifikation voll",
+      "statement": "Jedes Ereignis besitzt zwei oder drei Optionen, sichtbare Kosten/Folgen, deterministische Randomslots und eine valide Ablehn-/Fallbackfolge.",
+      "norm": "MUST",
+      "category": "Content",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "75",
+        "section": null,
+        "locator": "block:2025",
+        "quoteHash": "sha256:fa586f8c10f7d59e57196455210c104f4db73cae8b9ccef20837df4c3ed606e1",
+        "originalExcerpt": "Jedes Ereignis besitzt zwei oder drei Optionen, sichtbare Kosten/Folgen, deterministische Randomslots und eine valide Ablehn-/Fallbackfolge."
+      },
+      "ownerPhases": [
+        "PHASE-04"
+      ],
+      "verification": [
+        {
+          "type": "static",
+          "plannedPhase": "PHASE-04",
+          "testIds": [
+            "UT-DATA-EVENTSPEC-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0101",
+      "title": "Screen-Referenzen vollständig",
+      "statement": "Jeder Screen verweist auf existierende Route, Localization Keys, Icons und mindestens einen Happy-Path-E2E-Test.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "75",
+        "section": null,
+        "locator": "block:2026",
+        "quoteHash": "sha256:3c16acd8d449e1fcf922bb2b535d40b43805e5b65329d8583295aa91f9af6087",
+        "originalExcerpt": "Jeder Screen verweist auf existierende Route, Localization Keys, Icons und mindestens einen Happy-Path-E2E-Test."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-DATA-SCREENREF-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0102",
+      "title": "Tick-Pipeline Reihenfolge",
+      "statement": "Ein Tick wird in stabiler Reihenfolge (scheduledTick, eventPriority, sourceEntityId, abilityId, eventSequence) verarbeitet; kein Renderer- oder Arrayindex darf die Reihenfolge beeinflussen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2021",
+        "quoteHash": "sha256:aa8a0152088520b6a0d1456a782a5d4222b7abcef366d7d4a48e84bac0e7e52f",
+        "originalExcerpt": "Ein Tick wird exakt in der folgenden Reihenfolge verarbeitet. Innerhalb einer Phase gilt die stabile Sortierung scheduledTick, eventPriority, sourceEntityId, abilityId, eventSequence. Kein Renderer- oder Arrayindex darf die Reihenfolge beeinflussen."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-TICK-ORDER-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0103",
+      "title": "Reichweite inklusive",
+      "statement": "Reichweite ist inklusive (distance <= range); Distanz ist Abstand der Kollisionsränder, nicht Mittelpunktdistanz.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2024",
+        "quoteHash": "sha256:0fcd224f230b3d3aa4b1a0afe0d139bd23ce11cff766873ba7f759d3fcb8e802",
+        "originalExcerpt": "Reichweite ist inklusive: distance <= range gilt als in Reichweite. Distanz ist Abstand der Kollisionsränder, nicht Mittelpunktdistanz."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-RANGE-INCLUSIVE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0104",
+      "title": "Nahkampf-Stop Baseline",
+      "statement": "Nahkämpfer stoppen bei targetRadius + ownRadius + attackStopGap; Baseline attackStopGap ist 0,10 X-Einheiten.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2025",
+        "quoteHash": "sha256:9b5b2b9572e1680edd6bf53326cfa92159cfede7c2674ce1c7ceae69705d2e65",
+        "originalExcerpt": "Nahkämpfer stoppen bei targetRadius + ownRadius + attackStopGap. Baseline attackStopGap=0,10 X-Einheiten."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-MELEE-STOP-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "x",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0105",
+      "title": "Separation 0,25 X/Tick",
+      "statement": "Verbündete dürfen sich bei Spawn/Knockback kurz überlappen; Separation löst maximal 0,25 X pro Tick, ohne die Gegnergrenze zu durchdringen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2026",
+        "quoteHash": "sha256:429b3c12aebcb7e22e26ba8e45db12de002bcaaf6cb527e8e41a722027189aee",
+        "originalExcerpt": "Verbündete dürfen sich überlappen, wenn Spawn/Knockback dies kurz erzwingt; Separation löst maximal 0,25 X pro Tick, ohne die Gegnergrenze zu durchdringen."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-SEP-LIMIT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "x",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0106",
+      "title": "Projektil-Ziellock",
+      "statement": "Projektile speichern Ziel-ID und Zielposition beim Abschuss; Homing=false trifft die gespeicherte Position, homing=true verfolgt bis maxTurn/expiry; bei entferntem Ziel folgt die lostTargetPolicy.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2027",
+        "quoteHash": "sha256:2793a11136f8d3557d800e3cf7ee262353ce6390adee11f242378f8e100ef403",
+        "originalExcerpt": "Projektile speichern Ziel-ID und Zielposition beim Abschuss. Homing=false trifft die gespeicherte Position; homing=true verfolgt bis maxTurn/expiry. Ist das Ziel entfernt, folgt die definierte lostTargetPolicy."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-PROJ-LOCK-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0107",
+      "title": "AoE Einzelhit pro EffectIndex",
+      "statement": "AoE nutzt einen einmaligen Samplepunkt beim Impact; Einheit gilt als getroffen, wenn Kollisionskreis die AoE-Grenze berührt; eine Fähigkeit trifft dieselbe Entity pro EffectIndex höchstens einmal.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2028",
+        "quoteHash": "sha256:7f496f9965a9d1613466449dbdd2817e8a9b15807f88b5eb24509473c19e8270",
+        "originalExcerpt": "AoE nutzt einen einmaligen Samplepunkt beim Impact. Einheit gilt getroffen, wenn Kollisionskreis die AoE-Grenze berührt. Eine Fähigkeit trifft dieselbe Entity pro EffectIndex höchstens einmal."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AOE-SINGLE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0108",
+      "title": "True Damage Regeln",
+      "statement": "True Damage ignoriert Rüstung/Widerstand, aber nicht Schilde oder explizite Unverwundbarkeit; negative Endschäden werden auf 0 geklemmt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2029",
+        "quoteHash": "sha256:a6f32ed655b32971e3d4c86a970cca1378a3567b6ad611474a11cd66ce492c4a",
+        "originalExcerpt": "True Damage ignoriert Rüstung/Widerstand, aber nicht Schilde oder explizite Unverwundbarkeit. Negative Endschäden werden auf 0 geklemmt."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-DMG-TRUEDMG-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0109",
+      "title": "invalidTargetPolicy wait",
+      "statement": "Bei invalidTargetPolicy=wait bleibt die Fähigkeit vollständig geladen, prüft jeden Tick und verbraucht keine Nutzung.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2032",
+        "quoteHash": "sha256:6951ce52de628d544c0e8b88477e0f3c8ea4753aad83ffe337689ed011caf17f",
+        "originalExcerpt": "invalidTargetPolicy=wait: Fähigkeit bleibt vollständig geladen und prüft jeden Tick, verbraucht keine Nutzung."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-ITP-WAIT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0110",
+      "title": "invalidTargetPolicy retarget",
+      "statement": "Bei invalidTargetPolicy=retarget wird die Zielquery im selben Tick genau einmal neu ausgeführt; ohne Ziel verhält sie sich wie wait.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2033",
+        "quoteHash": "sha256:08f2f42be5566c2503bfb90f33ec46371020c4ff5147ffd9e63df8e87120b65f",
+        "originalExcerpt": "invalidTargetPolicy=retarget: Zielquery wird im selben Tick genau einmal neu ausgeführt; ohne Ziel verhält sie sich wie wait."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-ITP-RETARGET-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0111",
+      "title": "invalidTargetPolicy consume",
+      "statement": "invalidTargetPolicy=consume_without_effect ist nur für ausdrücklich designte zufällige oder risikobehaftete Fähigkeiten erlaubt und muss in der Vorschau stehen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2034",
+        "quoteHash": "sha256:763a9810e796afdfb13a0aa970eb9a72b378a7b196d43baa8db82d908554a824",
+        "originalExcerpt": "invalidTargetPolicy=consume_without_effect ist nur für ausdrücklich designte zufällige/risikobehaftete Fähigkeiten erlaubt und muss in Vorschau stehen."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-ITP-CONSUME-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0112",
+      "title": "Kein Doppelangriff bei Retarget",
+      "statement": "Standardangriffe retargeten nach Zielverlust frühestens im nächsten Tick; ein sofortiger Doppelangriff durch Retarget ist verboten.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2035",
+        "quoteHash": "sha256:115a6ec0b08946a7d6f6cd877716e9ae0cd5723b8edaba5342f50188d8eab3e4",
+        "originalExcerpt": "Standardangriffe retargeten nach Zielverlust frühestens im nächsten Tick. Kein sofortiger Doppelangriff durch Retarget."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-ATK-NODBL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0113",
+      "title": "Periodische Effekte Timing",
+      "statement": "Periodische Effekte ticken erstmals nach ihrem intervalTicks, niemals sofort beim Auftragen; initialTick=true ist nur ausdrücklich erlaubt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2038",
+        "quoteHash": "sha256:2c2130eac12786e8cbf0583bc8745d58a7bf7ae18596749676b3a2947d00ab98",
+        "originalExcerpt": "Periodische Effekte ticken erstmals nach ihrem intervalTicks, niemals sofort beim Auftragen, außer initialTick=true ist ausdrücklich gesetzt."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-PERIOD-FIRST-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0114",
+      "title": "Dispel-Reihenfolge",
+      "statement": "Dispel entfernt nach Priorität: harte Kontrolle, stärkster negativer Effekt, längste Restdauer, Status-ID; Bannung positiver Effekte nutzt analog stärkster Buff zuerst.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2039",
+        "quoteHash": "sha256:ff254766596a7a536b88337f8eb787faa33045706c700968c4489484ed60d9e0",
+        "originalExcerpt": "Dispel entfernt nach Priorität: harte Kontrolle, stärkster negativer Effekt, längste Restdauer, Status-ID. Bannung positiver Effekte nutzt analog stärkster Buff zuerst."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-DISPEL-ORDER-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0115",
+      "title": "Schild-FIFO Priorität",
+      "statement": "Schilde bilden eine FIFO-Liste nach Auftragssequenz, außer shieldPriority ist gesetzt; Schaden verbraucht zuerst höchsten shieldPriority, dann ältesten Schild.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2040",
+        "quoteHash": "sha256:46d1a245c2b0c4a5fe259710e395d4f48a61f5b90b6633c9650513b8c1c59d5f",
+        "originalExcerpt": "Schilde bilden eine FIFO-Liste nach Auftragssequenz, außer shieldPriority ist gesetzt. Schaden verbraucht zuerst höchsten shieldPriority, dann ältesten Schild."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-SHIELD-FIFO-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0116",
+      "title": "Überheilung Schildregel",
+      "statement": "Überheilung erzeugt nur dann Schild, wenn eine Fähigkeit dies ausdrücklich definiert; der erzeugte Schild ist ein neuer Effekt und übernimmt keine Heilmodifikatoren doppelt.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2041",
+        "quoteHash": "sha256:6a6cb8a1024e4130f65b3be4a60aea01617113507027b95c45b571003d6d785a",
+        "originalExcerpt": "Überheilung erzeugt nur dann Schild, wenn eine Fähigkeit dies ausdrücklich definiert. Der erzeugte Schild ist ein neuer Effekt und übernimmt keine Heilmodifikatoren doppelt."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-OVERHEAL-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0117",
+      "title": "Keine Events nach Kampfende",
+      "statement": "Sobald Phase L ein endgültiges Kampfende setzt, werden keine neuen Gameplayevents geplant; bereits geplante Ereignisse späterer Ticks werden verworfen.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2044",
+        "quoteHash": "sha256:0a72448a88b4a4749fba1df57880bb98da764bb43f1d6debede505073e19783c",
+        "originalExcerpt": "Sobald Phase L ein endgültiges Kampfende setzt, werden keine neuen Gameplayevents geplant. Bereits geplante Ereignisse späterer Ticks werden verworfen."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-END-NOEVT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0118",
+      "title": "Render ohne Gameplayautorität",
+      "statement": "Render- und Audioevents dürfen ihre kurze Abschlussanimation abspielen, besitzen aber keine Gameplayautorität.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2045",
+        "quoteHash": "sha256:532d6f3ce90c3e027137568a61e47e812ddef7bf5b53e2b88cba21d2c6fe43d6",
+        "originalExcerpt": "Render-/Audioevents dürfen ihre kurze Abschlussanimation abspielen, besitzen aber keine Gameplayautorität."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-RENDER-NOGAME-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0119",
+      "title": "Zeitlimit-Wertung",
+      "statement": "Bei Zeitlimit gewinnt die Seite mit höherem Verhältnis (Summe aktuelle LP+Schilde) / (Summe maximale LP der regulären Einheiten); Gleichstand: mehr reguläre Einheiten, dann mehr Boss-/Zielschaden, sonst Doppelniederlage.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2046",
+        "quoteHash": "sha256:090598b96e60af6757ad90dd2546fb4af04e050636ec3965e5e934f3a0e81008",
+        "originalExcerpt": "Bei Zeitlimit gewinnt die Seite mit höherem Verhältnis Summe aktuelle LP+Schilde / Summe maximale LP der regulären Einheiten. Gleichstand: mehr reguläre Einheiten, dann mehr Boss-/Zielschaden; sonst Doppelniederlage."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-TIMELIMIT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0120",
+      "title": "Replayhash 30 Ticks",
+      "statement": "Ein Replayhash wird alle 30 Ticks und beim Kampfende erzeugt; er umfasst autoritativen Zustand, nicht Render-, Audio- oder Statistikformatierung.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "76",
+        "section": null,
+        "locator": "block:2047",
+        "quoteHash": "sha256:76f0a3d36e20ae55bc99c8ee17104023bf54e87a75e6928ad56597b4bfbfd6df",
+        "originalExcerpt": "Ein Replayhash wird alle 30 Ticks und beim Kampfende erzeugt. Hash umfasst autoritativen Zustand, nicht Render-, Audio- oder Statistikformatierung."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-REPLAY-HASH-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "tick",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0121",
+      "title": "FSM eine Änderung pro Tick",
+      "statement": "Eine Einheit führt pro Tick höchstens eine autoritative Zustandsänderung aus; DEFEATED und PHASE_TRANSITION besitzen höhere Priorität.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2050",
+        "quoteHash": "sha256:b6b55dde3164170ad113012b5a4257eed06a247b50fea232d792fe84ca382ce6",
+        "originalExcerpt": "Eine Einheit führt pro Tick höchstens eine autoritative Zustandsänderung aus, außer DEFEATED/PHASE_TRANSITION besitzt höhere Priorität."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-FSM-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0122",
+      "title": "Zielwahl nur bei Trigger",
+      "statement": "Zielwahl findet beim Eintritt in ACQUIRE_TARGET, bei ungültigem Ziel und bei explizitem Reevaluate-Trigger statt; nicht permanent jeden Tick.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2051",
+        "quoteHash": "sha256:b5c41cd0dcc85afc20da845151e5d0ea24333677c8ffa81b0b9a954a696f48b4",
+        "originalExcerpt": "Zielwahl findet beim Eintritt in ACQUIRE_TARGET, bei ungültigem Ziel und bei explizitem Reevaluate-Trigger statt; nicht permanent jeden Tick."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-REACQ-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0123",
+      "title": "Target Lock Baseline",
+      "statement": "Target Lock: Standardangriff bis Treffer/Abbruch, Signaturfähigkeit bis Castende; Duellanten dürfen nach kill/unerreichbar sofort neu bewerten.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2052",
+        "quoteHash": "sha256:fde20ff2e7085364e8d2782388a544a9ccdc5d11cbf7d78a13669a5e3acaab4d",
+        "originalExcerpt": "Target Lock baseline: Standardangriff bis Treffer/Abbruch; Signaturfähigkeit bis Castende; Duellanten dürfen nach kill/unerreichbar sofort neu bewerten."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-LOCK-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0124",
+      "title": "Bahnwechsel-Cooldown 90",
+      "statement": "Ein normaler Bahnwechsel ist frühestens 90 Ticks nach dem letzten normalen Wechsel erlaubt; Fähigkeitswechsel ignorieren den Cooldown, setzen ihn danach aber neu.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2056",
+        "quoteHash": "sha256:d1c8ed9a705f656fa1705c0d22e5548f381bb7b1c003848ab1b4c5b7da921b73",
+        "originalExcerpt": "Ein normaler Bahnwechsel ist frühestens 90 Ticks nach dem letzten normalen Wechsel erlaubt. Fähigkeitswechsel ignorieren den Cooldown, setzen ihn danach aber neu."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-LANECD-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "tick",
+          "min": 90
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0125",
+      "title": "Bahnwechsel Bedrohung 20%",
+      "statement": "Der Bedrohungswert einer Nachbarbahn muss mindestens 20 % höher sein als der aktuellen Bahn, bevor Schutzformation/Verteidiger freiwillig wechseln.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2057",
+        "quoteHash": "sha256:3dcd70c8c2a473b279540f52fb169e8e5b42022cc629d149dcfb24749e88a0d4",
+        "originalExcerpt": "Bedrohungswert einer Nachbarbahn muss mindestens 20% höher sein als der aktuellen Bahn, bevor Schutzformation/Verteidiger freiwillig wechseln."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-LANETHR-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "pct",
+          "min": 20
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0126",
+      "title": "Kein Bahnwechsel-Abbruch",
+      "statement": "Eine Einheit bricht einen begonnenen Bahnwechsel nur durch Tod, harte Kontrolle oder explizite Fähigkeit ab; neue Zielwerte werden erst nach Abschluss geprüft.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2058",
+        "quoteHash": "sha256:23ef7e9e6e23293c68957973aa28a8d98e3c8adf42907bfc2f9d3b1ec7a07a2a",
+        "originalExcerpt": "Eine Einheit bricht einen begonnenen Bahnwechsel nur durch Tod, harte Kontrolle oder explizite Fähigkeit ab. Neue Zielwerte werden erst nach Abschluss geprüft."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-LANEINT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0127",
+      "title": "Top/Bottom nur via Mitte",
+      "statement": "Top<->Bottom direkter Wechsel ist verboten; er erfolgt über Mitte und benötigt zwei vollständige Wechsel.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2059",
+        "quoteHash": "sha256:8215124f16b62f69ef13328111735d1face04349d11540f8d94544a57f8591ee",
+        "originalExcerpt": "Top<->Bottom direkter Wechsel ist verboten; er erfolgt über Mitte und benötigt zwei vollständige Wechsel."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-LANETB-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0128",
+      "title": "Spawn-Offset Lane",
+      "statement": "Beschwörung mit targetLane spawnt 1,0 X hinter der vordersten verbündeten regulären Einheit dieser Bahn und mindestens 0,5 X innerhalb eigener Seite des nächsten Gegners.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2062",
+        "quoteHash": "sha256:016ec92f2c7b2fc6d6cbdcade4d2312fd740334fe29d780e1cfe398c9ed93487",
+        "originalExcerpt": "Beschwörung mit targetLane spawnt 1,0 X hinter der vordersten verbündeten regulären Einheit dieser Bahn; mindestens 0,5 X innerhalb eigener Seite des nächsten Gegners."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-SPAWNLN-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "x",
+          "value": null
+        },
+        {
+          "unit": "x",
+          "value": null
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0129",
+      "title": "Spawn-Offsets blockiert",
+      "statement": "Ohne Verbündeten in der Bahn spawnt sie an der eigenen Front-Startzone; ist die Position blockiert, werden Offsets 0,5 X nach hinten bis maximal 4 X geprüft.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2063",
+        "quoteHash": "sha256:32166c08911db8970b4f1737a0d1cb6e92b18a4174427b8aae33aa1a3b20f97b",
+        "originalExcerpt": "Ohne Verbündeten in der Bahn spawnt sie an der eigenen Front-Startzone. Ist Position blockiert, werden Offsets 0,5 X nach hinten bis maximal 4 X geprüft."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-SPAWNOFF-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "x",
+          "value": null
+        },
+        {
+          "unit": "x",
+          "max": 4
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0130",
+      "title": "Stationärer Slot-Spawn",
+      "statement": "Stationäre Konstruktionen spawnen am definierten Slot; ist dieser belegt, gilt Ersatzpolicy oder Spawn scheitert sichtbar; automatisches Stapeln ist verboten.",
+      "norm": "MUST",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2064",
+        "quoteHash": "sha256:ea68c031e6e4c5b16fd528da0cb32cab06ced91d36b672b7d65e52aca6c012ff",
+        "originalExcerpt": "Stationäre Konstruktionen spawnen am definierten Slot. Ist belegt, gilt Ersatzpolicy oder Spawn scheitert sichtbar; kein automatisches Stapeln."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-SPAWNSLOT-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0131",
+      "title": "Keine Überlappung mit Gegnern",
+      "statement": "Große Beschwörung darf kleine Einheiten kurz verdrängen, aber niemals gegnerische Körper oder Arenaobjekte überlappen.",
+      "norm": "MUST_NOT",
+      "category": "Sim",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "77",
+        "section": null,
+        "locator": "block:2065",
+        "quoteHash": "sha256:ce0399c7d845e49b8187bab71bd15644f30fcc2f17956ef31abe6415c29e7e49",
+        "originalExcerpt": "Große Beschwörung darf kleine Einheiten kurz verdrängen, aber niemals gegnerische Körper oder Arenaobjekte überlappen."
+      },
+      "ownerPhases": [
+        "PHASE-02"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-02",
+          "testIds": [
+            "UT-AI-SPAWNBIG-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0132",
+      "title": "Aktionen nur im ready",
+      "statement": "Nur ready erlaubt primäre irreversible Aktionen; Loading- und Fehlerzustände deaktivieren Commitbuttons und bewahren Back/Recovery.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "78",
+        "section": null,
+        "locator": "block:2070",
+        "quoteHash": "sha256:8987d815ebaea6cf811fa21a8e6b1b2f3e7e1faaa1a4ac4b422b8c30855f64b9",
+        "originalExcerpt": "Nur ready erlaubt primäre irreversible Aktionen. Loading/Fehlerzustände deaktivieren Commitbuttons und bewahren Back/Recovery."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-ROUTE-READY-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0133",
+      "title": "Routeparameter validiert",
+      "statement": "Jeder Routeparameter wird validiert; eine ungültige ID führt zu definierter Rückroute plus lokalem Diagnoseeintrag, niemals zu leerem Detailbildschirm.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "78",
+        "section": null,
+        "locator": "block:2071",
+        "quoteHash": "sha256:9ff6468c932a811e1b1d8ce6978e80a345eb29cdd0d9236e1686de1c1ad51a15",
+        "originalExcerpt": "Jeder Routeparameter wird validiert. Ungültige ID führt zu definierter Rückroute plus lokalem Diagnoseeintrag, niemals zu leerem Detailbildschirm."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-ROUTE-VALID-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0134",
+      "title": "ReturnRoute max 8",
+      "statement": "ReturnRoute ist maximal 8 Ebenen tief; bei Überschreitung wird deterministisch auf den nächstgelegenen Hauptbereich reduziert.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "78",
+        "section": null,
+        "locator": "block:2072",
+        "quoteHash": "sha256:9cda275b4f576d605f9a3045026689ef0a0fd1a63f790eb2e36d49a74184ef8c",
+        "originalExcerpt": "ReturnRoute ist maximal acht Ebenen tief. Bei Überschreitung wird deterministisch auf den nächstgelegenen Hauptbereich reduziert."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-ROUTE-DEPTH-001"
+          ]
+        }
+      ],
+      "numericConstraints": [
+        {
+          "unit": "level",
+          "max": 8
+        }
+      ],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0135",
+      "title": "AppNavigator kontrolliert History",
+      "statement": "Browser-History ist innerhalb Capacitor nicht Gameplay-SSOT; der AppNavigator spiegelt Navigation, Android-Back und Deep Links kontrolliert.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "78",
+        "section": null,
+        "locator": "block:2073",
+        "quoteHash": "sha256:bc9a28adba611c8b845a81597cec285261fd725228a47f7eb05fa2114b74c9ce",
+        "originalExcerpt": "Browser-History ist innerhalb Capacitor nicht Gameplay-SSOT. Der AppNavigator spiegelt Navigation, Android-Back und Deep Links kontrolliert."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-NAV-APP-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0136",
+      "title": "Maximal ein Modal",
+      "statement": "Es gibt maximal ein blockierendes Modal; Tooltips/Toasts zählen nicht, dürfen aber bei Modalöffnung schließen.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "78",
+        "section": null,
+        "locator": "block:2078",
+        "quoteHash": "sha256:430d00f208cc360bf9bf399e694a452b7c5ba6deb69e95d11a33c05dafca4c6a",
+        "originalExcerpt": "Maximal ein blockierendes Modal. Tooltips/Toasts zählen nicht, dürfen aber bei Modalöffnung schließen."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-MODAL-ONE-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0137",
+      "title": "Konkrete Verben für Irreversibel",
+      "statement": "Irreversible Aktionen nennen Objekt, Folge und Nicht-Rückgängigkeit; der Primärbutton verwendet konkrete Verben, nicht „OK“.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "78",
+        "section": null,
+        "locator": "block:2079",
+        "quoteHash": "sha256:beb517ba4116805827d92fd491d6ce7afc5bd4a9a57f3becd12b549fe534da32",
+        "originalExcerpt": "Irreversible Aktionen nennen Objekt, Folge und Nicht-Rückgängigkeit. Primärbutton verwendet konkrete Verben, nicht „OK“."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-IRREV-VERB-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0138",
+      "title": "Transaktionssperre",
+      "statement": "Käufe und Belohnungen erzeugen transactionId; UI sperrt nur die betroffene Aktion, wartet auf Save-Commit und zeigt das Ergebnis erst danach.",
+      "norm": "MUST",
+      "category": "Save",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "78",
+        "section": null,
+        "locator": "block:2080",
+        "quoteHash": "sha256:1d3a52a459bf8fb84f610489a18cae18a668bc0f40a74b90f310ae867e452d8d",
+        "originalExcerpt": "Käufe und Belohnungen erzeugen transactionId. UI sperrt nur betroffene Aktion, wartet auf Save-Commit und zeigt Ergebnis erst danach."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "unit",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-TX-LOCK-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0139",
+      "title": "Back-Reihenfolge verbindlich",
+      "statement": "Android-Back/Escape schließt Tooltip, dann nichtkritisches Overlay, dann Modal (wenn sicher), dann Screen; ein laufender Commit ist nicht durch Back abbrechbar.",
+      "norm": "MUST",
+      "category": "UX",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "78",
+        "section": null,
+        "locator": "block:2081",
+        "quoteHash": "sha256:df3f9ce5a6074d52ddb6ada7e150e7afe5785a5b37fedf70935f231f72cc831d",
+        "originalExcerpt": "Android-Back/Escape schließt Tooltip -> nichtkritisches Overlay -> Modal (wenn sicher) -> Screen. Ein laufender Commit ist nicht durch Back abbrechbar."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-BACK-ORDER-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    },
+    {
+      "id": "REQ-TEMP-E-0140",
+      "title": "Fokus nach Modal",
+      "statement": "Fokus kehrt nach Modal exakt zum auslösenden Element zurück; existiert es nicht mehr, zum nächsten logischen Geschwister oder Screenheading.",
+      "norm": "MUST",
+      "category": "A11y",
+      "source": {
+        "sourceId": "gdd-v5",
+        "chapter": "78",
+        "section": null,
+        "locator": "block:2082",
+        "quoteHash": "sha256:4bd5aaeb917cb6d6bf4b81719059f1da4a5bf1c9766e5ca3c3a879f9338c5f4e",
+        "originalExcerpt": "Fokus kehrt nach Modal exakt zum auslösenden Element zurück; existiert es nicht mehr, zum nächsten logischen Geschwister oder Screenheading."
+      },
+      "ownerPhases": [
+        "PHASE-09"
+      ],
+      "verification": [
+        {
+          "type": "visual",
+          "plannedPhase": "PHASE-09",
+          "testIds": [
+            "UT-FOCUS-RETURN-001"
+          ]
+        }
+      ],
+      "numericConstraints": [],
+      "relatedNormIds": [],
+      "relatedScreenIds": [],
+      "status": "planned",
+      "notes": null
+    }
+  ],
+  "contextOnly": []
+}

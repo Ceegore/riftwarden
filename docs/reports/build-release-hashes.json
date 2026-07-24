@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "channel": "release",
+  "files": [
+    {
+      "path": "assets/generated/.gitkeep",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "bytes": 1
+    },
+    {
+      "path": "assets/generated/README.md",
+      "sha256": "acb7da49a7f38c01c90fdebcb84692b9b27af1a7b76b4682e668955d6a5dbdfc",
+      "bytes": 157
+    },
+    {
+      "path": "assets/index-BAuJ4WDo.css",
+      "sha256": "a09a0b28a8271f90fc461020a1e3d735a0e83e1112121b2756597ece1248e8d2",
+      "bytes": 7546
+    },
+    {
+      "path": "assets/index-DImpWw-3.js",
+      "sha256": "44c38a8e7e94023cca3dfa3645f22b3a4db13458377ec8642b0276ebd940d945",
+      "bytes": 190889
+    },
+    {
+      "path": "index.html",
+      "sha256": "72b59f3e95da1e59b20c70fbd2b3f52455b5295142120f3a6611da6985e8c971",
+      "bytes": 702
+    }
+  ]
+}

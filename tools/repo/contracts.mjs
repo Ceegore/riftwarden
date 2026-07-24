@@ -67,7 +67,7 @@ export const FORBIDDEN_ROOT_FILES = Object.freeze([
 ]);
 
 export const FORBIDDEN_SENSITIVE_PATTERNS = Object.freeze([
-  /(^|\/)\.env(?:\.|$)/i,
+  /(^|\/)\.env(?:\.(?!example$).+|$)/i,
   /\.(?:pem|key|p12|pfx|jks|keystore|mobileprovision|provisionprofile)$/i,
   /(^|\/)google-services\.json$/i,
   /(^|\/)GoogleService-Info\.plist$/i,
@@ -78,10 +78,24 @@ export const FORBIDDEN_SENSITIVE_PATTERNS = Object.freeze([
 
 export const PLACEHOLDER_PATTERN = /REPLACE_WITH_|example\.invalid|@OWNER_HANDLE/i;
 
+/**
+ * Normalizes a path to POSIX form and strips a leading ./.
+ * @param {string} value Input path.
+ * @returns {string} POSIX normalized path.
+ */
 export function toPosix(value) {
   return value.replaceAll('\\', '/').replace(/^\.\//, '');
 }
 
+/**
+ * Builds a normalized issue descriptor.
+ * @param {string} code Issue code.
+ * @param {string} message Human-readable message.
+ * @param {string} repair Repair hint.
+ * @param {string|null} [path] Optional related path.
+ * @param {string} [severity] Severity (default 'error').
+ * @returns {{code: string, severity: string, path: string|null, message: string, repair: string}}
+ */
 export function issue(code, message, repair, path = null, severity = 'error') {
   return { code, severity, path, message, repair };
 }

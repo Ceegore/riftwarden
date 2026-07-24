@@ -1,0 +1,6 @@
+# Chapter 47: Definition der vollständigen inhaltlichen Zielversion
+# blocks 1540..1545 (6 blocks)
+
+[Heading 2] 47. Definition der vollständigen inhaltlichen Zielversion
+[First Paragraph] Riftwarden: Auto RPG Roguelite ist releasebereit, wenn der Spieler eine ungewöhnliche Gruppe aufbauen, Gegner vollständig verstehen, einen Plan durch Formation/Doktrin/Ausrüstung formulieren und anschließend klar beobachten kann, wie dieser Plan automatisch umgesetzt wird. Siege und Niederlagen müssen erklärbar sein. Die Kampagne muss abgeschlossen, das Endgame substanziell, die Präsentation poliert und jede Funktion vollständig offline nutzbar sein.
+[Body Text] Die zentrale Qualitätsfrage lautet bei jeder Implementierungsentscheidung: „Kann der Spieler erkennen, welche Vorbereitung zu welchem Kampfverhalten und welchem Ergebnis geführt hat?“ Ist die Antwort nicht eindeutig, muss zuerst Lesbarkeit oder Regeldefinition verbessert werden, nicht zusätzlicher Content ergänzt.

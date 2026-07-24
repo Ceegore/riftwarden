@@ -1,0 +1,9 @@
+# Chapter 22: Temporäre Relikte
+# blocks 1022..1030 (9 blocks)
+
+[Heading 2] 22. Temporäre Relikte
+[First Paragraph] Relikte gelten nur für die aktuelle Expedition oder den aktuellen Ascension-Zyklus. Standardlimit: sechs aktive Relikte. Bei voller Kapazität muss vor Annahme eines neuen Relikts eines ersetzt oder die Belohnung abgelehnt werden. Relikte besitzen die Seltenheiten Gewöhnlich, Selten und Legendär; Legendär erscheint höchstens einmal pro Kampagnenexpedition und nicht vor Akt III.
+[Compact] Gewöhnliche Relikte haben Basisgewicht 70, seltene 27, legendäre 3. Akt, Elite und Instabilität verändern Gewicht, nicht die Definition.
+[Compact] Doppelte Relikte sind verboten, sofern kein Effekt ausdrücklich stapelbar ist; Release-Relikte sind nicht stapelbar.
+[Compact] Ein Relikt kann bei Händler für 55/100/180 Gold verkauft werden.
+[Compact] Reliktangebote zeigen immer drei unterschiedliche Optionen, sofern Pool mindestens drei gültige enthält.

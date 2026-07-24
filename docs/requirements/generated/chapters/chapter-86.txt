@@ -1,0 +1,17 @@
+# Chapter 86: V4-Inhaltserhalt, Korrekturen und Vollständigkeitsaudit
+# blocks 2241..2256 (16 blocks)
+
+[Heading 2] 86. V4-Inhaltserhalt, Korrekturen und Vollständigkeitsaudit
+[Heading 3] 86.1 Erhaltungsprinzip
+[First Paragraph] V5 wurde direkt auf der vollständigen V4-DOCX aufgebaut. Kapitel 1-71, sämtliche Tabellen und alle nicht ausdrücklich unten ersetzten Regeln bleiben Bestandteil des Dokuments. Die neuen Kapitel 72-87 sind Ergänzung und autoritative Schließung, keine verkürzte Neuerzählung.
+[Heading 3] 86.2 Explizite V5-Korrekturen gegenüber V4
+[Heading 3] 86.3 Automatische V5-Vollständigkeitsgates
+[Compact] Dokumentaudit vergleicht normalisierte V4-Absätze und Tabellenzellen gegen V5. Ausnahmen sind ausschließlich Cover-/Versionslabels, der dokumentierte Pixi-Fix und V5-Autoritätstexte.
+[Compact] Contentvalidator bestätigt exakt 10/18/14/28/4/4/18/30/42/36/20/28/36 gemäß Releaseumfang.
+[Compact] Headingaudit bestätigt lückenlose Kapitel 1-87 und statisches Inhaltsverzeichnis.
+[Compact] Renderaudit prüft jede Seite auf Leerseite, Beschnitt, Tabellenüberlauf, beschädigte Glyphen und Footer/Header.
+[Compact] DOCX-A11y-Audit und PDF-Preflight müssen ohne kritische Befunde abschließen.
+[Heading 3] 86.4 Bewusst weiterhin nicht im GDD
+[Compact] Konkrete Sprint-/Taskzerlegung, Aufwandsschätzung, personelle Zuordnung und Kalendertermine: gehören in den nachfolgenden Entwicklungsplan.
+[Compact] Publisheridentität, Signing-Secrets, endgültige Storepreisstufen und rechtsverbindliche Texte: externe Releaseinputs mit Gates aus Kapitel 72.4.
+[Compact] Feintuning außerhalb der Baseline: erfolgt evidenzbasiert über Simulation/Playtest innerhalb der dokumentierten Korridore; keine neue Mechanik.

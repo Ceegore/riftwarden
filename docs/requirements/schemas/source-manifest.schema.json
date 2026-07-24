@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://riftwarden.local/schemas/source-manifest.schema.json",
+  "title": "Riftwarden Source Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "sourceId",
+    "product",
+    "authorityStatus",
+    "publisherConfirmation",
+    "files",
+    "chapterAudit",
+    "frozenAt",
+    "frozenBy"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "sourceId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "product": {
+      "const": "riftwarden"
+    },
+    "authorityStatus": {
+      "enum": [
+        "pending_verification",
+        "frozen",
+        "superseded"
+      ]
+    },
+    "publisherConfirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "confirmedBy",
+        "confirmedAt",
+        "statement"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "pending",
+            "confirmed",
+            "rejected"
+          ]
+        },
+        "confirmedBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confirmedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 20
+        }
+      }
+    },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "role",
+          "path",
+          "fileName",
+          "format",
+          "sha256",
+          "byteSize",
+          "reportedPageCount",
+          "documentVersion",
+          "releaseDate",
+          "renderedWith"
+        ],
+        "properties": {
+          "role": {
+            "enum": [
+              "authoritative_editable",
+              "authoritative_render",
+              "supporting"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "fileName": {
+            "type": "string",
+            "minLength": 1
+          },
+          "format": {
+            "enum": [
+              "docx",
+              "pdf"
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "byteSize": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "reportedPageCount": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "documentVersion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "releaseDate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "renderedWith": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "chapterAudit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "expectedFirst",
+        "expectedLast",
+        "expectedCount",
+        "headingsFile",
+        "findingsFile",
+        "structureFile",
+        "status"
+      ],
+      "properties": {
+        "expectedFirst": {
+          "const": 1
+        },
+        "expectedLast": {
+          "const": 87
+        },
+        "expectedCount": {
+          "const": 87
+        },
+        "headingsFile": {
+          "type": "string"
+        },
+        "findingsFile": {
+          "type": "string"
+        },
+        "structureFile": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "complete",
+            "failed"
+          ]
+        }
+      }
+    },
+    "supersedes": {
+      "type": "array"
+    },
+    "frozenAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "frozenBy": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

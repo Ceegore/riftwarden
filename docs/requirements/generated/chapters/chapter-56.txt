@@ -1,0 +1,21 @@
+# Chapter 56: Eingabe, Controller und Barrierefreiheit
+# blocks 1723..1744 (22 blocks)
+
+[Heading 2] 56. Eingabe, Controller und Barrierefreiheit
+[Heading 3] 56.1 Touch- und Zeigerregeln
+[Compact] Mindesthitbox 48x48 CSS px; Hauptaktionen 56 px Höhe. Abstand zwischen gefährlichen und primären Aktionen mindestens 12 px.
+[Compact] Drag-and-drop ist immer durch Tap-Auswählen/Tap-Platzieren ersetzbar. Während Drag zeigt jedes Feld gültig/ungültig plus Grund.
+[Compact] Long-Press darf nur Zusatzinfo öffnen. Kein Fortschritt, Kauf oder Kampfstart erfordert Long-Press.
+[Compact] Doppeltap besitzt keine Sonderfunktion. Pinch-Zoom wird nicht benötigt; Browserzoom wird nicht absichtlich blockiert, die App bietet eigene Textskalierung.
+[Compact] Hover verbessert Desktop, ist aber keine Informationsvoraussetzung.
+[Heading 3] 56.2 Tastatur- und Gamepadmapping
+[Compact] Focus-visible ist deutlich gold/violett mit mindestens 3:1 Kontrast. Fokus darf nie hinter Modals verbleiben.
+[Compact] Gamepad-Reconnect stellt Fokus auf das letzte logische Element, nicht auf Screenanfang.
+[Compact] Alle Mappings werden in S63 angezeigt; freie Neukonfiguration ist V1-Nichtziel, Reset Defaults ist vorhanden.
+[Heading 3] 56.3 Screenreader und taktische Textansicht
+[Compact] Alle React-UI-Elemente nutzen semantische HTML-Elemente, Labels, Gruppen und Live-Regions. Rein dekorative Bilder sind aria-hidden.
+[Compact] Der Pixi-Canvas besitzt parallel eine unsichtbare, aber fokussierbare Accessibility-Struktur mit Kampfstatus, drei Bahnen, Einheiten und Warnungen.
+[Compact] Die optionale taktische Textansicht zeigt im pausierten Kampf pro Bahn: Reihenfolge, LP/Schild, Ziel, nächste Fähigkeit, Effekte und angekündigte Gefahr. Sie verändert keine Simulation.
+[Compact] Kampfereignisse werden nicht vollständig vorgelesen. Standard: Bossphase, eigener Verlust, große Warnung, Sieg/Niederlage. Detailmodus ergänzt Fähigkeiten und Status.
+[Compact] Alle gesprochenen Inhalte besitzen Untertitel; alle Audiohinweise besitzen Form/Icon/Animation als visuelles Äquivalent.
+[Heading 3] 56.4 Visuelle und vestibuläre Zugänglichkeit

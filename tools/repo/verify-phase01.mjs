@@ -3,6 +3,18 @@ import { spawnSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 
+/**
+ * @typedef {Object} CheckStep
+ * @property {string} name
+ * @property {string[]} command
+ * @property {{shell?: boolean}} [options]
+ */
+
+/**
+ * @typedef {[string, string[], {shell?: boolean}?]} CheckStepTuple
+ */
+
+/** @type {CheckStepTuple[]} */
 const checks = [
   ['verify-repo', ['node', 'tools/repo/verify-root.mjs']],
   ['file-length-check', ['node', 'tools/check-file-length.mjs']],
@@ -11,9 +23,17 @@ const checks = [
   ['governance-evidence', ['node', 'tools/repo/verify-governance-evidence.mjs']],
 ];
 
+/**
+ * @typedef {{name: string, command: string, exitCode: number, stdout: string, stderr: string, passed: boolean}} CheckResult
+ */
+
+/** @type {CheckResult[]} */
 const results = [];
-for (const [name, command, options = {}] of checks) {
-  const result = spawnSync(command[0], command.slice(1), {
+for (const tuple of checks) {
+  const name = tuple[0];
+  const command = tuple[1];
+  const options = tuple[2] ?? {};
+  const result = spawnSync(/** @type {string} */ (command[0]), command.slice(1), {
     cwd: process.cwd(),
     encoding: 'utf8',
     shell: options.shell ?? false,

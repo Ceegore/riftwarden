@@ -1,0 +1,34 @@
+# Chapter 12: Truppenverträge und die 18 Truppentypen
+# blocks 373..462 (90 blocks)
+
+[Heading 2] 12. Truppenverträge und die 18 Truppentypen
+[Heading 3] 12.1 Vertragslogik
+[Compact] Ein entdeckter Truppentyp kann in der Kaserne dauerhaft als Vertrag I gekauft werden. Vertrag II und III erhöhen ausschließlich die maximal gleichzeitig einsetzbaren Kopien auf zwei bzw. drei.
+[Compact] Verträge werden nicht verbraucht, verlangen keinen Lohn, sammeln keine Erfahrung und können nicht verloren gehen.
+[Compact] Temporäre Rekruten ignorieren fehlenden Vertrag, belegen aber einen regulären Gruppenplatz und respektieren die globale Dreiergrenze.
+[Compact] Jede eingesetzte Kopie kann ein eigenes Truppenkit tragen. Die Inventarsammlung fungiert als freigeschaltete Vorlage; ein Kit wird nicht verbraucht.
+[Compact] Truppen besitzen keine individuellen Namen, Verletzungen, Ausrüstungsslots außer Kit oder separate Level.
+[Block Text] Verbindlicher Hinweis: Alle Werte gelten auf Normal in Akt I Referenzskalierung. Gegner- und Missionsskalierung wird später beschrieben. Truppenkosten werden bei später Entdeckung nicht erhöht; die Progressionsbremse ist die Entdeckungszeit und der Goldfluss.
+[Heading 3] 12.2 Schildwache
+[Heading 3] 12.3 Speerwall
+[Heading 3] 12.4 Tempelwächter
+[Heading 3] 12.5 Söldner
+[Heading 3] 12.6 Axtbrecher
+[Heading 3] 12.7 Duellant
+[Heading 3] 12.8 Berserker
+[Heading 3] 12.9 Bogenschütze
+[Heading 3] 12.10 Armbrustschütze
+[Heading 3] 12.11 Messerwerfer
+[Heading 3] 12.12 Arkanschütze
+[Heading 3] 12.13 Kampfmagier
+[Heading 3] 12.14 Feldheiler
+[Heading 3] 12.15 Bannwirker
+[Heading 3] 12.16 Standartenträger
+[Heading 3] 12.17 Falkner
+[Heading 3] 12.18 Alchemist
+[Heading 3] 12.19 Konstrukteur
+[Body Text] Implementierungs- und Abnahmekriterien
+[Compact] Jeder Truppentyp besitzt im Kodex eine Vergleichsansicht mit identischer Stat-Reihenfolge.
+[Compact] Drei Kopien desselben Typs bleiben visuell unterscheidbar durch kleine Slotmarkierung und Kit-Icon, nicht durch zufällige Namen.
+[Compact] Keine Fähigkeit benötigt manuelle Aktivierung oder eine während des Kampfes wählbare Variante; Konstrukteur-Bauplan wird vor Kampf gewählt.
+[Compact] Jeder Trupp hat eine klar benannte Rolle und mindestens eine erkennbare Schwäche.

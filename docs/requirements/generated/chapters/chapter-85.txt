@@ -1,0 +1,24 @@
+# Chapter 85: Testkatalog, Golden Seeds, Coverage und Go/No-Go
+# blocks 2217..2240 (24 blocks)
+
+[Heading 2] 85. Testkatalog, Golden Seeds, Coverage und Go/No-Go
+[Heading 3] 85.1 Testschichten und Mindestabdeckung
+[Heading 3] 85.2 Pflichtinvarianten der Simulation
+[Compact] Keine Entity besitzt LP <0 oder >maxLP, negative Schilde, ungültige Bahn/Position, doppelte Entity-ID oder widersprüchlichen Alive/Removed-Status.
+[Compact] Keine Seite überschreitet sieben reguläre Einheiten oder sechs zählende Beschwörungen; kein Spielerbuild überschreitet drei Helden/drei gleiche Truppen.
+[Compact] Gleicher Seed, Content, Simulationversion, Entscheidungen und Startsnapshot erzeugen bit-identische Endhashes in Node, Chromium, Android WebView und iOS WKWebView.
+[Compact] Kampfgeschwindigkeit, Render-FPS, Pause/Resume und Quality verändern niemals Ergebnis oder RNGverbrauch.
+[Compact] Jeder Kampf endet spätestens am hardBattleLimit oder einer ausdrücklich kürzeren Missionsgrenze; kein Deadlock.
+[Compact] Jede Rewardtransaktion ist idempotent; doppelte UI-/Lifecycleevents erzeugen keinen Doppelgewinn/-kauf.
+[Heading 3] 85.3 Kanonische Golden Seeds
+[Heading 3] 85.4 Content- und Generator-QA
+[Compact] 100.000 Dungeonkarten über Missions-/Modusprofile: 0 Sackgassen, 0 fehlende Pflichtknoten, 0 Besuchslängen außerhalb Regeln, 0 inkompatible Modifikatoren.
+[Compact] Jeder Encounterpool wird über alle Freischaltzustände validiert; Fallbackprofil ist erreichbar und deterministisch.
+[Compact] Automatischer Cross-System-Test erzeugt jede zulässige Einheit-Ausrüstung-Kit-Banner-Synergie-Doktrin-Kombination mindestens strukturell und prüft Referenzen/Maxima.
+[Compact] Balanceberichte markieren Winrate <20% oder >80% für neutrale Referenzencounter, Time-to-First-Death, Kampfdauer, Rollenbeitrag und ungenutzte Inhalte. Markierung ist Tuninginput, kein automatischer Nerf.
+[Heading 3] 85.5 Defektpriorität und Releaseentscheidung
+[Heading 3] 85.6 Finales Go/No-Go
+[Compact] GO nur wenn verify:release grün, P0/P1=0, P2 ausdrücklich entschieden, alle Save-Migrationen/Recoverytests grün und beide Storebinaries aus demselben Tag/Commit stammen.
+[Compact] GO nur wenn Android-/iOS-Deklarationen mit tatsächlich enthaltenen Plugins, Permissions, Entitlements und Netzwerkverhalten identisch sind.
+[Compact] GO nur wenn vollständiger Kampagnenlauf, Ascension-Smoke, Endless-Tiefe-25-Smoke, Import/Export und Updatepfad auf RC erfolgreich sind.
+[Compact] NO-GO bei nicht reproduzierbarem Build, ungeklärter Lizenz, Placeholder, fehlender Übersetzung, fehlendem Screenzustand oder ungetesteter Plattformänderung.

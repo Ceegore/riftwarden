@@ -1,0 +1,5 @@
+# Chapter 5: Gesamtschleife und Sitzungsstruktur
+# blocks 83..87 (5 blocks)
+
+[Heading 2] 5. Gesamtschleife und Sitzungsstruktur
+[Body Text] Eine Standardexpedition soll 12-25 Minuten dauern. Eine Kampagnenmission darf beim ersten Durchlauf einschließlich Story und Lesen 20-35 Minuten erreichen. Unterbrechung und lokales Fortsetzen müssen an jedem Knoten außerhalb eines laufenden Kampfes möglich sein; im Kampf wird beim App-Verlassen ein deterministischer Kampfsnapshot gespeichert.

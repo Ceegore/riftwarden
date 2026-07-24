@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "decisions": [
+    {
+      "id": "EXT-PUBLISHER-001",
+      "key": "PUBLISHER_LEGAL_NAME",
+      "owner": "Publisher/Product Owner",
+      "status": "pending",
+      "developmentDefault": "[PUBLISHER]",
+      "value": null,
+      "blockingGates": [
+        "G43",
+        "G44",
+        "G48"
+      ],
+      "recommendedClosure": "Before store metadata and any closed-test/TestFlight/submission build.",
+      "validationRule": {
+        "type": "not_placeholder",
+        "forbiddenValues": [
+          "[PUBLISHER]",
+          "PUBLISHER",
+          "TBD",
+          "TODO",
+          ""
+        ]
+      },
+      "evidenceLinks": []
+    },
+    {
+      "id": "EXT-SUPPORT-EMAIL-001",
+      "key": "SUPPORT_EMAIL",
+      "owner": "Publisher/Product Owner",
+      "status": "pending",
+      "developmentDefault": "support@example.invalid",
+      "value": null,
+      "blockingGates": [
+        "G43",
+        "G44",
+        "G48"
+      ],
+      "recommendedClosure": "Before store metadata and any closed-test/TestFlight/submission build.",
+      "validationRule": {
+        "type": "email",
+        "forbiddenDomains": [
+          "example.invalid"
+        ]
+      },
+      "evidenceLinks": []
+    },
+    {
+      "id": "EXT-SUPPORT-URL-001",
+      "key": "SUPPORT_URL",
+      "owner": "Publisher/Product Owner",
+      "status": "pending",
+      "developmentDefault": "https://example.invalid/support",
+      "value": null,
+      "blockingGates": [
+        "G43",
+        "G44",
+        "G48"
+      ],
+      "recommendedClosure": "Before store metadata and any closed-test/TestFlight/submission build.",
+      "validationRule": {
+        "type": "https_url",
+        "forbiddenHosts": [
+          "example.invalid"
+        ]
+      },
+      "evidenceLinks": []
+    },
+    {
+      "id": "EXT-PRIVACY-URL-001",
+      "key": "PRIVACY_URL",
+      "owner": "Publisher/Product Owner",
+      "status": "pending",
+      "developmentDefault": "https://example.invalid/privacy",
+      "value": null,
+      "blockingGates": [
+        "G43",
+        "G44",
+        "G48"
+      ],
+      "recommendedClosure": "Before store metadata and any closed-test/TestFlight/submission build.",
+      "validationRule": {
+        "type": "https_url",
+        "forbiddenHosts": [
+          "example.invalid"
+        ]
+      },
+      "evidenceLinks": []
+    },
+    {
+      "id": "EXT-COPYRIGHT-001",
+      "key": "COPYRIGHT_YEAR",
+      "owner": "Publisher/Product Owner",
+      "status": "pending",
+      "developmentDefault": 2026,
+      "value": null,
+      "blockingGates": [
+        "G45",
+        "G48"
+      ],
+      "recommendedClosure": "Before final store assets/metadata and submission.",
+      "validationRule": {
+        "type": "integer_range",
+        "minimum": 2026,
+        "maximum": 2100
+      },
+      "evidenceLinks": []
+    },
+    {
+      "id": "EXT-PRICE-001",
+      "key": "PRICE_TIER",
+      "owner": "Publisher/Product Owner",
+      "status": "pending",
+      "developmentDefault": "UNSET_PREMIUM_TIER",
+      "value": null,
+      "blockingGates": [
+        "G45",
+        "G48"
+      ],
+      "recommendedClosure": "Before final store metadata and submission.",
+      "validationRule": {
+        "type": "not_placeholder",
+        "forbiddenValues": [
+          "UNSET_PREMIUM_TIER",
+          "TBD",
+          "TODO",
+          ""
+        ]
+      },
+      "evidenceLinks": []
+    },
+    {
+      "id": "EXT-PACKAGE-ID-001",
+      "key": "PACKAGE_ID_CONFIRMATION",
+      "owner": "Publisher/Product Owner",
+      "status": "pending",
+      "developmentDefault": "com.ceegore.riftwarden",
+      "value": null,
+      "blockingGates": [
+        "G04",
+        "G43",
+        "G44",
+        "G48"
+      ],
+      "recommendedClosure": "Recommended before native skeleton; mandatory before closed-test/TestFlight/submission.",
+      "validationRule": {
+        "type": "exact_match",
+        "expected": "com.ceegore.riftwarden"
+      },
+      "evidenceLinks": []
+    }
+  ]
+}

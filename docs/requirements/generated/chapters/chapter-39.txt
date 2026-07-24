@@ -1,0 +1,8 @@
+# Chapter 39: Audioausrichtung
+# blocks 1426..1433 (8 blocks)
+
+[Heading 2] 39. Audioausrichtung
+[Compact] Separate Regler: Gesamt, Musik, Effekte, Stimmen; Stummoption je Kanal.
+[Compact] Untertitel für alle gesprochenen Inhalte; Sprechername und optional Richtungsindikator.
+[Compact] Gameplayrelevante Audiohinweise besitzen immer visuelles Äquivalent.
+[Compact] Keine realistischen Todesschreie; Falllaute stilisiert und kurz.

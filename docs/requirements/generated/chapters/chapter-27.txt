@@ -1,0 +1,26 @@
+# Chapter 27: Ascension-Endgame
+# blocks 1178..1212 (35 blocks)
+
+[Heading 2] 27. Ascension-Endgame
+[Heading 3] 27.1 Freischaltung und Zyklusstruktur
+[Compact] Ascension wird nach dem ersten Kampagnenabschluss freigeschaltet und besteht aus einem Zyklus über alle vier Regionen mit je einer verkürzten Expedition und Regionsboss.
+[Compact] Zu Zyklusbeginn wählt der Spieler eine vollständige Gruppe, genau drei permanente Gegenstände insgesamt und höchstens vier aktive Segnungen. Ein Banner zählt zu den drei Gegenständen.
+[Compact] Alle übrigen permanenten Gegenstände bleiben für diesen Zyklus gesperrt, aber niemals gelöscht. Neue Zyklusgegenstände können während des Runs gefunden werden.
+[Compact] Heldenlevel und Vertragsstufen bleiben permanent aktiv. Eingesetzt werden dürfen nur die zu Zyklusbeginn ausgewählten Truppentypen plus später rekrutierte temporäre Typen.
+[Compact] Nach jedem Regionsboss darf der Spieler eine Einheit austauschen oder einen zusätzlichen Truppentyp für den restlichen Zyklus freischalten; Auswahl aus drei kuratierten Optionen.
+[Compact] Ein Zyklus dauert 45-80 Minuten und kann an jedem Knoten unterbrochen/fortgesetzt werden.
+[Compact] Vollständige Niederlage beendet den Zyklus. Bereits gutgeschriebene Riftessenz, Kodex, Meisterschaften und Kosmetik bleiben; Zyklusmünzen, Relikte, Rekruten und Zyklusgegenstände verfallen.
+[Heading 3] 27.2 Riftessenz-Meilensteine
+[Body Text] Riftessenz wird sofort am Meilenstein persistent gespeichert. Ein späteres Scheitern nimmt sie nicht zurück. Wiederholtes Farmen desselben niedrigen Rangs bleibt möglich, aber der Erstabschlussbonus entfällt und die Effizienz liegt unter dem höchsten stabil abschließbaren Rang.
+[Heading 3] 27.3 Die zehn kumulativen Ascension-Ränge
+[Heading 3] 27.4 Anti-Meta-Formationen auf Rang 7+
+[Compact] Encounterprofile werden vor Zyklusstart anhand der gewählten Startgruppe gewichtet, nicht nach jeder Formation spontan angepasst.
+[Compact] Profile: Beschwörungsdruck, Schildfestung, Backline-Jagd, Flächenverteilung, Kontrollschutz, gemischte Verteidigung.
+[Compact] Maximal 35% der Begegnungen dürfen als direkter Counter zum stärksten Spielerprofil gewichtet sein; mindestens 30% bleiben neutral und 15% günstig.
+[Compact] Gegner „cheaten“ nicht durch Kenntnis einer unmittelbar vor Kampf geänderten Doktrin/Position.
+[First Paragraph] Implementierungs- und Abnahmekriterien
+[Compact] Jeder Rang ist separat auswählbar, sobald abgeschlossen; höhere Ränge enthalten nachweislich alle niedrigeren Regeln.
+[Compact] Ein Rang zeigt vor Start eine vollständige Liste aller aktiven kumulativen Regeln.
+[Compact] Genau drei Startgegenstände werden validiert; kein verstecktes viertes Banner.
+[Compact] Niederlage löscht keine bereits persistierte Riftessenz.
+[Compact] Rang 10 ist mit mehreren Gruppenarchitekturen testbar und nicht auf eine dominante Synergie zugeschnitten.

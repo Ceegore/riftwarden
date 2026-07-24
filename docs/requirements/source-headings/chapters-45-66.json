@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "headings": [
+    {
+      "chapter": 45,
+      "title": "Release-Abnahmekriterien",
+      "locator": "block:1495",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 46,
+      "title": "Zielumfang, Spielzeit und Scope-Schutz",
+      "locator": "block:1524",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 47,
+      "title": "Definition der vollständigen inhaltlichen Zielversion",
+      "locator": "block:1540",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 48,
+      "title": "Verbindliche Restklarstellungen und Konfliktauflösung",
+      "locator": "block:1546",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 49,
+      "title": "Verbindliche technische Produktbaseline",
+      "locator": "block:1592",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 50,
+      "title": "Repository, Module und Coding-Verträge",
+      "locator": "block:1605",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 51,
+      "title": "Deterministische Simulation und Replay-Architektur",
+      "locator": "block:1627",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 52,
+      "title": "Rendering-, Asset- und Performancearchitektur",
+      "locator": "block:1649",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 53,
+      "title": "App-Lifecycle, Navigation und globale Zustände",
+      "locator": "block:1665",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 54,
+      "title": "Vollständiger Screenkatalog und Funktionsumfang",
+      "locator": "block:1679",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 55,
+      "title": "GUI-Designsystem und responsive Layouts",
+      "locator": "block:1699",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 56,
+      "title": "Eingabe, Controller und Barrierefreiheit",
+      "locator": "block:1723",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 57,
+      "title": "Audio-, Haptik- und Unterbrechungsverhalten",
+      "locator": "block:1745",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 58,
+      "title": "Savegame, Migration, Import/Export und Recovery",
+      "locator": "block:1752",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 59,
+      "title": "Content-Pipeline, Schemas und Buildvalidierung",
+      "locator": "block:1777",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 60,
+      "title": "Lokalisierung, Copy und Textproduktion",
+      "locator": "block:1789",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 61,
+      "title": "Datenschutz, Sicherheit und Netzwerkfreiheit",
+      "locator": "block:1798",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 62,
+      "title": "Android-Konfiguration und Google-Play-Abnahme",
+      "locator": "block:1817",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 63,
+      "title": "iOS/iPadOS-Konfiguration und App-Store-Abnahme",
+      "locator": "block:1834",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 64,
+      "title": "Storegrafiken, App-Icon, Splash und Metadaten",
+      "locator": "block:1844",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 65,
+      "title": "Teststrategie, QA und automatisierte Gates",
+      "locator": "block:1858",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 66,
+      "title": "CI/CD, Buildvarianten und Releaseprozess",
+      "locator": "block:1876",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    }
+  ]
+}

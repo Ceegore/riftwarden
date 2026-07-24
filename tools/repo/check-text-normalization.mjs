@@ -9,9 +9,14 @@ const TEXT_EXTENSIONS = new Set([
 ]);
 const ROOT_TEXT_FILES = new Set(['.gitignore', '.gitattributes', '.npmrc', '.node-version']);
 
+/**
+ * Determines whether a relative path is a text file.
+ * @param {string} path Relative path.
+ * @returns {boolean}
+ */
 function isText(path) {
   const name = path.split('/').at(-1);
-  return ROOT_TEXT_FILES.has(name) || TEXT_EXTENSIONS.has(extname(path).toLowerCase());
+  return name !== undefined && (ROOT_TEXT_FILES.has(name) || TEXT_EXTENSIONS.has(extname(path).toLowerCase()));
 }
 
 const findings = [];

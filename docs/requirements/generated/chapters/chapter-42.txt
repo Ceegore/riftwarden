@@ -1,0 +1,11 @@
+# Chapter 42: Savegame, Versionierung und Offline-Verhalten
+# blocks 1458..1467 (10 blocks)
+
+[Heading 2] 42. Savegame, Versionierung und Offline-Verhalten
+[Compact] Mindestens drei rotierende lokale Autosave-Slots plus ein manuelles Profil-Backup im App-Speicher.
+[Compact] Save enthält schemaVersion, contentVersion, simulationVersion, Fortschritt, Inventarfreischaltungen, Politur, Ruhm, Meisterschaft, Erfolge, Einstellungen, aktuelle Expedition und deterministische Seeds.
+[Compact] Schreibvorgang atomar: in temporäre Datei, Prüfsumme, dann ersetzen. Beschädigter neuester Slot fällt auf vorherigen zurück und informiert den Spieler.
+[Compact] Migrationen sind vorwärtsgerichtet und idempotent. Ein Save wird vor Migration gesichert.
+[Compact] Laufender Kampf speichert Startsnapshot plus aktuellen Simulationszustand; Fortsetzen darf nicht neu würfeln oder zum Kampfbeginn zurücksetzen, außer Snapshot ist technisch ungültig. Dann wird der Kampf mit demselben Seed vom Beginn wiederholt und klar erklärt.
+[Compact] Kein Fortschritt hängt von Uhrzeit, Zeitzone, Geräte-ID, Account oder Internet ab.
+[Compact] Deinstallation kann lokale Daten löschen; Export/Import eines Savefiles ist als Komfortfunktion vorgesehen, aber keine Cloudpflicht.

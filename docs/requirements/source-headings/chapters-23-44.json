@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "headings": [
+    {
+      "chapter": 23,
+      "title": "Wirtschaft, Beute und Sicherung",
+      "locator": "block:1031",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 24,
+      "title": "Kampagne: 4 Akte und 20 implementierungsreife Expeditionen",
+      "locator": "block:1060",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 25,
+      "title": "Kampagnenschwierigkeiten",
+      "locator": "block:1157",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 26,
+      "title": "Onboarding und progressive Offenlegung",
+      "locator": "block:1165",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 27,
+      "title": "Ascension-Endgame",
+      "locator": "block:1178",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 28,
+      "title": "Ascension-Konstellation - 28 Knoten",
+      "locator": "block:1213",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 29,
+      "title": "Jenseits-Modus",
+      "locator": "block:1225",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 30,
+      "title": "Endlose Rift",
+      "locator": "block:1233",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 31,
+      "title": "Heldenmeisterschaften",
+      "locator": "block:1270",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 32,
+      "title": "Kodex",
+      "locator": "block:1320",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 33,
+      "title": "Interne Erfolge",
+      "locator": "block:1329",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 34,
+      "title": "Kampfauswertung und automatische Hinweise",
+      "locator": "block:1337",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 35,
+      "title": "Hauptquartier und dauerhafte Progressionsoberfläche",
+      "locator": "block:1358",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 36,
+      "title": "UX für Formation, Vorschau und Kampf",
+      "locator": "block:1375",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 37,
+      "title": "Visuelle Ausrichtung",
+      "locator": "block:1405",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 38,
+      "title": "Kampfpolish und Feedbackbudget",
+      "locator": "block:1418",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 39,
+      "title": "Audioausrichtung",
+      "locator": "block:1426",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 40,
+      "title": "Bedienung, Komfort und Barrierefreiheit",
+      "locator": "block:1434",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 41,
+      "title": "Inhaltliche Datenverträge",
+      "locator": "block:1446",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 42,
+      "title": "Savegame, Versionierung und Offline-Verhalten",
+      "locator": "block:1458",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 43,
+      "title": "Balancing-Leitplanken",
+      "locator": "block:1468",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    },
+    {
+      "chapter": 44,
+      "title": "Vertikaler Inhaltsprototyp",
+      "locator": "block:1481",
+      "styleId": "Heading2",
+      "extractionMethod": "docx_structure_extraction",
+      "confidence": "high",
+      "reviewStatus": "verified",
+      "reviewedBy": "MiniMax-M3",
+      "reviewedAt": "2026-07-22T00:00:00Z"
+    }
+  ]
+}

@@ -29,7 +29,7 @@
   "evidenceFiles": [
     {
       "path": "docs/governance/branch-protection-export.json",
-      "sha256": "228ee40e8c469d0c843a649e22417322dc1f545eac957411d84f95ffec5cc2a6",
+      "sha256": "c2c1e9bce5a166ce3bdea61e2d9dcef89fef0c98f6e3747e9f2d2889f72e62a5",
       "description": "GitHub API export of main branch protection rules"
     }
   ],

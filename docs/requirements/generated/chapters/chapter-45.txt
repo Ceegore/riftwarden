@@ -1,0 +1,24 @@
+# Chapter 45: Release-Abnahmekriterien
+# blocks 1495..1523 (29 blocks)
+
+[Heading 2] 45. Release-Abnahmekriterien
+[Heading 3] 45.1 Inhaltliche Vollständigkeit
+[Compact] 20 Missionen vollständig spielbar, alle Erst-/Wiederholungsbelohnungen korrekt.
+[Compact] 10 Helden x 3 Level, 18 Truppen, 14 Beschwörungen, 28 Grundgegner, 12 Elites, 8 Champions, 4 Zwischen- und 4 Hauptbosse implementiert.
+[Compact] 42 permanente Gegenstände, 36 Relikte, 30 Ereignisse, 18 Modifikatoren, 7 Kampfvarianten vollständig.
+[Compact] Ascension 1-10, 28 Konstellationsknoten, Jenseits 1-20, Endlose Rift und alle Meilensteine funktionieren offline.
+[Compact] 50 Meisterschaftsziele, Kodex und 36 Erfolge vollständig prüfbar.
+[Heading 3] 45.2 Systemische Qualität
+[Compact] Keine nicht deterministische Abweichung bei identischem Seed und Snapshot.
+[Compact] Keine Endlosschleife durch Heilung, Wiederbelebung, Beschwörung oder unzugängliche Position.
+[Compact] Keine Einheit oder Fähigkeit kann globale Gruppen-/Beschwörungsgrenzen umgehen.
+[Compact] Alle strategisch relevanten Boss-/Modifikator-/Championfähigkeiten vor Kampf sichtbar.
+[Compact] Alle Käufe, Belohnungen, Saves und Migrationen sind crash- und duplikationssicher.
+[Compact] Alle Kampfauswertungen und Hinweise basieren auf tatsächlichen Events.
+[Heading 3] 45.3 UX, Barrierefreiheit und Plattform
+[Compact] Alle Kernflows mit Touch, Maus und Controller/Tastatur vollständig bedienbar.
+[Compact] Keine abgeschnittenen Texte bei 150% Textgröße auf unterstützten Mindestauflösungen.
+[Compact] Alle Warnungen ohne Farbinformation verständlich; reduzierte Bewegung/Effekte funktionieren vollständig.
+[Compact] App startet und alle Inhalte funktionieren im Flugmodus ohne Netzwerkdialog.
+[Compact] Unterbrechung/Prozessbeendigung an jedem Knoten und in jedem Kampf führt zu gültigem Fortsetzen.
+[Compact] Keine Werbung, IAP, Accountpflicht, Trackingpflicht oder künstliche Wartezeit vorhanden.

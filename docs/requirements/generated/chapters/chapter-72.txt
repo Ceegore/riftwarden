@@ -1,0 +1,14 @@
+# Chapter 72: V5-Autorität, Null-Unklarheits-Protokoll und externe Restwerte
+# blocks 1953..1966 (14 blocks)
+
+[Heading 2] 72. V5-Autorität, Null-Unklarheits-Protokoll und externe Restwerte
+[First Paragraph] Version 5 ist die letzte Designspezifikation vor der Erstellung eines getrennten Entwicklungsplans. Sie ist keine Ideensammlung und kein unverbindliches Briefing. Ein Implementierungsagent verwendet sie als Source of Truth für Produkt, Inhalt, Simulation, UX, Daten, Native-Container, Qualität und Release. Der spätere Entwicklungsplan darf Reihenfolge, Arbeitspakete, Verantwortliche und Schätzungen festlegen, aber keine hier definierte Produktentscheidung neu treffen.
+[Heading 3] 72.1 Verbindliche Konflikt- und Auslegungsreihenfolge
+[Heading 3] 72.2 Bedeutung normativer Begriffe
+[Heading 3] 72.3 Erlaubte technische Eigenentscheidungen des Agents
+[Compact] Der Agent darf lokale Funktionsnamen, private Hilfsfunktionen, interne Dateiaufteilung innerhalb der festgelegten Module und äquivalente reine Algorithmen wählen.
+[Compact] Der Agent darf keine Dependency hinzufügen, kein Schemafeld umdeuten, keine Währung/Einheit/Fähigkeit ergänzen und keine UI-Funktion verstecken, um Aufwand zu sparen.
+[Compact] Bei mehreren technisch gleichwertigen Lösungen gilt in dieser Reihenfolge: deterministisch, testbar, ohne Native-Zusatzpermission, ohne Netzwerk, kleineres Bundle, einfacher zu warten.
+[Compact] Ein Fallback darf niemals Progression verlieren, Gameplay verändern oder still eine schlechtere Datenquelle verwenden. Jeder Recovery-Pfad ist sichtbar und testbar.
+[Heading 3] 72.4 Externe Restwerte, die Entwicklung nicht blockieren
+[Technical Note] Die Platzhalter oben sind keine offenen Produktfragen. Sie sind Publisher-/Storekonfiguration und müssen im Buildsystem als klar sichtbare Release-Blocker validiert werden.
