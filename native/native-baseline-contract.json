@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "app": {
+    "appId": "com.ceegore.riftwarden",
+    "appName": "Riftwarden",
+    "publicName": "Riftwarden: Auto RPG Roguelite",
+    "webDir": "dist",
+    "webBase": "./",
+    "versionName": "1.0.0",
+    "deepLinkScheme": "riftwarden"
+  },
+  "capacitor": {
+    "major": 8,
+    "bundledWebRuntime": false,
+    "nativeProjectsCommitted": true,
+    "releaseForbiddenConfigKeys": [
+      "server.url",
+      "server.allowNavigation",
+      "server.cleartext",
+      "android.allowMixedContent"
+    ],
+    "systemBars": {
+      "source": "@capacitor/core",
+      "insetsHandling": "css",
+      "hidden": false
+    }
+  },
+  "android": {
+    "minSdk": 24,
+    "compileSdk": 36,
+    "targetSdk": 36,
+    "agpMajorMinor": "8.13",
+    "gradleMajorMinor": "8.14",
+    "jdk": 17,
+    "versionCode": 10000,
+    "allowBackup": false,
+    "releaseInternetPermission": false,
+    "runtimePermissions": [],
+    "optionalNormalPermissions": [
+      "android.permission.VIBRATE"
+    ],
+    "orientation": "landscape-preferred-resizable",
+    "pageSizeRequirement": "16 KiB compatible; verify all native libraries and final bundle"
+  },
+  "ios": {
+    "bundleIdentifier": "com.ceegore.riftwarden",
+    "deploymentTarget": "15.0",
+    "xcodeMinimumMajor": 26,
+    "buildNumber": "10000",
+    "deviceFamily": [
+      "iPhone",
+      "iPad"
+    ],
+    "packageManager": "SPM",
+    "orientation": "landscape-primary-adaptive",
+    "forbiddenEntitlements": [
+      "com.apple.developer.game-center",
+      "com.apple.developer.icloud-services",
+      "aps-environment",
+      "com.apple.developer.applesignin"
+    ],
+    "backgroundModes": [],
+    "atsExceptions": false,
+    "privacyManifestRequired": true,
+    "macOSEvidenceRequiredForPass": true
+  }
+}

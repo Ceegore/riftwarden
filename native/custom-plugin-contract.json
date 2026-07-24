@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "bridgeVersion": 1,
+  "availabilityStates": [
+    "available",
+    "unavailable"
+  ],
+  "implementationStates": [
+    "skeleton",
+    "production"
+  ],
+  "errorCodes": [
+    "UNAVAILABLE",
+    "NOT_IMPLEMENTED",
+    "INVALID_ARGUMENT",
+    "NATIVE_FAILURE"
+  ],
+  "plugins": [
+    {
+      "name": "NativeSaveStore",
+      "capabilities": [
+        "atomic_write",
+        "durable_flush",
+        "slot_rotation"
+      ],
+      "methods": [
+        {
+          "name": "getBridgeInfo",
+          "phase04Behavior": "resolve skeleton metadata"
+        },
+        {
+          "name": "read",
+          "phase04Behavior": "reject NOT_IMPLEMENTED"
+        },
+        {
+          "name": "writeAtomic",
+          "phase04Behavior": "reject NOT_IMPLEMENTED"
+        }
+      ]
+    },
+    {
+      "name": "SaveTransfer",
+      "capabilities": [
+        "pick_import",
+        "export_document"
+      ],
+      "methods": [
+        {
+          "name": "getBridgeInfo",
+          "phase04Behavior": "resolve skeleton metadata"
+        },
+        {
+          "name": "pickImport",
+          "phase04Behavior": "reject NOT_IMPLEMENTED"
+        },
+        {
+          "name": "exportDocument",
+          "phase04Behavior": "reject NOT_IMPLEMENTED"
+        }
+      ]
+    },
+    {
+      "name": "GameAudioSession",
+      "capabilities": [
+        "audio_focus",
+        "interruption_events",
+        "silent_mode_policy"
+      ],
+      "methods": [
+        {
+          "name": "getBridgeInfo",
+          "phase04Behavior": "resolve skeleton metadata"
+        },
+        {
+          "name": "configure",
+          "phase04Behavior": "reject NOT_IMPLEMENTED"
+        },
+        {
+          "name": "activate",
+          "phase04Behavior": "reject NOT_IMPLEMENTED"
+        },
+        {
+          "name": "deactivate",
+          "phase04Behavior": "reject NOT_IMPLEMENTED"
+        }
+      ]
+    }
+  ],
+  "invariant": "A skeleton must never resolve a mutating or platform-effect method as success. Web, Android and iOS names/signatures/error semantics stay aligned."
+}

@@ -54,7 +54,15 @@
     "check:text-normalization": "node tools/repo/check-text-normalization.mjs",
     "check:file-length": "node tools/check-file-length.mjs",
     "test:repo": "node --test tests/unit/repo/*.test.mjs",
-    "requirements:validate": "node tools/requirements/validate.mjs --mode=gate"
+    "requirements:validate": "node tools/requirements/validate.mjs --mode=gate",
+    "cap:sync": "pnpm build:release && cap sync",
+    "native:env": "node tools/native/report-environment.mjs > artifacts/native/environment.json",
+    "native:hash": "node tools/native/hash-tree.mjs . android ios capacitor.config.ts > artifacts/native/tree.json",
+    "verify:native-config": "node tools/native/verify-config.mjs",
+    "verify:plugin-contracts": "node tools/native/verify-plugin-contracts.mjs",
+    "android:debug": "node tools/native/run-gradle.mjs assembleDebug",
+    "android:release-manifest": "node tools/native/run-gradle.mjs processReleaseMainManifest",
+    "verify:phase04": "node tools/native/verify-g04.mjs"
   },
   "dependencies": {
     "react": "19.2.8",
