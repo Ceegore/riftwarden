@@ -18,7 +18,12 @@ const ROOT_TEXT_FILES = new Set(['.gitignore', '.gitattributes', '.npmrc', '.nod
  */
 function isText(path) {
   const name = path.split('/').at(-1);
-  return name !== undefined && (ROOT_TEXT_FILES.has(name) || TEXT_EXTENSIONS.has(extname(path).toLowerCase()));
+  if (name !== undefined && (ROOT_TEXT_FILES.has(name) || TEXT_EXTENSIONS.has(extname(path).toLowerCase()))) {
+    // Skip platform-specific batch files that use CRLF by design
+    if (CRLF_OK_EXTENSIONS.has(extname(path).toLowerCase())) return false;
+    return true;
+  }
+  return false;
 }
 
 const findings = [];
