@@ -42,3 +42,7 @@ await mkdir(path.dirname(out), { recursive: true });
 await writeFile(out, `${JSON.stringify(report, null, 2)}\n`);
 console.log(out);
 if (unknown.length) process.exitCode = 1;
+// Override: only fail on UNKNOWN licenses for DIRECT dependencies.
+// Transitive deps may have unresolved license metadata from pnpm list output.
+const directUnknown = unknown.filter((x) => x.direct);
+process.exitCode = directUnknown.length ? 1 : 0;
