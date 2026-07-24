@@ -57,6 +57,7 @@ jobs:
           VITE_PRIVACY_URL=https://github.com/Ceegore/riftwarden
           ENV
           pnpm verify:repo
+          pnpm exec playwright install --with-deps chromium firefox webkit
           pnpm verify:phase02
       - name: Execute registered gate
         shell: bash
