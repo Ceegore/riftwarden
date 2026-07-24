@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "channel": "release",
+  "channel": "qa",
   "files": [
     {
       "path": "assets/generated/.gitkeep",
@@ -18,14 +18,19 @@
       "bytes": 4659
     },
     {
-      "path": "assets/index-Ci6mJaUz.js",
-      "sha256": "6a1a215cb78b8728e653e520108b58046eb6ccd716f99f9b0242df5ef350074c",
-      "bytes": 190889
+      "path": "assets/index-ld5Sk9Iw.js",
+      "sha256": "320a57fca89f77698a9bdbfb7a7f015af590201f29cfceef89eb7784be7ba857",
+      "bytes": 190842
+    },
+    {
+      "path": "assets/index-ld5Sk9Iw.js.map",
+      "sha256": "b2612935a5b8697450a5ba030533f44e4c84528924f6d74fac08559da2a0e47d",
+      "bytes": 842713
     },
     {
       "path": "index.html",
-      "sha256": "55006594a932d82ac92ae3b10c5844ead20a73bfee7430ed639c5e65f56c9aa5",
-      "bytes": 702
+      "sha256": "fce6299f25e255a42e629ff152a9f38feade9eab81c40003646647d6835ee16c",
+      "bytes": 706
     }
   ]
 }
