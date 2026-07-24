@@ -32,7 +32,7 @@ export default defineConfig({
     { name: 'webkit-tablet', use: { ...devices['Desktop Safari'], viewport: { width: 1366, height: 1024 } } },
   ],
   webServer: {
-    command: 'pnpm build:qa && pnpm preview --port 4173',
+    command: 'pnpm build:qa && vite preview --port 4173 --mode qa',
     url: baseURL,
     reuseExistingServer: !ci,
     timeout: 120_000,
