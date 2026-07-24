@@ -5,7 +5,7 @@
   "type": "module",
   "packageManager": "pnpm@10.0.0",
   "engines": {
-    "node": ">=22 <23",
+    "node": ">=22",
     "pnpm": ">=10.0.0 <11"
   },
   "scripts": {
@@ -45,7 +45,7 @@
     "deps:report": "node tools/deps/report.mjs",
     "deps:sbom": "node tools/deps/create-cyclonedx.mjs",
     "deps:diff": "node tools/deps/diff.mjs",
-    "security:audit": "mkdir -p artifacts/security/dependencies && pnpm audit --json > artifacts/security/dependencies/pnpm-audit.json || true && node tools/security/check-audit.mjs",
+    "security:audit": "node tools/security/run-audit.mjs",
     "security:secrets": "node tools/security/scan-secrets.mjs",
     "security:artifact-paths": "node tools/security/check-artifact-allowlist.mjs",
     "test:phase03-tooling": "node --test tests/tooling/phase03/*.test.mjs",
