@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 export const extensions = new Set(['.json', '.md', '.css', '.html', '.yml', '.yaml', '.mjs', '.js', '.ts', '.tsx']);
-const excludedTopLevel = new Set(['.git', 'node_modules', 'dist', 'android', 'ios', 'generated', 'backup', 'Phasen', 'Meldungen', '.orchestration_source', 'coverage', '.pnpm-store']);
+const excludedTopLevel = new Set(['.git', 'node_modules', 'dist', 'android', 'ios', 'generated','test-results', 'backup', 'Phasen', 'Meldungen', '.orchestration_source', 'coverage', '.pnpm-store']);
 
 /**
  * Returns the canonical normalized form of a file.

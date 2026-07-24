@@ -106,3 +106,7 @@ desktop.ini
 .vscode/
 *~
 generated/README_DO_NOT_TRACK.txt
+
+# Playwright test output
+docs/reports/test-results/playwright-artifacts/
+docs/reports/test-results/playwright-html/
