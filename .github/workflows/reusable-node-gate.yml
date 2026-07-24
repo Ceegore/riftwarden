@@ -33,6 +33,29 @@ jobs:
           set -euo pipefail
           corepack enable
           pnpm install --frozen-lockfile
+          # Provide CI build ENV (files are gitignored; CI needs them for build:release)
+          CONTENT_HASH=$(printf '%s' "ci-phase03-build" | sha256sum | cut -d' ' -f1)
+          cat > .env.release << ENV
+          VITE_BUILD_CHANNEL=release
+          VITE_CONTENT_VERSION=${CONTENT_HASH}
+          VITE_ENABLE_DEVTOOLS=false
+          VITE_SUPPORT_URL=https://github.com/Ceegore/riftwarden/issues
+          VITE_PRIVACY_URL=https://github.com/Ceegore/riftwarden
+          ENV
+          cat > .env.qa << ENV
+          VITE_BUILD_CHANNEL=qa
+          VITE_CONTENT_VERSION=${CONTENT_HASH}
+          VITE_ENABLE_DEVTOOLS=false
+          VITE_SUPPORT_URL=https://github.com/Ceegore/riftwarden/issues
+          VITE_PRIVACY_URL=https://github.com/Ceegore/riftwarden
+          ENV
+          cat > .env.dev << ENV
+          VITE_BUILD_CHANNEL=dev
+          VITE_CONTENT_VERSION=dev-content-placeholder
+          VITE_ENABLE_DEVTOOLS=true
+          VITE_SUPPORT_URL=https://github.com/Ceegore/riftwarden/issues
+          VITE_PRIVACY_URL=https://github.com/Ceegore/riftwarden
+          ENV
           pnpm verify:repo
           pnpm verify:phase02
       - name: Execute registered gate
