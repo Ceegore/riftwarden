@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "repository": "[OWNER/REPOSITORY]",
+  "branch": "main",
+  "capturedAtUtc": null,
+  "capturedBy": "[PERSON_OR_AGENT]",
+  "rulesetExportPath": "docs/reports/evidence/phase-03/branch-ruleset.json",
+  "rulesetExportSha256": null,
+  "requiredStatusChecks": [],
+  "negativeTests": {
+    "directPushRejected": false,
+    "redCheckMergeRejected": false,
+    "missingCheckMergeRejected": false,
+    "codeOwnerReviewVerified": false,
+    "forcePushRejected": false
+  },
+  "screenshots": [],
+  "notes": "Must be populated from real hosting evidence. This template cannot satisfy G03."
+}

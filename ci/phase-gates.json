@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "currentImplementationPhase": 3,
+  "checks": [
+    {
+      "id": "bootstrap-versions",
+      "ownerPhase": 2,
+      "requiredFromPhase": 3,
+      "command": "pnpm verify:phase02"
+    },
+    {
+      "id": "format-check",
+      "ownerPhase": 2,
+      "requiredFromPhase": 3,
+      "command": "pnpm format:check"
+    },
+    {
+      "id": "file-length-check",
+      "ownerPhase": 1,
+      "requiredFromPhase": 3,
+      "command": "pnpm check:file-length"
+    },
+    {
+      "id": "lint",
+      "ownerPhase": 2,
+      "requiredFromPhase": 3,
+      "command": "pnpm lint"
+    },
+    {
+      "id": "strict-typecheck",
+      "ownerPhase": 2,
+      "requiredFromPhase": 3,
+      "command": "pnpm typecheck"
+    },
+    {
+      "id": "requirements-validate",
+      "ownerPhase": 0,
+      "requiredFromPhase": 3,
+      "command": "pnpm requirements:validate"
+    },
+    {
+      "id": "unit-tests",
+      "ownerPhase": 2,
+      "requiredFromPhase": 3,
+      "command": "pnpm test:unit"
+    },
+    {
+      "id": "simulation-tests",
+      "ownerPhase": 2,
+      "requiredFromPhase": 3,
+      "command": "pnpm test:sim"
+    },
+    {
+      "id": "integration-tests",
+      "ownerPhase": 2,
+      "requiredFromPhase": 3,
+      "command": "pnpm test:integration"
+    },
+    {
+      "id": "web-production-build",
+      "ownerPhase": 2,
+      "requiredFromPhase": 3,
+      "command": "pnpm build:release"
+    },
+    {
+      "id": "playwright-e2e",
+      "ownerPhase": 2,
+      "requiredFromPhase": 3,
+      "command": "pnpm test:e2e"
+    },
+    {
+      "id": "localization-parity",
+      "ownerPhase": 6,
+      "requiredFromPhase": 6,
+      "command": "pnpm localization:validate"
+    },
+    {
+      "id": "content-validate",
+      "ownerPhase": 9,
+      "requiredFromPhase": 9,
+      "command": "pnpm content:validate"
+    },
+    {
+      "id": "content-build-reproducibility",
+      "ownerPhase": 10,
+      "requiredFromPhase": 10,
+      "command": "pnpm content:build:verify"
+    },
+    {
+      "id": "asset-manifest-validate",
+      "ownerPhase": 38,
+      "requiredFromPhase": 38,
+      "command": "pnpm assets:validate"
+    },
+    {
+      "id": "native-config-diff",
+      "ownerPhase": 4,
+      "requiredFromPhase": 4,
+      "command": "pnpm native:config:diff"
+    },
+    {
+      "id": "android-debug-smoke",
+      "ownerPhase": 4,
+      "requiredFromPhase": 4,
+      "command": "pnpm android:debug:smoke"
+    }
+  ]
+}

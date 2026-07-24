@@ -1,0 +1,143 @@
+name: Reusable Node Gate
+
+on:
+  workflow_call:
+    inputs:
+      gate:
+        description: Exact registered Phase-03 gate identifier
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  run_gate:
+    name: ${{ inputs.gate }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - name: Checkout exact source
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Set up exact Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - name: Frozen bootstrap
+        shell: bash
+        run: |
+          set -euo pipefail
+          corepack enable
+          pnpm install --frozen-lockfile
+          pnpm verify:repo
+          pnpm verify:phase02
+      - name: Execute registered gate
+        shell: bash
+        env:
+          RIFTWARDEN_GATE: ${{ inputs.gate }}
+        run: |
+          set -euo pipefail
+          case "$RIFTWARDEN_GATE" in
+            bootstrap-versions)
+              pnpm ci:verify-workflows
+              ;;
+            format-file-length)
+              pnpm format:check
+              pnpm check:file-length
+              ;;
+            lint-typecheck)
+              pnpm lint
+              pnpm typecheck
+              ;;
+            requirements-contracts)
+              pnpm requirements:validate
+              pnpm ci:gate-map -- --phase 3
+              ;;
+            unit-tests)
+              pnpm test:tooling
+              pnpm test:phase03-tooling
+              pnpm test:unit
+              ;;
+            simulation-smoke)
+              pnpm test:sim
+              ;;
+            integration-smoke)
+              pnpm test:integration
+              ;;
+            web-build)
+              pnpm build:release
+              pnpm build:manifest -- --channel qa --phase 3
+              pnpm security:artifact-paths
+              ;;
+            e2e-smoke)
+              pnpm exec playwright install --with-deps chromium firefox webkit
+              pnpm test:e2e
+              ;;
+            workflow-security)
+              pnpm ci:verify-workflows
+              pnpm security:secrets
+              ;;
+            dependency-security)
+              pnpm deps:capture
+              pnpm deps:report
+              pnpm deps:sbom
+              pnpm security:audit
+              ;;
+            localization-parity)
+              pnpm localization:validate
+              ;;
+            content-validate)
+              pnpm content:validate
+              ;;
+            content-reproducibility)
+              pnpm content:build:verify
+              ;;
+            asset-manifest-validate)
+              pnpm assets:validate
+              ;;
+            native-config-diff)
+              pnpm native:config:diff
+              ;;
+            android-debug-smoke)
+              pnpm android:debug:smoke
+              ;;
+            *)
+              echo "Unknown registered gate: $RIFTWARDEN_GATE" >&2
+              exit 64
+              ;;
+          esac
+      - name: Upload build evidence
+        if: inputs.gate == 'web-build'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: riftwarden-pr-build-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            dist/
+            artifacts/provenance/
+          if-no-files-found: error
+          include-hidden-files: false
+          retention-days: 7
+      - name: Upload dependency evidence
+        if: always() && inputs.gate == 'dependency-security'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: riftwarden-pr-security-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/security/
+          if-no-files-found: error
+          include-hidden-files: false
+          retention-days: 14
+      - name: Upload E2E failure evidence
+        if: failure() && inputs.gate == 'e2e-smoke'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: riftwarden-pr-e2e-failure-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: warn
+          include-hidden-files: false
+          retention-days: 14

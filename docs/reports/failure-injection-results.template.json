@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "cases": [
+    {
+      "id": "FI-P03-001",
+      "target": "format-check",
+      "expected": "PR blocked",
+      "result": null,
+      "evidence": null
+    },
+    {
+      "id": "FI-P03-002",
+      "target": "file-length-501",
+      "expected": "PR blocked",
+      "result": null,
+      "evidence": null
+    },
+    {
+      "id": "FI-P03-003",
+      "target": "lint/typecheck",
+      "expected": "PR blocked",
+      "result": null,
+      "evidence": null
+    },
+    {
+      "id": "FI-P03-004",
+      "target": "unit/sim/integration",
+      "expected": "PR blocked",
+      "result": null,
+      "evidence": null
+    },
+    {
+      "id": "FI-P03-005",
+      "target": "web-build",
+      "expected": "PR blocked",
+      "result": null,
+      "evidence": null
+    },
+    {
+      "id": "FI-P03-006",
+      "target": "untrusted action tag",
+      "expected": "workflow-security blocked",
+      "result": null,
+      "evidence": null
+    },
+    {
+      "id": "FI-P03-007",
+      "target": "unknown license",
+      "expected": "dependency-security blocked",
+      "result": null,
+      "evidence": null
+    },
+    {
+      "id": "FI-P03-008",
+      "target": "high advisory fixture",
+      "expected": "dependency-security blocked",
+      "result": null,
+      "evidence": null
+    },
+    {
+      "id": "FI-P03-009",
+      "target": "cancelled active job",
+      "expected": "PR / required blocked",
+      "result": null,
+      "evidence": null
+    },
+    {
+      "id": "FI-P03-010",
+      "target": "direct main push",
+      "expected": "hosting rejects",
+      "result": null,
+      "evidence": null
+    }
+  ]
+}

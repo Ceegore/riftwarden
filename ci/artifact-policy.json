@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "retentionDays": {
+    "pullRequestFailureEvidence": 14,
+    "pullRequestBuildEvidence": 7,
+    "mainEvidence": 30,
+    "nightlyEvidence": 30,
+    "releaseCandidateEvidence": 90
+  },
+  "includeHiddenFiles": false,
+  "artifactNamePattern": "riftwarden-<kind>-<run_id>-<attempt>",
+  "neverUpload": [
+    ".env*",
+    "*.jks",
+    "*.keystore",
+    "*.p12",
+    "*.mobileprovision",
+    "*.xcarchive/**",
+    "**/secrets/**",
+    "**/.git/**"
+  ],
+  "allowedRoots": [
+    "artifacts/ci",
+    "artifacts/build",
+    "artifacts/test-results",
+    "artifacts/security",
+    "artifacts/provenance"
+  ],
+  "releaseArchiveNote": "GitHub retention is not a permanent release archive. Phase 47 must copy immutable evidence to the approved release archive."
+}
