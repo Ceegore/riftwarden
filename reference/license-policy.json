@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "autoAllow": [
+    "0BSD",
+    "Apache-2.0",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "CC0-1.0",
+    "ISC",
+    "MIT",
+    "Unlicense",
+    "BlueOak-1.0.0"
+  ],
+  "manualReview": [
+    "MPL-2.0",
+    "LGPL-2.1-only",
+    "LGPL-2.1-or-later",
+    "LGPL-3.0-only",
+    "LGPL-3.0-or-later",
+    "EPL-2.0",
+    "CDDL-1.0"
+  ],
+  "deny": [
+    "AGPL-1.0-only",
+    "AGPL-3.0-only",
+    "AGPL-3.0-or-later",
+    "GPL-2.0-only",
+    "GPL-2.0-or-later",
+    "GPL-3.0-only",
+    "GPL-3.0-or-later",
+    "SSPL-1.0",
+    "UNLICENSED"
+  ],
+  "unknownPolicy": "block",
+  "compoundExpressionPolicy": "manual-review-unless-every-branch-is-auto-allow",
+  "disclaimer": "Technical gate, not legal advice. Publisher approval remains required for manual-review licenses."
+}
