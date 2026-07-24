@@ -5,8 +5,10 @@ import { listGitVisibleFiles } from './git-files.mjs';
 
 const TEXT_EXTENSIONS = new Set([
   '.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.css', '.scss', '.html', '.json', '.jsonc', '.md',
-  '.java', '.kt', '.kts', '.swift', '.plist', '.xml', '.yml', '.yaml', '.sh', '.ps1', '.txt', '.editorconfig',
+  '.java', '.kt', '.kts', '.swift', '.plist', '.xml', '.yml', '.yaml', '.sh', '.txt', '.editorconfig',
 ]);
+// Platform-specific batch files use CRLF by design (.gitattributes eol=crlf); skip them.
+const CRLF_OK_EXTENSIONS = new Set(['.ps1', '.bat', '.cmd']);
 const ROOT_TEXT_FILES = new Set(['.gitignore', '.gitattributes', '.npmrc', '.node-version']);
 
 /**
