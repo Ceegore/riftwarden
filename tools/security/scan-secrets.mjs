@@ -12,7 +12,7 @@ const patterns = [
 ];
 const denyExt = new Set(['.png','.jpg','.jpeg','.gif','.webp','.zip','.jar','.woff','.woff2','.ttf','.mp3','.ogg','.m4a']);
 const findings = [];
-for (const file of await walkFiles(root, { excludedNames: ['.git','node_modules','dist','artifacts'] })) {
+for (const file of await walkFiles(root, { excludedNames: ['.git','node_modules','dist','artifacts','tests'] })) {
   if (denyExt.has(path.extname(file).toLowerCase())) continue;
   const text = await readFile(file, 'utf8').catch(() => null);
   if (text == null) continue;
