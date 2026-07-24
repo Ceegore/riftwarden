@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "implementationPhase": 3,
+  "branchProtectionRequiredContexts": [
+    "PR / workflow-security",
+    "PR / dependency-security",
+    "PR / required"
+  ],
+  "activeJobs": [
+    "bootstrap_versions",
+    "format_file_length",
+    "lint_typecheck",
+    "requirements_contracts",
+    "unit_tests",
+    "simulation_smoke",
+    "integration_smoke",
+    "web_build",
+    "e2e_smoke",
+    "workflow_security",
+    "dependency_security"
+  ],
+  "phasedJobs": [
+    {
+      "job": "localization_parity",
+      "activationPhase": 6,
+      "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "content_validate",
+      "activationPhase": 9,
+      "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "content_reproducibility",
+      "activationPhase": 10,
+      "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "asset_manifest_validate",
+      "activationPhase": 38,
+      "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "native_config_diff",
+      "activationPhase": 4,
+      "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "android_debug_smoke",
+      "activationPhase": 4,
+      "expectedBeforeActivation": "skipped"
+    }
+  ],
+  "aggregateRule": "Every active job must be success; phased jobs must be success at/after activation and skipped before activation; failure, cancelled or unexpected skipped blocks.",
+  "mainUsesSamePackageScripts": true,
+  "continueOnErrorForbidden": true,
+  "workflowFiles": [
+    ".github/workflows/pr.yml",
+    ".github/workflows/reusable-node-gate.yml",
+    ".github/workflows/main.yml",
+    ".github/workflows/nightly.yml",
+    ".github/workflows/release.yml"
+  ]
+}

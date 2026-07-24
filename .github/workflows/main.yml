@@ -1,0 +1,84 @@
+name: Main
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: main-${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: false
+
+env:
+  CI: 'true'
+  RIFTWARDEN_IMPLEMENTATION_PHASE: '3'
+
+jobs:
+  verify:
+    name: Main / required
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout merged main
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Set up exact Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - name: Bootstrap
+        run: |
+          set -euo pipefail
+          corepack enable
+          pnpm --version
+          pnpm install --frozen-lockfile
+          pnpm verify:repo
+          pnpm verify:phase02
+          pnpm verify:phase03
+      - name: Static contracts
+        run: |
+          pnpm format:check
+          pnpm check:file-length
+          pnpm lint
+          pnpm typecheck
+          pnpm requirements:validate
+      - name: Active tests
+        run: |
+          pnpm test:tooling
+          pnpm test:phase03-tooling
+          pnpm test:unit
+          pnpm test:sim
+          pnpm test:integration
+      - name: Release-mode web build
+        run: pnpm build:release
+      - name: Capture provenance and dependency evidence
+        run: |
+          pnpm build:manifest -- --channel qa --phase 3
+          pnpm deps:capture
+          pnpm deps:report
+          pnpm deps:sbom
+          pnpm security:audit
+          pnpm security:secrets
+          pnpm security:artifact-paths
+      - name: Browser installation
+        run: pnpm exec playwright install --with-deps chromium firefox webkit
+      - name: E2E
+        run: pnpm test:e2e
+      - name: Upload main evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: riftwarden-main-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            artifacts/
+            playwright-report/
+            test-results/
+          if-no-files-found: error
+          include-hidden-files: false
+          retention-days: 30

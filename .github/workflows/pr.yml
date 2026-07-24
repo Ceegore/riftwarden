@@ -1,0 +1,174 @@
+name: PR
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+env:
+  CI: 'true'
+  RIFTWARDEN_IMPLEMENTATION_PHASE: '3'
+
+jobs:
+  bootstrap_versions:
+    name: PR / bootstrap-versions
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: bootstrap-versions
+
+  format_file_length:
+    name: PR / format-file-length
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: format-file-length
+
+  lint_typecheck:
+    name: PR / lint-typecheck
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: lint-typecheck
+
+  requirements_contracts:
+    name: PR / requirements-contracts
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: requirements-contracts
+
+  unit_tests:
+    name: PR / unit-tests
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: unit-tests
+
+  simulation_smoke:
+    name: PR / simulation-smoke
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: simulation-smoke
+
+  integration_smoke:
+    name: PR / integration-smoke
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: integration-smoke
+
+  web_build:
+    name: PR / web-build
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: web-build
+
+  e2e_smoke:
+    name: PR / e2e-smoke
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: e2e-smoke
+
+  workflow_security:
+    name: PR / workflow-security
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: workflow-security
+
+  dependency_security:
+    name: PR / dependency-security
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: dependency-security
+
+  localization_parity:
+    name: PR / localization-parity
+    if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_06_LOCALIZATION_ENABLED == 'true'
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: localization-parity
+
+  content_validate:
+    name: PR / content-validate
+    if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_09_CONTENT_ENABLED == 'true'
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: content-validate
+
+  content_reproducibility:
+    name: PR / content-reproducibility
+    if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_10_CONTENT_BUILD_ENABLED == 'true'
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: content-reproducibility
+
+  asset_manifest_validate:
+    name: PR / asset-manifest-validate
+    if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_38_ASSETS_ENABLED == 'true'
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: asset-manifest-validate
+
+  native_config_diff:
+    name: PR / native-config-diff
+    if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_04_NATIVE_ENABLED == 'true'
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: native-config-diff
+
+  android_debug_smoke:
+    name: PR / android-debug-smoke
+    if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_04_NATIVE_ENABLED == 'true'
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: android-debug-smoke
+  required:
+    name: PR / required
+    if: always() && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs:
+      - bootstrap_versions
+      - format_file_length
+      - lint_typecheck
+      - requirements_contracts
+      - unit_tests
+      - simulation_smoke
+      - integration_smoke
+      - web_build
+      - e2e_smoke
+      - workflow_security
+      - dependency_security
+      - localization_parity
+      - content_validate
+      - content_reproducibility
+      - asset_manifest_validate
+      - native_config_diff
+      - android_debug_smoke
+    steps:
+      - name: Checkout result validator
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Set up exact Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - name: Assert active and phased results
+        env:
+          NEEDS_JSON: ${{ toJSON(needs) }}
+        run: node tools/ci/assert-needs-results.mjs --phase 3

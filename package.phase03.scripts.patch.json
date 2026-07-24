@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "ci:verify-workflows": "node tools/ci/verify-workflows.mjs",
+    "ci:gate-map": "node tools/ci/create-gate-map.mjs",
+    "ci:assert-results": "node tools/ci/assert-needs-results.mjs",
+    "ci:verify-branch-evidence": "node tools/ci/verify-branch-protection-evidence.mjs",
+    "build:manifest": "node tools/build/create-manifest.mjs",
+    "build:hash-tree": "node tools/build/hash-tree.mjs",
+    "deps:capture": "node tools/deps/capture.mjs",
+    "deps:report": "node tools/deps/report.mjs",
+    "deps:sbom": "node tools/deps/create-cyclonedx.mjs",
+    "deps:diff": "node tools/deps/diff.mjs",
+    "security:audit": "node tools/security/check-audit.mjs",
+    "security:secrets": "node tools/security/scan-secrets.mjs",
+    "security:artifact-paths": "node tools/security/check-artifact-allowlist.mjs",
+    "test:phase03-tooling": "node --test tests/tooling/phase03/*.test.mjs",
+    "verify:phase03": "node tools/repo/verify-phase03.mjs"
+  }
+}

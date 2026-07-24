@@ -654,9 +654,9 @@
     "Run apply-freeze, then pnpm install with scripts disabled and strict peers.",
     "Do not mark APPROVED until clean install, license, postinstall and build gates pass."
   ],
-  "nodeVersionApproved": "25.8.0",
+  "nodeVersionApproved": "22.0.0",
   "pnpmVersionApproved": "10.0.0",
-  "nodeSelectionRationale": "Node v25.8.0 is the installed LTS-compatible runtime; all resolved packages support Node >=22.",
+  "nodeSelectionRationale": "Node 22 LTS is the GDD-mandated major (>=22 <23). GitHub Actions runners provide Node 22 natively.",
   "pnpmSelectionRationale": "pnpm 10.0.0 bootstrap anchor; Phase 02 freezes this exact version.",
   "compatibilityDecisions": [
     {

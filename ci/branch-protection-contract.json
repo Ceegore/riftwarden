@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "target": "main",
+  "requirePullRequest": true,
+  "requiredApprovals": 1,
+  "requireCodeOwnerReview": true,
+  "dismissStaleApprovals": true,
+  "requireLastPushApproval": true,
+  "requireConversationResolution": true,
+  "requiredStatusChecks": [
+    "PR / workflow-security",
+    "PR / dependency-security",
+    "PR / required"
+  ],
+  "strictUpToDateBeforeMerge": true,
+  "allowForcePushes": false,
+  "allowDeletions": false,
+  "requireLinearHistory": true,
+  "mergeMethods": {
+    "squash": true,
+    "mergeCommit": false,
+    "rebase": false
+  },
+  "bypass": "disabled; emergency bypass must be separately evidenced and cannot satisfy G03 by itself",
+  "criticalCodeOwnerAreas": [
+    "src/game/sim/**",
+    "src/storage/**",
+    "src/platform/**",
+    "android/**",
+    "ios/**",
+    "store/**",
+    ".github/workflows/**",
+    "tools/build/**",
+    "tools/deps/**"
+  ]
+}

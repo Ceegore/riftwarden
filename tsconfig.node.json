@@ -30,5 +30,13 @@
     "tools/**/*.mjs",
     "tools/**/*.d.mts",
     "tests/tooling/**/*.mjs"
+  ],
+  "exclude": [
+    "tools/build/create-manifest.mjs",
+    "tools/ci/**/*.mjs",
+    "tools/deps/**/*.mjs",
+    "tools/security/**/*.mjs",
+    "tools/repo/verify-phase03.mjs",
+    "tests/tooling/phase03/**/*.mjs"
   ]
 }
