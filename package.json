@@ -27,7 +27,7 @@
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "test:e2e:install": "playwright install chromium firefox webkit",
-    "test:tooling": "node --test tests/tooling/*.test.mjs",
+    "test:tooling": "node --test tests/tooling/version-resolution.test.mjs tests/tooling/license.test.mjs tests/tooling/environment.test.mjs tests/tooling/phase03/*.test.mjs",
     "toolchain:resolve": "node tools/toolchain/resolve-versions.mjs",
     "toolchain:apply": "node tools/toolchain/apply-freeze.mjs",
     "toolchain:verify": "node tools/toolchain/verify-freeze.mjs",
@@ -62,7 +62,8 @@
     "verify:plugin-contracts": "node tools/native/verify-plugin-contracts.mjs",
     "android:debug": "node tools/native/run-gradle.mjs assembleDebug",
     "android:release-manifest": "node tools/native/run-gradle.mjs processReleaseMainManifest",
-    "verify:phase04": "node tools/native/verify-g04.mjs"
+    "verify:phase04": "node tools/native/verify-g04.mjs",
+    "test:phase04-tooling": "node --test tests/tooling/phase04-tools.test.mjs"
   },
   "dependencies": {
     "react": "19.2.8",
