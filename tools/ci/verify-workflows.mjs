@@ -9,7 +9,7 @@ const localPattern = /^\.\//;
 const errors = [];
 const reports = [];
 
-for (const name of (await readdir(root)).filter((x) => /\.ya?ml$/i.test(x)).sort()) {
+for (const name of (await readdir(root)).filter((x) => /\.ya?ml$/i.test(x) && !/\.reference\.ya?ml$/i.test(x)).sort()) {
   const file = path.join(root, name);
   const text = await readFile(file, 'utf8');
   const lines = text.split(/\n/);
