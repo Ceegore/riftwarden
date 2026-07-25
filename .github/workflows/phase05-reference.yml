@@ -1,0 +1,36 @@
+name: phase05-reference
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract-tools:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - name: Enable pinned package manager
+        run: corepack enable
+      - name: Frozen install
+        run: pnpm install --frozen-lockfile
+      - name: Phase-05 contract tools
+        run: |
+          pnpm verify:phase05:contracts
+          pnpm verify:phase05:source
+          pnpm verify:phase05:copy
+      - name: Phase-05 tests
+        run: pnpm test:phase05
+
+# Reference only:
+# - verify action SHAs at implementation time;
+# - merge jobs into the Phase-03 pipelines;
+# - do not create a parallel CI architecture;
+# - evidence/device jobs remain blocked until real runners exist.
