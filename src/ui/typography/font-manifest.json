@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "families": [
+    {
+      "id": "noto-sans-ui",
+      "cssFamily": "Riftwarden Noto Sans",
+      "purpose": "ui_body",
+      "source": "GDD-V5-52.2/55.2",
+      "faces": [
+        {
+          "weight": 450,
+          "style": "normal",
+          "path": "public/assets/fonts/noto-sans-ui-450.woff2"
+        },
+        {
+          "weight": 650,
+          "style": "normal",
+          "path": "public/assets/fonts/noto-sans-ui-650.woff2"
+        },
+        {
+          "weight": 700,
+          "style": "normal",
+          "path": "public/assets/fonts/noto-sans-ui-700.woff2"
+        }
+      ],
+      "licenseEvidence": {
+        "status": "missing",
+        "expectedPath": "public/assets/fonts/licenses/OFL-NOTO-SANS.txt"
+      }
+    },
+    {
+      "id": "cinzel-display",
+      "cssFamily": "Riftwarden Cinzel",
+      "purpose": "display_only",
+      "source": "GDD-V5-52.2/55.2",
+      "faces": [
+        {
+          "weight": 700,
+          "style": "normal",
+          "path": "public/assets/fonts/cinzel-display-700.woff2"
+        }
+      ],
+      "licenseEvidence": {
+        "status": "missing",
+        "expectedPath": "public/assets/fonts/licenses/OFL-CINZEL.txt"
+      }
+    }
+  ],
+  "requiredGlyphProbe": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÄÖÜäöüß0123456789.,:;!?()[]{}+-–—…%€“”„’/\\"
+}

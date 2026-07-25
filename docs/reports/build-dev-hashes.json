@@ -3,6 +3,16 @@
   "channel": "dev",
   "files": [
     {
+      "path": "assets/fonts/licenses/README.md",
+      "sha256": "a11c81b46787e061c1662799051da93e73c873cb29447b5b1d9c68f98e48998f",
+      "bytes": 96
+    },
+    {
+      "path": "assets/fonts/README.md",
+      "sha256": "a8c02e26f45a7155750499980c1fed85948a259ee4d7cb993d9c99790863b8fa",
+      "bytes": 430
+    },
+    {
       "path": "assets/generated/.gitkeep",
       "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
       "bytes": 1
@@ -13,23 +23,23 @@
       "bytes": 157
     },
     {
-      "path": "assets/index-C9RmzeGN.js",
-      "sha256": "fabe786da0e754731ea7df757e8b380de6a69a1c3ea2e9ff786c37bce68cff3f",
+      "path": "assets/index-DuCRpvF6.css",
+      "sha256": "25f04d4d8cc7b0d2aabe9f7766f660f9b4d7f64d4e19337547e022bd0e1429f1",
+      "bytes": 8158
+    },
+    {
+      "path": "assets/index-MdhF85kH.js",
+      "sha256": "e4b81c0690bb56590675951696ad174c2f89835460983561f572aec8c8729a60",
       "bytes": 190887
     },
     {
-      "path": "assets/index-C9RmzeGN.js.map",
-      "sha256": "a72a9a259507abaff77f9a2de405745a73931ed554bebcc6934cbdfc44ae4eeb",
+      "path": "assets/index-MdhF85kH.js.map",
+      "sha256": "6189c8cf1a232a620b8251512464e73789129e5c541a6c4c938c515776f5c0b7",
       "bytes": 842713
     },
     {
-      "path": "assets/index-CrhAFr-1.css",
-      "sha256": "43fb97ab154dc94b88e70b2a41f15ccef36234005e6523f5a4d7410db0245a80",
-      "bytes": 8122
-    },
-    {
       "path": "index.html",
-      "sha256": "bea3e228853cb97bc5a77a16b32d34cec9e4119f6c5d7499c6b79e4ee4664f1f",
+      "sha256": "2c82f18859ba78df831476dfce86a7f6af84a125f087a825f43fedf02f25804d",
       "bytes": 706
     }
   ]

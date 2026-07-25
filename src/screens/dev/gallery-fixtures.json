@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "locales": [
+    "de",
+    "en",
+    "qps-ploc"
+  ],
+  "layoutClasses": [
+    "phone_compact",
+    "phone_standard",
+    "tablet",
+    "large",
+    "portrait_narrow"
+  ],
+  "textScales": [
+    1,
+    1.15,
+    1.3,
+    1.5,
+    1.75,
+    2
+  ],
+  "colorProfiles": [
+    "default",
+    "deuteranopia",
+    "protanopia",
+    "tritanopia"
+  ],
+  "reducedSettings": [
+    {
+      "reduceMotion": false,
+      "reduceFlash": false
+    },
+    {
+      "reduceMotion": true,
+      "reduceFlash": true
+    }
+  ],
+  "criticalScales": [
+    1,
+    1.5,
+    2
+  ]
+}

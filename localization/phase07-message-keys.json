@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "status": "draft_requires_linguistic_review",
+  "keys": {
+    "ui.dev.component_gallery.title": {
+      "de": "Komponentengalerie",
+      "en": "Component gallery"
+    },
+    "ui.dev.component_gallery.card_title": {
+      "de": "Beispielkarte",
+      "en": "Example card"
+    },
+    "ui.dev.component_gallery.loading": {
+      "de": "Komponente wird geladen",
+      "en": "Loading component"
+    },
+    "ui.dev.component_gallery.tooltip": {
+      "de": "Zusätzliche Details zur Komponente.",
+      "en": "Additional component details."
+    },
+    "ui.dev.component_gallery.modal_title": {
+      "de": "Beispieldialog",
+      "en": "Example dialog"
+    },
+    "ui.common.confirm": {
+      "de": "Bestätigen",
+      "en": "Confirm"
+    },
+    "ui.common.cancel": {
+      "de": "Abbrechen",
+      "en": "Cancel"
+    },
+    "ui.common.level": {
+      "de": "Stufe",
+      "en": "Level"
+    },
+    "ui.dev.component_gallery.tab_one": {
+      "de": "Erster Reiter",
+      "en": "First tab"
+    },
+    "ui.dev.component_gallery.tab_two": {
+      "de": "Zweiter Reiter",
+      "en": "Second tab"
+    },
+    "ui.dev.component_gallery.scale_label": {
+      "de": "Textgröße",
+      "en": "Text size"
+    },
+    "ui.dev.component_gallery.scale_one": {
+      "de": "Einfach",
+      "en": "Single"
+    },
+    "ui.dev.component_gallery.scale_two": {
+      "de": "Doppelt",
+      "en": "Double"
+    },
+    "ui.common.close": {
+      "de": "Schließen",
+      "en": "Close"
+    },
+    "ui.resource.gold": {
+      "de": "Gold",
+      "en": "Gold"
+    }
+  },
+  "rules": [
+    "merge_through_phase06_catalog_pipeline",
+    "generate_qps_ploc_deterministically",
+    "release_block_until_approved"
+  ]
+}

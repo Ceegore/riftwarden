@@ -1,0 +1,3 @@
+import test from 'node:test'; import assert from 'node:assert/strict'; import { readFile } from 'node:fs/promises';
+const data=JSON.parse(await readFile(new URL('../../localization/phase07-message-keys.json',import.meta.url),'utf8'));
+test('every phase07 key has DE and EN',()=>{for(const [key,value] of Object.entries(data.keys)){assert.equal(typeof value.de,'string',key);assert.equal(typeof value.en,'string',key);}});test('copy remains draft',()=>assert.equal(data.status,'draft_requires_linguistic_review'));test('pseudo is generated not authored',()=>assert.ok(data.rules.includes('generate_qps_ploc_deterministically')));

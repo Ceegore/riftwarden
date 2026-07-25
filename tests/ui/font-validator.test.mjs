@@ -1,0 +1,3 @@
+import test from 'node:test'; import assert from 'node:assert/strict'; import { spawnSync } from 'node:child_process';
+const script=new URL('../../tools/ui/validate-fonts.mjs',import.meta.url).pathname; const root=new URL('../..',import.meta.url).pathname;
+test('starter font release gate is intentionally blocked',()=>{const r=spawnSync(process.execPath,[script,root]);assert.equal(r.status,1);const report=JSON.parse(r.stdout.toString());assert.ok(report.diagnostics.some((d)=>d.code==='P07_FONT_FILE_MISSING'));assert.ok(report.diagnostics.some((d)=>d.code==='P07_FONT_LICENSE_EVIDENCE_MISSING'));});

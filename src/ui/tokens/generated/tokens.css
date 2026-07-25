@@ -1,0 +1,55 @@
+/* GENERATED. DO NOT EDIT. */
+:root {
+  --rw-color-bg-deep: #111022;
+  --rw-color-bg-void: #0B0A16;
+  --rw-color-border: #4B3C6C;
+  --rw-color-danger: #E35D6A;
+  --rw-color-gold: #F2C66D;
+  --rw-color-gold-bright: #FFE39A;
+  --rw-color-info: #6DB8F2;
+  --rw-color-panel: #19152D;
+  --rw-color-panel-raised: #241C3D;
+  --rw-color-rift-cyan: #69E1DC;
+  --rw-color-rift-violet: #8064E8;
+  --rw-color-success: #62D99C;
+  --rw-color-text-disabled: #80778F;
+  --rw-color-text-primary: #F8F4E8;
+  --rw-color-text-secondary: #C5BDD4;
+  --rw-color-warning: #F0A64A;
+  --rw-content-large-max-width: 1600px;
+  --rw-motion-emphasis: 360ms;
+  --rw-motion-fast: 140ms;
+  --rw-motion-instant: 80ms;
+  --rw-motion-loop-max: 8000ms;
+  --rw-motion-loop-min: 2000ms;
+  --rw-motion-scene-max: 700ms;
+  --rw-motion-scene-min: 500ms;
+  --rw-motion-standard: 220ms;
+  --rw-radius-control: 14px;
+  --rw-radius-hero-modal: 28px;
+  --rw-radius-panel: 20px;
+  --rw-radius-small: 8px;
+  --rw-safe-area-primary-extra-inset: 8px;
+  --rw-space-12: 12px;
+  --rw-space-16: 16px;
+  --rw-space-24: 24px;
+  --rw-space-32: 32px;
+  --rw-space-4: 4px;
+  --rw-space-48: 48px;
+  --rw-space-64: 64px;
+  --rw-space-8: 8px;
+  --rw-z-content: 10;
+  --rw-z-hud: 20;
+  --rw-z-modal: 50;
+  --rw-z-modal-backdrop: 40;
+  --rw-z-popover: 30;
+  --rw-z-scene: 0;
+  --rw-z-system: 70;
+  --rw-z-toast: 60;
+  /* BLOCKED border.control-width: P07-BLK-009 */
+  /* BLOCKED focus.ring-offset: P07-BLK-004 */
+  /* BLOCKED focus.ring-width: P07-BLK-004 */
+  /* BLOCKED shadow.control: P07-BLK-003 */
+  /* BLOCKED shadow.modal: P07-BLK-003 */
+  /* BLOCKED shadow.panel: P07-BLK-003 */
+}
