@@ -75,7 +75,12 @@
     "ui:tokens:validate:release": "node tools/ui/validate-tokens.mjs --release .",
     "ui:fonts:validate": "node tools/ui/validate-fonts.mjs .",
     "ui:release-scan": "node tools/ui/scan-release-bundle.mjs dist",
-    "test:ui-contracts": "node --test tests/ui/*.test.mjs"
+    "test:ui-contracts": "node --test tests/ui/*.test.mjs",
+    "nav:build-registry": "node tools/navigation/build-screen-registry.mjs .",
+    "nav:validate": "node tools/navigation/validate-navigation.mjs .",
+    "nav:validate:release": "node tools/navigation/validate-navigation.mjs . --release",
+    "test:navigation": "node --test tests/navigation/*.test.mjs",
+    "typecheck:navigation-starter": "tsc -p tsconfig.navigation-starter.json"
   },
   "dependencies": {
     "react": "19.2.8",

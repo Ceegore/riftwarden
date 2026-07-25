@@ -41,6 +41,8 @@
     "tools/native/**/*.mjs",
     "tools/phase05/**/*.mjs",
     "tools/locales/**/*.mjs",
-    "tools/ui/**/*.mjs"
+    "tools/ui/**/*.mjs",
+    "tools/navigation/**/*.mjs",
+    "tests/navigation/**/*.mjs"
   ]
 }

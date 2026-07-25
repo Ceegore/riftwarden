@@ -1,0 +1,1200 @@
+{
+  "schemaVersion": 1,
+  "status": "STRUCTURAL_SOURCE_WITH_UNRESOLVED_NUMERIC_ALIAS_CONFLICT",
+  "canonicalIdentity": "screenKey",
+  "numericAliasesAuthority": "BLOCKED_BY_NORM_003",
+  "reservedAliases": [
+    "S37",
+    "S38",
+    "S39",
+    "S58",
+    "S59"
+  ],
+  "entries": [
+    {
+      "screenKey": "nativeSplash",
+      "section7Alias": "S00",
+      "label": "Native Splash",
+      "kind": "screen",
+      "group": "system",
+      "ownerPhase": "04/05",
+      "testId": "E2E-S00-BOOT",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "systemOwned",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "bootRecovery"
+      ],
+      "screenshotProfileId": "system.default",
+      "loaderId": "screen.nativeSplash"
+    },
+    {
+      "screenKey": "bootstrapRecovery",
+      "section7Alias": "S01",
+      "label": "Bootstrap/Recovery",
+      "kind": "screen",
+      "group": "system",
+      "ownerPhase": "05/24",
+      "testId": "E2E-S01-RECOVERY",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "systemOwned",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "bootRecovery"
+      ],
+      "screenshotProfileId": "system.default",
+      "loaderId": "screen.bootstrapRecovery"
+    },
+    {
+      "screenKey": "firstRun",
+      "section7Alias": "S02",
+      "label": "Erststart",
+      "kind": "screen",
+      "group": "system",
+      "ownerPhase": "06/40",
+      "testId": "E2E-S02-FIRST-RUN",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "system.default",
+      "loaderId": "screen.firstRun"
+    },
+    {
+      "screenKey": "title",
+      "section7Alias": "S03",
+      "label": "Titel",
+      "kind": "screen",
+      "group": "system",
+      "ownerPhase": "30",
+      "testId": "E2E-S03-TITLE",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "doubleBackExitAndroid",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "system.default",
+      "loaderId": "screen.title"
+    },
+    {
+      "screenKey": "newGame",
+      "section7Alias": "S04",
+      "label": "Neues Spiel",
+      "kind": "screen",
+      "group": "system",
+      "ownerPhase": "30/33",
+      "testId": "E2E-S04-NEW-GAME",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "system.default",
+      "loaderId": "screen.newGame"
+    },
+    {
+      "screenKey": "continueCard",
+      "section7Alias": "S05",
+      "label": "Lade-/Fortsetzenkarte",
+      "kind": "screen",
+      "group": "system",
+      "ownerPhase": "05/24",
+      "testId": "E2E-S05-CONTINUE",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "bootRecovery"
+      ],
+      "screenshotProfileId": "system.default",
+      "loaderId": "screen.continueCard"
+    },
+    {
+      "screenKey": "settingsHub",
+      "section7Alias": "S06",
+      "label": "Einstellungen-Hub",
+      "kind": "screen",
+      "group": "system",
+      "ownerPhase": "30",
+      "testId": "E2E-S06-SETTINGS",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "system.default",
+      "loaderId": "screen.settingsHub"
+    },
+    {
+      "screenKey": "legalAbout",
+      "section7Alias": "S07",
+      "label": "Rechtliches/About",
+      "kind": "screen",
+      "group": "system",
+      "ownerPhase": "30/42/45",
+      "testId": "E2E-S07-LEGAL",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "system.default",
+      "loaderId": "screen.legalAbout"
+    },
+    {
+      "screenKey": "globalHelp",
+      "section7Alias": "S08",
+      "label": "Globale Hilfe",
+      "kind": "screen",
+      "group": "system",
+      "ownerPhase": "30/33",
+      "testId": "E2E-S08-HELP",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "system.default",
+      "loaderId": "screen.globalHelp"
+    },
+    {
+      "screenKey": "fatalError",
+      "section7Alias": "S09",
+      "label": "Fataler Fehler",
+      "kind": "screen",
+      "group": "system",
+      "ownerPhase": "05/24",
+      "testId": "E2E-S09-FATAL",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "systemOwned",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "bootRecovery"
+      ],
+      "screenshotProfileId": "system.default",
+      "loaderId": "screen.fatalError"
+    },
+    {
+      "screenKey": "hqOverview",
+      "section7Alias": "S10",
+      "label": "HQ-Übersicht",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "30",
+      "testId": "E2E-S10-HQ",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "doubleBackExitAndroid",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.hqOverview"
+    },
+    {
+      "screenKey": "missionBoard",
+      "section7Alias": "S11",
+      "label": "Einsatztafel",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "33",
+      "testId": "E2E-S11-MISSIONS",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.missionBoard"
+    },
+    {
+      "screenKey": "missionDetails",
+      "section7Alias": "S12",
+      "label": "Missionsdetails",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "33",
+      "testId": "E2E-S12-MISSION-DETAIL",
+      "paramSchemaId": "params.mission",
+      "backPolicyId": "previousPreserveView",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.missionDetails"
+    },
+    {
+      "screenKey": "groupSelection",
+      "section7Alias": "S13",
+      "label": "Gruppenauswahl",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "27",
+      "testId": "E2E-S13-GROUP",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "unsavedAwarePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.groupSelection"
+    },
+    {
+      "screenKey": "formationPreview",
+      "section7Alias": "S14",
+      "label": "Formation/Vorschau",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "27",
+      "testId": "E2E-S14-FORMATION",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "unsavedAwarePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.formationPreview"
+    },
+    {
+      "screenKey": "heroHall",
+      "section7Alias": "S15",
+      "label": "Heldenhalle",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "31",
+      "testId": "E2E-S15-HERO-HALL",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.heroHall"
+    },
+    {
+      "screenKey": "heroDetails",
+      "section7Alias": "S16",
+      "label": "Heldendetail",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "31",
+      "testId": "E2E-S16-HERO-DETAIL",
+      "paramSchemaId": "params.entity",
+      "backPolicyId": "previousPreserveView",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.heroDetails"
+    },
+    {
+      "screenKey": "equipmentPicker",
+      "section7Alias": "S17",
+      "label": "Ausrüstungs-Picker",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "31",
+      "testId": "E2E-S17-EQUIPMENT-PICKER",
+      "paramSchemaId": "params.picker",
+      "backPolicyId": "previousPreserveView",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.equipmentPicker"
+    },
+    {
+      "screenKey": "mastery",
+      "section7Alias": "S18",
+      "label": "Meisterschaft",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "35",
+      "testId": "E2E-S18-MASTERY",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.mastery"
+    },
+    {
+      "screenKey": "barracks",
+      "section7Alias": "S19",
+      "label": "Kaserne",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "31",
+      "testId": "E2E-S19-BARRACKS",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.barracks"
+    },
+    {
+      "screenKey": "troopDetails",
+      "section7Alias": "S20",
+      "label": "Truppendetail",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "31",
+      "testId": "E2E-S20-TROOP-DETAIL",
+      "paramSchemaId": "params.entity",
+      "backPolicyId": "previousPreserveView",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.troopDetails"
+    },
+    {
+      "screenKey": "kitPicker",
+      "section7Alias": "S21",
+      "label": "Kit-Picker",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "31",
+      "testId": "E2E-S21-KIT-PICKER",
+      "paramSchemaId": "params.picker",
+      "backPolicyId": "previousPreserveView",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.kitPicker"
+    },
+    {
+      "screenKey": "workshop",
+      "section7Alias": "S22",
+      "label": "Werkstatt",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "31",
+      "testId": "E2E-S22-WORKSHOP",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.workshop"
+    },
+    {
+      "screenKey": "itemDetails",
+      "section7Alias": "S23",
+      "label": "Gegenstandsdetail",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "31",
+      "testId": "E2E-S23-ITEM-DETAIL",
+      "paramSchemaId": "params.entity",
+      "backPolicyId": "previousPreserveView",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.itemDetails"
+    },
+    {
+      "screenKey": "bannerPicker",
+      "section7Alias": "S24",
+      "label": "Banner-Picker",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "31",
+      "testId": "E2E-S24-BANNER",
+      "paramSchemaId": "params.picker",
+      "backPolicyId": "previousPreserveView",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.bannerPicker"
+    },
+    {
+      "screenKey": "archiveHub",
+      "section7Alias": "S25",
+      "label": "Archiv-Hub",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "35",
+      "testId": "E2E-S25-ARCHIVE",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.archiveHub"
+    },
+    {
+      "screenKey": "codexList",
+      "section7Alias": "S26",
+      "label": "Kodexliste",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "35",
+      "testId": "E2E-S26-CODEX-LIST",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.codexList"
+    },
+    {
+      "screenKey": "codexDetails",
+      "section7Alias": "S27",
+      "label": "Kodexdetail",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "35",
+      "testId": "E2E-S27-CODEX-DETAIL",
+      "paramSchemaId": "params.entity",
+      "backPolicyId": "previousPreserveView",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.codexDetails"
+    },
+    {
+      "screenKey": "achievements",
+      "section7Alias": "S28",
+      "label": "Erfolge",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "35",
+      "testId": "E2E-S28-ACHIEVEMENTS",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.achievements"
+    },
+    {
+      "screenKey": "recordsStatistics",
+      "section7Alias": "S29",
+      "label": "Rekorde/Statistik",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "35",
+      "testId": "E2E-S29-RECORDS",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.recordsStatistics"
+    },
+    {
+      "screenKey": "storyArchive",
+      "section7Alias": "S30",
+      "label": "Storyarchiv",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "35",
+      "testId": "E2E-S30-STORY",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.storyArchive"
+    },
+    {
+      "screenKey": "riftChamber",
+      "section7Alias": "S31",
+      "label": "Riftkammer",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "36",
+      "testId": "E2E-S31-RIFT-CHAMBER",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.riftChamber"
+    },
+    {
+      "screenKey": "ascensionRanks",
+      "section7Alias": "S32",
+      "label": "Ascension-Ränge",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "36",
+      "testId": "E2E-S32-ASCENSION",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.ascensionRanks"
+    },
+    {
+      "screenKey": "constellation",
+      "section7Alias": "S33",
+      "label": "Konstellation",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "36",
+      "testId": "E2E-S33-CONSTELLATION",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.constellation"
+    },
+    {
+      "screenKey": "cyclePreparation",
+      "section7Alias": "S34",
+      "label": "Zyklusvorbereitung",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "36",
+      "testId": "E2E-S34-CYCLE",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.cyclePreparation"
+    },
+    {
+      "screenKey": "endlessSetup",
+      "section7Alias": "S35",
+      "label": "Endless-Setup",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "36",
+      "testId": "E2E-S35-ENDLESS-SETUP",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.endlessSetup"
+    },
+    {
+      "screenKey": "beyondSetup",
+      "section7Alias": "S36",
+      "label": "Jenseits-Setup",
+      "kind": "screen",
+      "group": "hq",
+      "ownerPhase": "36",
+      "testId": "E2E-S36-BEYOND",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "hq.default",
+      "loaderId": "screen.beyondSetup"
+    },
+    {
+      "screenKey": "dungeonMap",
+      "section7Alias": "S40",
+      "label": "Dungeonkarte",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "28/32",
+      "testId": "E2E-S40-DUNGEON",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "openExpeditionMenu",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.dungeonMap"
+    },
+    {
+      "screenKey": "nodePreview",
+      "section7Alias": "S41",
+      "label": "Knotenvorschau",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "28/32",
+      "testId": "E2E-S41-NODE",
+      "paramSchemaId": "params.node",
+      "backPolicyId": "previousPreserveView",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.nodePreview"
+    },
+    {
+      "screenKey": "event",
+      "section7Alias": "S42",
+      "label": "Ereignis",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "32",
+      "testId": "E2E-S42-EVENT",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.event"
+    },
+    {
+      "screenKey": "merchant",
+      "section7Alias": "S43",
+      "label": "Händler",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "32",
+      "testId": "E2E-S43-MERCHANT",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.merchant"
+    },
+    {
+      "screenKey": "recruitment",
+      "section7Alias": "S44",
+      "label": "Rekrutierung",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "32",
+      "testId": "E2E-S44-RECRUIT",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.recruitment"
+    },
+    {
+      "screenKey": "treasure",
+      "section7Alias": "S45",
+      "label": "Schatz",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "32",
+      "testId": "E2E-S45-TREASURE",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.treasure"
+    },
+    {
+      "screenKey": "dungeonWorkshop",
+      "section7Alias": "S46",
+      "label": "Dungeon-Werkstatt",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "32",
+      "testId": "E2E-S46-DUNGEON-WORKSHOP",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.dungeonWorkshop"
+    },
+    {
+      "screenKey": "riftAltar",
+      "section7Alias": "S47",
+      "label": "Riftaltar",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "32",
+      "testId": "E2E-S47-ALTAR",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.riftAltar"
+    },
+    {
+      "screenKey": "scoutPost",
+      "section7Alias": "S48",
+      "label": "Spähposten",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "32",
+      "testId": "E2E-S48-SCOUT",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.scoutPost"
+    },
+    {
+      "screenKey": "anchorPoint",
+      "section7Alias": "S49",
+      "label": "Ankerpunkt",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "28/32",
+      "testId": "E2E-S49-ANCHOR",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.anchorPoint"
+    },
+    {
+      "screenKey": "preBattle",
+      "section7Alias": "S50",
+      "label": "Pre-Battle",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "27",
+      "testId": "E2E-S50-PRE-BATTLE",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.preBattle"
+    },
+    {
+      "screenKey": "battle",
+      "section7Alias": "S51",
+      "label": "Kampf",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "25/26",
+      "testId": "E2E-S51-BATTLE",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "pauseAndOpenBattleMenu",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState",
+        "battlePresentation"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.battle"
+    },
+    {
+      "screenKey": "battleInspector",
+      "section7Alias": "S52",
+      "label": "Kampf-Pause/Inspektor",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "26",
+      "testId": "E2E-S52-INSPECTOR",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "previousPreserveView",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState",
+        "battlePresentation"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.battleInspector"
+    },
+    {
+      "screenKey": "battleResult",
+      "section7Alias": "S53",
+      "label": "Kampfergebnis",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "34",
+      "testId": "E2E-S53-RESULT",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.battleResult"
+    },
+    {
+      "screenKey": "rewardChoice",
+      "section7Alias": "S54",
+      "label": "Belohnungswahl",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "34",
+      "testId": "E2E-S54-REWARD",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "blockedUntilRewardDecision",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.rewardChoice"
+    },
+    {
+      "screenKey": "expeditionEnd",
+      "section7Alias": "S55",
+      "label": "Expeditionsabschluss",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "34",
+      "testId": "E2E-S55-EXPEDITION-END",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.expeditionEnd"
+    },
+    {
+      "screenKey": "defeatRecovery",
+      "section7Alias": "S56",
+      "label": "Niederlage/Recovery",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "34",
+      "testId": "E2E-S56-DEFEAT",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.defeatRecovery"
+    },
+    {
+      "screenKey": "endlessCheckpoint",
+      "section7Alias": "S57",
+      "label": "Endless-Checkpoint",
+      "kind": "screen",
+      "group": "run",
+      "ownerPhase": "36",
+      "testId": "E2E-S57-CHECKPOINT",
+      "paramSchemaId": "params.runContext",
+      "backPolicyId": "safePrevious",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "runState"
+      ],
+      "screenshotProfileId": "run.default",
+      "loaderId": "screen.endlessCheckpoint"
+    },
+    {
+      "screenKey": "audioSettings",
+      "section7Alias": "S60",
+      "label": "Audio",
+      "kind": "screen",
+      "group": "settings",
+      "ownerPhase": "39",
+      "testId": "E2E-S60-AUDIO",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "previousPreserveView",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "settingsStore"
+      ],
+      "screenshotProfileId": "settings.default",
+      "loaderId": "screen.audioSettings"
+    },
+    {
+      "screenKey": "graphicsSettings",
+      "section7Alias": "S61",
+      "label": "Grafik",
+      "kind": "screen",
+      "group": "settings",
+      "ownerPhase": "41",
+      "testId": "E2E-S61-GRAPHICS",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "previousPreserveView",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "settingsStore"
+      ],
+      "screenshotProfileId": "settings.default",
+      "loaderId": "screen.graphicsSettings"
+    },
+    {
+      "screenKey": "accessibilitySettings",
+      "section7Alias": "S62",
+      "label": "Barrierefreiheit",
+      "kind": "screen",
+      "group": "settings",
+      "ownerPhase": "40",
+      "testId": "E2E-S62-A11Y",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "previousPreserveView",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "settingsStore"
+      ],
+      "screenshotProfileId": "settings.default",
+      "loaderId": "screen.accessibilitySettings"
+    },
+    {
+      "screenKey": "controlsSettings",
+      "section7Alias": "S63",
+      "label": "Steuerung",
+      "kind": "screen",
+      "group": "settings",
+      "ownerPhase": "40",
+      "testId": "E2E-S63-CONTROLS",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "previousPreserveView",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "settingsStore"
+      ],
+      "screenshotProfileId": "settings.default",
+      "loaderId": "screen.controlsSettings"
+    },
+    {
+      "screenKey": "saveManagement",
+      "section7Alias": "S64",
+      "label": "Save-Verwaltung",
+      "kind": "screen",
+      "group": "settings",
+      "ownerPhase": "24",
+      "testId": "E2E-S64-SAVE",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "previousPreserveView",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "settings.default",
+      "loaderId": "screen.saveManagement"
+    },
+    {
+      "screenKey": "languageSettings",
+      "section7Alias": "S65",
+      "label": "Sprache",
+      "kind": "screen",
+      "group": "settings",
+      "ownerPhase": "06",
+      "testId": "E2E-S65-LANGUAGE",
+      "paramSchemaId": "params.none",
+      "backPolicyId": "previousPreserveView",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem",
+        "settingsStore"
+      ],
+      "screenshotProfileId": "settings.default",
+      "loaderId": "screen.languageSettings"
+    },
+    {
+      "screenKey": "confirmation",
+      "section7Alias": "O01",
+      "label": "Bestätigung",
+      "kind": "overlay",
+      "group": "overlays",
+      "ownerPhase": "07/08",
+      "testId": "E2E-O01-CONFIRM",
+      "paramSchemaId": "overlay.confirmation",
+      "backPolicyId": "overlayPriority",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "overlays.default",
+      "loaderId": "screen.confirmation"
+    },
+    {
+      "screenKey": "tooltipGlossary",
+      "section7Alias": "O02",
+      "label": "Tooltip/Glossar",
+      "kind": "overlay",
+      "group": "overlays",
+      "ownerPhase": "07/08",
+      "testId": "E2E-O02-TOOLTIP",
+      "paramSchemaId": "overlay.tooltipGlossary",
+      "backPolicyId": "overlayPriority",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "overlays.default",
+      "loaderId": "screen.tooltipGlossary"
+    },
+    {
+      "screenKey": "comparison",
+      "section7Alias": "O03",
+      "label": "Vergleich",
+      "kind": "overlay",
+      "group": "overlays",
+      "ownerPhase": "07/31",
+      "testId": "E2E-O03-COMPARE",
+      "paramSchemaId": "overlay.comparison",
+      "backPolicyId": "overlayPriority",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "overlays.default",
+      "loaderId": "screen.comparison"
+    },
+    {
+      "screenKey": "unlock",
+      "section7Alias": "O04",
+      "label": "Unlock",
+      "kind": "overlay",
+      "group": "overlays",
+      "ownerPhase": "07/30",
+      "testId": "E2E-O04-UNLOCK",
+      "paramSchemaId": "overlay.unlock",
+      "backPolicyId": "overlayPriority",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "overlays.default",
+      "loaderId": "screen.unlock"
+    },
+    {
+      "screenKey": "toast",
+      "section7Alias": "O05",
+      "label": "Toast",
+      "kind": "overlay",
+      "group": "overlays",
+      "ownerPhase": "07/08",
+      "testId": "E2E-O05-TOAST",
+      "paramSchemaId": "overlay.toast",
+      "backPolicyId": "overlayPriority",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "overlays.default",
+      "loaderId": "screen.toast"
+    },
+    {
+      "screenKey": "loading",
+      "section7Alias": "O06",
+      "label": "Loading",
+      "kind": "overlay",
+      "group": "overlays",
+      "ownerPhase": "05/07",
+      "testId": "E2E-O06-LOADING",
+      "paramSchemaId": "overlay.loading",
+      "backPolicyId": "overlayPriority",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "overlays.default",
+      "loaderId": "screen.loading"
+    },
+    {
+      "screenKey": "unsavedChanges",
+      "section7Alias": "O07",
+      "label": "Unsaved Changes",
+      "kind": "overlay",
+      "group": "overlays",
+      "ownerPhase": "08/27",
+      "testId": "E2E-O07-UNSAVED",
+      "paramSchemaId": "overlay.unsavedChanges",
+      "backPolicyId": "overlayPriority",
+      "requiredCapabilities": [
+        "localization",
+        "designSystem"
+      ],
+      "screenshotProfileId": "overlays.default",
+      "loaderId": "screen.unsavedChanges"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+[
+  {
+    "caseId": "invalid-save",
+    "input": {
+      "valid": false
+    },
+    "expected": "bootstrapRecovery"
+  },
+  {
+    "caseId": "profile-no-run",
+    "input": {
+      "valid": true,
+      "profile": true
+    },
+    "expected": "hqOverview"
+  },
+  {
+    "caseId": "committed-node",
+    "input": {
+      "valid": true,
+      "profile": true,
+      "committedNode": true,
+      "runId": "run_1",
+      "restoreToken": "r1"
+    },
+    "expected": "dungeonMap"
+  },
+  {
+    "caseId": "battle-snapshot",
+    "input": {
+      "valid": true,
+      "profile": true,
+      "battleSnapshot": true,
+      "runId": "run_1",
+      "restoreToken": "r1"
+    },
+    "expected": "battle"
+  }
+]
