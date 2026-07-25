@@ -1,0 +1,5 @@
+/* Paths are contractual; release is blocked until files and license evidence exist. */
+@font-face { font-family: 'Riftwarden Noto Sans'; src: url('/assets/fonts/noto-sans-ui-450.woff2') format('woff2'); font-weight: 450; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Riftwarden Noto Sans'; src: url('/assets/fonts/noto-sans-ui-650.woff2') format('woff2'); font-weight: 650; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Riftwarden Noto Sans'; src: url('/assets/fonts/noto-sans-ui-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Riftwarden Cinzel'; src: url('/assets/fonts/cinzel-display-700.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }

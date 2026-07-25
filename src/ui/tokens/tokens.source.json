@@ -1,0 +1,418 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "id": "riftwarden-ui-v1",
+    "source": [
+      "GDD-V5-55",
+      "GDD-V5-79",
+      "GDD-V5-80"
+    ],
+    "generatedFiles": [
+      "tokens.css",
+      "tokens.ts"
+    ]
+  },
+  "tokens": {
+    "color": {
+      "bg-void": {
+        "value": "#0B0A16",
+        "kind": "color",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "bg-deep": {
+        "value": "#111022",
+        "kind": "color",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "panel": {
+        "value": "#19152D",
+        "kind": "color",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "panel-raised": {
+        "value": "#241C3D",
+        "kind": "color",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "border": {
+        "value": "#4B3C6C",
+        "kind": "color",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "gold": {
+        "value": "#F2C66D",
+        "kind": "color",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "gold-bright": {
+        "value": "#FFE39A",
+        "kind": "color",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "rift-violet": {
+        "value": "#8064E8",
+        "kind": "color",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "rift-cyan": {
+        "value": "#69E1DC",
+        "kind": "color",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "text-primary": {
+        "value": "#F8F4E8",
+        "kind": "color",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "text-secondary": {
+        "value": "#C5BDD4",
+        "kind": "color",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "text-disabled": {
+        "value": "#80778F",
+        "kind": "color",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "success": {
+        "value": "#62D99C",
+        "kind": "color",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "warning": {
+        "value": "#F0A64A",
+        "kind": "color",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "danger": {
+        "value": "#E35D6A",
+        "kind": "color",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "info": {
+        "value": "#6DB8F2",
+        "kind": "color",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      }
+    },
+    "radius": {
+      "small": {
+        "value": 8,
+        "unit": "px",
+        "kind": "length",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "control": {
+        "value": 14,
+        "unit": "px",
+        "kind": "length",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "panel": {
+        "value": 20,
+        "unit": "px",
+        "kind": "length",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "hero-modal": {
+        "value": 28,
+        "unit": "px",
+        "kind": "length",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      }
+    },
+    "space": {
+      "4": {
+        "value": 4,
+        "unit": "px",
+        "kind": "length",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "8": {
+        "value": 8,
+        "unit": "px",
+        "kind": "length",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "12": {
+        "value": 12,
+        "unit": "px",
+        "kind": "length",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "16": {
+        "value": 16,
+        "unit": "px",
+        "kind": "length",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "24": {
+        "value": 24,
+        "unit": "px",
+        "kind": "length",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "32": {
+        "value": 32,
+        "unit": "px",
+        "kind": "length",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "48": {
+        "value": 48,
+        "unit": "px",
+        "kind": "length",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      },
+      "64": {
+        "value": 64,
+        "unit": "px",
+        "kind": "length",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "approved"
+      }
+    },
+    "z": {
+      "scene": {
+        "value": 0,
+        "kind": "integer",
+        "source": "GDD-V5-79.2",
+        "approvalStatus": "approved"
+      },
+      "content": {
+        "value": 10,
+        "kind": "integer",
+        "source": "GDD-V5-79.2",
+        "approvalStatus": "approved"
+      },
+      "hud": {
+        "value": 20,
+        "kind": "integer",
+        "source": "GDD-V5-79.2",
+        "approvalStatus": "approved"
+      },
+      "popover": {
+        "value": 30,
+        "kind": "integer",
+        "source": "GDD-V5-79.2",
+        "approvalStatus": "approved"
+      },
+      "modal-backdrop": {
+        "value": 40,
+        "kind": "integer",
+        "source": "GDD-V5-79.2",
+        "approvalStatus": "approved"
+      },
+      "modal": {
+        "value": 50,
+        "kind": "integer",
+        "source": "GDD-V5-79.2",
+        "approvalStatus": "approved"
+      },
+      "toast": {
+        "value": 60,
+        "kind": "integer",
+        "source": "GDD-V5-79.2",
+        "approvalStatus": "approved"
+      },
+      "system": {
+        "value": 70,
+        "kind": "integer",
+        "source": "GDD-V5-79.2",
+        "approvalStatus": "approved"
+      }
+    },
+    "motion": {
+      "instant": {
+        "value": 80,
+        "unit": "ms",
+        "kind": "duration",
+        "source": "GDD-V5-55.5",
+        "approvalStatus": "approved"
+      },
+      "fast": {
+        "value": 140,
+        "unit": "ms",
+        "kind": "duration",
+        "source": "GDD-V5-55.5",
+        "approvalStatus": "approved"
+      },
+      "standard": {
+        "value": 220,
+        "unit": "ms",
+        "kind": "duration",
+        "source": "GDD-V5-55.5",
+        "approvalStatus": "approved"
+      },
+      "emphasis": {
+        "value": 360,
+        "unit": "ms",
+        "kind": "duration",
+        "source": "GDD-V5-55.5",
+        "approvalStatus": "approved"
+      },
+      "scene-min": {
+        "value": 500,
+        "unit": "ms",
+        "kind": "duration",
+        "source": "GDD-V5-55.5",
+        "approvalStatus": "approved"
+      },
+      "scene-max": {
+        "value": 700,
+        "unit": "ms",
+        "kind": "duration",
+        "source": "GDD-V5-55.5",
+        "approvalStatus": "approved"
+      },
+      "loop-min": {
+        "value": 2000,
+        "unit": "ms",
+        "kind": "duration",
+        "source": "GDD-V5-55.5",
+        "approvalStatus": "approved"
+      },
+      "loop-max": {
+        "value": 8000,
+        "unit": "ms",
+        "kind": "duration",
+        "source": "GDD-V5-55.5",
+        "approvalStatus": "approved"
+      }
+    },
+    "safe-area": {
+      "primary-extra-inset": {
+        "value": 8,
+        "unit": "px",
+        "kind": "length",
+        "source": "GDD-V5-55.3",
+        "approvalStatus": "approved"
+      }
+    },
+    "content": {
+      "large-max-width": {
+        "value": 1600,
+        "unit": "px",
+        "kind": "length",
+        "source": "GDD-V5-55.3",
+        "approvalStatus": "approved"
+      }
+    },
+    "shadow": {
+      "control": {
+        "value": null,
+        "kind": "shadow",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "required",
+        "blockerId": "P07-BLK-003"
+      },
+      "panel": {
+        "value": null,
+        "kind": "shadow",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "required",
+        "blockerId": "P07-BLK-003"
+      },
+      "modal": {
+        "value": null,
+        "kind": "shadow",
+        "source": "GDD-V5-55.1",
+        "approvalStatus": "required",
+        "blockerId": "P07-BLK-003"
+      }
+    },
+    "focus": {
+      "ring-width": {
+        "value": null,
+        "unit": "px",
+        "kind": "length",
+        "source": "GDD-V5-56.2",
+        "approvalStatus": "required",
+        "blockerId": "P07-BLK-004"
+      },
+      "ring-offset": {
+        "value": null,
+        "unit": "px",
+        "kind": "length",
+        "source": "GDD-V5-56.2",
+        "approvalStatus": "required",
+        "blockerId": "P07-BLK-004"
+      }
+    },
+    "border": {
+      "control-width": {
+        "value": null,
+        "unit": "px",
+        "kind": "length",
+        "source": "NOT_NUMERICALLY_DEFINED_IN_GDD",
+        "approvalStatus": "required",
+        "blockerId": "P07-BLK-009"
+      }
+    }
+  },
+  "contrastPairs": [
+    {
+      "id": "body-on-panel",
+      "foreground": "color.text-primary",
+      "background": "color.panel",
+      "minimum": 4.5
+    },
+    {
+      "id": "secondary-on-panel",
+      "foreground": "color.text-secondary",
+      "background": "color.panel",
+      "minimum": 4.5
+    },
+    {
+      "id": "gold-action-on-deep",
+      "foreground": "color.gold",
+      "background": "color.bg-deep",
+      "minimum": 3
+    },
+    {
+      "id": "danger-on-panel",
+      "foreground": "color.danger",
+      "background": "color.panel",
+      "minimum": 3
+    },
+    {
+      "id": "info-on-panel",
+      "foreground": "color.info",
+      "background": "color.panel",
+      "minimum": 3
+    },
+    {
+      "id": "focus-on-panel",
+      "foreground": "color.gold-bright",
+      "background": "color.panel",
+      "minimum": 3
+    }
+  ]
+}

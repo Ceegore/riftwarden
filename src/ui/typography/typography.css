@@ -1,0 +1,7 @@
+.rw-type-display-xl { font-family: 'Riftwarden Cinzel', serif; font-size: clamp(2.625rem, 4vw, 3.5rem); line-height: 1.05; font-weight: 700; }
+.rw-type-display-l { font-family: 'Riftwarden Cinzel', serif; font-size: clamp(1.75rem, 3vw, 2.25rem); line-height: 1.1; font-weight: 700; }
+.rw-type-heading { font-family: 'Riftwarden Noto Sans', sans-serif; font-size: clamp(1.25rem, 2vw, 1.5rem); line-height: 1.25; font-weight: 700; }
+.rw-type-body { font-family: 'Riftwarden Noto Sans', sans-serif; font-size: 1rem; line-height: 1.45; font-weight: 450; max-inline-size: 75ch; }
+.rw-type-body-small { font-family: 'Riftwarden Noto Sans', sans-serif; font-size: .875rem; line-height: 1.4; font-weight: 450; }
+.rw-type-hud { font-family: 'Riftwarden Noto Sans', sans-serif; font-size: clamp(.875rem, 1.5vw, 1.125rem); line-height: 1.15; font-weight: 650; }
+.rw-type-numeric { font-family: 'Riftwarden Noto Sans', sans-serif; font-variant-numeric: tabular-nums; }

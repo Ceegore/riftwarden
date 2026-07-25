@@ -69,7 +69,13 @@
     "verify:phase05:source": "node tools/phase05/verify-source-shape.mjs",
     "verify:phase05:copy": "node tools/phase05/verify-copy-parity.mjs",
     "verify:phase05:evidence": "node tools/phase05/verify-evidence.mjs",
-    "verify:g05": "node tools/phase05/verify-g05.mjs"
+    "verify:g05": "node tools/phase05/verify-g05.mjs",
+    "ui:tokens:build": "node tools/ui/build-tokens.mjs .",
+    "ui:tokens:validate": "node tools/ui/validate-tokens.mjs .",
+    "ui:tokens:validate:release": "node tools/ui/validate-tokens.mjs --release .",
+    "ui:fonts:validate": "node tools/ui/validate-fonts.mjs .",
+    "ui:release-scan": "node tools/ui/scan-release-bundle.mjs dist",
+    "test:ui-contracts": "node --test tests/ui/*.test.mjs"
   },
   "dependencies": {
     "react": "19.2.8",

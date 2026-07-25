@@ -1,0 +1,4 @@
+import { test,expect } from '@playwright/test';
+const locales=['de','en','qps-ploc'] as const; const viewports={phone_compact:{width:700,height:390},phone_standard:{width:1000,height:600},tablet:{width:1280,height:800}} as const;
+for(const locale of locales) for(const [name,viewport] of Object.entries(viewports)) test(`VIS-COMP gallery ${locale} ${name}`,async({page})=>{await page.setViewportSize(viewport);await page.goto(`/dev/component-gallery?locale=${locale}&textScale=1`);await expect(page.locator('main')).toHaveScreenshot(`gallery-${locale}-${name}.png`,{animations:'disabled'});});
+for(const locale of locales) test(`VIS-COMP critical 200 ${locale}`,async({page})=>{await page.setViewportSize(viewports.phone_compact);await page.goto(`/dev/component-gallery?locale=${locale}&textScale=2&reduceMotion=1`);await expect(page.locator('main')).toHaveScreenshot(`gallery-${locale}-compact-200-reduced.png`,{animations:'disabled'});});

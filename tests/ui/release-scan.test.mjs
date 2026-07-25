@@ -1,0 +1,5 @@
+import test from 'node:test'; import assert from 'node:assert/strict'; import { mkdtemp,writeFile,mkdir } from 'node:fs/promises'; import { tmpdir } from 'node:os'; import { join } from 'node:path'; import { spawnSync } from 'node:child_process';
+const script=new URL('../../tools/ui/scan-release-bundle.mjs',import.meta.url).pathname;
+test('clean release bundle passes',async()=>{const d=await mkdtemp(join(tmpdir(),'p07-clean-'));await writeFile(join(d,'app.js'),'console.log("release")');const r=spawnSync(process.execPath,[script,d]);assert.equal(r.status,0,r.stderr.toString());});
+test('gallery symbol blocks release',async()=>{const d=await mkdtemp(join(tmpdir(),'p07-bad-'));await writeFile(join(d,'app.js'),'ComponentGalleryScreen');const r=spawnSync(process.execPath,[script,d]);assert.equal(r.status,1);});
+test('pseudo marker blocks release scan',async()=>{const d=await mkdtemp(join(tmpdir(),'p07-pseudo-'));await writeFile(join(d,'app.js'),'qps-ploc');const r=spawnSync(process.execPath,[script,d]);assert.equal(r.status,1);});
