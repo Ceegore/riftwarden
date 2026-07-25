@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "phase": 5,
+  "statusClaim": "BLOCKED",
+  "sourceRevision": "REPLACE_WITH_REAL_COMMIT",
+  "lockfileSha256": "REPLACE_WITH_REAL_SHA256",
+  "gateG04Verified": false,
+  "browserColdStartVerified": false,
+  "browserBootFailureVerified": false,
+  "browserNoWebglVerified": false,
+  "androidLifecycleVerified": false,
+  "iosLifecycleVerified": false,
+  "backgroundZeroActivityVerified": false,
+  "snapshotBudgetVerified": false,
+  "diagnosticPrivacyVerified": false,
+  "screenIdNormalizationResolved": false,
+  "mainPipelineGreen": false,
+  "openP0": 0,
+  "openP1": 0,
+  "commands": [],
+  "artifacts": [],
+  "devices": [],
+  "notes": [
+    "Template only. Do not rename to evidence.json or set PASS until all claims are evidenced."
+  ]
+}

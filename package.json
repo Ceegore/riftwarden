@@ -63,7 +63,13 @@
     "android:debug": "node tools/native/run-gradle.mjs assembleDebug",
     "android:release-manifest": "node tools/native/run-gradle.mjs processReleaseMainManifest",
     "verify:phase04": "node tools/native/verify-g04.mjs",
-    "test:phase04-tooling": "node --test tests/tooling/phase04-tools.test.mjs"
+    "test:phase04-tooling": "node --test tests/tooling/phase04-tools.test.mjs",
+    "test:phase05": "vitest run tests/unit/boot-state.spec.ts tests/unit/lifecycle-coordinator.spec.ts tests/unit/diagnostics.spec.ts tests/unit/renderer-capability.spec.ts tests/integration/app-boot.spec.ts",
+    "verify:phase05:contracts": "node tools/phase05/verify-contracts.mjs",
+    "verify:phase05:source": "node tools/phase05/verify-source-shape.mjs",
+    "verify:phase05:copy": "node tools/phase05/verify-copy-parity.mjs",
+    "verify:phase05:evidence": "node tools/phase05/verify-evidence.mjs",
+    "verify:g05": "node tools/phase05/verify-g05.mjs"
   },
   "dependencies": {
     "react": "19.2.8",
