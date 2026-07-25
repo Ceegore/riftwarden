@@ -18,7 +18,7 @@ const cap = await readText(capPath);
 check(/appId:\s*['"]com\.ceegore\.riftwarden['"]/.test(cap), 'CAP_APP_ID', 'Capacitor appId must be com.ceegore.riftwarden.', capPath);
 check(/appName:\s*['"]Riftwarden['"]/.test(cap), 'CAP_APP_NAME', 'Capacitor appName must be Riftwarden.', capPath);
 check(/webDir:\s*['"]dist['"]/.test(cap), 'CAP_WEB_DIR', 'Capacitor webDir must be dist.', capPath);
-check(/bundledWebRuntime:\s*false/.test(cap), 'CAP_RUNTIME', 'bundledWebRuntime must be false.', capPath);
+// bundledWebRuntime was removed in Capacitor 5+; the property is absent by design.
 for (const pattern of [/server\s*:/, /allowNavigation\s*:/, /cleartext\s*:\s*true/, /allowMixedContent\s*:\s*true/]) {
   check(!pattern.test(cap), 'CAP_REMOTE_CONFIG', `Forbidden Capacitor release config matched ${pattern}.`, capPath);
 }
