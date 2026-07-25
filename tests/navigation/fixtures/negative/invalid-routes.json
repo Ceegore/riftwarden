@@ -1,0 +1,48 @@
+[
+  {
+    "caseId": "unknown-screen",
+    "route": {
+      "screenKey": "missing",
+      "params": {}
+    },
+    "expectedCode": "NAV_UNKNOWN_SCREEN"
+  },
+  {
+    "caseId": "missing-mission",
+    "route": {
+      "screenKey": "missionDetails",
+      "params": {}
+    },
+    "expectedCode": "NAV_PARAM_MISSING"
+  },
+  {
+    "caseId": "unknown-param",
+    "route": {
+      "screenKey": "title",
+      "params": {
+        "x": "y"
+      }
+    },
+    "expectedCode": "NAV_PARAM_UNKNOWN"
+  },
+  {
+    "caseId": "object-param",
+    "route": {
+      "screenKey": "battle",
+      "params": {
+        "runId": {
+          "nested": true
+        }
+      }
+    },
+    "expectedCode": "NAV_PARAM_NON_PRIMITIVE"
+  },
+  {
+    "caseId": "overlay-route",
+    "route": {
+      "screenKey": "toast",
+      "params": {}
+    },
+    "expectedCode": "NAV_UNKNOWN_SCREEN"
+  }
+]

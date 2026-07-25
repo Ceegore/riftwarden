@@ -1,0 +1,62 @@
+[
+  {
+    "screenKey": "title",
+    "params": {}
+  },
+  {
+    "screenKey": "missionDetails",
+    "params": {
+      "missionId": "mission_001"
+    },
+    "returnRoute": {
+      "screenKey": "missionBoard",
+      "params": {}
+    }
+  },
+  {
+    "screenKey": "heroDetails",
+    "params": {
+      "entityId": "hero_lyra",
+      "tab": "stats"
+    },
+    "returnRoute": {
+      "screenKey": "heroHall",
+      "params": {}
+    }
+  },
+  {
+    "screenKey": "equipmentPicker",
+    "params": {
+      "ownerId": "hero_lyra",
+      "slotId": "weapon",
+      "mode": "equip"
+    }
+  },
+  {
+    "screenKey": "nodePreview",
+    "params": {
+      "nodeId": "node_03"
+    },
+    "returnRoute": {
+      "screenKey": "dungeonMap",
+      "params": {
+        "runId": "run_001"
+      }
+    }
+  },
+  {
+    "screenKey": "battle",
+    "params": {
+      "runId": "run_001",
+      "resume": true,
+      "source": "resume"
+    },
+    "restoreToken": "restore_001"
+  },
+  {
+    "screenKey": "rewardChoice",
+    "params": {
+      "runId": "run_001"
+    }
+  }
+]

@@ -20,12 +20,16 @@ export const GENERATED_PREFIXES = Object.freeze([
   'src/locales/generated/',
   'src/ui/tokens/generated/',
   'src/screens/dev/',
+  'src/app/navigation/generated/',
+  'tests/navigation/fixtures/',
 ]);
 
 // Individual generated files (not prefixes) that bypass the line gate.
 // These are tool-generated artifacts, not human-maintained source.
 export const GENERATED_FILES = Object.freeze([
   'pnpm-lock.yaml',
+  'src/app/navigation/screen-registry.source.json',
+  'src/app/navigation/screen-alias-resolution.source.json',
   'docs/reports/toolchain-freeze.json',
   'docs/reports/license-inventory.json',
   'docs/reports/build-dev-hashes.json',

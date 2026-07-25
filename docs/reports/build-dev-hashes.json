@@ -23,23 +23,23 @@
       "bytes": 157
     },
     {
+      "path": "assets/index-BasP-BCa.js",
+      "sha256": "08e189f3f886fe8a6f698053d930c0957fbb04875189d908b73272ca4fc5f522",
+      "bytes": 190887
+    },
+    {
+      "path": "assets/index-BasP-BCa.js.map",
+      "sha256": "c784bf0b7c033a36713cbc99b8e55ea828b9d585735ae148ae1384bba8a99276",
+      "bytes": 842713
+    },
+    {
       "path": "assets/index-DuCRpvF6.css",
       "sha256": "25f04d4d8cc7b0d2aabe9f7766f660f9b4d7f64d4e19337547e022bd0e1429f1",
       "bytes": 8158
     },
     {
-      "path": "assets/index-MdhF85kH.js",
-      "sha256": "e4b81c0690bb56590675951696ad174c2f89835460983561f572aec8c8729a60",
-      "bytes": 190887
-    },
-    {
-      "path": "assets/index-MdhF85kH.js.map",
-      "sha256": "6189c8cf1a232a620b8251512464e73789129e5c541a6c4c938c515776f5c0b7",
-      "bytes": 842713
-    },
-    {
       "path": "index.html",
-      "sha256": "2c82f18859ba78df831476dfce86a7f6af84a125f087a825f43fedf02f25804d",
+      "sha256": "b91a9533e3f34870a2f91d05494102922cd6dc410292af8421e9ac1523a39899",
       "bytes": 706
     }
   ]
