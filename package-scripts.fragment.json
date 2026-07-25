@@ -1,0 +1,10 @@
+{
+  "locale:validate": "node tools/locales/validate.mjs --root . --mode development",
+  "locale:validate:release": "node tools/locales/validate.mjs --root . --mode release",
+  "locale:compile": "node tools/locales/compile.mjs --root . --out src/locales/generated",
+  "locale:pseudo": "node tools/locales/generate-pseudo.mjs --root . --out src/locales/generated/qps-ploc",
+  "locale:glossary": "node tools/locales/verify-glossary.mjs --root .",
+  "locale:scan": "node tools/locales/scan-usage.mjs --root .",
+  "locale:migrate:phase05": "node tools/locales/migrate-phase05-keys.mjs --root . --map ../../contracts/phase05-key-migration-map.json --dry-run",
+  "test:locale-tools": "node --test tests/locales/*.test.mjs"
+}

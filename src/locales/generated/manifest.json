@@ -1,0 +1,17 @@
+{
+  "bundles": [
+    {
+      "byteLength": 6724,
+      "locale": "de",
+      "path": "de/bundle.json",
+      "sha256": "be2413ec717632802d5df7b077b8cab7db2798ea82a86d3cea75082cca880509"
+    },
+    {
+      "byteLength": 6579,
+      "locale": "en",
+      "path": "en/bundle.json",
+      "sha256": "937dd08c218d3a859eaaf428c3c9a44f167f09fe6647508da4f9ff14adfb33c3"
+    }
+  ],
+  "schemaVersion": 1
+}

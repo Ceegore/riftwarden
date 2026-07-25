@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "budgets": {
+    "primary_button": {
+      "de": 30,
+      "en": 24,
+      "requiresCompactKeyWhenExceeded": true
+    },
+    "tooltip": {
+      "de": 220,
+      "en": 220
+    },
+    "card_title": {
+      "de": 34,
+      "en": 34
+    },
+    "card_subline": {
+      "de": 60,
+      "en": 60
+    },
+    "card_effect": {
+      "de": 180,
+      "en": 180
+    },
+    "event_intro": {
+      "de": 480,
+      "en": 480,
+      "maxParagraphs": 2
+    },
+    "event_option_title": {
+      "de": 46,
+      "en": 46
+    },
+    "event_option_consequence": {
+      "de": 180,
+      "en": 180
+    },
+    "pip_line": {
+      "de": 180,
+      "en": 180,
+      "maxSentences": 2
+    },
+    "boss_bullet": {
+      "de": 120,
+      "en": 120
+    },
+    "subtitle_line": {
+      "de": 42,
+      "en": 42,
+      "maxLines": 2,
+      "minimumSeconds": 1.2
+    },
+    "system_title": {
+      "de": 48,
+      "en": 48
+    },
+    "system_body": {
+      "de": 240,
+      "en": 240
+    },
+    "diagnostic_label": {
+      "de": 36,
+      "en": 36
+    }
+  }
+}

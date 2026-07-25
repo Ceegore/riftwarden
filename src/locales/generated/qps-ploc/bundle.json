@@ -1,0 +1,608 @@
+{
+  "kind": "generated_test_only_locale_bundle",
+  "locale": "qps-ploc",
+  "messages": {
+    "ui.system.action.continue": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Ƒøŗŧƒåħŗëñ"
+        },
+        {
+          "t": "text",
+          "v": " ···"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "primary_button",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.action.diagnostics": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Ðïåĝñøšë åñžëïĝëñ"
+        },
+        {
+          "t": "text",
+          "v": " ·····"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "primary_button",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.action.retry": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Ëŗñëüŧ ṽëŗšüçħëñ"
+        },
+        {
+          "t": "text",
+          "v": " ·····"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "primary_button",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.action.safe_restart": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Šïçħëŗ ñëü šŧåŗŧëñ"
+        },
+        {
+          "t": "text",
+          "v": " ······"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "primary_button",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.boot.long_wait": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "b": {
+            "=0": [
+              {
+                "t": "text",
+                "v": "Ðëŗ Šŧåŗŧ ðåüëŗŧ ŀäñĝëŗ åŀš ëŗŵåŗŧëŧ."
+              },
+              {
+                "t": "text",
+                "v": " ·············"
+              }
+            ],
+            "one": [
+              {
+                "t": "text",
+                "v": "Ðëŗ Šŧåŗŧ ðåüëŗŧ šëïŧ "
+              },
+              {
+                "t": "pound"
+              },
+              {
+                "t": "text",
+                "v": " Šëķüñðë ŀäñĝëŗ åŀš ëŗŵåŗŧëŧ."
+              },
+              {
+                "t": "text",
+                "v": " ··················"
+              }
+            ],
+            "other": [
+              {
+                "t": "text",
+                "v": "Ðëŗ Šŧåŗŧ ðåüëŗŧ šëïŧ "
+              },
+              {
+                "t": "pound"
+              },
+              {
+                "t": "text",
+                "v": " Šëķüñðëñ ŀäñĝëŗ åŀš ëŗŵåŗŧëŧ."
+              },
+              {
+                "t": "text",
+                "v": " ···················"
+              }
+            ]
+          },
+          "n": "seconds",
+          "t": "plural"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {
+        "seconds": "plural"
+      },
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.boot.phase.content": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Šþïëŀðåŧëñ þŗüƒëñ"
+        },
+        {
+          "t": "text",
+          "v": " ·····"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.boot.phase.native": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Ñåŧïṽë Ðïëñšŧë šŧåŗŧëñ"
+        },
+        {
+          "t": "text",
+          "v": " ·······"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.boot.phase.save": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Šþïëŀšŧåñð þŗüƒëñ"
+        },
+        {
+          "t": "text",
+          "v": " ·····"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.boot.phase.settings": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Ëïñšŧëŀŀüñĝëñ ŀåðëñ"
+        },
+        {
+          "t": "text",
+          "v": " ······"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.boot.phase.web": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Ŵëƀšÿšŧëṁë šŧåŗŧëñ"
+        },
+        {
+          "t": "text",
+          "v": " ······"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.boot.title": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Ŗïƒŧŵåŗðëñ ŵïŗð ṽøŗƀëŗëïŧëŧ"
+        },
+        {
+          "t": "text",
+          "v": " ·········"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "system_title",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.compatibility.body": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Ëïñë ëŗƒøŗðëŗŀïçħë Ĝŗåƒïķ- øðëŗ Þŀåŧŧƒøŗṁƒüñķŧïøñ ïšŧ ñïçħŧ ṽëŗƒüĝƀåŗ. Ðëïñë ŀøķåŀëñ Ðåŧëñ ƀŀëïƀëñ üñṽëŗäñðëŗŧ."
+        },
+        {
+          "t": "text",
+          "v": " ······································"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.compatibility.title": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Ĝëŗäŧ ñïçħŧ ṽøŀŀšŧäñðïĝ üñŧëŗšŧüŧžŧ"
+        },
+        {
+          "t": "text",
+          "v": " ············"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "system_title",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.error.code_label": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Ƒëħŀëŗçøðë: "
+        },
+        {
+          "n": "code",
+          "t": "arg"
+        },
+        {
+          "t": "text",
+          "v": " ····"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "diagnostic_label",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {
+        "code": "string"
+      },
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.fatal.body": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Ëïñ ñïçħŧ ƀëħëƀƀåŗëŗ Ƒëħŀëŗ ṽëŗħïñðëŗŧ ðëñ šïçħëŗëñ Ɓëŧŗïëƀ. Ñüŧžë ñüŗ ðïë åñĝëƀøŧëñëñ šïçħëŗëñ Åķŧïøñëñ."
+        },
+        {
+          "t": "text",
+          "v": " ····································"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.fatal.title": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Ŗïƒŧŵåŗðëñ ŵüŗðë åñĝëħåŀŧëñ"
+        },
+        {
+          "t": "text",
+          "v": " ·········"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "system_title",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.recovery.body": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Ŗïƒŧŵåŗðëñ ķøññŧë ñïçħŧ ŗëĝüŀäŗ ƒøŗŧƒåħŗëñ. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Ðïåĝñøšë åñžëïĝëñ"
+            },
+            {
+              "t": "text",
+              "v": " ······"
+            }
+          ],
+          "id": "open_diagnostics",
+          "k": "action",
+          "mode": "paired",
+          "t": "token"
+        },
+        {
+          "t": "text",
+          "v": " øðëŗ ëïñë šïçħëŗë Åķŧïøñ ŵäħŀëñ."
+        },
+        {
+          "t": "text",
+          "v": " ·························"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.recovery.title": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Ŵïëðëŗħëŗšŧëŀŀüñĝ"
+        },
+        {
+          "t": "text",
+          "v": " ·····"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "system_title",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.resume.body": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "b": {
+            "battle": [
+              {
+                "t": "text",
+                "v": "Ëïñ üñŧëŗƀŗøçħëñëŗ Ķåṁþƒ ķåññ ƒøŗŧĝëšëŧžŧ ŵëŗðëñ."
+              },
+              {
+                "t": "text",
+                "v": " ··················"
+              }
+            ],
+            "other": [
+              {
+                "t": "text",
+                "v": "Ëïñ üñŧëŗƀŗøçħëñëŗ Åƀŀåüƒ ķåññ ƒøŗŧĝëšëŧžŧ ŵëŗðëñ."
+              },
+              {
+                "t": "text",
+                "v": " ··················"
+              }
+            ],
+            "transaction": [
+              {
+                "t": "text",
+                "v": "Ëïñë åüššŧëħëñðë Åķŧïøñ ķåññ ƒøŗŧĝëšëŧžŧ ŵëŗðëñ."
+              },
+              {
+                "t": "text",
+                "v": " ·················"
+              }
+            ]
+          },
+          "n": "state",
+          "t": "select"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {
+        "state": "select"
+      },
+      "reviewStatus": "generated_test_only"
+    },
+    "ui.system.resume.title": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "⟦"
+        },
+        {
+          "t": "text",
+          "v": "Ƒøŗŧšëŧžëñ?"
+        },
+        {
+          "t": "text",
+          "v": " ···"
+        },
+        {
+          "t": "text",
+          "v": "⟧"
+        }
+      ],
+      "budget": "system_title",
+      "compactKey": null,
+      "generatedFrom": "de",
+      "parameters": {},
+      "reviewStatus": "generated_test_only"
+    }
+  },
+  "schemaVersion": 1,
+  "sourceLocale": "de"
+}

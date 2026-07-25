@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "locale": "en",
+  "namespace": "ui.test",
+  "sourceRole": "TEST_FIXTURE",
+  "messages": {
+    "ui.test.count": {
+      "message": "{count, plural, one {# Rift} other {# Rifts}}",
+      "description": "Automated validator fixture only.",
+      "budget": "test",
+      "compactKey": null,
+      "parameterBudgets": {
+        "count": 4
+      },
+      "review": {
+        "status": "approved",
+        "source": "automated_test_fixture_only",
+        "reviewer": "TEST_FIXTURE_NOT_LINGUISTIC_EVIDENCE",
+        "reviewedAt": "2026-01-01T00:00:00.000Z"
+      }
+    },
+    "ui.test.mode": {
+      "message": "{mode, select, safe {Safe} other {Normal}}",
+      "description": "Automated validator fixture only.",
+      "budget": "test",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "approved",
+        "source": "automated_test_fixture_only",
+        "reviewer": "TEST_FIXTURE_NOT_LINGUISTIC_EVIDENCE",
+        "reviewedAt": "2026-01-01T00:00:00.000Z"
+      }
+    },
+    "ui.test.rich": {
+      "message": "[[action:retry]][[strong]]Try[[/strong]] again[[/action]]",
+      "description": "Automated validator fixture only.",
+      "budget": "test",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "approved",
+        "source": "automated_test_fixture_only",
+        "reviewer": "TEST_FIXTURE_NOT_LINGUISTIC_EVIDENCE",
+        "reviewedAt": "2026-01-01T00:00:00.000Z"
+      }
+    },
+    "ui.test.number": {
+      "message": "{value, number} points",
+      "description": "Automated validator fixture only.",
+      "budget": "test",
+      "compactKey": null,
+      "parameterBudgets": {
+        "value": 8
+      },
+      "review": {
+        "status": "approved",
+        "source": "automated_test_fixture_only",
+        "reviewer": "TEST_FIXTURE_NOT_LINGUISTIC_EVIDENCE",
+        "reviewedAt": "2026-01-01T00:00:00.000Z"
+      }
+    }
+  }
+}

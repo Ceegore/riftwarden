@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "source": "../../../../contracts/text-budgets.json",
+  "integrationNote": "Copy the authoritative contract into the repository localization docs or make the validator path repository-relative; do not maintain divergent duplicates.",
+  "budgetIds": [
+    "primary_button",
+    "tooltip",
+    "card_title",
+    "card_subline",
+    "card_effect",
+    "event_intro",
+    "event_option_title",
+    "event_option_consequence",
+    "pip_line",
+    "boss_bullet",
+    "subtitle_line",
+    "system_title",
+    "system_body",
+    "diagnostic_label"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "tokens": {
+    "strong": {
+      "kind": "paired",
+      "ids": [
+        "default"
+      ],
+      "allowsNesting": []
+    },
+    "action": {
+      "kind": "paired",
+      "ids": [
+        "retry"
+      ],
+      "allowsNesting": [
+        "strong"
+      ]
+    },
+    "icon": {
+      "kind": "self",
+      "ids": [
+        "warning"
+      ],
+      "allowsNesting": []
+    }
+  }
+}
