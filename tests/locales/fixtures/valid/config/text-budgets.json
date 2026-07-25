@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "budgets": {
+    "test": {
+      "de": 200,
+      "en": 200
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "authoringLocale": "de",
+  "releaseLocales": [
+    "de",
+    "en"
+  ],
+  "testOnlyLocales": [
+    "qps-ploc"
+  ],
+  "namespaces": [
+    "ui-test"
+  ],
+  "files": {
+    "de": [
+      "src/locales/messages/de/ui-test.messages.json"
+    ],
+    "en": [
+      "src/locales/messages/en/ui-test.messages.json"
+    ]
+  }
+}

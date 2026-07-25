@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 1,
+  "locale": "en",
+  "namespace": "ui.system",
+  "sourceRole": "IMPLEMENTATION_STARTER_NOT_RELEASE_EVIDENCE",
+  "messages": {
+    "ui.system.boot.title": {
+      "message": "Preparing Riftwarden",
+      "description": "Bootstrap title.",
+      "budget": "system_title",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.boot.phase.native": {
+      "message": "Starting native services",
+      "description": "Native bridge and splash handshake phase.",
+      "budget": "system_body",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.boot.phase.web": {
+      "message": "Starting web systems",
+      "description": "Web runtime bootstrap phase.",
+      "budget": "system_body",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.boot.phase.settings": {
+      "message": "Loading settings",
+      "description": "Local settings bootstrap phase.",
+      "budget": "system_body",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.boot.phase.content": {
+      "message": "Checking game data",
+      "description": "Content manifest and bundle phase.",
+      "budget": "system_body",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.boot.phase.save": {
+      "message": "Checking save data",
+      "description": "Save validation phase.",
+      "budget": "system_body",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.boot.long_wait": {
+      "message": "{seconds, plural, =0 {Startup is taking longer than expected.} one {Startup has been taking longer than expected for # second.} other {Startup has been taking longer than expected for # seconds.}}",
+      "description": "Long-wait notice with elapsed seconds.",
+      "budget": "system_body",
+      "compactKey": null,
+      "parameterBudgets": {
+        "seconds": 4
+      },
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.action.retry": {
+      "message": "Try again",
+      "description": "Retries the failed safe action.",
+      "budget": "primary_button",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.action.safe_restart": {
+      "message": "Restart safely",
+      "description": "Uses only the approved safe restart route.",
+      "budget": "primary_button",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.action.continue": {
+      "message": "Continue",
+      "description": "Continues a resumable flow.",
+      "budget": "primary_button",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.action.diagnostics": {
+      "message": "Show diagnostics",
+      "description": "Opens local privacy-bounded diagnostics.",
+      "budget": "primary_button",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.recovery.title": {
+      "message": "Recovery",
+      "description": "Recovery shell title.",
+      "budget": "system_title",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.recovery.body": {
+      "message": "Riftwarden could not continue normally. [[action:open_diagnostics]]Show diagnostics[[/action]] or choose a safe action.",
+      "description": "Recovery copy without a technical exception as primary text.",
+      "budget": "system_body",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.compatibility.title": {
+      "message": "Device not fully supported",
+      "description": "Compatibility shell title.",
+      "budget": "system_title",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.compatibility.body": {
+      "message": "A required graphics or platform feature is unavailable. Your local data remains unchanged.",
+      "description": "Compatibility notice without unverified recovery promises.",
+      "budget": "system_body",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.fatal.title": {
+      "message": "Riftwarden has stopped",
+      "description": "Fatal shell title.",
+      "budget": "system_title",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.fatal.body": {
+      "message": "A non-recoverable error prevents safe operation. Use only the safe actions provided.",
+      "description": "Fatal shell without an exception message.",
+      "budget": "system_body",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.resume.title": {
+      "message": "Continue?",
+      "description": "Resume dialog title.",
+      "budget": "system_title",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.resume.body": {
+      "message": "{state, select, battle {An interrupted battle can continue.} transaction {A pending action can continue.} other {An interrupted flow can continue.}}",
+      "description": "Resume text selected by semantic state kind.",
+      "budget": "system_body",
+      "compactKey": null,
+      "parameterBudgets": {},
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    },
+    "ui.system.error.code_label": {
+      "message": "Error code: {code}",
+      "description": "Label for a stable technical error code.",
+      "budget": "diagnostic_label",
+      "compactKey": null,
+      "parameterBudgets": {
+        "code": 24
+      },
+      "review": {
+        "status": "draft",
+        "source": "phase06_starter",
+        "reviewer": null,
+        "reviewedAt": null
+      }
+    }
+  }
+}

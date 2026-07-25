@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "tokens": {
+    "strong": {
+      "kind": "paired",
+      "ids": [
+        "default"
+      ],
+      "allowsNesting": [
+        "icon",
+        "glossary"
+      ]
+    },
+    "icon": {
+      "kind": "self",
+      "ids": [
+        "warning",
+        "info",
+        "controller",
+        "keyboard"
+      ],
+      "allowsNesting": []
+    },
+    "glossary": {
+      "kind": "paired",
+      "ids": [
+        "rift",
+        "rift_anchor",
+        "echo",
+        "riftwarden"
+      ],
+      "allowsNesting": [
+        "strong",
+        "icon"
+      ]
+    },
+    "action": {
+      "kind": "paired",
+      "ids": [
+        "open_diagnostics",
+        "retry",
+        "safe_restart",
+        "continue"
+      ],
+      "allowsNesting": [
+        "strong",
+        "icon"
+      ]
+    }
+  }
+}

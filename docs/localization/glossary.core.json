@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "rift",
+      "de": {
+        "preferred": "Rift",
+        "forbidden": [
+          "Rissportal"
+        ]
+      },
+      "en": {
+        "preferred": "Rift",
+        "forbidden": [
+          "rift portal"
+        ]
+      },
+      "caseSensitive": false,
+      "notes": "Weltbegriff; nicht frei variieren."
+    },
+    {
+      "id": "rift_anchor",
+      "de": {
+        "preferred": "Riftanker",
+        "forbidden": [
+          "Rift-Anker",
+          "Rissanker"
+        ]
+      },
+      "en": {
+        "preferred": "Rift Anchor",
+        "forbidden": [
+          "Rift-Anchor"
+        ]
+      },
+      "caseSensitive": false,
+      "notes": "Zentraler Eigenbegriff."
+    },
+    {
+      "id": "riftwarden",
+      "de": {
+        "preferred": "Riftwarden",
+        "forbidden": [
+          "Rift-Wächter"
+        ]
+      },
+      "en": {
+        "preferred": "Riftwarden",
+        "forbidden": [
+          "Rift Warden"
+        ]
+      },
+      "caseSensitive": false,
+      "notes": "Titel und Rollenname."
+    },
+    {
+      "id": "echo",
+      "de": {
+        "preferred": "Echo",
+        "forbidden": [
+          "Echogeist"
+        ]
+      },
+      "en": {
+        "preferred": "Echo",
+        "forbidden": [
+          "echo spirit"
+        ]
+      },
+      "caseSensitive": false,
+      "notes": "Magischer Weltbegriff."
+    },
+    {
+      "id": "pip",
+      "de": {
+        "preferred": "Pip",
+        "forbidden": []
+      },
+      "en": {
+        "preferred": "Pip",
+        "forbidden": []
+      },
+      "caseSensitive": true,
+      "notes": "Charaktername."
+    },
+    {
+      "id": "curator",
+      "de": {
+        "preferred": "Kurator",
+        "forbidden": [
+          "Kustos"
+        ]
+      },
+      "en": {
+        "preferred": "Curator",
+        "forbidden": [
+          "Keeper"
+        ]
+      },
+      "caseSensitive": false,
+      "notes": "Antagonistische Rolle."
+    }
+  ]
+}

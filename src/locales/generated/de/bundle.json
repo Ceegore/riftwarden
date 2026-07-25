@@ -1,0 +1,307 @@
+{
+  "kind": "release_locale_bundle",
+  "locale": "de",
+  "messages": {
+    "ui.system.action.continue": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Fortfahren"
+        }
+      ],
+      "budget": "primary_button",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.action.diagnostics": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Diagnose anzeigen"
+        }
+      ],
+      "budget": "primary_button",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.action.retry": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Erneut versuchen"
+        }
+      ],
+      "budget": "primary_button",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.action.safe_restart": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Sicher neu starten"
+        }
+      ],
+      "budget": "primary_button",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.boot.long_wait": {
+      "ast": [
+        {
+          "b": {
+            "=0": [
+              {
+                "t": "text",
+                "v": "Der Start dauert länger als erwartet."
+              }
+            ],
+            "one": [
+              {
+                "t": "text",
+                "v": "Der Start dauert seit "
+              },
+              {
+                "t": "pound"
+              },
+              {
+                "t": "text",
+                "v": " Sekunde länger als erwartet."
+              }
+            ],
+            "other": [
+              {
+                "t": "text",
+                "v": "Der Start dauert seit "
+              },
+              {
+                "t": "pound"
+              },
+              {
+                "t": "text",
+                "v": " Sekunden länger als erwartet."
+              }
+            ]
+          },
+          "n": "seconds",
+          "t": "plural"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {
+        "seconds": "plural"
+      }
+    },
+    "ui.system.boot.phase.content": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Spieldaten prüfen"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.boot.phase.native": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Native Dienste starten"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.boot.phase.save": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Spielstand prüfen"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.boot.phase.settings": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Einstellungen laden"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.boot.phase.web": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Websysteme starten"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.boot.title": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Riftwarden wird vorbereitet"
+        }
+      ],
+      "budget": "system_title",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.compatibility.body": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Eine erforderliche Grafik- oder Plattformfunktion ist nicht verfügbar. Deine lokalen Daten bleiben unverändert."
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.compatibility.title": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Gerät nicht vollständig unterstützt"
+        }
+      ],
+      "budget": "system_title",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.error.code_label": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Fehlercode: "
+        },
+        {
+          "n": "code",
+          "t": "arg"
+        }
+      ],
+      "budget": "diagnostic_label",
+      "compactKey": null,
+      "parameters": {
+        "code": "string"
+      }
+    },
+    "ui.system.fatal.body": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Ein nicht behebbarer Fehler verhindert den sicheren Betrieb. Nutze nur die angebotenen sicheren Aktionen."
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.fatal.title": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Riftwarden wurde angehalten"
+        }
+      ],
+      "budget": "system_title",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.recovery.body": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Riftwarden konnte nicht regulär fortfahren. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Diagnose anzeigen"
+            }
+          ],
+          "id": "open_diagnostics",
+          "k": "action",
+          "mode": "paired",
+          "t": "token"
+        },
+        {
+          "t": "text",
+          "v": " oder eine sichere Aktion wählen."
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.recovery.title": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Wiederherstellung"
+        }
+      ],
+      "budget": "system_title",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.resume.body": {
+      "ast": [
+        {
+          "b": {
+            "battle": [
+              {
+                "t": "text",
+                "v": "Ein unterbrochener Kampf kann fortgesetzt werden."
+              }
+            ],
+            "other": [
+              {
+                "t": "text",
+                "v": "Ein unterbrochener Ablauf kann fortgesetzt werden."
+              }
+            ],
+            "transaction": [
+              {
+                "t": "text",
+                "v": "Eine ausstehende Aktion kann fortgesetzt werden."
+              }
+            ]
+          },
+          "n": "state",
+          "t": "select"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {
+        "state": "select"
+      }
+    },
+    "ui.system.resume.title": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Fortsetzen?"
+        }
+      ],
+      "budget": "system_title",
+      "compactKey": null,
+      "parameters": {}
+    }
+  },
+  "schemaVersion": 1
+}

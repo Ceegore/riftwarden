@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "rift",
+      "de": {
+        "preferred": "Rift",
+        "forbidden": [
+          "Rissportal"
+        ]
+      },
+      "en": {
+        "preferred": "Rift",
+        "forbidden": [
+          "rift portal"
+        ]
+      },
+      "caseSensitive": false
+    }
+  ]
+}

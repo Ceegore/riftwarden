@@ -1,0 +1,307 @@
+{
+  "kind": "release_locale_bundle",
+  "locale": "en",
+  "messages": {
+    "ui.system.action.continue": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Continue"
+        }
+      ],
+      "budget": "primary_button",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.action.diagnostics": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Show diagnostics"
+        }
+      ],
+      "budget": "primary_button",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.action.retry": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Try again"
+        }
+      ],
+      "budget": "primary_button",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.action.safe_restart": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Restart safely"
+        }
+      ],
+      "budget": "primary_button",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.boot.long_wait": {
+      "ast": [
+        {
+          "b": {
+            "=0": [
+              {
+                "t": "text",
+                "v": "Startup is taking longer than expected."
+              }
+            ],
+            "one": [
+              {
+                "t": "text",
+                "v": "Startup has been taking longer than expected for "
+              },
+              {
+                "t": "pound"
+              },
+              {
+                "t": "text",
+                "v": " second."
+              }
+            ],
+            "other": [
+              {
+                "t": "text",
+                "v": "Startup has been taking longer than expected for "
+              },
+              {
+                "t": "pound"
+              },
+              {
+                "t": "text",
+                "v": " seconds."
+              }
+            ]
+          },
+          "n": "seconds",
+          "t": "plural"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {
+        "seconds": "plural"
+      }
+    },
+    "ui.system.boot.phase.content": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Checking game data"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.boot.phase.native": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Starting native services"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.boot.phase.save": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Checking save data"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.boot.phase.settings": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Loading settings"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.boot.phase.web": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Starting web systems"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.boot.title": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Preparing Riftwarden"
+        }
+      ],
+      "budget": "system_title",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.compatibility.body": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "A required graphics or platform feature is unavailable. Your local data remains unchanged."
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.compatibility.title": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Device not fully supported"
+        }
+      ],
+      "budget": "system_title",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.error.code_label": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Error code: "
+        },
+        {
+          "n": "code",
+          "t": "arg"
+        }
+      ],
+      "budget": "diagnostic_label",
+      "compactKey": null,
+      "parameters": {
+        "code": "string"
+      }
+    },
+    "ui.system.fatal.body": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "A non-recoverable error prevents safe operation. Use only the safe actions provided."
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.fatal.title": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Riftwarden has stopped"
+        }
+      ],
+      "budget": "system_title",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.recovery.body": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Riftwarden could not continue normally. "
+        },
+        {
+          "c": [
+            {
+              "t": "text",
+              "v": "Show diagnostics"
+            }
+          ],
+          "id": "open_diagnostics",
+          "k": "action",
+          "mode": "paired",
+          "t": "token"
+        },
+        {
+          "t": "text",
+          "v": " or choose a safe action."
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.recovery.title": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Recovery"
+        }
+      ],
+      "budget": "system_title",
+      "compactKey": null,
+      "parameters": {}
+    },
+    "ui.system.resume.body": {
+      "ast": [
+        {
+          "b": {
+            "battle": [
+              {
+                "t": "text",
+                "v": "An interrupted battle can continue."
+              }
+            ],
+            "other": [
+              {
+                "t": "text",
+                "v": "An interrupted flow can continue."
+              }
+            ],
+            "transaction": [
+              {
+                "t": "text",
+                "v": "A pending action can continue."
+              }
+            ]
+          },
+          "n": "state",
+          "t": "select"
+        }
+      ],
+      "budget": "system_body",
+      "compactKey": null,
+      "parameters": {
+        "state": "select"
+      }
+    },
+    "ui.system.resume.title": {
+      "ast": [
+        {
+          "t": "text",
+          "v": "Continue?"
+        }
+      ],
+      "budget": "system_title",
+      "compactKey": null,
+      "parameters": {}
+    }
+  },
+  "schemaVersion": 1
+}
