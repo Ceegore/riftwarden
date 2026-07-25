@@ -12,6 +12,7 @@ const checks = [
 const results = [];
 let ok = true;
 for (const [name, script] of checks) {
+  if (typeof script !== 'string') continue;
   const result = spawnSync(
     process.execPath,
     [path.join(root, script)],
@@ -22,8 +23,8 @@ for (const [name, script] of checks) {
     name,
     passed,
     exitCode: result.status,
-    stdout: result.stdout.trim(),
-    stderr: result.stderr.trim(),
+    stdout: (result.stdout ?? '').trim(),
+    stderr: (result.stderr ?? '').trim(),
   });
   ok &&= passed;
 }
