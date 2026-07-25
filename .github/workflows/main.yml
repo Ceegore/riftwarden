@@ -38,6 +38,30 @@ jobs:
           corepack enable
           pnpm --version
           pnpm install --frozen-lockfile
+          # Provide CI build ENV (files are gitignored; CI needs them)
+          CONTENT_HASH=$(printf '%s' "ci-main-build" | sha256sum | cut -d' ' -f1)
+          cat > .env.release << ENV
+          VITE_BUILD_CHANNEL=release
+          VITE_CONTENT_VERSION=${CONTENT_HASH}
+          VITE_ENABLE_DEVTOOLS=false
+          VITE_SUPPORT_URL=https://github.com/Ceegore/riftwarden/issues
+          VITE_PRIVACY_URL=https://github.com/Ceegore/riftwarden
+          ENV
+          cat > .env.qa << ENV
+          VITE_BUILD_CHANNEL=qa
+          VITE_CONTENT_VERSION=${CONTENT_HASH}
+          VITE_ENABLE_DEVTOOLS=false
+          VITE_SUPPORT_URL=https://github.com/Ceegore/riftwarden/issues
+          VITE_PRIVACY_URL=https://github.com/Ceegore/riftwarden
+          ENV
+          cat > .env.dev << ENV
+          VITE_BUILD_CHANNEL=dev
+          VITE_CONTENT_VERSION=dev-content-placeholder
+          VITE_ENABLE_DEVTOOLS=true
+          VITE_SUPPORT_URL=https://github.com/Ceegore/riftwarden/issues
+          VITE_PRIVACY_URL=https://github.com/Ceegore/riftwarden
+          ENV
+          pnpm exec playwright install --with-deps chromium firefox webkit
           pnpm verify:repo
           pnpm verify:phase02
           pnpm verify:phase03
@@ -66,8 +90,6 @@ jobs:
           pnpm security:audit
           pnpm security:secrets
           pnpm security:artifact-paths
-      - name: Browser installation
-        run: pnpm exec playwright install --with-deps chromium firefox webkit
       - name: E2E
         run: pnpm test:e2e
       - name: Upload main evidence
