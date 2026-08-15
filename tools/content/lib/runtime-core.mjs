@@ -1,5 +1,5 @@
 import fs from "node:fs/promises"; import path from "node:path";
-import { parseStrictJson } from "./strict-json.mjs"; import { sha256 } from "./manifest.mjs"; import { fail } from "./diagnostic.mjs";
+import { parseStrictJson } from "./strict-json.mjs"; import { sha256 } from "./manifest.mjs"; import { canonicalJson, stableCompare } from "./canonical-json.mjs"; import { fail } from "./diagnostic.mjs";
 function deepFreeze(v) { if (v && typeof v === "object" && !Object.isFrozen(v)) { Object.freeze(v); for (const x of Object.values(v)) deepFreeze(x); } return v; }
 function freezeMap(map) { for (const key of ["set", "delete", "clear"]) map[key] = () => { throw new Error("P09_IMMUTABLE_BUNDLE"); }; return Object.freeze(map); }
 export async function loadVerifiedBundle(outDir) {
@@ -18,6 +18,14 @@ export async function loadVerifiedBundle(outDir) {
     for (const entity of file.entities) { if (!entity || typeof entity.id !== "string") fail("P09_ID_COLLISION", "Runtime entity without string id", { sourcePath: rec.path }); if (map.has(entity.id)) fail("P09_ID_COLLISION", `Runtime duplicate ${entity.id}`, { sourcePath: rec.path }); map.set(entity.id, deepFreeze(structuredClone(entity))); }
     byType.set(rec.entityType, freezeMap(map)); total += map.size;
   }
+  // §9.7: contentVersion is SHA-256 over canonical, sorted file records. The
+  // manifest is the root of trust, so the loader must reject a manifest whose
+  // contentVersion does not match its own (already validated) records.
+  const derived = sha256(Buffer.from(canonicalJson(
+    [...manifest.files].sort((a, b) => stableCompare(a.path, b.path))
+      .map(({ path: p, sha256: h, byteLength: b, entityType: t }) => ({ path: p, sha256: h, byteLength: b, entityType: t })),
+  )));
+  if (derived !== manifest.contentVersion) fail("P09_CONTENT_VERSION", "Content version mismatch", { sourcePath: "manifest.json" });
   const countTotal = Object.values(manifest.counts ?? {}).reduce((a, b) => a + b, 0);
   if (total !== countTotal) fail("P09_MANIFEST_COUNT", "Runtime count mismatch");
   return deepFreeze({ manifest: deepFreeze(manifest), byType: freezeMap(byType) });

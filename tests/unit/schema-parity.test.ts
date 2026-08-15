@@ -28,7 +28,6 @@ import { ENTITY_SCHEMAS } from "../../tools/content/lib/entity-schemas.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const sourceRoot = path.resolve(here, "../../content/source");
-
 const TS_SCHEMAS: Record<string, ZodType> = {
   unit: UnitSourceSchema,
   ability: AbilitySourceSchema,
@@ -44,7 +43,6 @@ const TS_SCHEMAS: Record<string, ZodType> = {
   visual: VisualRequirementSourceSchema,
   audio: AudioRequirementSourceSchema,
 };
-
 const FIXTURE_FILES: Record<string, string> = {
   unit: "units/units.json",
   ability: "abilities/abilities.json",
@@ -60,14 +58,12 @@ const FIXTURE_FILES: Record<string, string> = {
   visual: "presentation/visuals.json",
   audio: "presentation/audio.json",
 };
-
 interface Probe {
   label: string;
   op: "set" | "del";
   path: string;
   value?: unknown;
 }
-
 type Entity = Record<string, unknown>;
 
 function applyProbe(entity: Entity, probe: Probe): Entity {
@@ -89,12 +85,10 @@ function applyProbe(entity: Entity, probe: Probe): Entity {
 function accepts(schema: { safeParse(value: unknown): { success: boolean } }, value: unknown): boolean {
   return schema.safeParse(value).success;
 }
-
 interface Battery {
   type: string;
   probes: Probe[];
 }
-
 const BATTERIES: Battery[] = [
   {
     type: "unit",
@@ -282,7 +276,6 @@ function fixtureEntity(type: string): Entity {
   if (!entity) throw new Error(`fixture for ${type} has no entities`);
   return entity;
 }
-
 for (const battery of BATTERIES) {
   const tsSchema = TS_SCHEMAS[battery.type];
   const mjsSchema = ENTITY_SCHEMAS[battery.type];

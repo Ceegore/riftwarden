@@ -1,7 +1,23 @@
 import fs from "node:fs/promises"; import path from "node:path"; import { canonicalJson, stableCompare } from "./canonical-json.mjs"; import { materializeTimes } from "./ticks.mjs"; import { buildIdRegistry } from "./ids.mjs"; import { validateCrossReferences } from "./crossrefs.mjs"; import { validateSemantics } from "./semantic.mjs"; import { createManifest } from "./manifest.mjs"; import { assertWarningsAllowlisted } from "./allowlist.mjs"; import { loadAllowlist } from "./source-loader.mjs"; import { fail } from "./diagnostic.mjs";
 export function validateProfile(profile,index){ if(!["fixture","development","release"].includes(profile))fail("P09_RELEASE_PROFILE",`Unknown profile ${profile}`); if(profile==="release"&&index.validationProfile!=="release")fail("P09_RELEASE_PROFILE","Release build requires release index"); if(index.validationProfile==="release"&&profile!=="release")fail("P09_RELEASE_PROFILE","Release index can only be built as release"); }
+// §9.6 Indexbuild: explicit ID-only indices for pools, compatibility and codex.
+// An index maps owner IDs to member IDs and never duplicates entity objects.
+export function buildContentIndices(byType) {
+  const pools = {}; const compatibility = {}; const codex = {};
+  const missions = byType.get("mission") ?? [];
+  if (missions.length > 0) pools.encounter = Object.fromEntries(missions.map((m) => [m.id, [...m.encounterPoolIds]]));
+  const items = byType.get("item") ?? [];
+  const compatEntries = items.filter((i) => i.compatibilityUnitIds.length > 0).map((i) => [i.id, [...i.compatibilityUnitIds]]);
+  if (compatEntries.length > 0) compatibility.item = Object.fromEntries(compatEntries);
+  const rewardEntries = items.filter((i) => i.acquisitionPoolIds.length > 0).map((i) => [i.id, [...i.acquisitionPoolIds]]);
+  if (rewardEntries.length > 0) pools.rewardTable = Object.fromEntries(rewardEntries);
+  const units = byType.get("unit") ?? [];
+  if (units.length > 0) codex.unit = Object.fromEntries(units.map((u) => [u.id, u.codexId]));
+  return { id: "content-index", pools, compatibility, codex };
+}
 export async function compileGraph({root,outDir,profile,loadSource,loadLocaleKeys}){ const {index,envelopes}=await loadSource(root); validateProfile(profile,index); const locales=await loadLocaleKeys(root); const registry=buildIdRegistry(envelopes); validateCrossReferences(envelopes,registry,locales); const {warnings}=validateSemantics(envelopes,registry); assertWarningsAllowlisted(warnings,await loadAllowlist(root));
  const byType=new Map(); for(const env of envelopes){ const list=byType.get(env.entityType)??[]; list.push(...env.entities.map((e)=>materializeTimes(e,{sourcePath:env.sourcePath,entityId:e.id}))); byType.set(env.entityType,list); }
  const target=path.resolve(outDir); const source=path.resolve(root,"content/source"); if(target===source||target.startsWith(source+path.sep))fail("P09_GENERATED_SOURCE_OVERWRITE","Generated path overlaps source"); await fs.mkdir(target,{recursive:true}); for(const existing of await fs.readdir(target)){ if(existing.endsWith(".json"))await fs.rm(path.join(target,existing),{force:true}); }
  for(const [type,entities] of [...byType.entries()].sort(([a],[b])=>stableCompare(a,b))){ entities.sort((a,b)=>stableCompare(a.id,b.id)); const sourceDigest=(await import("node:crypto")).createHash("sha256").update(canonicalJson(entities)).digest("hex"); const payload={generatedBy:"riftwarden-content-compiler-v1",schemaVersion:1,sourceDigest,entityType:type,entities}; await fs.writeFile(path.join(target,`${type}.json`),canonicalJson(payload)); }
+ const indexEntities=[buildContentIndices(byType)]; const indexDigest=(await import("node:crypto")).createHash("sha256").update(canonicalJson(indexEntities)).digest("hex"); await fs.writeFile(path.join(target,"index.json"),canonicalJson({generatedBy:"riftwarden-content-compiler-v1",schemaVersion:1,sourceDigest:indexDigest,entityType:"index",entities:indexEntities}));
  const manifest=await createManifest(target,{simulationVersion:index.simulationVersion,localeVersions:{de:index.localeVersions.de,en:index.localeVersions.en},validationProfile:index.validationProfile}); await fs.writeFile(path.join(target,"manifest.json"),canonicalJson(manifest)); return {manifest,registrySize:registry.size}; }

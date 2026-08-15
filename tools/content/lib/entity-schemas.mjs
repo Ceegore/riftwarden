@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { fail } from "./diagnostic.mjs";
-
 // Boundary units — runtime mirror of content/schemas/common.ts.
 // `.brand()` is intentionally omitted: it is compile-time only in the .ts
 // source and has no runtime parse behavior; the effective constraints match.
@@ -10,7 +9,6 @@ const MilliValue = z.number().int();
 const NonNegativeMilliValue = MilliValue.refine((value) => value >= 0);
 const BasisPoints = z.number().int().min(0).max(50000);
 const CurrencyAmount = z.number().int().nonnegative();
-
 // Nested shapes — runtime mirror of the corresponding .ts schema files.
 const UnitStats = z.object({
   maxHp: NonNegativeMilliValue,
@@ -35,7 +33,6 @@ const EffectSource = z.object({
   summonId: ContentId.nullable(),
   sourceAttribution: z.enum(["owner", "summon_owner", "effect_source"]),
 }).strict();
-
 // Two distinct modifier shapes, mirroring the .ts source exactly:
 // status.statModifiers carry `operation` (status.ts), while item
 // baseStatMods/polishMods do not (progression.ts).
