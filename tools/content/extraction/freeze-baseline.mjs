@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { createHash } from 'node:crypto';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { canonicalJson } from '../../lib/fs-utils.mjs';
@@ -10,7 +10,7 @@ import { generateRequirementManifests, sha256Of } from './lib/manifests.mjs';
 
 const indexDir = path.resolve(process.argv[2] ?? 'docs/reports/content-ledger');
 
-// Refuse unless the release gate is green (100% REVIEWED and clean).
+// Freeze order (handbook §11): release gate green, compiler green, then baseline.
 let release;
 try {
   release = JSON.parse(execFileSync(process.execPath, [path.resolve('tools/content/extraction/validate-release.mjs'), '--index-dir', indexDir], { encoding: 'utf8' }));
@@ -19,6 +19,18 @@ try {
 }
 if (release.status !== 'PASS') {
   console.log(JSON.stringify({ schemaVersion: 1, status: 'BLOCKED', reason: 'validate-release is not PASS', releaseDiagnostics: release.diagnostics }, null, 2));
+  process.exitCode = 2;
+  process.exit();
+}
+
+let compile;
+try {
+  compile = JSON.parse(execFileSync(process.execPath, [path.resolve('tools/content/verify-build-reproducibility.mjs')], { encoding: 'utf8' }));
+} catch (error) {
+  compile = JSON.parse(error.stdout ?? '{"status":"FAIL"}');
+}
+if (compile.status !== 'PASS') {
+  console.log(JSON.stringify({ schemaVersion: 1, status: 'BLOCKED', reason: 'P10_COMPILER_NOT_GREEN: content build is not reproducible', compileDiagnostics: compile.differing ?? compile.diagnostic ?? null }, null, 2));
   process.exitCode = 2;
   process.exit();
 }
@@ -62,6 +74,17 @@ if (missing.length) {
 
 const baseline = createBaseline(candidates);
 const baselineFile = path.join(indexDir, 'baseline.json');
+let previous = null;
+try {
+  previous = JSON.parse(await readFile(baselineFile, 'utf8'));
+} catch {
+  previous = null;
+}
+if (previous && previous.baselineSha256 && previous.baselineSha256 !== baseline.baselineSha256) {
+  console.log(JSON.stringify({ schemaVersion: 1, status: 'BLOCKED', reason: 'P10_BASELINE_HASH: inputs drifted from the frozen baseline', previous: previous.baselineSha256, current: baseline.baselineSha256 }, null, 2));
+  process.exitCode = 2;
+  process.exit();
+}
 await mkdir(indexDir, { recursive: true });
 await writeFile(baselineFile, `${JSON.stringify(baseline, null, 2)}\n`);
 console.log(baselineFile);

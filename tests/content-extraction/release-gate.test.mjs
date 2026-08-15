@@ -202,6 +202,31 @@ test('freeze-baseline refuses (exit 2) while slots are UNEXTRACTED', async () =>
   });
 });
 
+test('freeze-baseline blocks on input drift with P10_BASELINE_HASH', async () => {
+  await withTempLedger((index, ledgers) => {
+    let n = 0;
+    for (const ledger of ledgers) {
+      ledger.data.entries = ledger.data.entries.map((e) => reviewed(e, n++));
+    }
+  }, async (dir) => {
+    const env = { ...process.env, VITE_CONTENT_VERSION: 'v1' };
+    const first = spawnSync(process.execPath, [freezeCli, dir], { encoding: 'utf8', env });
+    assert.equal(first.status, 0, first.stdout + first.stderr);
+    const report1 = JSON.parse(first.stdout.slice(first.stdout.indexOf('{')));
+    // change an input (content version) and re-freeze
+    const second = spawnSync(process.execPath, [freezeCli, dir], { encoding: 'utf8', env: { ...env, VITE_CONTENT_VERSION: 'v2' } });
+    assert.equal(second.status, 2);
+    const report2 = JSON.parse(second.stdout);
+    assert.equal(report2.status, 'BLOCKED');
+    assert.match(report2.reason, /P10_BASELINE_HASH/);
+    // identical re-freeze still passes (idempotent)
+    const third = spawnSync(process.execPath, [freezeCli, dir], { encoding: 'utf8', env });
+    assert.equal(third.status, 0, third.stdout + third.stderr);
+    const report3 = JSON.parse(third.stdout.slice(third.stdout.indexOf('{')));
+    assert.equal(report3.baselineSha256, report1.baselineSha256);
+  });
+});
+
 async function makeSyntheticLedgers(familyCounts) {
   const dir = await mkdtemp(path.join(tmpdir(), 'rw-synth-'));
   const index = {
