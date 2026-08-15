@@ -24,6 +24,7 @@ export const GENERATED_PREFIXES = Object.freeze([
   'src/app/navigation/generated/',
   'tests/navigation/fixtures/',
   'inputs/sources/',
+  'contracts/rules/',
 ]);
 
 // Individual generated files (not prefixes) that bypass the line gate.

@@ -95,6 +95,12 @@
     "content:review:batches": "node tools/content/extraction/generate-review-batches.mjs 12",
     "test:content": "node --test tests/content/*.test.mjs",
     "test:content-extraction": "node --test tests/content-extraction/*.test.mjs",
+    "test:rules": "node --test tests/rules/*.test.mjs && vitest run --project rules",
+    "rules:typecheck": "tsc -p tsconfig.type-fixtures.json --noEmit",
+    "rules:audit": "node tools/rules/audit-magic-values.mjs src config/magic-value-allowlist.json",
+    "rules:validate-snapshots": "node tools/rules/validate-rule-snapshots.mjs .",
+    "rules:validate-published-ids": "node tools/rules/validate-published-ids.mjs",
+    "rules:validate-readiness": "node tools/rules/validate-phase10-readiness.mjs",
     "content:report": "node tools/content/create-content-report.mjs --root .",
     "content:schemas:export": "node tools/content/export-json-schema.mjs --out content/generated/json-schema"
   },

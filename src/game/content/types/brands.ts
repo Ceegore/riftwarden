@@ -7,7 +7,9 @@ export type BasisPoints = Brand<number, "BasisPoints">;
 export type PositionX100 = Brand<number, "PositionX100">;
 export type CurrencyAmount = Brand<number, "CurrencyAmount">;
 
-export const TICKS_PER_SECOND = 30;
+import { TECHNICAL_RULES } from "../../rules/technical-rules";
+
+export const TICKS_PER_SECOND = TECHNICAL_RULES.simulationTicksPerSecond;
 export function materializeTicks(seconds: number): Tick {
   const ticks = Math.round(seconds * TICKS_PER_SECOND);
   const drift = Math.abs(ticks / TICKS_PER_SECOND - seconds);

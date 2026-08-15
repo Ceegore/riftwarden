@@ -45,6 +45,8 @@
     "tools/navigation/**/*.mjs",
     "tests/navigation/**/*.mjs",
     "tools/content/**/*.mjs",
-    "tests/content/**/*.mjs"
+    "tests/content/**/*.mjs",
+    "tools/rules/**/*.mjs",
+    "tests/rules/**/*.mjs"
   ]
 }
