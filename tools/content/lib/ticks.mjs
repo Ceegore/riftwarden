@@ -11,9 +11,8 @@ export function materializeTimes(value, context={}) {
   if(value&&typeof value==="object"){
     const out={};
     for(const [key,item] of Object.entries(value)){
-      if(key.endsWith("Seconds") && typeof item==="number") out[`${key.slice(0,-7)}Ticks`]=secondsToTicks(item,{...context,field:key});
-      else if(key.endsWith("Seconds") && item===null) out[`${key.slice(0,-7)}Ticks`]=null;
-      else out[key]=materializeTimes(item,{...context,field:key});
+      if(key.endsWith("Seconds")){ if(typeof item==="number") out[`${key.slice(0,-7)}Ticks`]=secondsToTicks(item,{...context,field:key}); else if(item===null) out[`${key.slice(0,-7)}Ticks`]=null; else fail("P09_SCHEMA_TYPE",`Seconds field ${key} must be number or null`,{...context,field:key}); continue; }
+      out[key]=materializeTimes(item,{...context,field:key});
     }
     return out;
   }

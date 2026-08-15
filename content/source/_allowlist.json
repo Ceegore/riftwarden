@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "code": "P09_WARNING_PLANNED_ASSET",
+      "sourcePath": "units/units.json",
+      "entityId": "hero_fixture_warden",
+      "reason": "Fixture unit references planned visual/audio until Phase 10 assets land",
+      "owner": "content",
+      "expiresOn": "2099-12-31"
+    },
+    {
+      "code": "P09_WARNING_PLANNED_ASSET",
+      "sourcePath": "units/units.json",
+      "entityId": "enemy_fixture_echo",
+      "reason": "Fixture unit references planned visual/audio until Phase 10 assets land",
+      "owner": "content",
+      "expiresOn": "2099-12-31"
+    },
+    {
+      "code": "P09_WARNING_PLANNED_ASSET",
+      "sourcePath": "abilities/abilities.json",
+      "entityId": "attack_fixture_hero_basic",
+      "reason": "Fixture ability references planned telegraph until Phase 10 assets land",
+      "owner": "content",
+      "expiresOn": "2099-12-31"
+    },
+    {
+      "code": "P09_WARNING_PLANNED_ASSET",
+      "sourcePath": "abilities/abilities.json",
+      "entityId": "attack_fixture_enemy_basic",
+      "reason": "Fixture ability references planned telegraph until Phase 10 assets land",
+      "owner": "content",
+      "expiresOn": "2099-12-31"
+    }
+  ]
+}

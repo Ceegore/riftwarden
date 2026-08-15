@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "codes": [
+    {
+      "code": "P09_ALLOWLIST_EXPIRED",
+      "severity": "error"
+    },
+    {
+      "code": "P09_CONTENT_VERSION",
+      "severity": "error"
+    },
+    {
+      "code": "P09_GENERATED_SOURCE_OVERWRITE",
+      "severity": "error"
+    },
+    {
+      "code": "P09_ID_COLLISION",
+      "severity": "error"
+    },
+    {
+      "code": "P09_ID_FORMAT",
+      "severity": "error"
+    },
+    {
+      "code": "P09_ID_NAMESPACE",
+      "severity": "error"
+    },
+    {
+      "code": "P09_IMMUTABLE_BUNDLE",
+      "severity": "error"
+    },
+    {
+      "code": "P09_INTERNAL",
+      "severity": "error"
+    },
+    {
+      "code": "P09_JSON_BOM",
+      "severity": "error"
+    },
+    {
+      "code": "P09_JSON_CONTROL_CHAR",
+      "severity": "error"
+    },
+    {
+      "code": "P09_JSON_DUPLICATE_KEY",
+      "severity": "error"
+    },
+    {
+      "code": "P09_JSON_ENCODING",
+      "severity": "error"
+    },
+    {
+      "code": "P09_JSON_SYNTAX",
+      "severity": "error"
+    },
+    {
+      "code": "P09_LOCALIZATION_KEY_MISSING",
+      "severity": "error"
+    },
+    {
+      "code": "P09_MANIFEST_COUNT",
+      "severity": "error"
+    },
+    {
+      "code": "P09_MANIFEST_HASH",
+      "severity": "error"
+    },
+    {
+      "code": "P09_PARTIAL_BUNDLE",
+      "severity": "error"
+    },
+    {
+      "code": "P09_REF_MISSING",
+      "severity": "error"
+    },
+    {
+      "code": "P09_REF_TYPE",
+      "severity": "error"
+    },
+    {
+      "code": "P09_RELEASE_PROFILE",
+      "severity": "error"
+    },
+    {
+      "code": "P09_SCHEMA_MISSING_FIELD",
+      "severity": "error"
+    },
+    {
+      "code": "P09_SCHEMA_NULL_FORBIDDEN",
+      "severity": "error"
+    },
+    {
+      "code": "P09_SCHEMA_RANGE",
+      "severity": "error"
+    },
+    {
+      "code": "P09_SCHEMA_TYPE",
+      "severity": "error"
+    },
+    {
+      "code": "P09_SCHEMA_UNKNOWN_FIELD",
+      "severity": "error"
+    },
+    {
+      "code": "P09_SEMANTIC_ABILITY",
+      "severity": "error"
+    },
+    {
+      "code": "P09_SEMANTIC_EVENT",
+      "severity": "error"
+    },
+    {
+      "code": "P09_SEMANTIC_UNIT",
+      "severity": "error"
+    },
+    {
+      "code": "P09_SYMLINK_ESCAPE",
+      "severity": "error"
+    },
+    {
+      "code": "P09_TICK_ROUNDING",
+      "severity": "error"
+    },
+    {
+      "code": "P09_WARNING_PLANNED_ASSET",
+      "severity": "warning"
+    },
+    {
+      "code": "P09_WARNING_UNALLOWLISTED",
+      "severity": "error"
+    }
+  ]
+}

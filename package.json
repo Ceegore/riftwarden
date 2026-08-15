@@ -85,7 +85,8 @@
     "content:validate": "node tools/content/validate-content.mjs --root . --profile fixture",
     "content:build": "node tools/content/compile.mjs --root . --profile fixture --out content/generated",
     "test:content": "node --test tests/content/*.test.mjs",
-    "content:report": "node tools/content/create-content-report.mjs --root ."
+    "content:report": "node tools/content/create-content-report.mjs --root .",
+    "content:schemas:export": "node tools/content/export-json-schema.mjs --out content/generated/json-schema"
   },
   "dependencies": {
     "react": "19.2.8",

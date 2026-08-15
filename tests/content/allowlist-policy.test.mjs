@@ -5,3 +5,5 @@ test("expired allowlist blocks",async()=>{const value=await read("negative/expir
 test("unallowlisted warning blocks",async()=>assert.throws(()=>assertWarningsAllowlisted([{code:"X",sourcePath:"x"}],{entries:[]}),/P09_WARNING_UNALLOWLISTED/));
 test("matching warning passes",async()=>{const a=validateAllowlist(await read("positive/active-allowlist.json"));assert.doesNotThrow(()=>assertWarningsAllowlisted([{code:"P09_TEST_WARNING",sourcePath:"fixture.json",entityId:null}],a));});
 test("entity-specific mismatch blocks",async()=>{const a=validateAllowlist(await read("positive/active-allowlist.json"));assert.throws(()=>assertWarningsAllowlisted([{code:"P09_TEST_WARNING",sourcePath:"fixture.json",entityId:"hero_x"}],a),/P09_WARNING_UNALLOWLISTED/);});
+test("short reason blocks",async()=>{const value=await read("positive/active-allowlist.json");value.entries[0].reason="short";assert.throws(()=>validateAllowlist(value,"2099-01-01"),/P09_SCHEMA_RANGE/);});
+test("missing owner blocks",async()=>{const value=await read("positive/active-allowlist.json");delete value.entries[0].owner;assert.throws(()=>validateAllowlist(value,"2099-01-01"),/P09_SCHEMA_MISSING_FIELD/);});

@@ -20,6 +20,7 @@ function assertParsedStrings(value, sourcePath, pointer="") {
   if (value && typeof value === "object") for (const [key,item] of Object.entries(value)) { if (forbidden.test(key)) fail("P09_JSON_CONTROL_CHAR", "Forbidden Unicode control character in key", { sourcePath, pointer: `${pointer}/${key}` }); assertParsedStrings(item,sourcePath,`${pointer}/${key}`); }
 }
 export function parseStrictJson(text, sourcePath="<memory>") {
+  if (text.charCodeAt(0) === 0xfeff) fail("P09_JSON_BOM", "Byte-order mark not allowed", { sourcePath });
   assertNoForbiddenControls(text, sourcePath); detectDuplicateKeys(text, sourcePath);
   try { const value=JSON.parse(text); assertParsedStrings(value,sourcePath); return value; } catch (error) { if (error?.code) throw error; fail("P09_JSON_SYNTAX", error.message, { sourcePath }); }
 }
