@@ -225,6 +225,31 @@ test('missing ledger file produces a clean gate diagnostic, not a crash', async 
   }
 });
 
+test('missing index file produces a clean diagnostic, not a crash', async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'rw-noindex-'));
+  try {
+    const counts = spawnSync(process.execPath, ['tools/content/extraction/validate-counts.mjs', '--index-dir', dir], { encoding: 'utf8' });
+    assert.equal(counts.status, 1, counts.stdout + counts.stderr);
+    const report = JSON.parse(counts.stdout);
+    assert.equal(report.ok, false);
+    assert.equal(report.diagnostics.some((d) => d.code === 'P10_LEDGER_SHAPE' && /missing content-ledger.index.json/.test(d.message)), true);
+    assert.equal(/ENOENT/.test(counts.stderr), false);
+
+    const ledger = spawnSync(process.execPath, ['tools/content/extraction/validate-ledger.mjs', '--index-dir', dir], { encoding: 'utf8' });
+    assert.equal(ledger.status, 1);
+    assert.equal(/ENOENT/.test(ledger.stderr), false);
+
+    const release = spawnSync(process.execPath, ['tools/content/extraction/validate-release.mjs', '--index-dir', dir], { encoding: 'utf8' });
+    assert.equal(release.status, 1);
+    const rr = JSON.parse(release.stdout);
+    assert.equal(rr.status, 'FAIL');
+    assert.equal(rr.diagnostics.some((d) => d.code === 'P10_LEDGER_SHAPE'), true);
+    assert.equal(/ENOENT/.test(release.stderr), false);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
 test('corrupt ledger JSON produces a clean diagnostic, not a crash', async () => {
   const dir = await mkdtemp(path.join(tmpdir(), 'rw-corrupt-'));
   try {

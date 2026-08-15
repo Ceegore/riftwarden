@@ -11,10 +11,10 @@ if (!Number.isInteger(batchSize) || batchSize < 8 || batchSize > 15) {
 }
 
 const indexDir = path.resolve(args['index-dir'] ?? args.indexDir ?? 'docs/reports/content-ledger');
-const { ledgers } = await loadLedgers(indexDir);
+const { ledgers, indexError } = await loadLedgers(indexDir);
 const broken = ledgers.filter((ledger) => ledger.error);
-if (broken.length) {
-  console.error(JSON.stringify({ schemaVersion: 1, status: 'FAIL', reason: 'Cannot generate batches: ledger files missing or unreadable', errors: broken.map((b) => b.error) }, null, 2));
+if (indexError || broken.length) {
+  console.error(JSON.stringify({ schemaVersion: 1, status: 'FAIL', reason: 'Cannot generate batches: ledger index or files missing or unreadable', errors: [indexError, ...broken.map((b) => b.error)].filter(Boolean) }, null, 2));
   process.exitCode = 1;
   process.exit();
 }
