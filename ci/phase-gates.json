@@ -103,6 +103,12 @@
       "ownerPhase": 4,
       "requiredFromPhase": 4,
       "command": "pnpm android:debug:smoke"
+    },
+    {
+      "id": "rules-gates",
+      "ownerPhase": 11,
+      "requiredFromPhase": 11,
+      "command": "pnpm test:rules && pnpm rules:audit && pnpm rules:validate-snapshots"
     }
   ]
 }

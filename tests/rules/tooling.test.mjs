@@ -56,6 +56,36 @@ test('replacement cycle blocks', () => {
   assert.ok(validatePublishedIds(JSON.parse(readFileSync(fixture('published.previous.json'), 'utf8')), JSON.parse(readFileSync(fixture('published.invalid-cycle.json'), 'utf8'))).some((x) => x.code === 'P11_REPLACEMENT_INVALID'));
 });
 
+test('type change blocks', () => {
+  const prev = JSON.parse(readFileSync(fixture('published.previous.json'), 'utf8'));
+  const next = JSON.parse(readFileSync(fixture('published.valid-next.json'), 'utf8'));
+  next.ids[0].type = 'troop';
+  assert.ok(validatePublishedIds(prev, next).some((x) => x.code === 'P11_REPLACEMENT_INVALID'));
+});
+
+test('duplicate next id blocks', () => {
+  const prev = JSON.parse(readFileSync(fixture('published.previous.json'), 'utf8'));
+  const next = JSON.parse(readFileSync(fixture('published.valid-next.json'), 'utf8'));
+  next.ids.push({ ...next.ids[0] });
+  assert.ok(validatePublishedIds(prev, next).some((x) => x.code === 'P11_ID_COLLISION'));
+});
+
+test('self-referential replacement blocks', () => {
+  const prev = JSON.parse(readFileSync(fixture('published.previous.json'), 'utf8'));
+  const next = JSON.parse(readFileSync(fixture('published.valid-next.json'), 'utf8'));
+  next.ids[1].replacementId = 'item_old_blade';
+  assert.ok(validatePublishedIds(prev, next).some((x) => x.code === 'P11_REPLACEMENT_INVALID'));
+});
+
+test('replacement into another namespace blocks', () => {
+  const prev = JSON.parse(readFileSync(fixture('published.previous.json'), 'utf8'));
+  const next = JSON.parse(readFileSync(fixture('published.valid-next.json'), 'utf8'));
+  next.ids[1].replacementId = 'hero_new_blade';
+  next.ids[2].id = 'hero_new_blade';
+  next.ids[2].type = 'hero';
+  assert.ok(validatePublishedIds(prev, next).some((x) => x.code === 'P11_REPLACEMENT_INVALID'));
+});
+
 test('magic global semantic duplicate blocks', () => {
   const d = mkdtempSync(join(tmpdir(), 'p11-'));
   mkdirSync(join(d, 'src'));
@@ -79,4 +109,18 @@ test('exact allowlist suppresses finding', () => {
     entries: [{ path: 'src/battle.ts', literal: 7, lineSha256: lineSha256(line), helperTraceId: 'P11-TEMP', owner: 'qa', reason: 'temporary compatibility exception', expiresOn: '9999-12-31' }]
   };
   assert.deepEqual(auditTree(d, allow), []);
+});
+
+test('allowlist entry without owner or reason blocks with P11_ALLOWLIST_INVALID', () => {
+  const d = mkdtempSync(join(tmpdir(), 'p11-'));
+  mkdirSync(join(d, 'src'));
+  const line = 'const maxUnits = 7;';
+  writeFileSync(join(d, 'src', 'battle.ts'), line + '\n');
+  const base = { path: 'src/battle.ts', literal: 7, lineSha256: lineSha256(line), helperTraceId: 'P11-TEMP', owner: 'qa', reason: 'temporary compatibility exception', expiresOn: '9999-12-31' };
+  const noOwner = { ...base, owner: '' };
+  assert.ok(auditTree(d, { entries: [noOwner] }).some((x) => x.code === 'P11_ALLOWLIST_INVALID'));
+  const shortReason = { ...base, reason: 'short' };
+  assert.ok(auditTree(d, { entries: [shortReason] }).some((x) => x.code === 'P11_ALLOWLIST_INVALID'));
+  const noTrace = { ...base, helperTraceId: 'X-1' };
+  assert.ok(auditTree(d, { entries: [noTrace] }).some((x) => x.code === 'P11_ALLOWLIST_INVALID'));
 });

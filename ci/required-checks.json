@@ -49,6 +49,11 @@
       "job": "android_debug_smoke",
       "activationPhase": 4,
       "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "rules_gates",
+      "activationPhase": 11,
+      "expectedBeforeActivation": "skipped"
     }
   ],
   "aggregateRule": "Every active job must be success; phased jobs must be success at/after activation and skipped before activation; failure, cancelled or unexpected skipped blocks.",

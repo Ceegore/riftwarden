@@ -120,6 +120,11 @@ jobs:
             content-reproducibility)
               pnpm content:build:verify
               ;;
+            rules-gates)
+              pnpm test:rules
+              pnpm rules:audit
+              pnpm rules:validate-snapshots
+              ;;
             asset-manifest-validate)
               pnpm assets:validate
               ;;

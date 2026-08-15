@@ -52,6 +52,10 @@ describe('units enforce domain boundaries', () => {
   it('position rejects above', () => {
     expect(() => positionX100(10001)).toThrow();
   });
+  it('position accepts exact boundaries', () => {
+    expect(unbrand(positionX100(0))).toBe(0);
+    expect(unbrand(positionX100(10000))).toBe(10000);
+  });
   it('bps default lower bound', () => {
     expect(() => basisPoints(-1)).toThrow();
   });

@@ -68,5 +68,7 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
-  "exclude": ["tests/rules/type-fixtures/**/*.ts"]
+  "exclude": [
+    "tests/rules/type-fixtures/**/*.ts"
+  ]
 }

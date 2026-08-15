@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
 /**
@@ -12,17 +12,36 @@ import { join } from 'node:path';
  * @param {string} ledgerDir Real ledger directory (docs/reports/content-ledger)
  */
 export function auditPhase10(ledgerDir) {
+  const diagnostics = [{ code: 'P11_G10_NOT_PROVEN', path: 'G10', message: 'real repository G10 evidence absent' }];
   let total = 0;
   let unextracted = 0;
-  const families = readdirSync(ledgerDir).filter((name) => name.endsWith('.ledger.json'));
-  for (const name of families) {
-    const data = JSON.parse(readFileSync(join(ledgerDir, name), 'utf8'));
-    for (const entry of data.entries ?? []) {
-      total += 1;
-      if (entry.status === 'UNEXTRACTED') unextracted += 1;
+  const families = [];
+  if (!existsSync(ledgerDir)) {
+    diagnostics.push({
+      code: 'P11_CONTENT_UNEXTRACTED',
+      path: 'phase10-ledgers',
+      message: `ledger directory missing: ${ledgerDir}`
+    });
+  } else {
+    for (const name of readdirSync(ledgerDir).filter((name) => name.endsWith('.ledger.json'))) {
+      families.push(name);
+      let data;
+      try {
+        data = JSON.parse(readFileSync(join(ledgerDir, name), 'utf8'));
+      } catch {
+        diagnostics.push({
+          code: 'P11_CONTENT_UNEXTRACTED',
+          path: `phase10-ledgers/${name}`,
+          message: `ledger file unreadable: ${name}`
+        });
+        continue;
+      }
+      for (const entry of data.entries ?? []) {
+        total += 1;
+        if (entry.status === 'UNEXTRACTED') unextracted += 1;
+      }
     }
   }
-  const diagnostics = [{ code: 'P11_G10_NOT_PROVEN', path: 'G10', message: 'real repository G10 evidence absent' }];
   if (unextracted) {
     diagnostics.push({
       code: 'P11_CONTENT_UNEXTRACTED',

@@ -41,6 +41,13 @@ for (const [name, values] of Object.entries(snap)) {
     it('rejects unknown', () => {
       expect(() => parserOf(name)('__unknown__')).toThrow();
     });
+    it('rejects non-string input', () => {
+      expect(() => parserOf(name)(null)).toThrow();
+      expect(() => parserOf(name)(42)).toThrow();
+    });
+    it('rejects wrong spelling', () => {
+      expect(() => parserOf(name)(String(values[0]).toUpperCase())).toThrow();
+    });
   });
 }
 

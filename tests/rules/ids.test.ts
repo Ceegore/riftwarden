@@ -12,6 +12,7 @@ import {
   uiLocalizationKey,
   assertGlobalIdUniqueness,
   SCREEN_IDS,
+  CONTENT_ID_PREFIXES,
 } from '../../src/game/rules/ids';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -33,6 +34,15 @@ describe('content IDs', () => {
   }
   it('content type', () => {
     expect(contentTypeOf('talisman_morning_seed')).toBe('talisman');
+  });
+  it('every GDD prefix is accepted with a suffix', () => {
+    for (const prefix of CONTENT_ID_PREFIXES) {
+      const id = `${prefix}suffix_1`;
+      expect(parseContentId(id)).toBe(id);
+    }
+  });
+  it('empty string rejected', () => {
+    expect(() => parseContentId('')).toThrow();
   });
 });
 
