@@ -8,15 +8,29 @@ export async function loadJson(file) {
 /**
  * Loads the ledger index and every family ledger referenced by it.
  *
+ * Tolerant by design: a missing or unparsable family file does not crash the
+ * CLI — it returns a `{ family, data: null, error }` entry so callers can
+ * report a clean gate diagnostic. The index itself must exist and parse.
+ *
  * @param {string} indexDir Directory holding content-ledger.index.json plus the family files.
- * @returns {Promise<{ index: any, ledgers: Array<{ family: string, category: string, expectedCount: number, data: any }> }>}
+ * @returns {Promise<{ index: any, ledgers: Array<{ family: string, category: string, expectedCount: number, data: any, error?: string }> }>}
  */
 export async function loadLedgers(indexDir = 'docs/reports/content-ledger', { readFile: rf = readFile } = {}) {
   const index = await loadJson(path.join(indexDir, 'content-ledger.index.json'), { readFile: rf });
   const ledgers = [];
   for (const fam of index.families) {
-    const data = JSON.parse(await rf(path.join(indexDir, fam.file), 'utf8'));
-    ledgers.push({ family: fam.family, category: fam.category, expectedCount: fam.expectedCount, data });
+    try {
+      const data = JSON.parse(await rf(path.join(indexDir, fam.file), 'utf8'));
+      ledgers.push({ family: fam.family, category: fam.category, expectedCount: fam.expectedCount, data });
+    } catch (error) {
+      ledgers.push({
+        family: fam.family,
+        category: fam.category,
+        expectedCount: fam.expectedCount,
+        data: null,
+        error: error.code === 'ENOENT' ? `missing ledger file ${fam.file}` : `unparsable ledger file ${fam.file}`
+      });
+    }
   }
   return { index, ledgers };
 }

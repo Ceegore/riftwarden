@@ -193,6 +193,57 @@ test('freeze-baseline PASSES on a fully reviewed ledger and generates requiremen
   });
 });
 
+test('missing ledger file produces a clean gate diagnostic, not a crash', async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'rw-missing-'));
+  try {
+    const { index, ledgers } = await loadLedgers();
+    await writeFile(path.join(dir, 'content-ledger.index.json'), JSON.stringify(index, null, 2));
+    // write only the first family; leave the rest referenced-but-missing
+    for (const ledger of ledgers.slice(0, 1)) {
+      await writeFile(path.join(dir, ledger.family + '.ledger.json'), JSON.stringify(ledger.data, null, 2));
+    }
+    const counts = spawnSync(process.execPath, ['tools/content/extraction/validate-counts.mjs', '--index-dir', dir], { encoding: 'utf8' });
+    assert.equal(counts.status, 1, counts.stdout + counts.stderr);
+    const report = JSON.parse(counts.stdout);
+    assert.equal(report.ok, false);
+    assert.equal(report.diagnostics.some((d) => d.code === 'P10_COUNT_MISMATCH' && /missing ledger file/.test(d.message)), true);
+    assert.equal(/ENOENT/.test(counts.stderr), false);
+
+    const ledger = spawnSync(process.execPath, ['tools/content/extraction/validate-ledger.mjs', '--index-dir', dir], { encoding: 'utf8' });
+    assert.equal(ledger.status, 1, ledger.stdout + ledger.stderr);
+    const lr = JSON.parse(ledger.stdout);
+    assert.equal(lr.ok, false);
+    assert.equal(lr.diagnostics.some((d) => d.code === 'P10_LEDGER_SHAPE' && /missing ledger file/.test(d.message)), true);
+    assert.equal(/ENOENT/.test(ledger.stderr), false);
+
+    const batches = spawnSync(process.execPath, ['tools/content/extraction/generate-review-batches.mjs', '--index-dir', dir], { encoding: 'utf8' });
+    assert.equal(batches.status, 1);
+    assert.equal(/ENOENT/.test(batches.stderr), false);
+    assert.equal(/Cannot generate batches/.test(batches.stderr), true);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
+test('corrupt ledger JSON produces a clean diagnostic, not a crash', async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'rw-corrupt-'));
+  try {
+    const { index, ledgers } = await loadLedgers();
+    await writeFile(path.join(dir, 'content-ledger.index.json'), JSON.stringify(index, null, 2));
+    for (const ledger of ledgers) {
+      await writeFile(path.join(dir, ledger.family + '.ledger.json'), ledger === ledgers[0] ? '{ not json' : JSON.stringify(ledger.data, null, 2));
+    }
+    const run = spawnSync(process.execPath, ['tools/content/extraction/validate-counts.mjs', '--index-dir', dir], { encoding: 'utf8' });
+    assert.equal(run.status, 1, run.stdout + run.stderr);
+    const report = JSON.parse(run.stdout);
+    assert.equal(report.ok, false);
+    assert.equal(report.diagnostics.some((d) => d.code === 'P10_COUNT_MISMATCH' && /unparsable ledger file/.test(d.message)), true);
+    assert.equal(/SyntaxError/.test(run.stderr), false);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
 test('freeze-baseline refuses (exit 2) while slots are UNEXTRACTED', async () => {
   await withTempLedger(null, async (dir) => {
     const run = spawnSync(process.execPath, [freezeCli, dir], { encoding: 'utf8', env: { ...process.env, VITE_CONTENT_VERSION: 'x' } });

@@ -23,8 +23,10 @@ export function validateCounts(index, ledgers, counts) {
       diagnostics.push(diag('P10_COUNT_MISMATCH', `Family ${fam.family} is not in the release-counts contract.`, fam.family));
       continue;
     }
-    const actual = ledger?.data.entries.length ?? 0;
-    if (actual !== expected) {
+    const actual = ledger?.data?.entries?.length ?? 0;
+    if (ledger?.error) {
+      diagnostics.push(diag('P10_COUNT_MISMATCH', `Family ${fam.family}: ${ledger.error}.`, fam.family));
+    } else if (actual !== expected) {
       diagnostics.push(diag('P10_COUNT_MISMATCH', `Family ${fam.family}: expected ${expected} entries, found ${actual}.`, fam.family));
     }
     if (gateExpected !== undefined) gateTotal += actual;

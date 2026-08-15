@@ -66,7 +66,11 @@ export async function validateLedgerShape(ledgers, authorityPath) {
   const seenRuntimeIds = new Map();
   for (const ledger of ledgers) {
     const data = ledger.data;
-    if (!data || data.schemaVersion !== 1 || !Array.isArray(data.entries)) {
+    if (!data) {
+      diagnostics.push(diag('P10_LEDGER_SHAPE', `Ledger ${ledger.family}: ${ledger.error ?? 'file is missing or unreadable'}.`, ledger.family));
+      continue;
+    }
+    if (data.schemaVersion !== 1 || !Array.isArray(data.entries)) {
       diagnostics.push(diag('P10_LEDGER_SHAPE', `Ledger ${ledger.family} must have schemaVersion 1 and an entries array.`, ledger.family));
       continue;
     }

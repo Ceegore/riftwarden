@@ -10,7 +10,7 @@ const indexDir = path.resolve(args['index-dir'] ?? args.indexDir ?? 'docs/report
 const authorityPath = path.resolve(args.authority ?? 'inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md');
 const counts = await loadJson(path.resolve(args['release-counts'] ?? args.releaseCounts ?? 'contracts/release-counts.json'));
 const { index, ledgers } = await loadLedgers(indexDir);
-const allEntries = ledgers.flatMap((ledger) => ledger.data.entries);
+const allEntries = ledgers.flatMap((ledger) => (ledger.data ? ledger.data.entries : []));
 
 const diagnostics = [];
 const unreviewed = allEntries.filter((entry) => entry.status !== 'REVIEWED');
