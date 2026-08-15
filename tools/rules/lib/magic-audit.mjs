@@ -1,7 +1,12 @@
 import {createHash} from 'node:crypto';
 import {readFileSync,readdirSync,statSync} from 'node:fs';
 import {join,relative} from 'node:path';
-const semantics=/tick|summon|max(?:imum)?units|autosave|basispoints|formation|relic|heroLevel|positionX100|milliValue/i;
+// Rule indicators covering the real rule-key vocabulary (not just the kit's
+// subset): tick-based keys, unit/copy/hero limits, autosave, BPS, formation,
+// relic, hero level, position X100 scale keys, FPS target, battle-speed ratios,
+// milliValue and resolving/collapse tick keys. Dataset lines (damage: 30) stay
+// below the threshold because they carry none of these tokens.
+const semantics=/tick|summon|max(?:imum)?units|maxheroes|maxcopies|autosave|basispoints|formation|relic|heroLevel|position[a-z]*100|framesPerSecond|battleSpeed|milliValue|resolving|collaps/i;
 const literals=[3,6,7,8,30,45,60,100,450,1000,2700,3600,5400,10000,50000];
 // Root is `src`; the canonical rule modules live at game/rules (the optional
 // src/ prefix keeps the regex stable if the audit is ever rooted higher).
@@ -17,11 +22,16 @@ function entryInvalid(e) {
   if (typeof e.expiresOn !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(e.expiresOn)) return 'expiry date missing';
   return null;
 }
+// Digits may be underscore-separated (10_000); normalize before matching so
+// the literal scanner sees the same value the compiler does. Identifiers like
+// max_units keep their underscores because only digit-to-digit separators are
+// removed, and the preceding word-boundary check keeps type names out.
+const normalizeDigits = (line) => line.replace(/(\d)_(?=\d)/g, '$1');
 export function auditTree(root,allowlist={entries:[]}) {
  const diagnostics=[]; const now=new Date().toISOString().slice(0,10);
  for(const file of walk(root)) { const rel=relative(root,file).replaceAll('\\','/'); if(allowedPath.test(rel))continue;
   const lines=readFileSync(file,'utf8').split(/\r?\n/);
-  lines.forEach((line,i)=>{ if(!semantics.test(line))return; for(const literal of literals){const rx=new RegExp(`(?<![A-Za-z0-9_])${literal}(?:_?0)*(?![\\d])`);if(!rx.test(line))continue;
+  lines.forEach((line,i)=>{ if(!semantics.test(line))return; const normalized=normalizeDigits(line); for(const literal of literals){const rx=new RegExp(`(?<![A-Za-z0-9_])${literal}(?![\\d])`);if(!rx.test(normalized))continue;
    const hash=lineSha256(line); const matching=(allowlist.entries??[]).filter(e=>e.path===rel&&e.literal===literal&&e.lineSha256===hash);
    const invalid=matching.find(entryInvalid);
    if (invalid) {

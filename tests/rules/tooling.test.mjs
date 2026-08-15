@@ -100,6 +100,34 @@ test('dataset-specific value is not false positive', () => {
   assert.deepEqual(auditTree(d, { entries: [] }), []);
 });
 
+test('underscore-separated rule literal is detected', () => {
+  const d = mkdtempSync(join(tmpdir(), 'p11-'));
+  mkdirSync(join(d, 'src'));
+  writeFileSync(join(d, 'src', 'battle.ts'), 'const positionMaxX100 = 10_000;\n');
+  const res = auditTree(d, { entries: [] });
+  assert.ok(res.some((x) => x.code === 'P11_MAGIC_VALUE_DUPLICATE' && x.message === 'hard rule literal 10000'));
+});
+
+test('rule-key-shaped consumer literals are detected', () => {
+  const d = mkdtempSync(join(tmpdir(), 'p11-'));
+  mkdirSync(join(d, 'src'));
+  writeFileSync(join(d, 'src', 'battle.ts'), 'const renderTargetFramesPerSecond = 60;\nconst maxHeroesPerPlayerGroup = 3;\n');
+  const msgs = auditTree(d, { entries: [] }).map((x) => x.message);
+  assert.ok(msgs.includes('hard rule literal 60'));
+  assert.ok(msgs.includes('hard rule literal 3'));
+});
+
+test('scaled literal is not reported as its base literal', () => {
+  const d = mkdtempSync(join(tmpdir(), 'p11-'));
+  mkdirSync(join(d, 'src'));
+  writeFileSync(join(d, 'src', 'battle.ts'), 'const ticksPerSecond = 30;\nconst maxUnits = 300;\n');
+  const res = auditTree(d, { entries: [] });
+  const lits = res.map((x) => x.message);
+  assert.ok(lits.some((m) => m === 'hard rule literal 30'), '30 must be reported');
+  assert.ok(!lits.some((m) => m === 'hard rule literal 3'), '30 must not be reported as literal 3');
+  assert.ok(!res.some((x) => x.path.endsWith(':2')), '300 must not be reported');
+});
+
 test('exact allowlist suppresses finding', () => {
   const d = mkdtempSync(join(tmpdir(), 'p11-'));
   mkdirSync(join(d, 'src'));

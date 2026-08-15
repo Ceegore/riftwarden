@@ -63,4 +63,14 @@ export default tseslint.config(
       'no-restricted-imports': ['error', { patterns: [{ group: ['@capacitor/*'], message: 'Screens/features must use platform/storage adapters.' }] }],
     },
   },
+  {
+    files: ['src/game/rules/**/*.ts'],
+    rules: {
+      'no-restricted-imports': ['error', {
+        patterns: [
+          { group: ['react', 'react-dom', 'react-dom/*', 'pixi.js', 'zustand', 'motion', '@capacitor/*', '@app/*', '@audio/*', '@features/*', '@platform/*', '@screens/*', '@storage/*', '@ui/*', '@game/sim*'], message: 'game/rules is pure TypeScript: rules may only import other rule modules and must never depend on UI, renderer, state, storage, native or simulation modules.' },
+        ],
+      }],
+    },
+  },
 );
