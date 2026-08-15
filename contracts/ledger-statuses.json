@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "statuses": [
+    "UNEXTRACTED",
+    "EXTRACTED",
+    "IN_REVIEW",
+    "REVIEWED",
+    "BLOCKED"
+  ],
+  "reviewVerdicts": [
+    "PENDING",
+    "APPROVED",
+    "CHANGES_REQUIRED",
+    "BLOCKED"
+  ],
+  "allowedTransitions": {
+    "UNEXTRACTED": [
+      "EXTRACTED",
+      "BLOCKED"
+    ],
+    "EXTRACTED": [
+      "IN_REVIEW",
+      "BLOCKED"
+    ],
+    "IN_REVIEW": [
+      "REVIEWED",
+      "EXTRACTED",
+      "BLOCKED"
+    ],
+    "REVIEWED": [
+      "EXTRACTED",
+      "BLOCKED"
+    ],
+    "BLOCKED": [
+      "UNEXTRACTED",
+      "EXTRACTED"
+    ]
+  }
+}

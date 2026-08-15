@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "statuses": [
+    "PLANNED",
+    "REQUIRED_PRESENT",
+    "PRESENT_VERIFIED"
+  ],
+  "rules": {
+    "PLANNED": "ownerPhase required; file may be absent",
+    "REQUIRED_PRESENT": "file path and SHA-256 required before G10",
+    "PRESENT_VERIFIED": "path, hash, format and owner verified"
+  }
+}

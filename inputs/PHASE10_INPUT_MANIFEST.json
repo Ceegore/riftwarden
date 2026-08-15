@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "phase": 10,
+  "authoritativeSources": {
+    "inputs/sources/DEVELOPMENT_PLAN_V2_PHASE10_EXTRACT.md": "993203d6c66fcd24cf897728964b37ec6d80b9a86c9c1c4dcb004de9b126b058",
+    "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md": "bd66585dcd836f77a511e64e579d48b7925f2985be19c12662635d9811994e73",
+    "inputs/sources/GDD_V5_GLOBAL_AUTHORITY_EXTRACT.md": "432bbd30888bab76531e6a2278ddebfbcbce227d0b6d4df9910060e323a66cf8",
+    "inputs/sources/DEVELOPMENT_PLAN_V2_PHASE11_EXTRACT.md": "a508f0389b5e93e5dee6d10c57456dfda94b17d0d2a0e54eea6425a5d216b1b7",
+    "inputs/sources/GDD_V5_PHASE11_AUTHORITY_EXTRACT.md": "d1a2ed688e690e1939aaf0bcf3e131cd9aa214494dfd3441d53188ad0eadc5ce"
+  },
+  "priorPackage": "Riftwarden_Phase_09_Umsetzungspaket.zip",
+  "priorPackageSha256": "99abbfdd1516905a92288eb8cf96a5737aa5eee4c8190653c55098b3d5017c87",
+  "priorPackageQa": "PASS_AS_PACKAGE_INPUT_ONLY",
+  "realG09Evidence": false
+}

@@ -1,0 +1,8 @@
+{
+  "gddSha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "contentVersion": "fixture-content-version",
+  "ledgerSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "localizationManifestSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "assetManifestSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "defectSnapshotSha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+}

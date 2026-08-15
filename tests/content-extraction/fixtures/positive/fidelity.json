@@ -1,0 +1,16 @@
+{
+  "sourceNumericFacts": [
+    "120",
+    "1.5",
+    "35%"
+  ],
+  "extractedNumericFacts": [
+    "120",
+    "1.5",
+    "35%"
+  ],
+  "secondsConversion": "CENTRAL_COMPILER_ONLY",
+  "sourceTextSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "extractedTextSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "approvedDefectId": null
+}

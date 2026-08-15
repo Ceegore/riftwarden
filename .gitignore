@@ -62,6 +62,7 @@ android/.gradle/
 
 # CI scratch output (committed report: docs/reports/ci-gate-map.md)
 artifacts/ci/
+artifacts/provenance/
 android/local.properties
 ios/App/Pods/
 

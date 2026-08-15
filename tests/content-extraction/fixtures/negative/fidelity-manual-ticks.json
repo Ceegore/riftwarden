@@ -1,0 +1,12 @@
+{
+  "sourceNumericFacts": [
+    "1.5"
+  ],
+  "extractedNumericFacts": [
+    "1.5"
+  ],
+  "secondsConversion": "MANUAL_TICKS",
+  "sourceTextSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "extractedTextSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "approvedDefectId": null
+}
