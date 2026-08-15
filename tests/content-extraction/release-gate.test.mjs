@@ -11,6 +11,7 @@ import { loadLedgers } from '../../tools/content/extraction/lib/load-ledgers.mjs
 const here = path.dirname(fileURLToPath(import.meta.url));
 const releaseCli = path.resolve('tools/content/extraction/validate-release.mjs');
 const batchesCli = path.resolve('tools/content/extraction/generate-review-batches.mjs');
+const freezeCli = path.resolve('tools/content/extraction/freeze-baseline.mjs');
 
 async function withTempLedger(mutate, fn) {
   const dir = await mkdtemp(path.join(tmpdir(), 'rw-ledger-'));
@@ -157,6 +158,47 @@ test('REVIEWED slot without source output path blocks with P10_LEDGER_SHAPE', as
     const run = spawnSync(process.execPath, [releaseCli, '--index-dir', dir], { encoding: 'utf8' });
     const report = JSON.parse(run.stdout);
     assert.equal(report.diagnostics.some((d) => d.code === 'P10_LEDGER_SHAPE'), true);
+  });
+});
+
+test('freeze-baseline PASSES on a fully reviewed ledger and generates requirement manifests', async () => {
+  await withTempLedger((index, ledgers) => {
+    let n = 0;
+    for (const ledger of ledgers) {
+      ledger.data.entries = ledger.data.entries.map((e) => reviewed(e, n++));
+    }
+    // one slot with an approved-defect fidelity record and one PRESENT_VERIFIED asset
+    ledgers[0].data.entries[0].fidelity.approvedDefectId = 'DEF-77';
+    ledgers[0].data.entries[1].assetRequirements = [{ id: 'a1', kind: 'visual', status: 'PRESENT_VERIFIED', ownerPhase: 10, path: 'assets/visual/a1.png', sha256: 'b'.repeat(64) }];
+  }, async (dir) => {
+    const run = spawnSync(process.execPath, [freezeCli, dir], { encoding: 'utf8', env: { ...process.env, VITE_CONTENT_VERSION: 'test-freeze-version' } });
+    assert.equal(run.status, 0, run.stdout + run.stderr);
+    const report = JSON.parse(run.stdout.slice(run.stdout.indexOf('{')));
+    assert.equal(report.status, 'PASS');
+    assert.match(report.baselineSha256, /^[0-9a-f]{64}$/);
+    // requirement manifests and snapshot were written and are part of the baseline
+    for (const name of ['content-localization-manifest.json', 'content-asset-manifest.json', 'defect-snapshot.json', 'baseline.json']) {
+      assert.equal(readFileSync(path.join(dir, name), 'utf8').length > 0, true, name);
+    }
+    const loc = JSON.parse(readFileSync(path.join(dir, 'content-localization-manifest.json'), 'utf8'));
+    assert.equal(loc.keys.length, 408);
+    const assets = JSON.parse(readFileSync(path.join(dir, 'content-asset-manifest.json'), 'utf8'));
+    assert.equal(assets.requirements.some((r) => r.id === 'a1' && r.sha256 === 'b'.repeat(64)), true);
+    const snap = JSON.parse(readFileSync(path.join(dir, 'defect-snapshot.json'), 'utf8'));
+    assert.equal(snap.approvedDefects.some((d) => d.defectId === 'DEF-77'), true);
+    // deterministic: same inputs -> same baseline
+    const run2 = spawnSync(process.execPath, [freezeCli, dir], { encoding: 'utf8', env: { ...process.env, VITE_CONTENT_VERSION: 'test-freeze-version' } });
+    const report2 = JSON.parse(run2.stdout.slice(run2.stdout.indexOf('{')));
+    assert.equal(report2.baselineSha256, report.baselineSha256);
+  });
+});
+
+test('freeze-baseline refuses (exit 2) while slots are UNEXTRACTED', async () => {
+  await withTempLedger(null, async (dir) => {
+    const run = spawnSync(process.execPath, [freezeCli, dir], { encoding: 'utf8', env: { ...process.env, VITE_CONTENT_VERSION: 'x' } });
+    assert.equal(run.status, 2);
+    const report = JSON.parse(run.stdout);
+    assert.equal(report.status, 'BLOCKED');
   });
 });
 
