@@ -21,5 +21,10 @@ export function validateFidelity(record) {
   if (record?.sourceTextSha256 && record?.extractedTextSha256 && record.sourceTextSha256 !== record.extractedTextSha256 && !record.approvedDefectId) {
     diagnostics.push(diag('P10_FIDELITY_TEXT', 'Extracted text deviates from source without an approved defect.'));
   }
+  // §13 fidelity: a concrete rule that overrides a global rule must be
+  // documented with an approved defect/decision, never silently tuned.
+  if (record?.concreteRuleOverride && !record.approvedDefectId) {
+    diagnostics.push(diag('P10_FIDELITY_TEXT', 'Concrete rule overrides a global rule without a documented approved defect/decision.'));
+  }
   return diagnostics;
 }

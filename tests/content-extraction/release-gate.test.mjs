@@ -31,11 +31,16 @@ function reviewed(entry, n) {
   return {
     ...entry,
     status: 'REVIEWED',
-    runtimeId: `rw_${entry.slotId.replace(':', '_')}`,
+    runtimeId: `rw_${entry.slotId.replace(':', '_').toLowerCase()}`,
     extractor: n % 2 === 0 ? 'extractor-a' : 'extractor-b',
     extractedAt: '2026-08-15T00:00:00Z',
     sourceOutputPath: `content/source/${entry.slotId.split(':')[0]}/${entry.slotId.replace(':', '-')}.json`,
     review: { reviewer: n % 2 === 0 ? 'reviewer-b' : 'reviewer-a', reviewedAt: '2026-08-16T00:00:00Z', verdict: 'APPROVED', defectIds: [] },
+    fidelity: {
+      numericFacts: ['120', '1.5', '35%'],
+      textFactsSha256: 'a'.repeat(64),
+      secondsConversion: 'CENTRAL_COMPILER_ONLY'
+    },
     localization: { deKey: `x.de.${entry.slotId}`, enKey: `x.en.${entry.slotId}`, enStatus: 'DRAFT' }
   };
 }
@@ -99,17 +104,59 @@ test('REVIEWED slot with self-review blocks with P10_REVIEW_NOT_INDEPENDENT', as
   });
 });
 
-test('asset requirement without owner phase blocks with P10_ASSET_OWNER', async () => {
+test('asset requirement below owner phase 10 blocks with P10_ASSET_OWNER', async () => {
   await withTempLedger((index, ledgers) => {
     let n = 0;
     for (const ledger of ledgers) {
       ledger.data.entries = ledger.data.entries.map((e) => reviewed(e, n++));
     }
-    ledgers[0].data.entries[0].assetRequirements = [{ id: 'a1', kind: 'visual', status: 'PLANNED', ownerPhase: 0, path: null, sha256: null }];
+    ledgers[0].data.entries[0].assetRequirements = [{ id: 'a1', kind: 'visual', status: 'PLANNED', ownerPhase: 9, path: null, sha256: null }];
   }, async (dir) => {
     const run = spawnSync(process.execPath, [releaseCli, '--index-dir', dir], { encoding: 'utf8' });
     const report = JSON.parse(run.stdout);
     assert.equal(report.diagnostics.some((d) => d.code === 'P10_ASSET_OWNER'), true);
+  });
+});
+
+test('PRESENT_VERIFIED asset without path/hash blocks with P10_REQUIRED_ASSET_MISSING', async () => {
+  await withTempLedger((index, ledgers) => {
+    let n = 0;
+    for (const ledger of ledgers) {
+      ledger.data.entries = ledger.data.entries.map((e) => reviewed(e, n++));
+    }
+    ledgers[0].data.entries[0].assetRequirements = [{ id: 'a1', kind: 'visual', status: 'PRESENT_VERIFIED', ownerPhase: 10, path: null, sha256: null }];
+  }, async (dir) => {
+    const run = spawnSync(process.execPath, [releaseCli, '--index-dir', dir], { encoding: 'utf8' });
+    const report = JSON.parse(run.stdout);
+    assert.equal(report.diagnostics.some((d) => d.code === 'P10_REQUIRED_ASSET_MISSING'), true);
+  });
+});
+
+test('REVIEWED slot without fidelity evidence blocks with P10_FIDELITY_TEXT', async () => {
+  await withTempLedger((index, ledgers) => {
+    let n = 0;
+    for (const ledger of ledgers) {
+      ledger.data.entries = ledger.data.entries.map((e) => reviewed(e, n++));
+    }
+    ledgers[0].data.entries[0].fidelity = { numericFacts: null, textFactsSha256: null, secondsConversion: 'CENTRAL_COMPILER_ONLY' };
+  }, async (dir) => {
+    const run = spawnSync(process.execPath, [releaseCli, '--index-dir', dir], { encoding: 'utf8' });
+    const report = JSON.parse(run.stdout);
+    assert.equal(report.diagnostics.some((d) => d.code === 'P10_FIDELITY_TEXT'), true);
+  });
+});
+
+test('REVIEWED slot without source output path blocks with P10_LEDGER_SHAPE', async () => {
+  await withTempLedger((index, ledgers) => {
+    let n = 0;
+    for (const ledger of ledgers) {
+      ledger.data.entries = ledger.data.entries.map((e) => reviewed(e, n++));
+    }
+    ledgers[0].data.entries[0].sourceOutputPath = null;
+  }, async (dir) => {
+    const run = spawnSync(process.execPath, [releaseCli, '--index-dir', dir], { encoding: 'utf8' });
+    const report = JSON.parse(run.stdout);
+    assert.equal(report.diagnostics.some((d) => d.code === 'P10_LEDGER_SHAPE'), true);
   });
 });
 

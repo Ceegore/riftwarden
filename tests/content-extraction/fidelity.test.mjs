@@ -32,3 +32,16 @@ test('unapproved text change blocks with P10_FIDELITY_TEXT', () => {
   value.extractedTextSha256 = 'c'.repeat(64);
   assert.equal(validateFidelity(value).some((x) => x.code === 'P10_FIDELITY_TEXT'), true);
 });
+
+test('concrete rule override without approved defect blocks', () => {
+  const value = read('positive/fidelity.json');
+  value.concreteRuleOverride = true;
+  assert.equal(validateFidelity(value).some((x) => x.code === 'P10_FIDELITY_TEXT'), true);
+});
+
+test('concrete rule override with approved defect passes', () => {
+  const value = read('positive/fidelity.json');
+  value.concreteRuleOverride = true;
+  value.approvedDefectId = 'DEF-23';
+  assert.deepEqual(validateFidelity(value), []);
+});

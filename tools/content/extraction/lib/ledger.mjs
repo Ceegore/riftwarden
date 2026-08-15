@@ -4,6 +4,7 @@ import { diag } from './diagnostic.mjs';
 import { ASSET_KINDS, ASSET_STATUSES, EN_STATUSES, LEDGER_STATUSES, REVIEW_VERDICTS } from './status-machine.mjs';
 
 const HEX64 = /^[0-9a-f]{64}$/;
+const RUNTIME_ID = /^[a-z][a-z0-9_]*$/;
 
 function sha256(value) {
   return createHash('sha256').update(value).digest('hex');
@@ -33,14 +34,18 @@ function assertAssetRequirements(items, pointer, diagnostics) {
     if (!asset?.id || !ASSET_KINDS.includes(asset.kind) || !ASSET_STATUSES.includes(asset.status)) {
       diagnostics.push(diag('P10_LEDGER_SHAPE', 'Asset requirement needs id, kind and valid status.', at));
     }
-    if (!Number.isInteger(asset?.ownerPhase) || asset.ownerPhase < 1) {
-      diagnostics.push(diag('P10_ASSET_OWNER', 'Asset requirement needs a positive owner phase.', at));
-    }
-    if (asset.status === 'REQUIRED_PRESENT' && (!asset.path || !asset.sha256)) {
-      diagnostics.push(diag('P10_REQUIRED_ASSET_MISSING', 'REQUIRED_PRESENT asset needs path and hash.', at));
+    if (!Number.isInteger(asset?.ownerPhase) || asset.ownerPhase < 10) {
+      diagnostics.push(diag('P10_ASSET_OWNER', 'Asset requirement needs an owner phase >= 10 (contract minimum).', at));
     }
     if (asset.path !== null && typeof asset.path !== 'string') {
       diagnostics.push(diag('P10_LEDGER_SHAPE', 'Asset path must be a string or null.', at));
+    }
+    if (asset.sha256 !== null && !HEX64.test(asset.sha256 ?? '')) {
+      diagnostics.push(diag('P10_LEDGER_SHAPE', 'Asset sha256 must be a 64-hex digest or null.', at));
+    }
+    const present = asset.status === 'REQUIRED_PRESENT' || asset.status === 'PRESENT_VERIFIED';
+    if (present && (!asset.path || !asset.sha256)) {
+      diagnostics.push(diag('P10_REQUIRED_ASSET_MISSING', `${asset.status} asset needs path and sha256.`, at));
     }
   }
 }
@@ -87,7 +92,9 @@ export async function validateLedgerShape(ledgers, authorityPath) {
         diagnostics.push(diag('P10_RUNTIME_ID', 'Unextracted slot must not carry an invented runtime ID.', pointer));
       }
       if (entry.runtimeId !== null) {
-        if (seenRuntimeIds.has(entry.runtimeId)) {
+        if (!RUNTIME_ID.test(entry.runtimeId)) {
+          diagnostics.push(diag('P10_RUNTIME_ID', `Runtime ID ${entry.runtimeId} violates the ID policy.`, pointer));
+        } else if (seenRuntimeIds.has(entry.runtimeId)) {
           diagnostics.push(diag('P10_RUNTIME_ID_DUPLICATE', `Duplicate runtime ID ${entry.runtimeId}.`, pointer));
         } else {
           seenRuntimeIds.set(entry.runtimeId, pointer);
@@ -124,10 +131,18 @@ export async function validateLedgerShape(ledgers, authorityPath) {
         if (entry.review?.verdict !== 'APPROVED') {
           diagnostics.push(diag('P10_REVIEW_MISSING', 'REVIEWED slot needs an APPROVED verdict.', pointer));
         }
+        if (!entry.runtimeId || !entry.sourceOutputPath) {
+          diagnostics.push(diag('P10_LEDGER_SHAPE', 'REVIEWED slot needs a runtime ID and source output path.', pointer));
+        }
+        const facts = entry.fidelity?.numericFacts;
+        const textHash = entry.fidelity?.textFactsSha256 ?? '';
+        if (!Array.isArray(facts) || !HEX64.test(textHash)) {
+          diagnostics.push(diag('P10_FIDELITY_TEXT', 'REVIEWED slot needs numeric facts evidence and a text facts hash.', pointer));
+        }
         if (!entry.localization?.deKey || !entry.localization?.enKey) {
           diagnostics.push(diag('P10_LOCALIZATION_KEY', 'REVIEWED slot needs DE and EN localization keys.', pointer));
         }
-        if (entry.localization?.enStatus === 'NOT_STARTED') {
+        if (!['DRAFT', 'APPROVED'].includes(entry.localization?.enStatus)) {
           diagnostics.push(diag('P10_EN_STATUS', 'REVIEWED slot needs EN copy at DRAFT or APPROVED.', pointer));
         }
       }
