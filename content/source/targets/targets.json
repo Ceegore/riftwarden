@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "entityType": "targetProfile",
+  "entities": [
+    {
+      "id": "target_nearest_enemy",
+      "targetKind": "enemy_unit",
+      "lanePolicy": "same",
+      "selection": "nearest",
+      "maxRangeX100": 3500
+    }
+  ]
+}

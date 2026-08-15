@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "entityType": "audio",
+  "entities": [
+    {
+      "id": "audio_fixture_unit",
+      "ownerPhase": "10",
+      "status": "planned",
+      "captionKey": "content.audio.audio_fixture_unit.caption"
+    }
+  ]
+}

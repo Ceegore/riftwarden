@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "entityType": "encounter",
+  "entities": [
+    {
+      "id": "encounter_fixture_first",
+      "regionId": "region_fixture",
+      "kind": "normal",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [],
+      "reinforcementWaves": [],
+      "objective": "defeat_all",
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_first.preview",
+      "allowedModes": [
+        "campaign"
+      ]
+    }
+  ]
+}

@@ -80,7 +80,12 @@
     "nav:validate": "node tools/navigation/validate-navigation.mjs .",
     "nav:validate:release": "node tools/navigation/validate-navigation.mjs . --release",
     "test:navigation": "node --test tests/navigation/*.test.mjs",
-    "typecheck:navigation-starter": "tsc -p tsconfig.navigation-starter.json"
+    "typecheck:navigation-starter": "tsc -p tsconfig.navigation-starter.json",
+    "typecheck:content-starter": "tsc -p tsconfig.content-starter.json",
+    "content:validate": "node tools/content/validate-content.mjs --root . --profile fixture",
+    "content:build": "node tools/content/compile.mjs --root . --profile fixture --out content/generated",
+    "test:content": "node --test tests/content/*.test.mjs",
+    "content:report": "node tools/content/create-content-report.mjs --root ."
   },
   "dependencies": {
     "react": "19.2.8",

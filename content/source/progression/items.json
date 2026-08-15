@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "entityType": "item",
+  "entities": [
+    {
+      "id": "item_fixture_blade",
+      "category": "item",
+      "displayNameKey": "content.item.item_fixture_blade.name",
+      "compatibilityUnitIds": [
+        "hero_fixture_warden"
+      ],
+      "baseStatMods": [
+        {
+          "stat": "attackPower",
+          "value": 1000
+        }
+      ],
+      "effectAbilityId": null,
+      "polishMods": [],
+      "acquisitionPoolIds": [
+        "reward_fixture_basic"
+      ],
+      "duplicateGold": 5,
+      "deprecated": false,
+      "replacementId": null
+    }
+  ]
+}

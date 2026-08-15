@@ -1,0 +1,1 @@
+{"schemaVersion":1,"entityType":"unit","entities":[{"id":"hero_bad\u202e"}]}

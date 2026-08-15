@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "entityType": "event",
+  "entities": [
+    {
+      "id": "event_fixture_choice",
+      "regionTags": [
+        "region_fixture"
+      ],
+      "riskTier": 1,
+      "titleKey": "content.event.event_fixture_choice.title",
+      "bodyKey": "content.event.event_fixture_choice.body",
+      "prerequisites": [],
+      "options": [
+        {
+          "id": "accept",
+          "labelKey": "content.event.event_fixture_choice.accept",
+          "resultKey": "content.event.event_fixture_choice.accept_result",
+          "rollSlot": "event.fixture.accept"
+        },
+        {
+          "id": "decline",
+          "labelKey": "content.event.event_fixture_choice.decline",
+          "resultKey": "content.event.event_fixture_choice.decline_result",
+          "rollSlot": null
+        }
+      ],
+      "deterministicRollSlots": [
+        "event.fixture.accept"
+      ],
+      "repeatPolicy": "once_per_run"
+    }
+  ]
+}

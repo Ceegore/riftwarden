@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "entityType": "visual",
+  "entities": [
+    {
+      "id": "visual_fixture_unit",
+      "ownerPhase": "10",
+      "status": "planned",
+      "altTextKey": "content.visual.visual_fixture_unit.alt"
+    },
+    {
+      "id": "visual_fixture_telegraph",
+      "ownerPhase": "10",
+      "status": "planned",
+      "altTextKey": "content.visual.visual_fixture_telegraph.alt"
+    }
+  ]
+}

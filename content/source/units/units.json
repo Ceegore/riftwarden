@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "entityType": "unit",
+  "entities": [
+    {
+      "id": "hero_fixture_warden",
+      "category": "hero",
+      "displayNameKey": "content.unit.hero_fixture_warden.name",
+      "basicAttackId": "attack_fixture_hero_basic",
+      "roleTags": [
+        "fighter"
+      ],
+      "traitIds": [],
+      "baseStats": {
+        "maxHp": 1000000,
+        "armor": 10000,
+        "resistance": 10000,
+        "attackPower": 100000,
+        "attackIntervalSeconds": 1,
+        "preparationSeconds": 0.2,
+        "rangeX100": 250,
+        "movementX100PerSecond": 500,
+        "controlResistanceBps": 0
+      },
+      "collisionRadiusX100": 180,
+      "preferredDepths": [
+        "front"
+      ],
+      "passiveAbilityIds": [],
+      "activeAbilityIds": [],
+      "targetProfileId": "target_nearest_enemy",
+      "visualId": "visual_fixture_unit",
+      "audioId": "audio_fixture_unit",
+      "codexId": "screen_fixture_codex",
+      "deprecated": false,
+      "replacementId": null
+    },
+    {
+      "id": "enemy_fixture_echo",
+      "category": "enemy",
+      "displayNameKey": "content.unit.enemy_fixture_echo.name",
+      "basicAttackId": "attack_fixture_enemy_basic",
+      "roleTags": [
+        "fighter"
+      ],
+      "traitIds": [],
+      "baseStats": {
+        "maxHp": 1000000,
+        "armor": 10000,
+        "resistance": 10000,
+        "attackPower": 100000,
+        "attackIntervalSeconds": 1,
+        "preparationSeconds": 0.2,
+        "rangeX100": 250,
+        "movementX100PerSecond": 500,
+        "controlResistanceBps": 0
+      },
+      "collisionRadiusX100": 180,
+      "preferredDepths": [
+        "front"
+      ],
+      "passiveAbilityIds": [],
+      "activeAbilityIds": [],
+      "targetProfileId": "target_nearest_enemy",
+      "visualId": "visual_fixture_unit",
+      "audioId": "audio_fixture_unit",
+      "codexId": "screen_fixture_codex",
+      "deprecated": false,
+      "replacementId": null
+    }
+  ]
+}

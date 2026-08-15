@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "entityType": "mission",
+  "entities": [
+    {
+      "id": "mission_fixture_1",
+      "act": 1,
+      "sequence": 1,
+      "titleKey": "content.mission.mission_fixture_1.title",
+      "objective": "complete_route",
+      "mapProfileId": "map_fixture_linear",
+      "mandatoryNodeRules": [
+        {
+          "nodeType": "boss",
+          "minimum": 1
+        }
+      ],
+      "encounterPoolIds": [
+        "encounter_fixture_first"
+      ],
+      "firstCompletionRewardTableId": "reward_fixture_basic",
+      "repeatRewardTableId": "reward_fixture_basic",
+      "unlockFlags": [
+        "fixture_complete"
+      ],
+      "storyEntryKeys": [
+        "content.mission.mission_fixture_1.story"
+      ],
+      "minVisitedNodes": 5,
+      "maxVisitedNodes": 8
+    }
+  ]
+}

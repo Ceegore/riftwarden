@@ -43,6 +43,8 @@
     "tools/locales/**/*.mjs",
     "tools/ui/**/*.mjs",
     "tools/navigation/**/*.mjs",
-    "tests/navigation/**/*.mjs"
+    "tests/navigation/**/*.mjs",
+    "tools/content/**/*.mjs",
+    "tests/content/**/*.mjs"
   ]
 }
