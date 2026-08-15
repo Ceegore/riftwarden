@@ -37,4 +37,7 @@ describe('mutation kill matrix', () => {
   it('gcd-reduction: removing gcd reduction must break', () => {
     expect(mulDivRound(9_000_000_000, 1_000_000, 1_000_000)).toBe(9_000_000_000);
   });
+  it('overflow-check: removing the safe check must break (MAX_SAFE × 2)', () => {
+    expect(() => mulDivRound(Number.MAX_SAFE_INTEGER, 2, 1)).toThrow('P12_MULTIPLY_OVERFLOW');
+  });
 });
