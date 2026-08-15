@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "implementationPhase": 3,
+  "implementationPhase": 9,
   "branchProtectionRequiredContexts": [
     "PR / workflow-security",
     "PR / dependency-security",

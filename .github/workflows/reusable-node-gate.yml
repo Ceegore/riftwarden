@@ -79,7 +79,7 @@ jobs:
               ;;
             requirements-contracts)
               pnpm requirements:validate
-              pnpm ci:gate-map -- --phase 3
+              pnpm ci:gate-map -- --phase 9
               ;;
             unit-tests)
               pnpm test:tooling
@@ -94,7 +94,7 @@ jobs:
               ;;
             web-build)
               pnpm build:release
-              pnpm build:manifest -- --channel qa --phase 3
+              pnpm build:manifest -- --channel qa --phase 9
               pnpm security:artifact-paths
               ;;
             e2e-smoke)

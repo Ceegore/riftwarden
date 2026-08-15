@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "currentImplementationPhase": 3,
+  "currentImplementationPhase": 9,
   "checks": [
     {
       "id": "bootstrap-versions",

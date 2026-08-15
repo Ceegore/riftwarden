@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-24T14:46:45.781Z",
-  "packageCount": 307,
+  "generatedAt": "2026-08-15T15:44:30.543Z",
+  "packageCount": 308,
   "blocked": [],
   "manualReview": [],
   "packages": [
@@ -1181,6 +1181,16 @@
     {
       "name": "brace-expansion",
       "version": "5.0.7",
+      "license": "MIT",
+      "source": {
+        "type": "git",
+        "url": "git+https://github.com/juliangruber/brace-expansion.git"
+      },
+      "classification": "allow"
+    },
+    {
+      "name": "brace-expansion",
+      "version": "5.0.8",
       "license": "MIT",
       "source": {
         "type": "git",

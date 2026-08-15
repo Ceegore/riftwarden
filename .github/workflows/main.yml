@@ -14,7 +14,7 @@ concurrency:
 
 env:
   CI: 'true'
-  RIFTWARDEN_IMPLEMENTATION_PHASE: '3'
+  RIFTWARDEN_IMPLEMENTATION_PHASE: '9'
 
 jobs:
   verify:
@@ -83,7 +83,7 @@ jobs:
         run: pnpm build:release
       - name: Capture provenance and dependency evidence
         run: |
-          pnpm build:manifest -- --channel qa --phase 3
+          pnpm build:manifest -- --channel qa --phase 9
           pnpm deps:capture
           pnpm deps:report
           pnpm deps:sbom

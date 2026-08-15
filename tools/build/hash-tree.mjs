@@ -1,10 +1,29 @@
+import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
+import { existsSync } from 'node:fs';
 import { relative, resolve } from 'node:path';
-import { parseArgs, sha256File, walkFiles } from '../lib/fs-utils.mjs';
+import { parseArgs, sha256File } from '../lib/fs-utils.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 const root = resolve(/** @type {string} */ (args.root ?? '.'));
-const files = await walkFiles(root, { excludedNames: ['.git', 'node_modules', 'dist', 'artifacts'] });
+/** @type {string[]} */
+let files;
+try {
+  // Fingerprint the committed source: git-tracked files plus untracked non-ignored
+  // files. Gitignored build outputs (android/build, .gradle, dist, ...) never pollute
+  // the source-tree hash, so local builds cannot change the manifest identity.
+  const listing = execFileSync('git', ['ls-files', '-co', '--exclude-standard', '--', '.'], {
+    cwd: root,
+    encoding: 'utf8',
+    maxBuffer: 64 * 1024 * 1024
+  });
+  files = listing.split('\n').filter(Boolean).map((p) => resolve(root, p)).filter(existsSync);
+} catch {
+  // Not a git checkout: fall back to the plain walk (excludes heavy standard dirs).
+  const { walkFiles } = await import('../lib/fs-utils.mjs');
+  files = await walkFiles(root, { excludedNames: ['.git', 'node_modules', 'dist', 'artifacts'] });
+}
+files.sort((a, b) => a.localeCompare(b, 'en'));
 const rows = [];
 for (const file of files) rows.push({ path: relative(root, file).replaceAll('\\', '/'), sha256: await sha256File(file) });
 const hash = createHash('sha256');
