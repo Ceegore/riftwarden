@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "derivation": "root-then-xoshiro-jump-v1",
+  "streams": [
+    {
+      "ordinal": 0,
+      "key": "map",
+      "authoritative": true
+    },
+    {
+      "ordinal": 1,
+      "key": "encounter",
+      "authoritative": true
+    },
+    {
+      "ordinal": 2,
+      "key": "rewards",
+      "authoritative": true
+    },
+    {
+      "ordinal": 3,
+      "key": "eventChoices",
+      "authoritative": true
+    },
+    {
+      "ordinal": 4,
+      "key": "combatCosmetic",
+      "authoritative": false
+    }
+  ]
+}

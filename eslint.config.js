@@ -7,7 +7,7 @@ const simulationFiles = ['src/game/sim/**/*.{ts,tsx}', 'tests/fixtures/negative/
 
 export default tseslint.config(
   {
-    ignores: ['android/**', 'ios/**', 'content/generated/**', 'dist/**', 'node_modules/**', 'public/assets/generated/**', 'tests/fixtures/negative/**', 'tests/rules/type-fixtures/**', 'tests/math/type-fixtures/**', 'Phasen/**', 'backup/**', 'Meldungen/**', '.orchestration_source/**', '.orchestrator/**', 'docs/**', 'reference/**', 'tools/**', 'tests/tooling/**', '**/*.mjs', '**/*.cjs', '**/*.js', '**/*.config.*', 'vite.config.ts', 'vitest.config.ts', 'playwright.config.ts'],
+    ignores: ['android/**', 'ios/**', 'content/generated/**', 'dist/**', 'node_modules/**', 'public/assets/generated/**', 'tests/fixtures/negative/**', 'tests/rules/type-fixtures/**', 'tests/math/type-fixtures/**', 'tests/random/type-fixtures/**', 'tests/replay/type-fixtures/**', 'Phasen/**', 'backup/**', 'Meldungen/**', '.orchestration_source/**', '.orchestrator/**', 'docs/**', 'reference/**', 'tools/**', 'tests/tooling/**', '**/*.mjs', '**/*.cjs', '**/*.js', '**/*.config.*', 'vite.config.ts', 'vitest.config.ts', 'playwright.config.ts'],
   },
   eslint.configs.recommended,
   ...tseslint.configs.strictTypeChecked,
@@ -79,6 +79,32 @@ export default tseslint.config(
       'no-restricted-imports': ['error', {
         patterns: [
           { group: ['react', 'react-dom', 'react-dom/*', 'pixi.js', 'zustand', 'motion', '@capacitor/*', '@app/*', '@audio/*', '@features/*', '@locales/*', '@platform/*', '@renderer/*', '@screens/*', '@storage/*', '@ui/*', '@game/content*'], message: 'game/sim/math is pure TypeScript: it may only import Phase-11 rule modules and its own helpers, never UI, renderer, locale, storage, native, content or state layers.' },
+        ],
+      }],
+      'no-restricted-globals': ['error', 'window', 'document'],
+    },
+  },
+  {
+    files: ['src/game/sim/random/**/*.ts'],
+    rules: {
+      'no-restricted-imports': ['error', {
+        patterns: [
+          { group: ['react', 'react-dom', 'react-dom/*', 'pixi.js', 'zustand', 'motion', '@capacitor/*', '@app/*', '@audio/*', '@features/*', '@locales/*', '@platform/*', '@renderer/*', '@screens/*', '@storage/*', '@ui/*', '@game/content*'], message: 'game/sim/random is pure TypeScript: it may only import rule/math modules and its own helpers, never UI, renderer, locale, storage, native, content or state layers.' },
+        ],
+      }],
+      'no-restricted-globals': ['error', 'window', 'document'],
+      'no-restricted-properties': ['error',
+        { object: 'Math', property: 'random', message: 'Use the authoritative deterministic PRNG stream.' },
+        { object: 'Date', property: 'now', message: 'Simulation time is integer ticks, never wall clock.' },
+      ],
+    },
+  },
+  {
+    files: ['src/game/replay/**/*.ts'],
+    rules: {
+      'no-restricted-imports': ['error', {
+        patterns: [
+          { group: ['react', 'react-dom', 'react-dom/*', 'pixi.js', 'zustand', 'motion', '@capacitor/*', '@app/*', '@audio/*', '@features/*', '@locales/*', '@platform/*', '@renderer/*', '@screens/*', '@storage/*', '@ui/*', '@game/content*'], message: 'game/replay is pure TypeScript: it may only import random/rule modules and its own helpers, never UI, renderer, locale, storage, native, content or state layers.' },
         ],
       }],
       'no-restricted-globals': ['error', 'window', 'document'],

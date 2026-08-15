@@ -49,6 +49,8 @@
     "tools/rules/**/*.mjs",
     "tests/rules/**/*.mjs",
     "tools/math/**/*.mjs",
-    "tests/math/**/*.mjs"
+    "tests/math/**/*.mjs",
+    "tools/random/**/*.mjs",
+    "tests/random/**/*.mjs"
   ]
 }

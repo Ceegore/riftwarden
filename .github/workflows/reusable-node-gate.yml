@@ -133,6 +133,16 @@ jobs:
             math-vectors)
               pnpm math:vectors
               ;;
+            random-gates)
+              pnpm test:random
+              pnpm random:audit
+              pnpm random:slots
+              pnpm random:golden
+              pnpm random:validate-readiness
+              ;;
+            random-vectors)
+              pnpm random:vectors
+              ;;
             asset-manifest-validate)
               pnpm assets:validate
               ;;

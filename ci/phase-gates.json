@@ -115,6 +115,12 @@
       "ownerPhase": 12,
       "requiredFromPhase": 12,
       "command": "pnpm test:math && pnpm math:audit && pnpm math:validate-readiness"
+    },
+    {
+      "id": "random-gates",
+      "ownerPhase": 13,
+      "requiredFromPhase": 13,
+      "command": "pnpm test:random && pnpm random:audit && pnpm random:slots && pnpm random:golden && pnpm random:validate-readiness"
     }
   ]
 }

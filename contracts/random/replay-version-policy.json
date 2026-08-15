@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "supportedReplaySchemaVersions": [
+    1
+  ],
+  "simulationVersionSource": "REAL_REPOSITORY_REQUIRED",
+  "unknownVersionPolicy": "BLOCK_VISIBLE_RECOVERY",
+  "migrationPolicy": "EXPLICIT_IDEMPOTENT_ONLY",
+  "hashScope": [
+    "schemaVersion",
+    "contentVersion",
+    "simulationVersion",
+    "runSeed",
+    "startSnapshot",
+    "decisions"
+  ],
+  "excludedFromHash": [
+    "display",
+    "debug"
+  ]
+}

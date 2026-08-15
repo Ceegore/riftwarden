@@ -25,7 +25,11 @@
   "include": [
     "src/game/rules/**/*.ts",
     "src/game/sim/math/**/*.ts",
+    "src/game/sim/random/**/*.ts",
+    "src/game/replay/**/*.ts",
     "tests/rules/type-fixtures/**/*.ts",
-    "tests/math/type-fixtures/**/*.ts"
+    "tests/math/type-fixtures/**/*.ts",
+    "tests/random/type-fixtures/**/*.ts",
+    "tests/replay/type-fixtures/**/*.ts"
   ]
 }

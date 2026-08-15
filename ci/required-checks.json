@@ -59,6 +59,11 @@
       "job": "math_gates",
       "activationPhase": 12,
       "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "random_gates",
+      "activationPhase": 13,
+      "expectedBeforeActivation": "skipped"
     }
   ],
   "aggregateRule": "Every active job must be success; phased jobs must be success at/after activation and skipped before activation; failure, cancelled or unexpected skipped blocks.",

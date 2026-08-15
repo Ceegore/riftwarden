@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "id": "golden_basic_001",
+      "purpose": "Eine Einheit je Seite; physischer Angriff, Rüstung, Tod/Kampfende.",
+      "ownerPhase": "14+",
+      "requiredContent": [],
+      "checkpointIntervalTicks": 30,
+      "expectedCheckpoints": [],
+      "activationStatus": "PENDING_OWNER_PHASE"
+    },
+    {
+      "id": "golden_lane_002",
+      "purpose": "Drei Bahnen, Bahnwechsel, leere Bahn und Schutzformation.",
+      "ownerPhase": "15+",
+      "requiredContent": [],
+      "checkpointIntervalTicks": 30,
+      "expectedCheckpoints": [],
+      "activationStatus": "PENDING_OWNER_PHASE"
+    },
+    {
+      "id": "golden_status_003",
+      "purpose": "Alle StackPolicies, Dispel/Bann, periodische Ticks.",
+      "ownerPhase": "18+",
+      "requiredContent": [],
+      "checkpointIntervalTicks": 30,
+      "expectedCheckpoints": [],
+      "activationStatus": "PENDING_OWNER_PHASE"
+    },
+    {
+      "id": "golden_summon_004",
+      "purpose": "Sechserslots, Multi-Spawn, Ersatz, expiration vs defeated.",
+      "ownerPhase": "19+",
+      "requiredContent": [],
+      "checkpointIntervalTicks": 30,
+      "expectedCheckpoints": [],
+      "activationStatus": "PENDING_OWNER_PHASE"
+    },
+    {
+      "id": "golden_revive_005",
+      "purpose": "Ilyra Wiederbelebung, gleichzeitiger Tod, Doppelniederlage.",
+      "ownerPhase": "20+",
+      "requiredContent": [],
+      "checkpointIntervalTicks": 30,
+      "expectedCheckpoints": [],
+      "activationStatus": "PENDING_OWNER_PHASE"
+    },
+    {
+      "id": "golden_projectile_006",
+      "purpose": "Zielverlust, homing/non-homing, Phasenwechsel.",
+      "ownerPhase": "17+",
+      "requiredContent": [],
+      "checkpointIntervalTicks": 30,
+      "expectedCheckpoints": [],
+      "activationStatus": "PENDING_OWNER_PHASE"
+    },
+    {
+      "id": "golden_boss_ash_101",
+      "purpose": "Alle Aschenkönigphasen Normal und Ascension 4/9/10.",
+      "ownerPhase": "21+",
+      "requiredContent": [],
+      "checkpointIntervalTicks": 30,
+      "expectedCheckpoints": [],
+      "activationStatus": "PENDING_OWNER_PHASE"
+    },
+    {
+      "id": "golden_boss_thorn_102",
+      "purpose": "Pflanzenslots, Schild-/Verwundbarkeitsfenster.",
+      "ownerPhase": "21+",
+      "requiredContent": [],
+      "checkpointIntervalTicks": 30,
+      "expectedCheckpoints": [],
+      "activationStatus": "PENDING_OWNER_PHASE"
+    },
+    {
+      "id": "golden_boss_smith_103",
+      "purpose": "Konstruktionen, vier Slots, Überhitzung.",
+      "ownerPhase": "21+",
+      "requiredContent": [],
+      "checkpointIntervalTicks": 30,
+      "expectedCheckpoints": [],
+      "activationStatus": "PENDING_OWNER_PHASE"
+    },
+    {
+      "id": "golden_boss_heart_104",
+      "purpose": "Vier Endbossphasen, Kuratorintervention, Rang 10.",
+      "ownerPhase": "21+",
+      "requiredContent": [],
+      "checkpointIntervalTicks": 30,
+      "expectedCheckpoints": [],
+      "activationStatus": "PENDING_OWNER_PHASE"
+    },
+    {
+      "id": "golden_timeout_201",
+      "purpose": "Globaler Stillstand, Riftkollaps, Zeitlimit-Tie-Break.",
+      "ownerPhase": "14+",
+      "requiredContent": [],
+      "checkpointIntervalTicks": 30,
+      "expectedCheckpoints": [],
+      "activationStatus": "PENDING_OWNER_PHASE"
+    },
+    {
+      "id": "golden_save_301",
+      "purpose": "Snapshot bei Cast/Projectile/Spawn; Resume identisch.",
+      "ownerPhase": "24+",
+      "requiredContent": [],
+      "checkpointIntervalTicks": 30,
+      "expectedCheckpoints": [],
+      "activationStatus": "PENDING_OWNER_PHASE"
+    }
+  ]
+}
