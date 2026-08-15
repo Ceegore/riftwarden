@@ -36,7 +36,15 @@ const EffectSource = z.object({
   sourceAttribution: z.enum(["owner", "summon_owner", "effect_source"]),
 }).strict();
 
-const StatModifier = z.object({
+// Two distinct modifier shapes, mirroring the .ts source exactly:
+// status.statModifiers carry `operation` (status.ts), while item
+// baseStatMods/polishMods do not (progression.ts).
+const StatusStatModifier = z.object({
+  stat: z.string().min(1),
+  operation: z.enum(["add", "multiply_bps"]),
+  value: z.number().int(),
+}).strict();
+const ItemStatModifier = z.object({
   stat: z.string().min(1),
   value: z.number().int(),
 }).strict();
@@ -136,7 +144,7 @@ export const ENTITY_SCHEMAS = Object.freeze({
     durationCapSeconds: z.number().nonnegative().nullable(),
     dispelCategory: z.enum(["positive", "negative", "control", "none"]),
     bossPolicy: z.enum(["normal", "duration_reduced", "convert_to_interrupt", "immune"]),
-    statModifiers: z.array(StatModifier),
+    statModifiers: z.array(StatusStatModifier),
     periodicEffects: z.array(PeriodicEffect),
     deprecated: z.boolean(),
     replacementId: ContentId.nullable(),
@@ -202,9 +210,9 @@ export const ENTITY_SCHEMAS = Object.freeze({
     category: z.enum(["item", "talisman", "kit", "banner"]),
     displayNameKey: LocalizationKey,
     compatibilityUnitIds: z.array(ContentId),
-    baseStatMods: z.array(StatModifier),
+    baseStatMods: z.array(ItemStatModifier),
     effectAbilityId: ContentId.nullable(),
-    polishMods: z.array(StatModifier),
+    polishMods: z.array(ItemStatModifier),
     acquisitionPoolIds: z.array(ContentId).min(1),
     duplicateGold: CurrencyAmount,
     deprecated: z.boolean(),

@@ -3,6 +3,16 @@
   "channel": "release",
   "files": [
     {
+      "path": "assets/fonts/licenses/README.md",
+      "sha256": "a11c81b46787e061c1662799051da93e73c873cb29447b5b1d9c68f98e48998f",
+      "bytes": 96
+    },
+    {
+      "path": "assets/fonts/README.md",
+      "sha256": "a8c02e26f45a7155750499980c1fed85948a259ee4d7cb993d9c99790863b8fa",
+      "bytes": 430
+    },
+    {
       "path": "assets/generated/.gitkeep",
       "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
       "bytes": 1
@@ -13,18 +23,18 @@
       "bytes": 157
     },
     {
-      "path": "assets/index-BAuJ4WDo.css",
-      "sha256": "a09a0b28a8271f90fc461020a1e3d735a0e83e1112121b2756597ece1248e8d2",
-      "bytes": 7546
+      "path": "assets/index-DzQaztVL.css",
+      "sha256": "bd93b14524806a1be0a6149638bf8dc2512e7a78b78389ee00029c0dfdae9f2c",
+      "bytes": 16311
     },
     {
-      "path": "assets/index-DImpWw-3.js",
-      "sha256": "44c38a8e7e94023cca3dfa3645f22b3a4db13458377ec8642b0276ebd940d945",
+      "path": "assets/index-nUjjMHtn.js",
+      "sha256": "3e9c9422a92d8d69946f61d7199f7b39f6eb467fc218ed324cc92273e976e728",
       "bytes": 190889
     },
     {
       "path": "index.html",
-      "sha256": "72b59f3e95da1e59b20c70fbd2b3f52455b5295142120f3a6611da6985e8c971",
+      "sha256": "64363ad9fbc4045ba92087a0c7deab8dee1837e60d8c09bcb3b99338c7f7c669",
       "bytes": 702
     }
   ]
