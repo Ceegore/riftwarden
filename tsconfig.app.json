@@ -69,6 +69,7 @@
     "tests/**/*.tsx"
   ],
   "exclude": [
-    "tests/rules/type-fixtures/**/*.ts"
+    "tests/rules/type-fixtures/**/*.ts",
+    "tests/math/type-fixtures/**/*.ts"
   ]
 }

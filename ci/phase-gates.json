@@ -109,6 +109,12 @@
       "ownerPhase": 11,
       "requiredFromPhase": 11,
       "command": "pnpm test:rules && pnpm rules:audit && pnpm rules:validate-snapshots"
+    },
+    {
+      "id": "math-gates",
+      "ownerPhase": 12,
+      "requiredFromPhase": 12,
+      "command": "pnpm test:math && pnpm math:audit && pnpm math:validate-readiness"
     }
   ]
 }

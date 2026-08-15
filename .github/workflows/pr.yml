@@ -122,6 +122,13 @@ jobs:
     with:
       gate: rules-gates
 
+  math_gates:
+    name: PR / math-gates
+    if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_12_MATH_ENABLED == 'true'
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: math-gates
+
   asset_manifest_validate:
     name: PR / asset-manifest-validate
     if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_38_ASSETS_ENABLED == 'true'
@@ -163,6 +170,7 @@ jobs:
       - content_validate
       - content_reproducibility
       - rules_gates
+      - math_gates
       - asset_manifest_validate
       - native_config_diff
       - android_debug_smoke

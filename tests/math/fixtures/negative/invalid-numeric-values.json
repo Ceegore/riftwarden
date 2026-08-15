@@ -1,0 +1,14 @@
+{
+  "values": [
+    "NaN",
+    "Infinity",
+    "-Infinity",
+    "-0",
+    "1.5",
+    "9007199254740992"
+  ],
+  "expectedCodes": [
+    "P12_NOT_SAFE_INTEGER",
+    "P12_NEGATIVE_ZERO"
+  ]
+}

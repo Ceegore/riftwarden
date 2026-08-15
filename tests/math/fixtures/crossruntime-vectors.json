@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "phase12-starter",
+  "vectors": [
+    {
+      "id": "round:p-half",
+      "expected": 1
+    },
+    {
+      "id": "round:n-half",
+      "expected": -1
+    },
+    {
+      "id": "round:third",
+      "expected": 1
+    },
+    {
+      "id": "bps:1250",
+      "expected": 125
+    },
+    {
+      "id": "defense:-40",
+      "expected": 1667
+    },
+    {
+      "id": "defense:200",
+      "expected": 333
+    },
+    {
+      "id": "true:boss-cap",
+      "expected": 1800
+    },
+    {
+      "id": "time:045",
+      "expected": 14
+    },
+    {
+      "id": "time:065",
+      "expected": 20
+    },
+    {
+      "id": "control:70",
+      "expected": 20
+    }
+  ]
+}

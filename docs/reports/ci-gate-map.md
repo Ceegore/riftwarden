@@ -15,6 +15,7 @@
 | Content validation | Active | Phase 09 | aggregate expects success |
 | Content reproducibility | Not enabled before Phase 10 | Phase 10 | aggregate expects skipped |
 | Rules gates (tests, magic audit, snapshots) | Not enabled before Phase 11 | Phase 11 | aggregate expects skipped |
+| Math gates (tests, callsite audit, readiness) | Not enabled before Phase 12 | Phase 12 | aggregate expects skipped |
 | Native config/Android debug | Active | Phase 04 | aggregate expects success |
 | Asset manifest | Not enabled before Phase 38 | Phase 38 | aggregate expects skipped |
 | Signed release | Not enabled; protected manual skeleton only | Phase 47 | never a PASS |

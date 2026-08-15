@@ -1,0 +1,16 @@
+{
+  "simulationTicksPerSecond": 30,
+  "basisPointsScale": 10000,
+  "milliValueScale": 1000,
+  "defenseMin": -40,
+  "defenseMax": 200,
+  "trueDamageBossHitCapBps": 1800,
+  "minimumSuccessfulDamage": 1,
+  "attackIntervalMinSeconds": "0.45",
+  "attackIntervalMinTicks": 14,
+  "movementMinX100PerSecond": 200,
+  "movementMaxX100PerSecond": 1400,
+  "bossHardControlCapSeconds": "0.65",
+  "bossHardControlCapTicks": 20,
+  "secondsWarningThreshold": "0.01"
+}

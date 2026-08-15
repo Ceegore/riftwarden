@@ -125,6 +125,14 @@ jobs:
               pnpm rules:audit
               pnpm rules:validate-snapshots
               ;;
+            math-gates)
+              pnpm test:math
+              pnpm math:audit
+              pnpm math:validate-readiness
+              ;;
+            math-vectors)
+              pnpm math:vectors
+              ;;
             asset-manifest-validate)
               pnpm assets:validate
               ;;

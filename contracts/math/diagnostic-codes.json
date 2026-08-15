@@ -1,0 +1,18 @@
+{
+  "P12_NOT_SAFE_INTEGER": "operand/result is not a safe integer",
+  "P12_NEGATIVE_ZERO": "negative zero is forbidden",
+  "P12_DIVIDE_BY_ZERO": "denominator is zero",
+  "P12_MULTIPLY_OVERFLOW": "safe integer multiply would overflow",
+  "P12_RESULT_OVERFLOW": "result is outside safe integer range",
+  "P12_RANGE": "value violates explicit range",
+  "P12_DECIMAL_SYNTAX": "authoring decimal syntax invalid",
+  "P12_SECONDS_NEGATIVE": "negative seconds forbidden",
+  "P12_SECONDS_PRECISION_WARNING": "tick conversion deviates by more than 0.01 seconds",
+  "P12_G11_NOT_PROVEN": "real G11 evidence missing",
+  "P12_BROWSER_EVIDENCE_MISSING": "crossruntime evidence missing",
+  "P12_RULE_SNAPSHOTS_UNVERIFIED": "canonical rule module hashes unverified",
+  "P12_TRACEABILITY_MISSING": "official REQ/TEST traceability absent",
+  "P12_PUBLISHED_IDS_MISSING": "published ID baseline from approved content absent",
+  "P12_LOCAL_ROUNDING": "local Math.round outside the rounding module",
+  "P12_LOCAL_BPS_MATH": "local *10000 or /10000 math outside the math module"
+}
