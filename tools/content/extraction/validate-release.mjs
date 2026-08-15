@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 import path from 'node:path';
+import { parseArgs } from '../../lib/fs-utils.mjs';
 import { loadJson, loadLedgers } from './lib/load-ledgers.mjs';
 import { validateCounts } from './lib/counts.mjs';
 import { validateLedgerShape } from './lib/ledger.mjs';
 
-const indexDir = path.resolve('docs/reports/content-ledger');
-const authorityPath = path.resolve('inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md');
-const counts = await loadJson(path.resolve('contracts/release-counts.json'));
+const args = parseArgs(process.argv.slice(2));
+const indexDir = path.resolve(args['index-dir'] ?? args.indexDir ?? 'docs/reports/content-ledger');
+const authorityPath = path.resolve(args.authority ?? 'inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md');
+const counts = await loadJson(path.resolve(args['release-counts'] ?? args.releaseCounts ?? 'contracts/release-counts.json'));
 const { index, ledgers } = await loadLedgers(indexDir);
 const allEntries = ledgers.flatMap((ledger) => ledger.data.entries);
 

@@ -65,8 +65,7 @@
     {
       "batchId": "batch-004",
       "families": [
-        "ascensionRanks",
-        "battleVariants"
+        "ascensionRanks"
       ],
       "slots": [
         "ascensionRanks:001",
@@ -78,9 +77,7 @@
         "ascensionRanks:007",
         "ascensionRanks:008",
         "ascensionRanks:009",
-        "ascensionRanks:010",
-        "battleVariants:001",
-        "battleVariants:002"
+        "ascensionRanks:010"
       ]
     },
     {
@@ -90,45 +87,56 @@
         "bosses"
       ],
       "slots": [
+        "battleVariants:001",
+        "battleVariants:002",
         "battleVariants:003",
         "battleVariants:004",
         "battleVariants:005",
         "battleVariants:006",
         "battleVariants:007",
-        "bosses:001",
-        "bosses:002",
-        "bosses:003",
-        "bosses:004"
+        "bosses:001"
       ]
     },
     {
       "batchId": "batch-006",
       "families": [
-        "champions",
-        "constellationNodes"
+        "bosses",
+        "champions"
       ],
       "slots": [
+        "bosses:002",
+        "bosses:003",
+        "bosses:004",
         "champions:001",
         "champions:002",
         "champions:003",
         "champions:004",
-        "champions:005",
+        "champions:005"
+      ]
+    },
+    {
+      "batchId": "batch-007",
+      "families": [
+        "champions",
+        "constellationNodes"
+      ],
+      "slots": [
         "champions:006",
         "champions:007",
         "champions:008",
         "constellationNodes:001",
         "constellationNodes:002",
         "constellationNodes:003",
-        "constellationNodes:004"
+        "constellationNodes:004",
+        "constellationNodes:005"
       ]
     },
     {
-      "batchId": "batch-007",
+      "batchId": "batch-008",
       "families": [
         "constellationNodes"
       ],
       "slots": [
-        "constellationNodes:005",
         "constellationNodes:006",
         "constellationNodes:007",
         "constellationNodes:008",
@@ -139,16 +147,16 @@
         "constellationNodes:013",
         "constellationNodes:014",
         "constellationNodes:015",
-        "constellationNodes:016"
+        "constellationNodes:016",
+        "constellationNodes:017"
       ]
     },
     {
-      "batchId": "batch-008",
+      "batchId": "batch-009",
       "families": [
         "constellationNodes"
       ],
       "slots": [
-        "constellationNodes:017",
         "constellationNodes:018",
         "constellationNodes:019",
         "constellationNodes:020",
@@ -163,7 +171,7 @@
       ]
     },
     {
-      "batchId": "batch-009",
+      "batchId": "batch-010",
       "families": [
         "doctrines",
         "eliteAttributes"
@@ -176,83 +184,90 @@
         "doctrines:005",
         "doctrines:006",
         "eliteAttributes:001",
-        "eliteAttributes:002",
-        "eliteAttributes:003",
-        "eliteAttributes:004",
-        "eliteAttributes:005",
-        "eliteAttributes:006"
-      ]
-    },
-    {
-      "batchId": "batch-010",
-      "families": [
-        "eliteAttributes",
-        "enemies"
-      ],
-      "slots": [
-        "eliteAttributes:007",
-        "eliteAttributes:008",
-        "eliteAttributes:009",
-        "eliteAttributes:010",
-        "eliteAttributes:011",
-        "eliteAttributes:012",
-        "enemies:001",
-        "enemies:002",
-        "enemies:003",
-        "enemies:004",
-        "enemies:005",
-        "enemies:006"
+        "eliteAttributes:002"
       ]
     },
     {
       "batchId": "batch-011",
       "families": [
-        "enemies"
+        "eliteAttributes"
       ],
       "slots": [
-        "enemies:007",
-        "enemies:008",
-        "enemies:009",
-        "enemies:010",
-        "enemies:011",
-        "enemies:012",
-        "enemies:013",
-        "enemies:014",
-        "enemies:015",
-        "enemies:016",
-        "enemies:017",
-        "enemies:018"
+        "eliteAttributes:003",
+        "eliteAttributes:004",
+        "eliteAttributes:005",
+        "eliteAttributes:006",
+        "eliteAttributes:007",
+        "eliteAttributes:008",
+        "eliteAttributes:009",
+        "eliteAttributes:010",
+        "eliteAttributes:011",
+        "eliteAttributes:012"
       ]
     },
     {
       "batchId": "batch-012",
       "families": [
-        "enemies",
-        "equipment"
+        "enemies"
       ],
       "slots": [
-        "enemies:019",
-        "enemies:020",
-        "enemies:021",
-        "enemies:022",
-        "enemies:023",
-        "enemies:024",
-        "enemies:025",
-        "enemies:026",
-        "enemies:027",
-        "enemies:028",
-        "equipment:001",
-        "equipment:002"
+        "enemies:001",
+        "enemies:002",
+        "enemies:003",
+        "enemies:004",
+        "enemies:005",
+        "enemies:006",
+        "enemies:007",
+        "enemies:008",
+        "enemies:009",
+        "enemies:010",
+        "enemies:011",
+        "enemies:012"
       ]
     },
     {
       "batchId": "batch-013",
       "families": [
+        "enemies"
+      ],
+      "slots": [
+        "enemies:013",
+        "enemies:014",
+        "enemies:015",
+        "enemies:016",
+        "enemies:017",
+        "enemies:018",
+        "enemies:019",
+        "enemies:020",
+        "enemies:021",
+        "enemies:022",
+        "enemies:023",
+        "enemies:024"
+      ]
+    },
+    {
+      "batchId": "batch-014",
+      "families": [
+        "enemies",
         "equipment"
       ],
       "slots": [
+        "enemies:025",
+        "enemies:026",
+        "enemies:027",
+        "enemies:028",
+        "equipment:001",
+        "equipment:002",
         "equipment:003",
-        "equipment:004",
+        "equipment:004"
+      ]
+    },
+    {
+      "batchId": "batch-015",
+      "families": [
+        "equipment"
+      ],
+      "slots": [
         "equipment:005",
         "equipment:006",
         "equipment:007",
@@ -262,17 +277,17 @@
         "equipment:011",
         "equipment:012",
         "equipment:013",
-        "equipment:014"
+        "equipment:014",
+        "equipment:015",
+        "equipment:016"
       ]
     },
     {
-      "batchId": "batch-014",
+      "batchId": "batch-016",
       "families": [
         "equipment"
       ],
       "slots": [
-        "equipment:015",
-        "equipment:016",
         "equipment:017",
         "equipment:018",
         "equipment:019",
@@ -282,17 +297,17 @@
         "equipment:023",
         "equipment:024",
         "equipment:025",
-        "equipment:026"
+        "equipment:026",
+        "equipment:027",
+        "equipment:028"
       ]
     },
     {
-      "batchId": "batch-015",
+      "batchId": "batch-017",
       "families": [
         "equipment"
       ],
       "slots": [
-        "equipment:027",
-        "equipment:028",
         "equipment:029",
         "equipment:030",
         "equipment:031",
@@ -302,18 +317,18 @@
         "equipment:035",
         "equipment:036",
         "equipment:037",
-        "equipment:038"
+        "equipment:038",
+        "equipment:039",
+        "equipment:040"
       ]
     },
     {
-      "batchId": "batch-016",
+      "batchId": "batch-018",
       "families": [
         "equipment",
         "events"
       ],
       "slots": [
-        "equipment:039",
-        "equipment:040",
         "equipment:041",
         "equipment:042",
         "events:001",
@@ -321,17 +336,17 @@
         "events:003",
         "events:004",
         "events:005",
-        "events:006",
-        "events:007",
-        "events:008"
+        "events:006"
       ]
     },
     {
-      "batchId": "batch-017",
+      "batchId": "batch-019",
       "families": [
         "events"
       ],
       "slots": [
+        "events:007",
+        "events:008",
         "events:009",
         "events:010",
         "events:011",
@@ -341,18 +356,17 @@
         "events:015",
         "events:016",
         "events:017",
-        "events:018",
-        "events:019",
-        "events:020"
+        "events:018"
       ]
     },
     {
-      "batchId": "batch-018",
+      "batchId": "batch-020",
       "families": [
-        "events",
-        "heroes"
+        "events"
       ],
       "slots": [
+        "events:019",
+        "events:020",
         "events:021",
         "events:022",
         "events:023",
@@ -362,18 +376,17 @@
         "events:027",
         "events:028",
         "events:029",
-        "events:030",
-        "heroes:001",
-        "heroes:002"
+        "events:030"
       ]
     },
     {
-      "batchId": "batch-019",
+      "batchId": "batch-021",
       "families": [
-        "heroes",
-        "masteryObjectives"
+        "heroes"
       ],
       "slots": [
+        "heroes:001",
+        "heroes:002",
         "heroes:003",
         "heroes:004",
         "heroes:005",
@@ -381,51 +394,7 @@
         "heroes:007",
         "heroes:008",
         "heroes:009",
-        "heroes:010",
-        "masteryObjectives:001",
-        "masteryObjectives:002",
-        "masteryObjectives:003",
-        "masteryObjectives:004"
-      ]
-    },
-    {
-      "batchId": "batch-020",
-      "families": [
-        "masteryObjectives"
-      ],
-      "slots": [
-        "masteryObjectives:005",
-        "masteryObjectives:006",
-        "masteryObjectives:007",
-        "masteryObjectives:008",
-        "masteryObjectives:009",
-        "masteryObjectives:010",
-        "masteryObjectives:011",
-        "masteryObjectives:012",
-        "masteryObjectives:013",
-        "masteryObjectives:014",
-        "masteryObjectives:015",
-        "masteryObjectives:016"
-      ]
-    },
-    {
-      "batchId": "batch-021",
-      "families": [
-        "masteryObjectives"
-      ],
-      "slots": [
-        "masteryObjectives:017",
-        "masteryObjectives:018",
-        "masteryObjectives:019",
-        "masteryObjectives:020",
-        "masteryObjectives:021",
-        "masteryObjectives:022",
-        "masteryObjectives:023",
-        "masteryObjectives:024",
-        "masteryObjectives:025",
-        "masteryObjectives:026",
-        "masteryObjectives:027",
-        "masteryObjectives:028"
+        "heroes:010"
       ]
     },
     {
@@ -434,6 +403,50 @@
         "masteryObjectives"
       ],
       "slots": [
+        "masteryObjectives:001",
+        "masteryObjectives:002",
+        "masteryObjectives:003",
+        "masteryObjectives:004",
+        "masteryObjectives:005",
+        "masteryObjectives:006",
+        "masteryObjectives:007",
+        "masteryObjectives:008",
+        "masteryObjectives:009",
+        "masteryObjectives:010",
+        "masteryObjectives:011",
+        "masteryObjectives:012"
+      ]
+    },
+    {
+      "batchId": "batch-023",
+      "families": [
+        "masteryObjectives"
+      ],
+      "slots": [
+        "masteryObjectives:013",
+        "masteryObjectives:014",
+        "masteryObjectives:015",
+        "masteryObjectives:016",
+        "masteryObjectives:017",
+        "masteryObjectives:018",
+        "masteryObjectives:019",
+        "masteryObjectives:020",
+        "masteryObjectives:021",
+        "masteryObjectives:022",
+        "masteryObjectives:023",
+        "masteryObjectives:024"
+      ]
+    },
+    {
+      "batchId": "batch-024",
+      "families": [
+        "masteryObjectives"
+      ],
+      "slots": [
+        "masteryObjectives:025",
+        "masteryObjectives:026",
+        "masteryObjectives:027",
+        "masteryObjectives:028",
         "masteryObjectives:029",
         "masteryObjectives:030",
         "masteryObjectives:031",
@@ -441,43 +454,50 @@
         "masteryObjectives:033",
         "masteryObjectives:034",
         "masteryObjectives:035",
-        "masteryObjectives:036",
-        "masteryObjectives:037",
-        "masteryObjectives:038",
-        "masteryObjectives:039",
-        "masteryObjectives:040"
+        "masteryObjectives:036"
       ]
     },
     {
-      "batchId": "batch-023",
+      "batchId": "batch-025",
       "families": [
-        "masteryObjectives",
-        "minibosses"
+        "masteryObjectives"
       ],
       "slots": [
+        "masteryObjectives:037",
+        "masteryObjectives:038",
+        "masteryObjectives:039",
+        "masteryObjectives:040",
         "masteryObjectives:041",
         "masteryObjectives:042",
         "masteryObjectives:043",
         "masteryObjectives:044",
         "masteryObjectives:045",
-        "masteryObjectives:046",
-        "masteryObjectives:047",
-        "masteryObjectives:048",
-        "masteryObjectives:049",
-        "masteryObjectives:050",
-        "minibosses:001",
-        "minibosses:002"
+        "masteryObjectives:046"
       ]
     },
     {
-      "batchId": "batch-024",
+      "batchId": "batch-026",
       "families": [
-        "minibosses",
+        "masteryObjectives",
+        "minibosses"
+      ],
+      "slots": [
+        "masteryObjectives:049",
+        "masteryObjectives:050",
+        "masteryObjectives:047",
+        "masteryObjectives:048",
+        "minibosses:001",
+        "minibosses:002",
+        "minibosses:003",
+        "minibosses:004"
+      ]
+    },
+    {
+      "batchId": "batch-027",
+      "families": [
         "missions"
       ],
       "slots": [
-        "minibosses:003",
-        "minibosses:004",
         "missions:001",
         "missions:002",
         "missions:003",
@@ -487,18 +507,17 @@
         "missions:007",
         "missions:008",
         "missions:009",
-        "missions:010"
+        "missions:010",
+        "missions:011",
+        "missions:012"
       ]
     },
     {
-      "batchId": "batch-025",
+      "batchId": "batch-028",
       "families": [
-        "missions",
-        "modifiers"
+        "missions"
       ],
       "slots": [
-        "missions:011",
-        "missions:012",
         "missions:013",
         "missions:014",
         "missions:015",
@@ -506,17 +525,17 @@
         "missions:017",
         "missions:018",
         "missions:019",
-        "missions:020",
-        "modifiers:001",
-        "modifiers:002"
+        "missions:020"
       ]
     },
     {
-      "batchId": "batch-026",
+      "batchId": "batch-029",
       "families": [
         "modifiers"
       ],
       "slots": [
+        "modifiers:001",
+        "modifiers:002",
         "modifiers:003",
         "modifiers:004",
         "modifiers:005",
@@ -526,96 +545,106 @@
         "modifiers:009",
         "modifiers:010",
         "modifiers:011",
-        "modifiers:012",
-        "modifiers:013",
-        "modifiers:014"
-      ]
-    },
-    {
-      "batchId": "batch-027",
-      "families": [
-        "modifiers",
-        "regions"
-      ],
-      "slots": [
-        "modifiers:015",
-        "modifiers:016",
-        "modifiers:017",
-        "modifiers:018",
-        "regions:001",
-        "regions:002",
-        "regions:003",
-        "regions:004"
-      ]
-    },
-    {
-      "batchId": "batch-028",
-      "families": [
-        "relics"
-      ],
-      "slots": [
-        "relics:001",
-        "relics:002",
-        "relics:003",
-        "relics:004",
-        "relics:005",
-        "relics:006",
-        "relics:007",
-        "relics:008",
-        "relics:009",
-        "relics:010",
-        "relics:011",
-        "relics:012"
-      ]
-    },
-    {
-      "batchId": "batch-029",
-      "families": [
-        "relics"
-      ],
-      "slots": [
-        "relics:013",
-        "relics:014",
-        "relics:015",
-        "relics:016",
-        "relics:017",
-        "relics:018",
-        "relics:019",
-        "relics:020",
-        "relics:021",
-        "relics:022",
-        "relics:023",
-        "relics:024"
+        "modifiers:012"
       ]
     },
     {
       "batchId": "batch-030",
       "families": [
-        "relics"
+        "modifiers",
+        "regions"
       ],
       "slots": [
-        "relics:025",
-        "relics:026",
-        "relics:027",
-        "relics:028",
-        "relics:029",
-        "relics:030",
-        "relics:031",
-        "relics:032",
-        "relics:033",
-        "relics:034",
-        "relics:035",
-        "relics:036"
+        "modifiers:013",
+        "modifiers:014",
+        "modifiers:015",
+        "modifiers:016",
+        "modifiers:017",
+        "modifiers:018",
+        "regions:001",
+        "regions:002"
       ]
     },
     {
       "batchId": "batch-031",
       "families": [
+        "regions",
+        "relics"
+      ],
+      "slots": [
+        "regions:003",
+        "regions:004",
+        "relics:001",
+        "relics:002",
+        "relics:003",
+        "relics:004",
+        "relics:005",
+        "relics:006"
+      ]
+    },
+    {
+      "batchId": "batch-032",
+      "families": [
+        "relics"
+      ],
+      "slots": [
+        "relics:007",
+        "relics:008",
+        "relics:009",
+        "relics:010",
+        "relics:011",
+        "relics:012",
+        "relics:013",
+        "relics:014",
+        "relics:015",
+        "relics:016",
+        "relics:017",
+        "relics:018"
+      ]
+    },
+    {
+      "batchId": "batch-033",
+      "families": [
+        "relics"
+      ],
+      "slots": [
+        "relics:019",
+        "relics:020",
+        "relics:021",
+        "relics:022",
+        "relics:023",
+        "relics:024",
+        "relics:025",
+        "relics:026",
+        "relics:027",
+        "relics:028",
+        "relics:029",
+        "relics:030"
+      ]
+    },
+    {
+      "batchId": "batch-034",
+      "families": [
+        "relics",
         "statuses"
       ],
       "slots": [
+        "relics:031",
+        "relics:032",
+        "relics:033",
+        "relics:034",
+        "relics:035",
+        "relics:036",
         "statuses:001",
-        "statuses:002",
+        "statuses:002"
+      ]
+    },
+    {
+      "batchId": "batch-035",
+      "families": [
+        "statuses"
+      ],
+      "slots": [
         "statuses:003",
         "statuses:004",
         "statuses:005",
@@ -625,18 +654,18 @@
         "statuses:009",
         "statuses:010",
         "statuses:011",
-        "statuses:012"
+        "statuses:012",
+        "statuses:013",
+        "statuses:014"
       ]
     },
     {
-      "batchId": "batch-032",
+      "batchId": "batch-036",
       "families": [
         "statuses",
         "summons"
       ],
       "slots": [
-        "statuses:013",
-        "statuses:014",
         "statuses:015",
         "summons:001",
         "summons:002",
@@ -644,41 +673,49 @@
         "summons:004",
         "summons:005",
         "summons:006",
-        "summons:007",
-        "summons:008",
-        "summons:009"
+        "summons:007"
       ]
     },
     {
-      "batchId": "batch-033",
+      "batchId": "batch-037",
       "families": [
         "summons",
         "synergies"
       ],
       "slots": [
+        "summons:008",
+        "summons:009",
         "summons:010",
         "summons:011",
         "summons:012",
         "summons:013",
         "summons:014",
-        "synergies:001",
-        "synergies:002",
-        "synergies:003",
-        "synergies:004",
-        "synergies:005",
-        "synergies:006",
-        "synergies:007"
+        "synergies:001"
       ]
     },
     {
-      "batchId": "batch-034",
+      "batchId": "batch-038",
       "families": [
         "synergies",
         "troops"
       ],
       "slots": [
+        "synergies:002",
+        "synergies:003",
+        "synergies:004",
+        "synergies:005",
+        "synergies:006",
+        "synergies:007",
         "synergies:008",
-        "troops:001",
+        "troops:001"
+      ]
+    },
+    {
+      "batchId": "batch-039",
+      "families": [
+        "troops"
+      ],
+      "slots": [
         "troops:002",
         "troops:003",
         "troops:004",
@@ -691,7 +728,7 @@
       ]
     },
     {
-      "batchId": "batch-035",
+      "batchId": "batch-040",
       "families": [
         "troops"
       ],
@@ -708,7 +745,7 @@
     }
   ],
   "counts": {
-    "batches": 35,
+    "batches": 40,
     "slots": 408
   }
 }

@@ -34,7 +34,7 @@ function assertAssetRequirements(items, pointer, diagnostics) {
       diagnostics.push(diag('P10_LEDGER_SHAPE', 'Asset requirement needs id, kind and valid status.', at));
     }
     if (!Number.isInteger(asset?.ownerPhase) || asset.ownerPhase < 1) {
-      diagnostics.push(diag('P10_LEDGER_SHAPE', 'Asset requirement ownerPhase must be a positive integer.', at));
+      diagnostics.push(diag('P10_ASSET_OWNER', 'Asset requirement needs a positive owner phase.', at));
     }
     if (asset.status === 'REQUIRED_PRESENT' && (!asset.path || !asset.sha256)) {
       diagnostics.push(diag('P10_REQUIRED_ASSET_MISSING', 'REQUIRED_PRESENT asset needs path and hash.', at));
@@ -123,6 +123,12 @@ export async function validateLedgerShape(ledgers, authorityPath) {
         }
         if (entry.review?.verdict !== 'APPROVED') {
           diagnostics.push(diag('P10_REVIEW_MISSING', 'REVIEWED slot needs an APPROVED verdict.', pointer));
+        }
+        if (!entry.localization?.deKey || !entry.localization?.enKey) {
+          diagnostics.push(diag('P10_LOCALIZATION_KEY', 'REVIEWED slot needs DE and EN localization keys.', pointer));
+        }
+        if (entry.localization?.enStatus === 'NOT_STARTED') {
+          diagnostics.push(diag('P10_EN_STATUS', 'REVIEWED slot needs EN copy at DRAFT or APPROVED.', pointer));
         }
       }
       assertAssetRequirements(entry.assetRequirements, pointer, diagnostics);
