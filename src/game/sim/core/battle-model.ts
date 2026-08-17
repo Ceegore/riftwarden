@@ -16,4 +16,9 @@ export interface BattleModel {
   readonly scheduledEvents: readonly ScheduledEvent[];
   readonly authoritativeStreams: AuthoritativeStreamSnapshot;
   readonly endReason: string|null;
+  // Phase 15 additive battle-level fields (§9.4). Absent on Phase 14 fixtures;
+  // when present they are authoritative and projected into the snapshot.
+  readonly globalNoProgressTicks?: number;
+  readonly riftCollapseTicks?: number;
+  readonly riftCollapseWarningEmitted?: boolean;
 }

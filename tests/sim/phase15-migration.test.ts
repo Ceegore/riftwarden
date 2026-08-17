@@ -16,6 +16,18 @@ describe('Phase 15 versioned migration', () => {
     expect(entity().radiusX100).toBeUndefined();
   });
 
+  it('adds default lane-change, progress and deadlock fields', () => {
+    const migrated = migrateEntity({ entity: entity(), radiusX100: 120 });
+    expect(migrated.laneChange).toBeNull();
+    expect(migrated.normalLaneChangeCooldownUntilTick).toBe(0);
+    expect(migrated.noProgressTicks).toBe(0);
+    expect(migrated.repathTicks).toEqual([]);
+    expect(migrated.laneFallbackUsed).toBe(false);
+    expect(migrated.frontDeadlockBlockedTicks).toBe(0);
+    expect(migrated.deadlockBuffConsumed).toBe(false);
+    expect(migrated.deadlockBuffedEntityId).toBeNull();
+  });
+
   it('is idempotent on an already-migrated entity', () => {
     const once = migrateEntity({ entity: entity(), radiusX100: 120 });
     const twice = migrateEntity({ entity: once, radiusX100: 120 });

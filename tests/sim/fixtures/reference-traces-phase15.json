@@ -7,7 +7,9 @@
     "C:noop.periodic",
     "D:noop.triggers",
     "E:noop.targeting",
-    "F:phase15.movement",
+    "F:phase15.f1.lane_change",
+    "F:phase15.f2.movement",
+    "F:phase15.f3.anti_stuck",
     "G:noop.cast_progress",
     "H:noop.resolve_committed",
     "I:noop.apply_effects",
@@ -19,12 +21,12 @@
   "checkpoints": [
     {
       "tick": 30,
-      "checksum": "89336ac81bf46e3e6f37d8154e5a72d0080a85a12a35408594b3148c203a4797"
+      "checksum": "be7f58df9f0953f76953804c1d91b2953e609fccd2da6f2395d1c8ecc21101a4"
     },
     {
       "tick": 60,
-      "checksum": "41b5b583aadc7164db26680688a712b2f7b7838e637360efb641972524d21283"
+      "checksum": "421c376d8bc921a0729504fd96f695fc73af100cfcf7f1d3e65b239e0a27e74a"
     }
   ],
-  "finalSnapshotChecksum": "41b5b583aadc7164db26680688a712b2f7b7838e637360efb641972524d21283"
+  "finalSnapshotChecksum": "421c376d8bc921a0729504fd96f695fc73af100cfcf7f1d3e65b239e0a27e74a"
 }

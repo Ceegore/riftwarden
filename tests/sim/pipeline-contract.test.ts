@@ -15,6 +15,8 @@ const requiredTypes = [
   'ChargeReady', 'AbilityPrepared', 'AbilityInterrupted', 'AbilityCommitted', 'AbilityResolved',
   'ModifierTriggered', 'HazardTelegraphed', 'HazardResolved', 'ReinforcementQueued', 'ReinforcementSpawned',
   'InvalidTargetPrevented', 'SummonLimitBlocked', 'FallbackRuleUsed', 'SafetyCapTriggered',
+  'LaneLogicalSwitched', 'LaneChangeCompleted', 'LaneChangeInterrupted',
+  'StuckRepath', 'RepathLaneUnavailable', 'FrontDeadlockRangeBoost', 'RiftCollapseWarning',
 ];
 
 describe('pipeline contract', () => {
@@ -29,7 +31,7 @@ describe('pipeline contract', () => {
 });
 
 describe('event contract', () => {
-  it('31 required event types are registered with valid categories', () => {
+  it('38 required event types are registered with valid categories', () => {
     expect(Object.keys(EVENT_SPEC).sort()).toEqual([...requiredTypes].sort());
     const categories = ['lifecycle', 'entity', 'combat', 'ability', 'world', 'diagnostics'];
     for (const spec of Object.values(EVENT_SPEC)) {

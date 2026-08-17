@@ -41,9 +41,9 @@ describe('Phase 15 golden reference trace', () => {
     expect(generateTrace()).toBe(fixture);
   });
 
-  it('movement runs in stage F ahead of the noop reservation', () => {
+  it('runs lane change, movement and anti-stuck in stage F order', () => {
     const parsed = JSON.parse(generateTrace()) as { pipelineCallOrder: string[] };
-    expect(parsed.pipelineCallOrder).toContain('F:phase15.movement');
-    expect(parsed.pipelineCallOrder).not.toContain('F:noop.movement');
+    const fStages = parsed.pipelineCallOrder.filter((call) => call.startsWith('F:'));
+    expect(fStages).toEqual(['F:phase15.f1.lane_change', 'F:phase15.f2.movement', 'F:phase15.f3.anti_stuck']);
   });
 });

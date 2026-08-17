@@ -4,6 +4,7 @@ import { asX100, laneOrdinal, nonNegativeX100, type Lane, type X100 } from '../g
 import { KernelInvariantError } from '../core/invariant-error.js';
 import type { KernelEntity } from '../core/entity.js';
 import type { KernelSystem, TickContext } from '../core/tick-context.js';
+import { advanceLaneChange } from './lane-change.js';
 import { movementStep } from './movement-step.js';
 
 export interface MovementState {
@@ -56,9 +57,19 @@ export function resolveMovement(
   };
 }
 
+/**
+ * The lane a moving entity occupies for this tick. A lane change switches the
+ * logical lane when its next tick reaches progress 18 (§6.2); movement must use
+ * that post-advance lane, not the prior-state lane.
+ */
+export function effectiveLogicalLane(entity: KernelEntity): Lane {
+  if (entity.laneChange === undefined || entity.laneChange === null) return entity.lane;
+  return advanceLaneChange(entity.laneChange, entity.lane).logicalLane;
+}
+
 /** §5.3.3 canonical resolution order: laneOrdinal, front-nearness, entityId. */
 function compareMovementOrder(a: KernelEntity, b: KernelEntity): number {
-  const lane = laneOrdinal(a.lane) - laneOrdinal(b.lane);
+  const lane = laneOrdinal(effectiveLogicalLane(a)) - laneOrdinal(effectiveLogicalLane(b));
   if (lane !== 0) return lane;
   const frontOf = (e: KernelEntity): number => (e.side === 'player' ? 10000 - e.x100 : e.x100);
   const front = frontOf(a) - frontOf(b);
@@ -91,7 +102,7 @@ export interface MovementSystemConfig {
 export function createMovementSystem(config: MovementSystemConfig): KernelSystem {
   const stopGap = config.stopGapX100 === undefined ? asX100(10) : nonNegativeX100(config.stopGapX100);
   return {
-    id: 'phase15.movement',
+    id: 'phase15.f2.movement',
     stage: 'F',
     run(context: TickContext): void {
       const actives: MigratedActive[] = [];
@@ -107,20 +118,21 @@ export function createMovementSystem(config: MovementSystemConfig): KernelSystem
         const speed = config.speedsX100PerSecond[entity.id];
         if (speed === undefined) continue;
         const direction: 1 | -1 = entity.side === 'player' ? 1 : -1;
+        const lane = effectiveLogicalLane(entity);
         const enemies: Body[] = sorted
-          .filter(({ entity: other }) => other.side !== entity.side && other.lane === entity.lane)
+          .filter(({ entity: other }) => other.side !== entity.side && effectiveLogicalLane(other) === lane)
           .map(({ entity: other, radiusX100: otherRadius }) => ({
             id: other.id,
             x100: asX100(other.x100),
             radiusX100: asX100(otherRadius),
-            lane: other.lane,
+            lane,
           }));
         const resolution = resolveMovement(
           {
             entityId: entity.id,
             x100: asX100(entity.x100),
             radiusX100: asX100(radiusX100),
-            lane: entity.lane,
+            lane,
             movementRemainder,
             speedX100PerSecond: speed,
             direction,
@@ -128,7 +140,7 @@ export function createMovementSystem(config: MovementSystemConfig): KernelSystem
           enemies,
           stopGap,
         );
-        context.commands.push({ kind: 'set_position', entityId: entity.id, lane: entity.lane, x100: resolution.newX100 });
+        context.commands.push({ kind: 'set_position', entityId: entity.id, lane, x100: resolution.newX100 });
         context.commands.push({ kind: 'set_movement_remainder', entityId: entity.id, remainder: resolution.newRemainder });
       }
     },

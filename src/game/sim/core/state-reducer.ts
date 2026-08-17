@@ -2,7 +2,7 @@ import { isTerminalBattlePhase, transitionBattlePhase } from './battle-state.js'
 import type { BattleModel } from './battle-model.js';
 import type { KernelCommand, BattleTransitionRequest } from './command-types.js';
 import { transitionEntityPhase, selectEntityTransition, type TransitionRequest } from './entity-state.js';
-import { validateEntity, type KernelEntity } from './entity.js';
+import { validateEntity, validateLaneChange, type KernelEntity } from './entity.js';
 import { KernelInvariantError } from './invariant-error.js';
 import type { EventPriority, EventSequence, Tick } from './primitives.js';
 import type { EventQueue } from '../scheduler/event-queue.js';
@@ -25,10 +25,23 @@ function requireEntity(entities: readonly KernelEntity[], entityId: string): Ker
   return entity;
 }
 
+const LANES = ['top', 'middle', 'bottom'] as const;
+
+function assertLane(lane: string): void {
+  if (!(LANES as readonly string[]).includes(lane)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'lane-invalid', lane });
+}
+
+function assertNonNegativeSafe(value: number, reason: string): void {
+  if (!Number.isSafeInteger(value) || value < 0 || Object.is(value, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason, value });
+}
+
 export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   let entities = [...args.state.entities];
   let phase = args.state.phase;
   let endReason = args.state.endReason;
+  let globalNoProgressTicks = args.state.globalNoProgressTicks;
+  let riftCollapseTicks = args.state.riftCollapseTicks;
+  let riftCollapseWarningEmitted = args.state.riftCollapseWarningEmitted;
   const beforeEvents = args.log.size();
   const transitions = new Map<string, TransitionRequest[]>();
   const battleTransitions: BattleTransitionRequest[] = [];
@@ -90,6 +103,49 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, movementRemainder: command.remainder }) : e));
         break;
       }
+      case 'set_lane': {
+        requireEntity(entities, command.entityId);
+        assertLane(command.lane);
+        entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, lane: command.lane }) : e));
+        break;
+      }
+      case 'set_lane_change': {
+        requireEntity(entities, command.entityId);
+        if (command.state !== null) validateLaneChange(command.state);
+        entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, laneChange: command.state }) : e));
+        break;
+      }
+      case 'set_lane_change_cooldown': {
+        requireEntity(entities, command.entityId);
+        assertNonNegativeSafe(command.untilTick, 'lane-change-cooldown-invalid');
+        entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, normalLaneChangeCooldownUntilTick: command.untilTick }) : e));
+        break;
+      }
+      case 'set_stuck_state': {
+        requireEntity(entities, command.entityId);
+        assertNonNegativeSafe(command.noProgressTicks, 'no-progress-ticks-invalid');
+        for (const value of command.repathTicks) assertNonNegativeSafe(value, 'repath-tick-invalid');
+        if (typeof command.laneFallbackUsed !== 'boolean') throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'lane-fallback-invalid' });
+        entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, noProgressTicks: command.noProgressTicks, repathTicks: Object.freeze([...command.repathTicks]), laneFallbackUsed: command.laneFallbackUsed }) : e));
+        break;
+      }
+      case 'set_deadlock_state': {
+        requireEntity(entities, command.entityId);
+        assertNonNegativeSafe(command.blockedTicks, 'deadlock-blocked-ticks-invalid');
+        if (typeof command.buffConsumed !== 'boolean') throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'deadlock-buff-consumed-invalid' });
+        if (command.buffedEntityId !== null && !/^[a-z][a-z0-9_]*$/.test(command.buffedEntityId)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'deadlock-buffed-entity-invalid', buffedEntityId: command.buffedEntityId });
+        entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, frontDeadlockBlockedTicks: command.blockedTicks, deadlockBuffConsumed: command.buffConsumed, deadlockBuffedEntityId: command.buffedEntityId }) : e));
+        break;
+      }
+      case 'set_global_progress': {
+        assertNonNegativeSafe(command.noProgressTicks, 'global-no-progress-invalid');
+        assertNonNegativeSafe(command.collapseTicks, 'rift-collapse-ticks-invalid');
+        if (typeof command.warned !== 'boolean') throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'rift-warned-invalid' });
+        globalNoProgressTicks = command.noProgressTicks;
+        riftCollapseTicks = command.collapseTicks;
+        riftCollapseWarningEmitted = command.warned;
+        break;
+      }
       case 'apply_lp_delta': {
         requireEntity(entities, command.entityId);
         if (!Number.isSafeInteger(command.delta)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'lp-delta-not-integer', entityId: command.entityId, delta: command.delta });
@@ -130,6 +186,10 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   }
 
   args.queue.commitPlanned(args.allocate);
+  const extras: Record<string, unknown> = {};
+  if (globalNoProgressTicks !== undefined) extras['globalNoProgressTicks'] = globalNoProgressTicks;
+  if (riftCollapseTicks !== undefined) extras['riftCollapseTicks'] = riftCollapseTicks;
+  if (riftCollapseWarningEmitted !== undefined) extras['riftCollapseWarningEmitted'] = riftCollapseWarningEmitted;
   return Object.freeze({
     ...args.state,
     phase,
@@ -137,5 +197,6 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
     emittedEventCount: args.state.emittedEventCount + (args.log.size() - beforeEvents),
     entities: Object.freeze(entities),
     scheduledEvents: args.queue.snapshot(),
+    ...extras,
   });
 }
