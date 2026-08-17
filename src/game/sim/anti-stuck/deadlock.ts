@@ -1,4 +1,4 @@
-import { asX100, type Lane } from '../geometry/x100.js';
+import { asX100, laneOrdinal, type Lane } from '../geometry/x100.js';
 
 export const FRONT_DEADLOCK_TICKS = 60;
 export const DEADLOCK_MELEE_BONUS_X100 = asX100(50);
@@ -21,17 +21,18 @@ export interface FrontDeadlockUpdate {
   readonly buffEntityId: string | null;
 }
 
-const LANE_ORDINAL: Readonly<Record<Lane, number>> = Object.freeze({ top: 0, middle: 1, bottom: 2 });
-
 /**
  * Selection per §9.3: smallest edge distance, then lane ordinal, then entity id.
  * Returns null when no candidate is available.
  */
 export function selectDeadlockBuffTarget(candidates: readonly DeadlockCandidate[]): string | null {
+  // Validate every lane up front so a single corrupt candidate is rejected
+  // even when the sort comparator never runs.
+  for (const candidate of candidates) laneOrdinal(candidate.lane);
   const sorted = [...candidates].sort(
     (a, b) =>
       a.edgeDistanceX100 - b.edgeDistanceX100 ||
-      LANE_ORDINAL[a.lane] - LANE_ORDINAL[b.lane] ||
+      laneOrdinal(a.lane) - laneOrdinal(b.lane) ||
       (a.entityId < b.entityId ? -1 : a.entityId > b.entityId ? 1 : 0),
   );
   return sorted[0]?.entityId ?? null;

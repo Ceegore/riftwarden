@@ -9,6 +9,13 @@ export const LANES = ['top', 'middle', 'bottom'] as const;
 export type Lane = (typeof LANES)[number];
 export const LANE_ORDINAL: Readonly<Record<Lane, number>> = Object.freeze({ top: 0, middle: 1, bottom: 2 });
 
+/** Deterministic lane ordinal; rejects an unknown lane at runtime (P15_LANE_INVALID). */
+export function laneOrdinal(lane: Lane): number {
+  const ordinal = (LANE_ORDINAL as Readonly<Record<string, number | undefined>>)[lane];
+  if (ordinal === undefined) throw new KernelInvariantError('P15_LANE_INVALID', { lane });
+  return ordinal;
+}
+
 /** Validates any integer X100 value (positions, radii, distances, gaps). */
 export function asX100(value: number): X100 {
   if (!Number.isSafeInteger(value)) throw new KernelInvariantError('P15_X100_NOT_INTEGER', { value });

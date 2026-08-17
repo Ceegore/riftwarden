@@ -1,6 +1,6 @@
 import { KernelInvariantError } from '../core/invariant-error.js';
 import { overlapDepthX100, type Body } from '../geometry/distance.js';
-import { asX100 } from '../geometry/x100.js';
+import { asX100, laneOrdinal } from '../geometry/x100.js';
 
 export const SEPARATION_MAX_X100_PER_ENTITY_TICK = asX100(25);
 
@@ -11,13 +11,11 @@ export interface SeparationResult {
   readonly safetyCapReached: boolean;
 }
 
-const LANE_ORDINAL: Readonly<Record<Body['lane'], number>> = Object.freeze({ top: 0, middle: 1, bottom: 2 });
-
 /** Canonical pair sort key per §8.2: lane ordinal, min entity id, max entity id. */
 export function separationPairKey(a: Body, b: Body): readonly [number, string, string] {
   const minId = a.id < b.id ? a.id : b.id;
   const maxId = a.id < b.id ? b.id : a.id;
-  return [LANE_ORDINAL[a.lane], minId, maxId];
+  return [laneOrdinal(a.lane), minId, maxId];
 }
 
 function compareIds(a: string, b: string): number {
