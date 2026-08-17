@@ -5,7 +5,7 @@ import { mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadKernel, runNodeReferenceTrace } from './lib/kernel-loader.mjs';
+import { loadKernel, runNodeReferenceTrace, runNodePhase15ReferenceTrace } from './lib/kernel-loader.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
@@ -27,6 +27,16 @@ try {
   const expected60 = pinned.checkpoints.find((c) => c.tick === 60)?.checksum;
   if (node.tick30 !== expected30 || node.tick60 !== expected60 || node.endHash !== pinned.finalSnapshotChecksum) {
     console.error(JSON.stringify({ status: 'FAIL', reason: 'node-drift-vs-pinned-fixture', node }, null, 2));
+    process.exit(1);
+  }
+
+  // Phase 15 reference: same 60-tick window, active movement systems.
+  const node15 = runNodePhase15ReferenceTrace(api);
+  const pinned15 = JSON.parse(readFileSync(join(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase15.json'), 'utf8'));
+  const expected15_30 = pinned15.checkpoints.find((c) => c.tick === 30)?.checksum;
+  const expected15_60 = pinned15.checkpoints.find((c) => c.tick === 60)?.checksum;
+  if (node15.tick30 !== expected15_30 || node15.tick60 !== expected15_60 || node15.endHash !== pinned15.finalSnapshotChecksum) {
+    console.error(JSON.stringify({ status: 'FAIL', reason: 'node15-drift-vs-pinned-fixture', node15 }, null, 2));
     process.exit(1);
   }
 
@@ -52,6 +62,9 @@ try {
   const runtimes = {
     node: { status: 'REFERENCE', version: process.version, host: process.platform, ...pick(node) },
   };
+  const runtimes15 = {
+    node: { status: 'REFERENCE', version: process.version, host: process.platform, ...pick(node15) },
+  };
   let browserFailures = 0;
 
   for (const [name, { launch }] of Object.entries(DESKTOP_BROWSERS)) {
@@ -62,8 +75,10 @@ try {
       await page.setContent('<html><body></body></html>');
       await page.addScriptTag({ path: fixtureJs });
       const result = await page.evaluate(() => globalThis.__P14_CROSSRUNTIME__);
+      const result15 = await page.evaluate(() => globalThis.__P15_CROSSRUNTIME__);
       const drift = driftField(result, node);
-      const ok = drift === null;
+      const drift15 = driftField(result15, node15);
+      const ok = drift === null && drift15 === null;
       if (!ok) browserFailures++;
       runtimes[name] = {
         status: ok ? 'PASS' : 'FAIL',
@@ -79,6 +94,20 @@ try {
         exitCode: ok ? 0 : 1,
         ...(drift === null ? {} : { drift }),
       };
+      runtimes15[name] = {
+        status: drift15 === null ? 'PASS' : 'FAIL',
+        version,
+        host: `${process.platform} (Playwright)`,
+        startHash: result15.startHash,
+        tick30: result15.tick30,
+        tick60: result15.tick60,
+        endHash: result15.endHash,
+        endTick: result15.endTick,
+        endReason: result15.endReason,
+        eventCount: result15.eventCount,
+        exitCode: drift15 === null ? 0 : 1,
+        ...(drift15 === null ? {} : { drift: drift15 }),
+      };
     } finally {
       await browser.close();
     }
@@ -86,17 +115,26 @@ try {
 
   for (const key of ['android_webview', 'ios_wkwebview']) {
     runtimes[key] = { status: 'NOT_RUN', version: null, host: null, startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null };
+    runtimes15[key] = { status: 'NOT_RUN', version: null, host: null, startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null };
   }
 
   const matrix = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     phase: 14,
     gate: 'G14',
     sourceRevision: process.env.SOURCE_REVISION ?? null,
     fixture: 'tests/sim/fixtures/reference-traces.json',
     status: 'PARTIAL',
-    note: 'Node and the three desktop browser engines are hash-identical to the pinned reference trace. Android/iOS WebViews remain NOT_RUN until executed on device hardware.',
+    note: 'Node and the three desktop browser engines are hash-identical to the pinned reference trace for both the Phase 14 noop kernel and the Phase 15 active movement kernel. Android/iOS WebViews remain NOT_RUN until executed on device hardware.',
     runtimes,
+    phase15: {
+      phase: 15,
+      gate: 'G15',
+      fixture: 'tests/sim/fixtures/reference-traces-phase15.json',
+      status: 'PARTIAL',
+      note: 'Phase 15 movement trace: desktop engines hash-identical to the Node reference and the pinned fixture; WebViews NOT_RUN.',
+      runtimes: runtimes15,
+    },
   };
   writeFileSync(out, `${JSON.stringify(matrix, null, 2)}\n`);
   console.log(JSON.stringify(matrix, null, 2));

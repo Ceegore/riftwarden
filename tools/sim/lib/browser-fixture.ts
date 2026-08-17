@@ -6,7 +6,9 @@
 // platform divergence is a real cross-runtime finding, not a self-consistency
 // check.
 import { stepBattle } from '../../../src/game/sim/core/battle-kernel.js';
+import { migrateEntity } from '../../../src/game/sim/core/migrate.js';
 import { createNoopSystems } from '../../../src/game/sim/core/noop-systems.js';
+import { createPhase15Systems } from '../../../src/game/sim/core/phase15-systems.js';
 import { sequence, tick } from '../../../src/game/sim/core/primitives.js';
 import { RngStreamMap } from '../../../src/game/sim/random/rng-stream-map.js';
 import { RandomSession } from '../../../src/game/sim/random/random-session.js';
@@ -78,3 +80,82 @@ const result = Object.freeze({
 });
 
 (globalThis as unknown as { __P14_CROSSRUNTIME__: unknown }).__P14_CROSSRUNTIME__ = result;
+
+// ---------------------------------------------------------------------------
+// Phase 15 oracle: the same trace as tests/sim/fixtures/reference-traces-phase15.json
+// (migrated entities, active movement/lane-change/anti-stuck systems).
+// ---------------------------------------------------------------------------
+function buildPhase15Entity(id: string, side: 'player' | 'enemy', x100: number, lane: 'top' | 'middle' | 'bottom', radiusX100: number) {
+  return migrateEntity({
+    entity: Object.freeze({
+      id,
+      side,
+      phase: Object.freeze({ phase: 'ACTIVE', enteredTick: tick(0), controlledReturn: null }),
+      maxLp: 1000,
+      lp: 1000,
+      shield: 0,
+      lane,
+      x100,
+      targetId: null,
+      timers: Object.freeze({}),
+    }),
+    radiusX100,
+  });
+}
+
+function buildPhase15Battle() {
+  const rnd = buildRandom();
+  const entities = Object.freeze([
+    buildPhase15Entity('unit_player_a', 'player', 1800, 'top', 100),
+    buildPhase15Entity('unit_player_b', 'player', 2400, 'middle', 120),
+    buildPhase15Entity('unit_enemy_a', 'enemy', 6200, 'middle', 140),
+    buildPhase15Entity('unit_enemy_b', 'enemy', 7600, 'bottom', 150),
+  ]);
+  return Object.freeze({
+    schemaVersion: 1,
+    simulationVersion: 'phase15-fixture-v1',
+    battleId: 'battle_fixture',
+    tick: tick(0),
+    nextSequence: sequence(0),
+    emittedEventCount: 0,
+    phase: Object.freeze({ phase: 'ACTIVE', enteredTick: tick(0), resolvingEndTicks: 0 }),
+    entities,
+    scheduledEvents: Object.freeze([]),
+    authoritativeStreams: rnd.streams.snapshotAuthoritative(),
+    endReason: null,
+  });
+}
+
+const p15State0 = buildPhase15Battle();
+const p15Random = buildRandom();
+const p15StartHash = createSnapshot(p15State0).checksum;
+const p15Checkpoints: { tick: number; checksum: string }[] = [];
+
+let p15State = p15State0;
+let p15CallOrder: readonly string[] = [];
+for (let i = 0; i < 60; i++) {
+  const r = stepBattle({
+    state: p15State,
+    input,
+    random: p15Random,
+    rules: {},
+    content: {},
+    systems: createPhase15Systems({ speedsX100PerSecond: { unit_player_a: 305, unit_player_b: 300 } }),
+  });
+  p15State = r.state;
+  if (i === 0) p15CallOrder = r.callOrder;
+  if (r.checkpoint) p15Checkpoints.push({ tick: p15State.tick, checksum: r.checkpoint.checksum });
+}
+
+const p15Result = Object.freeze({
+  startHash: p15StartHash,
+  tick30: p15Checkpoints.find((c) => c.tick === 30)?.checksum ?? null,
+  tick60: p15Checkpoints.find((c) => c.tick === 60)?.checksum ?? null,
+  endHash: createSnapshot(p15State).checksum,
+  endTick: p15State.tick,
+  endReason: p15State.endReason,
+  eventCount: p15State.emittedEventCount,
+  callOrder: p15CallOrder,
+});
+
+(globalThis as unknown as { __P15_CROSSRUNTIME__: unknown }).__P15_CROSSRUNTIME__ = p15Result;

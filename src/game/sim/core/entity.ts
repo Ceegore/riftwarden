@@ -27,6 +27,7 @@ export interface KernelEntity {
   readonly noProgressTicks?: number;
   readonly repathTicks?: readonly number[];
   readonly laneFallbackUsed?: boolean;
+  readonly stuckStopGapBonusUntilTick?: number;
   readonly frontDeadlockBlockedTicks?: number;
   readonly deadlockBuffConsumed?: boolean;
   readonly deadlockBuffedEntityId?: string|null;
@@ -62,6 +63,7 @@ export function validateEntity(entity: KernelEntity): void {
     if (!Array.isArray(entity.repathTicks)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'repathTicks'});
     for (const value of entity.repathTicks) if (!Number.isSafeInteger(value) || value < 0) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'repathTicks',value});
   }
+  if (entity.stuckStopGapBonusUntilTick !== undefined && (!Number.isSafeInteger(entity.stuckStopGapBonusUntilTick) || entity.stuckStopGapBonusUntilTick < 0 || Object.is(entity.stuckStopGapBonusUntilTick, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'stuckStopGapBonusUntilTick',value:entity.stuckStopGapBonusUntilTick});
   if (entity.laneFallbackUsed !== undefined && typeof entity.laneFallbackUsed !== 'boolean') throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'laneFallbackUsed',value:entity.laneFallbackUsed});
   if (entity.frontDeadlockBlockedTicks !== undefined && (!Number.isSafeInteger(entity.frontDeadlockBlockedTicks) || entity.frontDeadlockBlockedTicks < 0 || Object.is(entity.frontDeadlockBlockedTicks, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'frontDeadlockBlockedTicks',value:entity.frontDeadlockBlockedTicks});
   if (entity.deadlockBuffConsumed !== undefined && typeof entity.deadlockBuffConsumed !== 'boolean') throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'deadlockBuffConsumed',value:entity.deadlockBuffConsumed});

@@ -6,7 +6,7 @@ const ALLOWED: Readonly<Record<PipelineStage,readonly KernelCommand['kind'][]>> 
   A:[], B:['set_timer'], C:['schedule_event'], D:['schedule_event'], E:['set_target'],
   F:['set_position','set_movement_remainder','set_lane','set_lane_change','set_lane_change_cooldown','set_stuck_state','set_deadlock_state','set_global_progress','append_event'],
   G:['set_timer','schedule_event'], H:['schedule_event','append_event'],
-  I:['apply_lp_delta','append_event'], J:['entity_transition','remove_entity','append_event'],
+  I:['apply_lp_delta','set_global_progress','append_event'], J:['entity_transition','remove_entity','set_global_progress','append_event'],
   K:['spawn_entity','remove_entity','set_position','set_global_progress','append_event'], L:['battle_transition','append_event'], M:['checkpoint_marker']
 });
 export class StageCommandBuffer {

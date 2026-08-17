@@ -143,3 +143,76 @@ export function runNodeReferenceTrace(api) {
     eventCount: state.emittedEventCount,
   };
 }
+
+/**
+ * Builds the Phase 15 60-tick reference battle: migrated entities, Phase 15
+ * systems (movement/lane-change/anti-stuck active), matching
+ * tests/sim/fixtures/reference-traces-phase15.json exactly.
+ */
+export function buildPhase15Battle(api) {
+  const { migrate, primitives } = api;
+  const mk = (id, side, x100, lane, radius) =>
+    migrate.migrateEntity({
+      entity: Object.freeze({
+        id,
+        side,
+        phase: Object.freeze({ phase: 'ACTIVE', enteredTick: primitives.tick(0), controlledReturn: null }),
+        maxLp: 1000,
+        lp: 1000,
+        shield: 0,
+        lane,
+        x100,
+        targetId: null,
+        timers: Object.freeze({}),
+      }),
+      radiusX100: radius,
+    });
+  const entities = [
+    mk('unit_player_a', 'player', 1800, 'top', 100),
+    mk('unit_player_b', 'player', 2400, 'middle', 120),
+    mk('unit_enemy_a', 'enemy', 6200, 'middle', 140),
+    mk('unit_enemy_b', 'enemy', 7600, 'bottom', 150),
+  ];
+  const rnd = buildRandom(api);
+  return Object.freeze({
+    schemaVersion: 1,
+    simulationVersion: 'phase15-fixture-v1',
+    battleId: 'battle_fixture',
+    tick: primitives.tick(0),
+    nextSequence: primitives.sequence(0),
+    emittedEventCount: 0,
+    phase: Object.freeze({ phase: 'ACTIVE', enteredTick: primitives.tick(0), resolvingEndTicks: 0 }),
+    entities: Object.freeze(entities),
+    scheduledEvents: Object.freeze([]),
+    authoritativeStreams: rnd.streams.snapshotAuthoritative(),
+    endReason: null,
+  });
+}
+
+/** Runs the Phase 15 60-tick trace and returns its hashes (the P15 Node reference column). */
+export function runNodePhase15ReferenceTrace(api) {
+  const { battleKernel, phase15Systems, snapshot } = api;
+  const input = Object.freeze({ paused: false, decisions: Object.freeze([]), contentVersion: 'content_fixture' });
+  let state = buildPhase15Battle(api);
+  const startHash = snapshot.createSnapshot(state).checksum;
+  const random = buildRandom(api);
+  const systems = phase15Systems.createPhase15Systems({ speedsX100PerSecond: { unit_player_a: 305, unit_player_b: 300 } });
+  const checkpoints = [];
+  let callOrder = [];
+  for (let i = 0; i < 60; i++) {
+    const r = battleKernel.stepBattle({ state, input, random, rules: {}, content: {}, systems });
+    state = r.state;
+    if (i === 0) callOrder = [...r.callOrder];
+    if (r.checkpoint) checkpoints.push({ tick: state.tick, checksum: r.checkpoint.checksum });
+  }
+  return {
+    startHash,
+    tick30: checkpoints.find((c) => c.tick === 30)?.checksum ?? null,
+    tick60: checkpoints.find((c) => c.tick === 60)?.checksum ?? null,
+    endHash: snapshot.createSnapshot(state).checksum,
+    endTick: state.tick,
+    endReason: state.endReason,
+    eventCount: state.emittedEventCount,
+    callOrder,
+  };
+}

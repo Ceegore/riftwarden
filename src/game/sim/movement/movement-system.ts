@@ -1,5 +1,6 @@
 import { resolveEnemyStop } from '../collision/collision-resolver.js';
 import { separateAlliesTowardEnemy } from '../collision/separation.js';
+import { effectiveStopGap } from '../anti-stuck/anti-stuck.js';
 import type { Body } from '../geometry/distance.js';
 import { asX100, laneOrdinal, nonNegativeX100, type Lane, type X100 } from '../geometry/x100.js';
 import { KernelInvariantError } from '../core/invariant-error.js';
@@ -97,6 +98,7 @@ interface Intention {
   readonly remainder: number;
   readonly lane: Lane;
   readonly direction: 1 | -1;
+  readonly desiredStepX100: number;
   readonly frontLimitX100: number;
 }
 
@@ -111,16 +113,135 @@ export interface MovementSystemConfig {
   readonly stopGapX100?: X100;
 }
 
+export interface MovementTickResult {
+  /** Final x100 per moving entity id (post separation and §8.1 clamp). */
+  readonly positions: ReadonlyMap<string, number>;
+  /** Authoritative remainder per moving entity id (advanced from the desired step). */
+  readonly remainders: ReadonlyMap<string, number>;
+  /** Ids whose final position advanced toward the enemy this tick. */
+  readonly progressed: ReadonlySet<string>;
+  /** Ids that desired movement but applied none this tick. */
+  readonly blocked: ReadonlySet<string>;
+  /** Ally-overlap pairs the separation budget could not fully resolve (§8.3). */
+  readonly residualOverlaps: number;
+}
+
 /**
- * Stage-F movement system (§5, §8, §10). Runs the two-phase §5.3 pipeline from
- * the frozen prior state: every intention is computed first (movement with enemy
- * stop and the §8.2 enemy boundary), then per-side ally separation resolves
- * overlap within the 25-X100/entity/tick cap, then commands are emitted.
- * Separation advances the team front only into its free space — never past its
- * enemy boundary — so the §8.1 pass-through contract is preserved.
- *
- * Phase 15 entities must have been migrated before this stage runs: a missing
- * radius or remainder is a snapshot-incompatibility, never a silent default.
+ * The complete §5.3/§8 tick resolution from the frozen prior state, shared by
+ * the movement system and the anti-stuck recompute so they can never diverge.
+ * Phase 1 computes every intention (movement with enemy stop and the §8.2
+ * enemy boundary, applying the §9.1 per-entity relief gap); phase 2 runs
+ * per-side ally separation within the 25-X100/entity/tick cap; phase 2b clamps
+ * each unit to edge-touch against the final positions of enemies resolved
+ * earlier in canonical order — the frozen-state model otherwise lets two
+ * relieved fronts each claim the full 10-X100 slack and overlap (§8.1).
+ */
+export function resolveMovementTick(
+  entities: readonly KernelEntity[],
+  speedsX100PerSecond: Readonly<Record<string, number>>,
+  stopGapX100: X100,
+  tick: number,
+): MovementTickResult {
+  const actives: MigratedActive[] = [];
+  for (const entity of entities) {
+    if (entity.phase.phase !== 'ACTIVE') continue;
+    if (entity.radiusX100 === undefined || entity.movementRemainder === undefined) {
+      throw new KernelInvariantError('P15_SNAPSHOT_INCOMPATIBLE', { reason: 'unmigrated-entity', entityId: entity.id });
+    }
+    actives.push({ entity, radiusX100: entity.radiusX100, movementRemainder: entity.movementRemainder });
+  }
+  const sorted = [...actives].sort((a, b) => compareMovementOrder(a.entity, b.entity));
+
+  // Phase 1: movement intentions from the frozen prior state.
+  const intentions = new Map<string, Intention>();
+  for (const { entity, radiusX100, movementRemainder } of sorted) {
+    const speed = speedsX100PerSecond[entity.id];
+    if (speed === undefined) continue;
+    const direction: 1 | -1 = entity.side === 'player' ? 1 : -1;
+    const lane = effectiveLogicalLane(entity);
+    const enemies: Body[] = sorted
+      .filter(({ entity: other }) => other.side !== entity.side && effectiveLogicalLane(other) === lane)
+      .map(({ entity: other, radiusX100: otherRadius }) => ({ id: other.id, x100: asX100(other.x100), radiusX100: asX100(otherRadius), lane }));
+    // §9.1: the repath relief window closes the stop point by 10 X100 for
+    // the repathed entity only; everyone else keeps the base stop gap.
+    const gap = effectiveStopGap(stopGapX100, entity.stuckStopGapBonusUntilTick, tick);
+    const resolution = resolveMovement(
+      { entityId: entity.id, x100: asX100(entity.x100), radiusX100: asX100(radiusX100), lane, movementRemainder, speedX100PerSecond: speed, direction },
+      enemies,
+      gap,
+    );
+    intentions.set(entity.id, { x100: resolution.newX100, remainder: resolution.newRemainder, lane, direction, desiredStepX100: resolution.desiredStepX100, frontLimitX100: resolution.frontLimitX100 });
+  }
+
+  // Phase 2: per-side, enemy-bound separation (§8.2). The team-front entity
+  // may advance toward the enemy only into its free space (up to its enemy
+  // boundary); the rear entity absorbs the remaining overlap away from the
+  // enemy, so §8.1 front order is preserved without a post-hoc clamp.
+  const separated = new Map<string, number>();
+  let residualOverlaps = 0;
+  for (const side of ['player', 'enemy'] as const) {
+    const direction: 1 | -1 = side === 'player' ? 1 : -1;
+    const sideActives = sorted.filter(({ entity }) => entity.side === side && intentions.has(entity.id));
+    const bodies: Body[] = sideActives.map(({ entity, radiusX100 }) => {
+      const intent = intentions.get(entity.id);
+      return { id: entity.id, x100: asX100(intent?.x100 ?? entity.x100), radiusX100: asX100(radiusX100), lane: intent?.lane ?? entity.lane };
+    });
+    const frontLimits: Record<string, number> = {};
+    for (const { entity } of sideActives) {
+      const intent = intentions.get(entity.id);
+      if (intent !== undefined) frontLimits[entity.id] = intent.frontLimitX100;
+    }
+    const result = separateAlliesTowardEnemy(bodies, 8, { frontDirection: direction, frontLimitX100: Object.freeze(frontLimits) });
+    residualOverlaps += result.residualOverlaps;
+    for (const body of result.bodies) separated.set(body.id, body.x100);
+  }
+
+  // Phase 2b: enemy pass-through clamp (§8.1). Each unit is clamped to
+  // edge-touch against the final positions of enemies resolved earlier in
+  // canonical order (or the frozen position of stationary ones), so the enemy
+  // boundary is never crossed. Normal movement can never overlap, so this is a
+  // pure safety net for the §9.1 mutual-relief case.
+  const finalPositions = new Map<string, number>();
+  for (const { entity, radiusX100 } of sorted) {
+    const intent = intentions.get(entity.id);
+    if (intent === undefined) continue;
+    let x = separated.get(entity.id) ?? intent.x100;
+    for (const other of sorted) {
+      if (other.entity.side === entity.side) continue;
+      if (effectiveLogicalLane(other.entity) !== intent.lane) continue;
+      const otherX = finalPositions.get(other.entity.id) ?? other.entity.x100;
+      const contact = radiusX100 + other.radiusX100;
+      x = entity.side === 'player' ? Math.min(x, otherX - contact) : Math.max(x, otherX + contact);
+    }
+    finalPositions.set(entity.id, x);
+  }
+
+  const positions = new Map<string, number>();
+  const remainders = new Map<string, number>();
+  const progressed = new Set<string>();
+  const blocked = new Set<string>();
+  for (const { entity } of sorted) {
+    const intent = intentions.get(entity.id);
+    if (intent === undefined) continue;
+    const finalX = Math.min(10000, Math.max(0, finalPositions.get(entity.id) ?? separated.get(entity.id) ?? intent.x100));
+    positions.set(entity.id, finalX);
+    remainders.set(entity.id, intent.remainder);
+    const applied = entity.side === 'player' ? finalX - entity.x100 : entity.x100 - finalX;
+    if (applied > 0) progressed.add(entity.id);
+    // §9.1: blocked means the unit wanted to move (desired step > 0) but its
+    // final position did not advance — at the enemy stop, at the field edge,
+    // or clamped by separation/§8.1.
+    if (intent.desiredStepX100 > 0 && applied === 0) blocked.add(entity.id);
+  }
+  return { positions, remainders, progressed, blocked, residualOverlaps };
+}
+
+/**
+ * Stage-F movement system (§5, §8, §10). Runs the shared §5.3/§8 resolution
+ * from the frozen prior state and emits the resulting positions in stable
+ * order. Phase 15 entities must have been migrated before this stage runs: a
+ * missing radius or remainder is a snapshot-incompatibility, never a silent
+ * default.
  */
 export function createMovementSystem(config: MovementSystemConfig): KernelSystem {
   const stopGap = config.stopGapX100 === undefined ? asX100(10) : nonNegativeX100(config.stopGapX100);
@@ -128,6 +249,8 @@ export function createMovementSystem(config: MovementSystemConfig): KernelSystem
     id: 'phase15.f2.movement',
     stage: 'F',
     run(context: TickContext): void {
+      const result = resolveMovementTick(context.state.entities, config.speedsX100PerSecond, stopGap, context.state.tick);
+      // Emit commands in the canonical order of the underlying entities.
       const actives: MigratedActive[] = [];
       for (const entity of context.state.entities) {
         if (entity.phase.phase !== 'ACTIVE') continue;
@@ -137,58 +260,16 @@ export function createMovementSystem(config: MovementSystemConfig): KernelSystem
         actives.push({ entity, radiusX100: entity.radiusX100, movementRemainder: entity.movementRemainder });
       }
       const sorted = [...actives].sort((a, b) => compareMovementOrder(a.entity, b.entity));
-
-      // Phase 1: movement intentions from the frozen prior state.
-      const intentions = new Map<string, Intention>();
-      for (const { entity, radiusX100, movementRemainder } of sorted) {
-        const speed = config.speedsX100PerSecond[entity.id];
-        if (speed === undefined) continue;
-        const direction: 1 | -1 = entity.side === 'player' ? 1 : -1;
-        const lane = effectiveLogicalLane(entity);
-        const enemies: Body[] = sorted
-          .filter(({ entity: other }) => other.side !== entity.side && effectiveLogicalLane(other) === lane)
-          .map(({ entity: other, radiusX100: otherRadius }) => ({ id: other.id, x100: asX100(other.x100), radiusX100: asX100(otherRadius), lane }));
-        const resolution = resolveMovement(
-          { entityId: entity.id, x100: asX100(entity.x100), radiusX100: asX100(radiusX100), lane, movementRemainder, speedX100PerSecond: speed, direction },
-          enemies,
-          stopGap,
-        );
-        intentions.set(entity.id, { x100: resolution.newX100, remainder: resolution.newRemainder, lane, direction, frontLimitX100: resolution.frontLimitX100 });
-      }
-
-      // Phase 2: per-side, enemy-bound separation (§8.2). The team-front entity
-      // may advance toward the enemy only into its free space (up to its enemy
-      // boundary); the rear entity absorbs the remaining overlap away from the
-      // enemy, so §8.1 front order is preserved without a post-hoc clamp.
-      const separated = new Map<string, number>();
-      let residualOverlaps = 0;
-      for (const side of ['player', 'enemy'] as const) {
-        const direction: 1 | -1 = side === 'player' ? 1 : -1;
-        const sideActives = sorted.filter(({ entity }) => entity.side === side && intentions.has(entity.id));
-        const bodies: Body[] = sideActives.map(({ entity, radiusX100 }) => {
-          const intent = intentions.get(entity.id);
-          return { id: entity.id, x100: asX100(intent?.x100 ?? entity.x100), radiusX100: asX100(radiusX100), lane: intent?.lane ?? entity.lane };
-        });
-        const frontLimits: Record<string, number> = {};
-        for (const { entity } of sideActives) {
-          const intent = intentions.get(entity.id);
-          if (intent !== undefined) frontLimits[entity.id] = intent.frontLimitX100;
-        }
-        const result = separateAlliesTowardEnemy(bodies, 8, { frontDirection: direction, frontLimitX100: Object.freeze(frontLimits) });
-        residualOverlaps += result.residualOverlaps;
-        for (const body of result.bodies) separated.set(body.id, body.x100);
-      }
-
-      // Phase 3: emit commands in stable order.
       for (const { entity } of sorted) {
-        const intent = intentions.get(entity.id);
-        if (intent === undefined) continue;
-        const x100 = Math.min(10000, Math.max(0, separated.get(entity.id) ?? intent.x100));
-        context.commands.push({ kind: 'set_position', entityId: entity.id, lane: intent.lane, x100: asX100(x100) });
-        context.commands.push({ kind: 'set_movement_remainder', entityId: entity.id, remainder: intent.remainder });
+        const x100 = result.positions.get(entity.id);
+        if (x100 === undefined) continue;
+        const lane = effectiveLogicalLane(entity);
+        context.commands.push({ kind: 'set_position', entityId: entity.id, lane, x100: asX100(x100) });
+        const remainder = result.remainders.get(entity.id);
+        if (remainder !== undefined) context.commands.push({ kind: 'set_movement_remainder', entityId: entity.id, remainder });
       }
-      if (residualOverlaps > 0) {
-        context.commands.push({ kind: 'append_event', event: safetyCapEvent(residualOverlaps) });
+      if (result.residualOverlaps > 0) {
+        context.commands.push({ kind: 'append_event', event: safetyCapEvent(result.residualOverlaps) });
       }
     },
   };

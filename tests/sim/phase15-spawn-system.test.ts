@@ -4,6 +4,7 @@ import { migrateEntity } from '../../src/game/sim/core/migrate.js';
 import { createPhase15Systems } from '../../src/game/sim/core/phase15-systems.js';
 import { SPAWN_REJECT_DISPLACEMENT_FAILED, SPAWN_REJECT_NO_POSITION, SPAWN_REJECT_POLICY_MISSING, SPAWN_REJECT_SLOT_OCCUPIED, type SpawnRequest } from '../../src/game/sim/spawn/spawn-system.js';
 import { asX100, type Lane } from '../../src/game/sim/geometry/x100.js';
+import type { Body } from '../../src/game/sim/geometry/distance.js';
 import type { TickInput } from '../../src/game/sim/core/tick-input.js';
 import type { BattleModel } from '../../src/game/sim/core/battle-model.js';
 import type { KernelEvent } from '../../src/game/sim/events/event-types.js';
@@ -26,8 +27,8 @@ function construct(id: string, lane: Lane, x100: number, overrides: Partial<Extr
   return { kind: 'construct', reservedId: id, side: 'player', slotId: `slot_${id}`, lane, x100: asX100(x100), radiusX100: asX100(100), maxLp: 500, replacementPolicy: null, ...overrides };
 }
 
-function runOnce(state: BattleModel, requests: SpawnRequest[]): { state: BattleModel; events: readonly KernelEvent[] } {
-  const systems = createPhase15Systems({ speedsX100PerSecond: {}, spawnRequests: () => requests });
+function runOnce(state: BattleModel, requests: SpawnRequest[], arena: Body[] = []): { state: BattleModel; events: readonly KernelEvent[] } {
+  const systems = createPhase15Systems({ speedsX100PerSecond: {}, spawnRequests: () => requests, arenaBodies: () => arena });
   const r = stepBattle({ state, input, random: randomSession(), rules: {}, content: {}, systems });
   return { state: r.state, events: r.events };
 }
@@ -129,6 +130,38 @@ describe('Phase 15 spawn system (stage K)', () => {
   it('blocks a duplicate reserved id atomically (fault injection)', () => {
     const state = battle({ entities: [unit('summon_1', 'player', 5000, 'middle')], simulationVersion: 'phase15-fixture-v1' });
     expect(() => runOnce(state, [summon('summon_1', 'middle')])).toThrow(/P14_DUPLICATE_ENTITY/);
+  });
+
+  it('rejects a summon whose candidates all overlap an arena object', () => {
+    // Base 4900 (100 behind the front at 5000) and every 50..400 backoff fall
+    // inside the arena body spanning 4500..5100 — no valid position exists.
+    const state = battle({ entities: [unit('unit_front', 'player', 5000, 'middle')], simulationVersion: 'phase15-fixture-v1' });
+    const arena: Body[] = [{ id: 'obstacle_1', x100: asX100(4800), radiusX100: asX100(300), lane: 'middle' }];
+    const { state: next, events } = runOnce(state, [summon('summon_1', 'middle')], arena);
+    expect(next.entities.find((e) => e.id === 'summon_1')).toBeUndefined();
+    expect(events.find((e) => e.type === 'SpawnRejected')?.payload['reasonOrdinal']).toBe(SPAWN_REJECT_NO_POSITION);
+  });
+
+  it('rejects a construct whose defined slot overlaps an arena object', () => {
+    const state = battle({ entities: [unit('unit_front', 'player', 5000, 'middle')], simulationVersion: 'phase15-fixture-v1' });
+    const arena: Body[] = [{ id: 'obstacle_1', x100: asX100(7000), radiusX100: asX100(100), lane: 'bottom' }];
+    const { state: next, events } = runOnce(state, [construct('turret_1', 'bottom', 7000)], arena);
+    expect(next.entities.find((e) => e.id === 'turret_1')).toBeUndefined();
+    expect(events.find((e) => e.type === 'SpawnRejected')?.payload['reasonOrdinal']).toBe(SPAWN_REJECT_NO_POSITION);
+  });
+
+  it('displaces overlapped allies away from arena objects for a large summon (§7.4)', () => {
+    // The summon lands at 4250 (100 behind unit_b at 4350). Both allies' natural
+    // displacement would stop at 4050 (200 back, touching the summon), but the
+    // arena at 4080 (reach 3950..4210 for 100-radius bodies) blocks 4050/4000,
+    // so they are pushed to 3950 — still inside the 50..400 backoff range.
+    const state = battle({ entities: [unit('unit_a', 'player', 4300, 'middle'), unit('unit_b', 'player', 4350, 'middle')], simulationVersion: 'phase15-fixture-v1' });
+    const arena: Body[] = [{ id: 'obstacle_1', x100: asX100(4080), radiusX100: asX100(30), lane: 'middle' }];
+    const { state: next, events } = runOnce(state, [summon('large_1', 'middle', { displacementPolicy: 'displace', radiusX100: asX100(100) })], arena);
+    expect(events.filter((e) => e.type === 'SpawnRejected')).toHaveLength(0);
+    expect(next.entities.find((e) => e.id === 'large_1')?.x100).toBe(4250);
+    expect(next.entities.find((e) => e.id === 'unit_a')?.x100).toBe(3950);
+    expect(next.entities.find((e) => e.id === 'unit_b')?.x100).toBe(3950);
   });
 });
 

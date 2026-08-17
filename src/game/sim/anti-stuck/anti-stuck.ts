@@ -1,8 +1,30 @@
+import { asX100, type X100 } from '../geometry/x100.js';
+
 export const STUCK_TICKS = 30;
 export const REPATH_COUNT = 3;
 export const REPATH_WINDOW_TICKS = 120;
+// §9.1 fix (GDD row: "Stopdistanz +0,1 X"): the repathed unit's legal stop
+// point temporarily advances by 10 X100 — implemented as a 10-X100 reduction
+// of the effective stop gap, so the unit may close the edge gap from 10 to 0
+// (edges touching, never overlapping, §8.1) for this many ticks. Without the
+// relief the unit at the stop point can never move, so the fix would be vacuous.
+export const STUCK_RELIEF_X100 = 10;
+export const STUCK_RELIEF_TICKS = 10;
 export const GLOBAL_NO_PROGRESS_WARNING_TICKS = 300;
 export const GLOBAL_NO_PROGRESS_RESOLVE_TICKS = 300;
+
+/**
+ * §9.1: the per-entity effective stop gap. While the repath relief window is
+ * active the stop point closes by 10 X100 (gap never negative, so the unit can
+ * touch the enemy edge but never overlap, §8.1). Shared by the movement system
+ * and the anti-stuck recompute so they can never diverge.
+ */
+export function effectiveStopGap(baseStopGapX100: X100, bonusUntilTick: number | undefined, tick: number): X100 {
+  if (bonusUntilTick !== undefined && bonusUntilTick > 0 && tick <= bonusUntilTick) {
+    return asX100(Math.max(0, baseStopGapX100 - STUCK_RELIEF_X100));
+  }
+  return baseStopGapX100;
+}
 
 export interface StuckState {
   readonly noProgressTicks: number;

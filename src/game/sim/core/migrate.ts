@@ -21,8 +21,8 @@ export interface MigrateEntityArgs {
 
 const PHASE15_FIELDS = [
   'radiusX100', 'movementRemainder', 'laneChange', 'normalLaneChangeCooldownUntilTick',
-  'noProgressTicks', 'repathTicks', 'laneFallbackUsed', 'frontDeadlockBlockedTicks',
-  'deadlockBuffConsumed', 'deadlockBuffedEntityId',
+  'noProgressTicks', 'repathTicks', 'laneFallbackUsed', 'stuckStopGapBonusUntilTick',
+  'frontDeadlockBlockedTicks', 'deadlockBuffConsumed', 'deadlockBuffedEntityId',
 ] as const;
 
 function phase15FieldCount(entity: KernelEntity): number {
@@ -64,6 +64,7 @@ export function migrateEntity(args: MigrateEntityArgs): KernelEntity {
     noProgressTicks: 0,
     repathTicks: Object.freeze([]),
     laneFallbackUsed: false,
+    stuckStopGapBonusUntilTick: 0,
     frontDeadlockBlockedTicks: 0,
     deadlockBuffConsumed: false,
     deadlockBuffedEntityId: null,

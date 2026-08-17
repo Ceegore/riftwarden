@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { stepBattle } from '../../src/game/sim/core/battle-kernel.js';
 import type { TickInput } from '../../src/game/sim/core/tick-input.js';
 import type { KernelSystem } from '../../src/game/sim/core/tick-context.js';
-import { battle, randomSession, eventInput } from './test-helpers.js';
+import { battle, entity, randomSession, eventInput } from './test-helpers.js';
 
 const input: TickInput = Object.freeze({ paused: false, decisions: Object.freeze([]), contentVersion: 'content_fixture' });
 
@@ -51,6 +51,59 @@ describe('reducer bounds validation', () => {
   it('apply_lp_delta with a float delta blocks', () => {
     const system: KernelSystem = { id: 'bad.delta', stage: 'I', run(c) { c.commands.push({ kind: 'apply_lp_delta', entityId: 'entity_alpha', delta: -0.5 }); } };
     expect(() => stepBattle({ state: battle(), input, random: randomSession(), rules: {}, content: {}, systems: [system] })).toThrow(/P14_SNAPSHOT_INVALID/);
+  });
+
+  it('set_global_progress from stage I resets the rift-collapse counters', () => {
+    const state = battle({ globalNoProgressTicks: 299, riftCollapseTicks: 42, riftCollapseWarningEmitted: true });
+    const system: KernelSystem = {
+      id: 'combat.progress.i', stage: 'I',
+      run(c) { c.commands.push({ kind: 'set_global_progress', noProgressTicks: 0, collapseTicks: 0, warned: false }); },
+    };
+    const r = stepBattle({ state, input, random: randomSession(), rules: {}, content: {}, systems: [system] });
+    expect(r.state.globalNoProgressTicks).toBe(0);
+    expect(r.state.riftCollapseTicks).toBe(0);
+    expect(r.state.riftCollapseWarningEmitted).toBe(false);
+  });
+
+  it('set_global_progress from stage J resets the rift-collapse counters', () => {
+    const state = battle({ globalNoProgressTicks: 300, riftCollapseTicks: 300, riftCollapseWarningEmitted: true });
+    const system: KernelSystem = {
+      id: 'combat.progress.j', stage: 'J',
+      run(c) { c.commands.push({ kind: 'set_global_progress', noProgressTicks: 0, collapseTicks: 0, warned: false }); },
+    };
+    const r = stepBattle({ state, input, random: randomSession(), rules: {}, content: {}, systems: [system] });
+    expect(r.state.globalNoProgressTicks).toBe(0);
+    expect(r.state.riftCollapseTicks).toBe(0);
+    expect(r.state.riftCollapseWarningEmitted).toBe(false);
+  });
+
+  it('consumes the deadlock buff when the buffed unit takes an entity-sourced hit', () => {
+    const buffed = entity('entity_alpha', { deadlockBuffedEntityId: 'entity_alpha', deadlockBuffConsumed: false });
+    const state = battle({ entities: Object.freeze([buffed, entity('entity_beta', { side: 'enemy', x100: 2010 })]) });
+    const system: KernelSystem = {
+      id: 'hit.buffed', stage: 'I',
+      run(c) { c.commands.push({ kind: 'apply_lp_delta', entityId: 'entity_alpha', delta: -50, sourceId: 'entity_beta' }); },
+    };
+    const r = stepBattle({ state, input, random: randomSession(), rules: {}, content: {}, systems: [system] });
+    const after = r.state.entities.find((e) => e.id === 'entity_alpha');
+    expect(after?.lp).toBe(950);
+    expect(after?.deadlockBuffedEntityId).toBeNull();
+    expect(after?.deadlockBuffConsumed).toBe(true);
+  });
+
+  it('keeps the deadlock buff on unsourced or non-damage deltas', () => {
+    const buffed = entity('entity_alpha', { deadlockBuffedEntityId: 'entity_alpha', deadlockBuffConsumed: false });
+    const state = battle({ entities: Object.freeze([buffed, entity('entity_beta', { side: 'enemy', x100: 2010 })]) });
+    const systems: KernelSystem[] = [
+      { id: 'hit.unsourced', stage: 'I', run(c) { c.commands.push({ kind: 'apply_lp_delta', entityId: 'entity_alpha', delta: -50 }); } },
+      { id: 'heal.sourced', stage: 'I', run(c) { c.commands.push({ kind: 'apply_lp_delta', entityId: 'entity_alpha', delta: 20, sourceId: 'entity_beta' }); } },
+    ];
+    for (const system of systems) {
+      const r = stepBattle({ state, input, random: randomSession(), rules: {}, content: {}, systems: [system] });
+      const after = r.state.entities.find((e) => e.id === 'entity_alpha');
+      expect(after?.deadlockBuffedEntityId).toBe('entity_alpha');
+      expect(after?.deadlockBuffConsumed).toBe(false);
+    }
   });
 
   it('set_position with an out-of-range x100 blocks', () => {

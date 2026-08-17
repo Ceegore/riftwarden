@@ -2,7 +2,7 @@
 import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadKernel, runNodeReferenceTrace } from './lib/kernel-loader.mjs';
+import { loadKernel, runNodeReferenceTrace, runNodePhase15ReferenceTrace } from './lib/kernel-loader.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
@@ -23,8 +23,20 @@ try {
     process.exit(1);
   }
 
+  const node15 = runNodePhase15ReferenceTrace(api);
+  const fixture15 = JSON.parse(readFileSync(resolve(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase15.json'), 'utf8'));
+  const expected15_30 = fixture15.checkpoints.find((c) => c.tick === 30)?.checksum;
+  const expected15_60 = fixture15.checkpoints.find((c) => c.tick === 60)?.checksum;
+  if (node15.tick30 !== expected15_30 || node15.tick60 !== expected15_60 || node15.endHash !== fixture15.finalSnapshotChecksum) {
+    console.error(JSON.stringify({ status: 'FAIL', reason: 'node15-drift-vs-pinned-fixture', ...node15, expected30: expected15_30, expected60: expected15_60, expectedFinal: fixture15.finalSnapshotChecksum }, null, 2));
+    process.exit(1);
+  }
+  const notRun = (runtimes) =>
+    Object.fromEntries(
+      ['chromium', 'firefox', 'webkit', 'android_webview', 'ios_wkwebview'].map((key) => [key, { status: 'NOT_RUN', startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null }]),
+    );
   const matrix = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     phase: 14,
     gate: 'G14',
     sourceRevision: process.env.SOURCE_REVISION ?? null,
@@ -33,11 +45,18 @@ try {
     note: 'Node is the tooling reference, not a standalone platform proof. Browser/device rows remain NOT_RUN until the operator executes the fixture bytes on each runtime.',
     runtimes: {
       node: { status: 'REFERENCE', version: process.version, host: process.platform, startHash: node.startHash, tick30: node.tick30, tick60: node.tick60, endHash: node.endHash, endTick: node.endTick, endReason: node.endReason, eventCount: node.eventCount, exitCode: 0 },
-      chromium: { status: 'NOT_RUN', startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null },
-      firefox: { status: 'NOT_RUN', startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null },
-      webkit: { status: 'NOT_RUN', startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null },
-      android_webview: { status: 'NOT_RUN', startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null },
-      ios_wkwebview: { status: 'NOT_RUN', startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null },
+      ...notRun(),
+    },
+    phase15: {
+      phase: 15,
+      gate: 'G15',
+      fixture: 'tests/sim/fixtures/reference-traces-phase15.json',
+      status: 'PARTIAL',
+      note: 'Phase 15 movement trace Node reference; browser/device rows NOT_RUN.',
+      runtimes: {
+        node: { status: 'REFERENCE', version: process.version, host: process.platform, startHash: node15.startHash, tick30: node15.tick30, tick60: node15.tick60, endHash: node15.endHash, endTick: node15.endTick, endReason: node15.endReason, eventCount: node15.eventCount, exitCode: 0 },
+        ...notRun(),
+      },
     },
   };
   mkdirSync(dirname(out), { recursive: true });

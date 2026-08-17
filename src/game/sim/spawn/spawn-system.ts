@@ -47,6 +47,12 @@ export type SpawnRequest = SummonRequest | ConstructRequest;
 export interface SpawnSystemConfig {
   /** Produces this tick's summon/construct requests from the frozen tick context. */
   readonly requests?: (context: TickContext) => readonly SpawnRequest[];
+  /**
+   * Static arena objects (GDD: a spawn must never overlap an arena object).
+   * Optional because Phase 15 has no arena-object model yet; battle harnesses
+   * that model obstacles feed them here so the rule is enforced, not faked.
+   */
+  readonly arenaBodies?: (context: TickContext) => readonly Body[];
 }
 
 function eventFor(type: 'Spawned' | 'SpawnRejected', entityId: string, payload: Record<string, number>): KernelEventInput {
@@ -91,6 +97,7 @@ function buildEntity(request: SpawnRequest, x100: X100, lane: Lane, tick: Tick):
     noProgressTicks: 0,
     repathTicks: Object.freeze([]),
     laneFallbackUsed: false,
+    stuckStopGapBonusUntilTick: 0,
     frontDeadlockBlockedTicks: 0,
     deadlockBuffConsumed: false,
     deadlockBuffedEntityId: null,
@@ -108,12 +115,13 @@ function emitReject(context: TickContext, request: SpawnRequest, reasonOrdinal: 
   context.commands.push({ kind: 'append_event', event: eventFor('SpawnRejected', request.reservedId, { reasonOrdinal }) });
 }
 
-/** §8.1 + §7.2: no enemy overlap and the 50-X100 own-side margin on the lane. */
-function summonCandidateValid(request: SummonRequest, enemies: readonly Body[]): (x: X100) => boolean {
+/** §8.1 + §7.2: no enemy overlap, the 50-X100 own-side margin, and no arena-object overlap. */
+function summonCandidateValid(request: SummonRequest, enemies: readonly Body[], arena: readonly Body[]): (x: X100) => boolean {
   const body: Body = { id: request.reservedId, x100: asX100(0), radiusX100: request.radiusX100, lane: request.targetLane };
   return (x: X100): boolean => {
     if (x < 0 || x > 10000) return false;
     const candidate = { ...body, x100: x };
+    if (arena.some((object) => object.lane === request.targetLane && overlapDepthX100(candidate, object) > 0)) return false;
     let nearest: Body | null = null;
     let nearestDistance = Number.POSITIVE_INFINITY;
     for (const enemy of enemies) {
@@ -140,8 +148,8 @@ function bodyOf(entity: KernelEntity): Body {
   return { id: entity.id, x100: asX100(entity.x100), radiusX100: asX100(entity.radiusX100 ?? 0), lane: entity.lane };
 }
 
-/** §7.4: nearest valid backoff (50..400) that clears the summon and all enemies. */
-function displacedTarget(ally: KernelEntity, summon: Body, enemies: readonly Body[]): number | null {
+/** §7.4: nearest valid backoff (50..400) that clears the summon, all enemies and arena objects. */
+function displacedTarget(ally: KernelEntity, summon: Body, enemies: readonly Body[], arena: readonly Body[]): number | null {
   const backward = ally.side === 'player' ? -1 : 1;
   for (let offset = 50; offset <= 400; offset += 50) {
     const candidate = ally.x100 + backward * offset;
@@ -149,12 +157,13 @@ function displacedTarget(ally: KernelEntity, summon: Body, enemies: readonly Bod
     const body: Body = { ...bodyOf(ally), x100: asX100(candidate) };
     if (overlapDepthX100(body, summon) > 0) continue;
     if (enemies.some((enemy) => enemy.lane === body.lane && overlapDepthX100(body, enemy) > 0)) continue;
+    if (arena.some((object) => object.lane === body.lane && overlapDepthX100(body, object) > 0)) continue;
     return candidate;
   }
   return null;
 }
 
-function commitSummon(context: TickContext, request: SummonRequest): void {
+function commitSummon(context: TickContext, request: SummonRequest, arena: readonly Body[]): void {
   const teamForward = request.side === 'player' ? 1 : -1;
   const backwardDirection = request.side === 'player' ? -1 : 1;
   const allies = context.state.entities.filter((e) => e.side === request.side && e.phase.phase === 'ACTIVE' && e.lane === request.targetLane);
@@ -166,7 +175,7 @@ function commitSummon(context: TickContext, request: SummonRequest): void {
     base = baseBehindFront(asX100(front), teamForward);
   }
   const enemies = enemiesOf(context, request.side);
-  const result = resolveSpawn({ reservedId: request.reservedId, baseX100: base, backwardDirection, valid: summonCandidateValid(request, enemies) });
+  const result = resolveSpawn({ reservedId: request.reservedId, baseX100: base, backwardDirection, valid: summonCandidateValid(request, enemies, arena) });
   if (result.rejected || result.positionX100 === null) {
     emitReject(context, request, SPAWN_REJECT_NO_POSITION);
     return;
@@ -181,7 +190,7 @@ function commitSummon(context: TickContext, request: SummonRequest): void {
       .sort((a, b) => asciiCompare(a.id, b.id));
     const displacements: { entityId: string; x100: number }[] = [];
     for (const ally of overlapped) {
-      const target = displacedTarget(ally, summon, enemies);
+      const target = displacedTarget(ally, summon, enemies, arena);
       if (target === null) {
         emitReject(context, request, SPAWN_REJECT_DISPLACEMENT_FAILED);
         return;
@@ -201,7 +210,12 @@ function slotOccupant(entities: readonly KernelEntity[], lane: Lane, x100: X100)
   return occupants[0]?.id ?? null;
 }
 
-function commitConstruct(context: TickContext, request: ConstructRequest): void {
+function commitConstruct(context: TickContext, request: ConstructRequest, arena: readonly Body[]): void {
+  const slotBody: Body = { id: request.reservedId, x100: asX100(request.x100), radiusX100: request.radiusX100, lane: request.lane };
+  if (arena.some((object) => object.lane === request.lane && overlapDepthX100(slotBody, object) > 0)) {
+    emitReject(context, request, SPAWN_REJECT_NO_POSITION);
+    return;
+  }
   const occupiedBy = slotOccupant(context.state.entities, request.lane, request.x100);
   if (occupiedBy !== null && request.replacementPolicy === 'replace') {
     // §7.3 'replace': the occupant retires (direct ACTIVE -> REMOVED despawn,
@@ -233,14 +247,15 @@ export function createSpawnSystem(config: SpawnSystemConfig = {}): KernelSystem 
     stage: 'K',
     run(context: TickContext): void {
       const requests = config.requests ? [...config.requests(context)] : [];
+      const arena = config.arenaBodies ? [...config.arenaBodies(context)] : [];
       const ordered = [...requests].sort((a, b) => {
         const kindOf = (r: SpawnRequest): number => (r.kind === 'summon' ? 0 : 1);
         return kindOf(a) - kindOf(b) || asciiCompare(a.reservedId, b.reservedId);
       });
       for (const request of ordered) {
         validateRequest(request);
-        if (request.kind === 'summon') commitSummon(context, request);
-        else commitConstruct(context, request);
+        if (request.kind === 'summon') commitSummon(context, request, arena);
+        else commitConstruct(context, request, arena);
       }
     },
   };

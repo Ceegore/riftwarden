@@ -11,6 +11,8 @@ export interface Phase15SystemsConfig extends MovementSystemConfig {
   readonly laneChangeRequests?: LaneChangeSystemConfig['requests'];
   /** Spawn/construct placement requests for this tick (defaults to none). */
   readonly spawnRequests?: SpawnSystemConfig['requests'];
+  /** Static arena objects a spawn must never overlap (defaults to none). */
+  readonly arenaBodies?: SpawnSystemConfig['arenaBodies'];
 }
 
 /**
@@ -29,7 +31,10 @@ export function createPhase15Systems(config: Phase15SystemsConfig): readonly Ker
     createLaneChangeSystem(config.laneChangeRequests === undefined ? {} : { requests: config.laneChangeRequests }),
     createMovementSystem(config),
     createAntiStuckSystem(config),
-    createSpawnSystem(config.spawnRequests === undefined ? {} : { requests: config.spawnRequests }),
+    createSpawnSystem({
+      ...(config.spawnRequests === undefined ? {} : { requests: config.spawnRequests }),
+      ...(config.arenaBodies === undefined ? {} : { arenaBodies: config.arenaBodies }),
+    }),
     createEndcapSystem(),
   ]);
 }

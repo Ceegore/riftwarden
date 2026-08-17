@@ -1,11 +1,11 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "phase": 14,
   "gate": "G14",
   "sourceRevision": null,
   "fixture": "tests/sim/fixtures/reference-traces.json",
   "status": "PARTIAL",
-  "note": "Node and the three desktop browser engines are hash-identical to the pinned reference trace. Android/iOS WebViews remain NOT_RUN until executed on device hardware.",
+  "note": "Node and the three desktop browser engines are hash-identical to the pinned reference trace for both the Phase 14 noop kernel and the Phase 15 active movement kernel. Android/iOS WebViews remain NOT_RUN until executed on device hardware.",
   "runtimes": {
     "node": {
       "status": "REFERENCE",
@@ -84,6 +84,93 @@
       "endReason": null,
       "eventCount": null,
       "exitCode": null
+    }
+  },
+  "phase15": {
+    "phase": 15,
+    "gate": "G15",
+    "fixture": "tests/sim/fixtures/reference-traces-phase15.json",
+    "status": "PARTIAL",
+    "note": "Phase 15 movement trace: desktop engines hash-identical to the Node reference and the pinned fixture; WebViews NOT_RUN.",
+    "runtimes": {
+      "node": {
+        "status": "REFERENCE",
+        "version": "v25.8.0",
+        "host": "win32",
+        "startHash": "f3ac4a9fd23ab8e6e7f301a95a68da6100435d08bebbd70a603b79761851a50e",
+        "tick30": "5ad51014f22fb06538de34fe654ec1fde0ce3c9adcd4f2d08a213f4477c2a3f2",
+        "tick60": "dd3fca53761dfb28dd34eaf7a459fee467f2a1542247e2751120af65129ddba4",
+        "endHash": "dd3fca53761dfb28dd34eaf7a459fee467f2a1542247e2751120af65129ddba4",
+        "endTick": 60,
+        "endReason": null,
+        "eventCount": 0,
+        "exitCode": 0
+      },
+      "chromium": {
+        "status": "PASS",
+        "version": "149.0.7827.55",
+        "host": "win32 (Playwright)",
+        "startHash": "f3ac4a9fd23ab8e6e7f301a95a68da6100435d08bebbd70a603b79761851a50e",
+        "tick30": "5ad51014f22fb06538de34fe654ec1fde0ce3c9adcd4f2d08a213f4477c2a3f2",
+        "tick60": "dd3fca53761dfb28dd34eaf7a459fee467f2a1542247e2751120af65129ddba4",
+        "endHash": "dd3fca53761dfb28dd34eaf7a459fee467f2a1542247e2751120af65129ddba4",
+        "endTick": 60,
+        "endReason": null,
+        "eventCount": 0,
+        "exitCode": 0
+      },
+      "firefox": {
+        "status": "PASS",
+        "version": "151.0",
+        "host": "win32 (Playwright)",
+        "startHash": "f3ac4a9fd23ab8e6e7f301a95a68da6100435d08bebbd70a603b79761851a50e",
+        "tick30": "5ad51014f22fb06538de34fe654ec1fde0ce3c9adcd4f2d08a213f4477c2a3f2",
+        "tick60": "dd3fca53761dfb28dd34eaf7a459fee467f2a1542247e2751120af65129ddba4",
+        "endHash": "dd3fca53761dfb28dd34eaf7a459fee467f2a1542247e2751120af65129ddba4",
+        "endTick": 60,
+        "endReason": null,
+        "eventCount": 0,
+        "exitCode": 0
+      },
+      "webkit": {
+        "status": "PASS",
+        "version": "26.5",
+        "host": "win32 (Playwright)",
+        "startHash": "f3ac4a9fd23ab8e6e7f301a95a68da6100435d08bebbd70a603b79761851a50e",
+        "tick30": "5ad51014f22fb06538de34fe654ec1fde0ce3c9adcd4f2d08a213f4477c2a3f2",
+        "tick60": "dd3fca53761dfb28dd34eaf7a459fee467f2a1542247e2751120af65129ddba4",
+        "endHash": "dd3fca53761dfb28dd34eaf7a459fee467f2a1542247e2751120af65129ddba4",
+        "endTick": 60,
+        "endReason": null,
+        "eventCount": 0,
+        "exitCode": 0
+      },
+      "android_webview": {
+        "status": "NOT_RUN",
+        "version": null,
+        "host": null,
+        "startHash": null,
+        "tick30": null,
+        "tick60": null,
+        "endHash": null,
+        "endTick": null,
+        "endReason": null,
+        "eventCount": null,
+        "exitCode": null
+      },
+      "ios_wkwebview": {
+        "status": "NOT_RUN",
+        "version": null,
+        "host": null,
+        "startHash": null,
+        "tick30": null,
+        "tick60": null,
+        "endHash": null,
+        "endTick": null,
+        "endReason": null,
+        "eventCount": null,
+        "exitCode": null
+      }
     }
   }
 }

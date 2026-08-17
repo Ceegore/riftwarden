@@ -126,7 +126,8 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         assertNonNegativeSafe(command.noProgressTicks, 'no-progress-ticks-invalid');
         for (const value of command.repathTicks) assertNonNegativeSafe(value, 'repath-tick-invalid');
         if (typeof command.laneFallbackUsed !== 'boolean') throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'lane-fallback-invalid' });
-        entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, noProgressTicks: command.noProgressTicks, repathTicks: Object.freeze([...command.repathTicks]), laneFallbackUsed: command.laneFallbackUsed }) : e));
+        assertNonNegativeSafe(command.stopGapBonusUntilTick, 'stop-gap-bonus-until-tick-invalid');
+        entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, noProgressTicks: command.noProgressTicks, repathTicks: Object.freeze([...command.repathTicks]), laneFallbackUsed: command.laneFallbackUsed, stuckStopGapBonusUntilTick: command.stopGapBonusUntilTick }) : e));
         break;
       }
       case 'set_deadlock_state': {
@@ -149,7 +150,15 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
       case 'apply_lp_delta': {
         requireEntity(entities, command.entityId);
         if (!Number.isSafeInteger(command.delta)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'lp-delta-not-integer', entityId: command.entityId, delta: command.delta });
-        entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, lp: Math.max(0, Math.min(e.maxLp, e.lp + command.delta)) }) : e));
+        entities = entities.map((e) => {
+          if (e.id !== command.entityId) return e;
+          const next = Object.freeze({ ...e, lp: Math.max(0, Math.min(e.maxLp, e.lp + command.delta)) });
+          // §9.3: the deadlock melee buff ends on the buffed unit's first hit.
+          if (command.delta < 0 && command.sourceId !== undefined && command.sourceId !== null && next.deadlockBuffedEntityId !== undefined && next.deadlockBuffedEntityId !== null) {
+            return Object.freeze({ ...next, deadlockBuffedEntityId: null, deadlockBuffConsumed: true });
+          }
+          return next;
+        });
         break;
       }
       case 'set_timer': {

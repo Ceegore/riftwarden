@@ -20,25 +20,25 @@
   "warmup": 10,
   "runs": 1,
   "tickLatencyMs": {
-    "median": 1.42,
-    "p95": 4.004,
-    "p99": 7.718,
-    "max": 968.065,
-    "variance": 9.326635
+    "median": 1.706,
+    "p95": 5.662,
+    "p99": 12.452,
+    "max": 566.575,
+    "variance": 15.677492
   },
   "hashLatencyMs": {
-    "median": 0.164,
-    "p95": 0.439,
-    "p99": 1.223,
-    "max": 32.029,
-    "variance": 0.241159
+    "median": 0.183,
+    "p95": 0.56,
+    "p99": 1.916,
+    "max": 41.127,
+    "variance": 0.471115
   },
-  "peakRssBytes": 270340096,
-  "peakHeapBytes": 110702496,
-  "endRssBytes": 270340096,
-  "endHeapBytes": 77859352,
+  "peakRssBytes": 268959744,
+  "peakHeapBytes": 110159568,
+  "endRssBytes": 268959744,
+  "endHeapBytes": 89435336,
   "invariantErrors": 0,
   "hashDrift": 0,
-  "referenceFinalHash": "8e846238044660a613c7eba781afea2054dbbece1f2d10bea2d2c0c287b66c58",
+  "referenceFinalHash": "ff8d4e4bc7b03344a2329a490cc111089ff4bf3ec76912213cd3ca474fedadbe",
   "status": "PASS"
 }

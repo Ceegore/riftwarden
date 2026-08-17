@@ -48,12 +48,40 @@ describe('Phase 15 anti-stuck system', () => {
   });
 
   it('grants one melee-range boost per side after 60 deadlocked ticks', () => {
-    // Both fronts block each other at the stop distance with no progress.
+    // Both fronts block each other at the stop distance. The §9.1 repath at
+    // tick 30 legitimately produces 10 X100 of progress (edge contact), which
+    // resets the §9.3 deadlock counter; it then builds to 60 again, so the buff
+    // fires at tick 91, once per side, edge-triggered.
     const state = battle({ entities: [player(1800), enemy(2010)], simulationVersion: 'phase15-fixture-v1' });
-    const result = run(state, { unit_p: 300, unit_e: 300 }, 60);
+    const result = run(state, { unit_p: 300, unit_e: 300 }, 95);
     expect(result.events.filter((e) => e.type === 'FrontDeadlockRangeBoost')).toHaveLength(2);
     const buffed = result.state.entities.filter((e) => e.deadlockBuffedEntityId !== null);
     expect(buffed.map((e) => e.id).sort()).toEqual(['unit_e', 'unit_p']);
+  });
+
+  it('grants the 10-tick stop-gap relief on repath so the unit closes the gap to edge contact', () => {
+    const state = battle({ entities: [player(1800), enemy(2010)], simulationVersion: 'phase15-fixture-v1' });
+    const result = run(state, { unit_p: 300 }, 31);
+    const unit = result.state.entities.find((e) => e.id === 'unit_p');
+    // Repath at tick 29 grants relief until tick 39; the next movement step
+    // closes the 10-X100 stop gap (stop point advances, §9.1).
+    expect(unit?.stuckStopGapBonusUntilTick).toBe(39);
+    expect(unit?.x100).toBe(1810);
+  });
+
+  it('expires the relief after its window and never lets the unit overlap the enemy', () => {
+    const state = battle({ entities: [player(1800), enemy(2010)], simulationVersion: 'phase15-fixture-v1' });
+    const result = run(state, { unit_p: 300, unit_e: 300 }, 200);
+    const unit = result.state.entities.find((e) => e.id === 'unit_p');
+    const opponent = result.state.entities.find((e) => e.id === 'unit_e');
+    // Both fronts are relieved simultaneously: the canonical-order winner (the
+    // enemy front here) claims the full 10-X100 slack, the other is clamped to
+    // edge-touch (§8.1) — 200 = 100+100 radii apart, never overlapping.
+    expect(unit?.x100).toBe(1800);
+    expect(opponent?.x100).toBe(2000);
+    expect(Math.abs((unit?.x100 ?? 0) - (opponent?.x100 ?? 0))).toBeGreaterThanOrEqual(200);
+    // The relief is snapshot-authoritative: the deadline field survives.
+    expect(unit?.stuckStopGapBonusUntilTick).toBeGreaterThanOrEqual(0);
   });
 
   it('requests the rift-collapse resolution after the full 300+300 window', { timeout: 25_000 }, () => {

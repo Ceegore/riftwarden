@@ -59,6 +59,14 @@ test('crossruntime matrix pins Node against the reference trace and leaves devic
   for (const key of ['chromium', 'firefox', 'webkit', 'android_webview', 'ios_wkwebview']) {
     assert.equal(matrix.runtimes[key].status, 'NOT_RUN');
   }
+  // Phase 15 movement trace column is also pinned against its fixture.
+  const fixture15 = JSON.parse(readFileSync(join(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase15.json'), 'utf8'));
+  assert.equal(matrix.phase15.runtimes.node.tick30, fixture15.checkpoints.find((c) => c.tick === 30).checksum);
+  assert.equal(matrix.phase15.runtimes.node.tick60, fixture15.checkpoints.find((c) => c.tick === 60).checksum);
+  assert.equal(matrix.phase15.runtimes.node.endHash, fixture15.finalSnapshotChecksum);
+  for (const key of ['chromium', 'firefox', 'webkit']) {
+    assert.equal(matrix.phase15.runtimes[key].status, 'NOT_RUN');
+  }
 });
 
 test('mass-sim harness reports PASS with no drift and accumulates events across battles', () => {
@@ -121,7 +129,7 @@ test('phase14 readiness gate flags missing evidence artifacts', () => {
   assert.ok(report.blockers.includes('P15_G14_CROSSRUNTIME_MISSING'));
 });
 
-test('crossruntime browser runner fills desktop engines hash-identically to Node', () => {
+test('crossruntime browser runner fills desktop engines hash-identically to Node for both phases', () => {
   const d = mkdtempSync(join(tmpdir(), 'p14-crb-'));
   const res = run(['tools/sim/run-crossruntime-browsers.mjs', join(d, 'matrix.json')]);
   assert.equal(res.status, 0, res.stderr);
@@ -135,4 +143,14 @@ test('crossruntime browser runner fills desktop engines hash-identically to Node
   }
   assert.equal(matrix.runtimes.android_webview.status, 'NOT_RUN');
   assert.equal(matrix.runtimes.ios_wkwebview.status, 'NOT_RUN');
+  // Phase 15 movement trace: desktop engines hash-identical to the P15 node column.
+  for (const key of ['chromium', 'firefox', 'webkit']) {
+    assert.equal(matrix.phase15.runtimes[key].status, 'PASS', `${key}: ${JSON.stringify(matrix.phase15.runtimes[key].drift)}`);
+    assert.equal(matrix.phase15.runtimes[key].tick30, matrix.phase15.runtimes.node.tick30);
+    assert.equal(matrix.phase15.runtimes[key].tick60, matrix.phase15.runtimes.node.tick60);
+    assert.equal(matrix.phase15.runtimes[key].endHash, matrix.phase15.runtimes.node.endHash);
+    assert.equal(matrix.phase15.runtimes[key].startHash, matrix.phase15.runtimes.node.startHash);
+  }
+  assert.equal(matrix.phase15.runtimes.android_webview.status, 'NOT_RUN');
+  assert.equal(matrix.phase15.runtimes.ios_wkwebview.status, 'NOT_RUN');
 });
