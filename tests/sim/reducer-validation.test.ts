@@ -40,6 +40,11 @@ describe('reducer reference validation', () => {
     const system: KernelSystem = { id: 'bad.remove', stage: 'J', run(c) { c.commands.push({ kind: 'remove_entity', entityId: 'missing' }); } };
     expect(() => stepBattle({ state: battle(), input, random: randomSession(), rules: {}, content: {}, systems: [system] })).toThrow(/P14_SNAPSHOT_INVALID/);
   });
+
+  it('set_movement_remainder on an unknown entity blocks', () => {
+    const system: KernelSystem = { id: 'bad.remainder', stage: 'F', run(c) { c.commands.push({ kind: 'set_movement_remainder', entityId: 'missing', remainder: 0 }); } };
+    expect(() => stepBattle({ state: battle(), input, random: randomSession(), rules: {}, content: {}, systems: [system] })).toThrow(/P14_SNAPSHOT_INVALID/);
+  });
 });
 
 describe('reducer bounds validation', () => {
@@ -58,5 +63,14 @@ describe('reducer bounds validation', () => {
     expect(() => stepBattle({ state: battle(), input, random: randomSession(), rules: {}, content: {}, systems: [negative] })).toThrow(/P14_SNAPSHOT_INVALID/);
     const floatTimer: KernelSystem = { id: 'bad.timer.float', stage: 'B', run(c) { c.commands.push({ kind: 'set_timer', entityId: 'entity_alpha', timer: 'cooldown', ticks: 0.5 }); } };
     expect(() => stepBattle({ state: battle(), input, random: randomSession(), rules: {}, content: {}, systems: [floatTimer] })).toThrow(/P14_SNAPSHOT_INVALID/);
+  });
+
+  it('set_movement_remainder with out-of-range or non-integer remainder blocks', () => {
+    const negative: KernelSystem = { id: 'bad.remainder.neg', stage: 'F', run(c) { c.commands.push({ kind: 'set_movement_remainder', entityId: 'entity_alpha', remainder: -1 }); } };
+    expect(() => stepBattle({ state: battle(), input, random: randomSession(), rules: {}, content: {}, systems: [negative] })).toThrow(/P14_SNAPSHOT_INVALID/);
+    const floatRemainder: KernelSystem = { id: 'bad.remainder.float', stage: 'F', run(c) { c.commands.push({ kind: 'set_movement_remainder', entityId: 'entity_alpha', remainder: 0.5 }); } };
+    expect(() => stepBattle({ state: battle(), input, random: randomSession(), rules: {}, content: {}, systems: [floatRemainder] })).toThrow(/P14_SNAPSHOT_INVALID/);
+    const tooBig: KernelSystem = { id: 'bad.remainder.big', stage: 'F', run(c) { c.commands.push({ kind: 'set_movement_remainder', entityId: 'entity_alpha', remainder: 30 }); } };
+    expect(() => stepBattle({ state: battle(), input, random: randomSession(), rules: {}, content: {}, systems: [tooBig] })).toThrow(/P14_SNAPSHOT_INVALID/);
   });
 });

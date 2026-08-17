@@ -13,6 +13,7 @@ export type KernelCommand =
   | Readonly<{kind:'remove_entity'; entityId:string}>
   | Readonly<{kind:'set_target'; entityId:string; targetId:string|null}>
   | Readonly<{kind:'set_position'; entityId:string; lane:'top'|'middle'|'bottom'; x100:number}>
+  | Readonly<{kind:'set_movement_remainder'; entityId:string; remainder:number}>
   | Readonly<{kind:'apply_lp_delta'; entityId:string; delta:number}>
   | Readonly<{kind:'set_timer'; entityId:string; timer:string; ticks:number}>
   | Readonly<{kind:'checkpoint_marker'; reason:'interval'|'terminal'}>;

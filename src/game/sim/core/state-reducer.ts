@@ -82,6 +82,14 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, lane: command.lane, x100: command.x100 }) : e));
         break;
       }
+      case 'set_movement_remainder': {
+        requireEntity(entities, command.entityId);
+        if (!Number.isInteger(command.remainder) || command.remainder < 0 || command.remainder >= 30 || Object.is(command.remainder, -0)) {
+          throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'movement-remainder-invalid', entityId: command.entityId, remainder: command.remainder });
+        }
+        entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, movementRemainder: command.remainder }) : e));
+        break;
+      }
       case 'apply_lp_delta': {
         requireEntity(entities, command.entityId);
         if (!Number.isSafeInteger(command.delta)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'lp-delta-not-integer', entityId: command.entityId, delta: command.delta });

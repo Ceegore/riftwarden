@@ -4,7 +4,7 @@ import type { PipelineStage } from './pipeline-stage.js';
 
 const ALLOWED: Readonly<Record<PipelineStage,readonly KernelCommand['kind'][]>> = Object.freeze({
   A:[], B:['set_timer'], C:['schedule_event'], D:['schedule_event'], E:['set_target'],
-  F:['set_position'], G:['set_timer','schedule_event'], H:['schedule_event','append_event'],
+  F:['set_position','set_movement_remainder'], G:['set_timer','schedule_event'], H:['schedule_event','append_event'],
   I:['apply_lp_delta','append_event'], J:['entity_transition','remove_entity','append_event'],
   K:['spawn_entity','append_event'], L:['battle_transition','append_event'], M:['checkpoint_marker']
 });
