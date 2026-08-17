@@ -143,6 +143,11 @@ jobs:
             random-vectors)
               pnpm random:vectors
               ;;
+            sim-gates)
+              pnpm test:kernel
+              pnpm kernel:audit
+              pnpm kernel:validate-readiness
+              ;;
             asset-manifest-validate)
               pnpm assets:validate
               ;;

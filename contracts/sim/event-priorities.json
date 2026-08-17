@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "sortKeys": [
+    "scheduledTick",
+    "eventPriority",
+    "sourceEntityId",
+    "abilityId",
+    "eventSequence"
+  ],
+  "nullSentinel": "",
+  "priorityRange": {
+    "min": 0,
+    "max": 120
+  },
+  "eventCapPerBattle": 10000,
+  "sameTickRule": "drain snapshot only; newly planned events require explicit commit and are never re-drained in the same queue pass"
+}

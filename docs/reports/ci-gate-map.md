@@ -17,6 +17,7 @@
 | Rules gates (tests, magic audit, snapshots) | Not enabled before Phase 11 | Phase 11 | aggregate expects skipped |
 | Math gates (tests, callsite audit, readiness) | Not enabled before Phase 12 | Phase 12 | aggregate expects skipped |
 | Random gates (PRNG/replay tests, callsite audit, slots, golden seeds, readiness) | Not enabled before Phase 13 | Phase 13 | aggregate expects skipped |
+| Sim kernel gates (tick/state/event tests, kernel import audit, G13 readiness) | Not enabled before Phase 14 | Phase 14 | aggregate expects skipped |
 | Native config/Android debug | Active | Phase 04 | aggregate expects success |
 | Asset manifest | Not enabled before Phase 38 | Phase 38 | aggregate expects skipped |
 | Signed release | Not enabled; protected manual skeleton only | Phase 47 | never a PASS |

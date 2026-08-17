@@ -7,7 +7,7 @@ const simulationFiles = ['src/game/sim/**/*.{ts,tsx}', 'tests/fixtures/negative/
 
 export default tseslint.config(
   {
-    ignores: ['android/**', 'ios/**', 'content/generated/**', 'dist/**', 'node_modules/**', 'public/assets/generated/**', 'tests/fixtures/negative/**', 'tests/rules/type-fixtures/**', 'tests/math/type-fixtures/**', 'tests/random/type-fixtures/**', 'tests/replay/type-fixtures/**', 'Phasen/**', 'backup/**', 'Meldungen/**', '.orchestration_source/**', '.orchestrator/**', 'docs/**', 'reference/**', 'tools/**', 'tests/tooling/**', '**/*.mjs', '**/*.cjs', '**/*.js', '**/*.config.*', 'vite.config.ts', 'vitest.config.ts', 'playwright.config.ts'],
+    ignores: ['android/**', 'ios/**', 'content/generated/**', 'dist/**', 'node_modules/**', 'public/assets/generated/**', 'tests/fixtures/negative/**', 'tests/rules/type-fixtures/**', 'tests/math/type-fixtures/**', 'tests/random/type-fixtures/**', 'tests/replay/type-fixtures/**', 'tests/sim/type-fixtures/**', 'Phasen/**', 'backup/**', 'Meldungen/**', '.orchestration_source/**', '.orchestrator/**', 'docs/**', 'reference/**', 'tools/**', 'tests/tooling/**', '**/*.mjs', '**/*.cjs', '**/*.js', '**/*.config.*', 'vite.config.ts', 'vitest.config.ts', 'playwright.config.ts'],
   },
   eslint.configs.recommended,
   ...tseslint.configs.strictTypeChecked,

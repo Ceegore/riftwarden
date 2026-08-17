@@ -5,7 +5,9 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "lib": [
-      "ES2023"
+      "ES2023",
+      "DOM",
+      "DOM.Iterable"
     ],
     "module": "ESNext",
     "moduleDetection": "force",
@@ -27,9 +29,14 @@
     "src/game/sim/math/**/*.ts",
     "src/game/sim/random/**/*.ts",
     "src/game/replay/**/*.ts",
+    "src/game/sim/core/**/*.ts",
+    "src/game/sim/events/**/*.ts",
+    "src/game/sim/scheduler/**/*.ts",
+    "src/game/sim/snapshot/**/*.ts",
     "tests/rules/type-fixtures/**/*.ts",
     "tests/math/type-fixtures/**/*.ts",
     "tests/random/type-fixtures/**/*.ts",
-    "tests/replay/type-fixtures/**/*.ts"
+    "tests/replay/type-fixtures/**/*.ts",
+    "tests/sim/type-fixtures/**/*.ts"
   ]
 }

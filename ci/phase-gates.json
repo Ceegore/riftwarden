@@ -121,6 +121,12 @@
       "ownerPhase": 13,
       "requiredFromPhase": 13,
       "command": "pnpm test:random && pnpm random:audit && pnpm random:slots && pnpm random:golden && pnpm random:validate-readiness"
+    },
+    {
+      "id": "sim-gates",
+      "ownerPhase": 14,
+      "requiredFromPhase": 14,
+      "command": "pnpm test:kernel && pnpm kernel:audit && pnpm kernel:validate-readiness"
     }
   ]
 }

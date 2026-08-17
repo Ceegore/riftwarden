@@ -1,6 +1,6 @@
-import type { BasisPoints, MilliValue, Tick } from '../../src/game/rules/units.js';
-import { mitigatedDamage } from '../../src/game/sim/math/combat-formulas.js';
-import { controlDurationTicks } from '../../src/game/sim/math/time-and-speed.js';
+import type { BasisPoints, MilliValue, Tick } from '../../../src/game/rules/units.js';
+import { mitigatedDamage } from '../../../src/game/sim/math/combat-formulas.js';
+import { controlDurationTicks } from '../../../src/game/sim/math/time-and-speed.js';
 
 const rawNumber: number = 42;
 const invalidDamage: MilliValue = rawNumber;

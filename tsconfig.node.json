@@ -51,6 +51,8 @@
     "tools/math/**/*.mjs",
     "tests/math/**/*.mjs",
     "tools/random/**/*.mjs",
-    "tests/random/**/*.mjs"
+    "tests/random/**/*.mjs",
+    "tools/sim/**/*.mjs",
+    "tests/sim/**/*.mjs"
   ]
 }

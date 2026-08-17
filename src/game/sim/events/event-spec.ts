@@ -1,0 +1,10 @@
+export const EVENT_SPEC = Object.freeze({
+  BattleStarted:{category:'lifecycle',payload:['battleOrdinal']}, PhaseStarted:{category:'lifecycle',payload:['phaseOrdinal']}, BattleEnded:{category:'lifecycle',payload:['outcomeOrdinal']},
+  Spawned:{category:'entity',payload:['x100','laneOrdinal']}, Activated:{category:'entity',payload:[]}, TargetChanged:{category:'entity',payload:[]}, MovedLane:{category:'entity',payload:['fromLane','toLane']}, Defeated:{category:'entity',payload:['overkill']}, Removed:{category:'entity',payload:[]}, Revived:{category:'entity',payload:['restoredLp']},
+  AttackPrepared:{category:'combat',payload:['commitTick']}, ProjectileSpawned:{category:'combat',payload:['impactTick']}, DamageApplied:{category:'combat',payload:['amount','damageTypeOrdinal']}, HealApplied:{category:'combat',payload:['amount']}, ShieldApplied:{category:'combat',payload:['amount']}, EffectApplied:{category:'combat',payload:['durationTicks']}, EffectRemoved:{category:'combat',payload:['reasonOrdinal']},
+  ChargeReady:{category:'ability',payload:['chargeTicks']}, AbilityPrepared:{category:'ability',payload:['commitTick']}, AbilityInterrupted:{category:'ability',payload:['remainingChargeTicks']}, AbilityCommitted:{category:'ability',payload:['commitTick']}, AbilityResolved:{category:'ability',payload:['effectCount']},
+  ModifierTriggered:{category:'world',payload:['triggerOrdinal']}, HazardTelegraphed:{category:'world',payload:['resolveTick']}, HazardResolved:{category:'world',payload:['effectCount']}, ReinforcementQueued:{category:'world',payload:['spawnTick']}, ReinforcementSpawned:{category:'world',payload:['count']},
+  InvalidTargetPrevented:{category:'diagnostics',payload:['policyOrdinal']}, SummonLimitBlocked:{category:'diagnostics',payload:['activeCount']}, FallbackRuleUsed:{category:'diagnostics',payload:['ruleOrdinal']}, SafetyCapTriggered:{category:'diagnostics',payload:['capOrdinal','observed']}
+} as const);
+export type EventType=keyof typeof EVENT_SPEC;
+export type EventCategory=(typeof EVENT_SPEC)[EventType]['category'];

@@ -1,4 +1,4 @@
-import type { UInt32, RunSeed } from '../../src/game/sim/random/index.js';
+import type { UInt32, RunSeed } from '../../../src/game/sim/random/index.js';
 
 const rawNumber: number = 7;
 const mustNotCompileAsUInt32: UInt32 = rawNumber;

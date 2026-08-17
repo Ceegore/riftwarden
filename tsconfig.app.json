@@ -72,6 +72,7 @@
     "tests/rules/type-fixtures/**/*.ts",
     "tests/math/type-fixtures/**/*.ts",
     "tests/random/type-fixtures/**/*.ts",
-    "tests/replay/type-fixtures/**/*.ts"
+    "tests/replay/type-fixtures/**/*.ts",
+    "tests/sim/type-fixtures/**/*.ts"
   ]
 }

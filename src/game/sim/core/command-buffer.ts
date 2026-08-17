@@ -1,0 +1,19 @@
+import { KernelInvariantError } from './invariant-error.js';
+import type { KernelCommand } from './command-types.js';
+import type { PipelineStage } from './pipeline-stage.js';
+
+const ALLOWED: Readonly<Record<PipelineStage,readonly KernelCommand['kind'][]>> = Object.freeze({
+  A:[], B:['set_timer'], C:['schedule_event'], D:['schedule_event'], E:['set_target'],
+  F:['set_position'], G:['set_timer','schedule_event'], H:['schedule_event','append_event'],
+  I:['apply_lp_delta','append_event'], J:['entity_transition','remove_entity','append_event'],
+  K:['spawn_entity','append_event'], L:['battle_transition','append_event'], M:['checkpoint_marker']
+});
+export class StageCommandBuffer {
+  readonly #commands: KernelCommand[]=[];
+  constructor(readonly stage:PipelineStage) {}
+  push(command:KernelCommand):void {
+    if (!ALLOWED[this.stage].includes(command.kind)) throw new KernelInvariantError('P14_COMMAND_STAGE',{stage:this.stage,kind:command.kind});
+    this.#commands.push(command);
+  }
+  drain():readonly KernelCommand[]{ return Object.freeze(this.#commands.splice(0)); }
+}
