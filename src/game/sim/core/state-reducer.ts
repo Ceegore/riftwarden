@@ -2,7 +2,7 @@ import { isTerminalBattlePhase, transitionBattlePhase } from './battle-state.js'
 import type { BattleModel } from './battle-model.js';
 import type { KernelCommand, BattleTransitionRequest } from './command-types.js';
 import { transitionEntityPhase, selectEntityTransition, type TransitionRequest } from './entity-state.js';
-import { validateEntity } from './entity.js';
+import { validateEntity, type KernelEntity } from './entity.js';
 import { KernelInvariantError } from './invariant-error.js';
 import type { EventPriority, EventSequence, Tick } from './primitives.js';
 import type { EventQueue } from '../scheduler/event-queue.js';
@@ -17,6 +17,12 @@ export interface ApplyStageCommandsArgs {
   queue: EventQueue;
   log: EventLog;
   allocate: () => EventSequence;
+}
+
+function requireEntity(entities: readonly KernelEntity[], entityId: string): KernelEntity {
+  const entity = entities.find((candidate) => candidate.id === entityId);
+  if (!entity) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'unknown-entity', entityId });
+  return entity;
 }
 
 export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
@@ -39,11 +45,11 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
     }
     switch (command.kind) {
       case 'schedule_event':
-        if (args.state.emittedEventCount + args.log.size() + args.queue.size() >= 10000) throw new KernelInvariantError('P14_QUEUE_CAP', { kind: 'battle-total' });
+        if (args.state.emittedEventCount + (args.log.size() - beforeEvents) + args.queue.size() >= 10000) throw new KernelInvariantError('P14_QUEUE_CAP', { kind: 'battle-total' });
         args.queue.plan(command.event, args.atTick, args.stagePriority);
         break;
       case 'append_event':
-        if (args.state.emittedEventCount + args.log.size() + args.queue.size() >= 10000) throw new KernelInvariantError('P14_QUEUE_CAP', { kind: 'battle-total' });
+        if (args.state.emittedEventCount + (args.log.size() - beforeEvents) + args.queue.size() >= 10000) throw new KernelInvariantError('P14_QUEUE_CAP', { kind: 'battle-total' });
         args.log.append(args.atTick, args.allocate(), command.event);
         break;
       case 'entity_transition': {
@@ -61,20 +67,35 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         entities.push(command.entity);
         break;
       case 'remove_entity':
+        requireEntity(entities, command.entityId);
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, lp: 0, shield: 0, phase: transitionEntityPhase(e.phase, 'REMOVED', args.atTick) }) : e));
         break;
       case 'set_target':
+        requireEntity(entities, command.entityId);
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, targetId: command.targetId }) : e));
         break;
-      case 'set_position':
+      case 'set_position': {
+        requireEntity(entities, command.entityId);
+        if (!Number.isSafeInteger(command.x100) || command.x100 < 0 || command.x100 > 10000 || Object.is(command.x100, -0)) {
+          throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'x100-out-of-range', entityId: command.entityId, x100: command.x100 });
+        }
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, lane: command.lane, x100: command.x100 }) : e));
         break;
-      case 'apply_lp_delta':
+      }
+      case 'apply_lp_delta': {
+        requireEntity(entities, command.entityId);
+        if (!Number.isSafeInteger(command.delta)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'lp-delta-not-integer', entityId: command.entityId, delta: command.delta });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, lp: Math.max(0, Math.min(e.maxLp, e.lp + command.delta)) }) : e));
         break;
-      case 'set_timer':
+      }
+      case 'set_timer': {
+        requireEntity(entities, command.entityId);
+        if (!Number.isSafeInteger(command.ticks) || command.ticks < 0 || Object.is(command.ticks, -0)) {
+          throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'timer-ticks-invalid', entityId: command.entityId, ticks: command.ticks });
+        }
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, timers: Object.freeze({ ...e.timers, [command.timer]: command.ticks }) }) : e));
         break;
+      }
       case 'checkpoint_marker':
         break;
     }

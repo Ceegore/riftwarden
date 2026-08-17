@@ -31,6 +31,31 @@ describe('event queue ordering', () => {
     for (let i = 0; i < 500; i++) expect(new EventQueue(permute(base, i)).snapshot().map((x) => x.eventSequence)).toEqual(expected);
   });
 
+  it('each of the five comparator keys is a distinct, ordered tiebreak', () => {
+    const byTick = [scheduled('BattleStarted', { scheduledTick: tick(2), eventSequence: sequence(2) }), scheduled('BattleStarted', { scheduledTick: tick(1), eventSequence: sequence(1) })];
+    expect([...byTick].sort(compareScheduled).map((x) => x.eventSequence)).toEqual([1, 2]);
+    const byPriority = [
+      scheduled('BattleStarted', { scheduledTick: tick(1), eventPriority: priority(20), eventSequence: sequence(2) }),
+      scheduled('BattleStarted', { scheduledTick: tick(1), eventPriority: priority(10), eventSequence: sequence(1) }),
+    ];
+    expect([...byPriority].sort(compareScheduled).map((x) => x.eventSequence)).toEqual([1, 2]);
+    const bySource = [
+      scheduled('BattleStarted', { scheduledTick: tick(1), eventPriority: priority(10), sourceEntityId: 'entity_b', eventSequence: sequence(2) }),
+      scheduled('BattleStarted', { scheduledTick: tick(1), eventPriority: priority(10), sourceEntityId: 'entity_a', eventSequence: sequence(1) }),
+    ];
+    expect([...bySource].sort(compareScheduled).map((x) => x.eventSequence)).toEqual([1, 2]);
+    const byAbility = [
+      scheduled('BattleStarted', { scheduledTick: tick(1), eventPriority: priority(10), sourceEntityId: 'entity_a', abilityId: 'ability_b', eventSequence: sequence(2) }),
+      scheduled('BattleStarted', { scheduledTick: tick(1), eventPriority: priority(10), sourceEntityId: 'entity_a', abilityId: 'ability_a', eventSequence: sequence(1) }),
+    ];
+    expect([...byAbility].sort(compareScheduled).map((x) => x.eventSequence)).toEqual([1, 2]);
+    const bySequence = [
+      scheduled('BattleStarted', { scheduledTick: tick(1), eventPriority: priority(10), sourceEntityId: 'entity_a', abilityId: 'ability_a', eventSequence: sequence(2) }),
+      scheduled('BattleStarted', { scheduledTick: tick(1), eventPriority: priority(10), sourceEntityId: 'entity_a', abilityId: 'ability_a', eventSequence: sequence(1) }),
+    ];
+    expect([...bySequence].sort(compareScheduled).map((x) => x.eventSequence)).toEqual([1, 2]);
+  });
+
   it('duplicate committed sequence blocks', () => {
     const a = scheduled('BattleStarted', { eventSequence: sequence(1) });
     const b = scheduled('PhaseStarted', { eventSequence: sequence(1) });
