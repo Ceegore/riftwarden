@@ -21,6 +21,14 @@ describe('canonical JSON', () => {
     expect(() => canonicalJson({ x: 1.5 })).toThrow('P13_CANONICAL_JSON');
     expect(() => canonicalJson({ x: -0 })).toThrow('P13_CANONICAL_JSON');
   });
+  it('non-safe integers block', () => {
+    expect(() => canonicalJson({ x: 2 ** 53 })).toThrow('P13_CANONICAL_JSON');
+    expect(() => canonicalJson({ x: 1e21 })).toThrow('P13_CANONICAL_JSON');
+  });
+  it('safe integer boundary preserves exact decimal form', () => {
+    expect(canonicalJson({ x: Number.MAX_SAFE_INTEGER })).toBe(`{"x":${String(Number.MAX_SAFE_INTEGER)}}`);
+    expect(canonicalJson({ x: 1e7 })).toBe('{"x":10000000}');
+  });
 });
 
 describe('replay codec', () => {
