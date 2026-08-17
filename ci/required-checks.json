@@ -69,6 +69,11 @@
       "job": "sim_gates",
       "activationPhase": 14,
       "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "phase15_gates",
+      "activationPhase": 15,
+      "expectedBeforeActivation": "skipped"
     }
   ],
   "aggregateRule": "Every active job must be success; phased jobs must be success at/after activation and skipped before activation; failure, cancelled or unexpected skipped blocks.",

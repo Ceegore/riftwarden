@@ -73,3 +73,54 @@ test('mass-sim harness reports PASS with no drift and accumulates events across 
   assert.equal(report.totalTicks, 5 * 60);
   assert.ok(report.tickLatencyMs.max >= report.tickLatencyMs.median);
 });
+
+test('phase14 readiness gate honors present evidence and blocks on device work', () => {
+  const d = mkdtempSync(join(tmpdir(), 'p14-ready-'));
+  mkdirSync(join(d, 'contracts', 'phase15'), { recursive: true });
+  mkdirSync(join(d, 'docs', 'reports'), { recursive: true });
+  writeFileSync(join(d, 'contracts', 'phase15', 'phase14-readiness.expected.json'), readFileSync(join(root, 'contracts', 'phase15', 'phase14-readiness.expected.json')));
+  writeFileSync(join(d, 'docs', 'reports', 'phase14-mass-sim.json'), JSON.stringify({ status: 'PASS', battles: 10000 }));
+  writeFileSync(join(d, 'docs', 'reports', 'phase14-crossruntime.json'), JSON.stringify({
+    runtimes: {
+      node: { status: 'REFERENCE' },
+      chromium: { status: 'PASS' },
+      firefox: { status: 'PASS' },
+      webkit: { status: 'PASS' },
+      android_webview: { status: 'NOT_RUN' },
+      ios_wkwebview: { status: 'NOT_RUN' },
+    },
+  }));
+  const res = run(['tools/sim/validate-phase14-readiness.mjs', d]);
+  const report = JSON.parse(res.stdout);
+  assert.equal(res.status, 2);
+  assert.equal(report.status, 'BLOCKED');
+  assert.deepEqual(report.blockers, ['P15_G14_WEBVIEWS_NOT_RUN', 'P15_G14_NOT_REPRODUCED', 'P15_G14_DEVICE_PERF_MISSING']);
+  assert.deepEqual(report.satisfied.map((s) => s.id), ['massSim', 'crossRuntimeDesktop']);
+});
+
+test('phase14 readiness gate flags missing evidence artifacts', () => {
+  const d = mkdtempSync(join(tmpdir(), 'p14-ready-'));
+  mkdirSync(join(d, 'contracts', 'phase15'), { recursive: true });
+  writeFileSync(join(d, 'contracts', 'phase15', 'phase14-readiness.expected.json'), readFileSync(join(root, 'contracts', 'phase15', 'phase14-readiness.expected.json')));
+  const res = run(['tools/sim/validate-phase14-readiness.mjs', d]);
+  const report = JSON.parse(res.stdout);
+  assert.equal(res.status, 2);
+  assert.ok(report.blockers.includes('P15_G14_MASSSIM_MISSING'));
+  assert.ok(report.blockers.includes('P15_G14_CROSSRUNTIME_MISSING'));
+});
+
+test('crossruntime browser runner fills desktop engines hash-identically to Node', () => {
+  const d = mkdtempSync(join(tmpdir(), 'p14-crb-'));
+  const res = run(['tools/sim/run-crossruntime-browsers.mjs', join(d, 'matrix.json')]);
+  assert.equal(res.status, 0, res.stderr);
+  const matrix = JSON.parse(readFileSync(join(d, 'matrix.json'), 'utf8'));
+  for (const key of ['chromium', 'firefox', 'webkit']) {
+    assert.equal(matrix.runtimes[key].status, 'PASS', `${key}: ${JSON.stringify(matrix.runtimes[key].drift)}`);
+    assert.equal(matrix.runtimes[key].tick30, matrix.runtimes.node.tick30);
+    assert.equal(matrix.runtimes[key].tick60, matrix.runtimes.node.tick60);
+    assert.equal(matrix.runtimes[key].endHash, matrix.runtimes.node.endHash);
+    assert.equal(matrix.runtimes[key].startHash, matrix.runtimes.node.startHash);
+  }
+  assert.equal(matrix.runtimes.android_webview.status, 'NOT_RUN');
+  assert.equal(matrix.runtimes.ios_wkwebview.status, 'NOT_RUN');
+});

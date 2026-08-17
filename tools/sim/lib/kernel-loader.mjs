@@ -117,3 +117,27 @@ export function buildReferenceBattle(api) {
     simulationVersion: 'phase14-fixture-v1',
   });
 }
+
+/** Runs the canonical 60-tick trace and returns its hashes (the Node reference column). */
+export function runNodeReferenceTrace(api) {
+  const { battleKernel, noopSystems, snapshot } = api;
+  const input = Object.freeze({ paused: false, decisions: Object.freeze([]), contentVersion: 'content_fixture' });
+  let state = buildReferenceBattle(api);
+  const startHash = snapshot.createSnapshot(state).checksum;
+  const random = buildRandom(api);
+  const checkpoints = [];
+  for (let i = 0; i < 60; i++) {
+    const r = battleKernel.stepBattle({ state, input, random, rules: {}, content: {}, systems: noopSystems.createNoopSystems() });
+    state = r.state;
+    if (r.checkpoint) checkpoints.push({ tick: state.tick, checksum: r.checkpoint.checksum });
+  }
+  return {
+    startHash,
+    tick30: checkpoints.find((c) => c.tick === 30)?.checksum ?? null,
+    tick60: checkpoints.find((c) => c.tick === 60)?.checksum ?? null,
+    endHash: snapshot.createSnapshot(state).checksum,
+    endTick: state.tick,
+    endReason: state.endReason,
+    eventCount: state.emittedEventCount,
+  };
+}

@@ -120,6 +120,11 @@ try {
     if (mem.heapUsed > peakHeap) peakHeap = mem.heapUsed;
   }
 
+  // Capture the post-soak footprint before the latency sort/stringify, so the
+  // end figures reflect the simulation, not the measurement pass.
+  const endRss = process.memoryUsage().rss;
+  const endHeap = process.memoryUsage().heapUsed;
+
   tickDurations.sort((a, b) => a - b);
   hashDurations.sort((a, b) => a - b);
 
@@ -140,8 +145,8 @@ try {
     hashLatencyMs: latency(hashDurations),
     peakRssBytes: peakRss,
     peakHeapBytes: peakHeap,
-    endRssBytes: process.memoryUsage().rss,
-    endHeapBytes: process.memoryUsage().heapUsed,
+    endRssBytes: endRss,
+    endHeapBytes: endHeap,
     invariantErrors,
     hashDrift,
     status: invariantErrors === 0 && hashDrift === 0 ? 'PASS' : 'FAIL',

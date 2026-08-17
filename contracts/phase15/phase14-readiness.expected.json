@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "phase": 15,
+  "gate": "G14",
+  "evidence": {
+    "massSim": {
+      "path": "docs/reports/phase14-mass-sim.json",
+      "minBattles": 10000,
+      "requiredStatus": "PASS"
+    },
+    "crossRuntime": {
+      "path": "docs/reports/phase14-crossruntime.json",
+      "requiredEngines": [
+        "chromium",
+        "firefox",
+        "webkit"
+      ],
+      "deviceRuntimes": [
+        "android_webview",
+        "ios_wkwebview"
+      ]
+    }
+  },
+  "hardBlockers": [
+    "P15_G14_NOT_REPRODUCED",
+    "P15_G14_DEVICE_PERF_MISSING"
+  ]
+}

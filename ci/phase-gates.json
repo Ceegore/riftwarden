@@ -127,6 +127,12 @@
       "ownerPhase": 14,
       "requiredFromPhase": 14,
       "command": "pnpm test:kernel && pnpm kernel:audit && pnpm kernel:validate-readiness"
+    },
+    {
+      "id": "phase15-gates",
+      "ownerPhase": 15,
+      "requiredFromPhase": 15,
+      "command": "pnpm test:phase15 && pnpm phase15:validate-readiness"
     }
   ]
 }

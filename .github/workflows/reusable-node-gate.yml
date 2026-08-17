@@ -148,6 +148,10 @@ jobs:
               pnpm kernel:audit
               pnpm kernel:validate-readiness
               ;;
+            phase15-gates)
+              pnpm test:phase15
+              pnpm phase15:validate-readiness
+              ;;
             asset-manifest-validate)
               pnpm assets:validate
               ;;

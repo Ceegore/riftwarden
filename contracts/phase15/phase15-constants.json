@@ -1,0 +1,21 @@
+{
+  "tps": 30,
+  "fieldMinX100": 0,
+  "fieldMaxX100": 10000,
+  "laneChangeDurationTicks": 36,
+  "laneLogicalSwitchTick": 18,
+  "normalLaneChangeCooldownTicks": 90,
+  "attackStopGapX100": 10,
+  "separationMaxX100PerEntityTick": 25,
+  "spawnBehindFrontX100": 100,
+  "spawnEnemyMarginX100": 50,
+  "spawnBackoffStepX100": 50,
+  "spawnBackoffMaxX100": 400,
+  "stuckTicks": 30,
+  "repathCount": 3,
+  "repathWindowTicks": 120,
+  "frontDeadlockTicks": 60,
+  "deadlockMeleeBonusX100": 50,
+  "globalNoProgressWarningTicks": 300,
+  "globalNoProgressResolveAdditionalTicks": 300
+}
