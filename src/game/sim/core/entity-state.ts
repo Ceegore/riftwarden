@@ -12,7 +12,10 @@ export interface EntityPhaseState {
 
 const ALLOWED: Readonly<Record<EntityPhase, readonly EntityPhase[]>> = Object.freeze({
   SPAWNING: ['ACTIVE', 'DEFEATED'],
-  ACTIVE: ['PREPARING', 'CONTROLLED', 'DEFEATED'],
+  // REMOVED is a legal direct exit from ACTIVE: construct-slot replacement and
+  // explicit despawns must retire an entity without fabricating a death. The
+  // DEFEATED path remains death resolution (stage J); this is not a revive.
+  ACTIVE: ['PREPARING', 'CONTROLLED', 'DEFEATED', 'REMOVED'],
   PREPARING: ['EXECUTING', 'ACTIVE', 'CONTROLLED', 'DEFEATED'],
   EXECUTING: ['RECOVERING', 'DEFEATED'],
   RECOVERING: ['ACTIVE', 'CONTROLLED', 'DEFEATED'],

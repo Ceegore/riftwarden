@@ -36,9 +36,10 @@ function frontDistance(entity: KernelEntity): number {
  * Stage-F anti-stuck system (§9). Recomputes each moving entity's tick movement
  * from the frozen prior state (same pure resolver as the movement system), then
  * advances the 30-tick stuck counter, the 3-repath lane fallback, the 60-tick
- * front-deadlock counter and the 300+300 global no-progress endcap. Qualifying
- * combat progress (damage/heal/spawn/death/phase) is supplied by later phases,
- * so the global counter advances every tick until those signals exist (§9.4).
+ * front-deadlock counter and the 300+300 no-progress endcap. Qualifying progress
+ * resets both global counters (§9.4): a committed spawn resets them in the
+ * same tick via the stage-K spawn system, while damage/heal/death/phase
+ * progress signals arrive with Phase 14/16. Render/audio events never count.
  */
 export function createAntiStuckSystem(config: MovementSystemConfig): KernelSystem {
   const stopGap = config.stopGapX100 === undefined ? asX100(10) : nonNegativeX100(config.stopGapX100);

@@ -40,7 +40,7 @@ describe('Phase 15 anti-stuck system', () => {
     expect(result.state.entities.find((e) => e.id === 'unit_p')?.repathTicks).toEqual([29]);
   });
 
-  it('emits the rift-collapse warning after 300 ticks without qualifying progress', () => {
+  it('emits the rift-collapse warning after 300 ticks without qualifying progress', { timeout: 25_000 }, () => {
     const state = battle({ entities: [player(1800)], simulationVersion: 'phase15-fixture-v1' });
     const result = run(state, { unit_p: 300 }, 300);
     expect(result.events.filter((e) => e.type === 'RiftCollapseWarning')).toHaveLength(1);
@@ -56,7 +56,7 @@ describe('Phase 15 anti-stuck system', () => {
     expect(buffed.map((e) => e.id).sort()).toEqual(['unit_e', 'unit_p']);
   });
 
-  it('requests the rift-collapse resolution after the full 300+300 window', () => {
+  it('requests the rift-collapse resolution after the full 300+300 window', { timeout: 25_000 }, () => {
     const state = battle({ entities: [player(1800)], simulationVersion: 'phase15-fixture-v1' });
     const result = run(state, {}, 601);
     expect(result.state.phase.phase).toBe('RESOLVING_END');

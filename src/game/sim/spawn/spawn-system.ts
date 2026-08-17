@@ -15,6 +15,7 @@ export const SPAWN_ENEMY_MARGIN_X100 = 50;
 export const SPAWN_REJECT_NO_POSITION = 0;
 export const SPAWN_REJECT_SLOT_OCCUPIED = 1;
 export const SPAWN_REJECT_POLICY_MISSING = 2;
+export const SPAWN_REJECT_DISPLACEMENT_FAILED = 3;
 
 export interface SummonRequest {
   readonly kind: 'summon';
@@ -25,6 +26,8 @@ export interface SummonRequest {
   readonly maxLp: number;
   /** Own front start zone, used only when no ally occupies the target lane. */
   readonly startZoneX100: X100;
+  /** §7.4: 'displace' marks a large summon that may push overlapped allies back. */
+  readonly displacementPolicy?: 'displace';
 }
 
 export interface ConstructRequest {
@@ -58,6 +61,10 @@ function validateRequest(request: SpawnRequest): void {
   if (request.kind === 'summon') {
     laneOrdinal(request.targetLane);
     asFieldX100(request.startZoneX100);
+    const displacementPolicy: unknown = request.displacementPolicy;
+    if (displacementPolicy !== undefined && displacementPolicy !== 'displace') {
+      throw new KernelInvariantError('P15_SPAWN_POLICY_MISSING', { reservedId: request.reservedId, displacementPolicy });
+    }
   } else {
     laneOrdinal(request.lane);
     asFieldX100(request.x100);
@@ -93,6 +100,8 @@ function buildEntity(request: SpawnRequest, x100: X100, lane: Lane, tick: Tick):
 function emitSpawn(context: TickContext, request: SpawnRequest, x100: X100, lane: Lane): void {
   context.commands.push({ kind: 'spawn_entity', entity: buildEntity(request, x100, lane, context.state.tick) });
   context.commands.push({ kind: 'append_event', event: eventFor('Spawned', request.reservedId, { x100, laneOrdinal: laneOrdinal(lane) }) });
+  // §9.4: a committed spawn is qualifying progress that resets both counters.
+  context.commands.push({ kind: 'set_global_progress', noProgressTicks: 0, collapseTicks: 0, warned: false });
 }
 
 function emitReject(context: TickContext, request: SpawnRequest, reasonOrdinal: number): void {
@@ -121,6 +130,30 @@ function summonCandidateValid(request: SummonRequest, enemies: readonly Body[]):
   };
 }
 
+function enemiesOf(context: TickContext, side: 'player' | 'enemy'): readonly Body[] {
+  return context.state.entities
+    .filter((e) => e.side !== side && e.phase.phase === 'ACTIVE')
+    .map((e) => ({ id: e.id, x100: asX100(e.x100), radiusX100: asX100(e.radiusX100 ?? 0), lane: e.lane }));
+}
+
+function bodyOf(entity: KernelEntity): Body {
+  return { id: entity.id, x100: asX100(entity.x100), radiusX100: asX100(entity.radiusX100 ?? 0), lane: entity.lane };
+}
+
+/** §7.4: nearest valid backoff (50..400) that clears the summon and all enemies. */
+function displacedTarget(ally: KernelEntity, summon: Body, enemies: readonly Body[]): number | null {
+  const backward = ally.side === 'player' ? -1 : 1;
+  for (let offset = 50; offset <= 400; offset += 50) {
+    const candidate = ally.x100 + backward * offset;
+    if (candidate < 0 || candidate > 10000) continue;
+    const body: Body = { ...bodyOf(ally), x100: asX100(candidate) };
+    if (overlapDepthX100(body, summon) > 0) continue;
+    if (enemies.some((enemy) => enemy.lane === body.lane && overlapDepthX100(body, enemy) > 0)) continue;
+    return candidate;
+  }
+  return null;
+}
+
 function commitSummon(context: TickContext, request: SummonRequest): void {
   const teamForward = request.side === 'player' ? 1 : -1;
   const backwardDirection = request.side === 'player' ? -1 : 1;
@@ -132,13 +165,32 @@ function commitSummon(context: TickContext, request: SummonRequest): void {
     const front = allies.reduce((best, e) => (teamForward === 1 ? (e.x100 > best ? e.x100 : best) : e.x100 < best ? e.x100 : best), teamForward === 1 ? -1 : 10001);
     base = baseBehindFront(asX100(front), teamForward);
   }
-  const enemies: Body[] = context.state.entities
-    .filter((e) => e.side !== request.side && e.phase.phase === 'ACTIVE')
-    .map((e) => ({ id: e.id, x100: asX100(e.x100), radiusX100: asX100(e.radiusX100 ?? 0), lane: e.lane }));
+  const enemies = enemiesOf(context, request.side);
   const result = resolveSpawn({ reservedId: request.reservedId, baseX100: base, backwardDirection, valid: summonCandidateValid(request, enemies) });
   if (result.rejected || result.positionX100 === null) {
     emitReject(context, request, SPAWN_REJECT_NO_POSITION);
     return;
+  }
+  if (request.displacementPolicy === 'displace') {
+    // §7.4 large summon: overlapping allies are displaced backward in stable id
+    // order; if any single displacement fails, the whole transaction fails
+    // atomically (no partial displacement, no phantom entity).
+    const summon: Body = { id: request.reservedId, x100: result.positionX100, radiusX100: request.radiusX100, lane: request.targetLane };
+    const overlapped = context.state.entities
+      .filter((e) => e.side === request.side && e.phase.phase === 'ACTIVE' && e.lane === request.targetLane && overlapDepthX100(bodyOf(e), summon) > 0)
+      .sort((a, b) => asciiCompare(a.id, b.id));
+    const displacements: { entityId: string; x100: number }[] = [];
+    for (const ally of overlapped) {
+      const target = displacedTarget(ally, summon, enemies);
+      if (target === null) {
+        emitReject(context, request, SPAWN_REJECT_DISPLACEMENT_FAILED);
+        return;
+      }
+      displacements.push({ entityId: ally.id, x100: target });
+    }
+    for (const displacement of displacements) {
+      context.commands.push({ kind: 'set_position', entityId: displacement.entityId, lane: request.targetLane, x100: asX100(displacement.x100) });
+    }
   }
   emitSpawn(context, request, result.positionX100, request.targetLane);
 }
@@ -151,10 +203,11 @@ function slotOccupant(entities: readonly KernelEntity[], lane: Lane, x100: X100)
 
 function commitConstruct(context: TickContext, request: ConstructRequest): void {
   const occupiedBy = slotOccupant(context.state.entities, request.lane, request.x100);
-  // The 'replace' policy needs occupant despawn, an entity-lifecycle concern that
-  // Phase 15 does not own (§12). Never double-place a slot: refuse instead.
   if (occupiedBy !== null && request.replacementPolicy === 'replace') {
-    emitReject(context, request, SPAWN_REJECT_SLOT_OCCUPIED);
+    // §7.3 'replace': the occupant retires (direct ACTIVE -> REMOVED despawn,
+    // not a death) and the new construct takes the slot in the same tick.
+    context.commands.push({ kind: 'remove_entity', entityId: occupiedBy });
+    emitSpawn(context, request, request.x100, request.lane);
     return;
   }
   const result = placeConstruct({ slotId: request.slotId, x100: request.x100, occupiedBy }, request.replacementPolicy);
@@ -169,9 +222,10 @@ function commitConstruct(context: TickContext, request: ConstructRequest): void 
  * Stage-K spawn system (§7, §10). Summons reserve their stable id before
  * placement, resolve the deterministic base + 50..400 backoff candidates against
  * field, enemy bodies and the own-side margin, and commit or reject atomically.
- * Constructs use their defined slot; an occupied slot blocks with the
- * policy-appropriate code. Requests are processed in a deterministic order so
- * the result is permutation-invariant (§8.4).
+ * Constructs use their defined slot: an empty slot commits, an occupied slot
+ * blocks with the policy-appropriate code, and the content `replace` policy
+ * retires the occupant in the same tick (§7.3). Requests are processed in a
+ * deterministic order so the result is permutation-invariant (§8.4).
  */
 export function createSpawnSystem(config: SpawnSystemConfig = {}): KernelSystem {
   return {

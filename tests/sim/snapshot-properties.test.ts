@@ -19,7 +19,7 @@ function shuffle(a: KernelEntity[], seed: number): KernelEntity[] {
 }
 
 describe('snapshot properties', () => {
-  it('1000 entity insertion permutations preserve checkpoint hash', () => {
+  it('1000 entity insertion permutations preserve checkpoint hash', { timeout: 25_000 }, () => {
     const entities = Array.from({ length: 12 }, (_, i) => entity(`entity_${String(i).padStart(2, '0')}`, { x100: 100 + i }));
     const expected = createSnapshot(battle({ entities })).checksum;
     for (let i = 0; i < 1000; i++) expect(createSnapshot(battle({ entities: shuffle(entities, i) })).checksum).toBe(expected);

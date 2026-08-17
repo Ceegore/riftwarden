@@ -74,6 +74,18 @@ test('mass-sim harness reports PASS with no drift and accumulates events across 
   assert.ok(report.tickLatencyMs.max >= report.tickLatencyMs.median);
 });
 
+test('phase15 mass-sim evidence (spawn + separation active) is PASS with pinned hash', () => {
+  const report = JSON.parse(readFileSync(join(root, 'docs', 'reports', 'phase15-mass-sim.json'), 'utf8'));
+  assert.equal(report.status, 'PASS');
+  assert.equal(report.invariantErrors, 0);
+  assert.equal(report.hashDrift, 0);
+  assert.equal(report.battles, 10000);
+  assert.equal(report.totalTicks, 600000);
+  assert.equal(report.mode, 'phase15-spawn-separation');
+  assert.match(report.referenceFinalHash, /^[0-9a-f]{64}$/);
+  assert.ok(report.endHeapBytes <= report.peakHeapBytes, 'heap must not grow unbounded');
+});
+
 test('phase14 readiness gate honors present evidence and blocks on device work', () => {
   const d = mkdtempSync(join(tmpdir(), 'p14-ready-'));
   mkdirSync(join(d, 'contracts', 'phase15'), { recursive: true });

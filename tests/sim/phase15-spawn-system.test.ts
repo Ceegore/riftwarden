@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { stepBattle } from '../../src/game/sim/core/battle-kernel.js';
 import { migrateEntity } from '../../src/game/sim/core/migrate.js';
 import { createPhase15Systems } from '../../src/game/sim/core/phase15-systems.js';
-import { SPAWN_REJECT_NO_POSITION, SPAWN_REJECT_POLICY_MISSING, SPAWN_REJECT_SLOT_OCCUPIED, type SpawnRequest } from '../../src/game/sim/spawn/spawn-system.js';
+import { SPAWN_REJECT_DISPLACEMENT_FAILED, SPAWN_REJECT_NO_POSITION, SPAWN_REJECT_POLICY_MISSING, SPAWN_REJECT_SLOT_OCCUPIED, type SpawnRequest } from '../../src/game/sim/spawn/spawn-system.js';
 import { asX100, type Lane } from '../../src/game/sim/geometry/x100.js';
 import type { TickInput } from '../../src/game/sim/core/tick-input.js';
 import type { BattleModel } from '../../src/game/sim/core/battle-model.js';
@@ -85,6 +85,35 @@ describe('Phase 15 spawn system (stage K)', () => {
     expect(r2.state.entities.find((e) => e.id === 'turret_new')).toBeUndefined();
   });
 
+  it('replaces an occupied construct slot under the replace policy (§7.3)', () => {
+    const occupant = unit('turret_old', 'player', 7000, 'bottom');
+    const state = battle({ entities: [occupant], simulationVersion: 'phase15-fixture-v1' });
+    const { state: next } = runOnce(state, [construct('turret_new', 'bottom', 7000, { replacementPolicy: 'replace' })]);
+    const old = next.entities.find((e) => e.id === 'turret_old');
+    const fresh = next.entities.find((e) => e.id === 'turret_new');
+    expect(old?.phase.phase).toBe('REMOVED');
+    expect(old?.lp).toBe(0);
+    expect(fresh?.x100).toBe(7000);
+    expect(fresh?.phase.phase).toBe('ACTIVE');
+  });
+
+  it('displaces overlapped allies in stable id order for a large summon (§7.4)', () => {
+    const state = battle({ entities: [unit('unit_a', 'player', 4300, 'middle'), unit('unit_b', 'player', 4350, 'middle')], simulationVersion: 'phase15-fixture-v1' });
+    const { state: next, events } = runOnce(state, [summon('large_1', 'middle', { displacementPolicy: 'displace', radiusX100: asX100(100) })]);
+    expect(events.filter((e) => e.type === 'SpawnRejected')).toHaveLength(0);
+    expect(next.entities.find((e) => e.id === 'large_1')?.x100).toBe(4250);
+    expect(next.entities.find((e) => e.id === 'unit_a')?.x100).toBe(4050);
+    expect(next.entities.find((e) => e.id === 'unit_b')?.x100).toBe(4050);
+  });
+
+  it('aborts the whole large summon atomically when any displacement fails (§7.4)', () => {
+    const state = battle({ entities: [unit('unit_x', 'player', 100, 'middle', 0)], simulationVersion: 'phase15-fixture-v1' });
+    const { state: next, events } = runOnce(state, [summon('large_1', 'middle', { displacementPolicy: 'displace', radiusX100: asX100(200) })]);
+    expect(events.find((e) => e.type === 'SpawnRejected')?.payload['reasonOrdinal']).toBe(SPAWN_REJECT_DISPLACEMENT_FAILED);
+    expect(next.entities.find((e) => e.id === 'large_1')).toBeUndefined();
+    expect(next.entities.find((e) => e.id === 'unit_x')?.x100).toBe(100); // never partially moved
+  });
+
   it('is permutation-invariant across request order (§8.4)', () => {
     const requests = [summon('summon_a', 'middle'), summon('summon_b', 'top'), summon('summon_c', 'bottom')];
     const base = () => battle({ entities: [unit('unit_front', 'player', 5000, 'middle'), unit('unit_top', 'player', 4500, 'top'), unit('unit_bottom', 'player', 4600, 'bottom')], simulationVersion: 'phase15-fixture-v1' });
@@ -100,5 +129,51 @@ describe('Phase 15 spawn system (stage K)', () => {
   it('blocks a duplicate reserved id atomically (fault injection)', () => {
     const state = battle({ entities: [unit('summon_1', 'player', 5000, 'middle')], simulationVersion: 'phase15-fixture-v1' });
     expect(() => runOnce(state, [summon('summon_1', 'middle')])).toThrow(/P14_DUPLICATE_ENTITY/);
+  });
+});
+
+describe('Phase 15 spawn resets the §9.4 endcap', () => {
+  function runTicks(state: BattleModel, systems: ReturnType<typeof createPhase15Systems>, ticks: number): { state: BattleModel; events: readonly KernelEvent[] } {
+    const random = randomSession();
+    let current = state;
+    const events: KernelEvent[] = [];
+    for (let i = 0; i < ticks; i++) {
+      const r = stepBattle({ state: current, input, random, rules: {}, content: {}, systems });
+      current = r.state;
+      events.push(...r.events);
+    }
+    return { state: current, events };
+  }
+
+  it('delays the rift-collapse warning by the spawn tick it resets (§9.4)', { timeout: 25_000 }, () => {
+    const state = battle({ entities: [unit('unit_front', 'player', 5000, 'middle')], simulationVersion: 'phase15-fixture-v1' });
+    const systems = createPhase15Systems({ speedsX100PerSecond: {}, spawnRequests: (ctx) => (ctx.state.tick === 0 ? [summon('summon_1', 'middle')] : []) });
+    const at300 = runTicks(state, systems, 300);
+    expect(at300.events.filter((e) => e.type === 'RiftCollapseWarning')).toHaveLength(0);
+    expect(at300.state.globalNoProgressTicks).toBe(299);
+    const at301 = runTicks(at300.state, systems, 1);
+    expect(at301.events.filter((e) => e.type === 'RiftCollapseWarning')).toHaveLength(1);
+  });
+
+  it('keeps the no-progress counter pinned at 0 when spawns keep coming', { timeout: 25_000 }, () => {
+    const state = battle({ entities: [unit('unit_front', 'player', 5000, 'middle')], simulationVersion: 'phase15-fixture-v1' });
+    const systems = createPhase15Systems({
+      speedsX100PerSecond: {},
+      spawnRequests: (ctx) => (ctx.state.tick % 25 === 0 ? [summon(`summon_${String(ctx.state.tick)}`, 'middle')] : []),
+    });
+    const result = runTicks(state, systems, 300);
+    expect(result.events.filter((e) => e.type === 'RiftCollapseWarning')).toHaveLength(0);
+    expect(result.state.globalNoProgressTicks).toBeLessThan(26);
+    expect(result.state.entities.some((e) => e.id === 'summon_275')).toBe(true);
+  });
+
+  it('never resolves the battle end while spawns keep qualifying', { timeout: 25_000 }, () => {
+    const state = battle({ entities: [unit('unit_front', 'player', 5000, 'middle')], simulationVersion: 'phase15-fixture-v1' });
+    const systems = createPhase15Systems({
+      speedsX100PerSecond: {},
+      spawnRequests: (ctx) => (ctx.state.tick % 25 === 0 ? [summon(`summon_${String(ctx.state.tick)}`, 'middle')] : []),
+    });
+    const result = runTicks(state, systems, 601);
+    expect(result.state.phase.phase).toBe('ACTIVE');
   });
 });

@@ -14,6 +14,8 @@ const ENTRY_MODULES = {
   snapshot: 'src/game/sim/snapshot/snapshot.ts',
   random: 'src/game/sim/random/index.ts',
   events: 'src/game/sim/events/index.ts',
+  migrate: 'src/game/sim/core/migrate.ts',
+  phase15Systems: 'src/game/sim/core/phase15-systems.ts',
 };
 
 /**
