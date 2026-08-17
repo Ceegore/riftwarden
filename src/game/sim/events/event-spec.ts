@@ -6,7 +6,7 @@ export const EVENT_SPEC = Object.freeze({
   ModifierTriggered:{category:'world',payload:['triggerOrdinal']}, HazardTelegraphed:{category:'world',payload:['resolveTick']}, HazardResolved:{category:'world',payload:['effectCount']}, ReinforcementQueued:{category:'world',payload:['spawnTick']}, ReinforcementSpawned:{category:'world',payload:['count']},
   InvalidTargetPrevented:{category:'diagnostics',payload:['policyOrdinal']}, SummonLimitBlocked:{category:'diagnostics',payload:['activeCount']}, FallbackRuleUsed:{category:'diagnostics',payload:['ruleOrdinal']}, SafetyCapTriggered:{category:'diagnostics',payload:['capOrdinal','observed']},
   LaneLogicalSwitched:{category:'entity',payload:['fromLane','toLane']}, LaneChangeCompleted:{category:'entity',payload:['fromLane','toLane']}, LaneChangeInterrupted:{category:'entity',payload:['reasonOrdinal']},
-  StuckRepath:{category:'diagnostics',payload:['noProgressTicks']}, RepathLaneUnavailable:{category:'diagnostics',payload:['noProgressTicks']}, FrontDeadlockRangeBoost:{category:'diagnostics',payload:['blockedTicks']}, RiftCollapseWarning:{category:'diagnostics',payload:['noProgressTicks']}
+  StuckRepath:{category:'diagnostics',payload:['noProgressTicks']}, RepathLaneUnavailable:{category:'diagnostics',payload:['noProgressTicks']}, FrontDeadlockRangeBoost:{category:'diagnostics',payload:['blockedTicks']}, RiftCollapseWarning:{category:'diagnostics',payload:['noProgressTicks']}, RiftCollapseEndRequest:{category:'diagnostics',payload:['collapseTicks']}
 } as const);
 export type EventType=keyof typeof EVENT_SPEC;
 export type EventCategory=(typeof EVENT_SPEC)[EventType]['category'];

@@ -55,4 +55,11 @@ describe('Phase 15 anti-stuck system', () => {
     const buffed = result.state.entities.filter((e) => e.deadlockBuffedEntityId !== null);
     expect(buffed.map((e) => e.id).sort()).toEqual(['unit_e', 'unit_p']);
   });
+
+  it('requests the rift-collapse resolution after the full 300+300 window', () => {
+    const state = battle({ entities: [player(1800)], simulationVersion: 'phase15-fixture-v1' });
+    const result = run(state, {}, 601);
+    expect(result.state.phase.phase).toBe('RESOLVING_END');
+    expect(result.events.filter((e) => e.type === 'RiftCollapseEndRequest')).toHaveLength(1);
+  });
 });

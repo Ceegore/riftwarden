@@ -11,11 +11,11 @@ const required = [
   'ModifierTriggered', 'HazardTelegraphed', 'HazardResolved', 'ReinforcementQueued', 'ReinforcementSpawned',
   'InvalidTargetPrevented', 'SummonLimitBlocked', 'FallbackRuleUsed', 'SafetyCapTriggered',
   'LaneLogicalSwitched', 'LaneChangeCompleted', 'LaneChangeInterrupted',
-  'StuckRepath', 'RepathLaneUnavailable', 'FrontDeadlockRangeBoost', 'RiftCollapseWarning',
+  'StuckRepath', 'RepathLaneUnavailable', 'FrontDeadlockRangeBoost', 'RiftCollapseWarning', 'RiftCollapseEndRequest',
 ];
 
 describe('event registry', () => {
-  it('all 38 required event types are registered', () => {
+  it('all 39 required event types are registered', () => {
     expect(Object.keys(EVENT_SPEC).sort()).toEqual([...required].sort());
   });
 
