@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { enemyContactDistanceX100, preservesFrontOrder, resolveEnemyStop, violatesEnemyPassThrough, type MoveIntent } from '../../src/game/sim/collision/collision-resolver.js';
-import { isOvertakeAuthorized, separateAllies, SEPARATION_MAX_X100_PER_ENTITY_TICK, validateOvertakeGrant } from '../../src/game/sim/collision/separation.js';
+import { isOvertakeAuthorized, separateAllies, separateAlliesTowardEnemy, SEPARATION_MAX_X100_PER_ENTITY_TICK, validateOvertakeGrant } from '../../src/game/sim/collision/separation.js';
 import { overlapDepthX100, type Body } from '../../src/game/sim/geometry/distance.js';
 import { asFieldX100, asX100, type Lane } from '../../src/game/sim/geometry/x100.js';
 import { resolveMovement } from '../../src/game/sim/movement/movement-system.js';
@@ -65,9 +65,31 @@ describe('ally separation', () => {
   });
 
   it('reports residual overlap when the safety cap is exhausted', () => {
-    const result = separateAllies([body('a', 100, 20), body('b', 110, 20)], 1);
+    // Depth 60 (two radius-30 bodies on one point) exceeds the 25-per-entity
+    // tick budget, so one iteration cannot fully separate them (§8.2).
+    const result = separateAllies([body('a', 100, 30), body('b', 100, 30)], 1);
     expect(result.safetyCapReached).toBe(true);
     expect(result.residualOverlaps).toBeGreaterThan(0);
+  });
+
+  it('lets the rear absorb the overlap when the front is pinned at the enemy boundary', () => {
+    const result = separateAlliesTowardEnemy([body('rear', 130, 20), body('front', 135, 20)], 8, { frontDirection: 1, frontLimitX100: { front: 135 } });
+    const front = result.bodies.find((b) => b.id === 'front');
+    const rear = result.bodies.find((b) => b.id === 'rear');
+    if (front === undefined || rear === undefined) throw new Error('missing separated body');
+    expect(front.x100).toBe(135); // never pushed past the enemy boundary
+    expect(rear.x100).toBe(105); // absorbed the full 25-X100 budget
+    expect(result.residualOverlaps).toBe(1);
+  });
+
+  it('advances the front into free space before moving the rear (§8.2)', () => {
+    const result = separateAlliesTowardEnemy([body('rear', 130, 20), body('front', 140, 20)], 8, { frontDirection: 1, frontLimitX100: { front: 200 } });
+    const front = result.bodies.find((b) => b.id === 'front');
+    const rear = result.bodies.find((b) => b.id === 'rear');
+    if (front === undefined || rear === undefined) throw new Error('missing separated body');
+    expect(front.x100).toBe(165);
+    expect(rear.x100).toBe(125);
+    expect(result.residualOverlaps).toBe(0);
   });
 });
 

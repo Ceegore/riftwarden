@@ -51,6 +51,7 @@
     "RiftCollapseWarning",
     "SafetyCapTriggered",
     "ShieldApplied",
+    "SpawnRejected",
     "Spawned",
     "StuckRepath",
     "SummonLimitBlocked",

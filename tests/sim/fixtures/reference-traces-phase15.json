@@ -14,7 +14,7 @@
     "H:noop.resolve_committed",
     "I:noop.apply_effects",
     "J:noop.death_resolution",
-    "K:noop.spawn",
+    "K:phase15.k1.spawn",
     "L:phase15.l.endcap",
     "M:noop.snapshot"
   ],
