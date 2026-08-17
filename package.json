@@ -109,6 +109,8 @@
     "test:kernel": "node --test tests/sim/*.test.mjs && vitest run --project kernel",
     "kernel:audit": "node tools/sim/audit-kernel-imports.mjs",
     "kernel:validate-readiness": "node tools/sim/validate-phase13-readiness.mjs",
+    "sim:mass": "node tools/sim/run-mass-sim.mjs",
+    "sim:crossruntime": "node tools/sim/generate-crossruntime-matrix.mjs",
     "rules:typecheck": "tsc -p tsconfig.type-fixtures.json --noEmit",
     "rules:audit": "node tools/rules/audit-magic-values.mjs src config/magic-value-allowlist.json",
     "rules:validate-snapshots": "node tools/rules/validate-rule-snapshots.mjs .",

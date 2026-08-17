@@ -45,3 +45,31 @@ test('kernel import audit passes on the clean src tree', () => {
   assert.equal(report.status, 'PASS');
   assert.deepEqual(report.findings, []);
 });
+
+test('crossruntime matrix pins Node against the reference trace and leaves devices NOT_RUN', () => {
+  const d = mkdtempSync(join(tmpdir(), 'p14-cr-'));
+  const res = run(['tools/sim/generate-crossruntime-matrix.mjs', join(d, 'matrix.json')]);
+  assert.equal(res.status, 0, res.stderr);
+  const matrix = JSON.parse(readFileSync(join(d, 'matrix.json'), 'utf8'));
+  const fixture = JSON.parse(readFileSync(join(root, 'tests', 'sim', 'fixtures', 'reference-traces.json'), 'utf8'));
+  assert.equal(matrix.runtimes.node.tick30, fixture.checkpoints.find((c) => c.tick === 30).checksum);
+  assert.equal(matrix.runtimes.node.tick60, fixture.checkpoints.find((c) => c.tick === 60).checksum);
+  assert.equal(matrix.runtimes.node.endHash, fixture.finalSnapshotChecksum);
+  assert.equal(matrix.status, 'PARTIAL');
+  for (const key of ['chromium', 'firefox', 'webkit', 'android_webview', 'ios_wkwebview']) {
+    assert.equal(matrix.runtimes[key].status, 'NOT_RUN');
+  }
+});
+
+test('mass-sim harness reports PASS with no drift and accumulates events across battles', () => {
+  const d = mkdtempSync(join(tmpdir(), 'p14-mass-'));
+  const res = run(['tools/sim/run-mass-sim.mjs', '--battles', '5', '--out', join(d, 'mass.json')]);
+  assert.equal(res.status, 0, res.stderr);
+  const report = JSON.parse(readFileSync(join(d, 'mass.json'), 'utf8'));
+  assert.equal(report.status, 'PASS');
+  assert.equal(report.invariantErrors, 0);
+  assert.equal(report.hashDrift, 0);
+  assert.equal(report.totalEvents, 5 * 60);
+  assert.equal(report.totalTicks, 5 * 60);
+  assert.ok(report.tickLatencyMs.max >= report.tickLatencyMs.median);
+});
