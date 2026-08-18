@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "implementationPhase": 9,
+  "implementationPhase": 16,
   "branchProtectionRequiredContexts": [
     "PR / workflow-security",
     "PR / dependency-security",
@@ -73,6 +73,11 @@
     {
       "job": "phase15_gates",
       "activationPhase": 15,
+      "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "phase16_gates",
+      "activationPhase": 16,
       "expectedBeforeActivation": "skipped"
     }
   ],

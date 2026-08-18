@@ -1,5 +1,6 @@
 import type { EntityPhaseState } from './entity-state.js';
 import type { LaneChange } from '../movement/lane-change.js';
+import type { AttackState } from '../attack/attack-state.js';
 import { KernelInvariantError } from './invariant-error.js';
 
 const ID=/^[a-z][a-z0-9_]*$/;
@@ -34,6 +35,18 @@ export interface KernelEntity {
   // Phase 16 additive fields (targeting/attack foundation).
   readonly origin?: 'regular'|'summoned'|'construct';
   readonly inRangeSinceTick?: number|null;
+  // Phase 17 additive fields (attack lifecycle).
+  readonly attackState?: AttackState|null;
+  /** Recovery locks movement through this tick (§5.2, first half). */
+  readonly recoveryMovementLockedUntilTick?: number;
+  /** Per-entity monotonic counter for attack instance ids (§5.1). */
+  readonly attackInstanceSeq?: number;
+  /**
+   * Persistent interval gate: next tick the entity may begin a new attack
+   * (previous begin + interval, §5.2). Lives on the entity, not inside
+   * `attackState`, because the state is cleared when the cycle completes.
+   */
+  readonly attackIntervalReadyTick?: number;
 }
 
 function isLane(value:unknown):value is Lane { return typeof value==='string' && (LANES as readonly string[]).includes(value); }
@@ -74,5 +87,19 @@ export function validateEntity(entity: KernelEntity): void {
   const origin: unknown = entity.origin;
   if (origin !== undefined && origin !== 'regular' && origin !== 'summoned' && origin !== 'construct') throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'origin',value:origin});
   if (entity.inRangeSinceTick !== undefined && entity.inRangeSinceTick !== null && (!Number.isSafeInteger(entity.inRangeSinceTick) || entity.inRangeSinceTick < 0 || Object.is(entity.inRangeSinceTick, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'inRangeSinceTick',value:entity.inRangeSinceTick});
+  if (entity.attackState !== undefined && entity.attackState !== null) {
+    const attack = entity.attackState;
+    if (!Number.isSafeInteger(attack.attackInstanceId) || attack.attackInstanceId < 0) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'attackState.attackInstanceId',value:attack.attackInstanceId});
+    if (!ID.test(attack.sourceId) || !ID.test(attack.targetId)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'attackState.ids',sourceId:attack.sourceId,targetId:attack.targetId});
+    if (!Number.isSafeInteger(attack.prepareStartedTick) || attack.prepareStartedTick < 0) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'attackState.prepareStartedTick',value:attack.prepareStartedTick});
+    if (attack.commitTick !== null && (!Number.isSafeInteger(attack.commitTick) || attack.commitTick < 0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'attackState.commitTick',value:attack.commitTick});
+    if (attack.recoveryEndTick !== null && (!Number.isSafeInteger(attack.recoveryEndTick) || attack.recoveryEndTick < 0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'attackState.recoveryEndTick',value:attack.recoveryEndTick});
+    if (!Number.isSafeInteger(attack.intervalReadyTick) || attack.intervalReadyTick < 0) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'attackState.intervalReadyTick',value:attack.intervalReadyTick});
+    if (!Number.isSafeInteger(attack.effectIndex) || attack.effectIndex < 0) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'attackState.effectIndex',value:attack.effectIndex});
+    if (attack.commitTick !== null && attack.recoveryEndTick !== null && attack.commitTick > attack.recoveryEndTick) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'attackState.recovery-before-commit'});
+  }
+  if (entity.recoveryMovementLockedUntilTick !== undefined && (!Number.isSafeInteger(entity.recoveryMovementLockedUntilTick) || entity.recoveryMovementLockedUntilTick < 0 || Object.is(entity.recoveryMovementLockedUntilTick, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'recoveryMovementLockedUntilTick',value:entity.recoveryMovementLockedUntilTick});
+  if (entity.attackInstanceSeq !== undefined && (!Number.isSafeInteger(entity.attackInstanceSeq) || entity.attackInstanceSeq < 0 || Object.is(entity.attackInstanceSeq, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'attackInstanceSeq',value:entity.attackInstanceSeq});
+  if (entity.attackIntervalReadyTick !== undefined && (!Number.isSafeInteger(entity.attackIntervalReadyTick) || entity.attackIntervalReadyTick < 0 || Object.is(entity.attackIntervalReadyTick, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'attackIntervalReadyTick',value:entity.attackIntervalReadyTick});
   for (const [key,value] of Object.entries(entity.timers)) if (!Number.isSafeInteger(value) || value < 0) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,timer:key,value});
 }

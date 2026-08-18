@@ -24,6 +24,8 @@ const PHASE15_FIELDS = [
   'noProgressTicks', 'repathTicks', 'laneFallbackUsed', 'stuckStopGapBonusUntilTick',
   'frontDeadlockBlockedTicks', 'deadlockBuffConsumed', 'deadlockBuffedEntityId',
   'origin', 'inRangeSinceTick',
+  // Phase 17 additive attack-lifecycle fields.
+  'attackState', 'recoveryMovementLockedUntilTick', 'attackInstanceSeq', 'attackIntervalReadyTick',
 ] as const;
 
 function phase15FieldCount(entity: KernelEntity): number {
@@ -71,6 +73,10 @@ export function migrateEntity(args: MigrateEntityArgs): KernelEntity {
     deadlockBuffedEntityId: null,
     origin: 'regular',
     inRangeSinceTick: null,
+    attackState: null,
+    recoveryMovementLockedUntilTick: 0,
+    attackInstanceSeq: 0,
+    attackIntervalReadyTick: 0,
   });
 }
 

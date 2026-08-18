@@ -158,6 +158,8 @@ export function resolveMovementTick(
   // Phase 1: movement intentions from the frozen prior state.
   const intentions = new Map<string, Intention>();
   for (const { entity, radiusX100, movementRemainder } of sorted) {
+    // §5.2: recovery locks movement through the first half of the window.
+    if ((entity.recoveryMovementLockedUntilTick ?? 0) > tick) continue;
     const speed = speedsX100PerSecond[entity.id];
     if (speed === undefined) continue;
     const direction: 1 | -1 = entity.side === 'player' ? 1 : -1;

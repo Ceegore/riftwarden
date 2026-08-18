@@ -11,7 +11,7 @@ const eventContract = JSON.parse(readFileSync(path.join(here, '..', '..', 'contr
 
 const requiredTypes = [
   'BattleStarted', 'PhaseStarted', 'BattleEnded', 'Spawned', 'Activated', 'TargetChanged', 'MovedLane', 'Defeated', 'Removed', 'Revived',
-  'AttackPrepared', 'ProjectileSpawned', 'DamageApplied', 'HealApplied', 'ShieldApplied', 'EffectApplied', 'EffectRemoved',
+  'AttackPrepared', 'AttackInterrupted', 'AttackCommitted', 'AttackRecoveryStarted', 'AttackCycleCompleted', 'ProjectileSpawned', 'DamageApplied', 'HealApplied', 'ShieldApplied', 'EffectApplied', 'EffectRemoved',
   'ChargeReady', 'AbilityPrepared', 'AbilityInterrupted', 'AbilityCommitted', 'AbilityResolved',
   'ModifierTriggered', 'HazardTelegraphed', 'HazardResolved', 'ReinforcementQueued', 'ReinforcementSpawned',
   'InvalidTargetPrevented', 'SummonLimitBlocked', 'FallbackRuleUsed', 'SafetyCapTriggered',
@@ -31,7 +31,7 @@ describe('pipeline contract', () => {
 });
 
 describe('event contract', () => {
-  it('40 required event types are registered with valid categories', () => {
+  it('44 required event types are registered with valid categories', () => {
     expect(Object.keys(EVENT_SPEC).sort()).toEqual([...requiredTypes].sort());
     const categories = ['lifecycle', 'entity', 'combat', 'ability', 'world', 'diagnostics'];
     for (const spec of Object.values(EVENT_SPEC)) {

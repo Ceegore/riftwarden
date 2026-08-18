@@ -2,6 +2,7 @@ import type { BattlePhase } from './battle-state.js';
 import type { TransitionRequest } from './entity-state.js';
 import type { KernelEntity } from './entity.js';
 import type { KernelEventInput } from '../events/event-types.js';
+import type { AttackState } from '../attack/attack-state.js';
 import type { ScheduledEventInput } from '../scheduler/scheduled-event.js';
 import type { Lane } from '../geometry/x100.js';
 import type { LaneChange } from '../movement/lane-change.js';
@@ -20,6 +21,9 @@ export type KernelCommand =
   | Readonly<{kind:'set_lane_change'; entityId:string; state:LaneChange|null}>
   | Readonly<{kind:'set_lane_change_cooldown'; entityId:string; untilTick:number}>
   | Readonly<{kind:'set_attack_state'; entityId:string; inRangeSinceTick:number|null}>
+  | Readonly<{kind:'set_attack_lifecycle'; entityId:string; state:AttackState|null; recoveryMovementLockedUntilTick:number}>
+  | Readonly<{kind:'set_attack_instance_seq'; entityId:string; seq:number}>
+  | Readonly<{kind:'set_attack_interval_ready'; entityId:string; readyTick:number}>
   | Readonly<{kind:'set_stuck_state'; entityId:string; noProgressTicks:number; repathTicks:readonly number[]; laneFallbackUsed:boolean; stopGapBonusUntilTick:number}>
   | Readonly<{kind:'set_deadlock_state'; entityId:string; blockedTicks:number; buffConsumed:boolean; buffedEntityId:string|null}>
   | Readonly<{kind:'set_global_progress'; noProgressTicks:number; collapseTicks:number; warned:boolean}>

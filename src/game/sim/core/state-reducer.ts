@@ -121,6 +121,28 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, inRangeSinceTick: command.inRangeSinceTick }) : e));
         break;
       }
+      case 'set_attack_instance_seq': {
+        requireEntity(entities, command.entityId);
+        if (!Number.isSafeInteger(command.seq) || command.seq < 0 || Object.is(command.seq, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-instance-seq-invalid', entityId: command.entityId, seq: command.seq });
+        entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, attackInstanceSeq: command.seq }) : e));
+        break;
+      }
+      case 'set_attack_interval_ready': {
+        requireEntity(entities, command.entityId);
+        if (!Number.isSafeInteger(command.readyTick) || command.readyTick < 0 || Object.is(command.readyTick, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-interval-ready-invalid', entityId: command.entityId, readyTick: command.readyTick });
+        entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, attackIntervalReadyTick: command.readyTick }) : e));
+        break;
+      }
+      case 'set_attack_lifecycle': {
+        requireEntity(entities, command.entityId);
+        if (command.state !== null) {
+          if (!Number.isSafeInteger(command.recoveryMovementLockedUntilTick) || command.recoveryMovementLockedUntilTick < 0 || Object.is(command.recoveryMovementLockedUntilTick, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-recovery-lock-invalid', entityId: command.entityId });
+          entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, attackState: command.state, recoveryMovementLockedUntilTick: command.recoveryMovementLockedUntilTick }) : e));
+        } else {
+          entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, attackState: null, recoveryMovementLockedUntilTick: 0 }) : e));
+        }
+        break;
+      }
       case 'set_lane_change_cooldown': {
         requireEntity(entities, command.entityId);
         assertNonNegativeSafe(command.untilTick, 'lane-change-cooldown-invalid');

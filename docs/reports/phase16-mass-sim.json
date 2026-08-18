@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "phase": 16,
+  "gate": "G15",
+  "sourceRevision": null,
+  "runtime": {
+    "node": "v25.8.0",
+    "platform": "win32",
+    "arch": "x64"
+  },
+  "battles": 10000,
+  "ticksPerBattle": 60,
+  "totalTicks": 600000,
+  "totalEvents": 240000,
+  "entityDistribution": {
+    "player": 3,
+    "enemy": 3
+  },
+  "mode": "phase16-targeting-attackprep",
+  "warmup": 10,
+  "runs": 1,
+  "tickLatencyMs": {
+    "median": 0.996,
+    "p95": 2.553,
+    "p99": 4.415,
+    "max": 504.407,
+    "variance": 2.394803
+  },
+  "hashLatencyMs": {
+    "median": 0.127,
+    "p95": 0.335,
+    "p99": 0.648,
+    "max": 22.23,
+    "variance": 0.056515
+  },
+  "peakRssBytes": 272654336,
+  "peakHeapBytes": 112168920,
+  "endRssBytes": 272654336,
+  "endHeapBytes": 111395056,
+  "invariantErrors": 0,
+  "hashDrift": 0,
+  "referenceFinalHash": "658ed6fb960ea62a2c13f9cca54a006ff8f39c7219c571231be4058a8a22ac06",
+  "status": "PASS"
+}

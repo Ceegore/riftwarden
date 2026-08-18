@@ -43,6 +43,7 @@ export default defineConfig({
       { test: { name: 'replay', include: ['tests/replay/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'kernel', include: ['tests/sim/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'phase15', include: ['tests/phase15/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase16', include: ['tests/sim/phase16-*.test.ts', 'tests/sim/reference-traces-phase16.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'simulation', include: ['tests/simulation/**/*.test.ts'], sequence: { concurrent: false }, setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'integration', include: ['tests/integration/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
     ],

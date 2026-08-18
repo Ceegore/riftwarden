@@ -14,7 +14,7 @@ concurrency:
 
 env:
   CI: 'true'
-  RIFTWARDEN_IMPLEMENTATION_PHASE: '9'
+  RIFTWARDEN_IMPLEMENTATION_PHASE: '16'
 
 jobs:
   bootstrap_versions:
@@ -150,6 +150,13 @@ jobs:
     with:
       gate: phase15-gates
 
+  phase16_gates:
+    name: PR / phase16-gates
+    if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_16_TARGETING_ENABLED == 'true'
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: phase16-gates
+
   asset_manifest_validate:
     name: PR / asset-manifest-validate
     if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_38_ASSETS_ENABLED == 'true'
@@ -195,6 +202,7 @@ jobs:
       - random_gates
       - sim_gates
       - phase15_gates
+      - phase16_gates
       - asset_manifest_validate
       - native_config_diff
       - android_debug_smoke
@@ -211,4 +219,4 @@ jobs:
       - name: Assert active and phased results
         env:
           NEEDS_JSON: ${{ toJSON(needs) }}
-        run: node tools/ci/assert-needs-results.mjs --phase 9
+        run: node tools/ci/assert-needs-results.mjs --phase 16

@@ -6,7 +6,7 @@ import { eventInput, tick, sequence } from './test-helpers.js';
 
 const required = [
   'BattleStarted', 'PhaseStarted', 'BattleEnded', 'Spawned', 'Activated', 'TargetChanged', 'MovedLane', 'Defeated', 'Removed', 'Revived',
-  'AttackPrepared', 'ProjectileSpawned', 'DamageApplied', 'HealApplied', 'ShieldApplied', 'EffectApplied', 'EffectRemoved',
+  'AttackPrepared', 'AttackInterrupted', 'AttackCommitted', 'AttackRecoveryStarted', 'AttackCycleCompleted', 'ProjectileSpawned', 'DamageApplied', 'HealApplied', 'ShieldApplied', 'EffectApplied', 'EffectRemoved',
   'ChargeReady', 'AbilityPrepared', 'AbilityInterrupted', 'AbilityCommitted', 'AbilityResolved',
   'ModifierTriggered', 'HazardTelegraphed', 'HazardResolved', 'ReinforcementQueued', 'ReinforcementSpawned',
   'InvalidTargetPrevented', 'SummonLimitBlocked', 'FallbackRuleUsed', 'SafetyCapTriggered',
@@ -15,7 +15,7 @@ const required = [
 ];
 
 describe('event registry', () => {
-  it('all 40 required event types are registered', () => {
+  it('all 44 required event types are registered', () => {
     expect(Object.keys(EVENT_SPEC).sort()).toEqual([...required].sort());
   });
 

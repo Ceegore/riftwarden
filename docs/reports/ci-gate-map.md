@@ -1,6 +1,6 @@
-# CI gate map — Phase 09 baseline
+# CI gate map — Phase 16 baseline
 
-| Check | Current state in Phase 09 | Owner/activation | Required branch context |
+| Check | Current state in Phase 16 | Owner/activation | Required branch context |
 |---|---|---|---|
 | Bootstrap/tool versions | Active | Phase 02 | via `PR / required` |
 | Format + file length | Active | Phase 01/02 | via `PR / required` |
@@ -18,7 +18,8 @@
 | Math gates (tests, callsite audit, readiness) | Not enabled before Phase 12 | Phase 12 | aggregate expects skipped |
 | Random gates (PRNG/replay tests, callsite audit, slots, golden seeds, readiness) | Not enabled before Phase 13 | Phase 13 | aggregate expects skipped |
 | Sim kernel gates (tick/state/event tests, kernel import audit, G13 readiness) | Not enabled before Phase 14 | Phase 14 | aggregate expects skipped |
-| Phase 15 movement gates (geometry/movement/lane-change tests, G14 readiness) | Not enabled before Phase 15 | Phase 15 | aggregate expects skipped |
+| Phase 15 movement gates (geometry/movement/lane-change tests, G14 readiness) | Active | Phase 15 | aggregate expects success |
+| Phase 16 targeting gates (query/score/lock/attack-prep tests, G15 readiness) | Active | Phase 16 | aggregate expects success |
 | Native config/Android debug | Active | Phase 04 | aggregate expects success |
 | Asset manifest | Not enabled before Phase 38 | Phase 38 | aggregate expects skipped |
 | Signed release | Not enabled; protected manual skeleton only | Phase 47 | never a PASS |

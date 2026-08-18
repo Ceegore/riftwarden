@@ -16,19 +16,20 @@ function arg(name, fallback) {
 const battles = Number(arg('battles', '10000'));
 const ticksPerBattle = Number(arg('ticks', '60'));
 const phase15 = process.argv.includes('--phase15');
-const out = resolve(arg('out', resolve(root, 'docs', 'reports', phase15 ? 'phase15-mass-sim.json' : 'phase14-mass-sim.json')));
+const phase16 = process.argv.includes('--phase16');
+const out = resolve(arg('out', resolve(root, 'docs', 'reports', phase16 ? 'phase16-mass-sim.json' : phase15 ? 'phase15-mass-sim.json' : 'phase14-mass-sim.json')));
 
 const api = await loadKernel();
 const { battleKernel, noopSystems, snapshot } = api;
 
-function buildPhase15Battle(_api) {
+function buildPhase15Battle(_api, simulationVersion = 'phase15-fixture-v1') {
   const { primitives, random, migrate } = api;
   const rnd = buildRandom(api);
   const entity = (id, side, lane, x100, radiusX100, maxLp = 1000) =>
     migrate.migrateEntity({ entity: { id, side, phase: Object.freeze({ phase: 'ACTIVE', enteredTick: primitives.tick(0), controlledReturn: null }), maxLp, lp: maxLp, shield: 0, lane, x100, targetId: null, timers: Object.freeze({}) }, radiusX100 });
   return Object.freeze({
     schemaVersion: 1,
-    simulationVersion: 'phase15-fixture-v1',
+    simulationVersion,
     battleId: 'battle_fixture',
     tick: primitives.tick(0),
     nextSequence: primitives.sequence(0),
@@ -77,6 +78,22 @@ if (phase15) {
   const speeds = { unit_p1: 300, unit_p2: 320, unit_p3: 290, unit_e1: 290, unit_e2: 295, unit_e3: 300 };
   systems = Object.freeze(api.phase15Systems.createPhase15Systems({
     speedsX100PerSecond: speeds,
+    spawnRequests: (ctx) => {
+      if (ctx.state.tick === 3) return [{ kind: 'summon', reservedId: 'summon_a', side: 'player', targetLane: 'middle', radiusX100: 100, maxLp: 500, startZoneX100: 200 }];
+      if (ctx.state.tick === 18) return [{ kind: 'summon', reservedId: 'summon_large', side: 'player', targetLane: 'middle', radiusX100: 160, maxLp: 2000, startZoneX100: 200, displacementPolicy: 'displace' }];
+      return [];
+    },
+  }));
+  buildBattleFor = buildPhase15Battle;
+  entityDistribution = { player: 3, enemy: 3 };
+} else if (phase16) {
+  buildBattleFor = (_api) => buildPhase15Battle(_api, 'phase16-fixture-v1');
+  const speeds = { unit_p1: 300, unit_p2: 320, unit_p3: 290, unit_e1: 290, unit_e2: 295, unit_e3: 300 };
+  systems = Object.freeze(api.phase16Systems.createPhase16Systems({
+    speedsX100PerSecond: speeds,
+    attackPrep: {
+      preferredRangeX100: Object.fromEntries(Object.keys(speeds).map((id) => [id, api.x100.asX100(2500)])),
+    },
     spawnRequests: (ctx) => {
       if (ctx.state.tick === 3) return [{ kind: 'summon', reservedId: 'summon_a', side: 'player', targetLane: 'middle', radiusX100: 100, maxLp: 500, startZoneX100: 200 }];
       if (ctx.state.tick === 18) return [{ kind: 'summon', reservedId: 'summon_large', side: 'player', targetLane: 'middle', radiusX100: 160, maxLp: 2000, startZoneX100: 200, displacementPolicy: 'displace' }];
@@ -179,8 +196,8 @@ try {
 
   const report = {
     schemaVersion: 1,
-    phase: phase15 ? 15 : 14,
-    gate: 'G14',
+    phase: phase16 ? 16 : phase15 ? 15 : 14,
+    gate: phase16 ? 'G15' : phase15 ? 'G14' : 'G13',
     sourceRevision: process.env.SOURCE_REVISION ?? null,
     runtime: { node: process.version, platform: process.platform, arch: process.arch },
     battles,
@@ -188,7 +205,7 @@ try {
     totalTicks: tickDurations.length,
     totalEvents,
     entityDistribution,
-    mode: phase15 ? 'phase15-spawn-separation' : 'phase14-noop',
+    mode: phase16 ? 'phase16-targeting-attackprep' : phase15 ? 'phase15-spawn-separation' : 'phase14-noop',
     warmup: 10,
     runs: 1,
     tickLatencyMs: latency(tickDurations),
