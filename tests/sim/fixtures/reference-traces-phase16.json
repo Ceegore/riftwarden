@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "simulationVersion": "phase16-fixture-v1",
+  "pipelineCallOrder": [
+    "A:noop.finalize_previous",
+    "B:noop.timers",
+    "C:noop.periodic",
+    "D:noop.triggers",
+    "E:phase16.e1.targeting",
+    "F:phase15.f1.lane_change",
+    "F:phase15.f2.movement",
+    "F:phase15.f3.anti_stuck",
+    "G:phase16.g1.attack_prep",
+    "H:noop.resolve_committed",
+    "I:noop.apply_effects",
+    "J:noop.death_resolution",
+    "K:phase15.k1.spawn",
+    "L:phase15.l.endcap",
+    "M:noop.snapshot"
+  ],
+  "checkpoints": [
+    {
+      "tick": 30,
+      "checksum": "e45f396a499e7574bce022c79002405bbd113a98446998ce6af131e98ae16dc2"
+    },
+    {
+      "tick": 60,
+      "checksum": "4fe24d6f6f42e6c429c1297a440624601ec677c59aac3e1ea2a88d73adea4b5a"
+    }
+  ],
+  "finalSnapshotChecksum": "4fe24d6f6f42e6c429c1297a440624601ec677c59aac3e1ea2a88d73adea4b5a"
+}

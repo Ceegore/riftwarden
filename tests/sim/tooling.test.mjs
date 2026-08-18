@@ -67,6 +67,14 @@ test('crossruntime matrix pins Node against the reference trace and leaves devic
   for (const key of ['chromium', 'firefox', 'webkit']) {
     assert.equal(matrix.phase15.runtimes[key].status, 'NOT_RUN');
   }
+  // Phase 16 targeting/attack-prep column is pinned against its fixture too.
+  const fixture16 = JSON.parse(readFileSync(join(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase16.json'), 'utf8'));
+  assert.equal(matrix.phase16.runtimes.node.tick30, fixture16.checkpoints.find((c) => c.tick === 30).checksum);
+  assert.equal(matrix.phase16.runtimes.node.tick60, fixture16.checkpoints.find((c) => c.tick === 60).checksum);
+  assert.equal(matrix.phase16.runtimes.node.endHash, fixture16.finalSnapshotChecksum);
+  for (const key of ['chromium', 'firefox', 'webkit']) {
+    assert.equal(matrix.phase16.runtimes[key].status, 'NOT_RUN');
+  }
 });
 
 test('mass-sim harness reports PASS with no drift and accumulates events across battles', () => {
@@ -153,4 +161,14 @@ test('crossruntime browser runner fills desktop engines hash-identically to Node
   }
   assert.equal(matrix.phase15.runtimes.android_webview.status, 'NOT_RUN');
   assert.equal(matrix.phase15.runtimes.ios_wkwebview.status, 'NOT_RUN');
+  // Phase 16 targeting/attack-prep trace: desktop engines hash-identical to the P16 node column.
+  for (const key of ['chromium', 'firefox', 'webkit']) {
+    assert.equal(matrix.phase16.runtimes[key].status, 'PASS', `${key}: ${JSON.stringify(matrix.phase16.runtimes[key].drift)}`);
+    assert.equal(matrix.phase16.runtimes[key].tick30, matrix.phase16.runtimes.node.tick30);
+    assert.equal(matrix.phase16.runtimes[key].tick60, matrix.phase16.runtimes.node.tick60);
+    assert.equal(matrix.phase16.runtimes[key].endHash, matrix.phase16.runtimes.node.endHash);
+    assert.equal(matrix.phase16.runtimes[key].startHash, matrix.phase16.runtimes.node.startHash);
+  }
+  assert.equal(matrix.phase16.runtimes.android_webview.status, 'NOT_RUN');
+  assert.equal(matrix.phase16.runtimes.ios_wkwebview.status, 'NOT_RUN');
 });

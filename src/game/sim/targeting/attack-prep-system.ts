@@ -39,12 +39,17 @@ export function createAttackPrepSystem(config: AttackPrepConfig = {}): KernelSys
         const range = ranges[entity.id];
         if (range === undefined) continue;
         const targetId = entity.targetId;
-        if (targetId === null) continue;
+        const wasInRange = entity.inRangeSinceTick !== undefined && entity.inRangeSinceTick !== null;
+        if (targetId === null) {
+          // A released/defeated target must not leave a stale in-range marker:
+          // the attack foundation is only meaningful while a target is locked.
+          if (wasInRange) context.commands.push({ kind: 'set_attack_state', entityId: entity.id, inRangeSinceTick: null });
+          continue;
+        }
         const target = context.state.entities.find((e) => e.id === targetId);
         if (target === undefined) continue;
         const distance = edgeDistanceX100(bodyOf(entity.id, entity), bodyOf(target.id, target));
         const inRange = distance <= nonNegativeX100(range);
-        const wasInRange = entity.inRangeSinceTick !== undefined && entity.inRangeSinceTick !== null;
         if (inRange && !wasInRange) {
           context.commands.push({ kind: 'set_attack_state', entityId: entity.id, inRangeSinceTick: tick });
           context.commands.push({ kind: 'append_event', event: eventFor('AttackPrepared', entity.id, { commitTick: tick }) });

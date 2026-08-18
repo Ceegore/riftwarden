@@ -9,6 +9,8 @@ import { stepBattle } from '../../../src/game/sim/core/battle-kernel.js';
 import { migrateEntity } from '../../../src/game/sim/core/migrate.js';
 import { createNoopSystems } from '../../../src/game/sim/core/noop-systems.js';
 import { createPhase15Systems } from '../../../src/game/sim/core/phase15-systems.js';
+import { createPhase16Systems } from '../../../src/game/sim/core/phase16-systems.js';
+import { asX100 } from '../../../src/game/sim/geometry/x100.js';
 import { sequence, tick } from '../../../src/game/sim/core/primitives.js';
 import { RngStreamMap } from '../../../src/game/sim/random/rng-stream-map.js';
 import { RandomSession } from '../../../src/game/sim/random/random-session.js';
@@ -159,3 +161,72 @@ const p15Result = Object.freeze({
 });
 
 (globalThis as unknown as { __P15_CROSSRUNTIME__: unknown }).__P15_CROSSRUNTIME__ = p15Result;
+
+// ---------------------------------------------------------------------------
+// Phase 16 oracle: the same trace as tests/sim/fixtures/reference-traces-phase16.json
+// (targeting in stage E and attack-prep in stage G active on the P15 kernel).
+// ---------------------------------------------------------------------------
+function buildPhase16Battle() {
+  const rnd = buildRandom();
+  const entities = Object.freeze([
+    buildPhase15Entity('unit_player_a', 'player', 1800, 'top', 100),
+    buildPhase15Entity('unit_player_b', 'player', 2400, 'middle', 120),
+    buildPhase15Entity('unit_enemy_a', 'enemy', 6200, 'middle', 140),
+    buildPhase15Entity('unit_enemy_b', 'enemy', 7600, 'bottom', 150),
+  ]);
+  return Object.freeze({
+    schemaVersion: 1,
+    simulationVersion: 'phase16-fixture-v1',
+    battleId: 'battle_fixture',
+    tick: tick(0),
+    nextSequence: sequence(0),
+    emittedEventCount: 0,
+    phase: Object.freeze({ phase: 'ACTIVE', enteredTick: tick(0), resolvingEndTicks: 0 }),
+    entities,
+    scheduledEvents: Object.freeze([]),
+    authoritativeStreams: rnd.streams.snapshotAuthoritative(),
+    endReason: null,
+  });
+}
+
+const p16State0 = buildPhase16Battle();
+const p16Random = buildRandom();
+const p16StartHash = createSnapshot(p16State0).checksum;
+const p16Checkpoints: { tick: number; checksum: string }[] = [];
+
+let p16State = p16State0;
+let p16CallOrder: readonly string[] = [];
+for (let i = 0; i < 60; i++) {
+  const r = stepBattle({
+    state: p16State,
+    input,
+    random: p16Random,
+    rules: {},
+    content: {},
+    systems: createPhase16Systems({
+      speedsX100PerSecond: { unit_player_a: 305, unit_player_b: 300 },
+      attackPrep: {
+        preferredRangeX100: {
+          unit_player_a: asX100(5000),
+          unit_player_b: asX100(4000),
+        },
+      },
+    }),
+  });
+  p16State = r.state;
+  if (i === 0) p16CallOrder = r.callOrder;
+  if (r.checkpoint) p16Checkpoints.push({ tick: p16State.tick, checksum: r.checkpoint.checksum });
+}
+
+const p16Result = Object.freeze({
+  startHash: p16StartHash,
+  tick30: p16Checkpoints.find((c) => c.tick === 30)?.checksum ?? null,
+  tick60: p16Checkpoints.find((c) => c.tick === 60)?.checksum ?? null,
+  endHash: createSnapshot(p16State).checksum,
+  endTick: p16State.tick,
+  endReason: p16State.endReason,
+  eventCount: p16State.emittedEventCount,
+  callOrder: p16CallOrder,
+});
+
+(globalThis as unknown as { __P16_CROSSRUNTIME__: unknown }).__P16_CROSSRUNTIME__ = p16Result;

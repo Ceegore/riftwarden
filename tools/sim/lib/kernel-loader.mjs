@@ -16,6 +16,8 @@ const ENTRY_MODULES = {
   events: 'src/game/sim/events/index.ts',
   migrate: 'src/game/sim/core/migrate.ts',
   phase15Systems: 'src/game/sim/core/phase15-systems.ts',
+  phase16Systems: 'src/game/sim/core/phase16-systems.ts',
+  x100: 'src/game/sim/geometry/x100.ts',
 };
 
 /**
@@ -197,6 +199,87 @@ export function runNodePhase15ReferenceTrace(api) {
   const startHash = snapshot.createSnapshot(state).checksum;
   const random = buildRandom(api);
   const systems = phase15Systems.createPhase15Systems({ speedsX100PerSecond: { unit_player_a: 305, unit_player_b: 300 } });
+  const checkpoints = [];
+  let callOrder = [];
+  for (let i = 0; i < 60; i++) {
+    const r = battleKernel.stepBattle({ state, input, random, rules: {}, content: {}, systems });
+    state = r.state;
+    if (i === 0) callOrder = [...r.callOrder];
+    if (r.checkpoint) checkpoints.push({ tick: state.tick, checksum: r.checkpoint.checksum });
+  }
+  return {
+    startHash,
+    tick30: checkpoints.find((c) => c.tick === 30)?.checksum ?? null,
+    tick60: checkpoints.find((c) => c.tick === 60)?.checksum ?? null,
+    endHash: snapshot.createSnapshot(state).checksum,
+    endTick: state.tick,
+    endReason: state.endReason,
+    eventCount: state.emittedEventCount,
+    callOrder,
+  };
+}
+
+/**
+ * Builds the Phase 16 60-tick reference battle: migrated entities with the
+ * Phase 16 additive fields, targeting (stage E) and attack-prep (stage G)
+ * active, matching tests/sim/fixtures/reference-traces-phase16.json exactly.
+ */
+export function buildPhase16Battle(api) {
+  const { migrate, primitives } = api;
+  const mk = (id, side, x100, lane, radius) =>
+    migrate.migrateEntity({
+      entity: Object.freeze({
+        id,
+        side,
+        phase: Object.freeze({ phase: 'ACTIVE', enteredTick: primitives.tick(0), controlledReturn: null }),
+        maxLp: 1000,
+        lp: 1000,
+        shield: 0,
+        lane,
+        x100,
+        targetId: null,
+        timers: Object.freeze({}),
+      }),
+      radiusX100: radius,
+    });
+  const entities = [
+    mk('unit_player_a', 'player', 1800, 'top', 100),
+    mk('unit_player_b', 'player', 2400, 'middle', 120),
+    mk('unit_enemy_a', 'enemy', 6200, 'middle', 140),
+    mk('unit_enemy_b', 'enemy', 7600, 'bottom', 150),
+  ];
+  const rnd = buildRandom(api);
+  return Object.freeze({
+    schemaVersion: 1,
+    simulationVersion: 'phase16-fixture-v1',
+    battleId: 'battle_fixture',
+    tick: primitives.tick(0),
+    nextSequence: primitives.sequence(0),
+    emittedEventCount: 0,
+    phase: Object.freeze({ phase: 'ACTIVE', enteredTick: primitives.tick(0), resolvingEndTicks: 0 }),
+    entities: Object.freeze(entities),
+    scheduledEvents: Object.freeze([]),
+    authoritativeStreams: rnd.streams.snapshotAuthoritative(),
+    endReason: null,
+  });
+}
+
+/** Runs the Phase 16 60-tick trace and returns its hashes (the P16 Node reference column). */
+export function runNodePhase16ReferenceTrace(api) {
+  const { battleKernel, phase16Systems, snapshot, x100 } = api;
+  const input = Object.freeze({ paused: false, decisions: Object.freeze([]), contentVersion: 'content_fixture' });
+  let state = buildPhase16Battle(api);
+  const startHash = snapshot.createSnapshot(state).checksum;
+  const random = buildRandom(api);
+  const systems = phase16Systems.createPhase16Systems({
+    speedsX100PerSecond: { unit_player_a: 305, unit_player_b: 300 },
+    attackPrep: {
+      preferredRangeX100: {
+        unit_player_a: x100.asX100(5000),
+        unit_player_b: x100.asX100(4000),
+      },
+    },
+  });
   const checkpoints = [];
   let callOrder = [];
   for (let i = 0; i < 60; i++) {

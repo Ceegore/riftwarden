@@ -145,6 +145,21 @@ describe('Phase 16 G-stage attack prep', () => {
     expect(result.state.entities.find((e) => e.id === 'unit_p')?.inRangeSinceTick).toBe(0);
   });
 
+  it('clears the in-range marker when the target is released (no stale state)', () => {
+    const state = battle({
+      simulationVersion: 'phase15-fixture-v1',
+      entities: [unit('unit_p', { x100: 1800 }), unit('unit_e', { side: 'enemy', x100: 1900 })],
+    });
+    const systems = phase16({}, { attackPrep: { preferredRangeX100: { unit_p: asX100(2000) } } });
+    const first = run(state, 1, systems);
+    expect(first.state.entities.find((e) => e.id === 'unit_p')?.inRangeSinceTick).toBe(0);
+    // Stage E releases the target (enemy removed); the marker must clear too.
+    const removed = first.state.entities.map((e) => (e.id === 'unit_e' ? Object.freeze({ ...e, phase: Object.freeze({ phase: 'REMOVED', enteredTick: e.phase.enteredTick, controlledReturn: null }) }) : e));
+    const second = run(Object.freeze({ ...first.state, entities: Object.freeze(removed) }), 1, systems);
+    expect(second.state.entities.find((e) => e.id === 'unit_p')?.targetId).toBeNull();
+    expect(second.state.entities.find((e) => e.id === 'unit_p')?.inRangeSinceTick).toBeNull();
+  });
+
   it('clears the in-range marker when the target leaves range', () => {
     const state = battle({
       simulationVersion: 'phase15-fixture-v1',

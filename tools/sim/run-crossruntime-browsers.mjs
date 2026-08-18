@@ -5,7 +5,7 @@ import { mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadKernel, runNodeReferenceTrace, runNodePhase15ReferenceTrace } from './lib/kernel-loader.mjs';
+import { loadKernel, runNodeReferenceTrace, runNodePhase15ReferenceTrace, runNodePhase16ReferenceTrace } from './lib/kernel-loader.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
@@ -40,6 +40,16 @@ try {
     process.exit(1);
   }
 
+  // Phase 16 reference: same 60-tick window, active targeting + attack-prep.
+  const node16 = runNodePhase16ReferenceTrace(api);
+  const pinned16 = JSON.parse(readFileSync(join(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase16.json'), 'utf8'));
+  const expected16_30 = pinned16.checkpoints.find((c) => c.tick === 30)?.checksum;
+  const expected16_60 = pinned16.checkpoints.find((c) => c.tick === 60)?.checksum;
+  if (node16.tick30 !== expected16_30 || node16.tick60 !== expected16_60 || node16.endHash !== pinned16.finalSnapshotChecksum) {
+    console.error(JSON.stringify({ status: 'FAIL', reason: 'node16-drift-vs-pinned-fixture', node16 }, null, 2));
+    process.exit(1);
+  }
+
   // Build the browser oracle as a self-contained IIFE so it needs no module
   // server or ESM loader inside the page.
   const buildResult = await build({
@@ -65,6 +75,9 @@ try {
   const runtimes15 = {
     node: { status: 'REFERENCE', version: process.version, host: process.platform, ...pick(node15) },
   };
+  const runtimes16 = {
+    node: { status: 'REFERENCE', version: process.version, host: process.platform, ...pick(node16) },
+  };
   let browserFailures = 0;
 
   for (const [name, { launch }] of Object.entries(DESKTOP_BROWSERS)) {
@@ -76,9 +89,11 @@ try {
       await page.addScriptTag({ path: fixtureJs });
       const result = await page.evaluate(() => globalThis.__P14_CROSSRUNTIME__);
       const result15 = await page.evaluate(() => globalThis.__P15_CROSSRUNTIME__);
+      const result16 = await page.evaluate(() => globalThis.__P16_CROSSRUNTIME__);
       const drift = driftField(result, node);
       const drift15 = driftField(result15, node15);
-      const ok = drift === null && drift15 === null;
+      const drift16 = driftField(result16, node16);
+      const ok = drift === null && drift15 === null && drift16 === null;
       if (!ok) browserFailures++;
       runtimes[name] = {
         status: ok ? 'PASS' : 'FAIL',
@@ -108,6 +123,20 @@ try {
         exitCode: drift15 === null ? 0 : 1,
         ...(drift15 === null ? {} : { drift: drift15 }),
       };
+      runtimes16[name] = {
+        status: drift16 === null ? 'PASS' : 'FAIL',
+        version,
+        host: `${process.platform} (Playwright)`,
+        startHash: result16.startHash,
+        tick30: result16.tick30,
+        tick60: result16.tick60,
+        endHash: result16.endHash,
+        endTick: result16.endTick,
+        endReason: result16.endReason,
+        eventCount: result16.eventCount,
+        exitCode: drift16 === null ? 0 : 1,
+        ...(drift16 === null ? {} : { drift: drift16 }),
+      };
     } finally {
       await browser.close();
     }
@@ -116,6 +145,7 @@ try {
   for (const key of ['android_webview', 'ios_wkwebview']) {
     runtimes[key] = { status: 'NOT_RUN', version: null, host: null, startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null };
     runtimes15[key] = { status: 'NOT_RUN', version: null, host: null, startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null };
+    runtimes16[key] = { status: 'NOT_RUN', version: null, host: null, startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null };
   }
 
   const matrix = {
@@ -134,6 +164,14 @@ try {
       status: 'PARTIAL',
       note: 'Phase 15 movement trace: desktop engines hash-identical to the Node reference and the pinned fixture; WebViews NOT_RUN.',
       runtimes: runtimes15,
+    },
+    phase16: {
+      phase: 16,
+      gate: 'G16',
+      fixture: 'tests/sim/fixtures/reference-traces-phase16.json',
+      status: 'PARTIAL',
+      note: 'Phase 16 targeting/attack-prep trace: desktop engines hash-identical to the Node reference and the pinned fixture; WebViews NOT_RUN.',
+      runtimes: runtimes16,
     },
   };
   writeFileSync(out, `${JSON.stringify(matrix, null, 2)}\n`);
