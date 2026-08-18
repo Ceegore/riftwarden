@@ -3,6 +3,7 @@ import type { KernelEntity } from '../core/entity.js';
 import { edgeDistanceX100, type Body } from '../geometry/distance.js';
 import { asX100, nonNegativeX100, type X100 } from '../geometry/x100.js';
 import type { ProjectileParameters } from '../projectile/projectile-state.js';
+import { validateAoEShape, type AoEShape } from '../combat/area-sampler.js';
 
 /**
  * Authoritative attack-instance state (§P17-T01). One entity may hold at most
@@ -44,6 +45,8 @@ export interface DirectHitParams {
   readonly defense: number;
   /** Boss cap in basis points of max LP, or null for non-boss targets. */
   readonly bossCapBps?: number | null;
+  /** T03: optional AoE shape; a direct hit with a shape hits every boundary target. */
+  readonly aoeShape?: AoEShape | null;
 }
 
 /** §5.2: attack tempo never lowers the interval below 0.45 s = 14 ticks. */
@@ -75,6 +78,9 @@ export function validateAttackParameters(params: AttackParameters): void {
     }
     if (params.delivery.bossCapBps !== undefined && params.delivery.bossCapBps !== null && (!Number.isSafeInteger(params.delivery.bossCapBps) || params.delivery.bossCapBps < 0)) {
       throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-delivery-boss-cap-invalid', bossCapBps: params.delivery.bossCapBps });
+    }
+    if (params.delivery.aoeShape !== undefined && params.delivery.aoeShape !== null) {
+      validateAoEShape(params.delivery.aoeShape);
     }
     if (params.delivery.kind === 'projectile') {
       for (const key of ['speedX100PerSecond', 'maxTurnX100PerTick', 'expiryTicks'] as const) {

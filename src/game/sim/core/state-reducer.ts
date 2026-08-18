@@ -206,6 +206,18 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
       case 'clear_combat_applications':
         pendingCombatApplications = Object.freeze([]);
         break;
+      case 'set_pending_overkill': {
+        requireEntity(entities, command.entityId);
+        if (!Number.isSafeInteger(command.overkill) || command.overkill < 0 || Object.is(command.overkill, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'overkill-invalid', entityId: command.entityId, overkill: command.overkill });
+        entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, pendingOverkill: command.overkill }) : e));
+        break;
+      }
+      case 'set_revive_count': {
+        requireEntity(entities, command.entityId);
+        if (!Number.isSafeInteger(command.count) || command.count < 0 || Object.is(command.count, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'revive-count-invalid', entityId: command.entityId, count: command.count });
+        entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, reviveCount: command.count }) : e));
+        break;
+      }
       case 'set_projectiles': {
         if (!Array.isArray(command.projectiles)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'projectiles-not-array' });
         const validated: ProjectileState[] = command.projectiles.map((projectile) => {

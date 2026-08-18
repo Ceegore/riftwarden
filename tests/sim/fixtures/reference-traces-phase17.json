@@ -13,7 +13,7 @@
     "G:phase17.g1.basic_attack",
     "H:phase17.h1.projectile",
     "I:phase17.i1.combat_application",
-    "J:noop.death_resolution",
+    "J:phase17.j1.defeat_resolver",
     "K:phase15.k1.spawn",
     "L:phase15.l.endcap",
     "M:noop.snapshot"
@@ -21,12 +21,12 @@
   "checkpoints": [
     {
       "tick": 30,
-      "checksum": "17015d252adef795f7a2492dd43ee98ca79f85dfca0de56f7bc6babcb158fa38"
+      "checksum": "b50fe36ce527eee4b543c7661cab87fbd231cf4a0cd3db732ed1e831f996777b"
     },
     {
       "tick": 60,
-      "checksum": "21fb3a125413a154f3f77882f75d09196d35b70598037e233ddda5f6496f22ab"
+      "checksum": "d89cbba1995cbbaa471db6a27e27668046be154b075711fa747c3f1665c19641"
     }
   ],
-  "finalSnapshotChecksum": "21fb3a125413a154f3f77882f75d09196d35b70598037e233ddda5f6496f22ab"
+  "finalSnapshotChecksum": "d89cbba1995cbbaa471db6a27e27668046be154b075711fa747c3f1665c19641"
 }

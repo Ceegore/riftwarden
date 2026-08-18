@@ -106,6 +106,17 @@ describe('P17 T02 §6 projectile state machine', () => {
     expect(step.impactAt).toBeNull();
   });
 
+  it('continue_straight with a lost target keeps flying until expiry (no throw)', () => {
+    // Regression: an invalid target must not hit the unreachable-policy guard;
+    // continue_straight flies on and resolves at the expiry tick.
+    let p = makeProjectile({ expiryTick: 20, lostTargetPolicy: 'continue_straight' });
+    for (let t = 1; t < 20; t++) p = stepProjectile(p, undefined, t).state;
+    const step = stepProjectile(p, undefined, 20);
+    expect(step.state.resolved).toBe(true);
+    expect(step.impactAt).toBeNull();
+    expect(step.state.x100).toBeGreaterThan(1800);
+  });
+
   it('homing re-aims at the live target and resolves on reach', () => {
     const p = makeProjectile({ homing: true, maxTurnX100PerTick: 500, speedX100PerSecond: 6000 });
     const target = unit('unit_e', { side: 'enemy', x100: 2600 });

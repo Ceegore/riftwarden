@@ -3,6 +3,7 @@ import type { KernelEntity } from '../core/entity.js';
 import type { KernelSystem, TickContext } from '../core/tick-context.js';
 import { spawnProjectile } from '../projectile/projectile-state.js';
 import type { PendingCombatApplication } from '../combat/combat-application.js';
+import { aoeCoverReductionBps, sampleAreaTargets } from '../combat/area-sampler.js';
 import {
   MIN_ATTACK_INTERVAL_TICKS,
   commitAttack,
@@ -52,6 +53,7 @@ function deliverAttack(context: TickContext, source: KernelEntity, target: Kerne
         lostTargetPolicy: delivery.lostTargetPolicy,
         coverIgnoring: delivery.coverIgnoring,
         piercing: delivery.piercing,
+        aoeShape: delivery.aoeShape ?? null,
         rawAmount: delivery.rawAmount,
         damageTypeOrdinal: delivery.damageTypeOrdinal,
         defense: delivery.defense,
@@ -62,20 +64,29 @@ function deliverAttack(context: TickContext, source: KernelEntity, target: Kerne
     context.commands.push({ kind: 'set_projectiles', projectiles: Object.freeze([...existing, projectile]) });
     return;
   }
-  const application: PendingCombatApplication = Object.freeze({
-    kind: 'damage',
-    sourceId: source.id,
-    targetId: target.id,
-    effectId: `attack_${String(state.attackInstanceId)}`,
-    attackInstanceId: state.attackInstanceId,
-    effectIndex: state.effectIndex,
-    rawAmount: delivery.rawAmount,
-    damageTypeOrdinal: delivery.damageTypeOrdinal,
-    defense: delivery.defense,
-    coverReductionBps: 0,
-    bossCapBps: delivery.bossCapBps ?? null,
-  });
-  context.commands.push({ kind: 'queue_combat_application', application });
+  // Direct hit: single target, or every target touching the AoE boundary when
+  // the delivery carries a T03 shape (magic area — no projectile cover).
+  const coverReductionBps = delivery.aoeShape !== undefined && delivery.aoeShape !== null ? aoeCoverReductionBps() : 0;
+  const targets = delivery.aoeShape !== undefined && delivery.aoeShape !== null
+    ? sampleAreaTargets(delivery.aoeShape, context.state.entities, source.side)
+    : [target];
+  for (const hit of targets) {
+    if (hit.phase.phase !== 'ACTIVE') continue;
+    const application: PendingCombatApplication = Object.freeze({
+      kind: 'damage',
+      sourceId: source.id,
+      targetId: hit.id,
+      effectId: `attack_${String(state.attackInstanceId)}`,
+      attackInstanceId: state.attackInstanceId,
+      effectIndex: state.effectIndex,
+      rawAmount: delivery.rawAmount,
+      damageTypeOrdinal: delivery.damageTypeOrdinal,
+      defense: delivery.defense,
+      coverReductionBps,
+      bossCapBps: delivery.bossCapBps ?? null,
+    });
+    context.commands.push({ kind: 'queue_combat_application', application });
+  }
 }
 
 function emit(context: TickContext, transition: AttackTransition, entityId: string): void {

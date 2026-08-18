@@ -4,6 +4,7 @@ import { asX100, nonNegativeX100 } from '../geometry/x100.js';
 import type { KernelEntity } from '../core/entity.js';
 import { edgeDistanceX100, type Body } from '../geometry/distance.js';
 import { movementStep } from '../movement/movement-step.js';
+import { validateAoEShape, type AoEShape } from '../combat/area-sampler.js';
 
 const ID = /^[a-z][a-z0-9_]*$/;
 
@@ -40,6 +41,8 @@ export interface ProjectileState {
   readonly coverIgnoring: boolean;
   readonly piercing: boolean;
   readonly resolved: boolean;
+  /** T03: optional AoE shape sampled at impact instead of a single target. */
+  readonly aoeShape: AoEShape | null;
   // Committed damage payload (source snapshot, §5.3/§8).
   readonly rawAmount: number;
   readonly damageTypeOrdinal: number;
@@ -55,6 +58,7 @@ export interface ProjectileParameters {
   readonly lostTargetPolicy: 'impact_stored_position' | 'expire' | 'continue_straight';
   readonly coverIgnoring: boolean;
   readonly piercing: boolean;
+  readonly aoeShape?: AoEShape | null;
   readonly rawAmount: number;
   readonly damageTypeOrdinal: number;
   readonly defense: number;
@@ -82,6 +86,7 @@ export function validateProjectileState(state: ProjectileState): void {
   if (state.bossCapBps !== null && (!Number.isSafeInteger(state.bossCapBps) || state.bossCapBps < 0)) {
     throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'projectile-boss-cap', value: state.bossCapBps });
   }
+  if (state.aoeShape !== null) validateAoEShape(state.aoeShape);
   for (const key of ['homing', 'coverIgnoring', 'piercing', 'resolved'] as const) {
     if (typeof state[key] !== 'boolean') throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'projectile-flag', key });
   }
@@ -122,16 +127,11 @@ export function stepProjectile(state: ProjectileState, target: KernelEntity | un
   if (state.resolved) return { state, impactAt: null };
   const targetValid = target?.phase.phase === 'ACTIVE';
 
-  // §6 lost-target policies.
-  if (!targetValid && !state.homing) {
-    if (state.lostTargetPolicy === 'expire') return { state: Object.freeze({ ...state, resolved: true }), impactAt: null };
-    if (state.lostTargetPolicy === 'continue_straight' && state.expiryTick > 0 && atTick >= state.expiryTick) {
-      return { state: Object.freeze({ ...state, resolved: true }), impactAt: null };
-    }
-    // impact_stored_position flies to the stored aim even past expiry.
-    if (state.lostTargetPolicy !== 'impact_stored_position') {
-      throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'projectile-policy-unreachable', value: state.lostTargetPolicy });
-    }
+  // §6 lost-target policies. `impact_stored_position` flies to the stored aim
+  // even past expiry; `continue_straight` keeps flying and resolves at expiry;
+  // `expire` resolves immediately. The union type rules out any other value.
+  if (!targetValid && !state.homing && state.lostTargetPolicy === 'expire') {
+    return { state: Object.freeze({ ...state, resolved: true }), impactAt: null };
   }
 
   // Expiry (non-homing without a stored-position arrival still expires).
@@ -206,6 +206,7 @@ export function spawnProjectile(args: { readonly id: string; readonly attackInst
     coverIgnoring: args.params.coverIgnoring,
     piercing: args.params.piercing,
     resolved: false,
+    aoeShape: args.params.aoeShape ?? null,
     rawAmount: args.params.rawAmount,
     damageTypeOrdinal: args.params.damageTypeOrdinal,
     defense: args.params.defense,

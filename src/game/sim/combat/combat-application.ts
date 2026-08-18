@@ -166,29 +166,17 @@ export function applyDamagePipeline(target: KernelEntity, shields: readonly Shie
 
 function damagePayload(application: Extract<PendingCombatApplication, { kind: 'damage' }>, o: DamageOutcome): Record<string, number> {
   return {
-    rawAmount: application.rawAmount,
-    damageTypeOrdinal: application.damageTypeOrdinal,
-    effectiveDefense: o.effectiveDefense,
-    preShieldAmount: o.preShieldAmount,
-    absorbedShield: o.absorbedShield,
-    finalHpDelta: o.finalHpDelta,
-    hpBefore: o.hpBefore,
-    hpAfter: o.hpAfter,
-    shieldBefore: o.shieldBefore,
-    shieldAfter: o.shieldAfter,
-    attackInstanceId: application.attackInstanceId,
-    effectIndex: application.effectIndex,
+    rawAmount: application.rawAmount, damageTypeOrdinal: application.damageTypeOrdinal, effectiveDefense: o.effectiveDefense,
+    preShieldAmount: o.preShieldAmount, absorbedShield: o.absorbedShield, finalHpDelta: o.finalHpDelta,
+    hpBefore: o.hpBefore, hpAfter: o.hpAfter, shieldBefore: o.shieldBefore, shieldAfter: o.shieldAfter,
+    attackInstanceId: application.attackInstanceId, effectIndex: application.effectIndex,
   };
 }
 
 function healPayload(application: Extract<PendingCombatApplication, { kind: 'heal' }>, o: HealOutcome): Record<string, number> {
   return {
-    rawAmount: o.rawAmount,
-    finalHpDelta: o.finalHpDelta,
-    hpBefore: o.hpBefore,
-    hpAfter: o.hpAfter,
-    attackInstanceId: application.attackInstanceId,
-    effectIndex: application.effectIndex,
+    rawAmount: o.rawAmount, finalHpDelta: o.finalHpDelta, hpBefore: o.hpBefore, hpAfter: o.hpAfter,
+    attackInstanceId: application.attackInstanceId, effectIndex: application.effectIndex,
   };
 }
 
@@ -251,6 +239,9 @@ export function createCombatApplicationSystem(): KernelSystem {
             context.commands.push({ kind: 'append_event', event: eventFor(application, 'ShieldAbsorbed', target.id, { amount: detail.absorbed, remaining: detail.remainingAfter }) });
           }
           context.commands.push({ kind: 'apply_lp_delta', entityId: target.id, delta: -result.outcome.finalHpDelta, sourceId: application.sourceId });
+          // §9: stage I records the killing blow's overkill (excess beyond the
+          // remaining LP); stage J consumes it for the Defeated event.
+          if (result.outcome.hpAfter === 0) context.commands.push({ kind: 'set_pending_overkill', entityId: target.id, overkill: Math.max(0, result.outcome.preShieldAmount - result.outcome.absorbedShield - result.outcome.finalHpDelta) });
           context.commands.push({ kind: 'append_event', event: eventFor(application, 'DamageApplied', target.id, damagePayload(application, result.outcome)) });
         } else if (application.kind === 'heal') {
           const outcome = applyHealPipeline(target, application);

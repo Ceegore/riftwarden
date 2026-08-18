@@ -50,6 +50,11 @@ export interface KernelEntity {
   readonly attackIntervalReadyTick?: number;
   // Phase 17 additive combat fields (T04 shield ledger).
   readonly shields?: readonly ShieldSource[];
+  // Phase 17 additive defeat fields (T05 stage J).
+  /** Overkill of the killing hit, recorded by stage I and consumed by stage J. */
+  readonly pendingOverkill?: number;
+  /** Number of revives this entity received; feeds once-per-battle caps. */
+  readonly reviveCount?: number;
 }
 
 function isLane(value:unknown):value is Lane { return typeof value==='string' && (LANES as readonly string[]).includes(value); }
@@ -111,5 +116,7 @@ export function validateEntity(entity: KernelEntity): void {
       validateShieldSource(source as Parameters<typeof validateShieldSource>[0]);
     }
   }
+  if (entity.pendingOverkill !== undefined && (!Number.isSafeInteger(entity.pendingOverkill) || entity.pendingOverkill < 0 || Object.is(entity.pendingOverkill, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'pendingOverkill',value:entity.pendingOverkill});
+  if (entity.reviveCount !== undefined && (!Number.isSafeInteger(entity.reviveCount) || entity.reviveCount < 0 || Object.is(entity.reviveCount, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'reviveCount',value:entity.reviveCount});
   for (const [key,value] of Object.entries(entity.timers)) if (!Number.isSafeInteger(value) || value < 0) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,timer:key,value});
 }

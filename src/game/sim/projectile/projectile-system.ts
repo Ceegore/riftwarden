@@ -3,6 +3,7 @@ import type { KernelEntity } from '../core/entity.js';
 import type { X100 } from '../geometry/x100.js';
 import { forecastTravelTicks, sampleImpactTargets, stepProjectile, type ProjectileState } from './projectile-state.js';
 import { PROJECTILE_COVER_REDUCTION_BPS, type PendingCombatApplication } from '../combat/combat-application.js';
+import { aoeCoverReductionBps, sampleAreaTargets } from '../combat/area-sampler.js';
 
 /**
  * Stage-H projectile system (§P17-T02 §6/§7). Movement advances exactly once
@@ -61,8 +62,14 @@ export function createProjectileSystem(): KernelSystem {
 function queueImpact(context: TickContext, projectile: ProjectileState, impactX100: X100, committedTarget: KernelEntity | undefined): void {
   const source = context.state.entities.find((e) => e.id === projectile.sourceId);
   if (source === undefined) return;
-  const targets = sampleImpactTargets(impactX100, projectile.lane, context.state.entities, source.side);
-  const coverReductionBps = projectile.coverIgnoring || projectile.piercing ? 0 : PROJECTILE_COVER_REDUCTION_BPS;
+  // T03: a shaped projectile samples the AoE boundary (magic area, no cover
+  // reduction); a plain projectile keeps the single-lane 12% cover contract.
+  const targets = projectile.aoeShape !== null
+    ? sampleAreaTargets(projectile.aoeShape, context.state.entities, source.side)
+    : sampleImpactTargets(impactX100, projectile.lane, context.state.entities, source.side);
+  const coverReductionBps = projectile.aoeShape !== null
+    ? aoeCoverReductionBps()
+    : projectile.coverIgnoring || projectile.piercing ? 0 : PROJECTILE_COVER_REDUCTION_BPS;
   for (const target of targets) {
     if (target.phase.phase !== 'ACTIVE') continue;
     const application: PendingCombatApplication = Object.freeze({

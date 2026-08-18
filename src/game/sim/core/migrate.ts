@@ -28,6 +28,8 @@ const PHASE15_FIELDS = [
   'attackState', 'recoveryMovementLockedUntilTick', 'attackInstanceSeq', 'attackIntervalReadyTick',
   // Phase 17 additive combat field (T04 shield ledger).
   'shields',
+  // Phase 17 additive defeat fields (T05 stage J).
+  'pendingOverkill', 'reviveCount',
 ] as const;
 
 function phase15FieldCount(entity: KernelEntity): number {
@@ -80,6 +82,8 @@ export function migrateEntity(args: MigrateEntityArgs): KernelEntity {
     attackInstanceSeq: 0,
     attackIntervalReadyTick: 0,
     shields: Object.freeze([]),
+    pendingOverkill: 0,
+    reviveCount: 0,
   });
 }
 

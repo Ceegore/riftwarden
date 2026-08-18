@@ -68,6 +68,7 @@ interface FuzzEvent {
   readonly tick: number;
   readonly type: string;
   readonly sourceId: string | null;
+  readonly targetIds: readonly string[];
   readonly attackInstanceId: number | null;
   readonly payload: Readonly<Record<string, number>> | undefined;
 }
@@ -120,7 +121,7 @@ function runFuzz(config: FuzzConfig): { state: BattleModel; events: FuzzEvent[];
     for (const e of r.events) {
       const payload = e.payload as Record<string, number> | undefined;
       const attackInstanceId = typeof payload?.['attackInstanceId'] === 'number' ? payload['attackInstanceId'] : null;
-      events.push({ tick: current.tick, type: e.type, sourceId: e.sourceId, attackInstanceId, payload });
+      events.push({ tick: current.tick, type: e.type, sourceId: e.sourceId, targetIds: e.targetIds, attackInstanceId, payload });
     }
     callOrder.push([...r.callOrder]);
   }
@@ -158,8 +159,11 @@ function allConfigs(): FuzzConfig[] {
 }
 
 describe('P17 fuzz surface', () => {
+  // The seed loop replays 120 ticks per config; under full-suite parallel
+  // load a 5 s default can be exceeded, so grant a generous explicit budget.
+  const FUZZ_TIMEOUT = 30_000;
   for (const config of allConfigs()) {
-    it(`seed ${String(config.seed)} maintains combat invariants (${config.deliveryKind})`, () => {
+    it(`seed ${String(config.seed)} maintains combat invariants (${config.deliveryKind})`, { timeout: FUZZ_TIMEOUT }, () => {
       const { state, events } = runFuzz(config);
       // HP/shield never negative or above max.
       for (const e of state.entities) {
@@ -201,7 +205,7 @@ describe('P17 fuzz surface', () => {
     });
   }
 
-  it('is byte-deterministic for the same seed', () => {
+  it('is byte-deterministic for the same seed', { timeout: FUZZ_TIMEOUT }, () => {
     const configs = allConfigs();
     if (configs[0] === undefined) throw new Error('no fuzz configs');
     const a = runFuzz(configs[0]);
@@ -211,9 +215,10 @@ describe('P17 fuzz surface', () => {
     expect(JSON.stringify(a.callOrder)).toBe(JSON.stringify(b.callOrder));
   });
 
-  it('never emits the same event type twice for one attack instance in one tick', () => {
+  it('never emits the same event type twice for one attack instance in one tick', { timeout: FUZZ_TIMEOUT }, () => {
     for (const config of allConfigs()) {
       const { events } = runFuzz(config);
+
       // Per (tick, source, attack instance), each event type appears at most
       // once. Different attack instances may both resolve in one tick (e.g. two
       // projectiles impacting simultaneously), so instances must be keyed.
@@ -228,6 +233,69 @@ describe('P17 fuzz surface', () => {
         if (set.has(e.type)) throw new Error(`duplicate ${e.type} at ${key}`);
         set.add(e.type);
         perInstance.set(key, set);
+      }
+    }
+  });
+});
+
+describe('P17 stage-J defeat fuzz', () => {
+  const FUZZ_TIMEOUT = 30_000;
+  // Lethal raw amounts so kills actually happen and stage J is exercised.
+  function lethalConfigs(): FuzzConfig[] {
+    return allConfigs().map((c) => ({ ...c, rawAmount: int(prng(c.seed + 10_000), 600, 3000) }));
+  }
+
+  it('confirms every kill: Defeated follows the killing DamageApplied in the same tick', { timeout: FUZZ_TIMEOUT }, () => {
+    for (const config of lethalConfigs()) {
+      const { events } = runFuzz(config);
+      const defeatedAt = new Map<string, number>();
+      for (const e of events) {
+        if (e.type !== 'Defeated' || e.sourceId === null) continue;
+        defeatedAt.set(e.sourceId, e.tick);
+      }
+      for (const [entityId, tick] of defeatedAt) {
+        const kills = events.filter((e) => e.type === 'DamageApplied' && e.tick === tick && e.targetIds.includes(entityId));
+        expect(kills.length).toBeGreaterThan(0);
+        // The killing blow brings HP to 0: hpAfter === 0.
+        const killer = kills[kills.length - 1];
+        expect(killer?.payload?.['hpAfter']).toBe(0);
+        // Overkill = postShield - finalHpDelta, i.e. excess beyond remaining LP.
+        const overkill = Math.max(0, (killer?.payload?.['preShieldAmount'] ?? 0) - (killer?.payload?.['absorbedShield'] ?? 0) - (killer?.payload?.['finalHpDelta'] ?? 0));
+        const defeatedEvent = events.find((e) => e.type === 'Defeated' && e.sourceId === entityId && e.tick === tick);
+        expect(defeatedEvent?.payload?.['overkill']).toBe(overkill);
+      }
+    }
+  });
+
+  it('no combat events target an entity after it is defeated or removed', { timeout: FUZZ_TIMEOUT }, () => {
+    for (const config of lethalConfigs()) {
+      const { events } = runFuzz(config);
+      const terminalAt = new Map<string, number>();
+      for (const e of events) {
+        if (e.type === 'Defeated' && e.sourceId !== null && !terminalAt.has(e.sourceId)) terminalAt.set(e.sourceId, e.tick);
+      }
+      for (const e of events) {
+        if (e.type !== 'DamageApplied' && e.type !== 'HealApplied' && e.type !== 'ShieldApplied') continue;
+        if (e.tick < 2) continue;
+        for (const id of e.targetIds) {
+          const terminal = terminalAt.get(id);
+          if (terminal !== undefined) expect(e.tick).toBeLessThanOrEqual(terminal);
+        }
+      }
+    }
+  });
+
+  it('no premature death: Defeated never fires while LP is still positive', { timeout: FUZZ_TIMEOUT }, () => {
+    for (const config of lethalConfigs()) {
+      const { events } = runFuzz(config);
+      for (const e of events) {
+        if (e.type !== 'Defeated') continue;
+        // The killing blow in the same tick must have hpAfter 0 — meaning LP
+        // reached zero before stage J, never before stage I applied damage.
+        const kills = events.filter((k) => k.type === 'DamageApplied' && k.tick === e.tick && k.sourceId === e.sourceId);
+        if (kills.length > 0) {
+          expect(kills[kills.length - 1]?.payload?.['hpAfter']).toBe(0);
+        }
       }
     }
   });

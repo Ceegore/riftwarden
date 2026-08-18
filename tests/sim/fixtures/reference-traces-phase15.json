@@ -21,12 +21,12 @@
   "checkpoints": [
     {
       "tick": 30,
-      "checksum": "6909d80f428bfeddfefeeb2c454ec234009c699dfb65df61927e5d98a5aceba0"
+      "checksum": "8faad8f2988422f69af4fdce0e5b4fd5354577118b152e3fa68c197ee89272f0"
     },
     {
       "tick": 60,
-      "checksum": "8af2fde21f682a884e1fc89db7bbd4ebe74cf6a121f063077175031a5ccdd782"
+      "checksum": "accad72f0e99bdaaffe578eacb8fa75ad761f6a9a58ab61bc10abefeb7e25524"
     }
   ],
-  "finalSnapshotChecksum": "8af2fde21f682a884e1fc89db7bbd4ebe74cf6a121f063077175031a5ccdd782"
+  "finalSnapshotChecksum": "accad72f0e99bdaaffe578eacb8fa75ad761f6a9a58ab61bc10abefeb7e25524"
 }
