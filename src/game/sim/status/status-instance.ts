@@ -55,6 +55,10 @@ export type StatusPolarity = 'positive' | 'negative' | 'control';
 /** §8.1: hard control (stun/silence/confusion) vs soft control (slow). */
 export type ControlCategory = 'hard' | 'soft';
 
+/** §7.2: closed periodic effect kinds (burn, poison, regeneration). */
+export const PERIODIC_EFFECT_KINDS = ['burn', 'poison', 'regeneration'] as const;
+export type PeriodicEffectKind = (typeof PERIODIC_EFFECT_KINDS)[number];
+
 const HARD_CONTROL_KINDS: ReadonlySet<string> = new Set(['stun', 'silence', 'confusion']);
 
 export function controlCategoryOf(kind: StatusKind): ControlCategory | null {
@@ -72,6 +76,20 @@ export const PERMANENT_END_TICK = Number.MAX_SAFE_INTEGER;
  */
 export const STATUS_FLAGS = ['unremovable', 'initial_tick', 'expiry_marked'] as const;
 export type StatusFlag = (typeof STATUS_FLAGS)[number];
+
+/**
+ * §7.1: persisted periodic scheduling state. `nextTick` advances by exactly
+ * `intervalTicks` each firing (no drift after resume); `tickIndex` is the
+ * monotonic firing ordinal; `dedupKey` binds the effect to its content source.
+ */
+export interface PeriodicState {
+  readonly effectKind: PeriodicEffectKind;
+  readonly intervalTicks: number;
+  readonly nextTick: number;
+  readonly tickIndex: number;
+  readonly initialTick: boolean;
+  readonly dedupKey: string;
+}
 
 /**
  * §5.1: authoritative status instance. `endTick` is exclusive — the status is
@@ -93,6 +111,7 @@ export interface StatusInstance {
   readonly stackPolicy: StackPolicy;
   readonly maxStacks: number;
   readonly flags: readonly StatusFlag[];
+  readonly periodic?: PeriodicState;
   readonly contentIconId?: string;
 }
 
@@ -160,6 +179,26 @@ export function validateStatusInstance(instance: StatusInstance): void {
       throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'status-flag-duplicate', flag });
     }
     seen.add(flag);
+  }
+  if (instance.periodic !== undefined) {
+    if (!(PERIODIC_EFFECT_KINDS as readonly string[]).includes(instance.periodic.effectKind)) {
+      throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'status-periodic-kind-unknown', effectKind: instance.periodic.effectKind });
+    }
+    for (const [key, value] of Object.entries({
+      intervalTicks: instance.periodic.intervalTicks,
+      nextTick: instance.periodic.nextTick,
+      tickIndex: instance.periodic.tickIndex,
+    })) {
+      if (!Number.isSafeInteger(value) || value < 0) {
+        throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'status-periodic-integer-invalid', key, value });
+      }
+    }
+    if (instance.periodic.intervalTicks < 1) {
+      throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'status-periodic-interval', intervalTicks: instance.periodic.intervalTicks });
+    }
+    if (!ID.test(instance.periodic.dedupKey)) {
+      throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'status-periodic-dedup-invalid', dedupKey: instance.periodic.dedupKey });
+    }
   }
 }
 
