@@ -3,6 +3,9 @@ import type { BattleModel } from './battle-model.js';
 import type { KernelCommand, BattleTransitionRequest } from './command-types.js';
 import { transitionEntityPhase, selectEntityTransition, type TransitionRequest } from './entity-state.js';
 import { validateEntity, validateLaneChange, type KernelEntity } from './entity.js';
+import { validateShieldSource, type ShieldSource } from '../combat/shield-ledger.js';
+import { validatePendingCombatApplication } from '../combat/combat-application.js';
+import { validateProjectileState, type ProjectileState } from '../projectile/projectile-state.js';
 import { KernelInvariantError } from './invariant-error.js';
 import type { EventPriority, EventSequence, Tick } from './primitives.js';
 import type { EventQueue } from '../scheduler/event-queue.js';
@@ -42,6 +45,9 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   let globalNoProgressTicks = args.state.globalNoProgressTicks;
   let riftCollapseTicks = args.state.riftCollapseTicks;
   let riftCollapseWarningEmitted = args.state.riftCollapseWarningEmitted;
+  let projectiles = args.state.projectiles;
+  let pendingCombatApplications = args.state.pendingCombatApplications;
+  let combatApplicationSeq = args.state.combatApplicationSeq;
   const beforeEvents = args.log.size();
   const transitions = new Map<string, TransitionRequest[]>();
   const battleTransitions: BattleTransitionRequest[] = [];
@@ -175,6 +181,42 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         riftCollapseWarningEmitted = command.warned;
         break;
       }
+      case 'set_shields': {
+        requireEntity(entities, command.entityId);
+        if (!Array.isArray(command.shields)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'shields-not-array' });
+        const shields: ShieldSource[] = command.shields.map((source) => {
+          if (typeof source !== 'object' || source === null) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'shields-source-invalid' });
+          const validated = source as ShieldSource;
+          validateShieldSource(validated);
+          return validated;
+        });
+        entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, shields: Object.freeze(shields) }) : e));
+        break;
+      }
+      case 'queue_combat_application': {
+        validatePendingCombatApplication(command.application);
+        const seq = (combatApplicationSeq ?? 0) + 1;
+        combatApplicationSeq = seq;
+        const queued = command.application.kind === 'shield'
+          ? Object.freeze({ ...command.application, applicationSequence: seq })
+          : command.application;
+        pendingCombatApplications = Object.freeze([...(pendingCombatApplications ?? []), queued]);
+        break;
+      }
+      case 'clear_combat_applications':
+        pendingCombatApplications = Object.freeze([]);
+        break;
+      case 'set_projectiles': {
+        if (!Array.isArray(command.projectiles)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'projectiles-not-array' });
+        const validated: ProjectileState[] = command.projectiles.map((projectile) => {
+          if (typeof projectile !== 'object' || projectile === null) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'projectile-invalid' });
+          const typed = projectile as ProjectileState;
+          validateProjectileState(typed);
+          return typed;
+        });
+        projectiles = Object.freeze(validated);
+        break;
+      }
       case 'apply_lp_delta': {
         requireEntity(entities, command.entityId);
         if (!Number.isSafeInteger(command.delta)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'lp-delta-not-integer', entityId: command.entityId, delta: command.delta });
@@ -227,6 +269,9 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   if (globalNoProgressTicks !== undefined) extras['globalNoProgressTicks'] = globalNoProgressTicks;
   if (riftCollapseTicks !== undefined) extras['riftCollapseTicks'] = riftCollapseTicks;
   if (riftCollapseWarningEmitted !== undefined) extras['riftCollapseWarningEmitted'] = riftCollapseWarningEmitted;
+  if (projectiles !== undefined) extras['projectiles'] = projectiles;
+  if (pendingCombatApplications !== undefined) extras['pendingCombatApplications'] = pendingCombatApplications;
+  if (combatApplicationSeq !== undefined) extras['combatApplicationSeq'] = combatApplicationSeq;
   return Object.freeze({
     ...args.state,
     phase,

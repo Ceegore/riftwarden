@@ -1,6 +1,7 @@
 import type { EntityPhaseState } from './entity-state.js';
 import type { LaneChange } from '../movement/lane-change.js';
 import type { AttackState } from '../attack/attack-state.js';
+import { validateShieldSource, type ShieldSource } from '../combat/shield-ledger.js';
 import { KernelInvariantError } from './invariant-error.js';
 
 const ID=/^[a-z][a-z0-9_]*$/;
@@ -47,6 +48,8 @@ export interface KernelEntity {
    * `attackState`, because the state is cleared when the cycle completes.
    */
   readonly attackIntervalReadyTick?: number;
+  // Phase 17 additive combat fields (T04 shield ledger).
+  readonly shields?: readonly ShieldSource[];
 }
 
 function isLane(value:unknown):value is Lane { return typeof value==='string' && (LANES as readonly string[]).includes(value); }
@@ -101,5 +104,12 @@ export function validateEntity(entity: KernelEntity): void {
   if (entity.recoveryMovementLockedUntilTick !== undefined && (!Number.isSafeInteger(entity.recoveryMovementLockedUntilTick) || entity.recoveryMovementLockedUntilTick < 0 || Object.is(entity.recoveryMovementLockedUntilTick, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'recoveryMovementLockedUntilTick',value:entity.recoveryMovementLockedUntilTick});
   if (entity.attackInstanceSeq !== undefined && (!Number.isSafeInteger(entity.attackInstanceSeq) || entity.attackInstanceSeq < 0 || Object.is(entity.attackInstanceSeq, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'attackInstanceSeq',value:entity.attackInstanceSeq});
   if (entity.attackIntervalReadyTick !== undefined && (!Number.isSafeInteger(entity.attackIntervalReadyTick) || entity.attackIntervalReadyTick < 0 || Object.is(entity.attackIntervalReadyTick, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'attackIntervalReadyTick',value:entity.attackIntervalReadyTick});
+  if (entity.shields !== undefined) {
+    if (!Array.isArray(entity.shields)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'shields'});
+    for (const source of entity.shields) {
+      if (typeof source !== 'object' || source === null) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'shields.source'});
+      validateShieldSource(source as Parameters<typeof validateShieldSource>[0]);
+    }
+  }
   for (const [key,value] of Object.entries(entity.timers)) if (!Number.isSafeInteger(value) || value < 0) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,timer:key,value});
 }

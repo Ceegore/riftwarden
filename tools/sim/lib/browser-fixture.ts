@@ -10,6 +10,7 @@ import { migrateEntity } from '../../../src/game/sim/core/migrate.js';
 import { createNoopSystems } from '../../../src/game/sim/core/noop-systems.js';
 import { createPhase15Systems } from '../../../src/game/sim/core/phase15-systems.js';
 import { createPhase16Systems } from '../../../src/game/sim/core/phase16-systems.js';
+import { createPhase17Systems } from '../../../src/game/sim/core/phase17-systems.js';
 import { asX100 } from '../../../src/game/sim/geometry/x100.js';
 import { sequence, tick } from '../../../src/game/sim/core/primitives.js';
 import { RngStreamMap } from '../../../src/game/sim/random/rng-stream-map.js';
@@ -230,3 +231,96 @@ const p16Result = Object.freeze({
 });
 
 (globalThis as unknown as { __P16_CROSSRUNTIME__: unknown }).__P16_CROSSRUNTIME__ = p16Result;
+
+// ---------------------------------------------------------------------------
+// Phase 17 oracle: the same trace as tests/sim/fixtures/reference-traces-phase17.json
+// (basic-attack lifecycle with projectile delivery on the P16 kernel).
+// ---------------------------------------------------------------------------
+function buildPhase17Battle() {
+  const rnd = buildRandom();
+  const entities = Object.freeze([
+    buildPhase15Entity('unit_player_a', 'player', 1800, 'top', 100),
+    buildPhase15Entity('unit_player_b', 'player', 2400, 'middle', 120),
+    buildPhase15Entity('unit_enemy_a', 'enemy', 6200, 'middle', 140),
+    buildPhase15Entity('unit_enemy_b', 'enemy', 7600, 'bottom', 150),
+  ]);
+  return Object.freeze({
+    schemaVersion: 1,
+    simulationVersion: 'phase17-fixture-v1',
+    battleId: 'battle_fixture',
+    tick: tick(0),
+    nextSequence: sequence(0),
+    emittedEventCount: 0,
+    phase: Object.freeze({ phase: 'ACTIVE', enteredTick: tick(0), resolvingEndTicks: 0 }),
+    entities,
+    scheduledEvents: Object.freeze([]),
+    authoritativeStreams: rnd.streams.snapshotAuthoritative(),
+    endReason: null,
+  });
+}
+
+const p17State0 = buildPhase17Battle();
+const p17Random = buildRandom();
+const p17StartHash = createSnapshot(p17State0).checksum;
+const p17Checkpoints: { tick: number; checksum: string }[] = [];
+
+let p17State = p17State0;
+let p17CallOrder: readonly string[] = [];
+for (let i = 0; i < 60; i++) {
+  const r = stepBattle({
+    state: p17State,
+    input,
+    random: p17Random,
+    rules: {},
+    content: {},
+    systems: createPhase17Systems({
+      speedsX100PerSecond: { unit_player_a: 305, unit_player_b: 300 },
+      attackPrep: {
+        preferredRangeX100: {
+          unit_player_a: asX100(5000),
+          unit_player_b: asX100(4000),
+        },
+      },
+      basicAttack: {
+        parameters: {
+          unit_player_a: {
+            attackIntervalTicks: 40,
+            prepareTicks: 1,
+            recoveryTicks: 3,
+            preferredRangeX100: asX100(9000),
+            delivery: {
+              kind: 'projectile',
+              speedX100PerSecond: 3000,
+              homing: false,
+              maxTurnX100PerTick: 0,
+              expiryTicks: 60,
+              lostTargetPolicy: 'impact_stored_position',
+              coverIgnoring: true,
+              piercing: false,
+              rawAmount: 100,
+              damageTypeOrdinal: 0,
+              defense: 0,
+              bossCapBps: null,
+            },
+          },
+        },
+      },
+    }),
+  });
+  p17State = r.state;
+  if (i === 0) p17CallOrder = r.callOrder;
+  if (r.checkpoint) p17Checkpoints.push({ tick: p17State.tick, checksum: r.checkpoint.checksum });
+}
+
+const p17Result = Object.freeze({
+  startHash: p17StartHash,
+  tick30: p17Checkpoints.find((c) => c.tick === 30)?.checksum ?? null,
+  tick60: p17Checkpoints.find((c) => c.tick === 60)?.checksum ?? null,
+  endHash: createSnapshot(p17State).checksum,
+  endTick: p17State.tick,
+  endReason: p17State.endReason,
+  eventCount: p17State.emittedEventCount,
+  callOrder: p17CallOrder,
+});
+
+(globalThis as unknown as { __P17_CROSSRUNTIME__: unknown }).__P17_CROSSRUNTIME__ = p17Result;

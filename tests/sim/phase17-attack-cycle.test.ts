@@ -50,8 +50,14 @@ describe('Phase 17 T01 basic-attack lifecycle', () => {
     const ids = (systems: readonly { id: string }[]) => systems.map((s) => s.id);
     expect(ids(p17)).toContain('phase17.g1.basic_attack');
     expect(ids(p17)).not.toContain('phase16.g1.attack_prep');
+    expect(ids(p17)).toContain('phase17.h1.projectile');
+    expect(ids(p17)).toContain('phase17.i1.combat_application');
+    expect(ids(p17)).not.toContain('noop.resolve_committed');
+    expect(ids(p17)).not.toContain('noop.apply_effects');
     // Everything else is carried over unchanged.
-    expect(ids(p17).filter((id) => id !== 'phase17.g1.basic_attack')).toEqual(ids(p16).filter((id) => id !== 'phase16.g1.attack_prep'));
+    const expected = ids(p16).filter((id) => id !== 'phase16.g1.attack_prep' && id !== 'noop.resolve_committed' && id !== 'noop.apply_effects');
+    const actual = ids(p17).filter((id) => id !== 'phase17.g1.basic_attack' && id !== 'phase17.h1.projectile' && id !== 'phase17.i1.combat_application');
+    expect(actual).toEqual(expected);
   });
 
   it('prepares, commits and completes one full cycle with all five diagnostics', () => {

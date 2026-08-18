@@ -17,7 +17,8 @@ const battles = Number(arg('battles', '10000'));
 const ticksPerBattle = Number(arg('ticks', '60'));
 const phase15 = process.argv.includes('--phase15');
 const phase16 = process.argv.includes('--phase16');
-const out = resolve(arg('out', resolve(root, 'docs', 'reports', phase16 ? 'phase16-mass-sim.json' : phase15 ? 'phase15-mass-sim.json' : 'phase14-mass-sim.json')));
+const phase17 = process.argv.includes('--phase17');
+const out = resolve(arg('out', resolve(root, 'docs', 'reports', phase17 ? 'phase17-mass-sim.json' : phase16 ? 'phase16-mass-sim.json' : phase15 ? 'phase15-mass-sim.json' : 'phase14-mass-sim.json')));
 
 const api = await loadKernel();
 const { battleKernel, noopSystems, snapshot } = api;
@@ -58,7 +59,20 @@ const damageEvent = {
   sourceId: 'entity_alpha',
   targetIds: Object.freeze(['entity_delta']),
   contentIds: Object.freeze([]),
-  payload: Object.freeze({ amount: 100, damageTypeOrdinal: 0 }),
+  payload: Object.freeze({
+    rawAmount: 100,
+    damageTypeOrdinal: 0,
+    effectiveDefense: 0,
+    preShieldAmount: 100,
+    absorbedShield: 0,
+    finalHpDelta: 100,
+    hpBefore: 1000,
+    hpAfter: 900,
+    shieldBefore: 0,
+    shieldAfter: 0,
+    attackInstanceId: 1,
+    effectIndex: 0,
+  }),
   logTags: Object.freeze(['sim.fixture']),
 };
 const emitter = {
@@ -93,6 +107,49 @@ if (phase15) {
     speedsX100PerSecond: speeds,
     attackPrep: {
       preferredRangeX100: Object.fromEntries(Object.keys(speeds).map((id) => [id, api.x100.asX100(2500)])),
+    },
+    spawnRequests: (ctx) => {
+      if (ctx.state.tick === 3) return [{ kind: 'summon', reservedId: 'summon_a', side: 'player', targetLane: 'middle', radiusX100: 100, maxLp: 500, startZoneX100: 200 }];
+      if (ctx.state.tick === 18) return [{ kind: 'summon', reservedId: 'summon_large', side: 'player', targetLane: 'middle', radiusX100: 160, maxLp: 2000, startZoneX100: 200, displacementPolicy: 'displace' }];
+      return [];
+    },
+  }));
+  buildBattleFor = buildPhase15Battle;
+  entityDistribution = { player: 3, enemy: 3 };
+} else if (phase17) {
+  buildBattleFor = (_api) => buildPhase15Battle(_api, 'phase17-fixture-v1');
+  const speeds = { unit_p1: 300, unit_p2: 320, unit_p3: 290, unit_e1: 290, unit_e2: 295, unit_e3: 300 };
+  systems = Object.freeze(api.phase17Systems.createPhase17Systems({
+    speedsX100PerSecond: speeds,
+    attackPrep: {
+      preferredRangeX100: Object.fromEntries(Object.keys(speeds).map((id) => [id, api.x100.asX100(2500)])),
+    },
+    basicAttack: {
+      parameters: Object.fromEntries(
+        Object.keys(speeds).map((id) => [
+          id,
+          {
+            attackIntervalTicks: 20,
+            prepareTicks: 1,
+            recoveryTicks: 3,
+            preferredRangeX100: api.x100.asX100(9000),
+            delivery: {
+              kind: 'projectile',
+              speedX100PerSecond: 3000,
+              homing: false,
+              maxTurnX100PerTick: 0,
+              expiryTicks: 60,
+              lostTargetPolicy: 'impact_stored_position',
+              coverIgnoring: true,
+              piercing: false,
+              rawAmount: 120,
+              damageTypeOrdinal: 0,
+              defense: 0,
+              bossCapBps: null,
+            },
+          },
+        ]),
+      ),
     },
     spawnRequests: (ctx) => {
       if (ctx.state.tick === 3) return [{ kind: 'summon', reservedId: 'summon_a', side: 'player', targetLane: 'middle', radiusX100: 100, maxLp: 500, startZoneX100: 200 }];
@@ -196,8 +253,8 @@ try {
 
   const report = {
     schemaVersion: 1,
-    phase: phase16 ? 16 : phase15 ? 15 : 14,
-    gate: phase16 ? 'G15' : phase15 ? 'G14' : 'G13',
+    phase: phase17 ? 17 : phase16 ? 16 : phase15 ? 15 : 14,
+    gate: phase17 ? 'G16' : phase16 ? 'G15' : phase15 ? 'G14' : 'G13',
     sourceRevision: process.env.SOURCE_REVISION ?? null,
     runtime: { node: process.version, platform: process.platform, arch: process.arch },
     battles,
@@ -205,7 +262,7 @@ try {
     totalTicks: tickDurations.length,
     totalEvents,
     entityDistribution,
-    mode: phase16 ? 'phase16-targeting-attackprep' : phase15 ? 'phase15-spawn-separation' : 'phase14-noop',
+    mode: phase17 ? 'phase17-basicattack-projectile' : phase16 ? 'phase16-targeting-attackprep' : phase15 ? 'phase15-spawn-separation' : 'phase14-noop',
     warmup: 10,
     runs: 1,
     tickLatencyMs: latency(tickDurations),

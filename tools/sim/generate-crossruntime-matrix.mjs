@@ -2,7 +2,7 @@
 import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadKernel, runNodeReferenceTrace, runNodePhase15ReferenceTrace, runNodePhase16ReferenceTrace } from './lib/kernel-loader.mjs';
+import { loadKernel, runNodeReferenceTrace, runNodePhase15ReferenceTrace, runNodePhase16ReferenceTrace, runNodePhase17ReferenceTrace } from './lib/kernel-loader.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
@@ -40,6 +40,15 @@ try {
     console.error(JSON.stringify({ status: 'FAIL', reason: 'node16-drift-vs-pinned-fixture', ...node16, expected30: expected16_30, expected60: expected16_60, expectedFinal: fixture16.finalSnapshotChecksum }, null, 2));
     process.exit(1);
   }
+
+  const node17 = runNodePhase17ReferenceTrace(api);
+  const fixture17 = JSON.parse(readFileSync(resolve(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase17.json'), 'utf8'));
+  const expected17_30 = fixture17.checkpoints.find((c) => c.tick === 30)?.checksum;
+  const expected17_60 = fixture17.checkpoints.find((c) => c.tick === 60)?.checksum;
+  if (node17.tick30 !== expected17_30 || node17.tick60 !== expected17_60 || node17.endHash !== fixture17.finalSnapshotChecksum) {
+    console.error(JSON.stringify({ status: 'FAIL', reason: 'node17-drift-vs-pinned-fixture', ...node17, expected30: expected17_30, expected60: expected17_60, expectedFinal: fixture17.finalSnapshotChecksum }, null, 2));
+    process.exit(1);
+  }
   const notRun = (runtimes) =>
     Object.fromEntries(
       ['chromium', 'firefox', 'webkit', 'android_webview', 'ios_wkwebview'].map((key) => [key, { status: 'NOT_RUN', startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null }]),
@@ -75,6 +84,17 @@ try {
       note: 'Phase 16 targeting/attack-prep trace Node reference; browser/device rows NOT_RUN.',
       runtimes: {
         node: { status: 'REFERENCE', version: process.version, host: process.platform, startHash: node16.startHash, tick30: node16.tick30, tick60: node16.tick60, endHash: node16.endHash, endTick: node16.endTick, endReason: node16.endReason, eventCount: node16.eventCount, exitCode: 0 },
+        ...notRun(),
+      },
+    },
+    phase17: {
+      phase: 17,
+      gate: 'G17',
+      fixture: 'tests/sim/fixtures/reference-traces-phase17.json',
+      status: 'PARTIAL',
+      note: 'Phase 17 basic-attack/projectile/damage trace Node reference; browser/device rows NOT_RUN.',
+      runtimes: {
+        node: { status: 'REFERENCE', version: process.version, host: process.platform, startHash: node17.startHash, tick30: node17.tick30, tick60: node17.tick60, endHash: node17.endHash, endTick: node17.endTick, endReason: node17.endReason, eventCount: node17.eventCount, exitCode: 0 },
         ...notRun(),
       },
     },

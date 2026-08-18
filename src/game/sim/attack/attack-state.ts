@@ -2,6 +2,7 @@ import { KernelInvariantError } from '../core/invariant-error.js';
 import type { KernelEntity } from '../core/entity.js';
 import { edgeDistanceX100, type Body } from '../geometry/distance.js';
 import { asX100, nonNegativeX100, type X100 } from '../geometry/x100.js';
+import type { ProjectileParameters } from '../projectile/projectile-state.js';
 
 /**
  * Authoritative attack-instance state (§P17-T01). One entity may hold at most
@@ -30,6 +31,19 @@ export interface AttackParameters {
   readonly recoveryTicks: number;
   /** Inclusive preferred range in X100 (§P16, in-range foundation). */
   readonly preferredRangeX100?: X100;
+  /**
+   * §5.3: on commit the attack either queues an immediate hit or spawns a
+   * projectile. Absent → lifecycle-only (no hit), used by pure T01 fixtures.
+   */
+  readonly delivery?: Readonly<{ kind: 'direct' } & DirectHitParams> | Readonly<{ kind: 'projectile' } & DirectHitParams & ProjectileParameters>;
+}
+
+export interface DirectHitParams {
+  readonly rawAmount: number;
+  readonly damageTypeOrdinal: number;
+  readonly defense: number;
+  /** Boss cap in basis points of max LP, or null for non-boss targets. */
+  readonly bossCapBps?: number | null;
 }
 
 /** §5.2: attack tempo never lowers the interval below 0.45 s = 14 ticks. */
@@ -49,6 +63,30 @@ export function validateAttackParameters(params: AttackParameters): void {
     if (!Number.isSafeInteger(value) || value < 0) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-parameter-invalid', key, value });
   }
   if (params.preferredRangeX100 !== undefined) nonNegativeX100(params.preferredRangeX100, 'P15_RANGE_NEGATIVE');
+  if (params.delivery !== undefined) {
+    if (!Number.isSafeInteger(params.delivery.rawAmount) || params.delivery.rawAmount < 0) {
+      throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-delivery-raw-invalid', rawAmount: params.delivery.rawAmount });
+    }
+    if (params.delivery.damageTypeOrdinal < 0 || params.delivery.damageTypeOrdinal > 2) {
+      throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-delivery-type-invalid', damageTypeOrdinal: params.delivery.damageTypeOrdinal });
+    }
+    if (!Number.isSafeInteger(params.delivery.defense) || params.delivery.defense < -1000 || params.delivery.defense > 1000) {
+      throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-delivery-defense-invalid', defense: params.delivery.defense });
+    }
+    if (params.delivery.bossCapBps !== undefined && params.delivery.bossCapBps !== null && (!Number.isSafeInteger(params.delivery.bossCapBps) || params.delivery.bossCapBps < 0)) {
+      throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-delivery-boss-cap-invalid', bossCapBps: params.delivery.bossCapBps });
+    }
+    if (params.delivery.kind === 'projectile') {
+      for (const key of ['speedX100PerSecond', 'maxTurnX100PerTick', 'expiryTicks'] as const) {
+        if (!Number.isSafeInteger(params.delivery[key]) || params.delivery[key] < 0) {
+          throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-delivery-projectile-invalid', key, value: params.delivery[key] });
+        }
+      }
+      if (!['impact_stored_position', 'expire', 'continue_straight'].includes(params.delivery.lostTargetPolicy)) {
+        throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-delivery-policy-invalid', value: params.delivery.lostTargetPolicy });
+      }
+    }
+  }
 }
 
 function bodyOf(entity: KernelEntity): Body {

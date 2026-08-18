@@ -26,6 +26,8 @@ const PHASE15_FIELDS = [
   'origin', 'inRangeSinceTick',
   // Phase 17 additive attack-lifecycle fields.
   'attackState', 'recoveryMovementLockedUntilTick', 'attackInstanceSeq', 'attackIntervalReadyTick',
+  // Phase 17 additive combat field (T04 shield ledger).
+  'shields',
 ] as const;
 
 function phase15FieldCount(entity: KernelEntity): number {
@@ -77,6 +79,7 @@ export function migrateEntity(args: MigrateEntityArgs): KernelEntity {
     recoveryMovementLockedUntilTick: 0,
     attackInstanceSeq: 0,
     attackIntervalReadyTick: 0,
+    shields: Object.freeze([]),
   });
 }
 
@@ -110,5 +113,8 @@ export function migrateBattleModel(args: MigrateBattleArgs): BattleModel {
     globalNoProgressTicks: 0,
     riftCollapseTicks: 0,
     riftCollapseWarningEmitted: false,
+    projectiles: Object.freeze([]),
+    pendingCombatApplications: Object.freeze([]),
+    combatApplicationSeq: 0,
   });
 }

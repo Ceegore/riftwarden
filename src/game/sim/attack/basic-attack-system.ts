@@ -1,6 +1,8 @@
 import type { KernelEventInput } from '../events/event-types.js';
 import type { KernelEntity } from '../core/entity.js';
 import type { KernelSystem, TickContext } from '../core/tick-context.js';
+import { spawnProjectile } from '../projectile/projectile-state.js';
+import type { PendingCombatApplication } from '../combat/combat-application.js';
 import {
   MIN_ATTACK_INTERVAL_TICKS,
   commitAttack,
@@ -11,6 +13,7 @@ import {
   startPrepare,
   validateAttackParameters,
   type AttackParameters,
+  type AttackState,
   type AttackTransition,
 } from './attack-state.js';
 
@@ -28,6 +31,51 @@ function eventFor(type: 'AttackPrepared'|'AttackInterrupted'|'AttackCommitted'|'
 
 function findEntity(entities: readonly KernelEntity[], id: string): KernelEntity | undefined {
   return entities.find((e) => e.id === id);
+}
+
+function deliverAttack(context: TickContext, source: KernelEntity, target: KernelEntity, state: AttackState, delivery: NonNullable<AttackParameters['delivery']>, tick: number): void {
+  if (delivery.kind === 'projectile') {
+    const projectile = spawnProjectile({
+      id: `proj_${source.id}_${String(state.attackInstanceId)}`,
+      attackInstanceId: state.attackInstanceId,
+      effectIndex: state.effectIndex,
+      sourceId: source.id,
+      targetId: target.id,
+      spawnTick: tick,
+      source,
+      target,
+      params: {
+        speedX100PerSecond: delivery.speedX100PerSecond,
+        homing: delivery.homing,
+        maxTurnX100PerTick: delivery.maxTurnX100PerTick,
+        expiryTicks: delivery.expiryTicks,
+        lostTargetPolicy: delivery.lostTargetPolicy,
+        coverIgnoring: delivery.coverIgnoring,
+        piercing: delivery.piercing,
+        rawAmount: delivery.rawAmount,
+        damageTypeOrdinal: delivery.damageTypeOrdinal,
+        defense: delivery.defense,
+        bossCapBps: delivery.bossCapBps ?? null,
+      },
+    });
+    const existing = context.state.projectiles ?? [];
+    context.commands.push({ kind: 'set_projectiles', projectiles: Object.freeze([...existing, projectile]) });
+    return;
+  }
+  const application: PendingCombatApplication = Object.freeze({
+    kind: 'damage',
+    sourceId: source.id,
+    targetId: target.id,
+    effectId: `attack_${String(state.attackInstanceId)}`,
+    attackInstanceId: state.attackInstanceId,
+    effectIndex: state.effectIndex,
+    rawAmount: delivery.rawAmount,
+    damageTypeOrdinal: delivery.damageTypeOrdinal,
+    defense: delivery.defense,
+    coverReductionBps: 0,
+    bossCapBps: delivery.bossCapBps ?? null,
+  });
+  context.commands.push({ kind: 'queue_combat_application', application });
 }
 
 function emit(context: TickContext, transition: AttackTransition, entityId: string): void {
@@ -109,6 +157,12 @@ export function createBasicAttackSystem(config: BasicAttackSystemConfig): Kernel
             context.commands.push({ kind: 'set_attack_lifecycle', entityId: source.id, state: committed.state, recoveryMovementLockedUntilTick: lockUntil });
             context.commands.push({ kind: 'set_attack_interval_ready', entityId: source.id, readyTick: current.prepareStartedTick + interval });
             emit(context, committed, source.id);
+            // §5.3: a committed attack either queues an immediate hit or spawns
+            // a projectile; both carry the source snapshot (raw, type, defense).
+            const target = findEntity(context.state.entities, current.targetId);
+            if (params.delivery !== undefined && target !== undefined && committed.state !== null) {
+              deliverAttack(context, source, target, committed.state, params.delivery, tick);
+            }
             // §5.4 recovery diagnostic: recovery begins at commit.
             const recovery = { event: 'recovery_started' as const, state: committed.state, payload: Object.freeze({ recoveryEndTick: tick + params.recoveryTicks }) };
             emit(context, recovery, source.id);

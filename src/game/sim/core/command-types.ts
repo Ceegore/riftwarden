@@ -3,6 +3,9 @@ import type { TransitionRequest } from './entity-state.js';
 import type { KernelEntity } from './entity.js';
 import type { KernelEventInput } from '../events/event-types.js';
 import type { AttackState } from '../attack/attack-state.js';
+import type { ShieldSource } from '../combat/shield-ledger.js';
+import type { PendingCombatApplication } from '../combat/combat-application.js';
+import type { ProjectileState } from '../projectile/projectile-state.js';
 import type { ScheduledEventInput } from '../scheduler/scheduled-event.js';
 import type { Lane } from '../geometry/x100.js';
 import type { LaneChange } from '../movement/lane-change.js';
@@ -28,6 +31,10 @@ export type KernelCommand =
   | Readonly<{kind:'set_deadlock_state'; entityId:string; blockedTicks:number; buffConsumed:boolean; buffedEntityId:string|null}>
   | Readonly<{kind:'set_global_progress'; noProgressTicks:number; collapseTicks:number; warned:boolean}>
   | Readonly<{kind:'apply_lp_delta'; entityId:string; delta:number; sourceId?:string|null}>
+  | Readonly<{kind:'set_shields'; entityId:string; shields:readonly ShieldSource[]}>
+  | Readonly<{kind:'queue_combat_application'; application:PendingCombatApplication}>
+  | Readonly<{kind:'clear_combat_applications'}>
+  | Readonly<{kind:'set_projectiles'; projectiles:readonly ProjectileState[]}>
   | Readonly<{kind:'set_timer'; entityId:string; timer:string; ticks:number}>
   | Readonly<{kind:'checkpoint_marker'; reason:'interval'|'terminal'}>;
 

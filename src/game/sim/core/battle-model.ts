@@ -3,6 +3,8 @@ import type { BattlePhaseState } from './battle-state.js';
 import type { KernelEntity } from './entity.js';
 import type { EventSequence, Tick } from './primitives.js';
 import type { ScheduledEvent } from '../scheduler/scheduled-event.js';
+import type { ProjectileState } from '../projectile/projectile-state.js';
+import type { PendingCombatApplication } from '../combat/combat-application.js';
 
 export interface BattleModel {
   readonly schemaVersion: 1;
@@ -21,4 +23,8 @@ export interface BattleModel {
   readonly globalNoProgressTicks?: number;
   readonly riftCollapseTicks?: number;
   readonly riftCollapseWarningEmitted?: boolean;
+  // Phase 17 additive combat fields (T02 projectiles, T04 pending applications).
+  readonly projectiles?: readonly ProjectileState[];
+  readonly pendingCombatApplications?: readonly PendingCombatApplication[];
+  readonly combatApplicationSeq?: number;
 }

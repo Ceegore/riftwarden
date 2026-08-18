@@ -5,7 +5,7 @@ import { mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadKernel, runNodeReferenceTrace, runNodePhase15ReferenceTrace, runNodePhase16ReferenceTrace } from './lib/kernel-loader.mjs';
+import { loadKernel, runNodeReferenceTrace, runNodePhase15ReferenceTrace, runNodePhase16ReferenceTrace, runNodePhase17ReferenceTrace } from './lib/kernel-loader.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
@@ -37,6 +37,16 @@ try {
   const expected15_60 = pinned15.checkpoints.find((c) => c.tick === 60)?.checksum;
   if (node15.tick30 !== expected15_30 || node15.tick60 !== expected15_60 || node15.endHash !== pinned15.finalSnapshotChecksum) {
     console.error(JSON.stringify({ status: 'FAIL', reason: 'node15-drift-vs-pinned-fixture', node15 }, null, 2));
+    process.exit(1);
+  }
+
+  // Phase 17 reference: same 60-tick window, basic-attack + projectile + damage.
+  const node17 = runNodePhase17ReferenceTrace(api);
+  const pinned17 = JSON.parse(readFileSync(join(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase17.json'), 'utf8'));
+  const expected17_30 = pinned17.checkpoints.find((c) => c.tick === 30)?.checksum;
+  const expected17_60 = pinned17.checkpoints.find((c) => c.tick === 60)?.checksum;
+  if (node17.tick30 !== expected17_30 || node17.tick60 !== expected17_60 || node17.endHash !== pinned17.finalSnapshotChecksum) {
+    console.error(JSON.stringify({ status: 'FAIL', reason: 'node17-drift-vs-pinned-fixture', node17 }, null, 2));
     process.exit(1);
   }
 
@@ -78,6 +88,9 @@ try {
   const runtimes16 = {
     node: { status: 'REFERENCE', version: process.version, host: process.platform, ...pick(node16) },
   };
+  const runtimes17 = {
+    node: { status: 'REFERENCE', version: process.version, host: process.platform, ...pick(node17) },
+  };
   let browserFailures = 0;
 
   for (const [name, { launch }] of Object.entries(DESKTOP_BROWSERS)) {
@@ -90,10 +103,12 @@ try {
       const result = await page.evaluate(() => globalThis.__P14_CROSSRUNTIME__);
       const result15 = await page.evaluate(() => globalThis.__P15_CROSSRUNTIME__);
       const result16 = await page.evaluate(() => globalThis.__P16_CROSSRUNTIME__);
+      const result17 = await page.evaluate(() => globalThis.__P17_CROSSRUNTIME__);
       const drift = driftField(result, node);
       const drift15 = driftField(result15, node15);
       const drift16 = driftField(result16, node16);
-      const ok = drift === null && drift15 === null && drift16 === null;
+      const drift17 = driftField(result17, node17);
+      const ok = drift === null && drift15 === null && drift16 === null && drift17 === null;
       if (!ok) browserFailures++;
       runtimes[name] = {
         status: ok ? 'PASS' : 'FAIL',
@@ -137,6 +152,20 @@ try {
         exitCode: drift16 === null ? 0 : 1,
         ...(drift16 === null ? {} : { drift: drift16 }),
       };
+      runtimes17[name] = {
+        status: drift17 === null ? 'PASS' : 'FAIL',
+        version,
+        host: `${process.platform} (Playwright)`,
+        startHash: result17.startHash,
+        tick30: result17.tick30,
+        tick60: result17.tick60,
+        endHash: result17.endHash,
+        endTick: result17.endTick,
+        endReason: result17.endReason,
+        eventCount: result17.eventCount,
+        exitCode: drift17 === null ? 0 : 1,
+        ...(drift17 === null ? {} : { drift: drift17 }),
+      };
     } finally {
       await browser.close();
     }
@@ -146,6 +175,7 @@ try {
     runtimes[key] = { status: 'NOT_RUN', version: null, host: null, startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null };
     runtimes15[key] = { status: 'NOT_RUN', version: null, host: null, startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null };
     runtimes16[key] = { status: 'NOT_RUN', version: null, host: null, startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null };
+    runtimes17[key] = { status: 'NOT_RUN', version: null, host: null, startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null };
   }
 
   const matrix = {
@@ -172,6 +202,14 @@ try {
       status: 'PARTIAL',
       note: 'Phase 16 targeting/attack-prep trace: desktop engines hash-identical to the Node reference and the pinned fixture; WebViews NOT_RUN.',
       runtimes: runtimes16,
+    },
+    phase17: {
+      phase: 17,
+      gate: 'G17',
+      fixture: 'tests/sim/fixtures/reference-traces-phase17.json',
+      status: 'PARTIAL',
+      note: 'Phase 17 basic-attack/projectile/damage trace: desktop engines hash-identical to the Node reference and the pinned fixture; WebViews NOT_RUN.',
+      runtimes: runtimes17,
     },
   };
   writeFileSync(out, `${JSON.stringify(matrix, null, 2)}\n`);

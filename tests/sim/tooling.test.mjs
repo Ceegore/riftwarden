@@ -75,6 +75,14 @@ test('crossruntime matrix pins Node against the reference trace and leaves devic
   for (const key of ['chromium', 'firefox', 'webkit']) {
     assert.equal(matrix.phase16.runtimes[key].status, 'NOT_RUN');
   }
+  // Phase 17 basic-attack/projectile/damage column is pinned against its fixture.
+  const fixture17 = JSON.parse(readFileSync(join(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase17.json'), 'utf8'));
+  assert.equal(matrix.phase17.runtimes.node.tick30, fixture17.checkpoints.find((c) => c.tick === 30).checksum);
+  assert.equal(matrix.phase17.runtimes.node.tick60, fixture17.checkpoints.find((c) => c.tick === 60).checksum);
+  assert.equal(matrix.phase17.runtimes.node.endHash, fixture17.finalSnapshotChecksum);
+  for (const key of ['chromium', 'firefox', 'webkit']) {
+    assert.equal(matrix.phase17.runtimes[key].status, 'NOT_RUN');
+  }
 });
 
 test('mass-sim harness reports PASS with no drift and accumulates events across battles', () => {
@@ -110,6 +118,18 @@ test('phase16 mass-sim evidence (targeting + attack-prep active) is PASS with pi
   assert.equal(report.battles, 10000);
   assert.equal(report.totalTicks, 600000);
   assert.equal(report.mode, 'phase16-targeting-attackprep');
+  assert.match(report.referenceFinalHash, /^[0-9a-f]{64}$/);
+  assert.ok(report.endHeapBytes <= report.peakHeapBytes, 'heap must not grow unbounded');
+});
+
+test('phase17 mass-sim evidence (basic-attack + projectile active) is PASS with pinned hash', () => {
+  const report = JSON.parse(readFileSync(join(root, 'docs', 'reports', 'phase17-mass-sim.json'), 'utf8'));
+  assert.equal(report.status, 'PASS');
+  assert.equal(report.invariantErrors, 0);
+  assert.equal(report.hashDrift, 0);
+  assert.equal(report.battles, 10000);
+  assert.equal(report.totalTicks, 600000);
+  assert.equal(report.mode, 'phase17-basicattack-projectile');
   assert.match(report.referenceFinalHash, /^[0-9a-f]{64}$/);
   assert.ok(report.endHeapBytes <= report.peakHeapBytes, 'heap must not grow unbounded');
 });
@@ -183,4 +203,14 @@ test('crossruntime browser runner fills desktop engines hash-identically to Node
   }
   assert.equal(matrix.phase16.runtimes.android_webview.status, 'NOT_RUN');
   assert.equal(matrix.phase16.runtimes.ios_wkwebview.status, 'NOT_RUN');
+  // Phase 17 basic-attack/projectile/damage trace: desktop engines hash-identical to the P17 node column.
+  for (const key of ['chromium', 'firefox', 'webkit']) {
+    assert.equal(matrix.phase17.runtimes[key].status, 'PASS', `${key}: ${JSON.stringify(matrix.phase17.runtimes[key].drift)}`);
+    assert.equal(matrix.phase17.runtimes[key].tick30, matrix.phase17.runtimes.node.tick30);
+    assert.equal(matrix.phase17.runtimes[key].tick60, matrix.phase17.runtimes.node.tick60);
+    assert.equal(matrix.phase17.runtimes[key].endHash, matrix.phase17.runtimes.node.endHash);
+    assert.equal(matrix.phase17.runtimes[key].startHash, matrix.phase17.runtimes.node.startHash);
+  }
+  assert.equal(matrix.phase17.runtimes.android_webview.status, 'NOT_RUN');
+  assert.equal(matrix.phase17.runtimes.ios_wkwebview.status, 'NOT_RUN');
 });
