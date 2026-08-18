@@ -66,6 +66,16 @@ export function resolveEntityDefeat(
 ): DefeatOutcome {
   const defeatedOrRemoved = entity.phase.phase === 'DEFEATED' || entity.phase.phase === 'REMOVED';
   const atZero = entity.lp === 0;
+  // §9 priority: death prevention is evaluated before any committed revive,
+  // then revive, then Defeated. Prevention only applies at the moment of death
+  // (zero LP, not yet defeated); an already-defeated entity can only change
+  // through a committed revive.
+  if (atZero && !defeatedOrRemoved) {
+    const prevention = hooks.preventDefeat[entity.id];
+    if (prevention !== undefined && prevention > 0) {
+      return { entityId: entity.id, resolution: 'prevented', overkill: 0, restoredLp: null };
+    }
+  }
   const revive = hooks.revives[entity.id];
   if (revive !== undefined && (defeatedOrRemoved || atZero)) {
     if (revive.oncePerBattle && reviveCount > 0) {
@@ -75,10 +85,6 @@ export function resolveEntityDefeat(
   }
   if (defeatedOrRemoved) return { entityId: entity.id, resolution: 'none', overkill: 0, restoredLp: null };
   if (!atZero) return { entityId: entity.id, resolution: 'none', overkill: 0, restoredLp: null };
-  const prevention = hooks.preventDefeat[entity.id];
-  if (prevention !== undefined && prevention > 0) {
-    return { entityId: entity.id, resolution: 'prevented', overkill: 0, restoredLp: null };
-  }
   return { entityId: entity.id, resolution: 'defeated', overkill: entity.pendingOverkill ?? 0, restoredLp: null };
 }
 

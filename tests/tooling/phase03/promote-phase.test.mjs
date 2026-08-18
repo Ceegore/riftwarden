@@ -15,7 +15,7 @@ function makeFixture() {
   mkdirSync(join(dir, '.github', 'workflows'), { recursive: true });
   mkdirSync(join(dir, 'tools', 'ci'), { recursive: true });
   mkdirSync(join(dir, 'tools', 'lib'), { recursive: true });
-  // Build a self-contained phase-9 fixture (the live registries are at 16).
+  // Build a self-contained phase-9 fixture (the live registries are at 17).
   const gates = JSON.parse(readFileSync(join(root, 'ci', 'phase-gates.json'), 'utf8'));
   const checks = JSON.parse(readFileSync(join(root, 'ci', 'required-checks.json'), 'utf8'));
   gates.currentImplementationPhase = 9;
@@ -75,11 +75,13 @@ test('promotion dry-run reports what it would touch without writing', () => {
   assert.equal(gates.currentImplementationPhase, 9, 'dry-run must not write');
 });
 
-test('live registry is consistent at phase 16 with the phase16 gate registered', () => {
+test('live registry is consistent at phase 17 with the phase17 gate registered', () => {
   const gates = JSON.parse(readFileSync(join(root, 'ci', 'phase-gates.json'), 'utf8'));
   const checks = JSON.parse(readFileSync(join(root, 'ci', 'required-checks.json'), 'utf8'));
-  assert.equal(gates.currentImplementationPhase, 16);
-  assert.equal(checks.implementationPhase, 16);
+  assert.equal(gates.currentImplementationPhase, 17);
+  assert.equal(checks.implementationPhase, 17);
   assert.ok(gates.checks.some((c) => c.id === 'phase16-gates' && c.ownerPhase === 16 && c.requiredFromPhase === 16));
+  assert.ok(gates.checks.some((c) => c.id === 'phase17-gates' && c.ownerPhase === 17 && c.requiredFromPhase === 17));
   assert.ok(checks.phasedJobs.some((j) => j.job === 'phase16_gates' && j.activationPhase === 16));
+  assert.ok(checks.phasedJobs.some((j) => j.job === 'phase17_gates' && j.activationPhase === 17));
 });

@@ -70,6 +70,24 @@ describe('P17 T05 defeat resolver (stage J)', () => {
     expect(events.some((e) => e.type === 'Defeated')).toBe(false);
   });
 
+  it('death prevention is evaluated before a committed revive (§9 order)', () => {
+    // An entity at zero LP with BOTH a prevention hook and a committed revive
+    // must be prevented from dying — §9 priority is prevention, then revive,
+    // then defeated. The revive must not fire.
+    const dying = Object.freeze({ ...unit('unit_dying', 'player'), lp: 0 }) as KernelEntity;
+    const hooks: DefeatHookInput = {
+      preventDefeat: { unit_dying: 10 },
+      revives: { unit_dying: { restoredLp: 500, oncePerBattle: false } },
+      removeOnDefeat: new Set(),
+    };
+    const { state, events } = run(1, hooks, [dying, unit('unit_other', 'enemy')]);
+    const resolved = state.entities.find((e) => e.id === 'unit_dying');
+    expect(resolved?.phase.phase).toBe('ACTIVE');
+    expect(resolved?.lp).toBe(0);
+    expect(events.some((e) => e.type === 'Revived')).toBe(false);
+    expect(events.some((e) => e.type === 'Defeated')).toBe(false);
+  });
+
   it('committed revive restores LP and returns the entity to ACTIVE', () => {
     const dead = defeated(unit('unit_dead', 'player'));
 
@@ -161,5 +179,15 @@ describe('P17 T05 defeat resolver (stage J)', () => {
     const outcome = resolveEntityDefeat(dying, { preventDefeat: {}, revives: {}, removeOnDefeat: new Set() }, 0);
     expect(outcome.resolution).toBe('defeated');
     expect(outcome.overkill).toBe(12);
+  });
+
+  it('resolveEntityDefeat prefers prevention over a committed revive', () => {
+    const dying = Object.freeze({ ...unit('unit_dying', 'player'), lp: 0 }) as KernelEntity;
+    const hooks: DefeatHookInput = {
+      preventDefeat: { unit_dying: 1 },
+      revives: { unit_dying: { restoredLp: 500, oncePerBattle: false } },
+      removeOnDefeat: new Set(),
+    };
+    expect(resolveEntityDefeat(dying, hooks, 0).resolution).toBe('prevented');
   });
 });

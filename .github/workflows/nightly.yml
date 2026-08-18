@@ -14,7 +14,7 @@ concurrency:
 
 env:
   CI: 'true'
-  RIFTWARDEN_IMPLEMENTATION_PHASE: '16'
+  RIFTWARDEN_IMPLEMENTATION_PHASE: '17'
 
 jobs:
   active_security:

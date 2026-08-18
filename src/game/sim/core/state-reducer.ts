@@ -4,7 +4,7 @@ import type { KernelCommand, BattleTransitionRequest } from './command-types.js'
 import { transitionEntityPhase, selectEntityTransition, type TransitionRequest } from './entity-state.js';
 import { validateEntity, validateLaneChange, type KernelEntity } from './entity.js';
 import { validateShieldSource, type ShieldSource } from '../combat/shield-ledger.js';
-import { validatePendingCombatApplication } from '../combat/combat-application.js';
+import { validatePendingCombatApplication } from '../combat/application-validation.js';
 import { validateProjectileState, type ProjectileState } from '../projectile/projectile-state.js';
 import { KernelInvariantError } from './invariant-error.js';
 import type { EventPriority, EventSequence, Tick } from './primitives.js';

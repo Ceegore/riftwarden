@@ -79,7 +79,7 @@ jobs:
               ;;
             requirements-contracts)
               pnpm requirements:validate
-              pnpm ci:gate-map -- --phase 16
+              pnpm ci:gate-map -- --phase 17
               ;;
             unit-tests)
               pnpm test:tooling
@@ -94,7 +94,7 @@ jobs:
               ;;
             web-build)
               pnpm build:release
-              pnpm build:manifest -- --channel qa --phase 16
+              pnpm build:manifest -- --channel qa --phase 17
               pnpm security:artifact-paths
               ;;
             e2e-smoke)
@@ -155,6 +155,10 @@ jobs:
             phase16-gates)
               pnpm test:phase16
               pnpm phase16:validate-readiness
+              ;;
+            phase17-gates)
+              pnpm test:phase17
+              pnpm phase17:validate-readiness
               ;;
             asset-manifest-validate)
               pnpm assets:validate

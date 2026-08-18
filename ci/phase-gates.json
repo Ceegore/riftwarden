@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "currentImplementationPhase": 16,
+  "currentImplementationPhase": 17,
   "checks": [
     {
       "id": "bootstrap-versions",
@@ -139,6 +139,12 @@
       "ownerPhase": 16,
       "requiredFromPhase": 16,
       "command": "pnpm test:phase16 && pnpm phase16:validate-readiness"
+    },
+    {
+      "id": "phase17-gates",
+      "ownerPhase": 17,
+      "requiredFromPhase": 17,
+      "command": "pnpm test:phase17 && pnpm phase17:validate-readiness"
     }
   ]
 }
