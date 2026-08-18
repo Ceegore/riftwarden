@@ -6,6 +6,7 @@ import type { ScheduledEvent } from '../scheduler/scheduled-event.js';
 import type { ProjectileState } from '../projectile/projectile-state.js';
 import type { PendingCombatApplication } from '../combat/combat-application.js';
 import type { StatusInstance } from '../status/status-instance.js';
+import type { CleanseDispelRequest } from './command-types.js';
 
 export interface BattleModel {
   readonly schemaVersion: 1;
@@ -37,4 +38,7 @@ export interface BattleModel {
   // Phase 18 additive status field (T01–T06): canonically sorted active status
   // instances, projected into the snapshot. Absent on Phase 14–17 fixtures.
   readonly statuses?: readonly StatusInstance[];
+  // Phase 18 additive cleanse/dispel field (T05): requests queued at stage H
+  // and consumed by the stage-K removal system (§4).
+  readonly pendingCleanses?: readonly CleanseDispelRequest[];
 }

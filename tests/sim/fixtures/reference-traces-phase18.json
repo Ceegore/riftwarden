@@ -12,10 +12,12 @@
     "F:phase15.f3.anti_stuck",
     "G:phase17.g1.basic_attack",
     "H:phase17.h1.projectile",
+    "H:phase18.h1.cleanse_queue",
     "I:phase17.i1.combat_application",
     "I:phase18.i1.status",
     "J:phase17.j1.defeat_resolver",
     "K:phase15.k1.spawn",
+    "K:phase18.k1.cleanse_apply",
     "L:phase15.l.endcap",
     "L:phase17.l1.battle_end",
     "M:noop.snapshot"

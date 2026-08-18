@@ -8,6 +8,7 @@ import { validatePendingCombatApplication } from '../combat/application-validati
 import { validateProjectileState, type ProjectileState } from '../projectile/projectile-state.js';
 import { createStatusCollection, type StatusCollection } from '../status/status-collection.js';
 import type { StatusInstance } from '../status/status-instance.js';
+import type { CleanseDispelRequest } from './command-types.js';
 import { KernelInvariantError } from './invariant-error.js';
 import type { EventPriority, EventSequence, Tick } from './primitives.js';
 import type { EventQueue } from '../scheduler/event-queue.js';
@@ -24,6 +25,7 @@ export interface ApplyStageCommandsArgs {
   allocate: () => EventSequence;
 }
 
+const CLEANSE_KINDS = ['cleanse', 'dispel'] as const;
 function requireEntity(entities: readonly KernelEntity[], entityId: string): KernelEntity {
   const entity = entities.find((candidate) => candidate.id === entityId);
   if (!entity) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'unknown-entity', entityId });
@@ -53,6 +55,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   let timeCollapseSinceTick = args.state.timeCollapseSinceTick;
   let bossDamageDealt = args.state.bossDamageDealt;
   let statuses: StatusCollection | undefined = args.state.statuses;
+  let pendingCleanses: readonly CleanseDispelRequest[] | undefined = args.state.pendingCleanses;
   const beforeEvents = args.log.size();
   const transitions = new Map<string, TransitionRequest[]>();
   const battleTransitions: BattleTransitionRequest[] = [];
@@ -106,48 +109,42 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, movementRemainder: command.remainder }) : e));
         break;
       }
-      case 'set_lane': {
+      case 'set_lane':
         requireEntity(entities, command.entityId);
         assertLane(command.lane);
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, lane: command.lane }) : e));
         break;
-      }
-      case 'set_lane_change': {
+      case 'set_lane_change':
         requireEntity(entities, command.entityId);
         if (command.state !== null) validateLaneChange(command.state);
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, laneChange: command.state }) : e));
         break;
-      }
-      case 'set_attack_state': {
+      case 'set_attack_state':
         requireEntity(entities, command.entityId);
         if (command.inRangeSinceTick !== null) assertNonNegativeSafe(command.inRangeSinceTick, 'in-range-since-tick-invalid');
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, inRangeSinceTick: command.inRangeSinceTick }) : e));
         break;
-      }
-      case 'set_attack_instance_seq': {
+      case 'set_attack_instance_seq':
         requireEntity(entities, command.entityId);
         if (!Number.isSafeInteger(command.seq) || command.seq < 0 || Object.is(command.seq, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-instance-seq-invalid', entityId: command.entityId, seq: command.seq });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, attackInstanceSeq: command.seq }) : e));
         break;
-      }
-      case 'set_attack_interval_ready': {
+      case 'set_attack_interval_ready':
         requireEntity(entities, command.entityId);
         if (!Number.isSafeInteger(command.readyTick) || command.readyTick < 0 || Object.is(command.readyTick, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-interval-ready-invalid', entityId: command.entityId, readyTick: command.readyTick });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, attackIntervalReadyTick: command.readyTick }) : e));
         break;
-      }
       case 'set_attack_lifecycle': {
         requireEntity(entities, command.entityId);
         if (command.state !== null && (!Number.isSafeInteger(command.recoveryMovementLockedUntilTick) || command.recoveryMovementLockedUntilTick < 0 || Object.is(command.recoveryMovementLockedUntilTick, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-recovery-lock-invalid', entityId: command.entityId });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze(command.state === null ? { ...e, attackState: null, recoveryMovementLockedUntilTick: 0 } : { ...e, attackState: command.state, recoveryMovementLockedUntilTick: command.recoveryMovementLockedUntilTick }) : e));
         break;
       }
-      case 'set_lane_change_cooldown': {
+      case 'set_lane_change_cooldown':
         requireEntity(entities, command.entityId);
         assertNonNegativeSafe(command.untilTick, 'lane-change-cooldown-invalid');
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, normalLaneChangeCooldownUntilTick: command.untilTick }) : e));
         break;
-      }
       case 'set_stuck_state': {
         requireEntity(entities, command.entityId);
         assertNonNegativeSafe(command.noProgressTicks, 'no-progress-ticks-invalid');
@@ -194,23 +191,20 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
       case 'clear_combat_applications':
         pendingCombatApplications = Object.freeze([]);
         break;
-      case 'set_pending_overkill': {
+      case 'set_pending_overkill':
         requireEntity(entities, command.entityId);
         if (!Number.isSafeInteger(command.overkill) || command.overkill < 0 || Object.is(command.overkill, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'overkill-invalid', entityId: command.entityId, overkill: command.overkill });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, pendingOverkill: command.overkill }) : e));
         break;
-      }
-      case 'set_revive_count': {
+      case 'set_revive_count':
         requireEntity(entities, command.entityId);
         if (!Number.isSafeInteger(command.count) || command.count < 0 || Object.is(command.count, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'revive-count-invalid', entityId: command.entityId, count: command.count });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, reviveCount: command.count }) : e));
         break;
-      }
-      case 'set_time_collapse': {
+      case 'set_time_collapse':
         if (command.sinceTick !== null && (!Number.isSafeInteger(command.sinceTick) || command.sinceTick < 0 || Object.is(command.sinceTick, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'time-collapse-invalid', sinceTick: command.sinceTick });
         timeCollapseSinceTick = command.sinceTick ?? undefined;
         break;
-      }
       case 'record_boss_damage': {
         if (!Number.isSafeInteger(command.amount) || command.amount < 0) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'boss-damage-amount', amount: command.amount });
         const current = bossDamageDealt ?? Object.freeze({ player: 0, enemy: 0 });
@@ -232,6 +226,14 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         statuses = createStatusCollection(command.statuses as readonly StatusInstance[]);
         break;
       }
+      case 'queue_cleanse_dispel': {
+        if (!/^[a-z][a-z0-9_]*$/.test(command.targetId) || !(CLEANSE_KINDS as readonly string[]).includes(command.request)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'cleanse-request-invalid', targetId: command.targetId, kind: command.request });
+        pendingCleanses = Object.freeze([...(pendingCleanses ?? []), Object.freeze({ targetId: command.targetId, kind: command.request })]);
+        break;
+      }
+      case 'clear_pending_cleanses':
+        pendingCleanses = Object.freeze([]);
+        break;
       case 'apply_lp_delta': {
         requireEntity(entities, command.entityId);
         if (!Number.isSafeInteger(command.delta)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'lp-delta-not-integer', entityId: command.entityId, delta: command.delta });
@@ -244,12 +246,11 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         });
         break;
       }
-      case 'set_timer': {
+      case 'set_timer':
         requireEntity(entities, command.entityId);
         if (!Number.isSafeInteger(command.ticks) || command.ticks < 0 || Object.is(command.ticks, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'timer-ticks-invalid', entityId: command.entityId, ticks: command.ticks });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, timers: Object.freeze({ ...e.timers, [command.timer]: command.ticks }) }) : e));
         break;
-      }
       case 'checkpoint_marker':
         break;
     }
@@ -269,10 +270,8 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
     if (winner !== undefined && conflict?.priority === winner.priority && conflict.to !== winner.to) {
       throw new KernelInvariantError('P14_TRANSITION_CONFLICT', { kind: 'battle' });
     }
-    if (winner) {
-      phase = transitionBattlePhase(phase, winner.to, args.atTick);
-      if (isTerminalBattlePhase(phase.phase)) endReason = winner.reason;
-    }
+    if (winner) phase = transitionBattlePhase(phase, winner.to, args.atTick);
+    if (winner && isTerminalBattlePhase(phase.phase)) endReason = winner.reason;
   }
 
   args.queue.commitPlanned(args.allocate);
@@ -286,6 +285,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   if (timeCollapseSinceTick !== undefined) extras['timeCollapseSinceTick'] = timeCollapseSinceTick;
   if (bossDamageDealt !== undefined) extras['bossDamageDealt'] = bossDamageDealt;
   if (statuses !== undefined) extras['statuses'] = statuses;
+  if (pendingCleanses !== undefined) extras['pendingCleanses'] = pendingCleanses;
   return Object.freeze({
     ...args.state,
     phase,

@@ -10,6 +10,9 @@ import type { StatusInstance, StatusKind } from './status-instance.js';
  * dispel goes through the Phase-17 shield ledger (§9.2).
  */
 
+/** §9.1/§9.2 closed request kinds consumed by the stage-H queue. */
+export type CleanseDispelKind = 'cleanse' | 'dispel';
+
 /** §9.2: a shield dispel may reduce at most 35% of the target's max HP. */
 export const SHIELD_DISPEL_CAP_BPS = 3500;
 
