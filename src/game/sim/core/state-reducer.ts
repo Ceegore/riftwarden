@@ -49,6 +49,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   let pendingCombatApplications = args.state.pendingCombatApplications;
   let combatApplicationSeq = args.state.combatApplicationSeq;
   let timeCollapseSinceTick = args.state.timeCollapseSinceTick;
+  let bossDamageDealt = args.state.bossDamageDealt;
   const beforeEvents = args.log.size();
   const transitions = new Map<string, TransitionRequest[]>();
   const battleTransitions: BattleTransitionRequest[] = [];
@@ -96,17 +97,13 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         break;
       case 'set_position': {
         requireEntity(entities, command.entityId);
-        if (!Number.isSafeInteger(command.x100) || command.x100 < 0 || command.x100 > 10000 || Object.is(command.x100, -0)) {
-          throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'x100-out-of-range', entityId: command.entityId, x100: command.x100 });
-        }
+        if (!Number.isSafeInteger(command.x100) || command.x100 < 0 || command.x100 > 10000 || Object.is(command.x100, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'x100-out-of-range', entityId: command.entityId, x100: command.x100 });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, lane: command.lane, x100: command.x100 }) : e));
         break;
       }
       case 'set_movement_remainder': {
         requireEntity(entities, command.entityId);
-        if (!Number.isInteger(command.remainder) || command.remainder < 0 || command.remainder >= 30 || Object.is(command.remainder, -0)) {
-          throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'movement-remainder-invalid', entityId: command.entityId, remainder: command.remainder });
-        }
+        if (!Number.isInteger(command.remainder) || command.remainder < 0 || command.remainder >= 30 || Object.is(command.remainder, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'movement-remainder-invalid', entityId: command.entityId, remainder: command.remainder });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, movementRemainder: command.remainder }) : e));
         break;
       }
@@ -142,12 +139,8 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
       }
       case 'set_attack_lifecycle': {
         requireEntity(entities, command.entityId);
-        if (command.state !== null) {
-          if (!Number.isSafeInteger(command.recoveryMovementLockedUntilTick) || command.recoveryMovementLockedUntilTick < 0 || Object.is(command.recoveryMovementLockedUntilTick, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-recovery-lock-invalid', entityId: command.entityId });
-          entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, attackState: command.state, recoveryMovementLockedUntilTick: command.recoveryMovementLockedUntilTick }) : e));
-        } else {
-          entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, attackState: null, recoveryMovementLockedUntilTick: 0 }) : e));
-        }
+        if (command.state !== null && (!Number.isSafeInteger(command.recoveryMovementLockedUntilTick) || command.recoveryMovementLockedUntilTick < 0 || Object.is(command.recoveryMovementLockedUntilTick, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-recovery-lock-invalid', entityId: command.entityId });
+        entities = entities.map((e) => (e.id === command.entityId ? Object.freeze(command.state === null ? { ...e, attackState: null, recoveryMovementLockedUntilTick: 0 } : { ...e, attackState: command.state, recoveryMovementLockedUntilTick: command.recoveryMovementLockedUntilTick }) : e));
         break;
       }
       case 'set_lane_change_cooldown': {
@@ -224,6 +217,12 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         timeCollapseSinceTick = command.sinceTick ?? undefined;
         break;
       }
+      case 'record_boss_damage': {
+        if (!Number.isSafeInteger(command.amount) || command.amount < 0) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'boss-damage-amount', amount: command.amount });
+        const current = bossDamageDealt ?? Object.freeze({ player: 0, enemy: 0 });
+        bossDamageDealt = Object.freeze({ ...current, [command.side]: current[command.side] + command.amount });
+        break;
+      }
       case 'set_projectiles': {
         if (!Array.isArray(command.projectiles)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'projectiles-not-array' });
         const validated: ProjectileState[] = command.projectiles.map((projectile) => {
@@ -287,6 +286,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   if (pendingCombatApplications !== undefined) extras['pendingCombatApplications'] = pendingCombatApplications;
   if (combatApplicationSeq !== undefined) extras['combatApplicationSeq'] = combatApplicationSeq;
   if (timeCollapseSinceTick !== undefined) extras['timeCollapseSinceTick'] = timeCollapseSinceTick;
+  if (bossDamageDealt !== undefined) extras['bossDamageDealt'] = bossDamageDealt;
   return Object.freeze({
     ...args.state,
     phase,

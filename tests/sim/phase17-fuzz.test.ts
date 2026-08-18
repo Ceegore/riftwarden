@@ -10,6 +10,7 @@ import { battle, entity, randomSession } from './test-helpers.js';
 import { tick as tickOf } from '../../src/game/sim/core/primitives.js';
 import type { AttackParameters } from '../../src/game/sim/attack/attack-state.js';
 import type { ShieldSource } from '../../src/game/sim/combat/shield-ledger.js';
+import type { SpawnRequest } from '../../src/game/sim/spawn/spawn-system.js';
 
 const input: TickInput = Object.freeze({ paused: false, decisions: Object.freeze([]), contentVersion: 'content_fixture' });
 
@@ -390,6 +391,109 @@ describe('P17 stage-L battle-end fuzz', () => {
       // Byte-identical event stream (types and payloads) — the resolver's
       // terminal decision is fully deterministic.
       expect(second.events.map((e) => `${String(e.tick)}:${e.type}:${JSON.stringify(e.payload ?? {})}`)).toEqual(first.events.map((e) => `${String(e.tick)}:${e.type}:${JSON.stringify(e.payload ?? {})}`));
+    }
+  });
+});
+
+describe('P17 full-lifecycle fuzz (spawn → combat → defeat → terminal)', () => {
+  const FUZZ_TIMEOUT = 30_000;
+  // Lethal mixed deliveries (direct + projectile + AoE radius) so kills,
+  // defeats and the terminal decision all fire in one battle from tick 0.
+  function lifecycleConfigs(): FuzzConfig[] {
+    return allConfigs().slice(0, 6).map((c) => ({ ...c, rawAmount: int(prng(c.seed + 30_000), 800, 3000) }));
+  }
+
+  function runLifecycle(config: FuzzConfig): { state: BattleModel; events: FuzzEvent[] } {
+
+    // Player has two regular units; a summon and a construct spawn mid-battle.
+    // Enemies: one boss (for the tie-break ledger) plus a regular.
+    const p1 = unit('unit_p1', 'player', { x100: 1800, maxLp: 1000, lp: 1000 });
+    const p2 = unit('unit_p2', 'player', { x100: 1900, lane: 'middle', maxLp: 1000, lp: 1000 });
+    const boss = unit('unit_boss', 'enemy', { x100: 6200, maxLp: 2000, lp: 2000 });
+    const e2 = unit('unit_e2', 'enemy', { x100: 6400, lane: 'middle', maxLp: 1000, lp: 1000 });
+    const state = battle({ simulationVersion: 'phase15-fixture-v1', entities: [p1, p2, boss, e2] });
+    const systems = createPhase17Systems({
+      speedsX100PerSecond: { unit_p1: 300, unit_p2: 300 },
+      spawnRequests: (ctx): readonly SpawnRequest[] => ctx.state.tick === 3
+        ? [
+            { kind: 'summon', reservedId: 'unit_summon', side: 'player', targetLane: 'top', radiusX100: asX100(100), maxLp: 400, startZoneX100: asX100(200) },
+            { kind: 'construct', reservedId: 'unit_construct', side: 'player', slotId: 'slot_a', lane: 'middle', x100: asX100(2100), radiusX100: asX100(120), maxLp: 600, replacementPolicy: null },
+          ]
+        : [],
+      battleEnd: { bossIds: new Set(['unit_boss']) },
+      basicAttack: {
+        parameters: {
+          unit_p1: makeAttackParameters(config),
+          unit_p2: makeAttackParameters(config),
+        },
+      },
+    });
+    let current = state;
+    const random = randomSession();
+    const events: FuzzEvent[] = [];
+    // Cap at 600 ticks: lethal combat ends the battle long before the collapse
+    // window, and the spawns/defeats/terminal must all fire well within it.
+    for (let i = 0; i < 600; i++) {
+      const r = stepBattle({ state: current, input, random, rules: {}, content: {}, systems });
+      current = r.state;
+      for (const e of r.events) {
+        const payload = e.payload as Record<string, number> | undefined;
+        const attackInstanceId = typeof payload?.['attackInstanceId'] === 'number' ? payload['attackInstanceId'] : null;
+        events.push({ tick: current.tick, type: e.type, sourceId: e.sourceId, targetIds: e.targetIds, attackInstanceId, payload });
+      }
+      if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(current.phase.phase)) break;
+    }
+    return { state: current, events };
+  }
+
+  it('spawned summons/constructs never become combat-capable and the battle still ends', { timeout: FUZZ_TIMEOUT }, () => {
+    for (const config of lifecycleConfigs()) {
+      const { state, events } = runLifecycle(config);
+      expect(['VICTORY', 'DEFEAT', 'DRAW_ABORT']).toContain(state.phase.phase);
+      const spawned = events.filter((e) => e.type === 'Spawned');
+      expect(spawned.length).toBeGreaterThanOrEqual(2);
+      // The construct and summon must never appear as a combat target after
+      // spawning (no friendly fire, and they are not combat-capable).
+      for (const e of events) {
+        if (e.type !== 'DamageApplied' && e.type !== 'HealApplied') continue;
+        expect(e.targetIds).not.toContain('unit_construct');
+        expect(e.targetIds).not.toContain('unit_summon');
+      }
+    }
+  });
+
+  it('every Defeated is confirmed by a killing blow and no events follow BattleEnded', { timeout: FUZZ_TIMEOUT }, () => {
+    for (const config of lifecycleConfigs()) {
+      const { events } = runLifecycle(config);
+      const defeatedAt = new Map<string, number>();
+      for (const e of events) {
+        if (e.type === 'Defeated' && e.sourceId !== null) defeatedAt.set(e.sourceId, e.tick);
+      }
+      for (const [entityId, tick] of defeatedAt) {
+        const kills = events.filter((e) => e.type === 'DamageApplied' && e.tick === tick && e.targetIds.includes(entityId));
+        expect(kills.length).toBeGreaterThan(0);
+        expect(kills[kills.length - 1]?.payload?.['hpAfter']).toBe(0);
+      }
+      const endedAt = events.find((e) => e.type === 'BattleEnded')?.tick;
+      if (endedAt !== undefined) for (const e of events) expect(e.tick).toBeLessThanOrEqual(endedAt);
+    }
+  });
+
+  it('boss-damage ledger stays consistent with DamageApplied events on the boss', { timeout: FUZZ_TIMEOUT }, () => {
+    for (const config of lifecycleConfigs()) {
+      const { state, events } = runLifecycle(config);
+      const ledger = state.bossDamageDealt;
+      expect(ledger).toBeDefined();
+      // Recompute expected player-side boss damage from DamageApplied events
+      // targeting the boss (final damage after shields).
+      let expected = 0;
+      for (const e of events) {
+        if (e.type !== 'DamageApplied' || !e.targetIds.includes('unit_boss')) continue;
+        expected += Math.max(0, (e.payload?.['preShieldAmount'] ?? 0) - (e.payload?.['absorbedShield'] ?? 0));
+      }
+      expect(ledger?.player ?? 0).toBe(expected);
+      // The boss never dealt damage to a boss (no player boss in this battle).
+      expect(ledger?.enemy ?? 0).toBe(0);
     }
   });
 });

@@ -6,7 +6,7 @@ const ALLOWED: Readonly<Record<PipelineStage,readonly KernelCommand['kind'][]>> 
   A:[], B:['set_timer'], C:['schedule_event'], D:['schedule_event'],  E:['set_target','append_event'],
   F:['set_position','set_movement_remainder','set_lane','set_lane_change','set_lane_change_cooldown','set_stuck_state','set_deadlock_state','set_global_progress','append_event'],
   G:['set_timer','schedule_event','set_attack_state','set_attack_lifecycle','set_attack_instance_seq','set_attack_interval_ready','set_projectiles','queue_combat_application','append_event'], H:['schedule_event','set_projectiles','queue_combat_application','append_event'],
-  I:['apply_lp_delta','set_shields','clear_combat_applications','set_pending_overkill','set_global_progress','append_event'], J:['entity_transition','remove_entity','set_revive_count','apply_lp_delta','set_global_progress','append_event'],
+  I:['apply_lp_delta','set_shields','clear_combat_applications','set_pending_overkill','record_boss_damage','set_global_progress','append_event'], J:['entity_transition','remove_entity','set_revive_count','apply_lp_delta','set_global_progress','append_event'],
   K:['spawn_entity','remove_entity','set_position','set_global_progress','append_event'], L:['battle_transition','set_time_collapse','apply_lp_delta','append_event'], M:['checkpoint_marker']
 });
 export class StageCommandBuffer {

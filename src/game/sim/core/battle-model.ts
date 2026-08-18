@@ -30,4 +30,7 @@ export interface BattleModel {
   // Phase 17 additive battle-end field (T06): first tick of the rift-collapse
   // window; undefined before the soft limit is reached.
   readonly timeCollapseSinceTick?: number;
+  // Phase 17 additive battle-end field (T06): total damage each side dealt to
+  // the opposing boss(es), used by the Chapter-76 boss-damage tie-break.
+  readonly bossDamageDealt?: Readonly<{ player: number; enemy: number }>;
 }

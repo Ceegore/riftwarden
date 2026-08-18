@@ -11,6 +11,8 @@ import type { BattleModel } from '../../src/game/sim/core/battle-model.js';
 import type { KernelEntity } from '../../src/game/sim/core/entity.js';
 import { battle, entity, randomSession } from './test-helpers.js';
 import { tick as tickOf } from '../../src/game/sim/core/primitives.js';
+import { asX100 } from '../../src/game/sim/geometry/x100.js';
+import { KernelInvariantError } from '../../src/game/sim/core/invariant-error.js';
 
 const input: TickInput = Object.freeze({ paused: false, decisions: Object.freeze([]), contentVersion: 'content_fixture' });
 
@@ -146,6 +148,63 @@ describe('P17 T06 battle-end resolver (stage L)', () => {
     expect(resolveChapter76(chapter76Score([p, e], 'player'), chapter76Score([p, e], 'enemy'))).toBe('DRAW_ABORT');
   });
 
+  it('boss-damage tie-break: higher damage dealt to the opposing boss wins', () => {
+    const p = unit('unit_p', 'player', { maxLp: 1000, lp: 500 });
+    const e = unit('unit_e', 'enemy', { maxLp: 1000, lp: 500 });
+    // Ratio and count tie; player dealt 300 to the enemy boss, enemy 100.
+    const playerScore = chapter76Score([p, e], 'player', 300);
+    const enemyScore = chapter76Score([p, e], 'enemy', 100);
+    expect(resolveChapter76(playerScore, enemyScore)).toBe('VICTORY');
+    expect(resolveChapter76(enemyScore, playerScore)).toBe('DEFEAT');
+    // Equal boss damage → double defeat.
+    expect(resolveChapter76(chapter76Score([p, e], 'player', 200), chapter76Score([p, e], 'enemy', 200))).toBe('DRAW_ABORT');
+  });
+
+  it('boss-damage tie-break resolves a kernel timeout battle', () => {
+    // Both sides tie on ratio and count (1v1, both bosses at equal LP). The
+    // player deals 400 per hit to the enemy boss while the enemy deals 200
+    // back, so the Chapter-76 boss-damage step picks the player. Huge LP keeps
+    // both alive through the collapse window so the battle reaches the timeout
+    // instead of ending by elimination.
+    const p = unit('unit_p', 'player', { x100: 1800, maxLp: 100000, lp: 100000 });
+    const e = unit('unit_e', 'enemy', { x100: 6200, maxLp: 100000, lp: 100000 });
+    const state = battle({ simulationVersion: 'phase17-fixture-v1', entities: [p, e], tick: tickOf(2680) });
+    const systems = createPhase17Systems({
+      speedsX100PerSecond: {},
+      battleEnd: { bossIds: new Set(['unit_p', 'unit_e']) },
+      basicAttack: {
+        parameters: {
+          unit_p: {
+            attackIntervalTicks: 10, prepareTicks: 1, recoveryTicks: 3, preferredRangeX100: asX100(9000),
+            delivery: { kind: 'direct', rawAmount: 400, damageTypeOrdinal: 0, defense: 0, bossCapBps: null },
+          },
+          unit_e: {
+            attackIntervalTicks: 10, prepareTicks: 1, recoveryTicks: 3, preferredRangeX100: asX100(9000),
+            delivery: { kind: 'direct', rawAmount: 200, damageTypeOrdinal: 0, defense: 0, bossCapBps: null },
+          },
+        },
+      },
+    });
+    let current = state;
+    const random = randomSession();
+    let ended = false;
+    let finalBossDamage: Readonly<{ player: number; enemy: number }> | undefined;
+    for (let i = 0; i < 520; i++) {
+      const r = stepBattle({ state: current, input, random, rules: {}, content: {}, systems });
+      current = r.state;
+      finalBossDamage = current.bossDamageDealt;
+      if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(current.phase.phase)) {
+        ended = true;
+        break;
+      }
+    }
+    expect(ended).toBe(true);
+    // The player hit the boss (unit_e) harder than the enemy hit the player.
+    expect(finalBossDamage?.player ?? 0).toBeGreaterThan(finalBossDamage?.enemy ?? 0);
+    expect(current.phase.phase).toBe('VICTORY');
+    expect(current.endReason).toBe('chapter76_timeout');
+  });
+
   it('healing is halved during the collapse window', () => {
     const attacker = unit('unit_attacker', 'player', { x100: 1000 });
     const victim = unit('unit_victim', 'enemy', { x100: 2000, maxLp: 1000, lp: 500 });
@@ -164,5 +223,178 @@ describe('P17 T06 battle-end resolver (stage L)', () => {
     expect(isCombatCapableRegular(dead)).toBe(false);
     const summon = unit('unit_s', 'player', { origin: 'summoned', maxLp: 1000, lp: 100 });
     expect(isCombatCapableRegular(summon)).toBe(false);
+    const construct = unit('unit_c', 'player', { origin: 'construct', maxLp: 1000, lp: 100 });
+    expect(isCombatCapableRegular(construct)).toBe(false);
+  });
+
+  it('a construct-only side is eliminated just like a summon-only side', () => {
+    const construct = unit('unit_c', 'player', { origin: 'construct', maxLp: 1000, lp: 1000 });
+    const enemy = unit('unit_e', 'enemy', { maxLp: 1000, lp: 1000 });
+    const { state } = run(5, [construct, enemy]);
+    expect(state.phase.phase).toBe('DEFEAT');
+  });
+
+  it('summons and constructs are excluded from the Chapter-76 ratio and count', () => {
+    // Player: 1 regular at 50% + 2 summons + 1 construct, all full LP.
+    // Enemy: 1 regular at 50%. Ratio and count must match the regulars only.
+    const p = unit('unit_p', 'player', { maxLp: 1000, lp: 500 });
+    const summon = unit('unit_s', 'player', { origin: 'summoned', maxLp: 1000, lp: 1000 });
+    const summon2 = unit('unit_s2', 'player', { origin: 'summoned', maxLp: 1000, lp: 1000 });
+    const construct = unit('unit_c', 'player', { origin: 'construct', maxLp: 1000, lp: 1000 });
+    const e = unit('unit_e', 'enemy', { maxLp: 1000, lp: 500 });
+    const playerScore = chapter76Score([p, summon, summon2, construct, e], 'player');
+    const enemyScore = chapter76Score([p, summon, summon2, construct, e], 'enemy');
+    expect(playerScore.regularCount).toBe(1);
+    expect(playerScore.lpShieldRatio).toBe(0.5);
+    expect(enemyScore.regularCount).toBe(1);
+    expect(enemyScore.lpShieldRatio).toBe(0.5);
+    // Ratio and count tie → boss damage (both 0 here) → double defeat.
+    expect(resolveChapter76(playerScore, enemyScore)).toBe('DRAW_ABORT');
+  });
+
+  it('same-tick multi-hit applications compose in queue order (stage-I projection)', () => {
+    // Two attacks land in one tick on a 300-LP target: 200 then 200. The
+    // second hit must see the post-first-hit HP (hpBefore 100, hpAfter 0) and
+    // be the killing blow with overkill 100 — not a stale read of 300.
+    const attacker = unit('unit_attacker', 'player', { x100: 1000, maxLp: 1000, lp: 1000 });
+    const attacker2 = unit('unit_attacker2', 'player', { x100: 1200, maxLp: 1000, lp: 1000 });
+    const victim = unit('unit_victim', 'enemy', { x100: 2000, maxLp: 300, lp: 300 });
+    const systems = createPhase17Systems({
+      speedsX100PerSecond: {},
+      basicAttack: {
+        parameters: {
+          unit_attacker: {
+            attackIntervalTicks: 14, prepareTicks: 0, recoveryTicks: 0, preferredRangeX100: asX100(9000),
+            delivery: { kind: 'direct', rawAmount: 200, damageTypeOrdinal: 0, defense: 0, bossCapBps: null },
+          },
+          unit_attacker2: {
+            attackIntervalTicks: 14, prepareTicks: 0, recoveryTicks: 0, preferredRangeX100: asX100(9000),
+            delivery: { kind: 'direct', rawAmount: 200, damageTypeOrdinal: 0, defense: 0, bossCapBps: null },
+          },
+        },
+      },
+    });
+    const state = battle({ simulationVersion: 'phase17-fixture-v1', entities: [attacker, attacker2, victim] });
+    let current = state;
+    const random = randomSession();
+    const events: { tick: number; type: string; targetIds: readonly string[]; payload: Readonly<Record<string, number>> | undefined }[] = [];
+    for (let i = 0; i < 30; i++) {
+      const r = stepBattle({ state: current, input, random, rules: {}, content: {}, systems });
+      current = r.state;
+      for (const e of r.events) events.push({ tick: current.tick, type: e.type, targetIds: e.targetIds, payload: e.payload });
+    }
+    const hits = events.filter((e) => e.type === 'DamageApplied' && e.targetIds.includes('unit_victim'));
+    // Two hits on the victim in one tick (both attackers commit simultaneously).
+    const tickHits = hits.filter((h) => h.tick === hits[0]?.tick);
+    expect(tickHits.length).toBe(2);
+    expect(tickHits[0]?.payload?.['hpAfter']).toBe(100);
+    expect(tickHits[1]?.payload?.['hpBefore']).toBe(100);
+    expect(tickHits[1]?.payload?.['hpAfter']).toBe(0);
+    expect(tickHits[1]?.payload?.['finalHpDelta']).toBe(100);
+    // The killing blow's overkill is the excess beyond remaining HP: 200-100.
+    const defeated = events.find((e) => e.type === 'Defeated' && e.targetIds.includes('unit_victim'));
+    expect(defeated?.payload?.['overkill']).toBe(100);
+  });
+
+  it('collapse damage skips summons and constructs', () => {
+    // A battle with a summon and a construct on the player side plus one enemy
+    // regular. Collapse damage must only hit the regulars (both sides).
+    const p = unit('unit_p', 'player', { x100: 1800, maxLp: 1000, lp: 1000 });
+    const summon = unit('unit_summon', 'player', { origin: 'summoned', x100: 1900, maxLp: 1000, lp: 1000 });
+    const construct = unit('unit_construct', 'player', { origin: 'construct', x100: 2000, maxLp: 1000, lp: 1000 });
+    const e = unit('unit_e', 'enemy', { x100: 6200, maxLp: 1000, lp: 1000 });
+    const state = battle({ simulationVersion: 'phase17-fixture-v1', entities: [p, summon, construct, e], tick: tickOf(2680) });
+    const systems = createPhase17Systems({ speedsX100PerSecond: {}, battleEnd: {} });
+    let current = state;
+    const random = randomSession();
+    for (let i = 0; i < 112; i++) {
+      const r = stepBattle({ state: current, input, random, rules: {}, content: {}, systems });
+      current = r.state;
+    }
+    // Tick 2790 is the first collapse interval (8% of 1000 = 80).
+    const byId = new Map(current.entities.map((en) => [en.id, en.lp]));
+    expect(byId.get('unit_p')).toBe(920);
+    expect(byId.get('unit_e')).toBe(920);
+    expect(byId.get('unit_summon')).toBe(1000);
+    expect(byId.get('unit_construct')).toBe(1000);
+  });
+
+  it('soft limit 2699/2700: collapse window opens exactly at 2700', () => {
+    const a = unit('unit_a', 'player', { maxLp: 1000, lp: 1000 });
+    const b = unit('unit_b', 'enemy', { maxLp: 1000, lp: 1000 });
+    // 2699 is fully normal; 2700 is still pre-damage but opens the window.
+    expect(resolveBattleEnd({ tick: 2699, entities: [a, b], phase: { phase: 'ACTIVE' } }, {}, 0).action).toBe('none');
+    expect(resolveBattleEnd({ tick: 2700, entities: [a, b], phase: { phase: 'ACTIVE' } }, {}, 0).action).toBe('none');
+    const state = battle({ simulationVersion: 'phase17-fixture-v1', entities: [a, b], tick: tickOf(2690) });
+    const systems = createPhase17Systems({ speedsX100PerSecond: {}, battleEnd: {} });
+    let current = state;
+    const random = randomSession();
+    for (let i = 0; i < 12; i++) {
+      const r = stepBattle({ state: current, input, random, rules: {}, content: {}, systems });
+      current = r.state;
+    }
+    expect(current.timeCollapseSinceTick).toBe(2700);
+  });
+
+  it('boss soft limit 3599/3600 with first collapse interval at 3690', () => {
+    const a = unit('unit_a', 'player', { maxLp: 1000, lp: 1000 });
+    const b = unit('unit_b', 'enemy', { maxLp: 1000, lp: 1000 });
+    expect(resolveBattleEnd({ tick: 3599, entities: [a, b], phase: { phase: 'ACTIVE' } }, { bossBattle: true }, 0).action).toBe('none');
+    expect(resolveBattleEnd({ tick: 3600, entities: [a, b], phase: { phase: 'ACTIVE' } }, { bossBattle: true }, 0).action).toBe('none');
+    expect(resolveBattleEnd({ tick: 3690, entities: [a, b], phase: { phase: 'ACTIVE' } }, { bossBattle: true }, 0).action).toBe('collapse_damage');
+  });
+
+  it('collapse damage fires only at the 90-tick cadence inside the window', () => {
+    const a = unit('unit_a', 'player', { maxLp: 1000, lp: 1000 });
+    const b = unit('unit_b', 'enemy', { maxLp: 1000, lp: 1000 });
+    for (const tick of [2701, 2789, 2791, 2881, 3149]) {
+      expect(resolveBattleEnd({ tick, entities: [a, b], phase: { phase: 'ACTIVE' } }, {}, 0).action).not.toBe('collapse_damage');
+    }
+    for (const tick of [2790, 2880, 2970, 3060]) {
+      expect(resolveBattleEnd({ tick, entities: [a, b], phase: { phase: 'ACTIVE' } }, {}, 0).action).toBe('collapse_damage');
+    }
+  });
+
+  it('hard limit 5400: the kernel throws P14_HARD_LIMIT if the battle is still active', () => {
+    const a = unit('unit_a', 'player', { maxLp: 100000, lp: 100000 });
+    const b = unit('unit_b', 'enemy', { maxLp: 100000, lp: 100000 });
+    const state = battle({ simulationVersion: 'phase17-fixture-v1', entities: [a, b], tick: tickOf(5399) });
+    const systems = createPhase17Systems({ speedsX100PerSecond: {}, battleEnd: {} });
+    const random = randomSession();
+    const r1 = stepBattle({ state, input, random, rules: {}, content: {}, systems });
+    expect(r1.state.tick).toBe(5400);
+    expect(() => stepBattle({ state: r1.state, input, random, rules: {}, content: {}, systems })).toThrow(KernelInvariantError);
+  });
+
+  it('no events or state change after the battle is terminal (event discard)', () => {
+    const a = unit('unit_a', 'player', { maxLp: 1000, lp: 1000 });
+    const b = unit('unit_b', 'enemy', { maxLp: 100, lp: 100 });
+    const state = battle({ simulationVersion: 'phase17-fixture-v1', entities: [a, b] });
+    const systems = createPhase17Systems({
+      speedsX100PerSecond: {},
+      basicAttack: {
+        parameters: {
+          unit_a: {
+            attackIntervalTicks: 14, prepareTicks: 0, recoveryTicks: 0, preferredRangeX100: asX100(9000),
+            delivery: { kind: 'direct', rawAmount: 200, damageTypeOrdinal: 0, defense: 0, bossCapBps: null },
+          },
+        },
+      },
+    });
+    let current = state;
+    const random = randomSession();
+    let terminalTick = -1;
+    for (let i = 0; i < 60; i++) {
+      const r = stepBattle({ state: current, input, random, rules: {}, content: {}, systems });
+      current = r.state;
+      if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(current.phase.phase)) {
+        terminalTick = current.tick;
+        break;
+      }
+    }
+    expect(terminalTick).toBeGreaterThan(0);
+    const after = stepBattle({ state: current, input, random, rules: {}, content: {}, systems });
+    expect(after.events.length).toBe(0);
+    expect(after.state.tick).toBe(terminalTick);
   });
 });

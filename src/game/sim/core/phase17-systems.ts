@@ -38,7 +38,7 @@ export function createPhase17Systems(config: Phase17SystemsConfig): readonly Ker
   const mapped = base.map((system): KernelSystem => {
     if (system.id === 'phase16.g1.attack_prep') return createBasicAttackSystem(config.basicAttack ?? { parameters: {} });
     if (system.id === 'noop.resolve_committed') return createProjectileSystem();
-    if (system.id === 'noop.apply_effects') return createCombatApplicationSystem();
+    if (system.id === 'noop.apply_effects') return createCombatApplicationSystem(config.battleEnd?.bossIds === undefined ? {} : { bossIds: config.battleEnd.bossIds });
     if (system.id === 'noop.death_resolution') return createDefeatResolverSystem(config.defeatHooks);
     return system;
   });

@@ -60,15 +60,15 @@ export interface SideScore {
   /** (sum current LP + shields) / sum max-LP over regular units (§76). */
   readonly lpShieldRatio: number;
   readonly regularCount: number;
-  readonly bossDamageTaken: number;
+  /** Total damage this side dealt to the opposing boss(es) (§76). */
+  readonly bossDamageDealt: number;
 }
 
 /** Chapter-76 primary score: LP+shield ratio over regular units; 0 if none. */
-export function chapter76Score(entities: readonly KernelEntity[], side: 'player' | 'enemy'): SideScore {
+export function chapter76Score(entities: readonly KernelEntity[], side: 'player' | 'enemy', bossDamageDealt = 0): SideScore {
   let lpShield = 0;
   let maxLp = 0;
   let regularCount = 0;
-  const bossDamageTaken = 0;
   for (const e of entities) {
     if (e.side !== side) continue;
     const origin = e.origin ?? 'regular';
@@ -78,22 +78,22 @@ export function chapter76Score(entities: readonly KernelEntity[], side: 'player'
     maxLp += e.maxLp;
   }
   const ratio = maxLp > 0 ? lpShield / maxLp : 0;
-  return { side, lpShieldRatio: ratio, regularCount, bossDamageTaken };
+  return { side, lpShieldRatio: ratio, regularCount, bossDamageDealt };
 }
 
 export type TerminalOutcome = 'VICTORY' | 'DEFEAT' | 'DRAW_ABORT';
 
 /**
- * Chapter-76 tie-break: ratio, then regular count, then boss damage, else
- * double defeat. Higher wins for each step.
+ * Chapter-76 tie-break: ratio, then regular count, then boss/target damage,
+ * else double defeat. Higher wins for each step (§10).
  */
 export function resolveChapter76(playerScore: SideScore, enemyScore: SideScore): TerminalOutcome {
   const byRatio = playerScore.lpShieldRatio - enemyScore.lpShieldRatio;
   if (byRatio !== 0) return byRatio > 0 ? 'VICTORY' : 'DEFEAT';
   const byCount = playerScore.regularCount - enemyScore.regularCount;
   if (byCount !== 0) return byCount > 0 ? 'VICTORY' : 'DEFEAT';
-  // Boss/target damage tie-break needs per-side damage ledgering that phase 17
-  // does not yet carry; the fallback is the documented double defeat (§10).
+  const byBossDamage = playerScore.bossDamageDealt - enemyScore.bossDamageDealt;
+  if (byBossDamage !== 0) return byBossDamage > 0 ? 'VICTORY' : 'DEFEAT';
   return 'DRAW_ABORT';
 }
 
@@ -108,6 +108,8 @@ export function resolveBattleEnd(state: {
   readonly tick: number;
   readonly entities: readonly KernelEntity[];
   readonly phase: { readonly phase: BattlePhase };
+  /** Chapter-76 boss-damage ledger: damage each side dealt to opposing bosses. */
+  readonly bossDamageDealt?: Readonly<{ player: number; enemy: number }>;
 }, config: BattleEndConfig, resolvingEndTicks: number): BattleEndDecision {
   const tick = state.tick;
   if (state.phase.phase === 'RESOLVING_END') {
@@ -120,8 +122,8 @@ export function resolveBattleEnd(state: {
     if (!playerAlive && !enemyAlive) return { action: 'finalize', outcome: 'DRAW_ABORT', reason: 'mutual_extermination' };
     if (!playerAlive) return { action: 'finalize', outcome: 'DEFEAT', reason: 'side_eliminated' };
     if (!enemyAlive) return { action: 'finalize', outcome: 'VICTORY', reason: 'side_eliminated' };
-    const playerScore = chapter76Score(state.entities, 'player');
-    const enemyScore = chapter76Score(state.entities, 'enemy');
+    const playerScore = chapter76Score(state.entities, 'player', state.bossDamageDealt?.player ?? 0);
+    const enemyScore = chapter76Score(state.entities, 'enemy', state.bossDamageDealt?.enemy ?? 0);
     const outcome = resolveChapter76(playerScore, enemyScore);
     return { action: 'finalize', outcome, reason: 'chapter76_timeout' };
   }

@@ -214,7 +214,12 @@ function eventFor(application: PendingCombatApplication, event: string, targetId
  * damage/heal/shield mutate LP and the ledger, each emits its §8.4 apply
  * event. No death effects or removes here — that is stage J (T05, not
  * pre-taken). Expired shields drop first with a separate event. */
-export function createCombatApplicationSystem(): KernelSystem {
+export interface CombatApplicationConfig {
+  /** Boss entity ids for the Chapter-76 boss-damage tie-break (§10). */
+  readonly bossIds?: ReadonlySet<string>;
+}
+
+export function createCombatApplicationSystem(config: CombatApplicationConfig = {}): KernelSystem {
   return {
     id: 'phase17.i1.combat_application',
     stage: 'I',
@@ -233,6 +238,7 @@ export function createCombatApplicationSystem(): KernelSystem {
         for (const source of expired.expired) {
           context.commands.push({ kind: 'append_event', event: eventFor(application, 'ShieldExpired', target.id, { amount: source.remaining }) });
         }
+        let nextLp = target.lp;
         if (application.kind === 'damage') {
           const result = applyDamagePipeline(target, shields, application);
           shields = result.shields;
@@ -240,10 +246,18 @@ export function createCombatApplicationSystem(): KernelSystem {
             context.commands.push({ kind: 'append_event', event: eventFor(application, 'ShieldAbsorbed', target.id, { amount: detail.absorbed, remaining: detail.remainingAfter }) });
           }
           context.commands.push({ kind: 'apply_lp_delta', entityId: target.id, delta: -result.outcome.finalHpDelta, sourceId: application.sourceId });
+          // §10 Chapter-76: damage dealt to a boss is attributed to the opposing
+          // side (no friendly fire), feeding the boss-damage tie-break. The
+          // effective damage is the post-shield amount that reached HP.
+          if (config.bossIds?.has(target.id) === true) {
+            const effective = Math.max(0, result.outcome.preShieldAmount - result.outcome.absorbedShield);
+            if (effective > 0) context.commands.push({ kind: 'record_boss_damage', side: target.side === 'enemy' ? 'player' : 'enemy', amount: effective });
+          }
           // §9: stage I records the killing blow's overkill (excess beyond the
           // remaining LP); stage J consumes it for the Defeated event.
           if (result.outcome.hpAfter === 0) context.commands.push({ kind: 'set_pending_overkill', entityId: target.id, overkill: Math.max(0, result.outcome.preShieldAmount - result.outcome.absorbedShield - result.outcome.finalHpDelta) });
           context.commands.push({ kind: 'append_event', event: eventFor(application, 'DamageApplied', target.id, damagePayload(application, result.outcome)) });
+          nextLp = Math.max(0, target.lp - result.outcome.finalHpDelta);
         } else if (application.kind === 'heal') {
           // §10: during the rift-collapse window healing is halved (factor 5000)
           // regardless of the content-supplied factor.
@@ -256,6 +270,7 @@ export function createCombatApplicationSystem(): KernelSystem {
             context.commands.push({ kind: 'apply_lp_delta', entityId: target.id, delta: outcome.finalHpDelta, sourceId: application.sourceId });
           }
           context.commands.push({ kind: 'append_event', event: eventFor(application, 'HealApplied', target.id, healPayload(application, outcome)) });
+          nextLp = Math.min(target.maxLp, target.lp + outcome.finalHpDelta);
         } else {
           const source: ShieldSource = Object.freeze({
             shieldId: `shield_${application.targetId}_${String(application.applicationSequence)}`,
@@ -283,8 +298,11 @@ export function createCombatApplicationSystem(): KernelSystem {
             }),
           });
         }
+        // §9: same-tick applications compose in queue order — the projection
+        // must fold LP changes too, so a second hit in the same tick sees the
+        // post-first-hit HP (correct hpBefore/hpAfter, killing blow, overkill).
         shieldUpdates.set(target.id, shields);
-        projected = projected.map((e) => (e.id === target.id ? Object.freeze({ ...e, shields }) : e));
+        projected = projected.map((e) => (e.id === target.id ? Object.freeze({ ...e, shields, lp: nextLp }) : e));
       }
       for (const [entityId, shields] of shieldUpdates) {
         context.commands.push({ kind: 'set_shields', entityId, shields });
