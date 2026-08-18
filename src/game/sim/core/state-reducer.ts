@@ -115,6 +115,12 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, laneChange: command.state }) : e));
         break;
       }
+      case 'set_attack_state': {
+        requireEntity(entities, command.entityId);
+        if (command.inRangeSinceTick !== null) assertNonNegativeSafe(command.inRangeSinceTick, 'in-range-since-tick-invalid');
+        entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, inRangeSinceTick: command.inRangeSinceTick }) : e));
+        break;
+      }
       case 'set_lane_change_cooldown': {
         requireEntity(entities, command.entityId);
         assertNonNegativeSafe(command.untilTick, 'lane-change-cooldown-invalid');

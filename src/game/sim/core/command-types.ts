@@ -19,6 +19,7 @@ export type KernelCommand =
   | Readonly<{kind:'set_lane'; entityId:string; lane:Lane}>
   | Readonly<{kind:'set_lane_change'; entityId:string; state:LaneChange|null}>
   | Readonly<{kind:'set_lane_change_cooldown'; entityId:string; untilTick:number}>
+  | Readonly<{kind:'set_attack_state'; entityId:string; inRangeSinceTick:number|null}>
   | Readonly<{kind:'set_stuck_state'; entityId:string; noProgressTicks:number; repathTicks:readonly number[]; laneFallbackUsed:boolean; stopGapBonusUntilTick:number}>
   | Readonly<{kind:'set_deadlock_state'; entityId:string; blockedTicks:number; buffConsumed:boolean; buffedEntityId:string|null}>
   | Readonly<{kind:'set_global_progress'; noProgressTicks:number; collapseTicks:number; warned:boolean}>

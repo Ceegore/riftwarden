@@ -31,6 +31,9 @@ export interface KernelEntity {
   readonly frontDeadlockBlockedTicks?: number;
   readonly deadlockBuffConsumed?: boolean;
   readonly deadlockBuffedEntityId?: string|null;
+  // Phase 16 additive fields (targeting/attack foundation).
+  readonly origin?: 'regular'|'summoned'|'construct';
+  readonly inRangeSinceTick?: number|null;
 }
 
 function isLane(value:unknown):value is Lane { return typeof value==='string' && (LANES as readonly string[]).includes(value); }
@@ -68,5 +71,8 @@ export function validateEntity(entity: KernelEntity): void {
   if (entity.frontDeadlockBlockedTicks !== undefined && (!Number.isSafeInteger(entity.frontDeadlockBlockedTicks) || entity.frontDeadlockBlockedTicks < 0 || Object.is(entity.frontDeadlockBlockedTicks, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'frontDeadlockBlockedTicks',value:entity.frontDeadlockBlockedTicks});
   if (entity.deadlockBuffConsumed !== undefined && typeof entity.deadlockBuffConsumed !== 'boolean') throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'deadlockBuffConsumed',value:entity.deadlockBuffConsumed});
   if (entity.deadlockBuffedEntityId !== undefined && entity.deadlockBuffedEntityId !== null && !ID.test(entity.deadlockBuffedEntityId)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'deadlockBuffedEntityId',value:entity.deadlockBuffedEntityId});
+  const origin: unknown = entity.origin;
+  if (origin !== undefined && origin !== 'regular' && origin !== 'summoned' && origin !== 'construct') throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'origin',value:origin});
+  if (entity.inRangeSinceTick !== undefined && entity.inRangeSinceTick !== null && (!Number.isSafeInteger(entity.inRangeSinceTick) || entity.inRangeSinceTick < 0 || Object.is(entity.inRangeSinceTick, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'inRangeSinceTick',value:entity.inRangeSinceTick});
   for (const [key,value] of Object.entries(entity.timers)) if (!Number.isSafeInteger(value) || value < 0) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,timer:key,value});
 }

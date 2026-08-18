@@ -4,10 +4,18 @@ import type { KernelEntity } from '../core/entity.js';
 import type { KernelSystem, TickContext } from '../core/tick-context.js';
 import { asX100, nonNegativeX100, type Lane } from '../geometry/x100.js';
 import { effectiveLogicalLane, resolveMovementTick, type MovementSystemConfig } from '../movement/movement-system.js';
+import { startLaneChange } from '../movement/lane-change.js';
+import { selectFallbackLane } from '../targeting/lane-fallback.js';
+import type { Role } from '../targeting/types.js';
 import { updateStuck, updateGlobalProgress, STUCK_TICKS, STUCK_RELIEF_TICKS, GLOBAL_NO_PROGRESS_WARNING_TICKS, type StuckState, type GlobalProgress } from './anti-stuck.js';
 import { updateFrontDeadlock, FRONT_DEADLOCK_TICKS, type DeadlockCandidate, type FrontDeadlockState } from './deadlock.js';
 
-function eventFor(type: 'StuckRepath' | 'RepathLaneUnavailable' | 'FrontDeadlockRangeBoost' | 'RiftCollapseWarning', entityId: string | null, payload: Record<string, number>): KernelEventInput {
+export interface AntiStuckSystemConfig extends MovementSystemConfig {
+  /** Role per entity for §9.2 fallback scores (defaults to 'fighter'). */
+  readonly roles?: Readonly<Record<string, Role>>;
+}
+
+function eventFor(type: 'StuckRepath' | 'RepathLaneUnavailable' | 'FallbackRuleUsed' | 'FrontDeadlockRangeBoost' | 'RiftCollapseWarning', entityId: string | null, payload: Record<string, number>): KernelEventInput {
   return Object.freeze({ type, sourceId: entityId, targetIds: Object.freeze([]), contentIds: Object.freeze([]), payload: Object.freeze(payload), logTags: Object.freeze(['sim.phase15']) });
 }
 
@@ -42,7 +50,7 @@ function frontDistance(entity: KernelEntity): number {
  * same tick via the stage-K spawn system, while damage/heal/death/phase
  * progress signals arrive with Phase 14/16. Render/audio events never count.
  */
-export function createAntiStuckSystem(config: MovementSystemConfig): KernelSystem {
+export function createAntiStuckSystem(config: AntiStuckSystemConfig): KernelSystem {
   const stopGap = config.stopGapX100 === undefined ? asX100(10) : nonNegativeX100(config.stopGapX100);
   return {
     id: 'phase15.f3.anti_stuck',
@@ -92,7 +100,8 @@ export function createAntiStuckSystem(config: MovementSystemConfig): KernelSyste
       // Recompute movement with the exact same shared resolver as the movement
       // system (including separation and the §8.1 clamp), so progress/blocked
       // reflect what actually happened without depending on buffered commands.
-      const movement = resolveMovementTick(context.state.entities, config.speedsX100PerSecond, stopGap, tick);
+      const arena = config.arenaBodies ? [...config.arenaBodies(context)] : [];
+      const movement = resolveMovementTick(context.state.entities, config.speedsX100PerSecond, stopGap, tick, arena);
       for (const active of actives) {
         active.progressed = movement.progressed.has(active.entity.id);
         active.blocked = movement.blocked.has(active.entity.id);
@@ -110,7 +119,18 @@ export function createAntiStuckSystem(config: MovementSystemConfig): KernelSyste
         const stopGapBonusUntilTick = update.emitRepath ? tick + STUCK_RELIEF_TICKS : active.stuckStopGapBonusUntilTick;
         context.commands.push({ kind: 'set_stuck_state', entityId: active.entity.id, noProgressTicks: update.state.noProgressTicks, repathTicks: update.state.repathTicks, laneFallbackUsed: update.state.laneFallbackUsed, stopGapBonusUntilTick });
         if (update.emitRepath) context.commands.push({ kind: 'append_event', event: eventFor('StuckRepath', active.entity.id, { noProgressTicks: STUCK_TICKS }) });
-        if (update.requestLaneFallback) context.commands.push({ kind: 'append_event', event: eventFor('RepathLaneUnavailable', active.entity.id, { noProgressTicks: STUCK_TICKS }) });
+        if (update.requestLaneFallback) {
+          // §9.2: one-time switch into the lowest-target-score valid neighboring
+          // lane; without a valid lane the fallback stays visible but unused.
+          const inFlight = active.entity.laneChange !== undefined && active.entity.laneChange !== null;
+          const fallbackLane = inFlight ? null : selectFallbackLane(active.entity, context.state.entities, config.roles);
+          if (fallbackLane === null) {
+            context.commands.push({ kind: 'append_event', event: eventFor('RepathLaneUnavailable', active.entity.id, { noProgressTicks: STUCK_TICKS }) });
+          } else {
+            context.commands.push({ kind: 'set_lane_change', entityId: active.entity.id, state: startLaneChange(active.entity.lane, fallbackLane, tick, active.entity.id, 'normal') });
+            context.commands.push({ kind: 'append_event', event: eventFor('FallbackRuleUsed', active.entity.id, { ruleOrdinal: 0 }) });
+          }
+        }
       }
 
       // 2. Front deadlock (§9.3): frontmost moving entity per side, both blocked.

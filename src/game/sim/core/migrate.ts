@@ -23,6 +23,7 @@ const PHASE15_FIELDS = [
   'radiusX100', 'movementRemainder', 'laneChange', 'normalLaneChangeCooldownUntilTick',
   'noProgressTicks', 'repathTicks', 'laneFallbackUsed', 'stuckStopGapBonusUntilTick',
   'frontDeadlockBlockedTicks', 'deadlockBuffConsumed', 'deadlockBuffedEntityId',
+  'origin', 'inRangeSinceTick',
 ] as const;
 
 function phase15FieldCount(entity: KernelEntity): number {
@@ -68,6 +69,8 @@ export function migrateEntity(args: MigrateEntityArgs): KernelEntity {
     frontDeadlockBlockedTicks: 0,
     deadlockBuffConsumed: false,
     deadlockBuffedEntityId: null,
+    origin: 'regular',
+    inRangeSinceTick: null,
   });
 }
 

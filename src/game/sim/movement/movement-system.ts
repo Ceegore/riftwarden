@@ -111,6 +111,8 @@ export interface MovementSystemConfig {
   readonly speedsX100PerSecond: Readonly<Record<string, number>>;
   /** Optional melee stop gap (defaults to 10 X100 per §5.3). */
   readonly stopGapX100?: X100;
+  /** Static arena objects; movement stops at their edge (§8.1-style, no overlap). */
+  readonly arenaBodies?: (context: TickContext) => readonly Body[];
 }
 
 export interface MovementTickResult {
@@ -141,6 +143,7 @@ export function resolveMovementTick(
   speedsX100PerSecond: Readonly<Record<string, number>>,
   stopGapX100: X100,
   tick: number,
+  arenaBodies: readonly Body[] = [],
 ): MovementTickResult {
   const actives: MigratedActive[] = [];
   for (const entity of entities) {
@@ -196,22 +199,31 @@ export function resolveMovementTick(
     for (const body of result.bodies) separated.set(body.id, body.x100);
   }
 
-  // Phase 2b: enemy pass-through clamp (§8.1). Each unit is clamped to
-  // edge-touch against the final positions of enemies resolved earlier in
-  // canonical order (or the frozen position of stationary ones), so the enemy
-  // boundary is never crossed. Normal movement can never overlap, so this is a
-  // pure safety net for the §9.1 mutual-relief case.
+  // Phase 2b: enemy and arena pass-through clamp (§8.1). Each unit is clamped
+  // to edge-touch against the final positions of enemies resolved earlier in
+  // canonical order (or the frozen position of stationary ones) and against
+  // static arena objects in its lane, so neither boundary is ever crossed. Only
+  // bodies in front of the mover block — a body behind never pulls it back.
+  // Normal movement can never overlap, so this is a pure safety net for the
+  // §9.1 mutual-relief case and the arena-stop case.
   const finalPositions = new Map<string, number>();
   for (const { entity, radiusX100 } of sorted) {
     const intent = intentions.get(entity.id);
     if (intent === undefined) continue;
     let x = separated.get(entity.id) ?? intent.x100;
+    const inFront = (bodyX: number): boolean => (entity.side === 'player' ? bodyX > entity.x100 : bodyX < entity.x100);
     for (const other of sorted) {
       if (other.entity.side === entity.side) continue;
       if (effectiveLogicalLane(other.entity) !== intent.lane) continue;
       const otherX = finalPositions.get(other.entity.id) ?? other.entity.x100;
+      if (!inFront(otherX)) continue;
       const contact = radiusX100 + other.radiusX100;
       x = entity.side === 'player' ? Math.min(x, otherX - contact) : Math.max(x, otherX + contact);
+    }
+    for (const object of arenaBodies) {
+      if (object.lane !== intent.lane || !inFront(object.x100)) continue;
+      const contact = radiusX100 + object.radiusX100;
+      x = entity.side === 'player' ? Math.min(x, object.x100 - contact) : Math.max(x, object.x100 + contact);
     }
     finalPositions.set(entity.id, x);
   }
@@ -249,7 +261,8 @@ export function createMovementSystem(config: MovementSystemConfig): KernelSystem
     id: 'phase15.f2.movement',
     stage: 'F',
     run(context: TickContext): void {
-      const result = resolveMovementTick(context.state.entities, config.speedsX100PerSecond, stopGap, context.state.tick);
+      const arena = config.arenaBodies ? [...config.arenaBodies(context)] : [];
+      const result = resolveMovementTick(context.state.entities, config.speedsX100PerSecond, stopGap, context.state.tick, arena);
       // Emit commands in the canonical order of the underlying entities.
       const actives: MigratedActive[] = [];
       for (const entity of context.state.entities) {

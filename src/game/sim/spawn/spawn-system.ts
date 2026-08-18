@@ -101,6 +101,8 @@ function buildEntity(request: SpawnRequest, x100: X100, lane: Lane, tick: Tick):
     frontDeadlockBlockedTicks: 0,
     deadlockBuffConsumed: false,
     deadlockBuffedEntityId: null,
+    origin: request.kind === 'construct' ? 'construct' : 'summoned',
+    inRangeSinceTick: null,
   });
 }
 
