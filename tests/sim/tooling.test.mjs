@@ -83,6 +83,15 @@ test('crossruntime matrix pins Node against the reference trace and leaves devic
   for (const key of ['chromium', 'firefox', 'webkit']) {
     assert.equal(matrix.phase17.runtimes[key].status, 'NOT_RUN');
   }
+  // Phase 17 stage J/L column (defeat + collapse + battle-end) is pinned too.
+  const fixture17jl = JSON.parse(readFileSync(join(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase17jl.json'), 'utf8'));
+  assert.equal(matrix.phase17jl.runtimes.node.tick30, fixture17jl.checkpoints.find((c) => c.tick === 2700).checksum);
+  assert.equal(matrix.phase17jl.runtimes.node.tick60, fixture17jl.checkpoints.find((c) => c.tick === 2880).checksum);
+  assert.equal(matrix.phase17jl.runtimes.node.endHash, fixture17jl.finalSnapshotChecksum);
+  assert.equal(matrix.phase17jl.runtimes.node.terminal, true);
+  for (const key of ['chromium', 'firefox', 'webkit']) {
+    assert.equal(matrix.phase17jl.runtimes[key].status, 'NOT_RUN');
+  }
 });
 
 test('mass-sim harness reports PASS with no drift and accumulates events across battles', () => {

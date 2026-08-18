@@ -6,6 +6,7 @@ import { mulDivRound } from '../math/fixed-math.js';
 import { basisPoints, milliValue } from '../../rules/units.js';
 import type { KernelEventInput } from '../events/event-types.js';
 import { aggregateShields, consumeShields, expireShields, validateShieldSource, type ShieldConsumption, type ShieldSource } from './shield-ledger.js';
+import { COLLAPSE_HEAL_FACTOR_BPS, COLLAPSE_WINDOW_TICKS } from './battle-end-resolver.js';
 
 /** Damage type ordinals (§8.1): physical, magical, pure. */
 export const DAMAGE_TYPE_PHYSICAL = 0;
@@ -244,7 +245,13 @@ export function createCombatApplicationSystem(): KernelSystem {
           if (result.outcome.hpAfter === 0) context.commands.push({ kind: 'set_pending_overkill', entityId: target.id, overkill: Math.max(0, result.outcome.preShieldAmount - result.outcome.absorbedShield - result.outcome.finalHpDelta) });
           context.commands.push({ kind: 'append_event', event: eventFor(application, 'DamageApplied', target.id, damagePayload(application, result.outcome)) });
         } else if (application.kind === 'heal') {
-          const outcome = applyHealPipeline(target, application);
+          // §10: during the rift-collapse window healing is halved (factor 5000)
+          // regardless of the content-supplied factor.
+          const collapseActive = context.state.timeCollapseSinceTick !== undefined
+            && context.state.tick >= context.state.timeCollapseSinceTick
+            && context.state.tick < context.state.timeCollapseSinceTick + COLLAPSE_WINDOW_TICKS;
+          const factor = collapseActive ? Math.min(application.healFactorBps, COLLAPSE_HEAL_FACTOR_BPS) : application.healFactorBps;
+          const outcome = applyHealPipeline(target, { ...application, healFactorBps: factor });
           if (outcome.finalHpDelta > 0) {
             context.commands.push({ kind: 'apply_lp_delta', entityId: target.id, delta: outcome.finalHpDelta, sourceId: application.sourceId });
           }

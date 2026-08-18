@@ -48,6 +48,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   let projectiles = args.state.projectiles;
   let pendingCombatApplications = args.state.pendingCombatApplications;
   let combatApplicationSeq = args.state.combatApplicationSeq;
+  let timeCollapseSinceTick = args.state.timeCollapseSinceTick;
   const beforeEvents = args.log.size();
   const transitions = new Map<string, TransitionRequest[]>();
   const battleTransitions: BattleTransitionRequest[] = [];
@@ -218,6 +219,11 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, reviveCount: command.count }) : e));
         break;
       }
+      case 'set_time_collapse': {
+        if (command.sinceTick !== null && (!Number.isSafeInteger(command.sinceTick) || command.sinceTick < 0 || Object.is(command.sinceTick, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'time-collapse-invalid', sinceTick: command.sinceTick });
+        timeCollapseSinceTick = command.sinceTick ?? undefined;
+        break;
+      }
       case 'set_projectiles': {
         if (!Array.isArray(command.projectiles)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'projectiles-not-array' });
         const validated: ProjectileState[] = command.projectiles.map((projectile) => {
@@ -232,22 +238,18 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
       case 'apply_lp_delta': {
         requireEntity(entities, command.entityId);
         if (!Number.isSafeInteger(command.delta)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'lp-delta-not-integer', entityId: command.entityId, delta: command.delta });
+        // §9.3: the deadlock melee buff ends on the buffed unit's first hit.
         entities = entities.map((e) => {
           if (e.id !== command.entityId) return e;
           const next = Object.freeze({ ...e, lp: Math.max(0, Math.min(e.maxLp, e.lp + command.delta)) });
-          // §9.3: the deadlock melee buff ends on the buffed unit's first hit.
-          if (command.delta < 0 && command.sourceId !== undefined && command.sourceId !== null && next.deadlockBuffedEntityId !== undefined && next.deadlockBuffedEntityId !== null) {
-            return Object.freeze({ ...next, deadlockBuffedEntityId: null, deadlockBuffConsumed: true });
-          }
+          if (command.delta < 0 && command.sourceId != null && next.deadlockBuffedEntityId != null) return Object.freeze({ ...next, deadlockBuffedEntityId: null, deadlockBuffConsumed: true });
           return next;
         });
         break;
       }
       case 'set_timer': {
         requireEntity(entities, command.entityId);
-        if (!Number.isSafeInteger(command.ticks) || command.ticks < 0 || Object.is(command.ticks, -0)) {
-          throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'timer-ticks-invalid', entityId: command.entityId, ticks: command.ticks });
-        }
+        if (!Number.isSafeInteger(command.ticks) || command.ticks < 0 || Object.is(command.ticks, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'timer-ticks-invalid', entityId: command.entityId, ticks: command.ticks });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, timers: Object.freeze({ ...e.timers, [command.timer]: command.ticks }) }) : e));
         break;
       }
@@ -284,6 +286,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   if (projectiles !== undefined) extras['projectiles'] = projectiles;
   if (pendingCombatApplications !== undefined) extras['pendingCombatApplications'] = pendingCombatApplications;
   if (combatApplicationSeq !== undefined) extras['combatApplicationSeq'] = combatApplicationSeq;
+  if (timeCollapseSinceTick !== undefined) extras['timeCollapseSinceTick'] = timeCollapseSinceTick;
   return Object.freeze({
     ...args.state,
     phase,

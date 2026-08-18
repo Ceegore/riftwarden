@@ -58,7 +58,7 @@ describe('Phase 17 T01 basic-attack lifecycle', () => {
     expect(ids(p17)).not.toContain('noop.death_resolution');
     // Everything else is carried over unchanged.
     const expected = ids(p16).filter((id) => id !== 'phase16.g1.attack_prep' && id !== 'noop.resolve_committed' && id !== 'noop.apply_effects' && id !== 'noop.death_resolution');
-    const actual = ids(p17).filter((id) => id !== 'phase17.g1.basic_attack' && id !== 'phase17.h1.projectile' && id !== 'phase17.i1.combat_application' && id !== 'phase17.j1.defeat_resolver');
+    const actual = ids(p17).filter((id) => id !== 'phase17.g1.basic_attack' && id !== 'phase17.h1.projectile' && id !== 'phase17.i1.combat_application' && id !== 'phase17.j1.defeat_resolver' && id !== 'phase17.l1.battle_end');
     expect(actual).toEqual(expected);
   });
 

@@ -16,6 +16,7 @@
     "J:phase17.j1.defeat_resolver",
     "K:phase15.k1.spawn",
     "L:phase15.l.endcap",
+    "L:phase17.l1.battle_end",
     "M:noop.snapshot"
   ],
   "checkpoints": [

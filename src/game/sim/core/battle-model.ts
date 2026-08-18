@@ -27,4 +27,7 @@ export interface BattleModel {
   readonly projectiles?: readonly ProjectileState[];
   readonly pendingCombatApplications?: readonly PendingCombatApplication[];
   readonly combatApplicationSeq?: number;
+  // Phase 17 additive battle-end field (T06): first tick of the rift-collapse
+  // window; undefined before the soft limit is reached.
+  readonly timeCollapseSinceTick?: number;
 }

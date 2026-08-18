@@ -370,6 +370,99 @@ export function runNodePhase17ReferenceTrace(api) {
   };
 }
 
+/**
+ * Builds the Phase 17 stage J/L reference battle: lethal basic attack (direct
+ * delivery) on a battle seeded at tick 2680 so defeats (stage J) and the
+ * rift-collapse window + Chapter-76 resolution (stage L) both fire, matching
+ * tests/sim/fixtures/reference-traces-phase17jl.json exactly.
+ */
+export function buildPhase17JLBattle(api) {
+  const { migrate, primitives } = api;
+  const mk = (id, side, x100, lane, lp) =>
+    migrate.migrateEntity({
+      entity: Object.freeze({
+        id,
+        side,
+        phase: Object.freeze({ phase: 'ACTIVE', enteredTick: primitives.tick(0), controlledReturn: null }),
+        maxLp: 1000,
+        lp,
+        shield: 0,
+        lane,
+        x100,
+        targetId: null,
+        timers: Object.freeze({}),
+      }),
+      radiusX100: 100,
+    });
+  const entities = [
+    mk('unit_player_a', 'player', 1800, 'top', 1000),
+    mk('unit_player_b', 'player', 2400, 'middle', 1000),
+    mk('unit_enemy_a', 'enemy', 6200, 'middle', 500),
+    mk('unit_enemy_b', 'enemy', 7600, 'bottom', 400),
+  ];
+  const rnd = buildRandom(api);
+  return Object.freeze({
+    schemaVersion: 1,
+    simulationVersion: 'phase17jl-fixture-v1',
+    battleId: 'battle_fixture',
+    tick: primitives.tick(2680),
+    nextSequence: primitives.sequence(0),
+    emittedEventCount: 0,
+    phase: Object.freeze({ phase: 'ACTIVE', enteredTick: primitives.tick(0), resolvingEndTicks: 0 }),
+    entities: Object.freeze(entities),
+    scheduledEvents: Object.freeze([]),
+    authoritativeStreams: rnd.streams.snapshotAuthoritative(),
+    endReason: null,
+  });
+}
+
+/** Runs the Phase 17 stage J/L trace to its terminal outcome (the P17-JL Node reference column). */
+export function runNodePhase17JLReferenceTrace(api) {
+  const { battleKernel, phase17Systems, snapshot, x100 } = api;
+  const input = Object.freeze({ paused: false, decisions: Object.freeze([]), contentVersion: 'content_fixture' });
+  let state = buildPhase17JLBattle(api);
+  const startHash = snapshot.createSnapshot(state).checksum;
+  const random = buildRandom(api);
+  const systems = phase17Systems.createPhase17Systems({
+    speedsX100PerSecond: {},
+    basicAttack: {
+      parameters: {
+        unit_player_a: {
+          attackIntervalTicks: 10,
+          prepareTicks: 1,
+          recoveryTicks: 3,
+          preferredRangeX100: x100.asX100(9000),
+          delivery: { kind: 'direct', rawAmount: 400, damageTypeOrdinal: 0, defense: 0, bossCapBps: null },
+        },
+      },
+    },
+  });
+  const checkpoints = [];
+  let callOrder = [];
+  let terminal = false;
+  for (let i = 0; i < 500; i++) {
+    const r = battleKernel.stepBattle({ state, input, random, rules: {}, content: {}, systems });
+    state = r.state;
+    if (i === 0) callOrder = [...r.callOrder];
+    if (r.checkpoint) checkpoints.push({ tick: state.tick, checksum: r.checkpoint.checksum });
+    if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(state.phase.phase)) {
+      terminal = true;
+      break;
+    }
+  }
+  return {
+    startHash,
+    tick30: checkpoints.find((c) => c.tick === 2700)?.checksum ?? null,
+    tick60: checkpoints.find((c) => c.tick === 2880)?.checksum ?? null,
+    endHash: snapshot.createSnapshot(state).checksum,
+    endTick: state.tick,
+    endReason: state.endReason,
+    eventCount: state.emittedEventCount,
+    terminal,
+    callOrder,
+  };
+}
+
 /** Runs the Phase 16 60-tick trace and returns its hashes (the P16 Node reference column). */
 export function runNodePhase16ReferenceTrace(api) {
   const { battleKernel, phase16Systems, snapshot, x100 } = api;

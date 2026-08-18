@@ -37,6 +37,7 @@ export type KernelCommand =
   | Readonly<{kind:'set_projectiles'; projectiles:readonly ProjectileState[]}>
   | Readonly<{kind:'set_pending_overkill'; entityId:string; overkill:number}>
   | Readonly<{kind:'set_revive_count'; entityId:string; count:number}>
+  | Readonly<{kind:'set_time_collapse'; sinceTick:number|null}>
   | Readonly<{kind:'set_timer'; entityId:string; timer:string; ticks:number}>
   | Readonly<{kind:'checkpoint_marker'; reason:'interval'|'terminal'}>;
 

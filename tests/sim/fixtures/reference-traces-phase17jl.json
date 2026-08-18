@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "simulationVersion": "phase17jl-fixture-v1",
+  "pipelineCallOrder": [
+    "A:noop.finalize_previous",
+    "B:noop.timers",
+    "C:noop.periodic",
+    "D:noop.triggers",
+    "E:phase16.e1.targeting",
+    "F:phase15.f1.lane_change",
+    "F:phase15.f2.movement",
+    "F:phase15.f3.anti_stuck",
+    "G:phase17.g1.basic_attack",
+    "H:phase17.h1.projectile",
+    "I:phase17.i1.combat_application",
+    "J:phase17.j1.defeat_resolver",
+    "K:phase15.k1.spawn",
+    "L:phase15.l.endcap",
+    "L:phase17.l1.battle_end",
+    "M:noop.snapshot"
+  ],
+  "checkpoints": [
+    {
+      "tick": 2700,
+      "checksum": "8bfc9111ec37dc07add41e5513c93677bee5ac6813af5e76df8b64f0efb2dcd2"
+    },
+    {
+      "tick": 2730,
+      "checksum": "73c63e3e59aea7d9bc1844e4933e921da486be67f4eab00dbbef8261b208c707"
+    },
+    {
+      "tick": 2760,
+      "checksum": "69826133a1524f9f201f1462bf7ef5f1c41603e7098cddf716c57db081aabe19"
+    },
+    {
+      "tick": 2790,
+      "checksum": "b48292472784c61b1a6555977378660e84d933984dee6657f4eadae7da31d4e4"
+    },
+    {
+      "tick": 2820,
+      "checksum": "4d250fbab715e7604c70123264dbde09554403f1c3b6751b39bcbd1d6ccb6fa2"
+    },
+    {
+      "tick": 2850,
+      "checksum": "637ca3483f5b7947eb030f808ccab6fd885e3f4b6d0c7c83d73bab7c5f059185"
+    },
+    {
+      "tick": 2880,
+      "checksum": "d49c1d0aa17326c8e65c4cb71a395045ed190bd26d1699827ab166aad621c19b"
+    },
+    {
+      "tick": 2910,
+      "checksum": "5499d89a49fe85a22fc3a10c05a36d9761945f7bf3ec7852b7ce0e5f2cc3006f"
+    },
+    {
+      "tick": 2940,
+      "checksum": "9f4101ebb09b955bf2a5ce243572185c02b12672864a10ab12afecc3d7ff8f5f"
+    },
+    {
+      "tick": 2970,
+      "checksum": "a988ca76fd8763fd41862a73e64a65d49a7679ecd8e15e46df7eaad97c7ad998"
+    },
+    {
+      "tick": 3000,
+      "checksum": "b116d61c3e7af6825c431a0da2567cb0ddd7732427b42ef67aa496baf7e42b7a"
+    },
+    {
+      "tick": 3030,
+      "checksum": "f9b7168e4dbe0ab1cba3752986fd2e1af3e2df53eb93050c5152f6c89e7f5c9b"
+    },
+    {
+      "tick": 3060,
+      "checksum": "e204d77e89265bd1fca0258c89922a31f1b199948f2e05f90d7ff7585052f84a"
+    },
+    {
+      "tick": 3090,
+      "checksum": "505228e8753ceb8d90dd2c0b0d66b066611b20d6c4a4f45eeec159b3c89dc2fc"
+    },
+    {
+      "tick": 3120,
+      "checksum": "7e477791b679d01d4b5ba0ceed276b07c2f1e8af4068d21c2a8a16219f9061a9"
+    },
+    {
+      "tick": 3150,
+      "checksum": "ef44840d45ca1b86b9607a813e8a8ff4a426eaabf315d2edac97ee3dd7a37707"
+    },
+    {
+      "tick": 3154,
+      "checksum": "f948b66a9a1f5e6a9a256a1750134bbb7378cfeedff8916fe3d9bb524a0c0055"
+    }
+  ],
+  "finalSnapshotChecksum": "f948b66a9a1f5e6a9a256a1750134bbb7378cfeedff8916fe3d9bb524a0c0055"
+}

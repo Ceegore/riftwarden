@@ -7,6 +7,7 @@ import type { TickInput } from '../../src/game/sim/core/tick-input.js';
 import type { BattleModel } from '../../src/game/sim/core/battle-model.js';
 import type { KernelEntity } from '../../src/game/sim/core/entity.js';
 import { battle, entity, randomSession } from './test-helpers.js';
+import { tick as tickOf } from '../../src/game/sim/core/primitives.js';
 import type { AttackParameters } from '../../src/game/sim/attack/attack-state.js';
 import type { ShieldSource } from '../../src/game/sim/combat/shield-ledger.js';
 
@@ -297,6 +298,98 @@ describe('P17 stage-J defeat fuzz', () => {
           expect(kills[kills.length - 1]?.payload?.['hpAfter']).toBe(0);
         }
       }
+    }
+  });
+});
+
+describe('P17 stage-L battle-end fuzz', () => {
+  const FUZZ_TIMEOUT = 30_000;
+  // Seed the battle just before the 2700 soft limit (2680) and run ~520 ticks
+  // so the collapse window (2700–3150) and its 90-tick damage cadence are
+  // exercised, ending via time limit / chapter76. The anti-stuck endcap needs
+  // 600 no-progress ticks and cannot fire before the time limit from this seed.
+  const START_TICK = 2680;
+  const RUN_TICKS = 520;
+
+  function stageLConfigs(): FuzzConfig[] {
+    return allConfigs().slice(0, 8).map((c) => ({ ...c, rawAmount: 0, healRaw: 0, shieldRaw: 0 }));
+  }
+
+  function runStageL(config: FuzzConfig): { state: BattleModel; events: FuzzEvent[] } {
+    const entities: KernelEntity[] = [
+      unit('unit_p1', 'player', { x100: 1800, maxLp: 1000, lp: 1000 }),
+      unit('unit_p2', 'player', { x100: 1900, lane: 'middle', maxLp: 1500, lp: 1500 }),
+      unit('unit_e1', 'enemy', { x100: 6200, maxLp: 1000, lp: 1000 }),
+      unit('unit_e2', 'enemy', { x100: 6400, lane: 'middle', maxLp: 1200, lp: 1200 }),
+    ];
+    const state = battle({ simulationVersion: 'phase15-fixture-v1', entities, tick: tickOf(START_TICK) });
+    const systems = createPhase17Systems({
+      speedsX100PerSecond: {},
+      basicAttack: { parameters: { unit_p1: makeAttackParameters(config) } },
+    });
+    let current = state;
+    const random = randomSession();
+    const events: FuzzEvent[] = [];
+    for (let i = 0; i < RUN_TICKS; i++) {
+      const r = stepBattle({ state: current, input, random, rules: {}, content: {}, systems });
+      current = r.state;
+      for (const e of r.events) {
+        const payload = e.payload as Record<string, number> | undefined;
+        const attackInstanceId = typeof payload?.['attackInstanceId'] === 'number' ? payload['attackInstanceId'] : null;
+        events.push({ tick: current.tick, type: e.type, sourceId: e.sourceId, targetIds: e.targetIds, attackInstanceId, payload });
+      }
+    }
+    return { state: current, events };
+  }
+
+  it('always reaches a terminal outcome by the hard limit, with no events after BattleEnded', { timeout: FUZZ_TIMEOUT }, () => {
+    for (const config of stageLConfigs()) {
+      const { state, events } = runStageL(config);
+      expect(['VICTORY', 'DEFEAT', 'DRAW_ABORT']).toContain(state.phase.phase);
+      expect(state.tick).toBeLessThanOrEqual(5400);
+      const endedAt = events.find((e) => e.type === 'BattleEnded')?.tick;
+      if (endedAt !== undefined) {
+        for (const e of events) expect(e.tick).toBeLessThanOrEqual(endedAt);
+      } else {
+        // No BattleEnded means the battle was terminal before this run began
+        // stepping (mutual/elimination at the seed) — never from mid-run stall.
+        expect(state.tick).toBeLessThanOrEqual(START_TICK + 4);
+      }
+    }
+  });
+
+  it('collapse damage lands 8% max-LP per 90-tick interval for every regular unit', { timeout: FUZZ_TIMEOUT }, () => {
+    for (const config of stageLConfigs()) {
+      const { events } = runStageL(config);
+      // Units with maxLp 1000/1200/1500 → 80/96/120 per interval (floor).
+      const perUnit = new Map<string, number>();
+      for (const e of events) {
+        if (e.type !== 'DamageApplied' || e.sourceId !== 'rift_collapse') continue;
+        const id = e.targetIds[0];
+        if (id === undefined) continue;
+        perUnit.set(id, (perUnit.get(id) ?? 0) + (e.payload?.['finalHpDelta'] ?? 0));
+      }
+      // A 450-tick window with 90-tick cadence: intervals at 2790, 2880, 2970,
+      // 3060 → 4 intervals (3150 requests the end). Each unit survives all 4
+      // because 4×8% < 100% of max-LP; total is exactly the per-interval floor.
+      const maxLpByUnit: Readonly<Record<string, number>> = Object.freeze({ unit_p1: 1000, unit_p2: 1500, unit_e1: 1000, unit_e2: 1200 });
+      for (const [id, total] of perUnit) {
+        const maxLp = maxLpByUnit[id] ?? 0;
+        expect(total).toBe(4 * Math.max(1, Math.floor((maxLp * 800) / 10000)));
+      }
+    }
+  });
+
+  it('tie-break determinism: same seed produces the same terminal outcome and event count', { timeout: FUZZ_TIMEOUT }, () => {
+    for (const config of stageLConfigs()) {
+      const first = runStageL(config);
+      const second = runStageL(config);
+      expect(second.state.phase.phase).toBe(first.state.phase.phase);
+      expect(second.state.tick).toBe(first.state.tick);
+      expect(second.events.length).toBe(first.events.length);
+      // Byte-identical event stream (types and payloads) — the resolver's
+      // terminal decision is fully deterministic.
+      expect(second.events.map((e) => `${String(e.tick)}:${e.type}:${JSON.stringify(e.payload ?? {})}`)).toEqual(first.events.map((e) => `${String(e.tick)}:${e.type}:${JSON.stringify(e.payload ?? {})}`));
     }
   });
 });

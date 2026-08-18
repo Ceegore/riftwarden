@@ -324,3 +324,101 @@ const p17Result = Object.freeze({
 });
 
 (globalThis as unknown as { __P17_CROSSRUNTIME__: unknown }).__P17_CROSSRUNTIME__ = p17Result;
+
+// ---------------------------------------------------------------------------
+// Phase 17 stage J/L oracle: the same trace as
+// tests/sim/fixtures/reference-traces-phase17jl.json (battle seeded at tick
+// 2680 with lethal direct combat, running through defeat resolution and the
+// rift-collapse window to the terminal outcome).
+// ---------------------------------------------------------------------------
+function buildPhase17JLBattle() {
+  const rnd = buildRandom();
+  const mk = (id: string, side: 'player' | 'enemy', x100: number, lane: 'top' | 'middle' | 'bottom', lp: number) =>
+    migrateEntity({
+      entity: Object.freeze({
+        id,
+        side,
+        phase: Object.freeze({ phase: 'ACTIVE', enteredTick: tick(0), controlledReturn: null }),
+        maxLp: 1000,
+        lp,
+        shield: 0,
+        lane,
+        x100,
+        targetId: null,
+        timers: Object.freeze({}),
+      }),
+      radiusX100: 100,
+    });
+  const entities = Object.freeze([
+    mk('unit_player_a', 'player', 1800, 'top', 1000),
+    mk('unit_player_b', 'player', 2400, 'middle', 1000),
+    mk('unit_enemy_a', 'enemy', 6200, 'middle', 500),
+    mk('unit_enemy_b', 'enemy', 7600, 'bottom', 400),
+  ]);
+  return Object.freeze({
+    schemaVersion: 1,
+    simulationVersion: 'phase17jl-fixture-v1',
+    battleId: 'battle_fixture',
+    tick: tick(2680),
+    nextSequence: sequence(0),
+    emittedEventCount: 0,
+    phase: Object.freeze({ phase: 'ACTIVE', enteredTick: tick(0), resolvingEndTicks: 0 }),
+    entities,
+    scheduledEvents: Object.freeze([]),
+    authoritativeStreams: rnd.streams.snapshotAuthoritative(),
+    endReason: null,
+  });
+}
+
+const p17jlState0 = buildPhase17JLBattle();
+const p17jlRandom = buildRandom();
+const p17jlStartHash = createSnapshot(p17jlState0).checksum;
+const p17jlCheckpoints: { tick: number; checksum: string }[] = [];
+
+let p17jlState = p17jlState0;
+let p17jlCallOrder: readonly string[] = [];
+let p17jlTerminal = false;
+for (let i = 0; i < 500; i++) {
+  const r = stepBattle({
+    state: p17jlState,
+    input,
+    random: p17jlRandom,
+    rules: {},
+    content: {},
+    systems: createPhase17Systems({
+      speedsX100PerSecond: {},
+      basicAttack: {
+        parameters: {
+          unit_player_a: {
+            attackIntervalTicks: 10,
+            prepareTicks: 1,
+            recoveryTicks: 3,
+            preferredRangeX100: asX100(9000),
+            delivery: { kind: 'direct', rawAmount: 400, damageTypeOrdinal: 0, defense: 0, bossCapBps: null },
+          },
+        },
+      },
+    }),
+  });
+  p17jlState = r.state;
+  if (i === 0) p17jlCallOrder = r.callOrder;
+  if (r.checkpoint) p17jlCheckpoints.push({ tick: p17jlState.tick, checksum: r.checkpoint.checksum });
+  if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(p17jlState.phase.phase)) {
+    p17jlTerminal = true;
+    break;
+  }
+}
+
+const p17jlResult = Object.freeze({
+  startHash: p17jlStartHash,
+  tick30: p17jlCheckpoints.find((c) => c.tick === 2700)?.checksum ?? null,
+  tick60: p17jlCheckpoints.find((c) => c.tick === 2880)?.checksum ?? null,
+  endHash: createSnapshot(p17jlState).checksum,
+  endTick: p17jlState.tick,
+  endReason: p17jlState.endReason,
+  eventCount: p17jlState.emittedEventCount,
+  terminal: p17jlTerminal,
+  callOrder: p17jlCallOrder,
+});
+
+(globalThis as unknown as { __P17JL_CROSSRUNTIME__: unknown }).__P17JL_CROSSRUNTIME__ = p17jlResult;

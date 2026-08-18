@@ -346,5 +346,96 @@
         "exitCode": null
       }
     }
+  },
+  "phase17jl": {
+    "phase": 17,
+    "gate": "G17",
+    "fixture": "tests/sim/fixtures/reference-traces-phase17jl.json",
+    "status": "PARTIAL",
+    "note": "Phase 17 stage J/L trace (defeat + collapse + battle-end): desktop engines hash-identical to the Node reference and the pinned fixture; WebViews NOT_RUN.",
+    "runtimes": {
+      "node": {
+        "status": "REFERENCE",
+        "version": "v25.8.0",
+        "host": "win32",
+        "startHash": "c490d4258bbd72f69da4ee0d7467ff29b6aa2d591395e3570d6bf8f4e8381271",
+        "tick30": "8bfc9111ec37dc07add41e5513c93677bee5ac6813af5e76df8b64f0efb2dcd2",
+        "tick60": "d49c1d0aa17326c8e65c4cb71a395045ed190bd26d1699827ab166aad621c19b",
+        "endHash": "f948b66a9a1f5e6a9a256a1750134bbb7378cfeedff8916fe3d9bb524a0c0055",
+        "endTick": 3154,
+        "endReason": "chapter76_timeout",
+        "eventCount": 31,
+        "exitCode": 0,
+        "terminal": true
+      },
+      "chromium": {
+        "status": "PASS",
+        "version": "149.0.7827.55",
+        "host": "win32 (Playwright)",
+        "startHash": "c490d4258bbd72f69da4ee0d7467ff29b6aa2d591395e3570d6bf8f4e8381271",
+        "tick30": "8bfc9111ec37dc07add41e5513c93677bee5ac6813af5e76df8b64f0efb2dcd2",
+        "tick60": "d49c1d0aa17326c8e65c4cb71a395045ed190bd26d1699827ab166aad621c19b",
+        "endHash": "f948b66a9a1f5e6a9a256a1750134bbb7378cfeedff8916fe3d9bb524a0c0055",
+        "endTick": 3154,
+        "endReason": "chapter76_timeout",
+        "eventCount": 31,
+        "terminal": true,
+        "exitCode": 0
+      },
+      "firefox": {
+        "status": "PASS",
+        "version": "151.0",
+        "host": "win32 (Playwright)",
+        "startHash": "c490d4258bbd72f69da4ee0d7467ff29b6aa2d591395e3570d6bf8f4e8381271",
+        "tick30": "8bfc9111ec37dc07add41e5513c93677bee5ac6813af5e76df8b64f0efb2dcd2",
+        "tick60": "d49c1d0aa17326c8e65c4cb71a395045ed190bd26d1699827ab166aad621c19b",
+        "endHash": "f948b66a9a1f5e6a9a256a1750134bbb7378cfeedff8916fe3d9bb524a0c0055",
+        "endTick": 3154,
+        "endReason": "chapter76_timeout",
+        "eventCount": 31,
+        "terminal": true,
+        "exitCode": 0
+      },
+      "webkit": {
+        "status": "PASS",
+        "version": "26.5",
+        "host": "win32 (Playwright)",
+        "startHash": "c490d4258bbd72f69da4ee0d7467ff29b6aa2d591395e3570d6bf8f4e8381271",
+        "tick30": "8bfc9111ec37dc07add41e5513c93677bee5ac6813af5e76df8b64f0efb2dcd2",
+        "tick60": "d49c1d0aa17326c8e65c4cb71a395045ed190bd26d1699827ab166aad621c19b",
+        "endHash": "f948b66a9a1f5e6a9a256a1750134bbb7378cfeedff8916fe3d9bb524a0c0055",
+        "endTick": 3154,
+        "endReason": "chapter76_timeout",
+        "eventCount": 31,
+        "terminal": true,
+        "exitCode": 0
+      },
+      "android_webview": {
+        "status": "NOT_RUN",
+        "version": null,
+        "host": null,
+        "startHash": null,
+        "tick30": null,
+        "tick60": null,
+        "endHash": null,
+        "endTick": null,
+        "endReason": null,
+        "eventCount": null,
+        "exitCode": null
+      },
+      "ios_wkwebview": {
+        "status": "NOT_RUN",
+        "version": null,
+        "host": null,
+        "startHash": null,
+        "tick30": null,
+        "tick60": null,
+        "endHash": null,
+        "endTick": null,
+        "endReason": null,
+        "eventCount": null,
+        "exitCode": null
+      }
+    }
   }
 }

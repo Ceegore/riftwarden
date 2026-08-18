@@ -2,7 +2,7 @@
 import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadKernel, runNodeReferenceTrace, runNodePhase15ReferenceTrace, runNodePhase16ReferenceTrace, runNodePhase17ReferenceTrace } from './lib/kernel-loader.mjs';
+import { loadKernel, runNodeReferenceTrace, runNodePhase15ReferenceTrace, runNodePhase16ReferenceTrace, runNodePhase17ReferenceTrace, runNodePhase17JLReferenceTrace } from './lib/kernel-loader.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
@@ -47,6 +47,15 @@ try {
   const expected17_60 = fixture17.checkpoints.find((c) => c.tick === 60)?.checksum;
   if (node17.tick30 !== expected17_30 || node17.tick60 !== expected17_60 || node17.endHash !== fixture17.finalSnapshotChecksum) {
     console.error(JSON.stringify({ status: 'FAIL', reason: 'node17-drift-vs-pinned-fixture', ...node17, expected30: expected17_30, expected60: expected17_60, expectedFinal: fixture17.finalSnapshotChecksum }, null, 2));
+    process.exit(1);
+  }
+
+  const node17jl = runNodePhase17JLReferenceTrace(api);
+  const fixture17jl = JSON.parse(readFileSync(resolve(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase17jl.json'), 'utf8'));
+  const expected17jl_2700 = fixture17jl.checkpoints.find((c) => c.tick === 2700)?.checksum;
+  const expected17jl_2880 = fixture17jl.checkpoints.find((c) => c.tick === 2880)?.checksum;
+  if (node17jl.tick30 !== expected17jl_2700 || node17jl.tick60 !== expected17jl_2880 || node17jl.endHash !== fixture17jl.finalSnapshotChecksum) {
+    console.error(JSON.stringify({ status: 'FAIL', reason: 'node17jl-drift-vs-pinned-fixture', ...node17jl, expected2700: expected17jl_2700, expected2880: expected17jl_2880, expectedFinal: fixture17jl.finalSnapshotChecksum }, null, 2));
     process.exit(1);
   }
   const notRun = (runtimes) =>
@@ -95,6 +104,17 @@ try {
       note: 'Phase 17 basic-attack/projectile/damage trace Node reference; browser/device rows NOT_RUN.',
       runtimes: {
         node: { status: 'REFERENCE', version: process.version, host: process.platform, startHash: node17.startHash, tick30: node17.tick30, tick60: node17.tick60, endHash: node17.endHash, endTick: node17.endTick, endReason: node17.endReason, eventCount: node17.eventCount, exitCode: 0 },
+        ...notRun(),
+      },
+    },
+    phase17jl: {
+      phase: 17,
+      gate: 'G17',
+      fixture: 'tests/sim/fixtures/reference-traces-phase17jl.json',
+      status: 'PARTIAL',
+      note: 'Phase 17 stage J/L trace (defeat resolution + rift-collapse/battle-end to terminal outcome) Node reference; browser/device rows NOT_RUN.',
+      runtimes: {
+        node: { status: 'REFERENCE', version: process.version, host: process.platform, startHash: node17jl.startHash, tick30: node17jl.tick30, tick60: node17jl.tick60, endHash: node17jl.endHash, endTick: node17jl.endTick, endReason: node17jl.endReason, eventCount: node17jl.eventCount, terminal: node17jl.terminal, exitCode: 0 },
         ...notRun(),
       },
     },
