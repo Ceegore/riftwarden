@@ -49,6 +49,15 @@ export const REMOVAL_REASONS = [
 ] as const;
 export type RemovalReason = (typeof REMOVAL_REASONS)[number];
 
+const REMOVAL_REASON_ORDINAL: Readonly<Record<RemovalReason, number>> = Object.freeze(
+  REMOVAL_REASONS.reduce((acc, reason, index) => ({ ...acc, [reason]: index }), {} as Record<RemovalReason, number>),
+);
+
+/** Stable ordinal for the closed removal-reason union (never locale/array-order at runtime). */
+export function removalReasonOrdinal(reason: RemovalReason): number {
+  return REMOVAL_REASON_ORDINAL[reason];
+}
+
 /** Dispel category is the content-supplied polarity of a status. */
 export type StatusPolarity = 'positive' | 'negative' | 'control';
 
