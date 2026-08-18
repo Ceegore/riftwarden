@@ -25,5 +25,5 @@ export class RollSlotRegistry {
     return definition;
   }
 
-  report(): readonly RollSlotDefinition[] { return Object.freeze([...this.#byKey.values()].sort((a, b) => a.key.localeCompare(b.key))); }
+  report(): readonly RollSlotDefinition[] { return Object.freeze([...this.#byKey.values()].sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0))); }
 }

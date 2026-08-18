@@ -4,7 +4,7 @@ import { access } from 'node:fs/promises';
 import { join, relative, resolve } from 'node:path';
 
 const root = resolve(process.argv[2] ?? '.');
-const scopeRoots = ['src/game/sim/core', 'src/game/sim/events', 'src/game/sim/scheduler', 'src/game/sim/snapshot'];
+const scopeRoots = ['src/game/sim'];
 const banned = [
   { kind: 'ui-native-import', pattern: /from\s+['"](?:react|pixi|@capacitor|.*platform|.*navigation|.*storage|.*renderer|.*localization)/g },
   { kind: 'wallclock', pattern: /\bDate\.now\s*\(|\bperformance\.now\s*\(/g },

@@ -20,6 +20,6 @@ export class RandomSession {
     return value;
   }
 
-  usageReport(): Readonly<Record<string, number>> { return Object.freeze(Object.fromEntries([...this.#usage].sort(([a], [b]) => a.localeCompare(b)))); }
+  usageReport(): Readonly<Record<string, number>> { return Object.freeze(Object.fromEntries([...this.#usage].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)))); }
   trace(): readonly RollUsage[] { return Object.freeze([...this.#trace]); }
 }

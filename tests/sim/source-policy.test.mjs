@@ -6,7 +6,10 @@ import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
-const kernelDirs = ['core', 'events', 'scheduler', 'snapshot'].map((d) => resolve(root, 'src', 'game', 'sim', d));
+// §12 source policy applies to the whole sim kernel (Phases 13–18 modules:
+// core/events/scheduler/snapshot plus random, math, geometry, movement,
+// spawn, anti-stuck, targeting, attack, projectile, combat, status, replay).
+const kernelDirs = [resolve(root, 'src', 'game', 'sim')];
 const allowedDirs = [resolve(root, 'src', 'game', 'sim'), resolve(root, 'src', 'game', 'rules')];
 
 function files(d, out = []) {
@@ -55,5 +58,23 @@ test('kernel module line budgets stay within the handbook target', () => {
   for (const f of allFiles) {
     const lines = readFileSync(f, 'utf8').split(/\r?\n/).length;
     assert.ok(lines <= 300, `${f} has ${lines} lines`);
+  }
+});
+
+test('Phase 18 §14 status module budgets are respected', () => {
+  const budgets = {
+    'status-instance.ts': 240,
+    'status-collection.ts': 280,
+    'status-stacking.ts': 300,
+    'periodic-status-system.ts': 280,
+    'control-resolver.ts': 280,
+    'cleanse-dispel.ts': 260,
+    'status-events.ts': 220,
+    'selectors.ts': 220,
+  };
+  for (const [name, budget] of Object.entries(budgets)) {
+    const p = join(root, 'src', 'game', 'sim', 'status', name);
+    const lines = readFileSync(p, 'utf8').split(/\r?\n/).length;
+    assert.ok(lines <= budget, `${name} has ${lines} lines (budget ${budget})`);
   }
 });
