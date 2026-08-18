@@ -120,5 +120,6 @@ export function migrateBattleModel(args: MigrateBattleArgs): BattleModel {
     projectiles: Object.freeze([]),
     pendingCombatApplications: Object.freeze([]),
     combatApplicationSeq: 0,
+    statuses: Object.freeze([]),
   });
 }

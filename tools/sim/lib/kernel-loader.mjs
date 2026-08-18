@@ -18,6 +18,7 @@ const ENTRY_MODULES = {
   phase15Systems: 'src/game/sim/core/phase15-systems.ts',
   phase16Systems: 'src/game/sim/core/phase16-systems.ts',
   phase17Systems: 'src/game/sim/core/phase17-systems.ts',
+  phase18Systems: 'src/game/sim/core/phase18-systems.ts',
   x100: 'src/game/sim/geometry/x100.ts',
 };
 
@@ -31,9 +32,7 @@ const ENTRY_MODULES = {
  */
 export async function loadKernel() {
   const outDir = mkdtempSync(join(tmpdir(), 'p14-kernel-'));
-  const input = Object.fromEntries(
-    Object.entries(ENTRY_MODULES).map(([name, path]) => [name, resolve(root, path)]),
-  );
+  const input = Object.fromEntries(Object.entries(ENTRY_MODULES).map(([name, path]) => [name, resolve(root, path)]));
   const result = await build({
     configFile: false,
     logLevel: 'error',

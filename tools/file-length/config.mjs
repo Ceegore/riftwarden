@@ -43,6 +43,7 @@ export const GENERATED_FILES = Object.freeze([
   'docs/reports/build-release-hashes.json',
   'docs/reports/postinstall-audit.json',
   'docs/reports/native-toolchains.json',
+  'docs/reports/phase14-crossruntime.json',
   'docs/requirements/tests.json',
   'docs/requirements/traceability.json',
   'docs/requirements/source-findings.json',

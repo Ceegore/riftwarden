@@ -1,10 +1,21 @@
 # Phase 18 Scope — Status, Control, Periodic, Cleanse and Dispel
 
-> Status: **SCOPED, IMPLEMENTATION STARTED.** This is the repository-side
+> Status: **IMPLEMENTED — kernel integration landed.** This is the repository-side
 > scoping artifact for Phase 18. It makes no claim that G17 is proven; the
 > Phase-17 gate remains `BLOCKED` on device evidence (WebViews/perf). Phase 18
-> begins with the pure, kernel-independent foundation and only wires into
-> stages B/C/G/H/I/J/K/M after the closed types and matrices are pinned.
+> began with the pure, kernel-independent foundation and then wired into the
+> kernel: `statuses` on the battle model, the `set_statuses` command (stages
+> I/K), the stage-I periodic/expiry system, snapshot/migration, the six
+> `Effect*` event types, plus cross-runtime and 10k mass-sim evidence.
+
+> Implementation note: stage-B/C planning is folded into the stage-I system
+> (§4) because `isPeriodicDue`/`firstPeriodicTick` make due-ness a pure
+> function of persisted state — a separate planner would be a second
+> write-pass over the same collection without changing the outcome. Cleanse/
+> dispel removal (H/K) and status application from attacks remain
+> content-driven and land with the Phase-19 ability-trigger framework; the
+> plumbing (`set_statuses` at I/K, `EffectApplied/Refreshed/Ignored/Removed/`
+> `Tick/Resisted` event types) is in place.
 
 ## 1. Source of truth
 

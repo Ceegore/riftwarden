@@ -5,6 +5,7 @@ import type { EventSequence, Tick } from './primitives.js';
 import type { ScheduledEvent } from '../scheduler/scheduled-event.js';
 import type { ProjectileState } from '../projectile/projectile-state.js';
 import type { PendingCombatApplication } from '../combat/combat-application.js';
+import type { StatusInstance } from '../status/status-instance.js';
 
 export interface BattleModel {
   readonly schemaVersion: 1;
@@ -33,4 +34,7 @@ export interface BattleModel {
   // Phase 17 additive battle-end field (T06): total damage each side dealt to
   // the opposing boss(es), used by the Chapter-76 boss-damage tie-break.
   readonly bossDamageDealt?: Readonly<{ player: number; enemy: number }>;
+  // Phase 18 additive status field (T01–T06): canonically sorted active status
+  // instances, projected into the snapshot. Absent on Phase 14–17 fixtures.
+  readonly statuses?: readonly StatusInstance[];
 }

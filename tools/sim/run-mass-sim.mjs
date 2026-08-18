@@ -18,7 +18,8 @@ const ticksPerBattle = Number(arg('ticks', '60'));
 const phase15 = process.argv.includes('--phase15');
 const phase16 = process.argv.includes('--phase16');
 const phase17 = process.argv.includes('--phase17');
-const out = resolve(arg('out', resolve(root, 'docs', 'reports', phase17 ? 'phase17-mass-sim.json' : phase16 ? 'phase16-mass-sim.json' : phase15 ? 'phase15-mass-sim.json' : 'phase14-mass-sim.json')));
+const phase18 = process.argv.includes('--phase18');
+const out = resolve(arg('out', resolve(root, 'docs', 'reports', phase18 ? 'phase18-mass-sim.json' : phase17 ? 'phase17-mass-sim.json' : phase16 ? 'phase16-mass-sim.json' : phase15 ? 'phase15-mass-sim.json' : 'phase14-mass-sim.json')));
 
 const api = await loadKernel();
 const { battleKernel, noopSystems, snapshot } = api;
@@ -159,6 +160,50 @@ if (phase15) {
   }));
   buildBattleFor = buildPhase15Battle;
   entityDistribution = { player: 3, enemy: 3 };
+} else if (phase18) {
+  // Phase 18 mode: same Phase 17 combat surface plus the stage-I status
+  // system with burn/poison/regeneration coefficients per battle.
+  buildBattleFor = (_api) => {
+    const base = buildPhase15Battle(_api, 'phase18-fixture-v1');
+    const statuses = (id, kind, polarity, targetId, sourceId, effectId, stackGroup, sequence, endTick, intervalTicks, nextTick, dedupKey) =>
+      Object.freeze({
+        statusId: id,
+        kind,
+        polarity,
+        targetId,
+        sourceId,
+        effectId,
+        startTick: 0,
+        endTick,
+        strength: 1,
+        stackGroup,
+        sequence,
+        stackPolicy: 'extend_duration_capped',
+        maxStacks: 5,
+        flags: Object.freeze([]),
+        periodic: Object.freeze({ effectKind: kind, intervalTicks, nextTick, tickIndex: 0, initialTick: false, dedupKey }),
+      });
+    return Object.freeze({
+      ...base,
+      statuses: Object.freeze([
+        statuses('st_burn_p1', 'burn', 'negative', 'unit_p1', 'unit_e1', 'ef_burn', 'burn', 1, 100, 10, 10, 'burn_01'),
+        statuses('st_poison_e1', 'poison', 'negative', 'unit_e1', 'unit_p1', 'ef_poison', 'poison', 2, 45, 15, 15, 'poison_01'),
+        statuses('st_regen_p2', 'regeneration', 'positive', 'unit_p2', 'unit_p1', 'ef_regen', 'regen', 3, 100, 20, 20, 'regen_01'),
+      ]),
+    });
+  };
+  const speeds = { unit_p1: 300, unit_p2: 320, unit_p3: 290, unit_e1: 290, unit_e2: 295, unit_e3: 300 };
+  systems = Object.freeze(api.phase18Systems.createPhase18Systems({
+    speedsX100PerSecond: speeds,
+    status: {
+      periodic: {
+        burn_01: { effectKind: 'burn', amountPerTick: 50 },
+        poison_01: { effectKind: 'poison', amountPerTick: 40 },
+        regen_01: { effectKind: 'regeneration', amountPerTick: 25 },
+      },
+    },
+  }));
+  entityDistribution = { player: 3, enemy: 3 };
 } else {
   systems = Object.freeze([...noopSystems.createNoopSystems(), emitter]);
   entityDistribution = { player: 3, enemy: 3 };
@@ -253,8 +298,8 @@ try {
 
   const report = {
     schemaVersion: 1,
-    phase: phase17 ? 17 : phase16 ? 16 : phase15 ? 15 : 14,
-    gate: phase17 ? 'G16' : phase16 ? 'G15' : phase15 ? 'G14' : 'G13',
+    phase: phase18 ? 18 : phase17 ? 17 : phase16 ? 16 : phase15 ? 15 : 14,
+    gate: phase18 ? 'G17' : phase17 ? 'G16' : phase16 ? 'G15' : phase15 ? 'G14' : 'G13',
     sourceRevision: process.env.SOURCE_REVISION ?? null,
     runtime: { node: process.version, platform: process.platform, arch: process.arch },
     battles,
@@ -262,7 +307,7 @@ try {
     totalTicks: tickDurations.length,
     totalEvents,
     entityDistribution,
-    mode: phase17 ? 'phase17-basicattack-projectile' : phase16 ? 'phase16-targeting-attackprep' : phase15 ? 'phase15-spawn-separation' : 'phase14-noop',
+    mode: phase18 ? 'phase18-status-periodic' : phase17 ? 'phase17-basicattack-projectile' : phase16 ? 'phase16-targeting-attackprep' : phase15 ? 'phase15-spawn-separation' : 'phase14-noop',
     warmup: 10,
     runs: 1,
     tickLatencyMs: latency(tickDurations),

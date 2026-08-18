@@ -6,6 +6,8 @@ import { validateEntity, validateLaneChange, type KernelEntity } from './entity.
 import { validateShieldSource, type ShieldSource } from '../combat/shield-ledger.js';
 import { validatePendingCombatApplication } from '../combat/application-validation.js';
 import { validateProjectileState, type ProjectileState } from '../projectile/projectile-state.js';
+import { createStatusCollection, type StatusCollection } from '../status/status-collection.js';
+import type { StatusInstance } from '../status/status-instance.js';
 import { KernelInvariantError } from './invariant-error.js';
 import type { EventPriority, EventSequence, Tick } from './primitives.js';
 import type { EventQueue } from '../scheduler/event-queue.js';
@@ -50,6 +52,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   let combatApplicationSeq = args.state.combatApplicationSeq;
   let timeCollapseSinceTick = args.state.timeCollapseSinceTick;
   let bossDamageDealt = args.state.bossDamageDealt;
+  let statuses: StatusCollection | undefined = args.state.statuses;
   const beforeEvents = args.log.size();
   const transitions = new Map<string, TransitionRequest[]>();
   const battleTransitions: BattleTransitionRequest[] = [];
@@ -57,11 +60,8 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   for (const command of args.commands) {
     if (args.state.phase.phase === 'INTRO') {
       const eventType = command.kind === 'schedule_event' ? command.event.event.type : command.kind === 'append_event' ? command.event.type : null;
-      if (eventType !== null) {
-        const category = EVENT_SPEC[eventType].category;
-        if (category === 'combat' || category === 'ability') {
-          throw new KernelInvariantError('P14_STATE_TRANSITION_INVALID', { reason: 'intro-authoritative-action', type: eventType });
-        }
+      if (eventType !== null && (EVENT_SPEC[eventType].category === 'combat' || EVENT_SPEC[eventType].category === 'ability')) {
+        throw new KernelInvariantError('P14_STATE_TRANSITION_INVALID', { reason: 'intro-authoritative-action', type: eventType });
       }
     }
     switch (command.kind) {
@@ -75,8 +75,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         break;
       case 'entity_transition': {
         const list = transitions.get(command.entityId) ?? [];
-        list.push(command.request);
-        transitions.set(command.entityId, list);
+        transitions.set(command.entityId, [...list, command.request]);
         break;
       }
       case 'battle_transition':
@@ -170,9 +169,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         assertNonNegativeSafe(command.noProgressTicks, 'global-no-progress-invalid');
         assertNonNegativeSafe(command.collapseTicks, 'rift-collapse-ticks-invalid');
         if (typeof command.warned !== 'boolean') throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'rift-warned-invalid' });
-        globalNoProgressTicks = command.noProgressTicks;
-        riftCollapseTicks = command.collapseTicks;
-        riftCollapseWarningEmitted = command.warned;
+        globalNoProgressTicks = command.noProgressTicks; riftCollapseTicks = command.collapseTicks; riftCollapseWarningEmitted = command.warned;
         break;
       }
       case 'set_shields': {
@@ -180,9 +177,8 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         if (!Array.isArray(command.shields)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'shields-not-array' });
         const shields: ShieldSource[] = command.shields.map((source) => {
           if (typeof source !== 'object' || source === null) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'shields-source-invalid' });
-          const validated = source as ShieldSource;
-          validateShieldSource(validated);
-          return validated;
+          validateShieldSource(source as ShieldSource);
+          return source as ShieldSource;
         });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, shields: Object.freeze(shields) }) : e));
         break;
@@ -191,9 +187,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         validatePendingCombatApplication(command.application);
         const seq = (combatApplicationSeq ?? 0) + 1;
         combatApplicationSeq = seq;
-        const queued = command.application.kind === 'shield'
-          ? Object.freeze({ ...command.application, applicationSequence: seq })
-          : command.application;
+        const queued = command.application.kind === 'shield' ? Object.freeze({ ...command.application, applicationSequence: seq }) : command.application;
         pendingCombatApplications = Object.freeze([...(pendingCombatApplications ?? []), queued]);
         break;
       }
@@ -227,11 +221,15 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         if (!Array.isArray(command.projectiles)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'projectiles-not-array' });
         const validated: ProjectileState[] = command.projectiles.map((projectile) => {
           if (typeof projectile !== 'object' || projectile === null) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'projectile-invalid' });
-          const typed = projectile as ProjectileState;
-          validateProjectileState(typed);
-          return typed;
+          validateProjectileState(projectile as ProjectileState);
+          return projectile as ProjectileState;
         });
         projectiles = Object.freeze(validated);
+        break;
+      }
+      case 'set_statuses': {
+        if (!Array.isArray(command.statuses)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'statuses-not-array' });
+        statuses = createStatusCollection(command.statuses as readonly StatusInstance[]);
         break;
       }
       case 'apply_lp_delta': {
@@ -287,6 +285,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   if (combatApplicationSeq !== undefined) extras['combatApplicationSeq'] = combatApplicationSeq;
   if (timeCollapseSinceTick !== undefined) extras['timeCollapseSinceTick'] = timeCollapseSinceTick;
   if (bossDamageDealt !== undefined) extras['bossDamageDealt'] = bossDamageDealt;
+  if (statuses !== undefined) extras['statuses'] = statuses;
   return Object.freeze({
     ...args.state,
     phase,

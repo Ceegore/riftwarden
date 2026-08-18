@@ -437,5 +437,92 @@
         "exitCode": null
       }
     }
+  },
+  "phase18": {
+    "phase": 18,
+    "gate": "G18",
+    "fixture": "tests/sim/fixtures/reference-traces-phase18.json",
+    "status": "PARTIAL",
+    "note": "Phase 18 status periodic/expiry trace (burn/poison/regeneration + EffectTick/EffectRemoved): desktop engines hash-identical to the Node reference and the pinned fixture; WebViews NOT_RUN.",
+    "runtimes": {
+      "node": {
+        "status": "REFERENCE",
+        "version": "v25.8.0",
+        "host": "win32",
+        "startHash": "6d55f44ab11cf2b43705c30f9ac0a7eaa4338d93813bd9bea161fbf79722c18d",
+        "tick30": "e2275113c10f8f3089965dad08c59f13841b494469515b56dfe3ffa816bf38a3",
+        "tick60": "887b991e7a1d056699e0fc965ecefc6ddb4e00b57b1eb9ba8bd9cf61232bcdb8",
+        "endHash": "887b991e7a1d056699e0fc965ecefc6ddb4e00b57b1eb9ba8bd9cf61232bcdb8",
+        "endTick": 60,
+        "endReason": null,
+        "eventCount": 14,
+        "exitCode": 0
+      },
+      "chromium": {
+        "status": "PASS",
+        "version": "149.0.7827.55",
+        "host": "win32 (Playwright)",
+        "startHash": "6d55f44ab11cf2b43705c30f9ac0a7eaa4338d93813bd9bea161fbf79722c18d",
+        "tick30": "e2275113c10f8f3089965dad08c59f13841b494469515b56dfe3ffa816bf38a3",
+        "tick60": "887b991e7a1d056699e0fc965ecefc6ddb4e00b57b1eb9ba8bd9cf61232bcdb8",
+        "endHash": "887b991e7a1d056699e0fc965ecefc6ddb4e00b57b1eb9ba8bd9cf61232bcdb8",
+        "endTick": 60,
+        "endReason": null,
+        "eventCount": 14,
+        "exitCode": 0
+      },
+      "firefox": {
+        "status": "PASS",
+        "version": "151.0",
+        "host": "win32 (Playwright)",
+        "startHash": "6d55f44ab11cf2b43705c30f9ac0a7eaa4338d93813bd9bea161fbf79722c18d",
+        "tick30": "e2275113c10f8f3089965dad08c59f13841b494469515b56dfe3ffa816bf38a3",
+        "tick60": "887b991e7a1d056699e0fc965ecefc6ddb4e00b57b1eb9ba8bd9cf61232bcdb8",
+        "endHash": "887b991e7a1d056699e0fc965ecefc6ddb4e00b57b1eb9ba8bd9cf61232bcdb8",
+        "endTick": 60,
+        "endReason": null,
+        "eventCount": 14,
+        "exitCode": 0
+      },
+      "webkit": {
+        "status": "PASS",
+        "version": "26.5",
+        "host": "win32 (Playwright)",
+        "startHash": "6d55f44ab11cf2b43705c30f9ac0a7eaa4338d93813bd9bea161fbf79722c18d",
+        "tick30": "e2275113c10f8f3089965dad08c59f13841b494469515b56dfe3ffa816bf38a3",
+        "tick60": "887b991e7a1d056699e0fc965ecefc6ddb4e00b57b1eb9ba8bd9cf61232bcdb8",
+        "endHash": "887b991e7a1d056699e0fc965ecefc6ddb4e00b57b1eb9ba8bd9cf61232bcdb8",
+        "endTick": 60,
+        "endReason": null,
+        "eventCount": 14,
+        "exitCode": 0
+      },
+      "android_webview": {
+        "status": "NOT_RUN",
+        "version": null,
+        "host": null,
+        "startHash": null,
+        "tick30": null,
+        "tick60": null,
+        "endHash": null,
+        "endTick": null,
+        "endReason": null,
+        "eventCount": null,
+        "exitCode": null
+      },
+      "ios_wkwebview": {
+        "status": "NOT_RUN",
+        "version": null,
+        "host": null,
+        "startHash": null,
+        "tick30": null,
+        "tick60": null,
+        "endHash": null,
+        "endTick": null,
+        "endReason": null,
+        "eventCount": null,
+        "exitCode": null
+      }
+    }
   }
 }

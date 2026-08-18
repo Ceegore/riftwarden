@@ -3,6 +3,7 @@ import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadKernel, runNodeReferenceTrace, runNodePhase15ReferenceTrace, runNodePhase16ReferenceTrace, runNodePhase17ReferenceTrace, runNodePhase17JLReferenceTrace } from './lib/kernel-loader.mjs';
+import { runNodePhase18ReferenceTrace } from './lib/phase18-trace.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
@@ -56,6 +57,15 @@ try {
   const expected17jl_2880 = fixture17jl.checkpoints.find((c) => c.tick === 2880)?.checksum;
   if (node17jl.tick30 !== expected17jl_2700 || node17jl.tick60 !== expected17jl_2880 || node17jl.endHash !== fixture17jl.finalSnapshotChecksum) {
     console.error(JSON.stringify({ status: 'FAIL', reason: 'node17jl-drift-vs-pinned-fixture', ...node17jl, expected2700: expected17jl_2700, expected2880: expected17jl_2880, expectedFinal: fixture17jl.finalSnapshotChecksum }, null, 2));
+    process.exit(1);
+  }
+
+  const node18 = runNodePhase18ReferenceTrace(api);
+  const fixture18 = JSON.parse(readFileSync(resolve(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase18.json'), 'utf8'));
+  const expected18_30 = fixture18.checkpoints.find((c) => c.tick === 30)?.checksum;
+  const expected18_60 = fixture18.checkpoints.find((c) => c.tick === 60)?.checksum;
+  if (node18.tick30 !== expected18_30 || node18.tick60 !== expected18_60 || node18.endHash !== fixture18.finalSnapshotChecksum) {
+    console.error(JSON.stringify({ status: 'FAIL', reason: 'node18-drift-vs-pinned-fixture', ...node18, expected30: expected18_30, expected60: expected18_60, expectedFinal: fixture18.finalSnapshotChecksum }, null, 2));
     process.exit(1);
   }
   const notRun = (runtimes) =>
@@ -115,6 +125,17 @@ try {
       note: 'Phase 17 stage J/L trace (defeat resolution + rift-collapse/battle-end to terminal outcome) Node reference; browser/device rows NOT_RUN.',
       runtimes: {
         node: { status: 'REFERENCE', version: process.version, host: process.platform, startHash: node17jl.startHash, tick30: node17jl.tick30, tick60: node17jl.tick60, endHash: node17jl.endHash, endTick: node17jl.endTick, endReason: node17jl.endReason, eventCount: node17jl.eventCount, terminal: node17jl.terminal, exitCode: 0 },
+        ...notRun(),
+      },
+    },
+    phase18: {
+      phase: 18,
+      gate: 'G18',
+      fixture: 'tests/sim/fixtures/reference-traces-phase18.json',
+      status: 'PARTIAL',
+      note: 'Phase 18 status periodic/expiry trace (burn/poison/regeneration + EffectTick/EffectRemoved) Node reference; browser/device rows NOT_RUN.',
+      runtimes: {
+        node: { status: 'REFERENCE', version: process.version, host: process.platform, startHash: node18.startHash, tick30: node18.tick30, tick60: node18.tick60, endHash: node18.endHash, endTick: node18.endTick, endReason: node18.endReason, eventCount: node18.eventCount, exitCode: 0 },
         ...notRun(),
       },
     },

@@ -92,6 +92,14 @@ test('crossruntime matrix pins Node against the reference trace and leaves devic
   for (const key of ['chromium', 'firefox', 'webkit']) {
     assert.equal(matrix.phase17jl.runtimes[key].status, 'NOT_RUN');
   }
+  // Phase 18 status periodic/expiry column is pinned against its fixture too.
+  const fixture18 = JSON.parse(readFileSync(join(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase18.json'), 'utf8'));
+  assert.equal(matrix.phase18.runtimes.node.tick30, fixture18.checkpoints.find((c) => c.tick === 30).checksum);
+  assert.equal(matrix.phase18.runtimes.node.tick60, fixture18.checkpoints.find((c) => c.tick === 60).checksum);
+  assert.equal(matrix.phase18.runtimes.node.endHash, fixture18.finalSnapshotChecksum);
+  for (const key of ['chromium', 'firefox', 'webkit']) {
+    assert.equal(matrix.phase18.runtimes[key].status, 'NOT_RUN');
+  }
 });
 
 test('mass-sim harness reports PASS with no drift and accumulates events across battles', () => {
@@ -222,4 +230,14 @@ test('crossruntime browser runner fills desktop engines hash-identically to Node
   }
   assert.equal(matrix.phase17.runtimes.android_webview.status, 'NOT_RUN');
   assert.equal(matrix.phase17.runtimes.ios_wkwebview.status, 'NOT_RUN');
+  // Phase 18 status periodic/expiry trace: desktop engines hash-identical to the P18 node column.
+  for (const key of ['chromium', 'firefox', 'webkit']) {
+    assert.equal(matrix.phase18.runtimes[key].status, 'PASS', `${key}: ${JSON.stringify(matrix.phase18.runtimes[key].drift)}`);
+    assert.equal(matrix.phase18.runtimes[key].tick30, matrix.phase18.runtimes.node.tick30);
+    assert.equal(matrix.phase18.runtimes[key].tick60, matrix.phase18.runtimes.node.tick60);
+    assert.equal(matrix.phase18.runtimes[key].endHash, matrix.phase18.runtimes.node.endHash);
+    assert.equal(matrix.phase18.runtimes[key].startHash, matrix.phase18.runtimes.node.startHash);
+  }
+  assert.equal(matrix.phase18.runtimes.android_webview.status, 'NOT_RUN');
+  assert.equal(matrix.phase18.runtimes.ios_wkwebview.status, 'NOT_RUN');
 });

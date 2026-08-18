@@ -9,6 +9,7 @@ import type { ProjectileState } from '../projectile/projectile-state.js';
 import type { ScheduledEventInput } from '../scheduler/scheduled-event.js';
 import type { Lane } from '../geometry/x100.js';
 import type { LaneChange } from '../movement/lane-change.js';
+import type { StatusInstance } from '../status/status-instance.js';
 
 export type KernelCommand =
   | Readonly<{kind:'schedule_event'; event:ScheduledEventInput}>
@@ -40,6 +41,7 @@ export type KernelCommand =
   | Readonly<{kind:'set_time_collapse'; sinceTick:number|null}>
   | Readonly<{kind:'record_boss_damage'; side:'player'|'enemy'; amount:number}>
   | Readonly<{kind:'set_timer'; entityId:string; timer:string; ticks:number}>
+  | Readonly<{kind:'set_statuses'; statuses:readonly StatusInstance[]}>
   | Readonly<{kind:'checkpoint_marker'; reason:'interval'|'terminal'}>;
 
 export interface EntityTransitionBucket { readonly entityId:string; readonly requests:readonly TransitionRequest[]; }
