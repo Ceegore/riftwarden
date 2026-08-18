@@ -1,7 +1,9 @@
+import { KernelInvariantError } from '../core/invariant-error.js';
 import type { KernelCommand } from '../core/command-types.js';
 import type { KernelSystem, TickContext } from '../core/tick-context.js';
 import {
   PERMANENT_END_TICK,
+  PERIODIC_EFFECT_KINDS,
   removalReasonOrdinal,
   statusKindOrdinal,
   type PeriodicEffectKind,
@@ -51,6 +53,14 @@ function lpDeltaFor(effectKind: PeriodicEffectKind, amountPerTick: number): numb
 
 export function createStatusSystem(config: StatusSystemConfig = {}): KernelSystem {
   const periodic: Readonly<Record<string, PeriodicEffectConfig>> = config.periodic ?? Object.freeze({});
+  for (const [dedupKey, coefficient] of Object.entries(periodic)) {
+    if (!(PERIODIC_EFFECT_KINDS as readonly string[]).includes(coefficient.effectKind)) {
+      throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'status-periodic-kind-unknown', dedupKey, effectKind: coefficient.effectKind });
+    }
+    if (!Number.isSafeInteger(coefficient.amountPerTick) || coefficient.amountPerTick <= 0) {
+      throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'status-periodic-amount-invalid', dedupKey, amountPerTick: coefficient.amountPerTick });
+    }
+  }
   return Object.freeze({
     id: 'phase18.i1.status',
     stage: 'I' as const,
