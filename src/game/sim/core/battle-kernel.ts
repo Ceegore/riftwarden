@@ -73,12 +73,15 @@ export function stepBattle(args: StepBattleArgs): KernelStepResult {
     }
     typedState = applyStageCommands({ state: typedState, commands: buffer.drain(), atTick: typedState.tick, stagePriority, queue, log, allocate });
   }
-  const historyExtras = args.state.abilities === undefined
-    ? {}
-    : {
+  // Phase 19/21 trigger + objective history: tracked on ability-aware (Phase 19+)
+  // AND boss-aware (Phase 21+) states only, so Phase 14–20 fixtures stay pinned.
+  const tracksHistory = args.state.abilities !== undefined || args.state.bossPhase !== undefined;
+  const historyExtras = tracksHistory
+    ? {
         previousTickLp: startLp,
         previousTickEvents: Object.freeze(log.events().map((e) => Object.freeze({ type: e.type, sourceId: e.sourceId, targetIds: Object.freeze([...e.targetIds]) }))),
-      };
+      }
+    : {};
   typedState = Object.freeze({ ...typedState, tick: nextTick(typedState.tick), nextSequence: next, scheduledEvents: queue.snapshot(), authoritativeStreams: args.random.streams.snapshotAuthoritative(), ...historyExtras });
   const terminal = isTerminalBattlePhase(typedState.phase.phase);
   const checkpoint = shouldCheckpoint(typedState.tick, terminal) ? createSnapshot(typedState) : null;

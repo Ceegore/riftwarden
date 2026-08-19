@@ -66,6 +66,16 @@ export interface BossPhaseState {
   readonly visited: readonly PhaseId[];
 }
 
+/** §10 persisted boss-phase state: hp is recomputed; the entity id is stable identity. */
+export interface BossPhaseSnapshot {
+  readonly entityId: string;
+  readonly bossId: BossId;
+  readonly phaseId: PhaseId;
+  readonly transition: PhaseTransition | null;
+  readonly visited: readonly PhaseId[];
+  readonly invulnerableUntilTick: number | null;
+}
+
 export interface ValidationIssue {
   readonly code: string;
   readonly detail: string;
@@ -203,4 +213,32 @@ export function commitTransition(state: BossPhaseState, tick: number): BossPhase
 export function phaseInvulnerableTicks(defs: readonly PhaseDefinition[], phaseId: PhaseId): number {
   const def = defs.find((p) => p.id === phaseId);
   return def?.invulnerableTicks ?? 0;
+}
+
+/** §10 canonical snapshot: validates and returns a frozen, visited-sorted boss-phase state. */
+export function createBossPhaseSnapshot(snapshot: BossPhaseSnapshot): BossPhaseSnapshot {
+  assertId(snapshot.entityId, 'entityId');
+  assertId(snapshot.bossId, 'bossId');
+  assertId(snapshot.phaseId, 'phaseId');
+  const transition = snapshot.transition;
+  if (transition !== null) {
+    assertId(transition.from, 'transition.from');
+    assertId(transition.to, 'transition.to');
+    assertInt(transition.startTick, 'transition.startTick', 0);
+    assertInt(transition.commitTick, 'transition.commitTick', 1);
+    if (transition.commitTick <= transition.startTick) throw new KernelInvariantError('P21_PHASE_INVALID', { reason: 'transition-order', transition });
+  }
+  if (snapshot.invulnerableUntilTick !== null) assertInt(snapshot.invulnerableUntilTick, 'invulnerableUntilTick', 1);
+  const visited = Object.freeze([...snapshot.visited].sort(asciiCompare));
+  const ids = new Set<string>();
+  for (const id of visited) {
+    assertId(id, 'visited');
+    if (ids.has(id)) throw new KernelInvariantError('P21_PHASE_INVALID', { reason: 'duplicate-visited', id });
+    ids.add(id);
+  }
+  return Object.freeze({
+    ...snapshot,
+    transition: transition === null ? null : Object.freeze({ ...transition }),
+    visited,
+  });
 }

@@ -5,7 +5,7 @@ import { migrateBattleModel, SIM_VERSION_PHASE15 } from '../../src/game/sim/core
 import { createModifierCollection } from '../../src/game/sim/world/modifier-system.js';
 import { createHazardCollection } from '../../src/game/sim/world/hazard-system.js';
 import { createObjectiveCollection } from '../../src/game/sim/objectives/combat-objective.js';
-import type { BossPhaseSnapshot } from '../../src/game/sim/core/battle-model.js';
+import type { BossPhaseSnapshot } from '../../src/game/sim/boss/boss-phase-system.js';
 import type { ModifierDefinition } from '../../src/game/sim/world/modifier-system.js';
 import type { Hazard } from '../../src/game/sim/world/hazard-system.js';
 import type { Objective } from '../../src/game/sim/objectives/combat-objective.js';
@@ -24,6 +24,7 @@ const objective = (id: string, kind: Objective['kind'] = 'kill_regulars'): Objec
 });
 
 const bossPhase = (overrides: Partial<BossPhaseSnapshot> = {}): BossPhaseSnapshot => Object.freeze({
+  entityId: 'boss_ash_unit',
   bossId: 'boss_ash',
   phaseId: 'p1',
   transition: null,

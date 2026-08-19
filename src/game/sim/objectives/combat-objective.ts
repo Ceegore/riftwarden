@@ -90,6 +90,29 @@ export function applyEventProgress(o: Objective, event: KernelEvent): Objective 
   }
 }
 
+/** Canonical event-record shape used by the runtime objective resolution (§8). */
+export interface EventRecordLike {
+  readonly type: string;
+  readonly targetIds: readonly string[];
+}
+
+/** §8 runtime progress from a persisted event record (previous-tick event log). */
+export function applyEventRecordProgress(o: Objective, record: EventRecordLike): Objective {
+  switch (o.kind) {
+    case 'kill_regulars':
+      return record.type === 'Defeated' && record.targetIds.length === 1 ? applyProgress(o, 1) : o;
+    case 'kill_boss':
+      return record.type === 'Defeated' && o.targetId !== null && record.targetIds.includes(o.targetId) ? applyProgress(o, 1) : o;
+    case 'destroy_object':
+      return (record.type === 'Defeated' || record.type === 'Removed') && o.targetId !== null && record.targetIds.includes(o.targetId) ? applyProgress(o, 1) : o;
+    case 'complete_waves':
+      return record.type === 'ReinforcementSpawned' ? applyProgress(o, 1) : o;
+    case 'protect_object':
+    case 'survive_until':
+      return o;
+  }
+}
+
 /** §8 survival objective: progress equals the current tick, capped at required. */
 export function evaluateSurvival(o: Objective, tick: number): Objective {
   if (o.kind !== 'survive_until' || o.complete) return o;

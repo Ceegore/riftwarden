@@ -63,3 +63,14 @@ export function dueWaves(waves: readonly Wave[], tick: number, spawned: Readonly
 export function compareWaves(a: Wave, b: Wave): number {
   return a.scheduledTick - b.scheduledTick || asciiCompare(a.id, b.id);
 }
+
+/** §8 canonical spawned-wave cursor: validates ids, rejects duplicates and sorts. */
+export function createSpawnedWaveCursor(ids: readonly string[]): readonly string[] {
+  const seen = new Set<string>();
+  return Object.freeze([...ids].sort(asciiCompare).map((id) => {
+    if (!ID.test(id)) throw new KernelInvariantError('P21_WAVE_INVALID', { field: 'id', value: id });
+    if (seen.has(id)) throw new KernelInvariantError('P21_WAVE_INVALID', { reason: 'duplicate-id', id });
+    seen.add(id);
+    return id;
+  }));
+}

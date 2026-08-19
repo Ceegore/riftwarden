@@ -12,6 +12,11 @@ import { createAbilityCollection } from '../ability/ability-collection.js';
 import { canonicalizeEffectBatch } from '../ability/effect-executor.js';
 import { createTemporaryCollection } from '../summon/temporary-registry.js';
 import { canonicalizeSynergyTiers } from '../synergy/synergy-counter.js';
+import { createBossPhaseSnapshot } from '../boss/boss-phase-system.js';
+import { createModifierCollection } from '../world/modifier-system.js';
+import { createHazardCollection } from '../world/hazard-system.js';
+import { createObjectiveCollection } from '../objectives/combat-objective.js';
+import { createSpawnedWaveCursor } from '../world/reinforcement-system.js';
 import { KernelInvariantError } from './invariant-error.js';
 import type { EventPriority, EventSequence, Tick } from './primitives.js';
 import type { EventQueue } from '../scheduler/event-queue.js';
@@ -51,7 +56,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   let projectiles = args.state.projectiles, pendingCombatApplications = args.state.pendingCombatApplications, combatApplicationSeq = args.state.combatApplicationSeq;
   let timeCollapseSinceTick = args.state.timeCollapseSinceTick, bossDamageDealt = args.state.bossDamageDealt;
   let statuses = args.state.statuses, pendingCleanses = args.state.pendingCleanses;
-  let abilities = args.state.abilities, plannedEffects = args.state.plannedEffects, temporaryEntities = args.state.temporaryEntities, synergyTiers = args.state.synergyTiers;
+  let abilities = args.state.abilities, plannedEffects = args.state.plannedEffects, temporaryEntities = args.state.temporaryEntities, synergyTiers = args.state.synergyTiers, bossPhase = args.state.bossPhase, modifiers = args.state.modifiers, hazards = args.state.hazards, objectives = args.state.objectives, spawnedWaves = args.state.spawnedWaves;
   const beforeEvents = args.log.size();
   const transitions = new Map<string, TransitionRequest[]>();
   const battleTransitions: BattleTransitionRequest[] = [];
@@ -227,6 +232,11 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
       case 'set_synergy_tiers':
         synergyTiers = canonicalizeSynergyTiers(command.tiers);
         break;
+      case 'set_boss_phase': bossPhase = createBossPhaseSnapshot(command.bossPhase); break;
+      case 'set_modifiers': modifiers = createModifierCollection(command.modifiers); break;
+      case 'set_hazards': hazards = createHazardCollection(command.hazards); break;
+      case 'set_objectives': objectives = createObjectiveCollection(command.objectives); break;
+      case 'set_spawned_waves': spawnedWaves = createSpawnedWaveCursor(command.spawnedWaves); break;
       case 'apply_lp_delta': {
         requireEntity(entities, command.entityId);
         if (!Number.isSafeInteger(command.delta)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'lp-delta-not-integer', entityId: command.entityId, delta: command.delta });
@@ -267,20 +277,16 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
 
   args.queue.commitPlanned(args.allocate);
   const extras: Record<string, unknown> = {};
-  if (globalNoProgressTicks !== undefined) extras['globalNoProgressTicks'] = globalNoProgressTicks;
-  if (riftCollapseTicks !== undefined) extras['riftCollapseTicks'] = riftCollapseTicks;
-  if (riftCollapseWarningEmitted !== undefined) extras['riftCollapseWarningEmitted'] = riftCollapseWarningEmitted;
-  if (projectiles !== undefined) extras['projectiles'] = projectiles;
-  if (pendingCombatApplications !== undefined) extras['pendingCombatApplications'] = pendingCombatApplications;
-  if (combatApplicationSeq !== undefined) extras['combatApplicationSeq'] = combatApplicationSeq;
-  if (timeCollapseSinceTick !== undefined) extras['timeCollapseSinceTick'] = timeCollapseSinceTick;
-  if (bossDamageDealt !== undefined) extras['bossDamageDealt'] = bossDamageDealt;
-  if (statuses !== undefined) extras['statuses'] = statuses;
-  if (pendingCleanses !== undefined) extras['pendingCleanses'] = pendingCleanses;
-  if (abilities !== undefined) extras['abilities'] = abilities;
-  if (plannedEffects !== undefined) extras['plannedEffects'] = plannedEffects;
-  if (temporaryEntities !== undefined) extras['temporaryEntities'] = temporaryEntities;
-  if (synergyTiers !== undefined) extras['synergyTiers'] = synergyTiers;
+  if (globalNoProgressTicks !== undefined) extras['globalNoProgressTicks'] = globalNoProgressTicks; if (riftCollapseTicks !== undefined) extras['riftCollapseTicks'] = riftCollapseTicks;
+  if (riftCollapseWarningEmitted !== undefined) extras['riftCollapseWarningEmitted'] = riftCollapseWarningEmitted; if (projectiles !== undefined) extras['projectiles'] = projectiles;
+  if (pendingCombatApplications !== undefined) extras['pendingCombatApplications'] = pendingCombatApplications; if (combatApplicationSeq !== undefined) extras['combatApplicationSeq'] = combatApplicationSeq;
+  if (timeCollapseSinceTick !== undefined) extras['timeCollapseSinceTick'] = timeCollapseSinceTick; if (bossDamageDealt !== undefined) extras['bossDamageDealt'] = bossDamageDealt;
+  if (statuses !== undefined) extras['statuses'] = statuses; if (pendingCleanses !== undefined) extras['pendingCleanses'] = pendingCleanses;
+  if (abilities !== undefined) extras['abilities'] = abilities; if (plannedEffects !== undefined) extras['plannedEffects'] = plannedEffects;
+  if (temporaryEntities !== undefined) extras['temporaryEntities'] = temporaryEntities; if (synergyTiers !== undefined) extras['synergyTiers'] = synergyTiers;
+  if (bossPhase !== undefined) extras['bossPhase'] = bossPhase; if (modifiers !== undefined) extras['modifiers'] = modifiers;
+  if (hazards !== undefined) extras['hazards'] = hazards; if (objectives !== undefined) extras['objectives'] = objectives;
+  if (spawnedWaves !== undefined) extras['spawnedWaves'] = spawnedWaves;
   return Object.freeze({
     ...args.state,
     phase,

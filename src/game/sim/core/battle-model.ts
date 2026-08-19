@@ -12,7 +12,7 @@ import type { EffectCommand } from '../ability/effect-command.js';
 import type { EventType } from '../events/event-spec.js';
 import type { TempEntity } from '../summon/temporary-entity.js';
 import type { SynergyTier } from '../synergy/synergy-counter.js';
-import type { PhaseId, PhaseTransition } from '../boss/boss-phase-system.js';
+import type { BossPhaseSnapshot } from '../boss/boss-phase-system.js';
 import type { ModifierDefinition } from '../world/modifier-system.js';
 import type { Hazard } from '../world/hazard-system.js';
 import type { Objective } from '../objectives/combat-objective.js';
@@ -86,13 +86,4 @@ export interface BattleModel {
   readonly hazards?: readonly Hazard[];
   readonly objectives?: readonly Objective[];
   readonly spawnedWaves?: readonly string[];
-}
-
-/** §10 persisted boss-phase state: derived fields (hp, entity id) are recomputed. */
-export interface BossPhaseSnapshot {
-  readonly bossId: string;
-  readonly phaseId: PhaseId;
-  readonly transition: PhaseTransition | null;
-  readonly visited: readonly PhaseId[];
-  readonly invulnerableUntilTick: number | null;
 }
