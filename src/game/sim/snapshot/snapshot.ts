@@ -6,6 +6,8 @@ import { compareScheduled } from '../scheduler/event-order.js';
 import { createStatusCollection } from '../status/status-collection.js';
 import { createAbilityCollection } from '../ability/ability-collection.js';
 import { canonicalizeEffectBatch } from '../ability/effect-executor.js';
+import { createTemporaryCollection } from '../summon/temporary-registry.js';
+import { canonicalizeSynergyTiers } from '../synergy/synergy-counter.js';
 import { canonicalUtf8 } from './canonical-json.js';
 import { sha256Hex } from './sha256.js';
 export interface BattleSnapshotData extends BattleModel { readonly checksum:string; }
@@ -25,6 +27,8 @@ export function snapshotPayload(state:BattleModel):Omit<BattleSnapshotData,'chec
   if(state.plannedEffects!==undefined)extras['plannedEffects']=canonicalizeEffectBatch(state.plannedEffects);
   if(state.previousTickLp!==undefined)extras['previousTickLp']=Object.freeze({...state.previousTickLp});
   if(state.previousTickEvents!==undefined)extras['previousTickEvents']=Object.freeze(state.previousTickEvents.map((e)=>Object.freeze({type:e.type,sourceId:e.sourceId,targetIds:Object.freeze([...e.targetIds])})));
+  if(state.temporaryEntities!==undefined)extras['temporaryEntities']=createTemporaryCollection(state.temporaryEntities);
+  if(state.synergyTiers!==undefined)extras['synergyTiers']=canonicalizeSynergyTiers(state.synergyTiers);
   return Object.freeze({schemaVersion:1,simulationVersion:state.simulationVersion,battleId:state.battleId,tick:state.tick,nextSequence:state.nextSequence,emittedEventCount:state.emittedEventCount,phase:Object.freeze({...state.phase}),entities:Object.freeze(entities.map((e)=>Object.freeze({...e,phase:Object.freeze({...e.phase}),timers:Object.freeze({...e.timers})}))),scheduledEvents:Object.freeze([...state.scheduledEvents].sort(compareScheduled)),authoritativeStreams:streams,endReason:state.endReason,...extras});
 }
 export function createSnapshot(state:BattleModel):BattleSnapshotData{const payload=snapshotPayload(state);return Object.freeze({...payload,checksum:sha256Hex(canonicalUtf8(payload))});}

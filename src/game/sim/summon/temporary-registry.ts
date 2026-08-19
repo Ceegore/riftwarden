@@ -119,3 +119,12 @@ export class TemporaryRegistry {
     return [...this.items.values()];
   }
 }
+
+/**
+ * Canonical temporary-entity collection (§8 snapshot projection). Validates
+ * every entity, rejects duplicate ids, enforces cap 6 + slot uniqueness and
+ * returns a deep-frozen, id-sorted snapshot — permutation-stable for hashing.
+ */
+export function createTemporaryCollection(entities: readonly TempEntity[]): readonly TempEntity[] {
+  return TemporaryRegistry.restore(entities).snapshot();
+}

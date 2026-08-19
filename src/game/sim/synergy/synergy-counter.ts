@@ -72,3 +72,21 @@ export function synergyTiers(units: readonly SynergyUnitInput[]): Readonly<Recor
 export function buildSynergyPreview(units: readonly SynergyUnitInput[]): Readonly<Record<string, SynergyTier>> {
   return synergyTiers(units);
 }
+
+const isValidSynergyTier = (value: unknown): value is SynergyTier => value === 0 || value === 2 || value === 3;
+
+/**
+ * Canonical committed tier map (§4 step 7 snapshot form). Validates closed
+ * ids/tiers against untrusted input and returns a deep-frozen map in code-unit
+ * key order — so a committed tier map hashes identically regardless of
+ * insertion order.
+ */
+export function canonicalizeSynergyTiers(tiers: Readonly<Record<string, unknown>>): Readonly<Record<string, SynergyTier>> {
+  const out: Record<string, SynergyTier> = {};
+  for (const [id, tier] of Object.entries(tiers).sort(([a], [b]) => asciiCompare(a, b))) {
+    if (!isSynergyId(id)) throw new KernelInvariantError('UnknownSynergyId', { synergyId: id });
+    if (!isValidSynergyTier(tier)) throw new KernelInvariantError('P20_SYNERGY_INVALID', { reason: 'tier-invalid', synergyId: id, tier });
+    out[id] = tier;
+  }
+  return Object.freeze(out);
+}

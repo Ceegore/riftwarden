@@ -10,6 +10,8 @@ import type { CleanseDispelRequest } from './command-types.js';
 import type { AbilityInstance } from '../ability/ability-system.js';
 import type { EffectCommand } from '../ability/effect-command.js';
 import type { EventType } from '../events/event-spec.js';
+import type { TempEntity } from '../summon/temporary-entity.js';
+import type { SynergyTier } from '../synergy/synergy-counter.js';
 
 /** Compact record of an event emitted during a tick, for trigger history. */
 export interface TickEventRecord {
@@ -63,4 +65,11 @@ export interface BattleModel {
   // trigger evaluator.
   readonly previousTickLp?: Readonly<Record<string, number>>;
   readonly previousTickEvents?: readonly TickEventRecord[];
+  // Phase 20 additive temporary-entity registry field (§8): canonically sorted
+  // temporary entities (SUMMON/CONSTRUCT/BOSS_OBJECT), projected into the
+  // snapshot. Absent on Phase 14–19 fixtures.
+  readonly temporaryEntities?: readonly TempEntity[];
+  // Phase 20 additive synergy field (§4 step 7): committed tier map, projected
+  // into the snapshot. Absent on Phase 14–19 fixtures.
+  readonly synergyTiers?: Readonly<Record<string, SynergyTier>>;
 }
