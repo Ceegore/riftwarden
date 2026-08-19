@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join, resolve, sep, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -74,6 +74,28 @@ test('Phase 18 §14 status module budgets are respected', () => {
   };
   for (const [name, budget] of Object.entries(budgets)) {
     const p = join(root, 'src', 'game', 'sim', 'status', name);
+    const lines = readFileSync(p, 'utf8').split(/\r?\n/).length;
+    assert.ok(lines <= budget, `${name} has ${lines} lines (budget ${budget})`);
+  }
+});
+
+test('Phase 20 §10 module budgets are respected', () => {
+  const budgets = {
+    'synergy-counter.ts': 240,
+    'synergy-runtime.ts': 300,
+    'summon-manager.ts': 300,
+    'summon-lifecycle.ts': 260,
+    'construct-manager.ts': 300,
+    'temporary-registry.ts': 280,
+  };
+  const dirs = ['synergy', 'summon'];
+  for (const [name, budget] of Object.entries(budgets)) {
+    let p;
+    for (const d of dirs) {
+      const candidate = join(root, 'src', 'game', 'sim', d, name);
+      if (existsSync(candidate)) { p = candidate; break; }
+    }
+    assert.ok(p, `could not locate ${name}`);
     const lines = readFileSync(p, 'utf8').split(/\r?\n/).length;
     assert.ok(lines <= budget, `${name} has ${lines} lines (budget ${budget})`);
   }
