@@ -21,7 +21,8 @@ const phase17 = process.argv.includes('--phase17');
 const phase18 = process.argv.includes('--phase18');
 const phase19 = process.argv.includes('--phase19');
 const phase20 = process.argv.includes('--phase20');
-const out = resolve(arg('out', resolve(root, 'docs', 'reports', phase20 ? 'phase20-mass-sim.json' : phase19 ? 'phase19-mass-sim.json' : phase18 ? 'phase18-mass-sim.json' : phase17 ? 'phase17-mass-sim.json' : phase16 ? 'phase16-mass-sim.json' : phase15 ? 'phase15-mass-sim.json' : 'phase14-mass-sim.json')));
+const phase21 = process.argv.includes('--phase21');
+const out = resolve(arg('out', resolve(root, 'docs', 'reports', phase21 ? 'phase21-mass-sim.json' : phase20 ? 'phase20-mass-sim.json' : phase19 ? 'phase19-mass-sim.json' : phase18 ? 'phase18-mass-sim.json' : phase17 ? 'phase17-mass-sim.json' : phase16 ? 'phase16-mass-sim.json' : phase15 ? 'phase15-mass-sim.json' : 'phase14-mass-sim.json')));
 
 const api = await loadKernel();
 const { battleKernel, noopSystems, snapshot } = api;
@@ -291,6 +292,39 @@ if (phase15) {
     spawnLifetimes: Object.freeze({ ability_summon: 40 }),
   }));
   entityDistribution = { player: 3, enemy: 3 };
+} else if (phase21) {
+  // Phase 21 mode: boss transition + objective/wave/hazard systems on top of
+  // the Phase 15 surface. unit_e1 becomes the 40%-HP boss; the enemy wave and
+  // hazard exercise the K/C systems and the survive/kill objectives resolve in L.
+  const defs21 = Object.freeze([
+    Object.freeze({ id: 'p1', bossId: 'boss_ash', priority: 1, minHpPermille: 501, maxHpPermille: 1001, previewKey: 'preview_p1' }),
+    Object.freeze({ id: 'p2', bossId: 'boss_ash', priority: 2, minHpPermille: 251, maxHpPermille: 501, previewKey: 'preview_p2', invulnerableTicks: 10 }),
+    Object.freeze({ id: 'p3', bossId: 'boss_ash', priority: 3, minHpPermille: 0, maxHpPermille: 251, previewKey: 'preview_p3' }),
+  ]);
+  buildBattleFor = (_api) => {
+    const base = buildPhase15Battle(_api, 'phase21-fixture-v1');
+    const entities = base.entities.map((e) => (e.id === 'unit_e1' ? Object.freeze({ ...e, id: 'boss_ash_unit', maxLp: 1000, lp: 400 }) : e));
+    return Object.freeze({
+      ...base,
+      entities: Object.freeze(entities),
+      bossPhase: Object.freeze({ entityId: 'boss_ash_unit', bossId: 'boss_ash', phaseId: 'p1', transition: null, visited: Object.freeze(['p1']), invulnerableUntilTick: null }),
+      hazards: Object.freeze([Object.freeze({ id: 'hazard_mass_1', scheduledTick: 5, telegraphTicks: 10, resolveTick: 15, expired: false, form: 'circle', edgePattern: 'edge_dashed', shapeSymbol: 'symbol_skull' })]),
+    });
+  };
+  systems = Object.freeze(api.phase21Systems.createPhase21Systems({
+    bossPhaseDefinitions: defs21,
+    modifiers: Object.freeze([
+      Object.freeze({ id: 'mod_mass_1', previewKey: 'preview_mod_mass_1', hooks: Object.freeze(['on_battle_start']), incompatibilityTags: Object.freeze([]), params: Object.freeze({}) }),
+    ]),
+    waves: Object.freeze([Object.freeze({ id: 'wave_mass_1', scheduledTick: 10, side: 'enemy', entityIds: Object.freeze(['unit_reinforce_a', 'unit_reinforce_b']), spawnProfile: 'profile_grunt', capPolicy: 'BLOCK' })]),
+    objectives: Object.freeze([
+      Object.freeze({ id: 'obj_survive', kind: 'survive_until', targetId: null, required: 60, progress: 0, complete: false }),
+      Object.freeze({ id: 'obj_boss', kind: 'kill_boss', targetId: 'boss_ash_unit', required: 1, progress: 0, complete: false }),
+    ]),
+    bossCoreMechanicTags: Object.freeze(['core_phase']),
+    bossAnnouncedCounterTags: Object.freeze(['dispel']),
+  }));
+  entityDistribution = { player: 3, enemy: 3 };
 } else {
   systems = Object.freeze([...noopSystems.createNoopSystems(), emitter]);
   entityDistribution = { player: 3, enemy: 3 };
@@ -385,8 +419,8 @@ try {
 
   const report = {
     schemaVersion: 1,
-    phase: phase19 ? 19 : phase18 ? 18 : phase17 ? 17 : phase16 ? 16 : phase15 ? 15 : 14,
-    gate: phase19 ? 'G18' : phase18 ? 'G17' : phase17 ? 'G16' : phase16 ? 'G15' : phase15 ? 'G14' : 'G13',
+    phase: phase21 ? 21 : phase19 ? 19 : phase18 ? 18 : phase17 ? 17 : phase16 ? 16 : phase15 ? 15 : 14,
+    gate: phase21 ? 'G20' : phase19 ? 'G18' : phase18 ? 'G17' : phase17 ? 'G16' : phase16 ? 'G15' : phase15 ? 'G14' : 'G13',
     sourceRevision: process.env.SOURCE_REVISION ?? null,
     runtime: { node: process.version, platform: process.platform, arch: process.arch },
     battles,
@@ -394,7 +428,7 @@ try {
     totalTicks: tickDurations.length,
     totalEvents,
     entityDistribution,
-    mode: phase19 ? 'phase19-ability-trigger' : phase18 ? 'phase18-status-periodic' : phase17 ? 'phase17-basicattack-projectile' : phase16 ? 'phase16-targeting-attackprep' : phase15 ? 'phase15-spawn-separation' : 'phase14-noop',
+    mode: phase21 ? 'phase21-boss-objective-wave-hazard' : phase19 ? 'phase19-ability-trigger' : phase18 ? 'phase18-status-periodic' : phase17 ? 'phase17-basicattack-projectile' : phase16 ? 'phase16-targeting-attackprep' : phase15 ? 'phase15-spawn-separation' : 'phase14-noop',
     warmup: 10,
     runs: 1,
     tickLatencyMs: latency(tickDurations),

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "phase": 21,
+  "gate": "G20",
+  "sourceRevision": null,
+  "runtime": {
+    "node": "v25.8.0",
+    "platform": "win32",
+    "arch": "x64"
+  },
+  "battles": 2000,
+  "ticksPerBattle": 60,
+  "totalTicks": 120000,
+  "totalEvents": 16000,
+  "entityDistribution": {
+    "player": 3,
+    "enemy": 3
+  },
+  "mode": "phase21-boss-objective-wave-hazard",
+  "warmup": 10,
+  "runs": 1,
+  "tickLatencyMs": {
+    "median": 2.01,
+    "p95": 6.537,
+    "p99": 14.963,
+    "max": 222.426,
+    "variance": 12.671052
+  },
+  "hashLatencyMs": {
+    "median": 0.246,
+    "p95": 0.748,
+    "p99": 2.336,
+    "max": 30.104,
+    "variance": 0.849628
+  },
+  "peakRssBytes": 192991232,
+  "peakHeapBytes": 56736080,
+  "endRssBytes": 192991232,
+  "endHeapBytes": 40381448,
+  "invariantErrors": 0,
+  "hashDrift": 0,
+  "referenceFinalHash": "8515d86b061f225cd912fe6a465972df5b009fec70ecdb18ab2f7b378c5c0966",
+  "status": "PASS"
+}

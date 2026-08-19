@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "simulationVersion": "phase21-fixture-v1",
+  "pipelineCallOrder": [
+    "C:hazard.c1.advance",
+    "D:boss.d1.transition_detect",
+    "D:modifier.d0.commit",
+    "K:reinforcement.k1.spawn",
+    "L:boss.l1.transition_commit",
+    "L:objective.l1.resolution"
+  ],
+  "checkpoints": [
+    {
+      "tick": 30,
+      "checksum": "52492d85c111981d8f2bbe997c93f919142aa392df7f64a1ce73f0ddc5a83db7"
+    },
+    {
+      "tick": 60,
+      "checksum": "b4239e4210fa1b383132b55718907293dfa9002d2073c52020619c60c15d906c"
+    }
+  ],
+  "finalSnapshotChecksum": "b4239e4210fa1b383132b55718907293dfa9002d2073c52020619c60c15d906c"
+}

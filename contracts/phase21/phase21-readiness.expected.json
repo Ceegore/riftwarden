@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "phase": 21,
+  "gate": "G21",
+  "evidence": {
+    "massSim": {
+      "path": "docs/reports/phase21-mass-sim.json",
+      "minBattles": 2000,
+      "requiredStatus": "PASS"
+    },
+    "crossRuntime": {
+      "path": "docs/reports/phase14-crossruntime.json",
+      "section": "phase21",
+      "requiredEngines": [
+        "chromium",
+        "firefox",
+        "webkit"
+      ],
+      "deviceRuntimes": [
+        "android_webview",
+        "ios_wkwebview"
+      ]
+    },
+    "referenceTrace": {
+      "path": "tests/sim/fixtures/reference-traces-phase21.json"
+    },
+    "modules": [
+      "src/game/sim/boss/boss-phase-system.ts",
+      "src/game/sim/boss/boss-object-manager.ts",
+      "src/game/sim/world/modifier-system.ts",
+      "src/game/sim/world/hazard-system.ts",
+      "src/game/sim/objectives/combat-objective.ts",
+      "src/game/sim/world/reinforcement-system.ts",
+      "src/game/sim/core/phase21-systems.ts"
+    ]
+  },
+  "hardBlockers": [
+    "P21_G21_G20_NOT_PROVEN",
+    "P21_G21_BROWSER_RERUN_MISSING",
+    "P21_G21_DEVICE_EVIDENCE_MISSING"
+  ]
+}

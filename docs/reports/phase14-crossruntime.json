@@ -678,5 +678,82 @@
         "exitCode": null
       }
     }
+  },
+  "phase21": {
+    "phase": 21,
+    "gate": "G21",
+    "fixture": "tests/sim/fixtures/reference-traces-phase21.json",
+    "status": "PARTIAL",
+    "note": "Phase 21 boss transition + objective/wave/hazard trace (PhaseTransitionPlanned/BossTelegraphStarted/BossPhaseStarted/BossPhaseCompleted events) Node reference; browser/device rows NOT_RUN.",
+    "runtimes": {
+      "node": {
+        "status": "REFERENCE",
+        "version": "v25.8.0",
+        "host": "win32",
+        "startHash": "05ef6b26a8350b98033c0b5b3f8d374a0d910f0f4836560c7db4b0d6b506546b",
+        "tick30": "52492d85c111981d8f2bbe997c93f919142aa392df7f64a1ce73f0ddc5a83db7",
+        "tick60": "b4239e4210fa1b383132b55718907293dfa9002d2073c52020619c60c15d906c",
+        "endHash": "b4239e4210fa1b383132b55718907293dfa9002d2073c52020619c60c15d906c",
+        "endTick": 60,
+        "endReason": null,
+        "eventCount": 8,
+        "exitCode": 0
+      },
+      "chromium": {
+        "status": "NOT_RUN",
+        "startHash": null,
+        "tick30": null,
+        "tick60": null,
+        "endHash": null,
+        "endTick": null,
+        "endReason": null,
+        "eventCount": null,
+        "exitCode": null
+      },
+      "firefox": {
+        "status": "NOT_RUN",
+        "startHash": null,
+        "tick30": null,
+        "tick60": null,
+        "endHash": null,
+        "endTick": null,
+        "endReason": null,
+        "eventCount": null,
+        "exitCode": null
+      },
+      "webkit": {
+        "status": "NOT_RUN",
+        "startHash": null,
+        "tick30": null,
+        "tick60": null,
+        "endHash": null,
+        "endTick": null,
+        "endReason": null,
+        "eventCount": null,
+        "exitCode": null
+      },
+      "android_webview": {
+        "status": "NOT_RUN",
+        "startHash": null,
+        "tick30": null,
+        "tick60": null,
+        "endHash": null,
+        "endTick": null,
+        "endReason": null,
+        "eventCount": null,
+        "exitCode": null
+      },
+      "ios_wkwebview": {
+        "status": "NOT_RUN",
+        "startHash": null,
+        "tick30": null,
+        "tick60": null,
+        "endHash": null,
+        "endTick": null,
+        "endReason": null,
+        "eventCount": null,
+        "exitCode": null
+      }
+    }
   }
 }

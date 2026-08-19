@@ -6,6 +6,7 @@ import { loadKernel, runNodeReferenceTrace, runNodePhase15ReferenceTrace, runNod
 import { runNodePhase18ReferenceTrace } from './lib/phase18-trace.mjs';
 import { runNodePhase19ReferenceTrace } from './lib/phase19-trace.mjs';
 import { runNodePhase20ReferenceTrace } from './lib/phase20-trace.mjs';
+import { runNodePhase21ReferenceTrace } from './lib/phase21-trace.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
@@ -86,6 +87,15 @@ try {
   const expected20_60 = fixture20.checkpoints.find((c) => c.tick === 60)?.checksum;
   if (node20.tick30 !== expected20_30 || node20.tick60 !== expected20_60 || node20.endHash !== fixture20.finalSnapshotChecksum) {
     console.error(JSON.stringify({ status: 'FAIL', reason: 'node20-drift-vs-pinned-fixture', ...node20, expected30: expected20_30, expected60: expected20_60, expectedFinal: fixture20.finalSnapshotChecksum }, null, 2));
+    process.exit(1);
+  }
+
+  const node21 = runNodePhase21ReferenceTrace(api);
+  const fixture21 = JSON.parse(readFileSync(resolve(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase21.json'), 'utf8'));
+  const expected21_30 = fixture21.checkpoints.find((c) => c.tick === 30)?.checksum;
+  const expected21_60 = fixture21.checkpoints.find((c) => c.tick === 60)?.checksum;
+  if (node21.tick30 !== expected21_30 || node21.tick60 !== expected21_60 || node21.endHash !== fixture21.finalSnapshotChecksum) {
+    console.error(JSON.stringify({ status: 'FAIL', reason: 'node21-drift-vs-pinned-fixture', ...node21, expected30: expected21_30, expected60: expected21_60, expectedFinal: fixture21.finalSnapshotChecksum }, null, 2));
     process.exit(1);
   }
   const notRun = (runtimes) =>
@@ -181,6 +191,17 @@ try {
         ...notRun(),
       },
     },
+    phase21: {
+      phase: 21,
+      gate: 'G21',
+      fixture: 'tests/sim/fixtures/reference-traces-phase21.json',
+      status: 'PARTIAL',
+      note: 'Phase 21 boss transition + objective/wave/hazard trace (PhaseTransitionPlanned/BossTelegraphStarted/BossPhaseStarted/BossPhaseCompleted events) Node reference; browser/device rows NOT_RUN.',
+      runtimes: {
+        node: { status: 'REFERENCE', version: process.version, host: process.platform, startHash: node21.startHash, tick30: node21.tick30, tick60: node21.tick60, endHash: node21.endHash, endTick: node21.endTick, endReason: node21.endReason, eventCount: node21.eventCount, exitCode: 0 },
+        ...notRun(),
+      },
+    },
   };
   // Preserve operator-set browser/device columns (PASS/FAIL) across Node-only
   // regenerations: this tool authors the Node reference rows, never the
@@ -197,7 +218,7 @@ try {
       }
     };
     preserveRuntimes(previous, matrix);
-    for (const key of ['phase15', 'phase16', 'phase17', 'phase17jl', 'phase18', 'phase19', 'phase20']) {
+    for (const key of ['phase15', 'phase16', 'phase17', 'phase17jl', 'phase18', 'phase19', 'phase20', 'phase21']) {
       preserveRuntimes(previous[key], matrix[key]);
     }
   }
