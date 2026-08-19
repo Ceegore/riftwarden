@@ -1,0 +1,28 @@
+{
+  "valid": [
+    {
+      "kind": "settings",
+      "schemaVersion": 1,
+      "textScale": 100
+    },
+    {
+      "kind": "settings",
+      "schemaVersion": 1,
+      "textScale": 200
+    }
+  ],
+  "invalid": [
+    {
+      "case": "unknown-field"
+    },
+    {
+      "case": "missing-required"
+    },
+    {
+      "case": "future-schema"
+    },
+    {
+      "case": "text-scale-110"
+    }
+  ]
+}

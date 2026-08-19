@@ -1,0 +1,36 @@
+{
+  "battleSnapshotIntervalTicks": 150,
+  "settingsDebounceMs": 100,
+  "transferExtension": ".riftwarden-save",
+  "diagnosticExtension": ".riftwarden-diagnostic",
+  "maxTransferBytes": 10485760,
+  "maxEntryBytes": 8388608,
+  "textScales": [
+    100,
+    125,
+    150,
+    175,
+    200
+  ],
+  "saveCommitReasons": [
+    "profile_change",
+    "node_entered",
+    "decision_committed",
+    "battle_started",
+    "battle_snapshot",
+    "battle_finished",
+    "reward_committed",
+    "run_finished",
+    "settings_changed",
+    "manual_backup"
+  ],
+  "recoveryReasons": [
+    "none",
+    "newest_slot_invalid",
+    "run_invalid",
+    "content_mismatch",
+    "migration_failed",
+    "renderer_unavailable",
+    "insufficient_storage"
+  ]
+}

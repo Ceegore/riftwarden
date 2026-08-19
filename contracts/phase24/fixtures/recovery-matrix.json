@@ -1,0 +1,12 @@
+{
+  "rows": [
+    "newest_slot_invalid",
+    "run_invalid_profile_valid",
+    "migration_failed",
+    "content_mismatch_compatible",
+    "content_mismatch_blocked",
+    "insufficient_storage",
+    "renderer_unavailable",
+    "no_valid_slots"
+  ]
+}

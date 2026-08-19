@@ -1,0 +1,21 @@
+{
+  "cases": [
+    "dotdot",
+    "absolute_path",
+    "backslash_traversal",
+    "nested_path",
+    "symlink",
+    "hardlink",
+    "nested_archive",
+    "duplicate_entry",
+    "unknown_file",
+    "entry_over_8mib",
+    "total_over_10mib",
+    "compression_bomb",
+    "hash_mismatch",
+    "future_schema",
+    "duplicate_callback",
+    "cancel",
+    "disk_full"
+  ]
+}
