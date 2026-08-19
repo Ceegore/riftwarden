@@ -147,6 +147,8 @@
     "phase25:gate": "node tools/sim/validate-phase25-readiness.mjs",
     "phase26:validate-readiness": "node tools/sim/validate-phase26-readiness.mjs",
     "phase26:gate": "node tools/sim/validate-phase26-readiness.mjs",
+    "phase26:golden:write": "node tools/sim/phase26-golden-harness.mjs --write",
+    "phase26:golden:check": "node tools/sim/phase26-golden-harness.mjs --check",
     "rules:typecheck": "tsc -p tsconfig.type-fixtures.json --noEmit",
     "rules:audit": "node tools/rules/audit-magic-values.mjs src config/magic-value-allowlist.json",
     "rules:validate-snapshots": "node tools/rules/validate-rule-snapshots.mjs .",
