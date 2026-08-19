@@ -10,6 +10,8 @@ import { createStatusCollection } from '../status/status-collection.js';
 import type { StatusInstance } from '../status/status-instance.js';
 import { createAbilityCollection } from '../ability/ability-collection.js';
 import { canonicalizeEffectBatch } from '../ability/effect-executor.js';
+import { createTemporaryCollection } from '../summon/temporary-registry.js';
+import { canonicalizeSynergyTiers } from '../synergy/synergy-counter.js';
 import { KernelInvariantError } from './invariant-error.js';
 import type { EventPriority, EventSequence, Tick } from './primitives.js';
 import type { EventQueue } from '../scheduler/event-queue.js';
@@ -49,7 +51,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   let projectiles = args.state.projectiles, pendingCombatApplications = args.state.pendingCombatApplications, combatApplicationSeq = args.state.combatApplicationSeq;
   let timeCollapseSinceTick = args.state.timeCollapseSinceTick, bossDamageDealt = args.state.bossDamageDealt;
   let statuses = args.state.statuses, pendingCleanses = args.state.pendingCleanses;
-  let abilities = args.state.abilities, plannedEffects = args.state.plannedEffects;
+  let abilities = args.state.abilities, plannedEffects = args.state.plannedEffects, temporaryEntities = args.state.temporaryEntities, synergyTiers = args.state.synergyTiers;
   const beforeEvents = args.log.size();
   const transitions = new Map<string, TransitionRequest[]>();
   const battleTransitions: BattleTransitionRequest[] = [];
@@ -57,9 +59,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   for (const command of args.commands) {
     if (args.state.phase.phase === 'INTRO') {
       const eventType = command.kind === 'schedule_event' ? command.event.event.type : command.kind === 'append_event' ? command.event.type : null;
-      if (eventType !== null && (EVENT_SPEC[eventType].category === 'combat' || EVENT_SPEC[eventType].category === 'ability')) {
-        throw new KernelInvariantError('P14_STATE_TRANSITION_INVALID', { reason: 'intro-authoritative-action', type: eventType });
-      }
+      if (eventType !== null && (EVENT_SPEC[eventType].category === 'combat' || EVENT_SPEC[eventType].category === 'ability')) throw new KernelInvariantError('P14_STATE_TRANSITION_INVALID', { reason: 'intro-authoritative-action', type: eventType });
     }
     switch (command.kind) {
       case 'schedule_event':
@@ -160,11 +160,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
       case 'set_shields': {
         requireEntity(entities, command.entityId);
         if (!Array.isArray(command.shields)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'shields-not-array' });
-        const shields: ShieldSource[] = command.shields.map((source) => {
-          if (typeof source !== 'object' || source === null) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'shields-source-invalid' });
-          validateShieldSource(source as ShieldSource);
-          return source as ShieldSource;
-        });
+        const shields: ShieldSource[] = command.shields.map((source) => { if (typeof source !== 'object' || source === null) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'shields-source-invalid' }); validateShieldSource(source as ShieldSource); return source as ShieldSource; });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, shields: Object.freeze(shields) }) : e));
         break;
       }
@@ -201,11 +197,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
       }
       case 'set_projectiles': {
         if (!Array.isArray(command.projectiles)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'projectiles-not-array' });
-        const validated: ProjectileState[] = command.projectiles.map((projectile) => {
-          if (typeof projectile !== 'object' || projectile === null) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'projectile-invalid' });
-          validateProjectileState(projectile as ProjectileState);
-          return projectile as ProjectileState;
-        });
+        const validated: ProjectileState[] = command.projectiles.map((projectile) => { if (typeof projectile !== 'object' || projectile === null) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'projectile-invalid' }); validateProjectileState(projectile as ProjectileState); return projectile as ProjectileState; });
         projectiles = Object.freeze(validated);
         break;
       }
@@ -227,6 +219,13 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
       case 'set_planned_effects':
         if (!Array.isArray(command.effects)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'planned-effects-not-array' });
         plannedEffects = canonicalizeEffectBatch(command.effects);
+        break;
+      case 'set_temporary_entities':
+        if (!Array.isArray(command.entities)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'temporary-entities-not-array' });
+        temporaryEntities = createTemporaryCollection(command.entities);
+        break;
+      case 'set_synergy_tiers':
+        synergyTiers = canonicalizeSynergyTiers(command.tiers);
         break;
       case 'apply_lp_delta': {
         requireEntity(entities, command.entityId);
@@ -261,9 +260,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
     const ordered = [...battleTransitions].sort((a, b) => b.priority - a.priority || (a.to < b.to ? -1 : a.to > b.to ? 1 : 0));
     const winner = ordered[0];
     const conflict = ordered[1];
-    if (winner !== undefined && conflict?.priority === winner.priority && conflict.to !== winner.to) {
-      throw new KernelInvariantError('P14_TRANSITION_CONFLICT', { kind: 'battle' });
-    }
+    if (winner !== undefined && conflict?.priority === winner.priority && conflict.to !== winner.to) throw new KernelInvariantError('P14_TRANSITION_CONFLICT', { kind: 'battle' });
     if (winner) phase = transitionBattlePhase(phase, winner.to, args.atTick);
     if (winner && isTerminalBattlePhase(phase.phase)) endReason = winner.reason;
   }
@@ -282,6 +279,8 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   if (pendingCleanses !== undefined) extras['pendingCleanses'] = pendingCleanses;
   if (abilities !== undefined) extras['abilities'] = abilities;
   if (plannedEffects !== undefined) extras['plannedEffects'] = plannedEffects;
+  if (temporaryEntities !== undefined) extras['temporaryEntities'] = temporaryEntities;
+  if (synergyTiers !== undefined) extras['synergyTiers'] = synergyTiers;
   return Object.freeze({
     ...args.state,
     phase,

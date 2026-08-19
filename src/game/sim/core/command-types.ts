@@ -13,6 +13,8 @@ import type { StatusInstance } from '../status/status-instance.js';
 import type { CleanseDispelKind } from '../status/cleanse-dispel.js';
 import type { AbilityInstance } from '../ability/ability-system.js';
 import type { EffectCommand } from '../ability/effect-command.js';
+import type { TempEntity } from '../summon/temporary-entity.js';
+import type { SynergyTier } from '../synergy/synergy-counter.js';
 
 export type KernelCommand =
   | Readonly<{kind:'schedule_event'; event:ScheduledEventInput}>
@@ -49,6 +51,8 @@ export type KernelCommand =
   | Readonly<{kind:'clear_pending_cleanses'}>
   | Readonly<{kind:'set_abilities'; abilities:readonly AbilityInstance[]}>
   | Readonly<{kind:'set_planned_effects'; effects:readonly EffectCommand[]}>
+  | Readonly<{kind:'set_temporary_entities'; entities:readonly TempEntity[]}>
+  | Readonly<{kind:'set_synergy_tiers'; tiers:Readonly<Record<string, SynergyTier>>}>
   | Readonly<{kind:'checkpoint_marker'; reason:'interval'|'terminal'}>;
 
 export interface CleanseDispelRequest { readonly targetId:string; readonly kind:CleanseDispelKind; }

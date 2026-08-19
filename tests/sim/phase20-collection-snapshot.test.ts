@@ -76,12 +76,12 @@ describe('P20 snapshot projection', () => {
 });
 
 describe('P20 migration', () => {
-  it('seeds empty temporary entities and synergy tiers', () => {
+  it('seeds an empty registry and leaves synergy tiers uncommitted', () => {
     const state = battle({ entities: [entity('entity_alpha')] });
     const migrated = migrateBattleModel({ state, radiiX100: { entity_alpha: 100 } });
     expect(migrated.simulationVersion).toBe(SIM_VERSION_PHASE15);
     expect(migrated.temporaryEntities).toEqual([]);
-    expect(migrated.synergyTiers).toEqual({});
+    expect(migrated.synergyTiers).toBeUndefined();
   });
 
   it('is idempotent at the Phase 15 version', () => {

@@ -126,7 +126,8 @@ export function migrateBattleModel(args: MigrateBattleArgs): BattleModel {
     plannedEffects: Object.freeze([]),
     previousTickLp: Object.freeze({}),
     previousTickEvents: Object.freeze([]),
+    // Phase 20: an empty registry is a valid committed state; the synergy tier
+    // map stays undefined until the stage-D system commits it once (§4 step 7).
     temporaryEntities: Object.freeze([]),
-    synergyTiers: Object.freeze({}),
   });
 }

@@ -26,6 +26,9 @@ export function sortRequests(requests: readonly SpawnRequest[]): readonly SpawnR
 }
 
 function makeSummon(request: SpawnRequest): TempEntity {
+  const extras: { expiresAtTick?: number; slotId?: string } = {};
+  if (request.expiresAtTick !== undefined) extras.expiresAtTick = request.expiresAtTick;
+  if (request.slotId !== undefined) extras.slotId = request.slotId;
   return createTempEntity({
     id: request.reservedEntityId,
     side: request.side,
@@ -36,6 +39,7 @@ function makeSummon(request: SpawnRequest): TempEntity {
     createdTick: request.requestedTick,
     createdSequence: request.requestSequence,
     removeOnOwnerDefeat: false,
+    ...extras,
   });
 }
 

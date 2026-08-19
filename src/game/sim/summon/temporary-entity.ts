@@ -70,6 +70,10 @@ export interface SpawnRequest {
   readonly abilityId: string;
   readonly requestSequence: number;
   readonly policy: CapPolicy;
+  /** Lifetime ticks (§6); absent = permanent. */
+  readonly expiresAtTick?: number;
+  /** Construct/summon slot reference (§7); absent = slotless. */
+  readonly slotId?: string;
 }
 
 /** §5.3 commit outcome. BLOCKED consumes the reserved id (never reused). */
