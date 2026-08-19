@@ -35,6 +35,22 @@
         {
           "name": "writeAtomic",
           "phase04Behavior": "reject NOT_IMPLEMENTED"
+        },
+        {
+          "name": "commit",
+          "phase04Behavior": "reject NOT_IMPLEMENTED"
+        },
+        {
+          "name": "load",
+          "phase04Behavior": "reject NOT_IMPLEMENTED"
+        },
+        {
+          "name": "inspect",
+          "phase04Behavior": "reject NOT_IMPLEMENTED"
+        },
+        {
+          "name": "cleanupOrphans",
+          "phase04Behavior": "reject NOT_IMPLEMENTED"
         }
       ]
     },
