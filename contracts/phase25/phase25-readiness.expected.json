@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "phase": 25,
+  "gate": "G25",
+  "evidence": {
+    "constants": "contracts/phase25/phase25-constants.json",
+    "mutationGuard": "src/game/render/mutation-guard.ts",
+    "interpolation": {
+      "path": "src/game/render/interpolation.ts",
+      "fixture": "contracts/phase25/fixtures/interpolation-boundaries.json",
+      "cases": 6
+    },
+    "lifecycleCapability": {
+      "path": "src/game/render/lifecycle.ts",
+      "capability": "src/game/render/capability.ts",
+      "fixture": "contracts/phase25/fixtures/capability-matrix.json",
+      "cases": 5
+    },
+    "layerGraph": {
+      "path": "src/game/render/layer-graph.ts",
+      "sort": "src/game/render/stable-sort.ts",
+      "fixture": "contracts/phase25/fixtures/layer-order-golden.json",
+      "layers": 8
+    },
+    "presenterClock": {
+      "presenter": "src/game/render/snapshot-presenter.ts",
+      "clock": "src/game/render/presentation-clock.ts",
+      "fixture": "contracts/phase25/fixtures/interpolation-boundaries.json",
+      "speeds": 4,
+      "fps": 4,
+      "maxCatchUpTicks": 8
+    },
+    "eventMapping": "src/game/render/event-mapping.ts",
+    "poolQuality": {
+      "path": "src/game/render/pool-policy.ts",
+      "quality": "src/game/render/quality.ts",
+      "fixture": "contracts/phase25/fixtures/quality-pressure-matrix.json",
+      "droppable": 4,
+      "protected": 4
+    },
+    "contextRecovery": {
+      "path": "src/game/render/context-recovery.ts",
+      "fixture": "contracts/phase25/fixtures/context-loss-matrix.json",
+      "scenarios": 4
+    },
+    "tests": {
+      "contracts": "tests/sim/phase25-contracts.test.ts",
+      "interpolation": "tests/sim/phase25-interpolation.test.ts",
+      "lifecycleCapability": "tests/sim/phase25-lifecycle-capability.test.ts",
+      "presenter": "tests/sim/phase25-presenter.test.ts",
+      "clock": "tests/sim/phase25-clock.test.ts",
+      "contextRecovery": "tests/sim/phase25-context-recovery.test.ts",
+      "poolQualityRelease": "tests/sim/phase25-pool-quality-release.test.ts"
+    }
+  },
+  "hardBlockers": [
+    "P25_G25_REAL_G24_NOT_PROVEN",
+    "P25_G25_PIXI_DEVICE_RENDER_NOT_PROVEN",
+    "P25_G25_CONTEXT_LOSS_BROWSER_EVIDENCE_MISSING",
+    "P25_G25_VISUAL_GOLDENS_DEVICE_EVIDENCE_MISSING",
+    "P25_G25_POOL_LEAK_STRESS_DEVICE_EVIDENCE_MISSING",
+    "P25_G25_RELEASE_BUNDLE_OPERATOR_SCAN_MISSING"
+  ]
+}
