@@ -10,13 +10,14 @@ const required = [
   'ChargeReady', 'AbilityPrepared', 'AbilityInterrupted', 'AbilityCommitted', 'AbilityResolved',
   'AbilityTriggered', 'AbilityTargetSelected', 'AbilityWaitingTarget', 'AbilityCastStarted', 'AbilityEffectQueued', 'AbilityRecovered', 'AbilityCooldownStarted', 'AbilityReady', 'AbilityConsumed', 'AbilityRejected',
   'ModifierTriggered', 'HazardTelegraphed', 'HazardResolved', 'ReinforcementQueued', 'ReinforcementSpawned',
+  'PhaseTransitionPlanned', 'BossTelegraphStarted', 'BossPhaseStarted', 'BossPhaseCompleted',
   'InvalidTargetPrevented', 'SummonLimitBlocked', 'FallbackRuleUsed', 'SafetyCapTriggered',
   'LaneLogicalSwitched', 'LaneChangeCompleted', 'LaneChangeInterrupted',
   'StuckRepath', 'RepathLaneUnavailable', 'FrontDeadlockRangeBoost', 'RiftCollapseWarning', 'RiftCollapseEndRequest', 'SpawnRejected',
 ];
 
 describe('event registry', () => {
-  it('all 60 required event types are registered', () => {
+  it('all 64 required event types are registered', () => {
     expect(Object.keys(EVENT_SPEC).sort()).toEqual([...required].sort());
   });
 

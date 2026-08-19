@@ -137,3 +137,17 @@ export function evaluateComposite(composite: CompositeCondition, objectives: rea
 export function compareObjectives(a: Objective, b: Objective): number {
   return asciiCompare(a.id, b.id);
 }
+
+/**
+ * Canonical objective collection (§8 snapshot projection): validates every
+ * objective, rejects duplicate ids and returns a deep-frozen, id-sorted set.
+ */
+export function createObjectiveCollection(objectives: readonly Objective[]): readonly Objective[] {
+  const ids = new Set<string>();
+  return Object.freeze([...objectives].sort(compareObjectives).map((o) => {
+    validateObjective(o);
+    if (ids.has(o.id)) throw new KernelInvariantError('P21_OBJECTIVE_INVALID', { reason: 'duplicate-id', id: o.id });
+    ids.add(o.id);
+    return Object.freeze({ ...o });
+  }));
+}

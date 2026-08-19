@@ -1,4 +1,5 @@
 import { KernelInvariantError } from '../core/invariant-error.js';
+import { asciiCompare } from '../core/primitives.js';
 
 /**
  * Phase 21 §7 hazard authority (T04). Hazards follow the fixed lifecycle
@@ -68,4 +69,18 @@ export function hazardStage(hazard: Hazard, tick: number): HazardStage {
 /** §7 warning-area info: content-stable, unaffected by quality/reduced-motion. */
 export function hazardWarningInfo(hazard: Hazard): { readonly form: HazardForm; readonly edgePattern: string; readonly shapeSymbol: string } {
   return Object.freeze({ form: hazard.form, edgePattern: hazard.edgePattern, shapeSymbol: hazard.shapeSymbol });
+}
+
+/**
+ * Canonical hazard collection (§7 snapshot projection): validates every hazard,
+ * rejects duplicate ids and returns a deep-frozen, id-sorted set.
+ */
+export function createHazardCollection(hazards: readonly Hazard[]): readonly Hazard[] {
+  const ids = new Set<string>();
+  return Object.freeze([...hazards].sort((a, b) => asciiCompare(a.id, b.id)).map((h) => {
+    validateHazard(h);
+    if (ids.has(h.id)) throw new KernelInvariantError('P21_HAZARD_INVALID', { reason: 'duplicate-id', id: h.id });
+    ids.add(h.id);
+    return Object.freeze({ ...h });
+  }));
 }

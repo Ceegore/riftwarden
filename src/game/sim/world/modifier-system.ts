@@ -77,6 +77,21 @@ function issue(code: string, detail: string): ValidationIssue {
 }
 
 /**
+ * Canonical modifier collection (§7 snapshot projection): validates every
+ * modifier, rejects duplicate ids and returns a deep-frozen, id-sorted set.
+ */
+export function createModifierCollection(defs: readonly ModifierDefinition[]): readonly ModifierDefinition[] {
+  const ids = new Set<string>();
+  const sorted = [...defs].sort((a, b) => asciiCompare(a.id, b.id));
+  return Object.freeze(sorted.map((d) => {
+    validateModifier(d);
+    if (ids.has(d.id)) throw new KernelInvariantError('P21_MODIFIER_INVALID', { reason: 'duplicate-id', id: d.id });
+    ids.add(d.id);
+    return Object.freeze({ ...d, hooks: Object.freeze([...d.hooks]), incompatibilityTags: Object.freeze([...d.incompatibilityTags]), params: Object.freeze({ ...d.params }) });
+  }));
+}
+
+/**
  * §7 encounter validator. Rejects modifiers whose incompatibility tags overlap
  * the boss core mechanics (neutralization) or the announced counter strategy
  * (impossible counter), and any pair of modifiers that share an

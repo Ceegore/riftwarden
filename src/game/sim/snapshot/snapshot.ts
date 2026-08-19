@@ -8,6 +8,9 @@ import { createAbilityCollection } from '../ability/ability-collection.js';
 import { canonicalizeEffectBatch } from '../ability/effect-executor.js';
 import { createTemporaryCollection } from '../summon/temporary-registry.js';
 import { canonicalizeSynergyTiers } from '../synergy/synergy-counter.js';
+import { createModifierCollection } from '../world/modifier-system.js';
+import { createHazardCollection } from '../world/hazard-system.js';
+import { createObjectiveCollection } from '../objectives/combat-objective.js';
 import { canonicalUtf8 } from './canonical-json.js';
 import { sha256Hex } from './sha256.js';
 export interface BattleSnapshotData extends BattleModel { readonly checksum:string; }
@@ -29,6 +32,11 @@ export function snapshotPayload(state:BattleModel):Omit<BattleSnapshotData,'chec
   if(state.previousTickEvents!==undefined)extras['previousTickEvents']=Object.freeze(state.previousTickEvents.map((e)=>Object.freeze({type:e.type,sourceId:e.sourceId,targetIds:Object.freeze([...e.targetIds])})));
   if(state.temporaryEntities!==undefined)extras['temporaryEntities']=createTemporaryCollection(state.temporaryEntities);
   if(state.synergyTiers!==undefined)extras['synergyTiers']=canonicalizeSynergyTiers(state.synergyTiers);
+  if(state.bossPhase!==undefined)extras['bossPhase']=Object.freeze({bossId:state.bossPhase.bossId,phaseId:state.bossPhase.phaseId,transition:state.bossPhase.transition===null?null:Object.freeze({from:state.bossPhase.transition.from,to:state.bossPhase.transition.to,startTick:state.bossPhase.transition.startTick,commitTick:state.bossPhase.transition.commitTick}),visited:Object.freeze([...state.bossPhase.visited].sort(asciiCompare)),invulnerableUntilTick:state.bossPhase.invulnerableUntilTick});
+  if(state.modifiers!==undefined)extras['modifiers']=createModifierCollection(state.modifiers);
+  if(state.hazards!==undefined)extras['hazards']=createHazardCollection(state.hazards);
+  if(state.objectives!==undefined)extras['objectives']=createObjectiveCollection(state.objectives);
+  if(state.spawnedWaves!==undefined)extras['spawnedWaves']=Object.freeze([...state.spawnedWaves].sort(asciiCompare));
   return Object.freeze({schemaVersion:1,simulationVersion:state.simulationVersion,battleId:state.battleId,tick:state.tick,nextSequence:state.nextSequence,emittedEventCount:state.emittedEventCount,phase:Object.freeze({...state.phase}),entities:Object.freeze(entities.map((e)=>Object.freeze({...e,phase:Object.freeze({...e.phase}),timers:Object.freeze({...e.timers})}))),scheduledEvents:Object.freeze([...state.scheduledEvents].sort(compareScheduled)),authoritativeStreams:streams,endReason:state.endReason,...extras});
 }
 export function createSnapshot(state:BattleModel):BattleSnapshotData{const payload=snapshotPayload(state);return Object.freeze({...payload,checksum:sha256Hex(canonicalUtf8(payload))});}

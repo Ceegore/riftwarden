@@ -15,6 +15,7 @@ const requiredTypes = [
   'ChargeReady', 'AbilityPrepared', 'AbilityInterrupted', 'AbilityCommitted', 'AbilityResolved',
   'AbilityTriggered', 'AbilityTargetSelected', 'AbilityWaitingTarget', 'AbilityCastStarted', 'AbilityEffectQueued', 'AbilityRecovered', 'AbilityCooldownStarted', 'AbilityReady', 'AbilityConsumed', 'AbilityRejected',
   'ModifierTriggered', 'HazardTelegraphed', 'HazardResolved', 'ReinforcementQueued', 'ReinforcementSpawned',
+  'PhaseTransitionPlanned', 'BossTelegraphStarted', 'BossPhaseStarted', 'BossPhaseCompleted',
   'InvalidTargetPrevented', 'SummonLimitBlocked', 'FallbackRuleUsed', 'SafetyCapTriggered',
   'LaneLogicalSwitched', 'LaneChangeCompleted', 'LaneChangeInterrupted',
   'StuckRepath', 'RepathLaneUnavailable', 'FrontDeadlockRangeBoost', 'RiftCollapseWarning', 'RiftCollapseEndRequest', 'SpawnRejected',
@@ -32,9 +33,9 @@ describe('pipeline contract', () => {
 });
 
 describe('event contract', () => {
-  it('60 required event types are registered with valid categories', () => {
+  it('64 required event types are registered with valid categories', () => {
     expect(Object.keys(EVENT_SPEC).sort()).toEqual([...requiredTypes].sort());
-    const categories = ['lifecycle', 'entity', 'combat', 'ability', 'world', 'diagnostics'];
+    const categories = ['lifecycle', 'entity', 'combat', 'ability', 'world', 'boss', 'diagnostics'];
     for (const spec of Object.values(EVENT_SPEC)) {
       expect(categories).toContain(spec.category);
       expect(new Set(spec.payload).size).toBe(spec.payload.length);

@@ -12,6 +12,10 @@ import type { EffectCommand } from '../ability/effect-command.js';
 import type { EventType } from '../events/event-spec.js';
 import type { TempEntity } from '../summon/temporary-entity.js';
 import type { SynergyTier } from '../synergy/synergy-counter.js';
+import type { PhaseId, PhaseTransition } from '../boss/boss-phase-system.js';
+import type { ModifierDefinition } from '../world/modifier-system.js';
+import type { Hazard } from '../world/hazard-system.js';
+import type { Objective } from '../objectives/combat-objective.js';
 
 /** Compact record of an event emitted during a tick, for trigger history. */
 export interface TickEventRecord {
@@ -72,4 +76,23 @@ export interface BattleModel {
   // Phase 20 additive synergy field (§4 step 7): committed tier map, projected
   // into the snapshot. Absent on Phase 14–19 fixtures.
   readonly synergyTiers?: Readonly<Record<string, SynergyTier>>;
+  // Phase 21 additive boss-phase field (§10): active phase id, transition
+  // state, visited phases and the committed invulnerability window. Absent on
+  // non-boss (Phase 14–20) fixtures.
+  readonly bossPhase?: BossPhaseSnapshot;
+  // Phase 21 additive encounter fields (§7/§8): active modifiers, planned and
+  // active hazards, objective progress and the reinforcement wave cursor.
+  readonly modifiers?: readonly ModifierDefinition[];
+  readonly hazards?: readonly Hazard[];
+  readonly objectives?: readonly Objective[];
+  readonly spawnedWaves?: readonly string[];
+}
+
+/** §10 persisted boss-phase state: derived fields (hp, entity id) are recomputed. */
+export interface BossPhaseSnapshot {
+  readonly bossId: string;
+  readonly phaseId: PhaseId;
+  readonly transition: PhaseTransition | null;
+  readonly visited: readonly PhaseId[];
+  readonly invulnerableUntilTick: number | null;
 }
