@@ -6,9 +6,10 @@ import { validateEntity, validateLaneChange, type KernelEntity } from './entity.
 import { validateShieldSource, type ShieldSource } from '../combat/shield-ledger.js';
 import { validatePendingCombatApplication } from '../combat/application-validation.js';
 import { validateProjectileState, type ProjectileState } from '../projectile/projectile-state.js';
-import { createStatusCollection, type StatusCollection } from '../status/status-collection.js';
+import { createStatusCollection } from '../status/status-collection.js';
 import type { StatusInstance } from '../status/status-instance.js';
-import type { CleanseDispelRequest } from './command-types.js';
+import { createAbilityCollection } from '../ability/ability-collection.js';
+import { canonicalizeEffectBatch } from '../ability/effect-executor.js';
 import { KernelInvariantError } from './invariant-error.js';
 import type { EventPriority, EventSequence, Tick } from './primitives.js';
 import type { EventQueue } from '../scheduler/event-queue.js';
@@ -43,19 +44,12 @@ function assertNonNegativeSafe(value: number, reason: string): void {
 }
 
 export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
-  let entities = [...args.state.entities];
-  let phase = args.state.phase;
-  let endReason = args.state.endReason;
-  let globalNoProgressTicks = args.state.globalNoProgressTicks;
-  let riftCollapseTicks = args.state.riftCollapseTicks;
-  let riftCollapseWarningEmitted = args.state.riftCollapseWarningEmitted;
-  let projectiles = args.state.projectiles;
-  let pendingCombatApplications = args.state.pendingCombatApplications;
-  let combatApplicationSeq = args.state.combatApplicationSeq;
-  let timeCollapseSinceTick = args.state.timeCollapseSinceTick;
-  let bossDamageDealt = args.state.bossDamageDealt;
-  let statuses: StatusCollection | undefined = args.state.statuses;
-  let pendingCleanses: readonly CleanseDispelRequest[] | undefined = args.state.pendingCleanses;
+  let entities = [...args.state.entities], phase = args.state.phase, endReason = args.state.endReason;
+  let globalNoProgressTicks = args.state.globalNoProgressTicks, riftCollapseTicks = args.state.riftCollapseTicks, riftCollapseWarningEmitted = args.state.riftCollapseWarningEmitted;
+  let projectiles = args.state.projectiles, pendingCombatApplications = args.state.pendingCombatApplications, combatApplicationSeq = args.state.combatApplicationSeq;
+  let timeCollapseSinceTick = args.state.timeCollapseSinceTick, bossDamageDealt = args.state.bossDamageDealt;
+  let statuses = args.state.statuses, pendingCleanses = args.state.pendingCleanses;
+  let abilities = args.state.abilities, plannedEffects = args.state.plannedEffects;
   const beforeEvents = args.log.size();
   const transitions = new Map<string, TransitionRequest[]>();
   const battleTransitions: BattleTransitionRequest[] = [];
@@ -97,18 +91,16 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         requireEntity(entities, command.entityId);
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, targetId: command.targetId }) : e));
         break;
-      case 'set_position': {
+      case 'set_position':
         requireEntity(entities, command.entityId);
         if (!Number.isSafeInteger(command.x100) || command.x100 < 0 || command.x100 > 10000 || Object.is(command.x100, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'x100-out-of-range', entityId: command.entityId, x100: command.x100 });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, lane: command.lane, x100: command.x100 }) : e));
         break;
-      }
-      case 'set_movement_remainder': {
+      case 'set_movement_remainder':
         requireEntity(entities, command.entityId);
         if (!Number.isInteger(command.remainder) || command.remainder < 0 || command.remainder >= 30 || Object.is(command.remainder, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'movement-remainder-invalid', entityId: command.entityId, remainder: command.remainder });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, movementRemainder: command.remainder }) : e));
         break;
-      }
       case 'set_lane':
         requireEntity(entities, command.entityId);
         assertLane(command.lane);
@@ -134,18 +126,17 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         if (!Number.isSafeInteger(command.readyTick) || command.readyTick < 0 || Object.is(command.readyTick, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-interval-ready-invalid', entityId: command.entityId, readyTick: command.readyTick });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, attackIntervalReadyTick: command.readyTick }) : e));
         break;
-      case 'set_attack_lifecycle': {
+      case 'set_attack_lifecycle':
         requireEntity(entities, command.entityId);
         if (command.state !== null && (!Number.isSafeInteger(command.recoveryMovementLockedUntilTick) || command.recoveryMovementLockedUntilTick < 0 || Object.is(command.recoveryMovementLockedUntilTick, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'attack-recovery-lock-invalid', entityId: command.entityId });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze(command.state === null ? { ...e, attackState: null, recoveryMovementLockedUntilTick: 0 } : { ...e, attackState: command.state, recoveryMovementLockedUntilTick: command.recoveryMovementLockedUntilTick }) : e));
         break;
-      }
       case 'set_lane_change_cooldown':
         requireEntity(entities, command.entityId);
         assertNonNegativeSafe(command.untilTick, 'lane-change-cooldown-invalid');
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, normalLaneChangeCooldownUntilTick: command.untilTick }) : e));
         break;
-      case 'set_stuck_state': {
+      case 'set_stuck_state':
         requireEntity(entities, command.entityId);
         assertNonNegativeSafe(command.noProgressTicks, 'no-progress-ticks-invalid');
         for (const value of command.repathTicks) assertNonNegativeSafe(value, 'repath-tick-invalid');
@@ -153,22 +144,19 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         assertNonNegativeSafe(command.stopGapBonusUntilTick, 'stop-gap-bonus-until-tick-invalid');
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, noProgressTicks: command.noProgressTicks, repathTicks: Object.freeze([...command.repathTicks]), laneFallbackUsed: command.laneFallbackUsed, stuckStopGapBonusUntilTick: command.stopGapBonusUntilTick }) : e));
         break;
-      }
-      case 'set_deadlock_state': {
+      case 'set_deadlock_state':
         requireEntity(entities, command.entityId);
         assertNonNegativeSafe(command.blockedTicks, 'deadlock-blocked-ticks-invalid');
         if (typeof command.buffConsumed !== 'boolean') throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'deadlock-buff-consumed-invalid' });
         if (command.buffedEntityId !== null && !/^[a-z][a-z0-9_]*$/.test(command.buffedEntityId)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'deadlock-buffed-entity-invalid', buffedEntityId: command.buffedEntityId });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, frontDeadlockBlockedTicks: command.blockedTicks, deadlockBuffConsumed: command.buffConsumed, deadlockBuffedEntityId: command.buffedEntityId }) : e));
         break;
-      }
-      case 'set_global_progress': {
+      case 'set_global_progress':
         assertNonNegativeSafe(command.noProgressTicks, 'global-no-progress-invalid');
         assertNonNegativeSafe(command.collapseTicks, 'rift-collapse-ticks-invalid');
         if (typeof command.warned !== 'boolean') throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'rift-warned-invalid' });
         globalNoProgressTicks = command.noProgressTicks; riftCollapseTicks = command.collapseTicks; riftCollapseWarningEmitted = command.warned;
         break;
-      }
       case 'set_shields': {
         requireEntity(entities, command.entityId);
         if (!Array.isArray(command.shields)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'shields-not-array' });
@@ -221,18 +209,24 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         projectiles = Object.freeze(validated);
         break;
       }
-      case 'set_statuses': {
+      case 'set_statuses':
         if (!Array.isArray(command.statuses)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'statuses-not-array' });
         statuses = createStatusCollection(command.statuses as readonly StatusInstance[]);
         break;
-      }
-      case 'queue_cleanse_dispel': {
+      case 'queue_cleanse_dispel':
         if (!/^[a-z][a-z0-9_]*$/.test(command.targetId) || !(CLEANSE_KINDS as readonly string[]).includes(command.request)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'cleanse-request-invalid', targetId: command.targetId, kind: command.request });
         pendingCleanses = Object.freeze([...(pendingCleanses ?? []), Object.freeze({ targetId: command.targetId, kind: command.request })]);
         break;
-      }
       case 'clear_pending_cleanses':
         pendingCleanses = Object.freeze([]);
+        break;
+      case 'set_abilities':
+        if (!Array.isArray(command.abilities)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'abilities-not-array' });
+        abilities = createAbilityCollection(command.abilities);
+        break;
+      case 'set_planned_effects':
+        if (!Array.isArray(command.effects)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'planned-effects-not-array' });
+        plannedEffects = canonicalizeEffectBatch(command.effects);
         break;
       case 'apply_lp_delta': {
         requireEntity(entities, command.entityId);
@@ -286,6 +280,8 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   if (bossDamageDealt !== undefined) extras['bossDamageDealt'] = bossDamageDealt;
   if (statuses !== undefined) extras['statuses'] = statuses;
   if (pendingCleanses !== undefined) extras['pendingCleanses'] = pendingCleanses;
+  if (abilities !== undefined) extras['abilities'] = abilities;
+  if (plannedEffects !== undefined) extras['plannedEffects'] = plannedEffects;
   return Object.freeze({
     ...args.state,
     phase,

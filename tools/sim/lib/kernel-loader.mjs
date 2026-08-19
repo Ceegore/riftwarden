@@ -19,6 +19,8 @@ const ENTRY_MODULES = {
   phase16Systems: 'src/game/sim/core/phase16-systems.ts',
   phase17Systems: 'src/game/sim/core/phase17-systems.ts',
   phase18Systems: 'src/game/sim/core/phase18-systems.ts',
+  phase19Systems: 'src/game/sim/core/phase19-systems.ts',
+  abilitySystem: 'src/game/sim/ability/ability-system.ts',
   x100: 'src/game/sim/geometry/x100.ts',
 };
 

@@ -4,6 +4,7 @@ import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadKernel, runNodeReferenceTrace, runNodePhase15ReferenceTrace, runNodePhase16ReferenceTrace, runNodePhase17ReferenceTrace, runNodePhase17JLReferenceTrace } from './lib/kernel-loader.mjs';
 import { runNodePhase18ReferenceTrace } from './lib/phase18-trace.mjs';
+import { runNodePhase19ReferenceTrace } from './lib/phase19-trace.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
@@ -66,6 +67,15 @@ try {
   const expected18_60 = fixture18.checkpoints.find((c) => c.tick === 60)?.checksum;
   if (node18.tick30 !== expected18_30 || node18.tick60 !== expected18_60 || node18.endHash !== fixture18.finalSnapshotChecksum) {
     console.error(JSON.stringify({ status: 'FAIL', reason: 'node18-drift-vs-pinned-fixture', ...node18, expected30: expected18_30, expected60: expected18_60, expectedFinal: fixture18.finalSnapshotChecksum }, null, 2));
+    process.exit(1);
+  }
+
+  const node19 = runNodePhase19ReferenceTrace(api);
+  const fixture19 = JSON.parse(readFileSync(resolve(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase19.json'), 'utf8'));
+  const expected19_30 = fixture19.checkpoints.find((c) => c.tick === 30)?.checksum;
+  const expected19_60 = fixture19.checkpoints.find((c) => c.tick === 60)?.checksum;
+  if (node19.tick30 !== expected19_30 || node19.tick60 !== expected19_60 || node19.endHash !== fixture19.finalSnapshotChecksum) {
+    console.error(JSON.stringify({ status: 'FAIL', reason: 'node19-drift-vs-pinned-fixture', ...node19, expected30: expected19_30, expected60: expected19_60, expectedFinal: fixture19.finalSnapshotChecksum }, null, 2));
     process.exit(1);
   }
   const notRun = (runtimes) =>
@@ -136,6 +146,17 @@ try {
       note: 'Phase 18 status periodic/expiry trace (burn/poison/regeneration + EffectTick/EffectRemoved) Node reference; browser/device rows NOT_RUN.',
       runtimes: {
         node: { status: 'REFERENCE', version: process.version, host: process.platform, startHash: node18.startHash, tick30: node18.tick30, tick60: node18.tick60, endHash: node18.endHash, endTick: node18.endTick, endReason: node18.endReason, eventCount: node18.eventCount, exitCode: 0 },
+        ...notRun(),
+      },
+    },
+    phase19: {
+      phase: 19,
+      gate: 'G19',
+      fixture: 'tests/sim/fixtures/reference-traces-phase19.json',
+      status: 'PARTIAL',
+      note: 'Phase 19 ability trigger/target/cast/effect trace (tick_interval fireball + Ability* events) Node reference; browser/device rows NOT_RUN.',
+      runtimes: {
+        node: { status: 'REFERENCE', version: process.version, host: process.platform, startHash: node19.startHash, tick30: node19.tick30, tick60: node19.tick60, endHash: node19.endHash, endTick: node19.endTick, endReason: node19.endReason, eventCount: node19.eventCount, exitCode: 0 },
         ...notRun(),
       },
     },

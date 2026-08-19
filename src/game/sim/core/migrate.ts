@@ -123,5 +123,6 @@ export function migrateBattleModel(args: MigrateBattleArgs): BattleModel {
     statuses: Object.freeze([]),
     pendingCleanses: Object.freeze([]),
     abilities: Object.freeze([]),
+    plannedEffects: Object.freeze([]),
   });
 }

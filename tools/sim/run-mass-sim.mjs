@@ -19,7 +19,8 @@ const phase15 = process.argv.includes('--phase15');
 const phase16 = process.argv.includes('--phase16');
 const phase17 = process.argv.includes('--phase17');
 const phase18 = process.argv.includes('--phase18');
-const out = resolve(arg('out', resolve(root, 'docs', 'reports', phase18 ? 'phase18-mass-sim.json' : phase17 ? 'phase17-mass-sim.json' : phase16 ? 'phase16-mass-sim.json' : phase15 ? 'phase15-mass-sim.json' : 'phase14-mass-sim.json')));
+const phase19 = process.argv.includes('--phase19');
+const out = resolve(arg('out', resolve(root, 'docs', 'reports', phase19 ? 'phase19-mass-sim.json' : phase18 ? 'phase18-mass-sim.json' : phase17 ? 'phase17-mass-sim.json' : phase16 ? 'phase16-mass-sim.json' : phase15 ? 'phase15-mass-sim.json' : 'phase14-mass-sim.json')));
 
 const api = await loadKernel();
 const { battleKernel, noopSystems, snapshot } = api;
@@ -204,6 +205,57 @@ if (phase15) {
     },
   }));
   entityDistribution = { player: 3, enemy: 3 };
+} else if (phase19) {
+  // Phase 19 mode: the Phase 18 surface plus the ability-trigger framework —
+  // one fireball on unit_p1 cycling tick_interval → target → cast → damage.
+  const fireball = {
+    config: {
+      abilityId: 'ability_fireball',
+      chargeTicks: null,
+      cooldownTicks: 3,
+      castTicks: 2,
+      recoveryTicks: 1,
+      interruptPolicy: 'interruptible',
+      usesPerBattle: null,
+      invalidTargetPolicy: 'wait',
+      bossPhaseCancelAllowed: false,
+    },
+    trigger: { type: 'tick_interval', everyTicks: 15 },
+    targetQuery: { space: 'enemy_entity', profile: 'nearest' },
+    effects: (ctx) => [
+      Object.freeze({
+        commandId: `${ctx.abilityInstanceId}_effect_0`,
+        abilityInstanceId: ctx.abilityInstanceId,
+        abilityId: ctx.abilityId,
+        effectIndex: 0,
+        sourceId: ctx.source.sourceId,
+        targetRef: Object.freeze({ kind: 'entity', entityId: ctx.target.entityId, groundKey: null, slotId: null }),
+        scheduledTick: ctx.commitTick,
+        stage: 'I',
+        sourceSnapshot: ctx.source,
+        sequence: 0,
+        kind: 'damage',
+        amount: 120,
+      }),
+    ],
+  };
+  buildBattleFor = (_api) => {
+    const base = buildPhase15Battle(_api, 'phase19-fixture-v1');
+    return Object.freeze({ ...base, abilities: Object.freeze([api.abilitySystem.createAbilityInstance(fireball.config, 'inst_fireball', 'unit_p1')]) });
+  };
+  const speeds = { unit_p1: 300, unit_p2: 320, unit_p3: 290, unit_e1: 290, unit_e2: 295, unit_e3: 300 };
+  systems = Object.freeze(api.phase19Systems.createPhase19Systems({
+    speedsX100PerSecond: speeds,
+    status: {
+      periodic: {
+        burn_01: { effectKind: 'burn', amountPerTick: 50 },
+        poison_01: { effectKind: 'poison', amountPerTick: 40 },
+        regen_01: { effectKind: 'regeneration', amountPerTick: 25 },
+      },
+    },
+    abilities: { definitions: { ability_fireball: fireball } },
+  }));
+  entityDistribution = { player: 3, enemy: 3 };
 } else {
   systems = Object.freeze([...noopSystems.createNoopSystems(), emitter]);
   entityDistribution = { player: 3, enemy: 3 };
@@ -298,8 +350,8 @@ try {
 
   const report = {
     schemaVersion: 1,
-    phase: phase18 ? 18 : phase17 ? 17 : phase16 ? 16 : phase15 ? 15 : 14,
-    gate: phase18 ? 'G17' : phase17 ? 'G16' : phase16 ? 'G15' : phase15 ? 'G14' : 'G13',
+    phase: phase19 ? 19 : phase18 ? 18 : phase17 ? 17 : phase16 ? 16 : phase15 ? 15 : 14,
+    gate: phase19 ? 'G18' : phase18 ? 'G17' : phase17 ? 'G16' : phase16 ? 'G15' : phase15 ? 'G14' : 'G13',
     sourceRevision: process.env.SOURCE_REVISION ?? null,
     runtime: { node: process.version, platform: process.platform, arch: process.arch },
     battles,
@@ -307,7 +359,7 @@ try {
     totalTicks: tickDurations.length,
     totalEvents,
     entityDistribution,
-    mode: phase18 ? 'phase18-status-periodic' : phase17 ? 'phase17-basicattack-projectile' : phase16 ? 'phase16-targeting-attackprep' : phase15 ? 'phase15-spawn-separation' : 'phase14-noop',
+    mode: phase19 ? 'phase19-ability-trigger' : phase18 ? 'phase18-status-periodic' : phase17 ? 'phase17-basicattack-projectile' : phase16 ? 'phase16-targeting-attackprep' : phase15 ? 'phase15-spawn-separation' : 'phase14-noop',
     warmup: 10,
     runs: 1,
     tickLatencyMs: latency(tickDurations),

@@ -11,6 +11,8 @@ import type { Lane } from '../geometry/x100.js';
 import type { LaneChange } from '../movement/lane-change.js';
 import type { StatusInstance } from '../status/status-instance.js';
 import type { CleanseDispelKind } from '../status/cleanse-dispel.js';
+import type { AbilityInstance } from '../ability/ability-system.js';
+import type { EffectCommand } from '../ability/effect-command.js';
 
 export type KernelCommand =
   | Readonly<{kind:'schedule_event'; event:ScheduledEventInput}>
@@ -45,6 +47,8 @@ export type KernelCommand =
   | Readonly<{kind:'set_statuses'; statuses:readonly StatusInstance[]}>
   | Readonly<{kind:'queue_cleanse_dispel'; targetId:string; request:CleanseDispelKind}>
   | Readonly<{kind:'clear_pending_cleanses'}>
+  | Readonly<{kind:'set_abilities'; abilities:readonly AbilityInstance[]}>
+  | Readonly<{kind:'set_planned_effects'; effects:readonly EffectCommand[]}>
   | Readonly<{kind:'checkpoint_marker'; reason:'interval'|'terminal'}>;
 
 export interface CleanseDispelRequest { readonly targetId:string; readonly kind:CleanseDispelKind; }

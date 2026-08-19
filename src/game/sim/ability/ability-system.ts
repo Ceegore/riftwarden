@@ -64,6 +64,7 @@ export interface AbilityConfig {
 
 export interface AbilityInstance {
   readonly abilityInstanceId: string;
+  readonly abilityId: string;
   readonly ownerId: string;
   readonly state: AbilityState;
   readonly chargeTicks: number;
@@ -75,6 +76,8 @@ export interface AbilityInstance {
   readonly targetSnapshot: TargetSnapshot | null;
   readonly sourceSnapshot: SourceSnapshot | null;
   readonly sequence: number;
+  /** §11: once-per-battle trigger marker (persisted, snapshot-projected). */
+  readonly onceFired: boolean;
 }
 
 export type AbilityEvent =
@@ -127,8 +130,8 @@ export function validateAbilityConfig(config: AbilityConfig): void {
 }
 
 export function validateAbilityInstance(instance: AbilityInstance): void {
-  if (!ID.test(instance.abilityInstanceId) || !ID.test(instance.ownerId)) {
-    throw new KernelInvariantError('P19_ABILITY_INVALID', { abilityInstanceId: instance.abilityInstanceId, ownerId: instance.ownerId });
+  if (!ID.test(instance.abilityInstanceId) || !ID.test(instance.abilityId) || !ID.test(instance.ownerId)) {
+    throw new KernelInvariantError('P19_ABILITY_INVALID', { abilityInstanceId: instance.abilityInstanceId, abilityId: instance.abilityId, ownerId: instance.ownerId });
   }
   if (!(ABILITY_STATES as readonly string[]).includes(instance.state)) {
     throw new KernelInvariantError('P19_ABILITY_INVALID', { state: instance.state });
@@ -148,6 +151,7 @@ export function validateAbilityInstance(instance: AbilityInstance): void {
   ] as const) {
     if (value !== null) assertNonNegative(value, 'P19_ABILITY_INVALID', field);
   }
+  if (typeof instance.onceFired !== 'boolean') throw new KernelInvariantError('P19_ABILITY_INVALID', { onceFired: instance.onceFired });
 }
 
 /** §8.1 initial charge: no charge phase ⇒ immediately `ready`. */
@@ -156,6 +160,7 @@ export function createAbilityInstance(config: AbilityConfig, abilityInstanceId: 
   const noCharge = config.chargeTicks === null || config.chargeTicks === 0;
   return Object.freeze({
     abilityInstanceId,
+    abilityId: config.abilityId,
     ownerId,
     state: noCharge ? 'ready' : 'charging',
     chargeTicks: 0,
@@ -167,6 +172,7 @@ export function createAbilityInstance(config: AbilityConfig, abilityInstanceId: 
     targetSnapshot: null,
     sourceSnapshot: null,
     sequence: 0,
+    onceFired: false,
   });
 }
 

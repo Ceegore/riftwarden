@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "simulationVersion": "phase19-fixture-v1",
+  "pipelineCallOrder": [
+    "A:noop.finalize_previous",
+    "B:noop.timers",
+    "C:noop.periodic",
+    "D:noop.triggers",
+    "D:phase19.d1.ability_trigger",
+    "E:phase16.e1.targeting",
+    "E:phase19.e2.ability_target",
+    "F:phase15.f1.lane_change",
+    "F:phase15.f2.movement",
+    "F:phase15.f3.anti_stuck",
+    "F:phase19.f4.ability_effects",
+    "G:phase17.g1.basic_attack",
+    "G:phase19.g2.ability_lifecycle",
+    "H:phase17.h1.projectile",
+    "H:phase18.h1.cleanse_queue",
+    "H:phase19.h2.ability_effects",
+    "I:phase17.i1.combat_application",
+    "I:phase18.i1.status",
+    "I:phase19.i2.ability_effects",
+    "J:phase17.j1.defeat_resolver",
+    "K:phase15.k1.spawn",
+    "K:phase18.k1.cleanse_apply",
+    "K:phase19.k2.ability_effects",
+    "L:phase15.l.endcap",
+    "L:phase17.l1.battle_end",
+    "M:noop.snapshot"
+  ],
+  "checkpoints": [
+    {
+      "tick": 30,
+      "checksum": "49fea025b316fc1021e1e23f3135b0ad191aaee7e8ab223a4289aabf47335cbd"
+    },
+    {
+      "tick": 60,
+      "checksum": "2eba715b8158b91da51ec89c0870db16273e91c796a631397829f4551a763081"
+    }
+  ],
+  "finalSnapshotChecksum": "2eba715b8158b91da51ec89c0870db16273e91c796a631397829f4551a763081"
+}

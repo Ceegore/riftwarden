@@ -8,6 +8,7 @@ import type { PendingCombatApplication } from '../combat/combat-application.js';
 import type { StatusInstance } from '../status/status-instance.js';
 import type { CleanseDispelRequest } from './command-types.js';
 import type { AbilityInstance } from '../ability/ability-system.js';
+import type { EffectCommand } from '../ability/effect-command.js';
 
 export interface BattleModel {
   readonly schemaVersion: 1;
@@ -45,4 +46,7 @@ export interface BattleModel {
   // Phase 19 additive ability field (T04): canonical ability-instance
   // collection with lifecycle state, projected into the snapshot (§11).
   readonly abilities?: readonly AbilityInstance[];
+  // Phase 19 additive planned-effect field (T03): canonically ordered effect
+  // commands queued by committed casts, dispatched at their target stage (§7).
+  readonly plannedEffects?: readonly EffectCommand[];
 }
