@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "phase": 19,
+  "gate": "G18",
+  "evidence": {
+    "massSim": {
+      "path": "docs/reports/phase18-mass-sim.json",
+      "minBattles": 10000,
+      "requiredStatus": "PASS"
+    },
+    "crossRuntime": {
+      "path": "docs/reports/phase14-crossruntime.json",
+      "section": "phase18",
+      "requiredEngines": [
+        "chromium",
+        "firefox",
+        "webkit"
+      ],
+      "deviceRuntimes": [
+        "android_webview",
+        "ios_wkwebview"
+      ]
+    }
+  },
+  "hardBlockers": [
+    "P19_G18_NOT_REPRODUCED",
+    "P19_G18_DEVICE_PERF_MISSING"
+  ]
+}

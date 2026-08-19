@@ -121,6 +121,8 @@
     "phase16:validate-readiness": "node tools/sim/validate-phase15-readiness.mjs",
     "phase17:validate-readiness": "node tools/sim/validate-phase16-readiness.mjs",
     "phase18:validate-readiness": "node tools/sim/validate-phase17-readiness.mjs",
+    "phase19:validate-readiness": "node tools/sim/validate-phase18-readiness.mjs",
+    "phase19:gate": "node tools/sim/validate-phase19-readiness.mjs",
     "rules:typecheck": "tsc -p tsconfig.type-fixtures.json --noEmit",
     "rules:audit": "node tools/rules/audit-magic-values.mjs src config/magic-value-allowlist.json",
     "rules:validate-snapshots": "node tools/rules/validate-rule-snapshots.mjs .",
