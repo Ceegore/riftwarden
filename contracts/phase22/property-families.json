@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "families": [
+    "formation_order_permutation",
+    "status_combinations",
+    "target_ties",
+    "movement_collision",
+    "summon_sequences",
+    "trigger_recursion",
+    "timeout_endcap"
+  ],
+  "minimumCasesEach": 1000,
+  "persistFailureSeed": true
+}

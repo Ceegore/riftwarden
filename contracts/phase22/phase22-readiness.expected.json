@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "phase": 22,
+  "gate": "G22",
+  "evidence": {
+    "goldenRegistry": {
+      "path": "contracts/phase22/golden-registry.json",
+      "expectedEntries": 12,
+      "requiredStatus": "PASS"
+    },
+    "headlessRunner": {
+      "path": "tools/sim/headless-runner.mjs",
+      "exitCodes": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        70
+      ]
+    },
+    "invariantMonitor": {
+      "path": "src/game/sim/monitor/invariant-monitor.ts",
+      "checkCount": 9
+    },
+    "propertyFamilies": {
+      "path": "tests/sim/phase22-property-families.test.ts",
+      "minimumCasesEach": 1000,
+      "families": [
+        "formation_order_permutation",
+        "status_combinations",
+        "target_ties",
+        "movement_collision",
+        "summon_sequences",
+        "trigger_recursion",
+        "timeout_endcap"
+      ]
+    },
+    "massPartition": {
+      "path": "tools/sim/lib/mass-partition.mjs",
+      "partitionKey": "caseIndex",
+      "mergeOrder": "ascendingCaseIndex",
+      "singleMultiWorkerHashEqual": true
+    },
+    "crossRuntime": {
+      "path": "docs/reports/phase14-crossruntime.json",
+      "section": "phase22",
+      "requiredEngines": [
+        "chromium",
+        "firefox",
+        "webkit"
+      ],
+      "deviceRuntimes": [
+        "android_webview",
+        "ios_wkwebview"
+      ]
+    },
+    "constants": {
+      "path": "contracts/phase22/phase22-constants.json",
+      "hardBattleLimitTicks": 5400,
+      "maxEventsPerBattle": 10000,
+      "goldenSeedCount": 12
+    }
+  },
+  "hardBlockers": [
+    "P22_G22_G21_NOT_PROVEN",
+    "P22_G22_BROWSER_RERUN_MISSING",
+    "P22_G22_DEVICE_EVIDENCE_MISSING"
+  ]
+}
