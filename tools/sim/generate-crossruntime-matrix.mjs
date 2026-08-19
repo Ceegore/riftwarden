@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { loadKernel, runNodeReferenceTrace, runNodePhase15ReferenceTrace, runNodePhase16ReferenceTrace, runNodePhase17ReferenceTrace, runNodePhase17JLReferenceTrace } from './lib/kernel-loader.mjs';
 import { runNodePhase18ReferenceTrace } from './lib/phase18-trace.mjs';
 import { runNodePhase19ReferenceTrace } from './lib/phase19-trace.mjs';
+import { runNodePhase20ReferenceTrace } from './lib/phase20-trace.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
@@ -76,6 +77,15 @@ try {
   const expected19_60 = fixture19.checkpoints.find((c) => c.tick === 60)?.checksum;
   if (node19.tick30 !== expected19_30 || node19.tick60 !== expected19_60 || node19.endHash !== fixture19.finalSnapshotChecksum) {
     console.error(JSON.stringify({ status: 'FAIL', reason: 'node19-drift-vs-pinned-fixture', ...node19, expected30: expected19_30, expected60: expected19_60, expectedFinal: fixture19.finalSnapshotChecksum }, null, 2));
+    process.exit(1);
+  }
+
+  const node20 = runNodePhase20ReferenceTrace(api);
+  const fixture20 = JSON.parse(readFileSync(resolve(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase20.json'), 'utf8'));
+  const expected20_30 = fixture20.checkpoints.find((c) => c.tick === 30)?.checksum;
+  const expected20_60 = fixture20.checkpoints.find((c) => c.tick === 60)?.checksum;
+  if (node20.tick30 !== expected20_30 || node20.tick60 !== expected20_60 || node20.endHash !== fixture20.finalSnapshotChecksum) {
+    console.error(JSON.stringify({ status: 'FAIL', reason: 'node20-drift-vs-pinned-fixture', ...node20, expected30: expected20_30, expected60: expected20_60, expectedFinal: fixture20.finalSnapshotChecksum }, null, 2));
     process.exit(1);
   }
   const notRun = (runtimes) =>
@@ -160,7 +170,37 @@ try {
         ...notRun(),
       },
     },
+    phase20: {
+      phase: 20,
+      gate: 'G20',
+      fixture: 'tests/sim/fixtures/reference-traces-phase20.json',
+      status: 'PARTIAL',
+      note: 'Phase 20 synergy commit + summon/expiry trace (Spawned/Removed events) Node reference; browser/device rows NOT_RUN.',
+      runtimes: {
+        node: { status: 'REFERENCE', version: process.version, host: process.platform, startHash: node20.startHash, tick30: node20.tick30, tick60: node20.tick60, endHash: node20.endHash, endTick: node20.endTick, endReason: node20.endReason, eventCount: node20.eventCount, exitCode: 0 },
+        ...notRun(),
+      },
+    },
   };
+  // Preserve operator-set browser/device columns (PASS/FAIL) across Node-only
+  // regenerations: this tool authors the Node reference rows, never the
+  // operator's device evidence.
+  let previous = null;
+  try { previous = JSON.parse(readFileSync(out, 'utf8')); } catch { previous = null; }
+  if (previous) {
+    const preserveRuntimes = (prevSection, nextSection) => {
+      if (!prevSection || !nextSection) return;
+      if (typeof prevSection.note === 'string') nextSection.note = prevSection.note;
+      if (!prevSection.runtimes || !nextSection.runtimes) return;
+      for (const [key, value] of Object.entries(prevSection.runtimes)) {
+        if (key !== 'node' && value && typeof value === 'object') nextSection.runtimes[key] = value;
+      }
+    };
+    preserveRuntimes(previous, matrix);
+    for (const key of ['phase15', 'phase16', 'phase17', 'phase17jl', 'phase18', 'phase19', 'phase20']) {
+      preserveRuntimes(previous[key], matrix[key]);
+    }
+  }
   mkdirSync(dirname(out), { recursive: true });
   writeFileSync(out, `${JSON.stringify(matrix, null, 2)}\n`);
   console.log(JSON.stringify({ status: 'PASS', out, node: { startHash: node.startHash, tick30: node.tick30, tick60: node.tick60, endHash: node.endHash } }, null, 2));

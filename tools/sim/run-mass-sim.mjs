@@ -20,7 +20,8 @@ const phase16 = process.argv.includes('--phase16');
 const phase17 = process.argv.includes('--phase17');
 const phase18 = process.argv.includes('--phase18');
 const phase19 = process.argv.includes('--phase19');
-const out = resolve(arg('out', resolve(root, 'docs', 'reports', phase19 ? 'phase19-mass-sim.json' : phase18 ? 'phase18-mass-sim.json' : phase17 ? 'phase17-mass-sim.json' : phase16 ? 'phase16-mass-sim.json' : phase15 ? 'phase15-mass-sim.json' : 'phase14-mass-sim.json')));
+const phase20 = process.argv.includes('--phase20');
+const out = resolve(arg('out', resolve(root, 'docs', 'reports', phase20 ? 'phase20-mass-sim.json' : phase19 ? 'phase19-mass-sim.json' : phase18 ? 'phase18-mass-sim.json' : phase17 ? 'phase17-mass-sim.json' : phase16 ? 'phase16-mass-sim.json' : phase15 ? 'phase15-mass-sim.json' : 'phase14-mass-sim.json')));
 
 const api = await loadKernel();
 const { battleKernel, noopSystems, snapshot } = api;
@@ -254,6 +255,40 @@ if (phase15) {
       },
     },
     abilities: { definitions: { ability_fireball: fireball } },
+  }));
+  entityDistribution = { player: 3, enemy: 3 };
+} else if (phase20) {
+  // Phase 20 mode: the Phase 15 surface plus the synergy/summon/expiry
+  // systems — two reserved spawn requests (one expiring) per battle, with
+  // content traits yielding a player-side kingdom tier 2.
+  const spawnEffect = (summonId, index, sourceId) =>
+    Object.freeze({
+      commandId: `spawn_${String(index)}_${summonId}`,
+      abilityInstanceId: `inst_summon_${String(index)}`,
+      abilityId: 'ability_summon',
+      effectIndex: 0,
+      sourceId,
+      targetRef: Object.freeze({ kind: 'summon_slot', entityId: null, groundKey: null, slotId: null }),
+      scheduledTick: 0,
+      stage: 'K',
+      sourceSnapshot: Object.freeze({ sourceId, sourceLane: 'middle', sourceX100: 2400, sourceLp: 1000, sourceMaxLp: 1000 }),
+      sequence: index,
+      kind: 'spawn_request',
+      summonId,
+    });
+  buildBattleFor = (_api) => {
+    const base = buildPhase15Battle(_api, 'phase20-fixture-v1');
+    return Object.freeze({
+      ...base,
+      temporaryEntities: Object.freeze([]),
+      plannedEffects: Object.freeze([spawnEffect('summon_a', 0, 'unit_p1'), spawnEffect('summon_b', 1, 'unit_p2')]),
+    });
+  };
+  const speeds = { unit_p1: 300, unit_p2: 320, unit_p3: 290, unit_e1: 290, unit_e2: 295, unit_e3: 300 };
+  systems = Object.freeze(api.phase20Systems.createPhase20Systems({
+    unitTraits: Object.freeze({ unit_p1: Object.freeze(['kingdom', 'faith']), unit_p2: Object.freeze(['kingdom']), unit_p3: Object.freeze(['arcane']), unit_e1: Object.freeze(['wild']), unit_e2: Object.freeze(['wild']), unit_e3: Object.freeze(['underworld']) }),
+    spawnPolicies: Object.freeze({ ability_summon: 'BLOCK' }),
+    spawnLifetimes: Object.freeze({ ability_summon: 40 }),
   }));
   entityDistribution = { player: 3, enemy: 3 };
 } else {

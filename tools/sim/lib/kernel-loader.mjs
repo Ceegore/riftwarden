@@ -20,6 +20,7 @@ const ENTRY_MODULES = {
   phase17Systems: 'src/game/sim/core/phase17-systems.ts',
   phase18Systems: 'src/game/sim/core/phase18-systems.ts',
   phase19Systems: 'src/game/sim/core/phase19-systems.ts',
+  phase20Systems: 'src/game/sim/core/phase20-systems.ts',
   abilitySystem: 'src/game/sim/ability/ability-system.ts',
   x100: 'src/game/sim/geometry/x100.ts',
 };
@@ -446,10 +447,7 @@ export function runNodePhase17JLReferenceTrace(api) {
     state = r.state;
     if (i === 0) callOrder = [...r.callOrder];
     if (r.checkpoint) checkpoints.push({ tick: state.tick, checksum: r.checkpoint.checksum });
-    if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(state.phase.phase)) {
-      terminal = true;
-      break;
-    }
+    if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(state.phase.phase)) { terminal = true; break; }
   }
   return {
     startHash,

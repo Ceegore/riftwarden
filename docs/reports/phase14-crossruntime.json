@@ -365,8 +365,8 @@
         "endTick": 3154,
         "endReason": "chapter76_timeout",
         "eventCount": 31,
-        "exitCode": 0,
-        "terminal": true
+        "terminal": true,
+        "exitCode": 0
       },
       "chromium": {
         "status": "PASS",
@@ -543,6 +543,83 @@
         "endTick": 60,
         "endReason": null,
         "eventCount": 40,
+        "exitCode": 0
+      },
+      "chromium": {
+        "status": "NOT_RUN",
+        "startHash": null,
+        "tick30": null,
+        "tick60": null,
+        "endHash": null,
+        "endTick": null,
+        "endReason": null,
+        "eventCount": null,
+        "exitCode": null
+      },
+      "firefox": {
+        "status": "NOT_RUN",
+        "startHash": null,
+        "tick30": null,
+        "tick60": null,
+        "endHash": null,
+        "endTick": null,
+        "endReason": null,
+        "eventCount": null,
+        "exitCode": null
+      },
+      "webkit": {
+        "status": "NOT_RUN",
+        "startHash": null,
+        "tick30": null,
+        "tick60": null,
+        "endHash": null,
+        "endTick": null,
+        "endReason": null,
+        "eventCount": null,
+        "exitCode": null
+      },
+      "android_webview": {
+        "status": "NOT_RUN",
+        "startHash": null,
+        "tick30": null,
+        "tick60": null,
+        "endHash": null,
+        "endTick": null,
+        "endReason": null,
+        "eventCount": null,
+        "exitCode": null
+      },
+      "ios_wkwebview": {
+        "status": "NOT_RUN",
+        "startHash": null,
+        "tick30": null,
+        "tick60": null,
+        "endHash": null,
+        "endTick": null,
+        "endReason": null,
+        "eventCount": null,
+        "exitCode": null
+      }
+    }
+  },
+  "phase20": {
+    "phase": 20,
+    "gate": "G20",
+    "fixture": "tests/sim/fixtures/reference-traces-phase20.json",
+    "status": "PARTIAL",
+    "note": "Phase 20 synergy commit + summon/expiry trace (Spawned/Removed events) Node reference; browser/device rows NOT_RUN.",
+    "runtimes": {
+      "node": {
+        "status": "REFERENCE",
+        "version": "v25.8.0",
+        "host": "win32",
+        "startHash": "f12314d7bba4339fd69cd670895a7df6960b4c5189617d4feaf898eb72217e2f",
+        "tick30": "dbec2f6b7b0387006580bf8e2f70c5f7bed044ea889482678a49f241af94775e",
+        "tick60": "c198fb36a8dfc724a830d0399f5c26734885dbcc3b7f9d9e820c1d8814272c86",
+        "endHash": "c198fb36a8dfc724a830d0399f5c26734885dbcc3b7f9d9e820c1d8814272c86",
+        "endTick": 60,
+        "endReason": null,
+        "eventCount": 4,
         "exitCode": 0
       },
       "chromium": {
