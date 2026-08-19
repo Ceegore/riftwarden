@@ -7,6 +7,7 @@ import type { ProjectileState } from '../projectile/projectile-state.js';
 import type { PendingCombatApplication } from '../combat/combat-application.js';
 import type { StatusInstance } from '../status/status-instance.js';
 import type { CleanseDispelRequest } from './command-types.js';
+import type { AbilityInstance } from '../ability/ability-system.js';
 
 export interface BattleModel {
   readonly schemaVersion: 1;
@@ -41,4 +42,7 @@ export interface BattleModel {
   // Phase 18 additive cleanse/dispel field (T05): requests queued at stage H
   // and consumed by the stage-K removal system (§4).
   readonly pendingCleanses?: readonly CleanseDispelRequest[];
+  // Phase 19 additive ability field (T04): canonical ability-instance
+  // collection with lifecycle state, projected into the snapshot (§11).
+  readonly abilities?: readonly AbilityInstance[];
 }

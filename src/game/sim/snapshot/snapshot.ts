@@ -4,6 +4,7 @@ import { validateEntity } from '../core/entity.js';
 import { KernelInvariantError } from '../core/invariant-error.js';
 import { compareScheduled } from '../scheduler/event-order.js';
 import { createStatusCollection } from '../status/status-collection.js';
+import { createAbilityCollection } from '../ability/ability-collection.js';
 import { canonicalUtf8 } from './canonical-json.js';
 import { sha256Hex } from './sha256.js';
 export interface BattleSnapshotData extends BattleModel { readonly checksum:string; }
@@ -19,6 +20,7 @@ export function snapshotPayload(state:BattleModel):Omit<BattleSnapshotData,'chec
   if(state.combatApplicationSeq!==undefined)extras['combatApplicationSeq']=state.combatApplicationSeq;
   if(state.statuses!==undefined)extras['statuses']=createStatusCollection(state.statuses);
   if(state.pendingCleanses!==undefined)extras['pendingCleanses']=state.pendingCleanses;
+  if(state.abilities!==undefined)extras['abilities']=createAbilityCollection(state.abilities);
   return Object.freeze({schemaVersion:1,simulationVersion:state.simulationVersion,battleId:state.battleId,tick:state.tick,nextSequence:state.nextSequence,emittedEventCount:state.emittedEventCount,phase:Object.freeze({...state.phase}),entities:Object.freeze(entities.map((e)=>Object.freeze({...e,phase:Object.freeze({...e.phase}),timers:Object.freeze({...e.timers})}))),scheduledEvents:Object.freeze([...state.scheduledEvents].sort(compareScheduled)),authoritativeStreams:streams,endReason:state.endReason,...extras});
 }
 export function createSnapshot(state:BattleModel):BattleSnapshotData{const payload=snapshotPayload(state);return Object.freeze({...payload,checksum:sha256Hex(canonicalUtf8(payload))});}

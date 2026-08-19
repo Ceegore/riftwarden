@@ -13,6 +13,7 @@ const requiredTypes = [
   'BattleStarted', 'PhaseStarted', 'BattleEnded', 'Spawned', 'Activated', 'TargetChanged', 'MovedLane', 'Defeated', 'Removed', 'Revived',
   'AttackPrepared', 'AttackInterrupted', 'AttackCommitted', 'AttackRecoveryStarted', 'AttackCycleCompleted', 'ProjectileSpawned', 'DamageApplied', 'HealApplied', 'ShieldApplied', 'ShieldAbsorbed', 'ShieldExpired', 'EffectApplied', 'EffectRefreshed', 'EffectIgnored', 'EffectRemoved', 'EffectTick', 'EffectResisted',
   'ChargeReady', 'AbilityPrepared', 'AbilityInterrupted', 'AbilityCommitted', 'AbilityResolved',
+  'AbilityTriggered', 'AbilityTargetSelected', 'AbilityWaitingTarget', 'AbilityCastStarted', 'AbilityEffectQueued', 'AbilityRecovered', 'AbilityCooldownStarted', 'AbilityReady', 'AbilityConsumed', 'AbilityRejected',
   'ModifierTriggered', 'HazardTelegraphed', 'HazardResolved', 'ReinforcementQueued', 'ReinforcementSpawned',
   'InvalidTargetPrevented', 'SummonLimitBlocked', 'FallbackRuleUsed', 'SafetyCapTriggered',
   'LaneLogicalSwitched', 'LaneChangeCompleted', 'LaneChangeInterrupted',
@@ -31,7 +32,7 @@ describe('pipeline contract', () => {
 });
 
 describe('event contract', () => {
-  it('50 required event types are registered with valid categories', () => {
+  it('60 required event types are registered with valid categories', () => {
     expect(Object.keys(EVENT_SPEC).sort()).toEqual([...requiredTypes].sort());
     const categories = ['lifecycle', 'entity', 'combat', 'ability', 'world', 'diagnostics'];
     for (const spec of Object.values(EVENT_SPEC)) {
