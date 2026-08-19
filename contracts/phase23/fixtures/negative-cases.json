@@ -1,0 +1,18 @@
+{
+  "cases": [
+    "nan",
+    "positive_infinity",
+    "negative_infinity",
+    "negative_zero",
+    "bigint",
+    "undefined",
+    "function",
+    "symbol",
+    "cycle",
+    "unknown_envelope_field",
+    "wrong_magic",
+    "wrong_payload_hash",
+    "path_traversal",
+    "web_mock_in_native_production"
+  ]
+}

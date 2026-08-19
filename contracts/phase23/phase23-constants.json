@@ -1,0 +1,26 @@
+{
+  "faultSteps": [
+    "slot_tmp_write",
+    "slot_flush",
+    "slot_reread",
+    "slot_hash",
+    "slot_rename",
+    "slot_dir_flush",
+    "manifest_new_write",
+    "manifest_flush",
+    "manifest_reread",
+    "manifest_validate",
+    "manifest_rename",
+    "manifest_dir_flush"
+  ],
+  "formatVersion": 1,
+  "magic": "RIFTWARDEN_SAVE",
+  "maxConcurrentWrites": 1,
+  "minAndroidApi": 24,
+  "minIosMajor": 15,
+  "slots": [
+    "A",
+    "B",
+    "C"
+  ]
+}
