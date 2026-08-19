@@ -304,7 +304,8 @@ describe('P17 stage-J defeat fuzz', () => {
 });
 
 describe('P17 stage-L battle-end fuzz', () => {
-  const FUZZ_TIMEOUT = 30_000;
+  // ~18s per stageL config in isolation, more under parallel load: never load-flaky.
+  const FUZZ_TIMEOUT = 60_000;
   // Seed the battle just before the 2700 soft limit (2680) and run ~520 ticks
   // so the collapse window (2700–3150) and its 90-tick damage cadence are
   // exercised, ending via time limit / chapter76. The anti-stuck endcap needs

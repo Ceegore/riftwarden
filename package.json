@@ -111,6 +111,7 @@
     "test:phase16": "vitest run --project phase16",
     "test:phase17": "vitest run --project phase17",
     "test:phase18": "vitest run --project phase18",
+    "test:phase19": "vitest run --project phase19",
     "kernel:audit": "node tools/sim/audit-kernel-imports.mjs",
     "kernel:validate-readiness": "node tools/sim/validate-phase13-readiness.mjs",
     "sim:mass": "node tools/sim/run-mass-sim.mjs",
