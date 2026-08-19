@@ -79,6 +79,28 @@ test('Phase 18 §14 status module budgets are respected', () => {
   }
 });
 
+test('Phase 21 §13 module budgets are respected', () => {
+  const budgets = {
+    'boss-phase-system.ts': 300,
+    'boss-object-manager.ts': 280,
+    'modifier-system.ts': 300,
+    'hazard-system.ts': 300,
+    'combat-objective.ts': 280,
+    'reinforcement-system.ts': 260,
+  };
+  const dirs = ['boss', 'world', 'objectives'];
+  for (const [name, budget] of Object.entries(budgets)) {
+    let p;
+    for (const d of dirs) {
+      const candidate = join(root, 'src', 'game', 'sim', d, name);
+      if (existsSync(candidate)) { p = candidate; break; }
+    }
+    assert.ok(p, `could not locate ${name}`);
+    const lines = readFileSync(p, 'utf8').split(/\r?\n/).length;
+    assert.ok(lines <= budget, `${name} has ${lines} lines (budget ${budget})`);
+  }
+});
+
 test('Phase 20 §10 module budgets are respected', () => {
   const budgets = {
     'synergy-counter.ts': 240,
