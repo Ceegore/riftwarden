@@ -1,0 +1,25 @@
+{
+  "layouts": [
+    "COMPACT",
+    "STANDARD",
+    "TABLET_LARGE",
+    "PORTRAIT_NARROW"
+  ],
+  "locales": [
+    "de",
+    "en",
+    "pseudo"
+  ],
+  "textScales": [
+    100,
+    150,
+    200
+  ],
+  "profiles": [
+    "NORMAL",
+    "LOW",
+    "REDUCED_MOTION",
+    "COLOR_PROFILE_A",
+    "COLOR_PROFILE_B"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "announce": [
+    "BATTLE_PHASE",
+    "PLAYER_UNIT_LOST",
+    "CRITICAL_BOSS_WARNING",
+    "BATTLE_ENDED"
+  ],
+  "suppress": [
+    "DAMAGE",
+    "HEAL",
+    "SHIELD_CHANGED",
+    "TARGET_CHANGED",
+    "STATUS_TICK"
+  ]
+}

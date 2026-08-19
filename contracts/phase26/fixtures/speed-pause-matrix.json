@@ -1,0 +1,84 @@
+{
+  "cases": [
+    {
+      "speed": 50,
+      "pauseAtTick": 0,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH"
+    },
+    {
+      "speed": 50,
+      "pauseAtTick": 1,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH"
+    },
+    {
+      "speed": 50,
+      "pauseAtTick": 17,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH"
+    },
+    {
+      "speed": 50,
+      "pauseAtTick": 300,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH"
+    },
+    {
+      "speed": 100,
+      "pauseAtTick": 0,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH"
+    },
+    {
+      "speed": 100,
+      "pauseAtTick": 1,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH"
+    },
+    {
+      "speed": 100,
+      "pauseAtTick": 17,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH"
+    },
+    {
+      "speed": 100,
+      "pauseAtTick": 300,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH"
+    },
+    {
+      "speed": 200,
+      "pauseAtTick": 0,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH"
+    },
+    {
+      "speed": 200,
+      "pauseAtTick": 1,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH"
+    },
+    {
+      "speed": 200,
+      "pauseAtTick": 17,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH"
+    },
+    {
+      "speed": 200,
+      "pauseAtTick": 300,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH"
+    },
+    {
+      "speed": 300,
+      "pauseAtTick": 0,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH"
+    },
+    {
+      "speed": 300,
+      "pauseAtTick": 1,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH"
+    },
+    {
+      "speed": 300,
+      "pauseAtTick": 17,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH"
+    },
+    {
+      "speed": 300,
+      "pauseAtTick": 300,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH"
+    }
+  ]
+}

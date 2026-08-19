@@ -1,0 +1,31 @@
+{
+  "cases": [
+    {
+      "ordered": [
+        "a",
+        "b",
+        "c"
+      ],
+      "selected": "b",
+      "removed": "b",
+      "expected": "c"
+    },
+    {
+      "ordered": [
+        "a",
+        "b"
+      ],
+      "selected": "b",
+      "removed": "b",
+      "expected": "a"
+    },
+    {
+      "ordered": [
+        "a"
+      ],
+      "selected": "a",
+      "removed": "a",
+      "expected": null
+    }
+  ]
+}
