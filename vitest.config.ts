@@ -49,6 +49,7 @@ export default defineConfig({
       { test: { name: 'phase19', include: ['tests/sim/phase19-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'phase20', include: ['tests/sim/phase20-*.test.ts', 'tests/sim/reference-traces-phase20.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'phase21', include: ['tests/sim/phase21-*.test.ts', 'tests/sim/reference-traces-phase21.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase22', include: ['tests/sim/phase22-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'simulation', include: ['tests/simulation/**/*.test.ts'], sequence: { concurrent: false }, setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'integration', include: ['tests/integration/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
     ],

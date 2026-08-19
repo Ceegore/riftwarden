@@ -24,15 +24,15 @@ const ENTRY_MODULES = {
   phase21Systems: 'src/game/sim/core/phase21-systems.ts',
   abilitySystem: 'src/game/sim/ability/ability-system.ts',
   x100: 'src/game/sim/geometry/x100.ts',
+  monitor: 'src/game/sim/monitor/invariant-monitor.ts',
 };
 
 /**
- * Loads the Phase 14 sim kernel by bundling it with Vite's SSR build (Rolldown)
- * into a temp directory and importing the resulting ESM chunks. This avoids the
+ * Loads the sim kernel by bundling it with Vite's SSR build (Rolldown) into a
+ * temp directory and importing the resulting ESM chunks. This avoids the
  * dev-server module runner, whose WebSocket transport deadlocks on the kernel's
- * transitive import graph when running headless. `configFile: false` skips the
- * app build-config env requirements; the kernel uses only relative imports, so
- * no aliases or plugins are needed.
+ * transitive import graph when running headless; the kernel uses only relative
+ * imports, so no aliases or plugins are needed.
  */
 export async function loadKernel() {
   const outDir = mkdtempSync(join(tmpdir(), 'p14-kernel-'));

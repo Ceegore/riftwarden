@@ -7,6 +7,7 @@ import { runNodePhase18ReferenceTrace } from './lib/phase18-trace.mjs';
 import { runNodePhase19ReferenceTrace } from './lib/phase19-trace.mjs';
 import { runNodePhase20ReferenceTrace } from './lib/phase20-trace.mjs';
 import { runNodePhase21ReferenceTrace } from './lib/phase21-trace.mjs';
+import { runNodePhase22GoldenTrace } from './lib/phase22-trace.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
@@ -88,6 +89,22 @@ try {
   if (node20.tick30 !== expected20_30 || node20.tick60 !== expected20_60 || node20.endHash !== fixture20.finalSnapshotChecksum) {
     console.error(JSON.stringify({ status: 'FAIL', reason: 'node20-drift-vs-pinned-fixture', ...node20, expected30: expected20_30, expected60: expected20_60, expectedFinal: fixture20.finalSnapshotChecksum }, null, 2));
     process.exit(1);
+  }
+
+  const node22 = runNodePhase22GoldenTrace(api);
+  // Cross-check the golden vectors against the pinned P22 registry so the
+  // Node column can never drift from the authoritative baselines.
+  const goldenRegistry = JSON.parse(readFileSync(resolve(root, 'contracts', 'phase22', 'golden-registry.json'), 'utf8'));
+  for (const entry of goldenRegistry.entries ?? []) {
+    const vector = node22[entry.id];
+    if (!vector) {
+      console.error(JSON.stringify({ status: 'FAIL', reason: 'node22-missing-vector', id: entry.id }));
+      process.exit(1);
+    }
+    if (vector.startHash !== entry.startHash || vector.endHash !== entry.endHash || vector.eventCount !== entry.eventCount) {
+      console.error(JSON.stringify({ status: 'FAIL', reason: 'node22-drift-vs-golden-registry', id: entry.id, actual: { startHash: vector.startHash, endHash: vector.endHash, eventCount: vector.eventCount }, expected: { startHash: entry.startHash, endHash: entry.endHash, eventCount: entry.eventCount } }));
+      process.exit(1);
+    }
   }
 
   const node21 = runNodePhase21ReferenceTrace(api);
@@ -202,6 +219,25 @@ try {
         ...notRun(),
       },
     },
+    phase22: {
+      phase: 22,
+      gate: 'G22',
+      fixture: 'contracts/phase22/golden-registry.json',
+      status: 'PARTIAL',
+      note: 'Phase 22 twelve canonical golden vectors (P22-T03 registry) Node reference; browser/device rows NOT_RUN until the operator executes the same vector bytes on each runtime.',
+      vectors: Object.fromEntries(
+        Object.entries(node22).map(([id, v]) => [
+          id,
+          {
+            scenario: v.scenario,
+            runtimes: {
+              node: { status: 'REFERENCE', version: process.version, host: process.platform, startHash: v.startHash, checkpoints: v.checkpoints, endHash: v.endHash, endTick: v.endTick, endReason: v.endReason, eventCount: v.eventCount, outcome: v.outcome, exitCode: v.exitCode },
+              ...notRun(),
+            },
+          },
+        ]),
+      ),
+    },
   };
   // Preserve operator-set browser/device columns (PASS/FAIL) across Node-only
   // regenerations: this tool authors the Node reference rows, never the
@@ -218,8 +254,18 @@ try {
       }
     };
     preserveRuntimes(previous, matrix);
-    for (const key of ['phase15', 'phase16', 'phase17', 'phase17jl', 'phase18', 'phase19', 'phase20', 'phase21']) {
+    for (const key of ['phase15', 'phase16', 'phase17', 'phase17jl', 'phase18', 'phase19', 'phase20', 'phase21', 'phase22']) {
       preserveRuntimes(previous[key], matrix[key]);
+      if (previous[key]?.vectors && matrix[key]?.vectors) {
+        for (const [id, prevVector] of Object.entries(previous[key].vectors)) {
+          const nextVector = matrix[key].vectors[id];
+          if (!nextVector) continue;
+          if (!prevVector.runtimes || !nextVector.runtimes) continue;
+          for (const [runtimeKey, value] of Object.entries(prevVector.runtimes)) {
+            if (runtimeKey !== 'node' && value && typeof value === 'object') nextVector.runtimes[runtimeKey] = value;
+          }
+        }
+      }
     }
   }
   mkdirSync(dirname(out), { recursive: true });
