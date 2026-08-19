@@ -23,6 +23,8 @@ export function snapshotPayload(state:BattleModel):Omit<BattleSnapshotData,'chec
   if(state.pendingCleanses!==undefined)extras['pendingCleanses']=state.pendingCleanses;
   if(state.abilities!==undefined)extras['abilities']=createAbilityCollection(state.abilities);
   if(state.plannedEffects!==undefined)extras['plannedEffects']=canonicalizeEffectBatch(state.plannedEffects);
+  if(state.previousTickLp!==undefined)extras['previousTickLp']=Object.freeze({...state.previousTickLp});
+  if(state.previousTickEvents!==undefined)extras['previousTickEvents']=Object.freeze(state.previousTickEvents.map((e)=>Object.freeze({type:e.type,sourceId:e.sourceId,targetIds:Object.freeze([...e.targetIds])})));
   return Object.freeze({schemaVersion:1,simulationVersion:state.simulationVersion,battleId:state.battleId,tick:state.tick,nextSequence:state.nextSequence,emittedEventCount:state.emittedEventCount,phase:Object.freeze({...state.phase}),entities:Object.freeze(entities.map((e)=>Object.freeze({...e,phase:Object.freeze({...e.phase}),timers:Object.freeze({...e.timers})}))),scheduledEvents:Object.freeze([...state.scheduledEvents].sort(compareScheduled)),authoritativeStreams:streams,endReason:state.endReason,...extras});
 }
 export function createSnapshot(state:BattleModel):BattleSnapshotData{const payload=snapshotPayload(state);return Object.freeze({...payload,checksum:sha256Hex(canonicalUtf8(payload))});}

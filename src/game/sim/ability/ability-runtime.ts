@@ -1,5 +1,6 @@
 import { KernelInvariantError } from '../core/invariant-error.js';
 import type { KernelEntity } from '../core/entity.js';
+import type { TickEventRecord } from '../core/battle-model.js';
 import type { KernelSystem, TickContext } from '../core/tick-context.js';
 import type { StatusInstance } from '../status/status-instance.js';
 import { abilityEventInput, abilityRejectOrdinal, triggerReasonOrdinal } from './ability-events.js';
@@ -27,10 +28,9 @@ import type { EffectCommand, SourceSnapshot } from './effect-command.js';
  * position directly — they only publish state via `set_abilities` and compose
  * closed effect commands (§3).
  *
- * Deferred (documented): `eventsThisTick` and `hpBeforeTick` are empty until
- * event/HP-history persistence lands, so `ally_event`/`enemy_event`/
- * `entity_defeated`/`hp_threshold_crossed` triggers evaluate to `no_match` in
- * the runtime (the pure evaluator is fully tested).
+ * The trigger context consumes the persisted Phase 19 history (`previousTickLp`
+ * for `hp_threshold_crossed`, `previousTickEvents` for the event triggers) so
+ * every trigger kind fires deterministically across save/resume.
  */
 
 export interface EffectComposeContext {
@@ -87,6 +87,21 @@ function triggerContainsOnce(node: TriggerNode): boolean {
   return false;
 }
 
+function toTriggerEvents(records: readonly TickEventRecord[] | undefined, entities: readonly KernelEntity[]): readonly TriggerEventRecord[] {
+  if (records === undefined || records.length === 0) return EMPTY_EVENTS;
+  const sides = new Map(entities.map((e) => [e.id, e.side] as const));
+  return Object.freeze(
+    records.map((r) =>
+      Object.freeze({
+        type: r.type,
+        sourceId: r.sourceId,
+        targetIds: r.targetIds,
+        side: r.sourceId === null ? 'player' : (sides.get(r.sourceId) ?? 'player'),
+      }),
+    ),
+  );
+}
+
 function buildTriggerContext(context: TickContext, instance: AbilityInstance, owner: KernelEntity, config: AbilityRuntimeConfig): TriggerContext {
   return {
     battleTick: context.state.tick,
@@ -95,11 +110,11 @@ function buildTriggerContext(context: TickContext, instance: AbilityInstance, ow
     entities: context.state.entities,
     statuses: context.state.statuses ?? EMPTY_STATUSES,
     battlePhase: context.state.phase,
-    eventsThisTick: EMPTY_EVENTS,
+    eventsThisTick: toTriggerEvents(context.state.previousTickEvents, context.state.entities),
     bossIds: config.bossIds ?? EMPTY_SET,
     chargeReady: instance.state === 'ready',
     onceFired: instance.onceFired,
-    hpBeforeTick: new Map(),
+    hpBeforeTick: new Map(Object.entries(context.state.previousTickLp ?? {})),
   };
 }
 

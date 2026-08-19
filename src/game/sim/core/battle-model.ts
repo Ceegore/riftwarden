@@ -9,6 +9,14 @@ import type { StatusInstance } from '../status/status-instance.js';
 import type { CleanseDispelRequest } from './command-types.js';
 import type { AbilityInstance } from '../ability/ability-system.js';
 import type { EffectCommand } from '../ability/effect-command.js';
+import type { EventType } from '../events/event-spec.js';
+
+/** Compact record of an event emitted during a tick, for trigger history. */
+export interface TickEventRecord {
+  readonly type: EventType;
+  readonly sourceId: string | null;
+  readonly targetIds: readonly string[];
+}
 
 export interface BattleModel {
   readonly schemaVersion: 1;
@@ -49,4 +57,10 @@ export interface BattleModel {
   // Phase 19 additive planned-effect field (T03): canonically ordered effect
   // commands queued by committed casts, dispatched at their target stage (§7).
   readonly plannedEffects?: readonly EffectCommand[];
+  // Phase 19 additive trigger-history fields (T01, §5.2): LP of every entity
+  // at the start of the previous tick and the events emitted during it. Only
+  // present on ability-aware (Phase 19+) states; consumed by the stage-D
+  // trigger evaluator.
+  readonly previousTickLp?: Readonly<Record<string, number>>;
+  readonly previousTickEvents?: readonly TickEventRecord[];
 }

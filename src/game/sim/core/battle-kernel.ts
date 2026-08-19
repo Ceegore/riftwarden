@@ -57,6 +57,9 @@ export function stepBattle(args: StepBattleArgs): KernelStepResult {
   const frozenRules = deepFreeze(structuredClone(args.rules));
   const frozenContent = deepFreeze(structuredClone(args.content));
   let typedState: BattleModel = Object.freeze({ ...args.state, phase: advanceResolvingEnd(args.state.phase) });
+  // LP at the start of this tick, persisted as the next tick's `hpBeforeTick`
+  // trigger input (Phase 19 §5.2). Only ability-aware states track history.
+  const startLp = Object.freeze(Object.fromEntries(typedState.entities.map((e) => [e.id, e.lp] as const)));
   for (const [stage, rawPriority] of PIPELINE_STAGES) {
     const stagePriority = priority(rawPriority);
     const dueEvents = queue.drainDueThrough(typedState.tick, stagePriority);
@@ -70,7 +73,13 @@ export function stepBattle(args: StepBattleArgs): KernelStepResult {
     }
     typedState = applyStageCommands({ state: typedState, commands: buffer.drain(), atTick: typedState.tick, stagePriority, queue, log, allocate });
   }
-  typedState = Object.freeze({ ...typedState, tick: nextTick(typedState.tick), nextSequence: next, scheduledEvents: queue.snapshot(), authoritativeStreams: args.random.streams.snapshotAuthoritative() });
+  const historyExtras = args.state.abilities === undefined
+    ? {}
+    : {
+        previousTickLp: startLp,
+        previousTickEvents: Object.freeze(log.events().map((e) => Object.freeze({ type: e.type, sourceId: e.sourceId, targetIds: Object.freeze([...e.targetIds]) }))),
+      };
+  typedState = Object.freeze({ ...typedState, tick: nextTick(typedState.tick), nextSequence: next, scheduledEvents: queue.snapshot(), authoritativeStreams: args.random.streams.snapshotAuthoritative(), ...historyExtras });
   const terminal = isTerminalBattlePhase(typedState.phase.phase);
   const checkpoint = shouldCheckpoint(typedState.tick, terminal) ? createSnapshot(typedState) : null;
   return Object.freeze({ state: typedState, events: log.events(), checkpoint, callOrder: Object.freeze(callOrder) });

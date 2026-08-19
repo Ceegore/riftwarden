@@ -124,5 +124,7 @@ export function migrateBattleModel(args: MigrateBattleArgs): BattleModel {
     pendingCleanses: Object.freeze([]),
     abilities: Object.freeze([]),
     plannedEffects: Object.freeze([]),
+    previousTickLp: Object.freeze({}),
+    previousTickEvents: Object.freeze([]),
   });
 }
