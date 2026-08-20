@@ -1,0 +1,22 @@
+{
+  "cases": [
+    {
+      "id": "no-healer",
+      "expected": [
+        "NO_HEALER"
+      ]
+    },
+    {
+      "id": "no-melee",
+      "expected": [
+        "NO_MELEE"
+      ]
+    },
+    {
+      "id": "pressured-empty-lane",
+      "expected": [
+        "EMPTY_PRESSURED_LANE"
+      ]
+    }
+  ]
+}

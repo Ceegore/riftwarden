@@ -1,0 +1,28 @@
+{
+  "cases": [
+    {
+      "id": "empty",
+      "regular": 0,
+      "heroes": 0,
+      "hard": "EMPTY_GROUP"
+    },
+    {
+      "id": "max-ok",
+      "regular": 7,
+      "heroes": 3,
+      "hard": null
+    },
+    {
+      "id": "regular-over",
+      "regular": 8,
+      "heroes": 0,
+      "hard": "REGULAR_LIMIT"
+    },
+    {
+      "id": "hero-over",
+      "regular": 0,
+      "heroes": 4,
+      "hard": "HERO_LIMIT"
+    }
+  ]
+}

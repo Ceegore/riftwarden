@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "lanes": [
+    "lane_0",
+    "lane_1",
+    "lane_2"
+  ],
+  "depths": [
+    "front",
+    "middle",
+    "back"
+  ],
+  "maxRegular": 7,
+  "maxHeroes": 3,
+  "maxSameTroop": 3,
+  "presetCount": 4,
+  "presetKinds": [
+    "standard",
+    "defensive",
+    "offensive",
+    "custom"
+  ]
+}

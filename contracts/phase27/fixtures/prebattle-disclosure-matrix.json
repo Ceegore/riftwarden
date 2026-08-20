@@ -1,0 +1,13 @@
+{
+  "required": [
+    "enemyFormation",
+    "roles",
+    "modifiers",
+    "objective",
+    "bossPhasesOrBullets",
+    "hazards",
+    "reinforcements",
+    "lootPreviewPolicy"
+  ],
+  "missingBlocksStart": true
+}
