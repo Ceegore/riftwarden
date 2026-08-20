@@ -1,0 +1,15 @@
+{
+  "phase": 29,
+  "heroes": 4,
+  "troops": 6,
+  "battleSnapshotIntervalTicks": 150,
+  "speedMultipliersX10": [
+    5,
+    10,
+    20,
+    30
+  ],
+  "criticalRepeatCount": 10,
+  "maxMaintainedFileLines": 500,
+  "warningFileLines": 300
+}

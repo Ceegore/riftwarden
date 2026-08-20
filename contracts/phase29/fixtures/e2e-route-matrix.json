@@ -1,0 +1,26 @@
+{
+  "routes": [
+    "TITLE",
+    "HQ",
+    "MISSION",
+    "GROUP",
+    "FORMATION",
+    "DUNGEON_MAP",
+    "NODE_PREVIEW",
+    "PREBATTLE",
+    "BATTLE",
+    "RESULT",
+    "REWARD_OR_ANCHOR",
+    "MISSION_END"
+  ],
+  "cases": [
+    "FRESH",
+    "WIN",
+    "LOSS",
+    "RETRY",
+    "RETREAT",
+    "RESUME_NODE",
+    "RESUME_BATTLE",
+    "PROCESS_KILL"
+  ]
+}

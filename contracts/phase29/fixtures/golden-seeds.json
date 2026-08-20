@@ -1,0 +1,19 @@
+{
+  "seeds": [
+    "ASHKING_GOLDEN_01",
+    "ASHKING_GOLDEN_02",
+    "ASHKING_GOLDEN_03"
+  ],
+  "speedsX10": [
+    5,
+    10,
+    20,
+    30
+  ],
+  "qualities": [
+    "LOW",
+    "REDUCED",
+    "STANDARD",
+    "HIGH"
+  ]
+}

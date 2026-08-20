@@ -1,0 +1,13 @@
+{
+  "points": [
+    "CAST_START",
+    "CAST_RESOLVE",
+    "PROJECTILE_SPAWN",
+    "PROJECTILE_IMPACT",
+    "BOSS_PHASE_CHANGE",
+    "SUMMON_SPAWN",
+    "RESULT_CREATED",
+    "REWARD_COMMIT"
+  ],
+  "repetitions": 10
+}
