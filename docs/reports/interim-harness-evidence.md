@@ -49,7 +49,7 @@ into a one-command, reproducible run.
 | Gate | Result |
 | --- | --- |
 | `pnpm typecheck` | clean |
-| `pnpm lint` | clean (TODO/FIXME contract passed) |
+| `pnpm lint` | clean (task-marker contract passed) |
 | `node tools/format/check-format.mjs` | passed |
 | `pnpm check:file-length` | 0 errors |
 | `npx vitest run` | 194 files / 2323 tests passed |
@@ -67,7 +67,7 @@ into a one-command, reproducible run.
 - Device visual goldens, device leak/stress, TalkBack/VoiceOver protocols.
 - Browser E2E against the full app (the harness here covers the context-loss
   path only) and device performance measurement.
-- Operator-run release-bundle scan.
+- Operator-run release-bundle scan (scanner hook: RW-G25-SCAN).
 
 All commits: `1a45b99` (golden harness), `7b11bdd` + `da98636` (scene-graph
 adapter), `1c8a126` (context-loss harness).
