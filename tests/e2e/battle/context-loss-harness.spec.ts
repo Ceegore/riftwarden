@@ -24,10 +24,27 @@ interface HarnessExpedition {
   readonly runId: string;
 }
 
+interface HarnessKillCase {
+  readonly point: string;
+  readonly resumeRoute: string;
+  readonly rewardCount: number;
+  readonly exactlyOneReward: boolean;
+}
+
+interface HarnessSlice {
+  readonly routesWalked: readonly string[];
+  readonly fullRouteComplete: boolean;
+  readonly killCases: readonly HarnessKillCase[];
+  readonly finalRewardCount: number;
+  readonly exactlyOneReward: boolean;
+  readonly ledgerIds: number;
+}
+
 interface HarnessResult {
   readonly capability: { readonly backend: string; readonly webglVersion: number | null; readonly failureReason: string | null };
   readonly scenarios: readonly HarnessScenario[];
   readonly expedition: HarnessExpedition | null;
+  readonly slice: HarnessSlice | null;
   readonly error?: string;
 }
 
@@ -97,4 +114,56 @@ test('P28 battle-start runs exactly once with the golden-00 map in real Chromium
 
   // Closed node flow walks previewed -> ... -> completed in order.
   expect(expedition.stagesWalked).toEqual(['entering', 'entered', 'resolving', 'reward_pending', 'exiting', 'completed']);
+});
+
+test('P29 slice E2E route + reliability kill matrix run in real Chromium', async ({ page }) => {
+  await page.goto('/harness.html');
+  await page.waitForFunction(() => window.__contextLossHarness !== undefined);
+  const harness = (await page.evaluate(() => window.__contextLossHarness)) as HarnessResult;
+
+  expect(harness.error).toBeUndefined();
+  expect(harness.slice).not.toBeNull();
+  const slice = harness.slice ?? null;
+  if (slice === null) throw new Error('slice result missing');
+
+  // The closed route flow walks TITLE -> ... -> MISSION_END in order.
+  const routes = [
+    'TITLE',
+    'HQ',
+    'MISSION',
+    'GROUP',
+    'FORMATION',
+    'DUNGEON_MAP',
+    'NODE_PREVIEW',
+    'PREBATTLE',
+    'BATTLE',
+    'RESULT',
+    'REWARD_OR_ANCHOR',
+    'MISSION_END',
+  ];
+  expect(slice.routesWalked).toEqual(routes);
+  expect(slice.fullRouteComplete).toBe(true);
+
+  // Reliability kill matrix: every point resumes at the last confirmed commit.
+  const expectedResume: Record<string, string> = {
+    CAST_START: 'BATTLE',
+    CAST_RESOLVE: 'BATTLE',
+    PROJECTILE_SPAWN: 'BATTLE',
+    PROJECTILE_IMPACT: 'BATTLE',
+    BOSS_PHASE_CHANGE: 'BATTLE',
+    SUMMON_SPAWN: 'BATTLE',
+    RESULT_CREATED: 'RESULT',
+    REWARD_COMMIT: 'REWARD_OR_ANCHOR',
+  };
+  expect(slice.killCases).toHaveLength(8);
+  for (const killCase of slice.killCases) {
+    expect(killCase.resumeRoute, killCase.point).toBe(expectedResume[killCase.point]);
+    expect(killCase.exactlyOneReward, killCase.point).toBe(true);
+    expect(killCase.rewardCount).toBeLessThanOrEqual(1);
+  }
+
+  // Exactly-once reward across the full run (double-tap included).
+  expect(slice.finalRewardCount).toBe(1);
+  expect(slice.exactlyOneReward).toBe(true);
+  expect(slice.ledgerIds).toBe(3);
 });

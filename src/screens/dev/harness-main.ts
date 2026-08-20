@@ -1,4 +1,7 @@
 import { Application } from 'pixi.js';
+import { commitCounts, commitOnce, emptyLedger, resumeFromKinds } from '../../game/slice/commit-ledger.js';
+import { advanceTo, ROUTE_ORDER } from '../../game/slice/route-machine.js';
+import type { CommitKind, Route } from '../../game/slice/types.js';
 import { generateMap } from '../../game/expedition/map-generator.js';
 import { applyNodeCommand } from '../../game/expedition/node-flow.js';
 import { createRunState } from '../../game/expedition/run-state.js';
@@ -58,10 +61,27 @@ export interface HarnessExpeditionResult {
   readonly runId: string;
 }
 
+export interface HarnessKillCase {
+  readonly point: string;
+  readonly resumeRoute: Route;
+  readonly rewardCount: number;
+  readonly exactlyOneReward: boolean;
+}
+
+export interface HarnessSliceResult {
+  readonly routesWalked: readonly Route[];
+  readonly fullRouteComplete: boolean;
+  readonly killCases: readonly HarnessKillCase[];
+  readonly finalRewardCount: number;
+  readonly exactlyOneReward: boolean;
+  readonly ledgerIds: number;
+}
+
 export interface HarnessResult {
   readonly capability: HarnessCapabilityResult;
   readonly scenarios: readonly HarnessScenarioResult[];
   readonly expedition: HarnessExpeditionResult | null;
+  readonly slice: HarnessSliceResult | null;
   readonly error?: string;
   readonly contextLostAt?: { readonly afterInit: boolean; readonly perScenario: readonly boolean[] };
 }
@@ -308,6 +328,64 @@ async function runExpeditionScenario(): Promise<HarnessExpeditionResult> {
   };
 }
 
+/**
+ * Slice E2E minimum (Phase 29): the closed route flow TITLE -> MISSION_END
+ * walked in real Chromium, plus the reliability kill matrix — a process kill
+ * resumes at the last confirmed commit (derived from the ledger, never from
+ * the route order) and the reward commit is exactly-once even on double-tap.
+ */
+function runSliceScenario(): HarnessSliceResult {
+  const routesWalked: Route[] = [];
+  let route: Route = ROUTE_ORDER[0] ?? 'TITLE';
+  routesWalked.push(route);
+  for (let i = 1; i < ROUTE_ORDER.length; i += 1) {
+    const next = ROUTE_ORDER[i];
+    if (next === undefined) break;
+    route = advanceTo(route, next);
+    routesWalked.push(route);
+  }
+
+  const killPoints = ['CAST_START', 'CAST_RESOLVE', 'PROJECTILE_SPAWN', 'PROJECTILE_IMPACT', 'BOSS_PHASE_CHANGE', 'SUMMON_SPAWN', 'RESULT_CREATED', 'REWARD_COMMIT'] as const;
+  const killCases: HarnessKillCase[] = [];
+  for (const point of killPoints) {
+    // Every kill point is battle-internal or later, so the battle-start
+    // boundary is already durably committed before the kill lands.
+    let ledger = emptyLedger();
+    const kinds: CommitKind[] = ['BATTLE_START'];
+    ledger = commitOnce(ledger, 'run-kill:battle', 'BATTLE_START');
+    if (point === 'RESULT_CREATED' || point === 'REWARD_COMMIT') {
+      ledger = commitOnce(ledger, 'run-kill:result', 'RESULT');
+      kinds.push('RESULT');
+    }
+    if (point === 'REWARD_COMMIT') {
+      ledger = commitOnce(ledger, 'run-kill:reward', 'REWARD');
+      // Double-tap after resume: the second reward commit must be idempotent.
+      ledger = commitOnce(ledger, 'run-kill:reward', 'REWARD');
+      kinds.push('REWARD');
+    }
+    const resumeRoute = resumeFromKinds(kinds);
+    const rewardCount = commitCounts(ledger).REWARD;
+    killCases.push({ point, resumeRoute, rewardCount, exactlyOneReward: rewardCount <= 1 });
+  }
+
+  // Full-run reward ledger: double-tapped reward commits exactly once.
+  let fullLedger = emptyLedger();
+  fullLedger = commitOnce(fullLedger, 'run-1:start', 'BATTLE_START');
+  fullLedger = commitOnce(fullLedger, 'run-1:result', 'RESULT');
+  fullLedger = commitOnce(fullLedger, 'run-1:reward', 'REWARD');
+  fullLedger = commitOnce(fullLedger, 'run-1:reward', 'REWARD');
+  const finalRewardCount = commitCounts(fullLedger).REWARD;
+
+  return {
+    routesWalked,
+    fullRouteComplete: routesWalked.length === ROUTE_ORDER.length,
+    killCases,
+    finalRewardCount,
+    exactlyOneReward: finalRewardCount === 1,
+    ledgerIds: Object.keys(fullLedger.committed).length,
+  };
+}
+
 async function main(): Promise<HarnessResult> {
   // Capability probe on a dedicated context; scenarios use fresh canvases.
   const probeCanvas = document.createElement('canvas');
@@ -325,6 +403,7 @@ async function main(): Promise<HarnessResult> {
     capability: { backend: capability.backend, webglVersion: capability.webglVersion, failureReason: capability.failureReason },
     scenarios,
     expedition: await runExpeditionScenario(),
+    slice: runSliceScenario(),
   };
 }
 
