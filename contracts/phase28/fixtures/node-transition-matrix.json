@@ -1,0 +1,24 @@
+{
+  "cases": [
+    {
+      "from": "previewed",
+      "command": "enter",
+      "to": "entering"
+    },
+    {
+      "from": "entered",
+      "command": "resolve",
+      "to": "resolving"
+    },
+    {
+      "from": "reward_pending",
+      "command": "commitReward",
+      "to": "exiting"
+    },
+    {
+      "from": "completed",
+      "command": "enter",
+      "error": "NODE_ALREADY_COMPLETED"
+    }
+  ]
+}

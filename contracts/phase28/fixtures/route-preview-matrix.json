@@ -1,0 +1,12 @@
+{
+  "cases": [
+    "reachable_touch",
+    "unreachable_touch",
+    "keyboard_confirm",
+    "gamepad_confirm",
+    "restart_same_preview",
+    "locale_same_domain",
+    "text_scale_200",
+    "pseudo_locale"
+  ]
+}

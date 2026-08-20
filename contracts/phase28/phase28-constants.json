@@ -1,0 +1,28 @@
+{
+  "phase": 28,
+  "logicalLevels": 6,
+  "targetVisitedMin": 5,
+  "targetVisitedMax": 8,
+  "generatorAttemptCap": 50,
+  "mandatoryNodeRoles": [
+    "anchor",
+    "preparation",
+    "boss"
+  ],
+  "minimumNodeTypes": [
+    "battle",
+    "anchor"
+  ],
+  "transactionStages": [
+    "previewed",
+    "entering",
+    "entered",
+    "resolving",
+    "decision_pending",
+    "reward_pending",
+    "exiting",
+    "completed"
+  ],
+  "gateSampleMaps": 10000,
+  "rcSampleMaps": 100000
+}

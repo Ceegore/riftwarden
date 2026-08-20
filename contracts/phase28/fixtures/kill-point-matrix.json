@@ -1,0 +1,12 @@
+{
+  "boundaries": [
+    "before_enter_commit",
+    "after_enter_commit",
+    "before_decision_commit",
+    "after_decision_commit",
+    "before_reward_commit",
+    "after_reward_commit",
+    "before_exit_commit",
+    "after_exit_commit"
+  ]
+}

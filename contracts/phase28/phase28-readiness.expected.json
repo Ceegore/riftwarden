@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "phase": 28,
+  "gate": "G28",
+  "evidence": {
+    "constants": "contracts/phase28/phase28-constants.json",
+    "profiles": {
+      "fixture": "contracts/phase28/fixtures/map-profiles.json",
+      "path": "src/game/expedition/types.ts"
+    },
+    "generator": {
+      "fixture": "contracts/phase28/fixtures/map-golden-seeds.json",
+      "path": "src/game/expedition/map-generator.ts"
+    },
+    "reachability": {
+      "corpus": "contracts/phase28/fixtures/invalid-map-corpus.json",
+      "path": "src/game/expedition/reachability.ts"
+    },
+    "nodeFlow": {
+      "fixture": "contracts/phase28/fixtures/node-transition-matrix.json",
+      "path": "src/game/expedition/node-flow.ts"
+    },
+    "runDomain": {
+      "path": "src/game/expedition/run-reducer.ts",
+      "statePath": "src/game/expedition/run-state.ts"
+    },
+    "goldenRegistry": "contracts/phase28/golden-registry.json",
+    "modules": [
+      "src/game/expedition/types.ts",
+      "src/game/expedition/stable.ts",
+      "src/game/expedition/expedition-error.ts",
+      "src/game/expedition/map-generator.ts",
+      "src/game/expedition/reachability.ts",
+      "src/game/expedition/node-flow.ts",
+      "src/game/expedition/node-registry.ts",
+      "src/game/expedition/run-state.ts",
+      "src/game/expedition/run-reducer.ts"
+    ],
+    "tests": [
+      "tests/sim/phase28-contracts.test.ts",
+      "tests/sim/phase28-map-generator.test.ts",
+      "tests/sim/phase28-run-reducer.test.ts",
+      "tests/sim/phase28-node-flow-registry.test.ts",
+      "tests/sim/phase28-golden.test.mjs"
+    ]
+  },
+  "hardBlockers": [
+    "P28_G28_G27_NOT_PROVEN",
+    "P28_G28_UI_DEVICE_RENDER_NOT_RUN",
+    "P28_G28_A11Y_SCREENREADER_EVIDENCE_MISSING",
+    "P28_G28_VISUAL_GOLDENS_DEVICE_MISSING",
+    "P28_G28_E2E_BROWSER_EVIDENCE_MISSING",
+    "P28_G28_PERFORMANCE_DEVICE_MEASURE_MISSING"
+  ]
+}
