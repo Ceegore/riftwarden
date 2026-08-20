@@ -1,4 +1,9 @@
 import { Application } from 'pixi.js';
+import { generateMap } from '../../game/expedition/map-generator.js';
+import { applyNodeCommand } from '../../game/expedition/node-flow.js';
+import { createRunState } from '../../game/expedition/run-state.js';
+import type { MapProfile, NodeStage } from '../../game/expedition/types.js';
+import { AtomicStartGuard } from '../../game/formation/start-guard.js';
 import { resolveCapability, type CapabilityProbe } from '../../game/render/capability.js';
 import { createContextRecovery } from '../../game/render/context-recovery.js';
 import { createPixiScene } from '../../features/battle-render/pixi-scene.js';
@@ -39,9 +44,24 @@ export interface HarnessScenarioResult {
   readonly teardowns: number;
 }
 
+export interface HarnessExpeditionResult {
+  readonly mapHash: string;
+  readonly golden00Hash: string | null;
+  readonly matchesGolden00: boolean;
+  readonly runRevision: number;
+  readonly committedTransactions: number;
+  readonly visitedNodes: readonly string[];
+  readonly stagesWalked: readonly string[];
+  readonly doubleTapCommits: number;
+  readonly doubleTapNavigations: number;
+  readonly doubleTapExactlyOnce: boolean;
+  readonly runId: string;
+}
+
 export interface HarnessResult {
   readonly capability: HarnessCapabilityResult;
   readonly scenarios: readonly HarnessScenarioResult[];
+  readonly expedition: HarnessExpeditionResult | null;
   readonly error?: string;
   readonly contextLostAt?: { readonly afterInit: boolean; readonly perScenario: readonly boolean[] };
 }
@@ -202,6 +222,92 @@ async function runScenario(name: string, frames: readonly BattlePresentationFram
   };
 }
 
+async function golden00Hash(): Promise<string | null> {
+  try {
+    const response = await fetch('/contracts/phase28/golden-registry.json');
+    if (!response.ok) return null;
+    const registry = (await response.json()) as { readonly entries?: readonly { readonly caseId: string; readonly mapHash: string }[] };
+    return registry.entries?.find((entry) => entry.caseId === 'golden-00')?.mapHash ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Expedition minimum (Phase 28): deterministic map for the pinned golden-00
+ * seed, immutable run state, exactly-once battle start (double-tap produces
+ * one commit + one navigation) and the full closed node-flow walk from
+ * previewed to completed in real Chromium.
+ */
+async function runExpeditionScenario(): Promise<HarnessExpeditionResult> {
+  const profile: MapProfile = {
+    id: 'slice.act1.standard',
+    logicalLevels: 6,
+    targetVisited: [5, 8],
+    mandatoryRoles: ['anchor', 'preparation', 'boss'],
+    attemptCap: 50,
+    fallbackTemplateId: 'slice.act1.safe',
+  };
+  const map = generateMap({ seed: 1000, profileId: profile.id, contentRevision: 'test-content-revision' }, profile);
+  const state = createRunState({
+    runId: 'browser-run-1000',
+    modeId: 'mode.expedition',
+    missionId: 'mission.act1',
+    map,
+    startResources: { gold: 10 },
+  });
+
+  // Exactly-once start: two concurrent start() calls share one pending
+  // promise; the commit writes exactly one initial run snapshot.
+  const guard = new AtomicStartGuard();
+  let commits = 0;
+  let navigations = 0;
+  const commit = async (): Promise<void> => {
+    commits += 1;
+    await Promise.resolve();
+  };
+  await Promise.all([
+    guard.start(commit, () => {
+      navigations += 1;
+    }),
+    guard.start(commit, () => {
+      navigations += 1;
+    }),
+  ]);
+
+  // Closed node flow: previewed -> ... -> completed for the first frontier node.
+  const first = state.availableNodeIds[0];
+  if (first === undefined) throw new Error('no frontier node');
+  const stagesWalked: NodeStage[] = [];
+  let stage: NodeStage = applyNodeCommand('previewed', 'enter');
+  stagesWalked.push(stage);
+  stage = applyNodeCommand(stage, 'commitEnter');
+  stagesWalked.push(stage);
+  stage = applyNodeCommand(stage, 'resolve');
+  stagesWalked.push(stage);
+  stage = applyNodeCommand(stage, 'commitDecision');
+  stagesWalked.push(stage);
+  stage = applyNodeCommand(stage, 'commitReward');
+  stagesWalked.push(stage);
+  stage = applyNodeCommand(stage, 'commitExit');
+  stagesWalked.push(stage);
+
+  const golden = await golden00Hash();
+  return {
+    mapHash: map.mapHash,
+    golden00Hash: golden,
+    matchesGolden00: golden !== null && map.mapHash === golden,
+    runRevision: state.revision,
+    committedTransactions: state.committedTransactionIds.length,
+    visitedNodes: [...state.visitedNodeIds],
+    stagesWalked,
+    doubleTapCommits: commits,
+    doubleTapNavigations: navigations,
+    doubleTapExactlyOnce: commits === 1 && navigations === 1,
+    runId: state.runId,
+  };
+}
+
 async function main(): Promise<HarnessResult> {
   // Capability probe on a dedicated context; scenarios use fresh canvases.
   const probeCanvas = document.createElement('canvas');
@@ -218,6 +324,7 @@ async function main(): Promise<HarnessResult> {
   return {
     capability: { backend: capability.backend, webglVersion: capability.webglVersion, failureReason: capability.failureReason },
     scenarios,
+    expedition: await runExpeditionScenario(),
   };
 }
 

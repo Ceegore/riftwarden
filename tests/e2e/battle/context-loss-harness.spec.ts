@@ -10,9 +10,24 @@ interface HarnessScenario {
   readonly lifecycle: string;
 }
 
+interface HarnessExpedition {
+  readonly mapHash: string;
+  readonly golden00Hash: string | null;
+  readonly matchesGolden00: boolean;
+  readonly runRevision: number;
+  readonly committedTransactions: number;
+  readonly visitedNodes: readonly string[];
+  readonly stagesWalked: readonly string[];
+  readonly doubleTapCommits: number;
+  readonly doubleTapNavigations: number;
+  readonly doubleTapExactlyOnce: boolean;
+  readonly runId: string;
+}
+
 interface HarnessResult {
   readonly capability: { readonly backend: string; readonly webglVersion: number | null; readonly failureReason: string | null };
   readonly scenarios: readonly HarnessScenario[];
+  readonly expedition: HarnessExpedition | null;
   readonly error?: string;
 }
 
@@ -52,4 +67,34 @@ test('P25 context-loss matrix runs on real Chromium WebGL2 with identical end ha
   expect(failed?.outcome).toBe('failed_safe');
   expect(failed?.lifecycle).toBe('failed_safe');
   expect(failed?.steps).toContain('failed_safe');
+});
+
+test('P28 battle-start runs exactly once with the golden-00 map in real Chromium', async ({ page }) => {
+  await page.goto('/harness.html');
+  await page.waitForFunction(() => window.__contextLossHarness !== undefined);
+  const harness = (await page.evaluate(() => window.__contextLossHarness)) as HarnessResult;
+
+  expect(harness.error).toBeUndefined();
+  expect(harness.expedition).not.toBeNull();
+  const expedition = harness.expedition ?? null;
+  if (expedition === null) throw new Error('expedition result missing');
+
+  // Deterministic map: the browser bundle reproduces the pinned golden-00 hash.
+  expect(expedition.matchesGolden00).toBe(true);
+  expect(expedition.golden00Hash).not.toBeNull();
+  expect(expedition.mapHash).toHaveLength(64);
+
+  // Exactly-once start: two invocations, one commit, one navigation.
+  expect(expedition.doubleTapExactlyOnce).toBe(true);
+  expect(expedition.doubleTapCommits).toBe(1);
+  expect(expedition.doubleTapNavigations).toBe(1);
+
+  // The initial run snapshot is a single committed, immutable state.
+  expect(expedition.runRevision).toBe(0);
+  expect(expedition.committedTransactions).toBe(0);
+  expect(expedition.visitedNodes.length).toBeGreaterThanOrEqual(1);
+  expect(expedition.runId).toBe('browser-run-1000');
+
+  // Closed node flow walks previewed -> ... -> completed in order.
+  expect(expedition.stagesWalked).toEqual(['entering', 'entered', 'resolving', 'reward_pending', 'exiting', 'completed']);
 });
