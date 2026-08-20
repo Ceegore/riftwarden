@@ -12,6 +12,9 @@ const baseURL = 'http://127.0.0.1:4174';
 export default defineConfig({
   testDir: './tests/e2e/battle',
   outputDir: 'docs/reports/test-results/playwright-harness-artifacts',
+  // Pin S40 map visual goldens into contracts/phase28/visual/ (the snapshot
+  // baselines are the committed evidence; CI never writes them).
+  snapshotPathTemplate: '{testDir}/../../../contracts/phase28/visual/{arg}{ext}',
   fullyParallel: false,
   forbidOnly: true,
   retries: process.env.CI ? 1 : 0,
