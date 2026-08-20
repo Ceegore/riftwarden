@@ -25,6 +25,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
+      "pixi.js": [
+        "src/features/battle-render/pixi-types.d.ts"
+      ],
       "@app/*": [
         "src/app/*"
       ],
