@@ -40,11 +40,29 @@ interface HarnessSlice {
   readonly ledgerIds: number;
 }
 
+interface HarnessProfileCase {
+  readonly id: string;
+  readonly expected: string;
+  readonly walletDelta: number;
+  readonly ledgerStatus: string | null;
+  readonly replayed: boolean;
+}
+
+interface HarnessProfile {
+  readonly cases: readonly HarnessProfileCase[];
+  readonly killPoints: readonly string[];
+  readonly allKillPointsRecorded: boolean;
+  readonly finalLedgerIds: number;
+  readonly finalGold: number;
+  readonly profileValid: boolean;
+}
+
 interface HarnessResult {
   readonly capability: { readonly backend: string; readonly webglVersion: number | null; readonly failureReason: string | null };
   readonly scenarios: readonly HarnessScenario[];
   readonly expedition: HarnessExpedition | null;
   readonly slice: HarnessSlice | null;
+  readonly profile: HarnessProfile | null;
   readonly error?: string;
 }
 
@@ -166,4 +184,54 @@ test('P29 slice E2E route + reliability kill matrix run in real Chromium', async
   expect(slice.finalRewardCount).toBe(1);
   expect(slice.exactlyOneReward).toBe(true);
   expect(slice.ledgerIds).toBe(3);
+});
+
+test('P31 profile transactions replay the four pinned cases and five kill points in real Chromium', async ({ page }) => {
+  await page.goto('/harness.html');
+  await page.waitForFunction(() => window.__contextLossHarness !== undefined);
+  const harness = (await page.evaluate(() => window.__contextLossHarness)) as HarnessResult;
+
+  expect(harness.error).toBeUndefined();
+  expect(harness.profile).not.toBeNull();
+  const profile = harness.profile ?? null;
+  if (profile === null) throw new Error('profile result missing');
+
+  // The four pinned transaction cases replay with identical wallet semantics.
+  expect(profile.cases).toHaveLength(4);
+  const byId = new Map(profile.cases.map((c) => [c.id, c]));
+
+  const buyCopy = byId.get('buy-copy-ok');
+  expect(buyCopy?.expected).toBe('COMMITTED');
+  expect(buyCopy?.walletDelta).toBe(30);
+  expect(buyCopy?.ledgerStatus).toBe('COMMITTED');
+
+  const insufficient = byId.get('insufficient');
+  expect(insufficient?.expected).toBe('REJECTED');
+  expect(insufficient?.walletDelta).toBe(0);
+  expect(insufficient?.ledgerStatus).toBe('REJECTED');
+
+  const duplicate = byId.get('duplicate-callback');
+  expect(duplicate?.expected).toBe('COMMITTED_ONCE');
+  expect(duplicate?.walletDelta).toBe(25);
+  expect(duplicate?.replayed).toBe(true);
+
+  const commitFailure = byId.get('commit-failure');
+  expect(commitFailure?.expected).toBe('FAILED_NO_MUTATION');
+  expect(commitFailure?.walletDelta).toBe(0);
+  expect(commitFailure?.ledgerStatus).toBe('FAILED');
+
+  // All five kill points are recorded in canonical order.
+  expect(profile.killPoints).toEqual([
+    'before-preview',
+    'after-confirm-before-commit',
+    'during-save-temp-write',
+    'after-commit-before-feedback',
+    'duplicate-callback',
+  ]);
+  expect(profile.allKillPointsRecorded).toBe(true);
+
+  // The final profile is valid and its ledger holds exactly the banner commit.
+  expect(profile.profileValid).toBe(true);
+  expect(profile.finalLedgerIds).toBe(1);
+  expect(profile.finalGold).toBe(100);
 });

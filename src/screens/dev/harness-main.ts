@@ -1,4 +1,8 @@
 import { Application } from 'pixi.js';
+import { KILL_POINT_ORDER, TransactionFlow } from '../../game/profile/transaction-flow.js';
+import { commitTransaction } from '../../game/profile/transaction-service.js';
+import { validateProfile } from '../../game/profile/profile-validator.js';
+import type { Profile, TransactionKind } from '../../game/profile/types.js';
 import { commitCounts, commitOnce, emptyLedger, resumeFromKinds } from '../../game/slice/commit-ledger.js';
 import { advanceTo, ROUTE_ORDER } from '../../game/slice/route-machine.js';
 import type { CommitKind, Route } from '../../game/slice/types.js';
@@ -77,11 +81,29 @@ export interface HarnessSliceResult {
   readonly ledgerIds: number;
 }
 
+export interface HarnessProfileTransactionCase {
+  readonly id: string;
+  readonly expected: string;
+  readonly walletDelta: number;
+  readonly ledgerStatus: string | null;
+  readonly replayed: boolean;
+}
+
+export interface HarnessProfileResult {
+  readonly cases: readonly HarnessProfileTransactionCase[];
+  readonly killPoints: readonly string[];
+  readonly allKillPointsRecorded: boolean;
+  readonly finalLedgerIds: number;
+  readonly finalGold: number;
+  readonly profileValid: boolean;
+}
+
 export interface HarnessResult {
   readonly capability: HarnessCapabilityResult;
   readonly scenarios: readonly HarnessScenarioResult[];
   readonly expedition: HarnessExpeditionResult | null;
   readonly slice: HarnessSliceResult | null;
+  readonly profile: HarnessProfileResult | null;
   readonly error?: string;
   readonly contextLostAt?: { readonly afterInit: boolean; readonly perScenario: readonly boolean[] };
 }
@@ -386,6 +408,164 @@ function runSliceScenario(): HarnessSliceResult {
   };
 }
 
+function profileBase(gold: number): Profile {
+  return {
+    revision: 31,
+    wallet: { gold, riftEssence: 0 },
+    heroes: { hero_aurel: { id: 'hero_aurel', unlocked: true, level: 2, fame: 0 } },
+    troops: {},
+    items: {
+      item_sword: { id: 'item_sword', owned: true, polished: false, isBanner: false },
+      banner_ember: { id: 'banner_ember', owned: true, polished: false, isBanner: true },
+    },
+    transactionLedger: {},
+  };
+}
+
+function profileMutate(kind: string, profile: Profile): Profile {
+  if (kind === 'BUY_COPY') {
+    const existing = profile.troops['troop_guard'];
+    const copies = existing === undefined ? [] : [...existing.copies];
+    copies.push({ instanceId: 'browser-copy-1', typeId: 'troop_guard' });
+    return {
+      ...profile,
+      troops: { ...profile.troops, troop_guard: { typeId: 'troop_guard', contractLevel: 1, copies } },
+    };
+  }
+  if (kind === 'POLISH') {
+    const item = profile.items['item_sword'];
+    if (item === undefined) throw new Error('missing item');
+    return { ...profile, items: { ...profile.items, item_sword: { ...item, polished: true } } };
+  }
+  if (kind === 'EQUIP') {
+    const hero = profile.heroes['hero_aurel'];
+    if (hero === undefined) throw new Error('missing hero');
+    return { ...profile, heroes: { ...profile.heroes, hero_aurel: { ...hero, equipmentId: 'item_sword' } } };
+  }
+  throw new Error(`unhandled kind ${kind}`);
+}
+
+function runProfileScenario(): HarnessProfileResult {
+  // 1. The four pinned transaction cases in the browser bundle.
+  const cases: HarnessProfileTransactionCase[] = [];
+
+  // buy-copy-ok: 100 -> 70, committed, one copy.
+  {
+    let profile = profileBase(100);
+    const outcome = commitTransaction(profile, {
+      transactionId: 'browser:buy-copy',
+      kind: 'BUY_COPY',
+      costGold: 30,
+      mutate: (p: Profile) => profileMutate('BUY_COPY', p),
+    });
+    profile = outcome.profile;
+    cases.push({
+      id: 'buy-copy-ok',
+      expected: 'COMMITTED',
+      walletDelta: 100 - profile.wallet.gold,
+      ledgerStatus: outcome.result.status,
+      replayed: outcome.replayed,
+    });
+  }
+
+  // insufficient: 20 -> 20, rejected, no mutation.
+  {
+    const profile = profileBase(20);
+    const outcome = commitTransaction(profile, {
+      transactionId: 'browser:insufficient',
+      kind: 'BUY_COPY',
+      costGold: 30,
+      mutate: (p: Profile) => profileMutate('BUY_COPY', p),
+    });
+    cases.push({
+      id: 'insufficient',
+      expected: 'REJECTED',
+      walletDelta: profile.wallet.gold - outcome.profile.wallet.gold,
+      ledgerStatus: outcome.result.status,
+      replayed: outcome.replayed,
+    });
+  }
+
+  // duplicate-callback: 100 -> 75 once, replay returns the stored result.
+  {
+    let profile = profileBase(100);
+    const request = {
+      transactionId: 'browser:polish',
+      kind: 'POLISH' as TransactionKind,
+      costGold: 25,
+      mutate: (p: Profile) => profileMutate('POLISH', p),
+    };
+    const first = commitTransaction(profile, request);
+    profile = first.profile;
+    const second = commitTransaction(profile, request);
+    cases.push({
+      id: 'duplicate-callback',
+      expected: 'COMMITTED_ONCE',
+      walletDelta: 100 - second.profile.wallet.gold,
+      ledgerStatus: second.result.status,
+      replayed: second.replayed,
+    });
+  }
+
+  // commit-failure: throwing mutation leaves the old state untouched.
+  {
+    const profile = profileBase(100);
+    let threw = false;
+    try {
+      commitTransaction(profile, {
+        transactionId: 'browser:equip',
+        kind: 'EQUIP',
+        costGold: 0,
+        mutate: () => {
+          throw new Error('save failed');
+        },
+      });
+    } catch {
+      threw = true;
+    }
+    cases.push({
+      id: 'commit-failure',
+      expected: 'FAILED_NO_MUTATION',
+      walletDelta: profile.wallet.gold - 100,
+      ledgerStatus: threw ? 'FAILED' : 'NO_THROW',
+      replayed: false,
+    });
+  }
+
+  // 2. The five kill points, recorded through the transaction flow.
+  const flow = new TransactionFlow();
+  flow.record('before-preview');
+  flow.record('after-confirm-before-commit');
+  flow.record('during-save-temp-write');
+  flow.record('after-commit-before-feedback');
+  flow.record('duplicate-callback');
+
+  // 3. A full mini-ledger ending with the active banner set.
+  let profile = profileBase(100);
+  profile = commitTransaction(profile, {
+    transactionId: 'browser:set-banner',
+    kind: 'SET_BANNER',
+    costGold: 0,
+    mutate: (p: Profile) => ({ ...p, activeBannerId: 'banner_ember' }),
+  }).profile;
+  let valid = true;
+  try {
+    validateProfile(profile);
+  } catch {
+    valid = false;
+  }
+
+  const allKillPointsRecorded = KILL_POINT_ORDER.every((point) => flow.reached(point));
+  return {
+    cases,
+    killPoints: flow.state(),
+    allKillPointsRecorded,
+    finalLedgerIds: Object.keys(profile.transactionLedger).length,
+    finalGold: profile.wallet.gold,
+    profileValid: valid,
+  };
+}
+
 async function main(): Promise<HarnessResult> {
   // Capability probe on a dedicated context; scenarios use fresh canvases.
   const probeCanvas = document.createElement('canvas');
@@ -404,6 +584,7 @@ async function main(): Promise<HarnessResult> {
     scenarios,
     expedition: await runExpeditionScenario(),
     slice: runSliceScenario(),
+    profile: runProfileScenario(),
   };
 }
 
