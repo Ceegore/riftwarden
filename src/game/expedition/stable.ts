@@ -18,6 +18,17 @@ export function fnv1a(text: string): string {
   return h.toString(16).padStart(8, '0');
 }
 
+/** FNV-1a 32-bit as a u32 number: seeds for the Phase 32 snapshot stream. */
+export function fnv1a32(parts: readonly (string | number)[]): number {
+  let h = 0x811c9dc5;
+  const text = parts.join('|');
+  for (let i = 0; i < text.length; i += 1) {
+    h ^= text.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h >>> 0;
+}
+
 export function nextU32(x: number): number {
   let v = x >>> 0;
   v ^= v << 13;

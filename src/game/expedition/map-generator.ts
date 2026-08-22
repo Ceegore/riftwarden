@@ -1,8 +1,9 @@
 import { sha256Hex } from '../sim/snapshot/sha256.js';
 import { ExpeditionError } from './expedition-error.js';
+import { definitionOf } from './node-registry.js';
 import { validateMap } from './reachability.js';
 import { compareCodeUnit, nextU32 } from './stable.js';
-import type { ExpeditionMap, MapEdge, MapNode, MapProfile, NodeId, NodeRole } from './types.js';
+import type { ExpeditionMap, MapEdge, MapNode, MapProfile, NodeId, NodeRole, NodeType } from './types.js';
 
 /**
  * Deterministic map generator (MAP_GENERATOR_CONTRACT): canonical input
@@ -12,6 +13,12 @@ import type { ExpeditionMap, MapEdge, MapNode, MapProfile, NodeId, NodeRole } fr
  * fallback template. Mandatory rules are never relaxed; a failed attempt
  * consumes a documented deterministic attempt stream; every generated value
  * derives from the persisted seed — a restart never rerolls.
+ *
+ * Node-type assignment is content-versioned (FULL_GENERATOR_QA_CONTRACT):
+ * content revisions with the Phase 32 marker ("32") distribute normal slots
+ * by the GDD §19.2 regional weights so all closed-registry node families are
+ * reachable; legacy revisions keep the Phase 28 minimum (battle/anchor only)
+ * byte-identical — a restart or an older save never reinterprets content.
  */
 export interface MapGenerationInput {
   readonly seed: number;
@@ -22,9 +29,42 @@ export interface MapGenerationInput {
 const LEVELS = 6;
 const ROLE_BY_LEVEL: readonly (NodeRole | undefined)[] = ['start', undefined, 'preparation', 'anchor', undefined, 'boss'];
 
-function makeNode(id: string, level: number, role: NodeRole): MapNode {
-  const type = role === 'anchor' ? 'anchor' : 'battle';
-  return { id, level, type, role, previewKey: `preview.${id}`, instabilityDelta: type === 'anchor' ? -10 : 5 };
+/** GDD §19.2 regional weights for normal slots (sum 100). */
+const NORMAL_TYPE_WEIGHTS: readonly (readonly [NodeType, number])[] = [
+  ['battle', 35],
+  ['elite', 12],
+  ['event', 15],
+  ['merchant', 8],
+  ['treasure', 8],
+  ['recruitment', 7],
+  ['workshop', 5],
+  ['altar', 4],
+  ['scout', 6],
+];
+
+function isFullContent(contentRevision: string): boolean {
+  return contentRevision.startsWith('32');
+}
+
+function pickNormalType(r: number): NodeType {
+  const roll = r % 100;
+  let cursor = 0;
+  for (const [type, weight] of NORMAL_TYPE_WEIGHTS) {
+    cursor += weight;
+    if (roll < cursor) return type;
+  }
+  return 'battle';
+}
+
+/** Role slots keep fixed types; only normal slots are regionally weighted. */
+function typeForRole(role: NodeRole, fullContent: boolean): NodeType {
+  if (role === 'anchor') return 'anchor';
+  if (role === 'boss') return fullContent ? 'boss' : 'battle';
+  return 'battle';
+}
+
+function makeNode(id: string, level: number, role: NodeRole, type: NodeType): MapNode {
+  return { id, level, type, role, previewKey: `preview.${id}`, instabilityDelta: definitionOf(type).defaultInstabilityDelta };
 }
 
 function canonicalNodes(nodes: readonly MapNode[]): readonly MapNode[] {
@@ -54,6 +94,8 @@ export function buildCandidate(input: MapGenerationInput, profile: MapProfile, a
   for (let level = 0; level < LEVELS; level += 1) {
     r = nextU32(r);
     const role = ROLE_BY_LEVEL[level] ?? 'normal';
+    const fullContent = isFullContent(input.contentRevision);
+    const type = role === 'normal' && fullContent ? pickNormalType(nextU32(r)) : typeForRole(role, fullContent);
     let id = `n${String(level)}_${String(r % 997).padStart(3, '0')}`;
     let guard = 0;
     while (mainIds.has(id) && guard < 16) {
@@ -62,7 +104,7 @@ export function buildCandidate(input: MapGenerationInput, profile: MapProfile, a
       guard += 1;
     }
     mainIds.add(id);
-    nodes.push(makeNode(id, level, role));
+    nodes.push(makeNode(id, level, role, type));
     path.push(id);
     if (level > 0) {
       const from = path[level - 1];
@@ -75,8 +117,9 @@ export function buildCandidate(input: MapGenerationInput, profile: MapProfile, a
       const sideCount = r % 3;
       for (let side = 0; side < sideCount; side += 1) {
         r = nextU32(r);
+        const sideType = isFullContent(input.contentRevision) ? pickNormalType(nextU32(r)) : 'battle';
         const sideId = `n${String(level)}s${String(side)}_${String(r % 997).padStart(3, '0')}`;
-        nodes.push(makeNode(sideId, level, 'normal'));
+        nodes.push(makeNode(sideId, level, 'normal', sideType));
         const from = path[level - 1];
         if (from === undefined) throw new ExpeditionError('INVALID_MAP', { reason: 'path-invariant' });
         edges.push({ id: `e_${from}_${sideId}`, from, to: sideId });
@@ -108,8 +151,9 @@ export function buildFallback(input: MapGenerationInput, profile: MapProfile, ca
   const path: NodeId[] = [];
   for (let level = 0; level < LEVELS; level += 1) {
     const role = ROLE_BY_LEVEL[level] ?? 'normal';
+    const type = typeForRole(role, isFullContent(input.contentRevision));
     const id = `fallback_${String(level)}`;
-    nodes.push(makeNode(id, level, role));
+    nodes.push(makeNode(id, level, role, type));
     path.push(id);
     if (level > 0) {
       const from = path[level - 1];

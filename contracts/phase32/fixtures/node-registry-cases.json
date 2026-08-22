@@ -1,0 +1,54 @@
+[
+  {
+    "nodeType": "BATTLE",
+    "handlerExpected": true
+  },
+  {
+    "nodeType": "ELITE",
+    "handlerExpected": true
+  },
+  {
+    "nodeType": "BOSS",
+    "handlerExpected": true
+  },
+  {
+    "nodeType": "EVENT",
+    "handlerExpected": true
+  },
+  {
+    "nodeType": "MERCHANT",
+    "handlerExpected": true
+  },
+  {
+    "nodeType": "RECRUITMENT",
+    "handlerExpected": true
+  },
+  {
+    "nodeType": "TREASURE",
+    "handlerExpected": true
+  },
+  {
+    "nodeType": "WORKSHOP",
+    "handlerExpected": true
+  },
+  {
+    "nodeType": "ALTAR",
+    "handlerExpected": true
+  },
+  {
+    "nodeType": "SCOUT",
+    "handlerExpected": true
+  },
+  {
+    "nodeType": "ANCHOR",
+    "handlerExpected": true
+  },
+  {
+    "nodeType": "STORY",
+    "handlerExpected": true
+  },
+  {
+    "nodeType": "UNKNOWN",
+    "handlerExpected": false
+  }
+]

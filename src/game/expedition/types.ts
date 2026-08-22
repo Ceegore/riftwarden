@@ -1,14 +1,32 @@
 /**
- * Phase 28 expedition domain types (RUN_DOMAIN_CONTRACT + MAP_GENERATOR_CONTRACT):
- * deterministic maps with stable node/edge ids over six logical levels, an
- * immutable saveable RunState, reachability-based previews and the closed
- * node stage machine. References are ids plus version references — never UI
- * text or object identity.
+ * Phase 28/32 expedition domain types (RUN_DOMAIN_CONTRACT +
+ * MAP_GENERATOR_CONTRACT + NODE_REGISTRY_CONTRACT): deterministic maps with
+ * stable node/edge ids over six logical levels, an immutable saveable
+ * RunState, reachability-based previews, the closed node stage machine and
+ * the closed twelve-type node registry. References are ids plus version
+ * references — never UI text or object identity.
  */
 export type NodeId = string;
 
-/** Closed, extensible node registry: minimum types only (Phase 32 adds more). */
-export const NODE_TYPES = ['battle', 'anchor'] as const;
+/**
+ * Closed node registry (NODE_REGISTRY_CONTRACT): exactly these twelve node
+ * types exist; every content node id maps to exactly one handler. Adding a
+ * node family is a Phase 32+ code change, never runtime improvisation.
+ */
+export const NODE_TYPES = [
+  'battle',
+  'elite',
+  'boss',
+  'event',
+  'merchant',
+  'recruitment',
+  'treasure',
+  'workshop',
+  'altar',
+  'scout',
+  'anchor',
+  'story',
+] as const;
 export type NodeType = (typeof NODE_TYPES)[number];
 
 export type NodeRole = 'start' | 'normal' | 'preparation' | 'anchor' | 'boss';

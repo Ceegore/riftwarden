@@ -1,0 +1,17 @@
+{
+  "offers": [
+    {
+      "offerId": "r-1",
+      "troopTypeId": "troop-01"
+    },
+    {
+      "offerId": "r-2",
+      "troopTypeId": "troop-02"
+    },
+    {
+      "offerId": "r-3",
+      "troopTypeId": "troop-03"
+    }
+  ],
+  "copyLimit": 3
+}

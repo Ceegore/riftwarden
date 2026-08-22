@@ -1,0 +1,18 @@
+[
+  {
+    "case": "secured",
+    "lostOnDefeat": false
+  },
+  {
+    "case": "unsecured",
+    "lostOnDefeat": true
+  },
+  {
+    "case": "full-relic-cap",
+    "requiresReplacement": true
+  },
+  {
+    "case": "duplicate-reward-id",
+    "replayed": true
+  }
+]

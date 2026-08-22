@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "phase": 32,
+  "gate": "G32",
+  "evidence": {
+    "constants": "contracts/phase32/phase32-constants.json",
+    "eventFixtures": {
+      "fixture": "contracts/phase32/fixtures/events-30.json",
+      "path": "src/game/expedition/events/event-content.ts",
+      "validator": "src/game/expedition/events/event-validator.ts",
+      "service": "src/game/expedition/events/event-service.ts"
+    },
+    "merchantFixtures": {
+      "fixture": "contracts/phase32/fixtures/merchant-cases.json",
+      "path": "src/game/expedition/offers/offer-service.ts"
+    },
+    "recruitmentFixtures": {
+      "fixture": "contracts/phase32/fixtures/recruitment-cases.json"
+    },
+    "choiceFixtures": {
+      "fixture": "contracts/phase32/fixtures/choice-node-cases.json"
+    },
+    "killStorage": {
+      "fixture": "contracts/phase32/fixtures/kill-storage-matrix.json",
+      "path": "src/game/expedition/nodes/node-transaction.ts"
+    },
+    "lootCases": {
+      "fixture": "contracts/phase32/fixtures/loot-cases.json",
+      "path": "src/game/expedition/reward-pool.ts"
+    },
+    "nodeRegistry": {
+      "fixture": "contracts/phase32/fixtures/node-registry-cases.json",
+      "path": "src/game/expedition/nodes/registry.ts"
+    },
+    "mapProfiles": {
+      "fixture": "contracts/phase32/fixtures/map-profiles.json",
+      "path": "src/game/expedition/map-generator.ts"
+    },
+    "goldenRegistry": "contracts/phase32/golden-registry.json",
+    "mapQaReport": "contracts/phase32/map-qa-report.json",
+    "modules": [
+      "src/game/expedition/types.ts",
+      "src/game/expedition/expedition-error.ts",
+      "src/game/expedition/node-registry.ts",
+      "src/game/expedition/node-flow.ts",
+      "src/game/expedition/map-generator.ts",
+      "src/game/expedition/stable.ts",
+      "src/game/expedition/reachability.ts",
+      "src/game/expedition/run-reducer.ts",
+      "src/game/expedition/run-state.ts",
+      "src/game/expedition/outcome-commands.ts",
+      "src/game/expedition/run-economy.ts",
+      "src/game/expedition/reward-pool.ts",
+      "src/game/expedition/nodes/types.ts",
+      "src/game/expedition/nodes/registry.ts",
+      "src/game/expedition/nodes/run-state.ts",
+      "src/game/expedition/nodes/visit-state.ts",
+      "src/game/expedition/nodes/node-transaction.ts",
+      "src/game/expedition/nodes/handlers/index.ts",
+      "src/game/expedition/nodes/handlers/common.ts",
+      "src/game/expedition/nodes/handlers/combat.ts",
+      "src/game/expedition/nodes/handlers/event.ts",
+      "src/game/expedition/nodes/handlers/merchant.ts",
+      "src/game/expedition/nodes/handlers/recruitment.ts",
+      "src/game/expedition/nodes/handlers/treasure.ts",
+      "src/game/expedition/nodes/handlers/workshop.ts",
+      "src/game/expedition/nodes/handlers/altar.ts",
+      "src/game/expedition/nodes/handlers/scout.ts",
+      "src/game/expedition/nodes/handlers/anchor.ts",
+      "src/game/expedition/nodes/handlers/choice.ts",
+      "src/game/expedition/events/event-types.ts",
+      "src/game/expedition/events/event-content.ts",
+      "src/game/expedition/events/event-validator.ts",
+      "src/game/expedition/events/event-service.ts",
+      "src/game/expedition/offers/offer-service.ts"
+    ],
+    "tests": [
+      "tests/sim/phase32-contracts.test.ts",
+      "tests/sim/phase32-event-service.test.ts",
+      "tests/sim/phase32-offer-service.test.ts",
+      "tests/sim/phase32-recruitment.test.ts",
+      "tests/sim/phase32-choice-nodes.test.ts",
+      "tests/sim/phase32-combat.test.ts",
+      "tests/sim/phase32-node-transaction.test.ts",
+      "tests/sim/phase32-run-economy.test.ts",
+      "tests/sim/phase32-recovery.test.ts"
+    ]
+  },
+  "hardBlockers": [
+    "P32_G32_G31_NOT_PROVEN",
+    "P32_G32_UI_DEVICE_RENDER_NOT_RUN",
+    "P32_G32_A11Y_SCREENREADER_EVIDENCE_MISSING",
+    "P32_G32_VISUAL_GOLDENS_DEVICE_MISSING",
+    "P32_G32_E2E_BROWSER_EVIDENCE_MISSING",
+    "P32_G32_PERFORMANCE_DEVICE_MEASURE_MISSING",
+    "P32_G32_RELEASE_COUNT_CONTENT_NOT_SHIPPED",
+    "P32_G32_SAVE_MIGRATION_NOT_RUN"
+  ]
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "type": "TREASURE",
+    "actions": [
+      "TAKE",
+      "DECLINE"
+    ]
+  },
+  {
+    "type": "WORKSHOP",
+    "actions": [
+      "POLISH",
+      "REPAIR",
+      "DECLINE"
+    ],
+    "maxActions": 1
+  },
+  {
+    "type": "ALTAR",
+    "actions": [
+      "ACCEPT",
+      "DECLINE"
+    ],
+    "parallelBenefitDownside": true
+  },
+  {
+    "type": "SCOUT",
+    "actions": [
+      "REVEAL_PATH",
+      "REVEAL_REWARD",
+      "DECLINE"
+    ]
+  }
+]

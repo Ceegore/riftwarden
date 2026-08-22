@@ -38,11 +38,24 @@ describe('phase28 constants contract', () => {
     expect(constants.rcSampleMaps).toBe(100000);
   });
 
-  it('exposes exactly the closed node types', () => {
-    expect(NODE_TYPES).toEqual(['battle', 'anchor']);
+  it('exposes exactly the closed node types (Phase 32 supersession: 12 types)', () => {
+    expect(NODE_TYPES).toEqual([
+      'battle',
+      'elite',
+      'boss',
+      'event',
+      'merchant',
+      'recruitment',
+      'treasure',
+      'workshop',
+      'altar',
+      'scout',
+      'anchor',
+      'story',
+    ]);
     expect(isNodeType('battle')).toBe(true);
     expect(isNodeType('anchor')).toBe(true);
-    expect(isNodeType('merchant')).toBe(false);
+    expect(isNodeType('merchant')).toBe(true);
   });
 });
 

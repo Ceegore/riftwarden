@@ -1,0 +1,14 @@
+{
+  "phase": 32,
+  "eventCount": 30,
+  "merchantOfferCount": 4,
+  "merchantServiceCount": 1,
+  "merchantMaxRerolls": 1,
+  "recruitmentMinOffers": 2,
+  "recruitmentMaxOffers": 3,
+  "mapValidationRuns": 100000,
+  "logicalLayers": 6,
+  "minVisits": 5,
+  "maxVisits": 8,
+  "gate": "G32"
+}

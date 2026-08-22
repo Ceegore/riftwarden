@@ -1,0 +1,22 @@
+[
+  {
+    "point": "before_prepare",
+    "expected": "no mutation"
+  },
+  {
+    "point": "after_prepare_before_durable_commit",
+    "expected": "resume or rollback"
+  },
+  {
+    "point": "after_durable_commit_before_resolve",
+    "expected": "ledger replay"
+  },
+  {
+    "point": "after_resolve_before_navigation",
+    "expected": "presentation only"
+  },
+  {
+    "point": "storage_failure",
+    "expected": "no success UI"
+  }
+]

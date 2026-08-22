@@ -1,0 +1,595 @@
+{
+  "schemaVersion": 1,
+  "phase": 32,
+  "kind": "node-snapshot-golden",
+  "sourceSha256": "c132766d78f1a0e7e95794f0ecef042bbe9d341c10be87a50df5c74de7d18ebc",
+  "pinnedOffers": [
+    {
+      "snapshotId": "golden-run-0:golden-merchant-0",
+      "nodeId": "golden-merchant-0",
+      "seed": 485330547,
+      "offers": [
+        {
+          "offerId": "golden-merchant-0-offer-0",
+          "priceGold": 11,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-0:0",
+          "labelKey": "offer.golden-merchant-0.0"
+        },
+        {
+          "offerId": "golden-merchant-0-offer-1",
+          "priceGold": 70,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-0:1",
+          "labelKey": "offer.golden-merchant-0.1"
+        },
+        {
+          "offerId": "golden-merchant-0-offer-2",
+          "priceGold": 86,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-0:2",
+          "labelKey": "offer.golden-merchant-0.2"
+        },
+        {
+          "offerId": "golden-merchant-0-offer-3",
+          "priceGold": 28,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-0:3",
+          "labelKey": "offer.golden-merchant-0.3"
+        }
+      ],
+      "rollSlots": {
+        "risk": 748,
+        "reward": 9217
+      },
+      "rerollsUsed": 0
+    },
+    {
+      "snapshotId": "golden-run-1:golden-merchant-1",
+      "nodeId": "golden-merchant-1",
+      "seed": 1426810767,
+      "offers": [
+        {
+          "offerId": "golden-merchant-1-offer-0",
+          "priceGold": 61,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-1:0",
+          "labelKey": "offer.golden-merchant-1.0"
+        },
+        {
+          "offerId": "golden-merchant-1-offer-1",
+          "priceGold": 56,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-1:1",
+          "labelKey": "offer.golden-merchant-1.1"
+        },
+        {
+          "offerId": "golden-merchant-1-offer-2",
+          "priceGold": 48,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-1:2",
+          "labelKey": "offer.golden-merchant-1.2"
+        },
+        {
+          "offerId": "golden-merchant-1-offer-3",
+          "priceGold": 78,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-1:3",
+          "labelKey": "offer.golden-merchant-1.3"
+        }
+      ],
+      "rollSlots": {
+        "risk": 5713,
+        "reward": 6
+      },
+      "rerollsUsed": 0
+    },
+    {
+      "snapshotId": "golden-run-2:golden-merchant-2",
+      "nodeId": "golden-merchant-2",
+      "seed": 49482151,
+      "offers": [
+        {
+          "offerId": "golden-merchant-2-offer-0",
+          "priceGold": 23,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-2:0",
+          "labelKey": "offer.golden-merchant-2.0"
+        },
+        {
+          "offerId": "golden-merchant-2-offer-1",
+          "priceGold": 82,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-2:1",
+          "labelKey": "offer.golden-merchant-2.1"
+        },
+        {
+          "offerId": "golden-merchant-2-offer-2",
+          "priceGold": 16,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-2:2",
+          "labelKey": "offer.golden-merchant-2.2"
+        },
+        {
+          "offerId": "golden-merchant-2-offer-3",
+          "priceGold": 84,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-2:3",
+          "labelKey": "offer.golden-merchant-2.3"
+        }
+      ],
+      "rollSlots": {
+        "risk": 7712,
+        "reward": 8513
+      },
+      "rerollsUsed": 0
+    },
+    {
+      "snapshotId": "golden-run-3:golden-merchant-3",
+      "nodeId": "golden-merchant-3",
+      "seed": 494725307,
+      "offers": [
+        {
+          "offerId": "golden-merchant-3-offer-0",
+          "priceGold": 13,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-3:0",
+          "labelKey": "offer.golden-merchant-3.0"
+        },
+        {
+          "offerId": "golden-merchant-3-offer-1",
+          "priceGold": 31,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-3:1",
+          "labelKey": "offer.golden-merchant-3.1"
+        },
+        {
+          "offerId": "golden-merchant-3-offer-2",
+          "priceGold": 45,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-3:2",
+          "labelKey": "offer.golden-merchant-3.2"
+        },
+        {
+          "offerId": "golden-merchant-3-offer-3",
+          "priceGold": 53,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-3:3",
+          "labelKey": "offer.golden-merchant-3.3"
+        }
+      ],
+      "rollSlots": {
+        "risk": 6464,
+        "reward": 3676
+      },
+      "rerollsUsed": 0
+    },
+    {
+      "snapshotId": "golden-run-4:golden-merchant-4",
+      "nodeId": "golden-merchant-4",
+      "seed": 2927475163,
+      "offers": [
+        {
+          "offerId": "golden-merchant-4-offer-0",
+          "priceGold": 55,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-4:0",
+          "labelKey": "offer.golden-merchant-4.0"
+        },
+        {
+          "offerId": "golden-merchant-4-offer-1",
+          "priceGold": 64,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-4:1",
+          "labelKey": "offer.golden-merchant-4.1"
+        },
+        {
+          "offerId": "golden-merchant-4-offer-2",
+          "priceGold": 44,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-4:2",
+          "labelKey": "offer.golden-merchant-4.2"
+        },
+        {
+          "offerId": "golden-merchant-4-offer-3",
+          "priceGold": 34,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-4:3",
+          "labelKey": "offer.golden-merchant-4.3"
+        }
+      ],
+      "rollSlots": {
+        "risk": 9085,
+        "reward": 3947
+      },
+      "rerollsUsed": 0
+    },
+    {
+      "snapshotId": "golden-run-5:golden-merchant-5",
+      "nodeId": "golden-merchant-5",
+      "seed": 2599696207,
+      "offers": [
+        {
+          "offerId": "golden-merchant-5-offer-0",
+          "priceGold": 99,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-5:0",
+          "labelKey": "offer.golden-merchant-5.0"
+        },
+        {
+          "offerId": "golden-merchant-5-offer-1",
+          "priceGold": 19,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-5:1",
+          "labelKey": "offer.golden-merchant-5.1"
+        },
+        {
+          "offerId": "golden-merchant-5-offer-2",
+          "priceGold": 67,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-5:2",
+          "labelKey": "offer.golden-merchant-5.2"
+        },
+        {
+          "offerId": "golden-merchant-5-offer-3",
+          "priceGold": 76,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-5:3",
+          "labelKey": "offer.golden-merchant-5.3"
+        }
+      ],
+      "rollSlots": {
+        "risk": 5440,
+        "reward": 9482
+      },
+      "rerollsUsed": 0
+    },
+    {
+      "snapshotId": "golden-run-6:golden-merchant-6",
+      "nodeId": "golden-merchant-6",
+      "seed": 2761991527,
+      "offers": [
+        {
+          "offerId": "golden-merchant-6-offer-0",
+          "priceGold": 77,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-6:0",
+          "labelKey": "offer.golden-merchant-6.0"
+        },
+        {
+          "offerId": "golden-merchant-6-offer-1",
+          "priceGold": 71,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-6:1",
+          "labelKey": "offer.golden-merchant-6.1"
+        },
+        {
+          "offerId": "golden-merchant-6-offer-2",
+          "priceGold": 80,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-6:2",
+          "labelKey": "offer.golden-merchant-6.2"
+        },
+        {
+          "offerId": "golden-merchant-6-offer-3",
+          "priceGold": 76,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-6:3",
+          "labelKey": "offer.golden-merchant-6.3"
+        }
+      ],
+      "rollSlots": {
+        "risk": 9174,
+        "reward": 9392
+      },
+      "rerollsUsed": 0
+    },
+    {
+      "snapshotId": "golden-run-7:golden-merchant-7",
+      "nodeId": "golden-merchant-7",
+      "seed": 3425800611,
+      "offers": [
+        {
+          "offerId": "golden-merchant-7-offer-0",
+          "priceGold": 95,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-7:0",
+          "labelKey": "offer.golden-merchant-7.0"
+        },
+        {
+          "offerId": "golden-merchant-7-offer-1",
+          "priceGold": 64,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-7:1",
+          "labelKey": "offer.golden-merchant-7.1"
+        },
+        {
+          "offerId": "golden-merchant-7-offer-2",
+          "priceGold": 15,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-7:2",
+          "labelKey": "offer.golden-merchant-7.2"
+        },
+        {
+          "offerId": "golden-merchant-7-offer-3",
+          "priceGold": 49,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-7:3",
+          "labelKey": "offer.golden-merchant-7.3"
+        }
+      ],
+      "rollSlots": {
+        "risk": 1196,
+        "reward": 7926
+      },
+      "rerollsUsed": 0
+    },
+    {
+      "snapshotId": "golden-run-8:golden-merchant-8",
+      "nodeId": "golden-merchant-8",
+      "seed": 916748995,
+      "offers": [
+        {
+          "offerId": "golden-merchant-8-offer-0",
+          "priceGold": 55,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-8:0",
+          "labelKey": "offer.golden-merchant-8.0"
+        },
+        {
+          "offerId": "golden-merchant-8-offer-1",
+          "priceGold": 97,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-8:1",
+          "labelKey": "offer.golden-merchant-8.1"
+        },
+        {
+          "offerId": "golden-merchant-8-offer-2",
+          "priceGold": 38,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-8:2",
+          "labelKey": "offer.golden-merchant-8.2"
+        },
+        {
+          "offerId": "golden-merchant-8-offer-3",
+          "priceGold": 92,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-8:3",
+          "labelKey": "offer.golden-merchant-8.3"
+        }
+      ],
+      "rollSlots": {
+        "risk": 9318,
+        "reward": 223
+      },
+      "rerollsUsed": 0
+    },
+    {
+      "snapshotId": "golden-run-9:golden-merchant-9",
+      "nodeId": "golden-merchant-9",
+      "seed": 4159764431,
+      "offers": [
+        {
+          "offerId": "golden-merchant-9-offer-0",
+          "priceGold": 38,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-9:0",
+          "labelKey": "offer.golden-merchant-9.0"
+        },
+        {
+          "offerId": "golden-merchant-9-offer-1",
+          "priceGold": 100,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-9:1",
+          "labelKey": "offer.golden-merchant-9.1"
+        },
+        {
+          "offerId": "golden-merchant-9-offer-2",
+          "priceGold": 95,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-9:2",
+          "labelKey": "offer.golden-merchant-9.2"
+        },
+        {
+          "offerId": "golden-merchant-9-offer-3",
+          "priceGold": 78,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-9:3",
+          "labelKey": "offer.golden-merchant-9.3"
+        }
+      ],
+      "rollSlots": {
+        "risk": 6726,
+        "reward": 5768
+      },
+      "rerollsUsed": 0
+    },
+    {
+      "snapshotId": "golden-run-10:golden-merchant-10",
+      "nodeId": "golden-merchant-10",
+      "seed": 1107065339,
+      "offers": [
+        {
+          "offerId": "golden-merchant-10-offer-0",
+          "priceGold": 61,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-10:0",
+          "labelKey": "offer.golden-merchant-10.0"
+        },
+        {
+          "offerId": "golden-merchant-10-offer-1",
+          "priceGold": 42,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-10:1",
+          "labelKey": "offer.golden-merchant-10.1"
+        },
+        {
+          "offerId": "golden-merchant-10-offer-2",
+          "priceGold": 92,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-10:2",
+          "labelKey": "offer.golden-merchant-10.2"
+        },
+        {
+          "offerId": "golden-merchant-10-offer-3",
+          "priceGold": 46,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-10:3",
+          "labelKey": "offer.golden-merchant-10.3"
+        }
+      ],
+      "rollSlots": {
+        "risk": 3222,
+        "reward": 7692
+      },
+      "rerollsUsed": 0
+    },
+    {
+      "snapshotId": "golden-run-11:golden-merchant-11",
+      "nodeId": "golden-merchant-11",
+      "seed": 333096829,
+      "offers": [
+        {
+          "offerId": "golden-merchant-11-offer-0",
+          "priceGold": 98,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-11:0",
+          "labelKey": "offer.golden-merchant-11.0"
+        },
+        {
+          "offerId": "golden-merchant-11-offer-1",
+          "priceGold": 42,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-11:1",
+          "labelKey": "offer.golden-merchant-11.1"
+        },
+        {
+          "offerId": "golden-merchant-11-offer-2",
+          "priceGold": 43,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-11:2",
+          "labelKey": "offer.golden-merchant-11.2"
+        },
+        {
+          "offerId": "golden-merchant-11-offer-3",
+          "priceGold": 15,
+          "stock": 1,
+          "rewardId": "reward:golden-merchant-11:3",
+          "labelKey": "offer.golden-merchant-11.3"
+        }
+      ],
+      "rollSlots": {
+        "risk": 1091,
+        "reward": 2425
+      },
+      "rerollsUsed": 0
+    }
+  ],
+  "pinnedEvents": [
+    {
+      "eventId": "event-01",
+      "nodeId": "golden-event-node-0",
+      "seed": 2288484301,
+      "rollSlots": {
+        "e01-risk": 6594,
+        "e01-reward": 4247
+      }
+    },
+    {
+      "eventId": "event-02",
+      "nodeId": "golden-event-node-1",
+      "seed": 49252993,
+      "rollSlots": {
+        "e02-risk": 1758,
+        "e02-reward": 3093
+      }
+    },
+    {
+      "eventId": "event-03",
+      "nodeId": "golden-event-node-2",
+      "seed": 3115581557,
+      "rollSlots": {
+        "e03-risk": 3720,
+        "e03-reward": 3828
+      }
+    },
+    {
+      "eventId": "event-04",
+      "nodeId": "golden-event-node-3",
+      "seed": 3571084097,
+      "rollSlots": {
+        "e04-risk": 5128,
+        "e04-reward": 9960
+      }
+    },
+    {
+      "eventId": "event-05",
+      "nodeId": "golden-event-node-4",
+      "seed": 621388389,
+      "rollSlots": {
+        "e05-risk": 4551,
+        "e05-reward": 455
+      }
+    },
+    {
+      "eventId": "event-06",
+      "nodeId": "golden-event-node-5",
+      "seed": 3661593121,
+      "rollSlots": {
+        "e06-risk": 7724,
+        "e06-reward": 5156
+      }
+    },
+    {
+      "eventId": "event-07",
+      "nodeId": "golden-event-node-6",
+      "seed": 2310083341,
+      "rollSlots": {
+        "e07-risk": 2405,
+        "e07-reward": 3943
+      }
+    },
+    {
+      "eventId": "event-08",
+      "nodeId": "golden-event-node-7",
+      "seed": 4248086001,
+      "rollSlots": {
+        "e08-risk": 1764,
+        "e08-reward": 5345
+      }
+    }
+  ],
+  "sweep": {
+    "count": 10000,
+    "failures": 0,
+    "firstFailure": {
+      "index": -1,
+      "node": "none"
+    }
+  },
+  "registry": {
+    "failures": 0,
+    "checks": [
+      {
+        "check": "registry-size",
+        "ok": true
+      },
+      {
+        "check": "merchant-offer-count",
+        "ok": true
+      },
+      {
+        "check": "recruitment-range",
+        "ok": true
+      },
+      {
+        "check": "events-30",
+        "ok": true
+      },
+      {
+        "check": "duplicate-rejected",
+        "ok": true
+      }
+    ]
+  }
+}

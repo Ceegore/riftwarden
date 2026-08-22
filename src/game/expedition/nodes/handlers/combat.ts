@@ -1,0 +1,131 @@
+/**
+ * Combat node family (battle / elite / boss): ENGAGE resolves the
+ * deterministic reward snapshot (claim options + roll slots stored once),
+ * CLAIM_REWARD grants the chosen reward exactly once. Battle grants gold plus
+ * a 35% loot chance (GDD §23.3), elite higher gold plus a guaranteed
+ * three-way choice, boss a three-way choice — all from the persisted seed,
+ * never re-rolled.
+ */
+import { ExpeditionError } from '../../expedition-error.js';
+import { applyOutcomeCommands } from '../../outcome-commands.js';
+import { fnv1a32, nextU32 } from '../../stable.js';
+import type { NodeHandler } from '../registry.js';
+import type { NodeDefinition, NodeRunState, OutcomeCommand, RewardSnapshot } from '../types.js';
+import { assertVisitOpen, enterCommands, hasCommittedAction, previewOf, requireRewardSnapshot } from './common.js';
+
+const BATTLE_GOLD_MIN = 45;
+const BATTLE_GOLD_SPAN = 26;
+const ELITE_GOLD_MIN = 90;
+const ELITE_GOLD_SPAN = 51;
+const LOOT_CHANCE_PERMILLE = 350;
+
+function rewardSeed(state: NodeRunState, nodeId: string): number {
+  return fnv1a32([state.runId, nodeId, state.contentRevision, 'reward']);
+}
+
+function buildRewardSnapshot(state: NodeRunState, definition: NodeDefinition, count: number): RewardSnapshot {
+  const seed = rewardSeed(state, definition.nodeId);
+  const ids: string[] = [];
+  let cursor = seed;
+  for (let index = 0; index < count; index += 1) {
+    cursor = nextU32(cursor);
+    ids.push(`reward:${definition.nodeId}:${String(index)}`);
+  }
+  return {
+    kind: 'REWARD',
+    snapshotId: `${state.runId}:${definition.nodeId}`,
+    nodeId: definition.nodeId,
+    seed,
+    rewardIds: ids,
+    rollSlots: { loot: nextU32(cursor) % 10000, gold: nextU32(nextU32(cursor)) % 10000 },
+  };
+}
+
+function materializeReward(state: NodeRunState, definition: NodeDefinition, count: number): RewardSnapshot {
+  const existing = state.snapshots[definition.nodeId];
+  if (existing !== undefined) {
+    if (existing.kind !== 'REWARD') {
+      throw new ExpeditionError('SNAPSHOT_MISMATCH', { nodeId: definition.nodeId, kind: existing.kind });
+    }
+    return existing;
+  }
+  return buildRewardSnapshot(state, definition, count);
+}
+
+function attachReward(state: NodeRunState, snapshot: RewardSnapshot): NodeRunState {
+  if (state.snapshots[snapshot.nodeId] !== undefined) return state;
+  return { ...state, revision: state.revision + 1, snapshots: { ...state.snapshots, [snapshot.nodeId]: snapshot } };
+}
+
+function goldAmount(snapshot: RewardSnapshot, min: number, span: number): number {
+  return min + ((snapshot.rollSlots['gold'] ?? 0) % span);
+}
+
+function makeCombatHandler(
+  type: 'battle' | 'elite' | 'boss',
+  rewardCount: number,
+  goldMin: number,
+  goldSpan: number,
+  rewardCategoryKey: string,
+  hasLootChance: boolean,
+): NodeHandler {
+  const actions = ['ENTER', 'ENGAGE', 'CLAIM_REWARD', 'DECLINE'];
+  return {
+    type,
+    allowedActions: actions,
+    requiredData: [],
+    commitPhase: 'ATOMIC',
+    prepare(definition, state) {
+      const snapshot = materializeReward(state, definition, rewardCount);
+      return { state: attachReward(state, snapshot), preview: previewOf(definition, actions, rewardCategoryKey, []) };
+    },
+    validate(definition, request, state) {
+      assertVisitOpen(state, definition.nodeId);
+      if (hasCommittedAction(state, definition.nodeId, ['DECLINE', 'CLAIM_REWARD'])) return 'ACTION_LIMIT';
+      if (request.action === 'ENTER' || request.action === 'ENGAGE' || request.action === 'DECLINE') {
+        return null;
+      }
+      if (request.action === 'CLAIM_REWARD') {
+        if (request.optionId === undefined) {
+          throw new ExpeditionError('UNKNOWN_ACTION', { nodeId: definition.nodeId, action: request.action, reason: 'optionId missing' });
+        }
+        const snapshot = requireRewardSnapshot(state, definition.nodeId);
+        if (!snapshot.rewardIds.includes(request.optionId)) {
+          throw new ExpeditionError('UNKNOWN_OFFER', { nodeId: definition.nodeId, offerId: request.optionId });
+        }
+        return null;
+      }
+      throw new ExpeditionError('UNKNOWN_ACTION', { nodeId: definition.nodeId, action: request.action });
+    },
+    commit(definition, request, state) {
+      if (request.action === 'ENTER') {
+        return applyOutcomeCommands(state, enterCommands(definition));
+      }
+      const snapshot = materializeReward(state, definition, rewardCount);
+      if (request.action === 'ENGAGE') {
+        const commands: OutcomeCommand[] = [];
+        if (goldMin > 0) commands.push({ kind: 'GOLD_DELTA', amount: goldAmount(snapshot, goldMin, goldSpan) });
+        if (hasLootChance && (snapshot.rollSlots['loot'] ?? 0) < LOOT_CHANCE_PERMILLE) {
+          commands.push({ kind: 'GRANT_UNSECURED_LOOT', rewardId: `reward:${definition.nodeId}:loot` });
+        }
+        return applyOutcomeCommands(state, commands);
+      }
+      if (request.action === 'CLAIM_REWARD') {
+        if (request.optionId === undefined) {
+          throw new ExpeditionError('UNKNOWN_ACTION', { nodeId: definition.nodeId, action: request.action });
+        }
+        return applyOutcomeCommands(state, [{ kind: 'GRANT_UNSECURED_LOOT', rewardId: request.optionId }]);
+      }
+      return { state, outcomeIds: [] };
+    },
+  };
+}
+
+/** Battle: gold plus a 35% loot chance and a two-way claim (GDD §23.3). */
+export const battleHandler = makeCombatHandler('battle', 2, BATTLE_GOLD_MIN, BATTLE_GOLD_SPAN, 'reward.category.battle', true);
+
+/** Elite: higher gold and a guaranteed three-way claim (GDD §23.3). */
+export const eliteHandler = makeCombatHandler('elite', 3, ELITE_GOLD_MIN, ELITE_GOLD_SPAN, 'reward.category.elite', false);
+
+/** Boss: a three-way claim (GDD §23.3). */
+export const bossHandler = makeCombatHandler('boss', 3, 0, 0, 'reward.category.boss', false);

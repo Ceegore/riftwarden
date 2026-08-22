@@ -46,16 +46,29 @@ describe('phase28 node flow', () => {
 });
 
 describe('phase28 closed registry', () => {
-  it('accepts exactly the two minimum types', () => {
-    expect(NODE_TYPES).toEqual(['battle', 'anchor']);
+  it('accepts exactly the twelve Phase 32 types', () => {
+    expect(NODE_TYPES).toEqual([
+      'battle',
+      'elite',
+      'boss',
+      'event',
+      'merchant',
+      'recruitment',
+      'treasure',
+      'workshop',
+      'altar',
+      'scout',
+      'anchor',
+      'story',
+    ]);
     expect(isNodeType('battle')).toBe(true);
     expect(isNodeType('anchor')).toBe(true);
-    expect(isNodeType('merchant')).toBe(false);
+    expect(isNodeType('merchant')).toBe(true);
   });
 
   it('assertNodeType rejects unsupported types', () => {
     expect(catchExpeditionCode(() => {
-      assertNodeType('merchant');
+      assertNodeType('unknown');
     })).toBe('UNKNOWN_NODE_TYPE');
     expect(catchExpeditionCode(() => {
       assertNodeType(42);

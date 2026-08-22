@@ -28,6 +28,7 @@ export const GENERATED_PREFIXES = Object.freeze([
   'contracts/math/',
   'contracts/random/',
   'contracts/sim/',
+  'contracts/phase32/fixtures/',
 ]);
 
 // Individual generated files (not prefixes) that bypass the line gate.
@@ -52,6 +53,8 @@ export const GENERATED_FILES = Object.freeze([
   'docs/requirements/external-decisions.json',
   'docs/requirements/chapter-dispositions.json',
   'docs/requirements/source-headings.json',
+  'contracts/phase32/golden-registry.json',
+  'contracts/phase32/map-qa-report.json',
 ]);
 
 export const GENERATED_CONTRACT_MARKER = 'GENERATED_DIRECTORY_CONTRACT';
