@@ -121,6 +121,8 @@ export interface NodeRunState {
   readonly runId: string;
   readonly modeId: string;
   readonly contentRevision: string;
+  readonly seed: number;
+  readonly mapHash: string;
   readonly gold: number;
   readonly instability: number;
   readonly goldEarned: number;

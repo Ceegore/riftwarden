@@ -33,6 +33,7 @@ export function baseState(overrides: Partial<NodeRunState> = {}): NodeRunState {
     modeId: 'NORMAL',
     contentRevision: '32.0',
     seed: 1000,
+    mapHash: 'fixture-map-hash',
     gold: 100,
   });
   return { ...state, ...overrides };

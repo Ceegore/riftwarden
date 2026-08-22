@@ -167,6 +167,15 @@ describe('phase32 expedition runner full path', () => {
     expect(restored.currentNodeId).toBe(nextId);
     expect(restored.state.gold).toBe(snapshotted.gold);
   });
+
+  it('rejects restoring a state against a different map or content revision', () => {
+    const map = mapFor(202);
+    const exp = createExpedition(map, { startGold: 100 });
+    const mismatched: NodeRunState = { ...exp.state, mapHash: 'different-map-hash' };
+    expect(() => restoreExpedition(mismatched, map, map.startNodeId)).toThrow('expedition.SAVE_MAP_MISMATCH');
+    const otherMap = mapFor(203);
+    expect(() => restoreExpedition(exp.state, otherMap, otherMap.startNodeId)).toThrow('expedition.SAVE_MAP_MISMATCH');
+  });
 });
 
 describe('phase32 expedition runner node-type coverage', () => {

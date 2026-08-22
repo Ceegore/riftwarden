@@ -127,6 +127,7 @@ export function createExpedition(map: ExpeditionMap, config: ExpeditionConfig): 
     modeId: map.profileId,
     contentRevision: map.contentRevision,
     seed: map.seed,
+    mapHash: map.mapHash,
     gold: config.startGold,
     troopCopies: config.troopCopies ?? {},
   });
@@ -142,6 +143,16 @@ export function restoreExpedition(state: NodeRunState, map: ExpeditionMap, curre
   const node = map.nodes.find((candidate) => candidate.id === currentNodeId);
   if (node === undefined) {
     throw new ExpeditionError('NODE_NOT_REACHABLE', { currentNodeId });
+  }
+  if (state.seed !== map.seed || state.mapHash !== map.mapHash || state.contentRevision !== map.contentRevision) {
+    throw new ExpeditionError('SAVE_MAP_MISMATCH', {
+      stateSeed: state.seed,
+      mapSeed: map.seed,
+      stateMapHash: state.mapHash,
+      mapHash: map.mapHash,
+      stateContentRevision: state.contentRevision,
+      mapContentRevision: map.contentRevision,
+    });
   }
   return buildRunner(state, map, currentNodeId);
 }

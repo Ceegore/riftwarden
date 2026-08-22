@@ -12,6 +12,7 @@ export interface NodeRunStateSource {
   readonly modeId: string;
   readonly contentRevision: string;
   readonly seed: number;
+  readonly mapHash: string;
   readonly gold: number;
   readonly troopCopies?: Readonly<Record<string, number>>;
 }
@@ -25,6 +26,8 @@ export function createNodeRunState(source: NodeRunStateSource): NodeRunState {
     runId: source.runId,
     modeId: source.modeId,
     contentRevision: source.contentRevision,
+    seed: source.seed,
+    mapHash: source.mapHash,
     gold: source.gold,
     instability: 0,
     goldEarned: 0,

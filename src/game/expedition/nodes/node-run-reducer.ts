@@ -37,6 +37,7 @@ export function createExpeditionRun(
     modeId: map.profileId,
     contentRevision: map.contentRevision,
     seed: map.seed,
+    mapHash: map.mapHash,
     gold: startGold,
     troopCopies,
   };
