@@ -66,24 +66,34 @@ describe('phase32 expedition runner lifecycle', () => {
     expect(exp.state.visits[exp.currentNodeId]?.status).toBe('RESOLVED');
   });
 
-  it('exposes only directly reachable nodes and advances one edge', () => {
+  it('exposes only directly reachable nodes and advances one resolved edge', () => {
     const map = mapFor(104);
     let exp = createExpedition(map, { startGold: 100 });
     const nextId = exp.reachableNodes[0];
     if (nextId === undefined) throw new Error('no reachable node');
     expect(exp.reachableNodes).toEqual(map.edges.filter((edge) => edge.from === map.startNodeId).map((edge) => edge.to).sort());
+    exp = exp.enter('tx-enter-104').resolve();
     exp = exp.advance(nextId);
     expect(exp.currentNodeId).toBe(nextId);
   });
 
-  it('rejects skipping an intermediate node', () => {
+  it('rejects advancing before the current visit is resolved', () => {
     const map = mapFor(104);
     const exp = createExpedition(map, { startGold: 100 });
+    const nextId = exp.reachableNodes[0];
+    if (nextId === undefined) throw new Error('no reachable node');
+    expect(() => exp.advance(nextId)).toThrow();
+  });
+
+  it('rejects skipping an intermediate node', () => {
+    const map = mapFor(104);
+    let exp = createExpedition(map, { startGold: 100 });
     const first = exp.reachableNodes[0];
     if (first === undefined) throw new Error('no reachable node');
     const skipped = map.edges.find((edge) => edge.from === first)?.to;
     if (skipped === undefined) throw new Error('no second node');
     expect(exp.reachableNodes).not.toContain(skipped);
+    exp = exp.enter('tx-enter-104-skip').resolve();
     expect(() => exp.advance(skipped)).toThrow();
   });
 
@@ -149,6 +159,7 @@ describe('phase32 expedition runner full path', () => {
     let exp = createExpedition(map, { startGold: 100 });
     const nextId = exp.reachableNodes[0];
     if (nextId === undefined) throw new Error('no reachable node');
+    exp = exp.enter('tx-enter-restore').resolve();
     exp = exp.advance(nextId);
 
     const snapshotted: NodeRunState = JSON.parse(JSON.stringify(exp.state)) as NodeRunState;

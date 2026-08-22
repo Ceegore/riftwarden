@@ -140,6 +140,14 @@ export function advanceToNode(
   targetNodeId: NodeId,
   map: ExpeditionMap,
 ): { readonly state: NodeRunState; readonly nodeId: NodeId } {
+  const visit = state.visits[currentNodeId];
+  if (visit?.status !== 'RESOLVED') {
+    throw new ExpeditionError('VISIT_STATE_INVALID', {
+      nodeId: currentNodeId,
+      status: visit?.status ?? 'MISSING',
+      reason: 'advance requires RESOLVED',
+    });
+  }
   if (!nextNodes(map, currentNodeId).includes(targetNodeId)) {
     throw new ExpeditionError('NODE_NOT_REACHABLE', { from: currentNodeId, to: targetNodeId });
   }
