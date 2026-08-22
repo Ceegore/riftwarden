@@ -63,8 +63,14 @@ function typeForRole(role: NodeRole, fullContent: boolean): NodeType {
   return 'battle';
 }
 
-function makeNode(id: string, level: number, role: NodeRole, type: NodeType): MapNode {
-  return { id, level, type, role, previewKey: `preview.${id}`, instabilityDelta: definitionOf(type).defaultInstabilityDelta };
+function makeNode(id: string, level: number, role: NodeRole, type: NodeType, previewKey?: string): MapNode {
+  return { id, level, type, role, previewKey: previewKey ?? `preview.${id}`, instabilityDelta: definitionOf(type).defaultInstabilityDelta };
+}
+
+const EVENT_IDS: readonly string[] = Array.from({ length: 30 }, (_, i) => `event-${String(i + 1).padStart(2, '0')}`);
+
+function eventPreviewKey(r: number): string {
+  return EVENT_IDS[r % EVENT_IDS.length] ?? 'event-01';
 }
 
 function canonicalNodes(nodes: readonly MapNode[]): readonly MapNode[] {
@@ -104,7 +110,7 @@ export function buildCandidate(input: MapGenerationInput, profile: MapProfile, a
       guard += 1;
     }
     mainIds.add(id);
-    nodes.push(makeNode(id, level, role, type));
+    nodes.push(makeNode(id, level, role, type, type === 'event' ? eventPreviewKey(r) : undefined));
     path.push(id);
     if (level > 0) {
       const from = path[level - 1];
@@ -119,7 +125,7 @@ export function buildCandidate(input: MapGenerationInput, profile: MapProfile, a
         r = nextU32(r);
         const sideType = isFullContent(input.contentRevision) ? pickNormalType(nextU32(r)) : 'battle';
         const sideId = `n${String(level)}s${String(side)}_${String(r % 997).padStart(3, '0')}`;
-        nodes.push(makeNode(sideId, level, 'normal', sideType));
+        nodes.push(makeNode(sideId, level, 'normal', sideType, sideType === 'event' ? eventPreviewKey(r) : undefined));
         const from = path[level - 1];
         if (from === undefined) throw new ExpeditionError('INVALID_MAP', { reason: 'path-invariant' });
         edges.push({ id: `e_${from}_${sideId}`, from, to: sideId });

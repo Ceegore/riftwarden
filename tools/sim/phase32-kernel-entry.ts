@@ -15,3 +15,16 @@ export { merchantHandler } from '../../src/game/expedition/nodes/handlers/mercha
 export { recruitmentHandler } from '../../src/game/expedition/nodes/handlers/recruitment.js';
 export { settleDefeat, settleRetreat, relicLimitForMode } from '../../src/game/expedition/run-economy.js';
 export { pickFromPool, rewardChoice, validatePool } from '../../src/game/expedition/reward-pool.js';
+export {
+  createExpeditionRun,
+  definitionOf,
+  handlerForNode,
+  dispatchPrepare,
+  dispatchCommit,
+  dispatchResolve,
+  dispatchEnterNode,
+  advanceToNode,
+} from '../../src/game/expedition/nodes/node-run-reducer.js';
+export { generateMap, buildCandidate, structuralHash } from '../../src/game/expedition/map-generator.js';
+export { reachableFrom, mainPathLength } from '../../src/game/expedition/reachability.js';
+export { applyOutcomeCommands } from '../../src/game/expedition/outcome-commands.js';
