@@ -140,10 +140,6 @@ export function createExpedition(map: ExpeditionMap, config: ExpeditionConfig): 
  * state without re-materializing snapshots.
  */
 export function restoreExpedition(state: NodeRunState, map: ExpeditionMap, currentNodeId: NodeId): ExpeditionRunner {
-  const node = map.nodes.find((candidate) => candidate.id === currentNodeId);
-  if (node === undefined) {
-    throw new ExpeditionError('NODE_NOT_REACHABLE', { currentNodeId });
-  }
   if (state.seed !== map.seed || state.mapHash !== map.mapHash || state.contentRevision !== map.contentRevision) {
     throw new ExpeditionError('SAVE_MAP_MISMATCH', {
       stateSeed: state.seed,
@@ -153,6 +149,10 @@ export function restoreExpedition(state: NodeRunState, map: ExpeditionMap, curre
       stateContentRevision: state.contentRevision,
       mapContentRevision: map.contentRevision,
     });
+  }
+  const node = map.nodes.find((candidate) => candidate.id === currentNodeId);
+  if (node === undefined) {
+    throw new ExpeditionError('NODE_NOT_REACHABLE', { currentNodeId });
   }
   return buildRunner(state, map, currentNodeId);
 }
