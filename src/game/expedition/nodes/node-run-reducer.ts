@@ -15,7 +15,7 @@ import { ExpeditionError } from '../expedition-error.js';
 import { handlerFor, type NodeHandler } from './registry.js';
 import { commitNodeAction, prepareNodeCommit, resolveNode, type NodeCommitOutcome } from './node-transaction.js';
 import { createNodeRunState, openVisit, type NodeRunStateSource } from './run-state.js';
-import { reachableFrom, validateMap } from '../reachability.js';
+import { validateMap } from '../reachability.js';
 import type { ExpeditionMap, NodeId, NodeType } from '../types.js';
 import type { NodeActionRequest, NodeDefinition, NodeRunState } from './types.js';
 import { nodeRegistry } from './handlers/index.js';
@@ -127,14 +127,20 @@ export function applyInstabilityDelta(state: NodeRunState, amount: number): Node
  * position and returns the new state positioned at that node. The map
  * provides the shared graph — nodes and edges are immutable.
  */
+export function nextNodes(map: ExpeditionMap, currentNodeId: NodeId): readonly NodeId[] {
+  return map.edges
+    .filter((edge) => edge.from === currentNodeId)
+    .map((edge) => edge.to)
+    .sort();
+}
+
 export function advanceToNode(
   state: NodeRunState,
   currentNodeId: NodeId,
   targetNodeId: NodeId,
   map: ExpeditionMap,
 ): { readonly state: NodeRunState; readonly nodeId: NodeId } {
-  const reachable = reachableFrom(map, currentNodeId);
-  if (!reachable.includes(targetNodeId)) {
+  if (!nextNodes(map, currentNodeId).includes(targetNodeId)) {
     throw new ExpeditionError('NODE_NOT_REACHABLE', { from: currentNodeId, to: targetNodeId });
   }
   return { state, nodeId: targetNodeId };

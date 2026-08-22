@@ -14,9 +14,9 @@
  *   exp = exp.advance(nextNodeId);      // validate reachability, move
  */
 import { ExpeditionError } from './expedition-error.js';
-import { reachableFrom, validateMap } from './reachability.js';
+import { validateMap } from './reachability.js';
 import { createNodeRunState } from './nodes/run-state.js';
-import { handlerForNode, definitionOf, dispatchEnterNode, dispatchCommit, dispatchResolve, advanceToNode } from './nodes/node-run-reducer.js';
+import { handlerForNode, definitionOf, dispatchEnterNode, dispatchCommit, dispatchResolve, advanceToNode, nextNodes } from './nodes/node-run-reducer.js';
 import type { NodeHandler } from './nodes/registry.js';
 import type { NodeActionRequest, NodeDefinition, NodeRunState } from './nodes/types.js';
 import type { ExpeditionMap, NodeId, NodeType } from './types.js';
@@ -76,7 +76,7 @@ function buildRunner(
   map: ExpeditionMap,
   currentNodeId: NodeId,
 ): ExpeditionRunner {
-  const reachableNodes = reachableFrom(map, currentNodeId).filter((id) => id !== currentNodeId);
+  const reachableNodes = nextNodes(map, currentNodeId);
   const definition = definitionOf(map, currentNodeId);
   const handler = handlerForNode(definition.type);
   const self: ExpeditionRunner = {
@@ -144,6 +144,11 @@ export function restoreExpedition(state: NodeRunState, map: ExpeditionMap, curre
     throw new ExpeditionError('NODE_NOT_REACHABLE', { currentNodeId });
   }
   return buildRunner(state, map, currentNodeId);
+}
+
+/** Directly available next nodes from the current position. */
+export function availableNodes(map: ExpeditionMap, currentNodeId: NodeId): readonly NodeId[] {
+  return nextNodes(map, currentNodeId);
 }
 
 /** Type guard: is this node type present on the current map? */

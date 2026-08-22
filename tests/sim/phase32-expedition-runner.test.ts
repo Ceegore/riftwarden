@@ -66,13 +66,25 @@ describe('phase32 expedition runner lifecycle', () => {
     expect(exp.state.visits[exp.currentNodeId]?.status).toBe('RESOLVED');
   });
 
-  it('advancing to a reachable node changes position', () => {
+  it('exposes only directly reachable nodes and advances one edge', () => {
     const map = mapFor(104);
     let exp = createExpedition(map, { startGold: 100 });
     const nextId = exp.reachableNodes[0];
     if (nextId === undefined) throw new Error('no reachable node');
+    expect(exp.reachableNodes).toEqual(map.edges.filter((edge) => edge.from === map.startNodeId).map((edge) => edge.to).sort());
     exp = exp.advance(nextId);
     expect(exp.currentNodeId).toBe(nextId);
+  });
+
+  it('rejects skipping an intermediate node', () => {
+    const map = mapFor(104);
+    const exp = createExpedition(map, { startGold: 100 });
+    const first = exp.reachableNodes[0];
+    if (first === undefined) throw new Error('no reachable node');
+    const skipped = map.edges.find((edge) => edge.from === first)?.to;
+    if (skipped === undefined) throw new Error('no second node');
+    expect(exp.reachableNodes).not.toContain(skipped);
+    expect(() => exp.advance(skipped)).toThrow();
   });
 
   it('rejects advance to unreachable node', () => {
