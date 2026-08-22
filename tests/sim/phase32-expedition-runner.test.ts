@@ -46,7 +46,7 @@ describe('phase32 expedition runner lifecycle', () => {
     expect(entered.state.snapshots[entered.currentNodeId]).toBeDefined();
     // Visit must be in COMMITTED state after dispatchEnterNode (commit + enter in one step)
     const visit = entered.state.visits[entered.currentNodeId];
-    expect(visit).toBeDefined();
+    if (visit === undefined) throw new Error('visit was not opened');
     expect(visit.status).toBe('COMMITTED');
   });
 
@@ -179,7 +179,7 @@ function nodeActionFor(
       return { transactionId: txId, nodeId, action: 'ENGAGE' };
 
     case 'event': {
-      if (snap?.kind !== 'EVENT') return null;
+      if (snap?.['kind'] !== 'EVENT') return null;
       const options = (snap as { options: readonly { optionId: string; available: boolean }[] }).options;
       const first = options.find((o) => o.available);
       if (first !== undefined) {
@@ -189,7 +189,7 @@ function nodeActionFor(
     }
 
     case 'merchant': {
-      if (snap?.kind !== 'OFFERS') return null;
+      if (snap?.['kind'] !== 'OFFERS') return null;
       const offers = (snap as { offers: readonly { offerId: string; priceGold: number }[] }).offers;
       const buyable = offers.find((o) => state.gold >= o.priceGold);
       if (buyable !== undefined) {
@@ -199,7 +199,7 @@ function nodeActionFor(
     }
 
     case 'recruitment': {
-      if (snap?.kind !== 'OFFERS') return null;
+      if (snap?.['kind'] !== 'OFFERS') return null;
       const offers = (snap as { offers: readonly { offerId: string }[] }).offers;
       if (offers[0] !== undefined) {
         return { transactionId: txId, nodeId, action: 'CHOOSE', optionId: offers[0].offerId };

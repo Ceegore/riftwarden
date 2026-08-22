@@ -126,6 +126,7 @@
     "test:phase30": "vitest run --project phase30",
     "test:phase31": "vitest run --project phase31",
     "test:phase32": "vitest run --project phase32",
+    "test:phase32:headless": "node --test tests/sim/phase32-headless-runner.test.mjs",
     "kernel:audit": "node tools/sim/audit-kernel-imports.mjs",
     "kernel:validate-readiness": "node tools/sim/validate-phase13-readiness.mjs",
     "sim:mass": "node tools/sim/run-mass-sim.mjs",

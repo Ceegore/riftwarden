@@ -28,3 +28,4 @@ export {
 export { generateMap, buildCandidate, structuralHash } from '../../src/game/expedition/map-generator.js';
 export { reachableFrom, mainPathLength } from '../../src/game/expedition/reachability.js';
 export { applyOutcomeCommands } from '../../src/game/expedition/outcome-commands.js';
+export { createExpedition, mainPath, nodesOfType, restoreExpedition } from '../../src/game/expedition/expedition-runner.js';

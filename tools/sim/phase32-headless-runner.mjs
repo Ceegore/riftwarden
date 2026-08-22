@@ -66,107 +66,74 @@ async function loadKernel() {
 }
 
 const kernel = await loadKernel();
-const { generateMap, createExpeditionRun, definitionOf, handlerForNode, dispatchEnterNode, dispatchCommit, dispatchResolve } = kernel;
+const { generateMap, createExpedition, mainPath } = kernel;
 
 /**
- * Walk the main path from startNode: follow non-side-branch edges forward.
- * Side-branch nodes have 's' in the id after the level digit (e.g. n1s0_...).
+ * Builds the deterministic primary action for the current runner position,
+ * then dispatches it through ExpeditionRunner.act. Returns the updated
+ * runner and transaction id, or the unchanged runner when no second action
+ * is needed (an anchor with no unsecured loot).
  */
-function walkMainPath(map) {
-  const mainPath = [];
-  let cur = map.startNodeId;
-  const visited = new Set();
-  while (cur && !visited.has(cur)) {
-    visited.add(cur);
-    mainPath.push(cur);
-    const edges = map.edges.filter((e) => e.from === cur);
-    const forwardEdge = edges.find((e) => !e.to.includes('s') && e.from !== e.to);
-    cur = forwardEdge ? forwardEdge.to : undefined;
-  }
-  return mainPath;
-}
-
-/**
- * Dispatches the primary node-type-specific action after ENTER has been
- * handled by dispatchEnterNode. Every decision is deterministic (seeded).
- * Returns null if the node type doesn't need a second action (anchor/story
- * when ENTER is sufficient).
- */
-function dispatchPrimaryAction(kernel, state, nodeId, def, handler, seed) {
-  const { dispatchCommit } = kernel;
-  let s = seed ^ nodeId.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-  const rand = () => { s = ((s * 1103515245 + 12345) >>> 0); return s; };
+function dispatchPrimaryAction(expedition, seed) {
+  const { state, currentNodeId: nodeId, definition: def } = expedition;
+  let request;
+  const snapshot = state.snapshots[nodeId];
 
   switch (def.type) {
     case 'battle':
     case 'elite':
-    case 'boss': {
-      rand();
-      return dispatchCommit(state, { transactionId: `hdl-battle-${String(seed)}-${nodeId}`, nodeId, action: 'ENGAGE' }, def, handler);
-    }
+    case 'boss':
+      request = { transactionId: `hdl-battle-${String(seed)}-${nodeId}`, nodeId, action: 'ENGAGE' };
+      break;
     case 'event': {
-      rand();
-      const snap = state.snapshots[nodeId];
-      const firstOption = snap?.kind === 'EVENT' ? snap.options.find((o) => o.available)?.optionId : undefined;
-      if (firstOption !== undefined) {
-        return dispatchCommit(state, { transactionId: `hdl-event-${String(seed)}-${nodeId}`, nodeId, action: 'CONFIRM', optionId: firstOption }, def, handler);
-      }
-      return dispatchCommit(state, { transactionId: `hdl-event-${String(seed)}-${nodeId}`, nodeId, action: 'DECLINE' }, def, handler);
+      const firstOption = snapshot?.kind === 'EVENT' ? snapshot.options.find((o) => o.available)?.optionId : undefined;
+      request = firstOption !== undefined
+        ? { transactionId: `hdl-event-${String(seed)}-${nodeId}`, nodeId, action: 'CONFIRM', optionId: firstOption }
+        : { transactionId: `hdl-event-${String(seed)}-${nodeId}`, nodeId, action: 'DECLINE' };
+      break;
     }
     case 'merchant': {
-      rand();
-      const snap = state.snapshots[nodeId];
-      const offer = snap?.kind === 'OFFERS' ? snap.offers[0] : undefined;
-      if (offer !== undefined && state.gold >= offer.priceGold) {
-        return dispatchCommit(state, { transactionId: `hdl-merchant-${String(seed)}-${nodeId}`, nodeId, action: 'BUY', optionId: offer.offerId }, def, handler);
-      }
-      return dispatchCommit(state, { transactionId: `hdl-merchant-${String(seed)}-${nodeId}`, nodeId, action: 'DECLINE' }, def, handler);
+      const offer = snapshot?.kind === 'OFFERS' ? snapshot.offers[0] : undefined;
+      request = offer !== undefined && state.gold >= offer.priceGold
+        ? { transactionId: `hdl-merchant-${String(seed)}-${nodeId}`, nodeId, action: 'BUY', optionId: offer.offerId }
+        : { transactionId: `hdl-merchant-${String(seed)}-${nodeId}`, nodeId, action: 'DECLINE' };
+      break;
     }
     case 'recruitment': {
-      rand();
-      const snap = state.snapshots[nodeId];
-      const offer = snap?.kind === 'OFFERS' ? snap.offers[0] : undefined;
-      if (offer !== undefined) {
-        return dispatchCommit(state, { transactionId: `hdl-recruit-${String(seed)}-${nodeId}`, nodeId, action: 'CHOOSE', optionId: offer.offerId }, def, handler);
-      }
-      return dispatchCommit(state, { transactionId: `hdl-recruit-${String(seed)}-${nodeId}`, nodeId, action: 'DECLINE' }, def, handler);
+      const offer = snapshot?.kind === 'OFFERS' ? snapshot.offers[0] : undefined;
+      request = offer !== undefined
+        ? { transactionId: `hdl-recruit-${String(seed)}-${nodeId}`, nodeId, action: 'CHOOSE', optionId: offer.offerId }
+        : { transactionId: `hdl-recruit-${String(seed)}-${nodeId}`, nodeId, action: 'DECLINE' };
+      break;
     }
-    case 'treasure': {
-      rand();
-      return dispatchCommit(state, { transactionId: `hdl-treasure-${String(seed)}-${nodeId}`, nodeId, action: 'TAKE' }, def, handler);
-    }
-    case 'workshop': {
-      rand();
-      if (state.gold >= 220) {
-        return dispatchCommit(state, { transactionId: `hdl-workshop-${String(seed)}-${nodeId}`, nodeId, action: 'POLISH' }, def, handler);
-      }
-      return dispatchCommit(state, { transactionId: `hdl-workshop-${String(seed)}-${nodeId}`, nodeId, action: 'DECLINE' }, def, handler);
-    }
-    case 'altar': {
-      rand();
-      if (state.instability + 10 <= 100) {
-        return dispatchCommit(state, { transactionId: `hdl-altar-${String(seed)}-${nodeId}`, nodeId, action: 'ACCEPT' }, def, handler);
-      }
-      return dispatchCommit(state, { transactionId: `hdl-altar-${String(seed)}-${nodeId}`, nodeId, action: 'DECLINE' }, def, handler);
-    }
-    case 'scout': {
-      rand();
-      return dispatchCommit(state, { transactionId: `hdl-scout-${String(seed)}-${nodeId}`, nodeId, action: 'REVEAL_PATH' }, def, handler);
-    }
-    case 'anchor': {
-      // ENTER already done by dispatchEnterNode. SECURE any unsecured loot.
-      if (state.unsecuredLoot.length > 0) {
-        return dispatchCommit(state, { transactionId: `hdl-anchor-${String(seed)}-${nodeId}`, nodeId, action: 'SECURE' }, def, handler);
-      }
-      return null; // nothing more to do
-    }
-    case 'story': {
-      // ENTER already done. CONTINUE advances the story.
-      return dispatchCommit(state, { transactionId: `hdl-story-${String(seed)}-${nodeId}`, nodeId, action: 'CONTINUE' }, def, handler);
-    }
+    case 'treasure':
+      request = { transactionId: `hdl-treasure-${String(seed)}-${nodeId}`, nodeId, action: 'TAKE' };
+      break;
+    case 'workshop':
+      request = state.gold >= 220
+        ? { transactionId: `hdl-workshop-${String(seed)}-${nodeId}`, nodeId, action: 'POLISH' }
+        : { transactionId: `hdl-workshop-${String(seed)}-${nodeId}`, nodeId, action: 'DECLINE' };
+      break;
+    case 'altar':
+      request = state.instability + 10 <= 100
+        ? { transactionId: `hdl-altar-${String(seed)}-${nodeId}`, nodeId, action: 'ACCEPT' }
+        : { transactionId: `hdl-altar-${String(seed)}-${nodeId}`, nodeId, action: 'DECLINE' };
+      break;
+    case 'scout':
+      request = { transactionId: `hdl-scout-${String(seed)}-${nodeId}`, nodeId, action: 'REVEAL_PATH' };
+      break;
+    case 'anchor':
+      if (state.unsecuredLoot.length === 0) return { expedition, transactionId: undefined };
+      request = { transactionId: `hdl-anchor-${String(seed)}-${nodeId}`, nodeId, action: 'SECURE' };
+      break;
+    case 'story':
+      request = { transactionId: `hdl-story-${String(seed)}-${nodeId}`, nodeId, action: 'CONTINUE' };
+      break;
     default:
-      return null;
+      return { expedition, transactionId: undefined };
   }
+
+  return { expedition: expedition.act(request), transactionId: request.transactionId };
 }
 
 /** @type {{ schemaVersion: number, phase: number, kind: string, timestamp: string, config: any, summary: any, runs: any[] }} */
@@ -190,40 +157,45 @@ for (let runIndex = 0; runIndex < RUNS; runIndex += 1) {
   const input = { seed, profileId: 'headless.v1', contentRevision: CONTENT_REVISION };
   const map = generateMap(input, FALLBACK_PROFILE);
 
-  let state = createExpeditionRun(map, START_GOLD);
-  const mainPath = walkMainPath(map);
+  let expedition = createExpedition(map, { startGold: START_GOLD });
+  const path = mainPath(map);
   const runLog = {
-    seed, profileId: map.profileId, fallback: map.usedFallback, nodeCount: mainPath.length,
+    seed, profileId: map.profileId, fallback: map.usedFallback, nodeCount: path.length,
     nodes: /** @type {any[]} */ ([]), finalGold: 0, finalInstability: 0,
   };
 
   let runFailed = false;
-  for (const nodeId of mainPath) {
-    const def = definitionOf(map, nodeId);
-    const handler = handlerForNode(def.type);
-
-    nodeTypeStats[def.type] = (nodeTypeStats[def.type] || 0) + 1;
-
+  for (const nodeId of path) {
     try {
+      if (expedition.currentNodeId !== nodeId) {
+        expedition = expedition.advance(nodeId);
+      }
+
       // Phase 1: ENTER (instability applies, snapshot materialized)
       const enterTxId = `hdl-e-${String(seed)}-${nodeId}`;
-      const enter = dispatchEnterNode(state, nodeId, def, handler, enterTxId);
-      state = enter.state;
+      expedition = expedition.enter(enterTxId);
+      const enter = expedition.state.ledger[enterTxId];
+      if (enter === undefined) throw new Error(`missing enter receipt: ${enterTxId}`);
+      const type = expedition.definition.type;
+      nodeTypeStats[type] = (nodeTypeStats[type] || 0) + 1;
 
       // Phase 2: primary node-type action (if any)
-      const actResult = dispatchPrimaryAction(kernel, state, nodeId, def, handler, seed);
-      if (actResult !== null) {
-        state = actResult.state;
+      const action = dispatchPrimaryAction(expedition, seed);
+      expedition = action.expedition;
+      const actResult = action.transactionId === undefined ? undefined : expedition.state.ledger[action.transactionId];
+      if (action.transactionId !== undefined && actResult === undefined) {
+        throw new Error(`missing action receipt: ${action.transactionId}`);
       }
 
       // Phase 3: RESOLVE
-      state = dispatchResolve(state, nodeId);
+      expedition = expedition.resolve();
+      const state = expedition.state;
 
       runLog.nodes.push({
-        nodeId, type: def.type,
-        enterStatus: enter.outcome.result.status,
-        actionStatus: actResult ? actResult.result.status : 'SKIPPED',
-        action: actResult ? actResult.result.action : 'NONE',
+        nodeId, type,
+        enterStatus: enter.status,
+        actionStatus: actResult ? actResult.status : 'SKIPPED',
+        action: actResult ? actResult.action : 'NONE',
         gold: state.gold, instability: state.instability,
       });
     } catch (e) {
@@ -232,6 +204,7 @@ for (let runIndex = 0; runIndex < RUNS; runIndex += 1) {
     }
   }
 
+  const state = expedition.state;
   goldSum += state.gold;
   goldCount += 1;
   instabilitySum += state.instability;
@@ -243,7 +216,7 @@ for (let runIndex = 0; runIndex < RUNS; runIndex += 1) {
     ledger.summary.failures += 1;
   } else {
     ledger.summary.completed += 1;
-    ledger.summary.totalNodesVisited += mainPath.length;
+    ledger.summary.totalNodesVisited += path.length;
   }
   if (map.usedFallback) ledger.summary.fallbackCount += 1;
   ledger.summary.started = runIndex + 1;
