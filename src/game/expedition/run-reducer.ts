@@ -1,5 +1,19 @@
 import { ExpeditionError } from './expedition-error.js';
 import type { NodeId, RunState } from './types.js';
+import type { NodeRunState, NodeActionRequest, NodeDefinition } from './nodes/types.js';
+import {
+  applyGoldDelta,
+  applyInstabilityDelta as applyNodeInstability,
+  dispatchEnterNode,
+  dispatchCommit,
+  dispatchResolve,
+  advanceToNode as advanceNodeToNode,
+  definitionOf,
+  handlerForNode,
+} from './nodes/node-run-reducer.js';
+import type { NodeHandler } from './nodes/registry.js';
+import type { NodeCommitOutcome } from './nodes/node-transaction.js';
+import type { ExpeditionMap } from './types.js';
 
 /**
  * Run reducers (RUN_DOMAIN_CONTRACT + NODE_TRANSACTION_CONTRACT): every
@@ -7,7 +21,11 @@ import type { NodeId, RunState } from './types.js';
  * Duplicate committed transactions return the prior receipt (the unchanged
  * state) without mutation; a pending lock allows exactly one transaction;
  * resources are safe integers and never negative. Kill/resume continues at
- * the last confirmed commit point — these pure steps are the commit points.
+ * the last confirmed commit point.
+ *
+ * Phase 32: RunState-based functions (Phase 28) coexist with NodeRunState
+ * delegation functions that forward to the node domain (node-run-reducer).
+ * Prefer the NodeRunState path for new code.
  */
 function assertRevision(state: RunState, expectedRevision: number): void {
   if (state.revision !== expectedRevision) {
@@ -105,3 +123,59 @@ export function dropUnsecuredLoot(state: RunState, itemIds: readonly string[], e
     unsecuredLoot: state.unsecuredLoot.filter((id) => !itemIds.includes(id)),
   };
 }
+
+// ── Phase 32: NodeRunState delegation (forwards to node-run-reducer) ──
+
+/** Apply a safe gold delta against NodeRunState. Negative results throw. */
+export function applyNodeGoldDelta(state: NodeRunState, amount: number): NodeRunState {
+  return applyGoldDelta(state, amount);
+}
+
+/** Apply a safe instability delta against NodeRunState. Negative results throw. */
+export function applyNodeInstabilityDelta(state: NodeRunState, amount: number): NodeRunState {
+  return applyNodeInstability(state, amount);
+}
+
+/** Full pipeline convenience: ENTER (instability + snapshot) in one call. */
+export function enterNode(
+  state: NodeRunState,
+  nodeId: NodeId,
+  definition: NodeDefinition,
+  handler: NodeHandler,
+  transactionId: string,
+): { readonly outcome: NodeCommitOutcome; readonly state: NodeRunState } {
+  return dispatchEnterNode(state, nodeId, definition, handler, transactionId);
+}
+
+/** Commit a node action through the durable transaction ledger. */
+export function commitNodeAction(
+  state: NodeRunState,
+  request: NodeActionRequest,
+  definition: NodeDefinition,
+  handler: NodeHandler,
+): NodeCommitOutcome {
+  return dispatchCommit(state, request, definition, handler);
+}
+
+/** Mark the node visit RESOLVED; further commands are rejected. */
+export function resolveNode(state: NodeRunState, nodeId: NodeId): NodeRunState {
+  return dispatchResolve(state, nodeId);
+}
+
+/** Validate reachability and return the updated position. */
+export function advanceNode(
+  state: NodeRunState,
+  currentNodeId: NodeId,
+  targetNodeId: NodeId,
+  map: ExpeditionMap,
+): { readonly state: NodeRunState; readonly nodeId: NodeId } {
+  return advanceNodeToNode(state, currentNodeId, targetNodeId, map);
+}
+
+/** Look up the NodeDefinition for a map node. */
+export { definitionOf as nodeDefinition };
+
+/** Look up the handler for a node type. */
+export { handlerForNode as nodeHandler };
+
+export type { NodeRunState, NodeActionRequest, NodeCommitOutcome };
