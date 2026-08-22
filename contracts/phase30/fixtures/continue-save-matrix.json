@@ -1,0 +1,22 @@
+[
+  {
+    "id": "none",
+    "primary": "new-game"
+  },
+  {
+    "id": "profile",
+    "primary": "continue-hq"
+  },
+  {
+    "id": "run",
+    "primary": "continue-run"
+  },
+  {
+    "id": "battle",
+    "primary": "resume-battle"
+  },
+  {
+    "id": "corrupt",
+    "primary": "recovery"
+  }
+]

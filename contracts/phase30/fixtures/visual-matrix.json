@@ -1,0 +1,92 @@
+[
+  {
+    "locale": "de",
+    "scale": 100,
+    "width": "narrow"
+  },
+  {
+    "locale": "de",
+    "scale": 100,
+    "width": "reference"
+  },
+  {
+    "locale": "de",
+    "scale": 100,
+    "width": "wide"
+  },
+  {
+    "locale": "de",
+    "scale": 200,
+    "width": "narrow"
+  },
+  {
+    "locale": "de",
+    "scale": 200,
+    "width": "reference"
+  },
+  {
+    "locale": "de",
+    "scale": 200,
+    "width": "wide"
+  },
+  {
+    "locale": "en",
+    "scale": 100,
+    "width": "narrow"
+  },
+  {
+    "locale": "en",
+    "scale": 100,
+    "width": "reference"
+  },
+  {
+    "locale": "en",
+    "scale": 100,
+    "width": "wide"
+  },
+  {
+    "locale": "en",
+    "scale": 200,
+    "width": "narrow"
+  },
+  {
+    "locale": "en",
+    "scale": 200,
+    "width": "reference"
+  },
+  {
+    "locale": "en",
+    "scale": 200,
+    "width": "wide"
+  },
+  {
+    "locale": "pseudo",
+    "scale": 100,
+    "width": "narrow"
+  },
+  {
+    "locale": "pseudo",
+    "scale": 100,
+    "width": "reference"
+  },
+  {
+    "locale": "pseudo",
+    "scale": 100,
+    "width": "wide"
+  },
+  {
+    "locale": "pseudo",
+    "scale": 200,
+    "width": "narrow"
+  },
+  {
+    "locale": "pseudo",
+    "scale": 200,
+    "width": "reference"
+  },
+  {
+    "locale": "pseudo",
+    "scale": 200,
+    "width": "wide"
+  }
+]

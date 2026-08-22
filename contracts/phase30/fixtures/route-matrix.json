@@ -1,0 +1,22 @@
+[
+  {
+    "from": "boot",
+    "state": "fresh",
+    "to": "first-run"
+  },
+  {
+    "from": "boot",
+    "state": "valid-profile",
+    "to": "title"
+  },
+  {
+    "from": "title",
+    "state": "run",
+    "to": "continue"
+  },
+  {
+    "from": "continue",
+    "state": "corrupt",
+    "to": "recovery"
+  }
+]

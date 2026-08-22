@@ -1,0 +1,20 @@
+[
+  {
+    "id": "defaults"
+  },
+  {
+    "id": "draft-cancel"
+  },
+  {
+    "id": "apply-ok"
+  },
+  {
+    "id": "write-failure"
+  },
+  {
+    "id": "unknown-enum"
+  },
+  {
+    "id": "reset-confirm"
+  }
+]

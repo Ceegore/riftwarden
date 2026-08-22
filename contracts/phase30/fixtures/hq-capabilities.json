@@ -1,0 +1,30 @@
+[
+  {
+    "id": "heroes",
+    "state": "locked",
+    "reasonKey": "hq.locked.phase31"
+  },
+  {
+    "id": "barracks",
+    "state": "locked",
+    "reasonKey": "hq.locked.phase31"
+  },
+  {
+    "id": "workshop",
+    "state": "locked",
+    "reasonKey": "hq.locked.phase31"
+  },
+  {
+    "id": "archive",
+    "state": "locked",
+    "reasonKey": "hq.locked.future"
+  },
+  {
+    "id": "expedition",
+    "state": "available"
+  },
+  {
+    "id": "settings",
+    "state": "available"
+  }
+]
