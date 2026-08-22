@@ -1,0 +1,19 @@
+{
+  "revision": 31,
+  "currencies": {
+    "gold": 999999,
+    "riftEssence": 999
+  },
+  "counts": {
+    "heroes": 10,
+    "troopTypes": 18,
+    "items": 42,
+    "banners": 6
+  },
+  "constraints": {
+    "maxCopies": 3,
+    "maxHeroLevel": 3,
+    "maxContractLevel": 3,
+    "activeBanners": 1
+  }
+}

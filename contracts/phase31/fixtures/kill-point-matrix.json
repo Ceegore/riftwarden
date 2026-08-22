@@ -1,0 +1,22 @@
+[
+  {
+    "point": "before-preview",
+    "mutation": false
+  },
+  {
+    "point": "after-confirm-before-commit",
+    "mutation": false
+  },
+  {
+    "point": "during-save-temp-write",
+    "mutation": "old_or_new_never_partial"
+  },
+  {
+    "point": "after-commit-before-feedback",
+    "mutation": "committed_once"
+  },
+  {
+    "point": "duplicate-callback",
+    "mutation": "committed_once"
+  }
+]

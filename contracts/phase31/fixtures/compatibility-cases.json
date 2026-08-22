@@ -1,0 +1,18 @@
+[
+  {
+    "subject": "hero_aurel",
+    "item": "item_guard_talisman",
+    "compatible": true
+  },
+  {
+    "subject": "hero_aurel",
+    "item": "banner_ember",
+    "compatible": false,
+    "reasonKey": "ui.compatibility.banner_not_equipment"
+  },
+  {
+    "subject": "troop_shieldguard#1",
+    "kit": "kit_shield_wall",
+    "compatible": true
+  }
+]

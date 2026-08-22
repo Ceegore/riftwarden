@@ -1,0 +1,14 @@
+[
+  {
+    "screen": "S15",
+    "sortKey": "canonicalId",
+    "filter": "ALL",
+    "scrollAnchor": "hero_aurel"
+  },
+  {
+    "screen": "S22",
+    "sortKey": "sourceOrder",
+    "filter": "POLISHED",
+    "scrollAnchor": "item_017"
+  }
+]
