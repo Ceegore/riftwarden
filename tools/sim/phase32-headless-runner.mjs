@@ -66,7 +66,7 @@ async function loadKernel() {
 }
 
 const kernel = await loadKernel();
-const { generateMap, createExpedition, mainPath } = kernel;
+const { generateMap, createExpedition, mainPath, encodeExpeditionSave, restoreExpeditionSave } = kernel;
 
 /**
  * Builds the deterministic primary action for the current runner position,
@@ -143,7 +143,10 @@ const ledger = {
   kind: 'headless-runner-ledger',
   timestamp: new Date().toISOString(),
   config: { runs: RUNS, seedBase: BASE_SEED, contentRevision: CONTENT_REVISION, startGold: START_GOLD },
-  summary: { started: 0, completed: 0, failures: 0, totalNodesVisited: 0, fallbackCount: 0 },
+  summary: {
+    started: 0, completed: 0, failures: 0, totalNodesVisited: 0, fallbackCount: 0,
+    saveRestores: 0, saveFailures: 0, restoreFailures: 0, stateMismatches: 0,
+  },
   runs: [],
 };
 
@@ -162,10 +165,15 @@ for (let runIndex = 0; runIndex < RUNS; runIndex += 1) {
   const runLog = {
     seed, profileId: map.profileId, fallback: map.usedFallback, nodeCount: path.length,
     nodes: /** @type {any[]} */ ([]), finalGold: 0, finalInstability: 0,
+    saveRestore: /** @type {any} */ (undefined),
   };
 
+  const midPoint = Math.floor(path.length / 2);
   let runFailed = false;
-  for (const nodeId of path) {
+  let saveRestoreOk = true;
+  for (let nodeIndex = 0; nodeIndex < path.length; nodeIndex += 1) {
+    const nodeId = path[nodeIndex];
+    if (nodeId === undefined) { runFailed = true; break; }
     try {
       if (expedition.currentNodeId !== nodeId) {
         expedition = expedition.advance(nodeId);
@@ -198,6 +206,43 @@ for (let runIndex = 0; runIndex < RUNS; runIndex += 1) {
         action: actResult ? actResult.action : 'NONE',
         gold: state.gold, instability: state.instability,
       });
+
+      // Mid-expedition save/restore cycle: validates the save codec end-to-end.
+      if (nodeIndex === midPoint) {
+        ledger.summary.saveRestores += 1;
+        const preGold = expedition.state.gold;
+        const preInstability = expedition.state.instability;
+        const preLedgerKeys = Object.keys(expedition.state.ledger).length;
+        let serialized;
+        try {
+          serialized = encodeExpeditionSave(expedition);
+        } catch {
+          ledger.summary.saveFailures += 1;
+          saveRestoreOk = false;
+          runFailed = true;
+          break;
+        }
+        let restored;
+        try {
+          restored = restoreExpeditionSave(serialized, map);
+        } catch {
+          ledger.summary.restoreFailures += 1;
+          saveRestoreOk = false;
+          runFailed = true;
+          break;
+        }
+        if (
+          restored.state.gold !== preGold ||
+          restored.state.instability !== preInstability ||
+          Object.keys(restored.state.ledger).length !== preLedgerKeys
+        ) {
+          ledger.summary.stateMismatches += 1;
+          saveRestoreOk = false;
+          runFailed = true;
+          break;
+        }
+        expedition = restored;
+      }
     } catch (e) {
       runFailed = true;
       break;
@@ -210,6 +255,9 @@ for (let runIndex = 0; runIndex < RUNS; runIndex += 1) {
   instabilitySum += state.instability;
   runLog.finalGold = state.gold;
   runLog.finalInstability = state.instability;
+  if (midPoint < path.length) {
+    runLog.saveRestore = { midNode: path[midPoint], ok: saveRestoreOk };
+  }
   ledger.runs.push(runLog);
 
   if (runFailed) {
@@ -237,6 +285,7 @@ console.log([
   `PHASE32 HEADLESS RUNNER: ${summary.started} runs, ${summary.completed} completed (${pct}%), ${summary.failures} failures`,
   `  nodes visited: ${summary.totalNodesVisited}, avg gold: ${summary.avgGold}, avg instability: ${summary.avgInstability}`,
   `  fallbacks: ${summary.fallbackCount}, node types: ${JSON.stringify(nodeTypeStats)}`,
+  `  save/restore: ${summary.saveRestores} cycles, ${summary.saveFailures} save fails, ${summary.restoreFailures} restore fails, ${summary.stateMismatches} state mismatches`,
 ].join('\n'));
 
 process.exit(summary.failures > 0 ? EXIT.RUNTIME : EXIT.OK);
