@@ -1,20 +1,35 @@
 /**
- * Expedition end screen (S55): victory summary with settlement details.
+ * Expedition end screen (S55): victory summary with full settlement
+ * breakdown. On continue, commits all settlement requests to the profile
+ * and clears the expedition.
  */
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import type { JSX } from 'react';
 import { Button } from '../../ui/components/Button.js';
 import { StatRow } from '../../ui/components/StatRow.js';
 import { ScreenFrame } from '../../ui/layout/ScreenFrame.js';
 import { BottomActionBar } from '../../ui/layout/BottomActionBar.js';
 import { useExpedition } from '../../features/expedition/useExpedition.js';
-import { settleVictory } from '../../game/expedition/run-economy.js';
+import { buildSettlementRequests } from '../../game/expedition/expedition-settlement.js';
+import { commitTransaction } from '../../game/profile/transaction-service.js';
+import { loadOrCreateProfile, saveProfile } from '../../game/profile/profile-store.js';
 
 export function ExpeditionEndScreen(): JSX.Element {
-  const { snapshot, abandon, finish } = useExpedition();
+  const { snapshot, finish, abandon } = useExpedition();
 
   const handleFinish = useCallback(() => finish(), [finish]);
-  const handleReturn = useCallback(() => abandon(), [abandon]);
+
+  const handleCommitAndReturn = useCallback(() => {
+    if (!snapshot) return;
+    // Build and commit all settlement requests to the profile.
+    const { requests } = buildSettlementRequests(snapshot.state, 'victory');
+    let profile = loadOrCreateProfile();
+    for (const req of requests) {
+      profile = commitTransaction(profile, req).profile;
+    }
+    saveProfile(profile);
+    abandon();
+  }, [snapshot, abandon]);
 
   if (!snapshot) {
     return (
@@ -25,19 +40,56 @@ export function ExpeditionEndScreen(): JSX.Element {
     );
   }
 
-  const settlement = settleVictory(snapshot.state);
+  const { settlement, requests } = useMemo(
+    () => buildSettlementRequests(snapshot.state, 'victory'),
+    [snapshot.state],
+  );
+
   const isFinished = snapshot.runStatus === 'finished';
+  const lootCount = settlement.keptLoot.length;
+  const relicCount = settlement.lostRelics.length;
+  const recruitCount = settlement.lostRecruits.length;
 
   return (
     <ScreenFrame labelledBy="end-title">
       <h1 id="end-title">Expedition Complete</h1>
-      <StatRow label="Gold kept" value={String(settlement.keptGold)} />
-      <StatRow label="Secured loot" value={String(settlement.keptLoot.length)} />
-      <StatRow label="Relics kept" value={String(settlement.lostRelics.length)} />
-      <StatRow label="Recruits kept" value={String(settlement.lostRecruits.length)} />
+      <h2>Victory!</h2>
+
+      <StatRow label="Gold kept" value={`+${String(settlement.keptGold)}`} />
+      <StatRow label="Gold lost" value={String(settlement.lostGold)} />
+
+      {lootCount > 0 && (
+        <section>
+          <h3>Loot claimed ({lootCount})</h3>
+          {settlement.keptLoot.map((id) => (
+            <StatRow key={id} label={id} value="Acquired" />
+          ))}
+        </section>
+      )}
+
+      {relicCount > 0 && (
+        <section>
+          <h3>Relics kept ({relicCount})</h3>
+          {settlement.lostRelics.map((id) => (
+            <StatRow key={id} label={id} value="Acquired" />
+          ))}
+        </section>
+      )}
+
+      {recruitCount > 0 && (
+        <section>
+          <h3>Recruits joined ({recruitCount})</h3>
+          {settlement.lostRecruits.map((id) => (
+            <StatRow key={id} label={id} value="Recruited" />
+          ))}
+        </section>
+      )}
+
+      <StatRow label="Profile transactions" value={String(requests.length)} />
+
       <BottomActionBar>
         {isFinished ? (
-          <Button labelKey="ui.common.return_to_hq" variant="primary" onClick={handleReturn} />
+          <Button labelKey="ui.common.return_to_hq" variant="primary" onClick={handleCommitAndReturn} />
         ) : (
           <Button labelKey="ui.common.finish" variant="primary" onClick={handleFinish} />
         )}
