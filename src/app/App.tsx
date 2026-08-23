@@ -12,6 +12,7 @@ import { runCurrentBootStep, type BootServices } from './boot/boot-runtime';
 import type { BootEvent, BootState, BootTerminalStep } from './boot/boot-types';
 import type { PreliminarySystemCopy, SystemCopyKey } from '../locales/system-copy';
 import { PostBootScreen } from '../screens/PostBootScreen';
+import { hasStoredExpedition } from '../game/expedition/expedition-store.js';
 
 // -- System copy (mock for now; real localization replaces this) -----------
 const MOCK_COPY: Record<SystemCopyKey, string> = {
@@ -51,7 +52,9 @@ const bootServices: BootServices = {
   async loadSettings(_signal): Promise<void> { /* default settings */ },
   async validateContent(_signal): Promise<void> { /* content revision ok */ },
   async loadSave(_signal) {
-    return { kind: 'title' as const };
+    // Check for expedition saves. If none exist, route to FIRST_RUN;
+    // otherwise the user can continue or start fresh from TITLE.
+    return hasStoredExpedition() ? { kind: 'title' as const } : { kind: 'first_run' as const };
   },
 };
 

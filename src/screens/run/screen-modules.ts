@@ -3,6 +3,10 @@
  * to its React component. The ScreenModuleResolver reads this map at
  * navigation time. Node-type screens (S42–S49) all use the generic
  * NodeScreen which dispatches per-type via the expedition hook.
+ *
+ * Screens that need navigation callbacks receive them via props; the
+ * primary navigator (PostBootScreen) passes these directly rather than
+ * going through the generic ScreenNavigator.
  */
 import type { ScreenModule } from '../../app/navigation/screen-registration.js';
 import { DefeatRecoveryScreen } from './DefeatRecoveryScreen.js';

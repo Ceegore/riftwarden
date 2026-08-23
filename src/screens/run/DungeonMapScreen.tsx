@@ -10,6 +10,10 @@ import { ScrollRegion } from '../../ui/layout/ScrollRegion.js';
 import { useExpedition } from '../../features/expedition/useExpedition.js';
 import type { NodeId } from '../../game/expedition/types.js';
 
+export interface DungeonMapScreenProps {
+  readonly onEnterNode: () => void;
+}
+
 function nodeLabel(type: string): string {
   const labels: Record<string, string> = {
     battle: 'Battle', elite: 'Elite', boss: 'Boss',
@@ -20,7 +24,7 @@ function nodeLabel(type: string): string {
   return labels[type] ?? type;
 }
 
-export function DungeonMapScreen(): JSX.Element {
+export function DungeonMapScreen({ onEnterNode }: DungeonMapScreenProps): JSX.Element {
   const { snapshot, map, mainPathNodes, advance, finish, abandon, newRun, loading } = useExpedition();
   const [selectedNode, setSelectedNode] = useState<NodeId | null>(null);
 
@@ -37,11 +41,19 @@ export function DungeonMapScreen(): JSX.Element {
   const handleFinish = useCallback(() => finish(), [finish]);
   const handleAbandon = useCallback(() => abandon(), [abandon]);
 
+  const handleEnterCurrent = useCallback(() => {
+    if (!snapshot) return;
+    const visit = snapshot.state.visits[snapshot.currentNodeId];
+    if (!visit || visit.status !== 'RESOLVED') {
+      onEnterNode();
+    }
+  }, [snapshot, onEnterNode]);
+
   if (!map || !snapshot) {
     return (
       <ScreenFrame labelledBy="expedition-title">
         <h1 id="expedition-title">Expedition</h1>
-        <p>No active expedition. Start a new run or continue a saved one.</p>
+        <p>No active expedition.</p>
         <Button labelKey="ui.common.start" variant="primary" onClick={handleStart} disabled={loading} />
       </ScreenFrame>
     );
@@ -49,6 +61,7 @@ export function DungeonMapScreen(): JSX.Element {
 
   const current = snapshot.currentNodeId;
   const reachable = new Set(snapshot.reachableNodes);
+  const currentResolved = snapshot.state.visits[current]?.status === 'RESOLVED';
 
   return (
     <ScreenFrame labelledBy="expedition-title">
@@ -97,9 +110,11 @@ export function DungeonMapScreen(): JSX.Element {
         </BottomActionBar>
       ) : (
         <BottomActionBar>
-          {selectedNode !== null && (
+          {selectedNode !== null ? (
             <Button labelKey="ui.common.advance" variant="primary" onClick={handleAdvance} />
-          )}
+          ) : !currentResolved ? (
+            <Button labelKey="ui.common.enter_node" variant="primary" onClick={handleEnterCurrent} />
+          ) : null}
           <Button labelKey="ui.common.finish" variant="secondary" onClick={handleFinish} />
         </BottomActionBar>
       )}

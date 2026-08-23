@@ -1,22 +1,55 @@
 /**
  * Post-boot screen router: after boot finishes at TITLE or FIRST_RUN,
- * determines which screen to show based on save state and renders it
- * through the ScreenNavigator.
+ * manages the expedition screen flow. Navigation state cycles between
+ * 'menu' (start/continue), 'map' (dungeon map), and 'node' (enter/act/resolve).
+ * NodeScreen calls onResolved when the node is completed, which transitions
+ * back to the map.
  */
-import { useCallback, type JSX } from 'react';
-import type { RoutableScreenKey } from '../app/navigation/screen-id.js';
-import { ScreenNavigator, routeFor } from '../app/navigation/ScreenNavigator.js';
+import { useCallback, useEffect, useState, type JSX } from 'react';
+import { DungeonMapScreen } from './run/DungeonMapScreen.js';
+import { NodeScreen } from './run/NodeScreen.js';
 import { Button } from '../ui/components/Button.js';
 import { ScreenFrame } from '../ui/layout/ScreenFrame.js';
 import { useExpedition } from '../features/expedition/useExpedition.js';
 import type { BootTerminalStep } from '../app/boot/boot-types.js';
 
+type NavState = 'menu' | 'map' | 'node';
+
 export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalStep, 'RECOVERY_REQUIRED'> }): JSX.Element {
   const { snapshot, map, hasSave, newRun, continueRun, loading } = useExpedition();
+  const [nav, setNav] = useState<NavState>(() => (snapshot && map ? 'map' : 'menu'));
 
-  const handleNewGame = useCallback(() => newRun(Date.now()), [newRun]);
-  const handleContinue = useCallback(() => continueRun(), [continueRun]);
+  // Sync nav when expedition state changes externally (abandon, restore).
+  useEffect(() => {
+    if (snapshot && map) {
+      if (nav === 'menu') setNav('map');
+    } else {
+      if (nav !== 'menu') setNav('menu');
+    }
+    // Only react to snapshot/map existence, not nav itself.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [snapshot, map]);
 
+  const handleNewGame = useCallback(() => {
+    newRun(Date.now());
+  }, [newRun]);
+
+  const handleContinue = useCallback(() => {
+    continueRun();
+  }, [continueRun]);
+
+  const handleEnterNode = useCallback(() => setNav('node'), []);
+  const handleNodeResolved = useCallback(() => setNav('map'), []);
+
+  if (nav === 'map') {
+    return <DungeonMapScreen onEnterNode={handleEnterNode} />;
+  }
+
+  if (nav === 'node') {
+    return <NodeScreen onResolved={handleNodeResolved} />;
+  }
+
+  // 'menu' state — same for FIRST_RUN and TITLE.
   if (step === 'FIRST_RUN') {
     return (
       <ScreenFrame labelledBy="first-run-title">
@@ -27,12 +60,7 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
     );
   }
 
-  // TITLE: show the appropriate screen.
-  if (snapshot && map) {
-    // Active expedition — show dungeon map.
-    return <ScreenNavigator route={routeFor('dungeonMap' as RoutableScreenKey)} />;
-  }
-
+  // TITLE with save: offer continue + new game.
   if (hasSave) {
     return (
       <ScreenFrame labelledBy="continue-title">
@@ -44,6 +72,7 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
     );
   }
 
+  // TITLE without save: start fresh.
   return (
     <ScreenFrame labelledBy="no-run-title">
       <h1 id="no-run-title">Expedition</h1>
