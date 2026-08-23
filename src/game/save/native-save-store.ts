@@ -2,7 +2,7 @@ import { canonicalJson, type JsonValue } from './canonical-json.js';
 import { payloadHash, validateEnvelope, type SaveEnvelope } from './save-envelope.js';
 import { SaveError, type SaveErrorCode } from './save-error.js';
 
-export type SaveFamily = 'profile' | 'run' | 'settings' | 'battle';
+export type SaveFamily = 'profile' | 'run' | 'settings' | 'battle' | 'expedition';
 export type Slot = 'A' | 'B' | 'C';
 
 /** Fault-injectable points of the slot+manifest commit protocol (P23-T02). */
@@ -73,7 +73,7 @@ export function nextSlot(slot: Slot): Slot {
 export const ALL_SLOTS: readonly Slot[] = ['A', 'B', 'C'] as const;
 export const SLOT_ORDER: Readonly<Record<Slot, number>> = { A: 0, B: 1, C: 2 };
 
-const FAMILY_IDS: readonly SaveFamily[] = ['profile', 'run', 'settings', 'battle'] as const;
+const FAMILY_IDS: readonly SaveFamily[] = ['profile', 'run', 'settings', 'battle', 'expedition'] as const;
 
 function assertFamily(family: string): asserts family is SaveFamily {
   if (!(FAMILY_IDS as readonly string[]).includes(family)) throw new SaveError('INVALID_ARGUMENT', { family });

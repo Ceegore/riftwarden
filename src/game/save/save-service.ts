@@ -8,7 +8,7 @@ import type { CommitRequest, CommitResult, NativeSaveStore } from './native-save
 import { SaveWriteCoordinator } from './save-write-coordinator.js';
 
 export interface SaveCommitInput {
-  readonly family: 'profile' | 'run' | 'settings' | 'battle';
+  readonly family: 'profile' | 'run' | 'settings' | 'battle' | 'expedition';
   readonly reason: SaveCommitReason;
   readonly idempotencyKey: string;
   readonly payload: JsonValue;
