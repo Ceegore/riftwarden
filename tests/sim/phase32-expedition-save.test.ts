@@ -56,4 +56,38 @@ describe('phase32 expedition save codec', () => {
     const serialized = encodeExpeditionSave(runner);
     expect(() => restoreExpeditionSave(serialized, mapFor(705))).toThrow('expedition.SAVE_MAP_MISMATCH');
   });
+
+  it('round-trips a mid-expedition save with enter, action, and resolve', () => {
+    const map = mapFor(706);
+    let runner = createExpedition(map, { startGold: 150 });
+    runner = runner.enter('mtx-01');
+    // Take the first action: ENGAGE for a battle node, CONFIRM for events, BUY for merchants.
+    const def = runner.definition;
+    const snapshot = runner.state.snapshots[runner.currentNodeId];
+    if (def.type === 'battle' || def.type === 'elite' || def.type === 'boss') {
+      runner = runner.act({ transactionId: 'mtx-02', nodeId: runner.currentNodeId, action: 'ENGAGE' });
+    } else if (def.type === 'event' && snapshot?.kind === 'EVENT') {
+      const first = snapshot.options.find((o) => o.available);
+      runner = first
+        ? runner.act({ transactionId: 'mtx-02', nodeId: runner.currentNodeId, action: 'CONFIRM', optionId: first.optionId })
+        : runner.act({ transactionId: 'mtx-02', nodeId: runner.currentNodeId, action: 'DECLINE' });
+    } else if (def.type === 'treasure') {
+      runner = runner.act({ transactionId: 'mtx-02', nodeId: runner.currentNodeId, action: 'TAKE' });
+    } else if (def.type === 'anchor' && runner.state.unsecuredLoot.length > 0) {
+      runner = runner.act({ transactionId: 'mtx-02', nodeId: runner.currentNodeId, action: 'SECURE' });
+    } else {
+      // No second action needed — just resolve.
+    }
+    runner = runner.resolve();
+    const serialized = encodeExpeditionSave(runner);
+    const restored = restoreExpeditionSave(serialized, map);
+    expect(restored.currentNodeId).toBe(runner.currentNodeId);
+    expect(restored.state.gold).toBe(runner.state.gold);
+    expect(restored.state.instability).toBe(runner.state.instability);
+    // Restored runner can continue: advance and enter the next node.
+    const nextIds = map.edges.filter((e) => e.from === runner.currentNodeId).map((e) => e.to);
+    if (nextIds.length > 0 && nextIds[0]) {
+      restored.advance(nextIds[0]);
+    }
+  });
 });

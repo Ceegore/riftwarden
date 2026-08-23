@@ -33,6 +33,12 @@ test('phase32 headless runner persists a completed ExpeditionRunner ledger', () 
     assert.equal(ledger.runs.length, 12);
     assert.ok(ledger.runs.every((run) => run.nodes.length === run.nodeCount));
     assert.ok(ledger.runs.every((run) => run.nodes.every((node) => node.enterStatus === 'COMMITTED')));
+    // Save/restore exercised at every run's midpoint.
+    assert.equal(ledger.summary.saveRestores, 12);
+    assert.equal(ledger.summary.saveFailures, 0);
+    assert.equal(ledger.summary.restoreFailures, 0);
+    assert.equal(ledger.summary.stateMismatches, 0);
+    assert.ok(ledger.runs.every((run) => run.saveRestore?.ok === true));
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
@@ -47,6 +53,9 @@ test('phase32 headless runner is repeatable for the same seed and count', () => 
       { config: first.config, summary: first.summary, runs: first.runs },
       { config: second.config, summary: second.summary, runs: second.runs },
     );
+    // Repeatability includes save/restore cycle.
+    assert.equal(first.summary.saveRestores, 8);
+    assert.equal(first.summary.saveFailures, 0);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
