@@ -55,6 +55,7 @@ export const GENERATED_FILES = Object.freeze([
   'docs/requirements/source-headings.json',
   'contracts/phase32/golden-registry.json',
   'contracts/phase32/map-qa-report.json',
+  'src/locales/format/bootstrap-bundle.ts',
 ]);
 
 export const GENERATED_CONTRACT_MARKER = 'GENERATED_DIRECTORY_CONTRACT';

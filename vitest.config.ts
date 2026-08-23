@@ -41,7 +41,7 @@ export default defineConfig({
       { test: { name: 'math', include: ['tests/math/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'random', include: ['tests/random/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'replay', include: ['tests/replay/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
-      { test: { name: 'kernel', include: ['tests/sim/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'kernel', include: ['tests/sim/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
       { test: { name: 'phase15', include: ['tests/phase15/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'phase16', include: ['tests/sim/phase16-*.test.ts', 'tests/sim/reference-traces-phase16.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'phase17', include: ['tests/sim/phase17-*.test.ts', 'tests/sim/reference-traces-phase17*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
