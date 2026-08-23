@@ -1,7 +1,7 @@
 /**
  * GENERATED FILE — do not edit by hand.
  * Regenerate with: node tools/sim/write-locale-bootstrap.mjs
- * Generated at: 2026-08-23T16:24:11.318Z
+ * Generated at: 2026-08-23T18:05:57.437Z
  *
  * Bootstrap locale bundle (LOCALE_BOOTSTRAP_CONTRACT): a stopgap bundle that
  * lets the app boot in a browser before the real localization compiler

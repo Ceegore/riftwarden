@@ -3,7 +3,10 @@
  * manages the full expedition + HQ screen flow through a typed nav state.
  *
  * Nav states:
- *   menu → newGame / help / missions
+ *   menu → newGame / help / missions / hq
+ *   hq → heroHall / barracks / workshop / archive / mastery / achievements / missions / help / back
+ *   archive → codexList / storyArchive / records / achievements / back
+ *   codexList → codexDetail / back
  *   newGame → launch → map
  *   help → back → menu
  *   missions → select → missionDetail / back → menu
@@ -33,6 +36,13 @@ import { BarracksScreen } from './hq/BarracksScreen.js';
 import { TroopDetailsScreen } from './hq/TroopDetailsScreen.js';
 import { WorkshopScreen } from './hq/WorkshopScreen.js';
 import { ItemDetailsScreen } from './hq/ItemDetailsScreen.js';
+import { ArchiveHubScreen, type ArchiveSection } from './hq/ArchiveHubScreen.js';
+import { CodexListScreen } from './hq/CodexListScreen.js';
+import { CodexDetailsScreen } from './hq/CodexDetailsScreen.js';
+import { MasteryScreen } from './hq/MasteryScreen.js';
+import { AchievementsScreen } from './hq/AchievementsScreen.js';
+import { RecordsStatisticsScreen } from './hq/RecordsStatisticsScreen.js';
+import { StoryArchiveScreen } from './hq/StoryArchiveScreen.js';
 import { Button } from '../ui/components/Button.js';
 import { ScreenFrame } from '../ui/layout/ScreenFrame.js';
 import { useExpedition } from '../features/expedition/useExpedition.js';
@@ -57,7 +67,15 @@ type NavState =
   | 'barracks'
   | { readonly kind: 'troopDetail'; readonly troopTypeId: string }
   | 'workshop'
-  | { readonly kind: 'itemDetail'; readonly itemId: string };
+  | { readonly kind: 'itemDetail'; readonly itemId: string }
+  // Phase 35
+  | 'archive'
+  | 'codexList'
+  | { readonly kind: 'codexDetail'; readonly entryId: string }
+  | 'mastery'
+  | 'achievements'
+  | 'records'
+  | 'storyArchive';
 
 export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalStep, 'RECOVERY_REQUIRED'> }): JSX.Element {
   const { snapshot, map, hasSave, continueRun, loading } = useExpedition();
@@ -80,7 +98,6 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
   const handleMenu = useCallback(() => setNav('menu'), []);
 
   const handleLaunched = useCallback(() => {
-    // After newRun creates the expedition, nav sync effect fires → 'map'.
     setNav('map');
   }, []);
 
@@ -124,11 +141,14 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
 
   const handleHqNavigate = useCallback((section: HqSection) => {
     switch (section) {
-      case 'missions': setNav('missions'); break;
-      case 'heroHall': setNav('heroHall'); break;
-      case 'barracks': setNav('barracks'); break;
-      case 'workshop': setNav('workshop'); break;
-      case 'help': setNav('help'); break;
+      case 'missions':     setNav('missions'); break;
+      case 'heroHall':     setNav('heroHall'); break;
+      case 'barracks':     setNav('barracks'); break;
+      case 'workshop':     setNav('workshop'); break;
+      case 'archive':      setNav('archive'); break;
+      case 'mastery':      setNav('mastery'); break;
+      case 'achievements': setNav('achievements'); break;
+      case 'help':         setNav('help'); break;
     }
   }, []);
 
@@ -142,6 +162,20 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
 
   const handleItemSelect = useCallback((itemId: string) => {
     setNav({ kind: 'itemDetail', itemId });
+  }, []);
+
+  // Phase 35 handlers
+  const handleArchiveNavigate = useCallback((section: ArchiveSection) => {
+    switch (section) {
+      case 'codexList':    setNav('codexList'); break;
+      case 'storyArchive': setNav('storyArchive'); break;
+      case 'records':      setNav('records'); break;
+      case 'achievements': setNav('achievements'); break;
+    }
+  }, []);
+
+  const handleCodexEntrySelect = useCallback((entryId: string) => {
+    setNav({ kind: 'codexDetail', entryId });
   }, []);
 
   // -- Render based on nav state --
@@ -218,6 +252,35 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
         onBack={() => setNav('missions')}
       />
     );
+  }
+
+  // Phase 35
+  if (nav === 'archive') {
+    return <ArchiveHubScreen onNavigate={handleArchiveNavigate} onBack={() => setNav('hq')} />;
+  }
+
+  if (nav === 'codexList') {
+    return <CodexListScreen onSelectEntry={handleCodexEntrySelect} onBack={() => setNav('archive')} />;
+  }
+
+  if (typeof nav === 'object' && nav.kind === 'codexDetail') {
+    return <CodexDetailsScreen entryId={nav.entryId} onBack={() => setNav('codexList')} />;
+  }
+
+  if (nav === 'mastery') {
+    return <MasteryScreen onBack={() => setNav('hq')} />;
+  }
+
+  if (nav === 'achievements') {
+    return <AchievementsScreen onBack={() => setNav('hq')} />;
+  }
+
+  if (nav === 'records') {
+    return <RecordsStatisticsScreen onBack={() => setNav('archive')} />;
+  }
+
+  if (nav === 'storyArchive') {
+    return <StoryArchiveScreen onBack={() => setNav('archive')} />;
   }
 
   // 'menu' state.

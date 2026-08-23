@@ -1,7 +1,8 @@
 /**
  * HQ overview screen (S10): the player's headquarters hub. Shows the
  * profile summary (gold, rift essence, collection counts) and links to
- * the HQ sections: mission board, hero hall, barracks, and workshop.
+ * the HQ sections: mission board, hero hall, barracks, workshop, archive,
+ * mastery, and achievements.
  */
 import { useMemo } from 'react';
 import type { JSX } from 'react';
@@ -13,7 +14,15 @@ import { ScreenFrame } from '../../ui/layout/ScreenFrame.js';
 import { ScrollRegion } from '../../ui/layout/ScrollRegion.js';
 import { loadOrCreateProfile } from '../../game/profile/profile-store.js';
 
-export type HqSection = 'missions' | 'heroHall' | 'barracks' | 'workshop' | 'help';
+export type HqSection =
+  | 'missions'
+  | 'heroHall'
+  | 'barracks'
+  | 'workshop'
+  | 'archive'
+  | 'mastery'
+  | 'achievements'
+  | 'help';
 
 export interface HqOverviewScreenProps {
   readonly onNavigate: (section: HqSection) => void;
@@ -21,11 +30,14 @@ export interface HqOverviewScreenProps {
 }
 
 const SECTIONS: readonly { readonly key: HqSection; readonly label: string; readonly hint: string }[] = [
-  { key: 'missions', label: 'Mission Board', hint: 'Choose and launch expeditions' },
-  { key: 'heroHall', label: 'Hero Hall', hint: 'View your unlocked heroes' },
-  { key: 'barracks', label: 'Barracks', hint: 'Review your troops and copies' },
-  { key: 'workshop', label: 'Workshop', hint: 'Review owned items and relics' },
-  { key: 'help', label: 'Help', hint: 'How to play reference' },
+  { key: 'missions',     label: 'Mission Board',    hint: 'Choose and launch expeditions' },
+  { key: 'heroHall',     label: 'Hero Hall',        hint: 'View your unlocked heroes' },
+  { key: 'barracks',     label: 'Barracks',         hint: 'Review your troops and copies' },
+  { key: 'workshop',     label: 'Workshop',         hint: 'Review owned items and relics' },
+  { key: 'archive',      label: 'Archive',          hint: 'Codex, story fragments, records, achievements' },
+  { key: 'mastery',      label: 'Mastery',          hint: 'Hero mastery progress and milestones' },
+  { key: 'achievements', label: 'Achievements',     hint: 'Tracked goals and milestones' },
+  { key: 'help',         label: 'Help',             hint: 'How to play reference' },
 ];
 
 export function HqOverviewScreen({ onNavigate, onBack }: HqOverviewScreenProps): JSX.Element {

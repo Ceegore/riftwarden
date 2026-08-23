@@ -15,6 +15,13 @@ import { BarracksScreen } from './BarracksScreen.js';
 import { TroopDetailsScreen } from './TroopDetailsScreen.js';
 import { WorkshopScreen } from './WorkshopScreen.js';
 import { ItemDetailsScreen } from './ItemDetailsScreen.js';
+import { AchievementsScreen } from './AchievementsScreen.js';
+import { ArchiveHubScreen } from './ArchiveHubScreen.js';
+import { CodexListScreen } from './CodexListScreen.js';
+import { CodexDetailsScreen } from './CodexDetailsScreen.js';
+import { MasteryScreen } from './MasteryScreen.js';
+import { RecordsStatisticsScreen } from './RecordsStatisticsScreen.js';
+import { StoryArchiveScreen } from './StoryArchiveScreen.js';
 
 export const hqScreenModules: Readonly<Record<string, ScreenModule>> = {
   'screen.newGame': { default: NewGameScreen },
@@ -28,4 +35,12 @@ export const hqScreenModules: Readonly<Record<string, ScreenModule>> = {
   'screen.troopDetails': { default: TroopDetailsScreen },
   'screen.workshop': { default: WorkshopScreen },
   'screen.itemDetails': { default: ItemDetailsScreen },
+  // Phase 35
+  'screen.achievements': { default: AchievementsScreen },
+  'screen.archiveHub': { default: ArchiveHubScreen },
+  'screen.codexList': { default: CodexListScreen },
+  'screen.codexDetails': { default: CodexDetailsScreen },
+  'screen.mastery': { default: MasteryScreen },
+  'screen.recordsStatistics': { default: RecordsStatisticsScreen },
+  'screen.storyArchive': { default: StoryArchiveScreen },
 };
