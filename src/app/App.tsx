@@ -13,6 +13,7 @@ import type { BootEvent, BootState, BootTerminalStep } from './boot/boot-types';
 import type { PreliminarySystemCopy, SystemCopyKey } from '../locales/system-copy';
 import { PostBootScreen } from '../screens/PostBootScreen';
 import { hasStoredExpedition } from '../game/expedition/expedition-store.js';
+import { loadProfile } from '../game/profile/profile-store.js';
 
 // -- System copy (mock for now; real localization replaces this) -----------
 const MOCK_COPY: Record<SystemCopyKey, string> = {
@@ -52,9 +53,11 @@ const bootServices: BootServices = {
   async loadSettings(_signal): Promise<void> { /* default settings */ },
   async validateContent(_signal): Promise<void> { /* content revision ok */ },
   async loadSave(_signal) {
-    // Check for expedition saves. If none exist, route to FIRST_RUN;
-    // otherwise the user can continue or start fresh from TITLE.
-    return hasStoredExpedition() ? { kind: 'title' as const } : { kind: 'first_run' as const };
+    // Route to TITLE when any progress exists — an in-progress expedition
+    // (stored via the expedition save codec) or a settled profile (gold,
+    // heroes, items from previous runs). Otherwise first-run onboarding.
+    const hasProgress = hasStoredExpedition() || loadProfile() !== null;
+    return hasProgress ? { kind: 'title' as const } : { kind: 'first_run' as const };
   },
 };
 

@@ -26,6 +26,13 @@ import { NewGameScreen } from './hq/NewGameScreen.js';
 import { GlobalHelpScreen } from './hq/GlobalHelpScreen.js';
 import { MissionBoardScreen } from './hq/MissionBoardScreen.js';
 import { MissionDetailsScreen } from './hq/MissionDetailsScreen.js';
+import { HqOverviewScreen, type HqSection } from './hq/HqOverviewScreen.js';
+import { HeroHallScreen } from './hq/HeroHallScreen.js';
+import { HeroDetailsScreen } from './hq/HeroDetailsScreen.js';
+import { BarracksScreen } from './hq/BarracksScreen.js';
+import { TroopDetailsScreen } from './hq/TroopDetailsScreen.js';
+import { WorkshopScreen } from './hq/WorkshopScreen.js';
+import { ItemDetailsScreen } from './hq/ItemDetailsScreen.js';
 import { Button } from '../ui/components/Button.js';
 import { ScreenFrame } from '../ui/layout/ScreenFrame.js';
 import { useExpedition } from '../features/expedition/useExpedition.js';
@@ -43,7 +50,14 @@ type NavState =
   | 'battleResult'
   | 'reward'
   | 'end'
-  | 'defeat';
+  | 'defeat'
+  | 'hq'
+  | 'heroHall'
+  | { readonly kind: 'heroDetail'; readonly heroId: string }
+  | 'barracks'
+  | { readonly kind: 'troopDetail'; readonly troopTypeId: string }
+  | 'workshop'
+  | { readonly kind: 'itemDetail'; readonly itemId: string };
 
 export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalStep, 'RECOVERY_REQUIRED'> }): JSX.Element {
   const { snapshot, map, hasSave, continueRun, loading } = useExpedition();
@@ -106,6 +120,29 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
   }, []);
 
   const handleReturnToMenu = useCallback(() => setNav('menu'), []);
+  const handleOpenHq = useCallback(() => setNav('hq'), []);
+
+  const handleHqNavigate = useCallback((section: HqSection) => {
+    switch (section) {
+      case 'missions': setNav('missions'); break;
+      case 'heroHall': setNav('heroHall'); break;
+      case 'barracks': setNav('barracks'); break;
+      case 'workshop': setNav('workshop'); break;
+      case 'help': setNav('help'); break;
+    }
+  }, []);
+
+  const handleHeroSelect = useCallback((heroId: string) => {
+    setNav({ kind: 'heroDetail', heroId });
+  }, []);
+
+  const handleTroopSelect = useCallback((troopTypeId: string) => {
+    setNav({ kind: 'troopDetail', troopTypeId });
+  }, []);
+
+  const handleItemSelect = useCallback((itemId: string) => {
+    setNav({ kind: 'itemDetail', itemId });
+  }, []);
 
   // -- Render based on nav state --
 
@@ -139,6 +176,34 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
 
   if (nav === 'help') {
     return <GlobalHelpScreen onBack={handleMenu} />;
+  }
+
+  if (nav === 'hq') {
+    return <HqOverviewScreen onNavigate={handleHqNavigate} onBack={handleMenu} />;
+  }
+
+  if (nav === 'heroHall') {
+    return <HeroHallScreen onSelect={handleHeroSelect} onBack={() => setNav('hq')} />;
+  }
+
+  if (typeof nav === 'object' && nav.kind === 'heroDetail') {
+    return <HeroDetailsScreen heroId={nav.heroId} onBack={() => setNav('heroHall')} />;
+  }
+
+  if (nav === 'barracks') {
+    return <BarracksScreen onSelect={handleTroopSelect} onBack={() => setNav('hq')} />;
+  }
+
+  if (typeof nav === 'object' && nav.kind === 'troopDetail') {
+    return <TroopDetailsScreen troopTypeId={nav.troopTypeId} onBack={() => setNav('barracks')} />;
+  }
+
+  if (nav === 'workshop') {
+    return <WorkshopScreen onSelect={handleItemSelect} onBack={() => setNav('hq')} />;
+  }
+
+  if (typeof nav === 'object' && nav.kind === 'itemDetail') {
+    return <ItemDetailsScreen itemId={nav.itemId} onBack={() => setNav('workshop')} />;
   }
 
   if (nav === 'missions') {
@@ -175,6 +240,7 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
         <Button labelKey="ui.common.continue" variant="primary" onClick={handleContinue} disabled={loading} />
         <Button labelKey="ui.common.new_game" variant="secondary" onClick={handleNewGame} />
         <Button labelKey="ui.common.missions" variant="secondary" onClick={handleMissions} />
+        <Button labelKey="ui.common.hq" variant="secondary" onClick={handleOpenHq} />
         <Button labelKey="ui.common.help" variant="secondary" onClick={handleHelp} />
       </ScreenFrame>
     );
@@ -186,6 +252,7 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
       <p>Start a new expedition.</p>
       <Button labelKey="ui.common.start" variant="primary" onClick={handleNewGame} disabled={loading} />
       <Button labelKey="ui.common.missions" variant="secondary" onClick={handleMissions} />
+      <Button labelKey="ui.common.hq" variant="secondary" onClick={handleOpenHq} />
       <Button labelKey="ui.common.help" variant="secondary" onClick={handleHelp} />
     </ScreenFrame>
   );
