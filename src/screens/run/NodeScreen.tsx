@@ -9,7 +9,8 @@ import { useExpedition } from '../../features/expedition/useExpedition.js';
 import type { NodeActionRequest } from '../../game/expedition/nodes/types.js';
 
 export interface NodeScreenProps {
-  readonly onResolved: () => void;
+  readonly onResolved: (next: 'map' | 'battleResult') => void;
+  readonly nextHint?: 'map' | 'battleResult';
 }
 
 interface ActionDef {
@@ -97,10 +98,12 @@ function actionsForType(type: string, snapshot: ReturnType<typeof useExpedition>
   }
 }
 
-export function NodeScreen({ onResolved }: NodeScreenProps): JSX.Element {
+export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Element {
   const { snapshot, enter, act, resolve } = useExpedition();
   const [phase, setPhase] = useState<'idle' | 'entering' | 'acting' | 'resolved'>('idle');
   const [enterTxId] = useState(() => `ui-${String(Date.now())}-${String(Math.random().toString(36).slice(2))}`);
+  const [nextAfter, setNextAfter] = useState<'map' | 'battleResult'>(nextHint ?? 'map');
+  const currentNodeType = snapshot?.currentNodeType ?? '';
 
   // Auto-enter when the screen mounts.
   useEffect(() => {
@@ -133,11 +136,15 @@ export function NodeScreen({ onResolved }: NodeScreenProps): JSX.Element {
     // Resolve immediately after acting — single-action nodes complete here.
     resolve();
     setPhase('resolved');
-  }, [snapshot, act, resolve]);
+
+    // Determine next screen: combat nodes go to battle result.
+    const combatTypes = new Set(['battle', 'elite', 'boss']);
+    setNextAfter(combatTypes.has(currentNodeType) ? 'battleResult' : 'map');
+  }, [snapshot, act, resolve, currentNodeType]);
 
   const handleDone = useCallback(() => {
-    onResolved();
-  }, [onResolved]);
+    onResolved(nextAfter);
+  }, [onResolved, nextAfter]);
 
   if (!snapshot) {
     return (
@@ -148,12 +155,11 @@ export function NodeScreen({ onResolved }: NodeScreenProps): JSX.Element {
     );
   }
 
-  const { currentNodeType, gold, instability } = snapshot;
-  const actions = actionsForType(currentNodeType, snapshot);
+  const { gold, instability } = snapshot;
+  const nodeActions = actionsForType(currentNodeType, snapshot);
 
   return (
-    <ScreenFrame labelledBy="node-title">
-      <h1 id="node-title">{currentNodeType.charAt(0).toUpperCase() + currentNodeType.slice(1)} Node</h1>
+    <ScreenFrame labelledBy="node-title">        <h1 id="node-title">{currentNodeType.charAt(0).toUpperCase() + currentNodeType.slice(1)} Node</h1>
 
       <div className="rw-expedition-resources">
         <ResourcePill icon="◆" value={gold} nameKey="ui.resource.gold" />
@@ -165,7 +171,7 @@ export function NodeScreen({ onResolved }: NodeScreenProps): JSX.Element {
       {phase === 'acting' && (
         <div className="rw-node-actions">
           <p>Choose your action:</p>
-          {actions.map((actionDef) => (
+          {nodeActions.map((actionDef) => (
             <div key={actionDef.labelKey} className="rw-node-action">
               <Button
                 labelKey={actionDef.labelKey}

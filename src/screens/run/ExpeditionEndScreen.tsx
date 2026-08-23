@@ -1,7 +1,7 @@
 /**
  * Expedition end screen (S55): victory summary with full settlement
  * breakdown. On continue, commits all settlement requests to the profile
- * and clears the expedition.
+ * and clears the expedition, then calls onReturn.
  */
 import { useCallback, useMemo } from 'react';
 import type { JSX } from 'react';
@@ -14,7 +14,11 @@ import { buildSettlementRequests } from '../../game/expedition/expedition-settle
 import { commitTransaction } from '../../game/profile/transaction-service.js';
 import { loadOrCreateProfile, saveProfile } from '../../game/profile/profile-store.js';
 
-export function ExpeditionEndScreen(): JSX.Element {
+export interface ExpeditionEndScreenProps {
+  readonly onReturn: () => void;
+}
+
+export function ExpeditionEndScreen({ onReturn }: ExpeditionEndScreenProps): JSX.Element {
   const { snapshot, finish, abandon } = useExpedition();
 
   const handleFinish = useCallback(() => finish(), [finish]);
@@ -29,7 +33,8 @@ export function ExpeditionEndScreen(): JSX.Element {
     }
     saveProfile(profile);
     abandon();
-  }, [snapshot, abandon]);
+    onReturn();
+  }, [snapshot, abandon, onReturn]);
 
   if (!snapshot) {
     return (

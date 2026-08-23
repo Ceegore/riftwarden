@@ -15,7 +15,7 @@ export interface UseExpeditionResult {
   readonly hasSave: boolean;
   readonly loading: boolean;
 
-  newRun(seed: number, startGold?: number): void;
+  newRun(seed: number, startGold?: number, mapProfileId?: string): void;
   continueRun(): void;
   abandon(): void;
   enter(txId: string): void;
@@ -36,9 +36,9 @@ export function useExpedition(): UseExpeditionResult {
     return mgr.subscribe(() => setSnapshot(mgr.snapshot()));
   }, []);
 
-  const newRun = useCallback((seed: number, startGold = 100) => {
+  const newRun = useCallback((seed: number, startGold = 100, mapProfileId?: string) => {
     setLoading(true);
-    const mgr = RunManager.create(seed, startGold);
+    const mgr = RunManager.create(seed, startGold, mapProfileId);
     setMap(mgr.map);
     setSnapshot(mgr.snapshot());
     setLoading(false);

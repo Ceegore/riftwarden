@@ -9,6 +9,7 @@
  * going through the generic ScreenNavigator.
  */
 import type { ScreenModule } from '../../app/navigation/screen-registration.js';
+import { BattleResultScreen } from './BattleResultScreen.js';
 import { DefeatRecoveryScreen } from './DefeatRecoveryScreen.js';
 import { DungeonMapScreen } from './DungeonMapScreen.js';
 import { ExpeditionEndScreen } from './ExpeditionEndScreen.js';
@@ -32,8 +33,8 @@ export const runScreenModules: Readonly<Record<string, ScreenModule>> = {
   'screen.rewardChoice': { default: RewardChoiceScreen },
   'screen.expeditionEnd': { default: ExpeditionEndScreen },
   'screen.defeatRecovery': { default: DefeatRecoveryScreen },
-  // Battle screens (Phase 25/26) — not yet implemented; placeholder.
+  // Battle screens.
   'screen.battle': { default: NodeScreen },
   'screen.battleInspector': { default: NodeScreen },
-  'screen.battleResult': { default: NodeScreen },
+  'screen.battleResult': { default: BattleResultScreen },
 };

@@ -47,9 +47,12 @@ export class RunManager {
   static get active(): RunManager | null { return instance; }
 
   /** Create a fresh expedition and make it the active instance. */
-  static create(seed: number, startGold = 100): RunManager {
+  static create(seed: number, startGold = 100, mapProfileId?: string): RunManager {
     instance?.dispose();
-    const map = generateMap({ seed, profileId: DEFAULT_PROFILE.id, contentRevision: '32.0' }, DEFAULT_PROFILE);
+    const profile: MapProfile = mapProfileId !== undefined
+      ? { ...DEFAULT_PROFILE, id: mapProfileId }
+      : DEFAULT_PROFILE;
+    const map = generateMap({ seed, profileId: profile.id, contentRevision: '32.0' }, profile);
     const runner = createAndSaveExpedition(map, { startGold });
     instance = new RunManager(runner, map);
     return instance;

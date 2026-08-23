@@ -1,6 +1,6 @@
 /**
  * Reward choice screen (S54): shows the reward options from a combat node
- * snapshot and lets the user pick one. Uses the expedition hook directly.
+ * snapshot and lets the user pick one. Calls onDone when finished.
  */
 import { useCallback } from 'react';
 import type { JSX } from 'react';
@@ -12,7 +12,11 @@ import { BottomActionBar } from '../../ui/layout/BottomActionBar.js';
 import { useExpedition } from '../../features/expedition/useExpedition.js';
 import type { NodeActionRequest } from '../../game/expedition/nodes/types.js';
 
-export function RewardChoiceScreen(): JSX.Element {
+export interface RewardChoiceScreenProps {
+  readonly onDone: () => void;
+}
+
+export function RewardChoiceScreen({ onDone }: RewardChoiceScreenProps): JSX.Element {
   const { snapshot, act, resolve } = useExpedition();
 
   const handleClaim = useCallback((optionId: string) => {
@@ -27,7 +31,7 @@ export function RewardChoiceScreen(): JSX.Element {
     act(request);
   }, [snapshot, act]);
 
-  const handleDone = useCallback(() => resolve(), [resolve]);
+  const handleDone = useCallback(() => { resolve(); onDone(); }, [resolve, onDone]);
 
   if (!snapshot) {
     return (

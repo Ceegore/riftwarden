@@ -12,6 +12,8 @@ import type { NodeId } from '../../game/expedition/types.js';
 
 export interface DungeonMapScreenProps {
   readonly onEnterNode: () => void;
+  readonly onFinish: (result: 'end' | 'defeat') => void;
+  readonly onBack: () => void;
 }
 
 function nodeLabel(type: string): string {
@@ -24,8 +26,8 @@ function nodeLabel(type: string): string {
   return labels[type] ?? type;
 }
 
-export function DungeonMapScreen({ onEnterNode }: DungeonMapScreenProps): JSX.Element {
-  const { snapshot, map, mainPathNodes, advance, finish, abandon, newRun, loading } = useExpedition();
+export function DungeonMapScreen({ onEnterNode, onFinish, onBack }: DungeonMapScreenProps): JSX.Element {
+  const { snapshot, map, mainPathNodes, advance, newRun, loading } = useExpedition();
   const [selectedNode, setSelectedNode] = useState<NodeId | null>(null);
 
   const handleStart = useCallback(() => newRun(Date.now()), [newRun]);
@@ -38,8 +40,15 @@ export function DungeonMapScreen({ onEnterNode }: DungeonMapScreenProps): JSX.El
     }
   }, [selectedNode, snapshot, advance]);
 
-  const handleFinish = useCallback(() => finish(), [finish]);
-  const handleAbandon = useCallback(() => abandon(), [abandon]);
+  const handleFinish = useCallback(() => {
+    if (!snapshot || !map) return;
+    // If current node is the boss, it's a victory.
+    if (snapshot.currentNodeId === map.bossNodeId) {
+      onFinish('end');
+    } else {
+      onFinish('defeat');
+    }
+  }, [snapshot, map, onFinish]);
 
   const handleEnterCurrent = useCallback(() => {
     if (!snapshot) return;
@@ -104,20 +113,21 @@ export function DungeonMapScreen({ onEnterNode }: DungeonMapScreenProps): JSX.El
         </div>
       </ScrollRegion>
 
-      {snapshot.runStatus === 'finished' ? (
-        <BottomActionBar>
-          <Button labelKey="ui.common.exit" variant="primary" onClick={handleAbandon} />
-        </BottomActionBar>
-      ) : (
-        <BottomActionBar>
-          {selectedNode !== null ? (
-            <Button labelKey="ui.common.advance" variant="primary" onClick={handleAdvance} />
-          ) : !currentResolved ? (
-            <Button labelKey="ui.common.enter_node" variant="primary" onClick={handleEnterCurrent} />
-          ) : null}
-          <Button labelKey="ui.common.finish" variant="secondary" onClick={handleFinish} />
-        </BottomActionBar>
-      )}
+          {snapshot.runStatus === 'finished' ? (
+            <BottomActionBar>
+              <Button labelKey="ui.common.back" variant="secondary" onClick={onBack} />
+            </BottomActionBar>
+          ) : (
+            <BottomActionBar>
+              {selectedNode !== null ? (
+                <Button labelKey="ui.common.advance" variant="primary" onClick={handleAdvance} />
+              ) : !currentResolved ? (
+                <Button labelKey="ui.common.enter_node" variant="primary" onClick={handleEnterCurrent} />
+              ) : null}
+              <Button labelKey="ui.common.finish" variant="secondary" onClick={handleFinish} />
+              <Button labelKey="ui.common.back" variant="secondary" onClick={onBack} />
+            </BottomActionBar>
+          )}
     </ScreenFrame>
   );
 }

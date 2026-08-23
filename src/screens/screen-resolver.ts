@@ -10,9 +10,11 @@
  */
 import type { ScreenModule, ScreenModuleResolver } from '../app/navigation/screen-registration.js';
 import { runScreenModules } from './run/screen-modules.js';
+import { hqScreenModules } from './hq/hq-screen-modules.js';
 
 const MODULES: Readonly<Record<string, ScreenModule>> = {
   ...runScreenModules,
+  ...hqScreenModules,
 };
 
 export const screenResolver: ScreenModuleResolver = {

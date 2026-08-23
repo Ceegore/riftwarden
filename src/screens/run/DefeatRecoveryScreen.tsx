@@ -1,7 +1,7 @@
 /**
  * Defeat recovery screen (S56): defeat settlement summary with full
  * breakdown of what was kept and lost. On continue, commits settlement
- * requests to the profile and clears the expedition.
+ * requests to the profile and clears the expedition, then calls onReturn.
  */
 import { useCallback, useMemo } from 'react';
 import type { JSX } from 'react';
@@ -14,7 +14,11 @@ import { buildSettlementRequests } from '../../game/expedition/expedition-settle
 import { commitTransaction } from '../../game/profile/transaction-service.js';
 import { loadOrCreateProfile, saveProfile } from '../../game/profile/profile-store.js';
 
-export function DefeatRecoveryScreen(): JSX.Element {
+export interface DefeatRecoveryScreenProps {
+  readonly onReturn: () => void;
+}
+
+export function DefeatRecoveryScreen({ onReturn }: DefeatRecoveryScreenProps): JSX.Element {
   const { snapshot, abandon } = useExpedition();
 
   const handleCommitAndReturn = useCallback(() => {
@@ -26,7 +30,8 @@ export function DefeatRecoveryScreen(): JSX.Element {
     }
     saveProfile(profile);
     abandon();
-  }, [snapshot, abandon]);
+    onReturn();
+  }, [snapshot, abandon, onReturn]);
 
   if (!snapshot) {
     return (
