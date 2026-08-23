@@ -5,6 +5,7 @@
  */
 import { describe, expect, it } from 'vitest';
 import { createExpedition, mainPath, nodesOfType, restoreExpedition } from '../../src/game/expedition/expedition-runner.js';
+import { encodeExpeditionSave, restoreExpeditionSave } from '../../src/game/expedition/expedition-save.js';
 import type { NodeActionRequest, NodeRunState } from '../../src/game/expedition/nodes/types.js';
 import { generateMap } from '../../src/game/expedition/map-generator.js';
 import type { ExpeditionMap, MapProfile } from '../../src/game/expedition/types.js';
@@ -265,3 +266,52 @@ function nodeActionFor(
       return null;
   }
 }
+
+describe('phase32 expedition run status', () => {
+  it('active runs accept enter and act', () => {
+    const map = mapFor(900);
+    let exp = createExpedition(map, { startGold: 100 });
+    exp = exp.enter('tx-run-1');
+    expect(exp.state.runStatus).toBe('active');
+    exp = exp.resolve();
+    expect(exp.state.runStatus).toBe('active');
+  });
+
+  it('finish() marks a run finished and rejects further mutations', () => {
+    const map = mapFor(901);
+    let exp = createExpedition(map, { startGold: 100 });
+    exp = exp.enter('tx-run-2');
+    exp = exp.resolve();
+    exp = exp.finish();
+    expect(exp.state.runStatus).toBe('finished');
+    expect(() => exp.enter('tx-run-3')).toThrow('expedition.RUN_ALREADY_FINISHED');
+    expect(() => exp.act({ transactionId: 'tx-run-4', nodeId: exp.currentNodeId, action: 'ENGAGE' })).toThrow('expedition.RUN_ALREADY_FINISHED');
+    expect(() => exp.resolve()).toThrow('expedition.RUN_ALREADY_FINISHED');
+    // advance is a mutating operation too — also blocked.
+    const nextIds = exp.reachableNodes;
+    const next = nextIds[0];
+    if (next !== undefined) {
+      expect(() => exp.advance(next)).toThrow('expedition.RUN_ALREADY_FINISHED');
+    }
+  });
+
+  it('finish() is idempotent', () => {
+    const map = mapFor(902);
+    let exp = createExpedition(map, { startGold: 100 });
+    exp = exp.finish();
+    const revision = exp.state.revision;
+    exp = exp.finish();
+    expect(exp.state.runStatus).toBe('finished');
+    expect(exp.state.revision).toBe(revision); // no extra revision bump
+  });
+
+  it('finished runs round-trip through the save codec', () => {
+    const map = mapFor(903);
+    let exp = createExpedition(map, { startGold: 100 });
+    exp = exp.enter('tx-run-5').resolve().finish();
+    const serialized = encodeExpeditionSave(exp);
+    const restored = restoreExpeditionSave(serialized, map);
+    expect(restored.state.runStatus).toBe('finished');
+    expect(() => restored.enter('tx-run-6')).toThrow('expedition.RUN_ALREADY_FINISHED');
+  });
+});

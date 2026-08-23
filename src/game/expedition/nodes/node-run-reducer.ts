@@ -171,3 +171,9 @@ export function dispatchEnterNode(
   const outcome = dispatchCommit(prepared.state, enterRequest, definition, handler);
   return { outcome, state: outcome.state };
 }
+
+/** Marks a run as finished; finished runs reject all further mutations. */
+export function finishExpeditionRun(state: NodeRunState): NodeRunState {
+  if (state.runStatus === 'finished') return state;
+  return { ...state, revision: state.revision + 1, runStatus: 'finished' };
+}

@@ -25,6 +25,7 @@ export {
   dispatchEnterNode,
   advanceToNode,
   nextNodes,
+  finishExpeditionRun,
 } from '../../src/game/expedition/nodes/node-run-reducer.js';
 export { generateMap, buildCandidate, structuralHash } from '../../src/game/expedition/map-generator.js';
 export { reachableFrom, mainPathLength } from '../../src/game/expedition/reachability.js';

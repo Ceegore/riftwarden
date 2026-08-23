@@ -7,6 +7,9 @@
  */
 import type { NodeType } from '../types.js';
 
+/** Run status — closed lifecycle: active runs accept input; finished runs reject all mutations. */
+export type RunStatus = 'active' | 'finished';
+
 /** Closed visit machine (SAVE_RECOVERY_CONTRACT). */
 export type VisitStatus = 'OPEN' | 'COMMITTING' | 'COMMITTED' | 'RESOLVED';
 
@@ -135,6 +138,7 @@ export interface NodeRunState {
   readonly visits: Readonly<Record<string, NodeVisitState>>;
   readonly snapshots: Readonly<Record<string, NodeSnapshot>>;
   readonly ledger: Readonly<Record<string, TransactionRecord>>;
+  readonly runStatus: RunStatus;
 }
 
 /**

@@ -39,6 +39,7 @@ const STATE_KEYS = [
   'relics',
   'revision',
   'runId',
+  'runStatus',
   'securedLoot',
   'seed',
   'snapshots',
@@ -211,6 +212,8 @@ function decodeState(value: unknown): NodeRunState {
   for (const [nodeId, visit] of Object.entries(visitsRecord)) visits[nodeId] = decodeVisit(visit, nodeId);
   for (const [nodeId, snapshot] of Object.entries(snapshotsRecord)) snapshots[nodeId] = decodeSnapshot(snapshot, nodeId);
   for (const [transactionId, transaction] of Object.entries(ledgerRecord)) ledger[transactionId] = decodeTransaction(transaction, transactionId);
+  const runStatus = stringValue(entry['runStatus'], 'state.runStatus');
+  if (!['active', 'finished'].includes(runStatus)) throw new SaveError('INVALID_ENUM', { field: 'state.runStatus' });
   return {
     revision: integerValue(entry['revision'], 'state.revision'),
     runId: stringValue(entry['runId'], 'state.runId'),
@@ -230,6 +233,7 @@ function decodeState(value: unknown): NodeRunState {
     visits,
     snapshots,
     ledger,
+    runStatus: runStatus as 'active' | 'finished',
   };
 }
 

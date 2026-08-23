@@ -40,6 +40,7 @@ export function createNodeRunState(source: NodeRunStateSource): NodeRunState {
     visits: {},
     snapshots: {},
     ledger: {},
+    runStatus: 'active',
   };
 }
 

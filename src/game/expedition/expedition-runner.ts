@@ -16,7 +16,7 @@
 import { ExpeditionError } from './expedition-error.js';
 import { validateMap } from './reachability.js';
 import { createNodeRunState } from './nodes/run-state.js';
-import { handlerForNode, definitionOf, dispatchEnterNode, dispatchCommit, dispatchResolve, advanceToNode, nextNodes } from './nodes/node-run-reducer.js';
+import { handlerForNode, definitionOf, dispatchEnterNode, dispatchCommit, dispatchResolve, advanceToNode, nextNodes, finishExpeditionRun } from './nodes/node-run-reducer.js';
 import type { NodeHandler } from './nodes/registry.js';
 import type { NodeActionRequest, NodeDefinition, NodeRunState } from './nodes/types.js';
 import type { ExpeditionMap, NodeId, NodeType } from './types.js';
@@ -69,6 +69,9 @@ export interface ExpeditionRunner {
    * primary action is optional, pass a request with action='ENTER'.
    */
   visit(enterTxId: string, actionRequest?: NodeActionRequest): ExpeditionRunner;
+
+  /** Mark the run finished — rejects all further mutations. */
+  finish(): ExpeditionRunner;
 }
 
 function buildRunner(
@@ -79,6 +82,13 @@ function buildRunner(
   const reachableNodes = nextNodes(map, currentNodeId);
   const definition = definitionOf(map, currentNodeId);
   const handler = handlerForNode(definition.type);
+
+  function guard(): void {
+    if (state.runStatus === 'finished') {
+      throw new ExpeditionError('RUN_ALREADY_FINISHED', {});
+    }
+  }
+
   const self: ExpeditionRunner = {
     state,
     map,
@@ -87,17 +97,21 @@ function buildRunner(
     handler,
     definition,
     enter(transactionId: string): ExpeditionRunner {
+      guard();
       const result = dispatchEnterNode(state, currentNodeId, definition, handler, transactionId);
       return buildRunner(result.state, map, currentNodeId);
     },
     act(request: NodeActionRequest): ExpeditionRunner {
+      guard();
       const outcome = dispatchCommit(state, request, definition, handler);
       return buildRunner(outcome.state, map, currentNodeId);
     },
     resolve(): ExpeditionRunner {
+      guard();
       return buildRunner(dispatchResolve(state, currentNodeId), map, currentNodeId);
     },
     advance(nextNodeId: NodeId): ExpeditionRunner {
+      guard();
       const result = advanceToNode(state, currentNodeId, nextNodeId, map);
       return buildRunner(result.state, map, result.nodeId);
     },
@@ -107,6 +121,9 @@ function buildRunner(
         next = next.act(actionRequest);
       }
       return next.resolve();
+    },
+    finish(): ExpeditionRunner {
+      return buildRunner(finishExpeditionRun(state), map, currentNodeId);
     },
   };
   return self;

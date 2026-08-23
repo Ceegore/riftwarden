@@ -28,7 +28,8 @@ export type ExpeditionErrorCode =
   | 'VISIT_STATE_INVALID'
   | 'UNKNOWN_OUTCOME_COMMAND'
   | 'CONTENT_BUILD_ERROR'
-  | 'SAVE_MAP_MISMATCH';
+  | 'SAVE_MAP_MISMATCH'
+  | 'RUN_ALREADY_FINISHED';
 
 export type NodeRejectionCode =
   | 'INSUFFICIENT_GOLD'
