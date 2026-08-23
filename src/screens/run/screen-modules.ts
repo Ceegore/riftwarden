@@ -15,6 +15,7 @@ import { DungeonMapScreen } from './DungeonMapScreen.js';
 import { ExpeditionEndScreen } from './ExpeditionEndScreen.js';
 import { NodeScreen } from './NodeScreen.js';
 import { RewardChoiceScreen } from './RewardChoiceScreen.js';
+import { EndlessCheckpointScreen } from './EndlessCheckpointScreen.js';
 
 export const runScreenModules: Readonly<Record<string, ScreenModule>> = {
   'screen.dungeonMap': { default: DungeonMapScreen },
@@ -37,4 +38,6 @@ export const runScreenModules: Readonly<Record<string, ScreenModule>> = {
   'screen.battle': { default: NodeScreen },
   'screen.battleInspector': { default: NodeScreen },
   'screen.battleResult': { default: BattleResultScreen },
+  // Phase 36
+  'screen.endlessCheckpoint': { default: EndlessCheckpointScreen },
 };

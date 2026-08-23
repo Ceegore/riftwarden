@@ -1,7 +1,8 @@
 /**
  * Expedition end screen (S55): victory summary with full settlement
- * breakdown. On continue, commits all settlement requests to the profile
- * and clears the expedition, then calls onReturn.
+ * breakdown. On continue, commits all settlement requests to the profile,
+ * applies achievement/records/mastery/story tracking, and clears the
+ * expedition, then calls onReturn.
  */
 import { useCallback, useMemo } from 'react';
 import type { JSX } from 'react';
@@ -11,14 +12,20 @@ import { ScreenFrame } from '../../ui/layout/ScreenFrame.js';
 import { BottomActionBar } from '../../ui/layout/BottomActionBar.js';
 import { useExpedition } from '../../features/expedition/useExpedition.js';
 import { buildSettlementRequests } from '../../game/expedition/expedition-settlement.js';
+import {
+  loadAllPersistentState,
+  applyExpeditionTracking,
+  saveAllPersistentStateExport,
+} from '../../game/expedition/settlement-bridge.js';
 import { commitTransaction } from '../../game/profile/transaction-service.js';
 import { loadOrCreateProfile, saveProfile } from '../../game/profile/profile-store.js';
 
 export interface ExpeditionEndScreenProps {
   readonly onReturn: () => void;
+  readonly missionId?: string;
 }
 
-export function ExpeditionEndScreen({ onReturn }: ExpeditionEndScreenProps): JSX.Element {
+export function ExpeditionEndScreen({ onReturn, missionId = 'mission_tutorial' }: ExpeditionEndScreenProps): JSX.Element {
   const { snapshot, finish, abandon } = useExpedition();
 
   const handleFinish = useCallback(() => finish(), [finish]);
@@ -32,9 +39,19 @@ export function ExpeditionEndScreen({ onReturn }: ExpeditionEndScreenProps): JSX
       profile = commitTransaction(profile, req).profile;
     }
     saveProfile(profile);
+
+    // Apply achievement, records, mastery, story tracking.
+    const allState = loadAllPersistentState();
+    const nodesVisited = Object.keys(snapshot.state.visits).length;
+    const goldEarned = snapshot.state.goldEarned;
+    const updated = applyExpeditionTracking(
+      snapshot.state, 'victory', missionId, goldEarned, nodesVisited, allState,
+    );
+    saveAllPersistentStateExport(updated);
+
     abandon();
     onReturn();
-  }, [snapshot, abandon, onReturn]);
+  }, [snapshot, abandon, onReturn, missionId]);
 
   if (!snapshot) {
     return (

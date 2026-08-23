@@ -1,7 +1,7 @@
 /**
  * GENERATED FILE — do not edit by hand.
  * Regenerate with: node tools/sim/write-locale-bootstrap.mjs
- * Generated at: 2026-08-23T18:05:57.437Z
+ * Generated at: 2026-08-23T18:58:48.905Z
  *
  * Bootstrap locale bundle (LOCALE_BOOTSTRAP_CONTRACT): a stopgap bundle that
  * lets the app boot in a browser before the real localization compiler
@@ -11,6 +11,144 @@
 import type { CompiledBundle, LocaleId } from './compiled-types.js';
 
 const MESSAGES: Readonly<Record<string, import('./compiled-types.js').CompiledMessage>> = Object.freeze({
+  "beyond.boss_rush": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Boss Rush" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "beyond.chaos_drops": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Chaos Drops" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "beyond.double_enemies": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Double Enemies" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "beyond.no_heal": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "No Heal" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "beyond.permadeath": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Permadeath" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "beyond.time_pressure": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Time Pressure" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "const.apex": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Apex" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "const.center": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Center" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "const.eye": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Eye" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "const.forge": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Forge" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "const.might": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Might" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "const.swift": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Swift" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "const.vault": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Vault" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "const.ward": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Ward" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "cycle.elite_plus": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Elite Plus" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "cycle.hard_mode": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Hard Mode" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "cycle.hero_pick": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Hero Pick" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "cycle.map_bonus": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Map Bonus" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "cycle.no_merchant": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "No Merchant" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "cycle.starter_gold": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Starter Gold" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "endless.bias": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Bias" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "endless.length": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Length" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "endless.tier": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Tier" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
   "event.01.a": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "A" }]),
     parameters: Object.freeze({}),
@@ -547,6 +685,42 @@ const MESSAGES: Readonly<Record<string, import('./compiled-types.js').CompiledMe
   }),
   "recruitment.${nodeId}.${String(index)}": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "${String(Index)}" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "rift.ascend_boost": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Ascend Boost" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "rift.drop_rate": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Drop Rate" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "rift.extra_slot": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Extra Slot" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "rift.gold_boost": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Gold Boost" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "rift.hero_xp": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Hero Xp" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "rift.start_bonus": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Start Bonus" }]),
     parameters: Object.freeze({}),
     budget: '0',
     compactKey: null,

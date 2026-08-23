@@ -22,6 +22,12 @@ import { CodexDetailsScreen } from './CodexDetailsScreen.js';
 import { MasteryScreen } from './MasteryScreen.js';
 import { RecordsStatisticsScreen } from './RecordsStatisticsScreen.js';
 import { StoryArchiveScreen } from './StoryArchiveScreen.js';
+import { AscensionRanksScreen } from './AscensionRanksScreen.js';
+import { ConstellationScreen } from './ConstellationScreen.js';
+import { CyclePreparationScreen } from './CyclePreparationScreen.js';
+import { BeyondSetupScreen } from './BeyondSetupScreen.js';
+import { EndlessSetupScreen } from './EndlessSetupScreen.js';
+import { RiftChamberScreen } from './RiftChamberScreen.js';
 
 export const hqScreenModules: Readonly<Record<string, ScreenModule>> = {
   'screen.newGame': { default: NewGameScreen },
@@ -43,4 +49,11 @@ export const hqScreenModules: Readonly<Record<string, ScreenModule>> = {
   'screen.mastery': { default: MasteryScreen },
   'screen.recordsStatistics': { default: RecordsStatisticsScreen },
   'screen.storyArchive': { default: StoryArchiveScreen },
+  // Phase 36
+  'screen.ascensionRanks': { default: AscensionRanksScreen },
+  'screen.constellation': { default: ConstellationScreen },
+  'screen.cyclePreparation': { default: CyclePreparationScreen },
+  'screen.beyondSetup': { default: BeyondSetupScreen },
+  'screen.endlessSetup': { default: EndlessSetupScreen },
+  'screen.riftChamber': { default: RiftChamberScreen },
 };

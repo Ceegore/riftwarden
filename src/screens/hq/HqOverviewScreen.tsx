@@ -22,7 +22,10 @@ export type HqSection =
   | 'archive'
   | 'mastery'
   | 'achievements'
-  | 'help';
+  | 'help'
+  | 'riftChamber'
+  | 'ascension'
+  | 'constellation';
 
 export interface HqOverviewScreenProps {
   readonly onNavigate: (section: HqSection) => void;
@@ -34,8 +37,11 @@ const SECTIONS: readonly { readonly key: HqSection; readonly label: string; read
   { key: 'heroHall',     label: 'Hero Hall',        hint: 'View your unlocked heroes' },
   { key: 'barracks',     label: 'Barracks',         hint: 'Review your troops and copies' },
   { key: 'workshop',     label: 'Workshop',         hint: 'Review owned items and relics' },
+  { key: 'riftChamber',  label: 'Rift Chamber',     hint: 'Spend rift essence on permanent upgrades' },
   { key: 'archive',      label: 'Archive',          hint: 'Codex, story fragments, records, achievements' },
   { key: 'mastery',      label: 'Mastery',          hint: 'Hero mastery progress and milestones' },
+  { key: 'ascension',    label: 'Ascension Ranks',  hint: 'Prestige system and permanent bonuses' },
+  { key: 'constellation',label: 'Constellation',    hint: 'Meta-progression skill tree' },
   { key: 'achievements', label: 'Achievements',     hint: 'Tracked goals and milestones' },
   { key: 'help',         label: 'Help',             hint: 'How to play reference' },
 ];

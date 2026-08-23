@@ -4,7 +4,7 @@
  *
  * Nav states:
  *   menu → newGame / help / missions / hq
- *   hq → heroHall / barracks / workshop / archive / mastery / achievements / missions / help / back
+ *   hq → heroHall / barracks / workshop / archive / mastery / achievements / riftChamber / ascension / constellation / help / back
  *   archive → codexList / storyArchive / records / achievements / back
  *   codexList → codexDetail / back
  *   newGame → launch → map
@@ -43,6 +43,9 @@ import { MasteryScreen } from './hq/MasteryScreen.js';
 import { AchievementsScreen } from './hq/AchievementsScreen.js';
 import { RecordsStatisticsScreen } from './hq/RecordsStatisticsScreen.js';
 import { StoryArchiveScreen } from './hq/StoryArchiveScreen.js';
+import { AscensionRanksScreen } from './hq/AscensionRanksScreen.js';
+import { ConstellationScreen } from './hq/ConstellationScreen.js';
+import { RiftChamberScreen } from './hq/RiftChamberScreen.js';
 import { Button } from '../ui/components/Button.js';
 import { ScreenFrame } from '../ui/layout/ScreenFrame.js';
 import { useExpedition } from '../features/expedition/useExpedition.js';
@@ -75,7 +78,11 @@ type NavState =
   | 'mastery'
   | 'achievements'
   | 'records'
-  | 'storyArchive';
+  | 'storyArchive'
+  // Phase 36
+  | 'ascension'
+  | 'constellation'
+  | 'riftChamber';
 
 export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalStep, 'RECOVERY_REQUIRED'> }): JSX.Element {
   const { snapshot, map, hasSave, continueRun, loading } = useExpedition();
@@ -148,6 +155,9 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
       case 'archive':      setNav('archive'); break;
       case 'mastery':      setNav('mastery'); break;
       case 'achievements': setNav('achievements'); break;
+      case 'riftChamber':  setNav('riftChamber'); break;
+      case 'ascension':    setNav('ascension'); break;
+      case 'constellation':setNav('constellation'); break;
       case 'help':         setNav('help'); break;
     }
   }, []);
@@ -281,6 +291,19 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
 
   if (nav === 'storyArchive') {
     return <StoryArchiveScreen onBack={() => setNav('archive')} />;
+  }
+
+  // Phase 36
+  if (nav === 'ascension') {
+    return <AscensionRanksScreen onBack={() => setNav('hq')} />;
+  }
+
+  if (nav === 'constellation') {
+    return <ConstellationScreen onBack={() => setNav('hq')} />;
+  }
+
+  if (nav === 'riftChamber') {
+    return <RiftChamberScreen onBack={() => setNav('hq')} />;
   }
 
   // 'menu' state.
