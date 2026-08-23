@@ -104,7 +104,11 @@ function makeCombatHandler(
       const snapshot = materializeReward(state, definition, rewardCount);
       if (request.action === 'ENGAGE') {
         const commands: OutcomeCommand[] = [];
-        if (goldMin > 0) commands.push({ kind: 'GOLD_DELTA', amount: goldAmount(snapshot, goldMin, goldSpan) });
+        if (goldMin > 0) {
+          const amount = goldAmount(snapshot, goldMin, goldSpan);
+          commands.push({ kind: 'GOLD_DELTA', amount });
+          commands.push({ kind: 'GOLD_EARNED', amount });
+        }
         if (hasLootChance && (snapshot.rollSlots['loot'] ?? 0) < LOOT_CHANCE_PERMILLE) {
           commands.push({ kind: 'GRANT_UNSECURED_LOOT', rewardId: `reward:${definition.nodeId}:loot` });
         }

@@ -156,7 +156,8 @@ export type OutcomeCommand =
   | { readonly kind: 'GRANT_KNOWLEDGE'; readonly knowledgeId: string }
   | { readonly kind: 'RECRUIT_TROOP'; readonly troopTypeId: string }
   | { readonly kind: 'POLISH_ITEM'; readonly itemId: string }
-  | { readonly kind: 'REPAIR_ITEM'; readonly itemId: string };
+  | { readonly kind: 'REPAIR_ITEM'; readonly itemId: string }
+  | { readonly kind: 'GOLD_EARNED'; readonly amount: number };
 
 /** Result of applying one outcome command batch (exactly-once per batch). */
 export interface CommandBatchResult {

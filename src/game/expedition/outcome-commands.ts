@@ -19,6 +19,7 @@ function assertBatchValid(state: NodeRunState, commands: readonly OutcomeCommand
     switch (command.kind) {
       case 'GOLD_DELTA':
       case 'INSTABILITY_DELTA':
+      case 'GOLD_EARNED':
         if (!Number.isSafeInteger(command.amount)) {
           throw new ExpeditionError('UNKNOWN_OUTCOME_COMMAND', { kind: command.kind, reason: 'non-integer delta' });
         }
@@ -135,6 +136,10 @@ export function applyOutcomeCommands(state: NodeRunState, commands: readonly Out
       case 'POLISH_ITEM':
       case 'REPAIR_ITEM':
         // Recorded as a typed effect for the operator-side profile wiring.
+        outcomeIds.push(outcomeId);
+        break;
+      case 'GOLD_EARNED':
+        next = { ...next, revision: next.revision + 1, goldEarned: next.goldEarned + command.amount };
         outcomeIds.push(outcomeId);
         break;
       default:
