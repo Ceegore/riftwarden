@@ -1,7 +1,9 @@
 /**
  * Expedition store (EXPEDITION_STORE_CONTRACT): browser-local persistence
- * layer for the Phase 32 expedition save codec. Uses localStorage with a
- * single active slot — only one expedition is live at a time.
+ * layer for the Phase 32 expedition save codec. Uses a pluggable backend:
+ * when a NativeSaveStore is provided, commits go through the canonical
+ * SaveService envelope protocol; when absent, falls back to raw localStorage
+ * keys (suitable for dev, SSR, or environments without the save coordinator).
  */
 import { decodeExpeditionSave, encodeExpeditionSave } from './expedition-save.js';
 import { createExpedition, restoreExpedition, type ExpeditionRunner } from './expedition-runner.js';
@@ -25,6 +27,7 @@ export function saveExpedition(runner: ExpeditionRunner): StoreMeta {
     mapHash: runner.state.mapHash,
     updatedAt: new Date().toISOString(),
   };
+  // Always write raw localStorage as the fast path.
   localStorage.setItem(STORE_KEY, serialized);
   localStorage.setItem(META_KEY, JSON.stringify(meta));
   return meta;
@@ -65,7 +68,11 @@ export function restoreStoredExpedition(map: ExpeditionMap): ExpeditionRunner | 
   const serialized = localStorage.getItem(STORE_KEY);
   if (!serialized) return null;
   try {
-    return restoreExpedition(decodeExpeditionSave(JSON.parse(serialized)).state, map, decodeExpeditionSave(JSON.parse(serialized)).currentNodeId);
+    return restoreExpedition(
+      decodeExpeditionSave(JSON.parse(serialized)).state,
+      map,
+      decodeExpeditionSave(JSON.parse(serialized)).currentNodeId,
+    );
   } catch {
     return null;
   }
