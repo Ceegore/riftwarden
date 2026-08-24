@@ -1,0 +1,5 @@
+{
+  "schemaVersion": 1, "phase": 49, "gate": "G49",
+  "evidence": { "checklist": "docs/reports/phase49-checklist.md", "modules": [] },
+  "hardBlockers": ["P49_G49_G48_GATE_BLOCKED","P49_G49_NO_FULL_ROLLOUT","P49_G49_NO_SUPPORT_CHANNEL","P49_G49_NO_ARCHIVE","P49_G49_NO_HOTFIX_PLAYBOOK"]
+}

@@ -1,0 +1,5 @@
+{
+  "schemaVersion": 1, "phase": 45, "gate": "G45",
+  "evidence": { "checklist": "docs/reports/phase45-checklist.md", "modules": [] },
+  "hardBlockers": ["P45_G45_G44_GATE_BLOCKED","P45_G45_NO_STORE_ACCESS","P45_G45_NO_FINAL_ASSETS","P45_G45_NO_REAL_SCREENSHOTS","P45_G45_DE_EN_LISTING_NOT_REVIEWED"]
+}

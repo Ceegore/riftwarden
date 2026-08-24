@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "phase": 38,
+  "gate": "G38",
+  "evidence": {
+    "constants": "contracts/phase38/phase38-constants.json",
+    "modules": [
+      "src/game/content/assets/asset-manifest-types.ts",
+      "src/game/content/assets/asset-id-validator.ts",
+      "src/game/content/atlas/atlas-validator.ts",
+      "src/game/content/content-error.ts",
+      "src/game/content/index.ts"
+    ],
+    "tests": []
+  },
+  "hardBlockers": [
+    "P38_G38_G37_GATE_BLOCKED",
+    "P38_G38_NO_PRODUCTION_ART_ASSETS",
+    "P38_G38_NO_SPRITE_ATLAS_GENERATED",
+    "P38_G38_NO_ANIMATION_CLIPS_PRODUCED",
+    "P38_G38_NO_VFX_PARTICLE_SHEETS",
+    "P38_G38_SOURCE_REGISTRY_NOT_POPULATED",
+    "P38_G38_LICENSE_REPORT_MISSING",
+    "P38_G38_DEVICE_TEXTURE_ATLAS_NOT_TESTED"
+  ]
+}

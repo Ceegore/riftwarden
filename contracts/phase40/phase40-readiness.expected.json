@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "phase": 40,
+  "gate": "G40",
+  "evidence": {
+    "constants": "contracts/phase40/phase40-constants.json",
+    "modules": [
+      "src/game/settings/a11y-settings.ts",
+      "src/ui/focus/focus-graph.ts",
+      "src/platform/input/input-registry.ts",
+      "src/ui/touch/touch-target-enforcer.ts"
+    ],
+    "tests": []
+  },
+  "hardBlockers": [
+    "P40_G40_G39_GATE_BLOCKED",
+    "P40_G40_NO_TALKBACK_VOICEOVER_DEVICE_EVIDENCE",
+    "P40_G40_NO_KEYBOARD_NAVIGATION_FQA",
+    "P40_G40_NO_GAMEPAD_E2E_EVIDENCE",
+    "P40_G40_NO_CONTRAST_AUDIT_REPORT",
+    "P40_G40_NO_TOUCH_TARGET_AUDIT_REPORT",
+    "P40_G40_NO_SCREEN_SEMANTICS_AUDIT",
+    "P40_G40_NO_TEXT_SCALE_MATRIX_EVIDENCE"
+  ]
+}

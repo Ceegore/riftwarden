@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "phase": 33,
+  "gate": "G33",
+  "evidence": {
+    "constants": "contracts/phase33/phase33-constants.json",
+    "modules": [
+      "src/game/mission/mission-definitions.ts",
+      "src/game/mission/mission-store.ts",
+      "src/game/mission/types.ts",
+      "src/screens/hq/MissionBoardScreen.tsx",
+      "src/screens/hq/MissionDetailsScreen.tsx"
+    ],
+    "tests": [
+      "tests/sim/phase33-mission.test.ts"
+    ]
+  },
+  "hardBlockers": [
+    "P33_G33_G32_GATE_BLOCKED",
+    "P33_G33_UI_DEVICE_RENDER_NOT_RUN",
+    "P33_G33_MISSION_BALANCE_NOT_REVIEWED"
+  ]
+}

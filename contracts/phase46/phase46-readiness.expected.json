@@ -1,0 +1,5 @@
+{
+  "schemaVersion": 1, "phase": 46, "gate": "G46",
+  "evidence": { "checklist": "docs/reports/phase46-checklist.md", "modules": [] },
+  "hardBlockers": ["P46_G46_G45_GATE_BLOCKED","P46_G46_NO_RC_FROZEN","P46_G46_NO_DEVICE_FQA_EXECUTED","P46_G46_NO_REQUIREMENT_TRACEABILITY"]
+}
