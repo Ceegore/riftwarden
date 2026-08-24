@@ -5,6 +5,7 @@
  */
 import { Application, Container, Graphics, Text, TextStyle } from 'pixi.js';
 import { BattleAnimation } from './battle-animation.js';
+import type { QualityTier } from '../../game/performance/auto-quality.js';
 
 export interface UnitRenderData {
   readonly id: string;
@@ -22,6 +23,13 @@ export interface BattleRenderConfig {
   readonly backgroundTint?: number;
 }
 
+/** Visual detail budgets per quality tier. */
+const QUALITY_DETAIL: Readonly<Record<QualityTier, { readonly gridLines: number; readonly labels: boolean; readonly unitRadius: number }>> = Object.freeze({
+  high:   { gridLines: 3, labels: true,  unitRadius: 18 },
+  medium: { gridLines: 1, labels: true,  unitRadius: 16 },
+  low:    { gridLines: 0, labels: false, unitRadius: 14 },
+});
+
 const ALLY_COLOR = 0x4488cc;
 const ENEMY_COLOR = 0xcc4444;
 const HP_GREEN = 0x44cc44;
@@ -31,12 +39,27 @@ export class BattleRenderer {
   private app: Application | null = null;
   private initialized = false;
   private rootContainer: Container | null = null;
+  private quality: QualityTier = 'high';
   private readonly unitContainers = new Map<string, Container>();
   private readonly animations = new Map<string, BattleAnimation>();
   private readonly config: BattleRenderConfig;
 
   constructor(config: BattleRenderConfig) {
     this.config = config;
+  }
+
+  get qualityTier(): QualityTier { return this.quality; }
+
+  /** Adjusts render detail; re-draws the background on change. */
+  setQuality(tier: QualityTier): void {
+    if (this.quality === tier) return;
+    this.quality = tier;
+    if (this.rootContainer) {
+      this.rootContainer.removeChildren();
+      this.unitContainers.clear();
+      this.animations.clear();
+      this.drawBackground();
+    }
   }
 
   async init(canvas: HTMLCanvasElement): Promise<void> {
@@ -120,20 +143,25 @@ export class BattleRenderer {
   private drawBackground(): void {
     if (!this.rootContainer) return;
     const { width, height } = this.config;
+    const detail = QUALITY_DETAIL[this.quality];
     // Ground strip
     const ground = new Graphics();
     ground.rect(0, height * 0.7, width, 4);
     ground.fill(0x445566);
     this.rootContainer.addChild(ground);
 
-    // Grid lines
-    const grid = new Graphics();
-    for (let x = width / 4; x < width; x += width / 4) {
-      grid.moveTo(x, 0);
-      grid.lineTo(x, height);
-      grid.stroke({ color: 0x333344, width: 1, alpha: 0.3 });
+    // Grid lines — fewer at lower quality tiers.
+    if (detail.gridLines > 0) {
+      const grid = new Graphics();
+      const step = width / (detail.gridLines + 1);
+      for (let i = 1; i <= detail.gridLines; i += 1) {
+        const x = step * i;
+        grid.moveTo(x, 0);
+        grid.lineTo(x, height);
+        grid.stroke({ color: 0x333344, width: 1, alpha: 0.3 });
+      }
+      this.rootContainer.addChild(grid);
     }
-    this.rootContainer.addChild(grid);
   }
 
   private drawUnit(container: Container, unit: UnitRenderData): void {
@@ -141,7 +169,7 @@ export class BattleRenderer {
     const children = container.children.slice();
     for (const child of children) { container.removeChild(child); child.destroy(); }
 
-    const r = 18;
+    const r = QUALITY_DETAIL[this.quality].unitRadius;
     const color = unit.side === 'ally' ? ALLY_COLOR : ENEMY_COLOR;
     const hpRatio = unit.maxHp > 0 ? unit.hp / unit.maxHp : 0;
 
@@ -152,14 +180,16 @@ export class BattleRenderer {
     body.stroke({ color: 0xffffff, width: 1.5, alpha: 0.8 });
     container.addChild(body);
 
-    // Label
-    const label = new Text({
-      text: unit.label,
-      style: new TextStyle({ fontSize: 11, fill: 0xffffff, align: 'center' }),
-    });
-    label.anchor.set(0.5);
-    label.y = -r;
-    container.addChild(label);
+    // Label (skipped at low quality to reduce draw calls).
+    if (QUALITY_DETAIL[this.quality].labels) {
+      const label = new Text({
+        text: unit.label,
+        style: new TextStyle({ fontSize: 11, fill: 0xffffff, align: 'center' }),
+      });
+      label.anchor.set(0.5);
+      label.y = -r;
+      container.addChild(label);
+    }
 
     // HP bar bg
     const hpW = r * 2.2;

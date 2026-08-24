@@ -13,6 +13,7 @@ import {
   createBusSettings, setBusVolume, toggleBusMute, effectiveVolume,
   setPolyphonyProfile, POLYPHONY_LIMITS,
 } from '../../src/game/content/audio/bus-mixer.js';
+import { contextForScreen } from '../../src/features/audio/music-context-map.js';
 
 describe('music director', () => {
   it('starts in silence', () => {
@@ -146,6 +147,51 @@ describe('voice parity validator', () => {
     ];
     const errors = validateVoiceParity(clips);
     expect(errors.some((e) => e.includes('missing EN'))).toBe(true);
+  });
+});
+
+describe('music context map', () => {
+  it('maps menu-family screens to title', () => {
+    expect(contextForScreen('menu')).toBe('title');
+    expect(contextForScreen('settings')).toBe('title');
+    expect(contextForScreen('defeat')).toBe('title');
+  });
+
+  it('maps hq-family screens to hq', () => {
+    expect(contextForScreen('hq')).toBe('hq');
+    expect(contextForScreen('heroHall')).toBe('hq');
+    expect(contextForScreen('workshop')).toBe('hq');
+    expect(contextForScreen('ascension')).toBe('hq');
+  });
+
+  it('maps map to a region context', () => {
+    const ctx = contextForScreen('map', { regionId: 'woodlands' });
+    expect(ctx).toEqual({ kind: 'region', regionId: 'woodlands' });
+  });
+
+  it('maps node boss to bossPhase and combat to battle', () => {
+    expect(contextForScreen('node', { intensity: 'boss' })).toEqual({ kind: 'bossPhase', phase: 1 });
+    expect(contextForScreen('node', { intensity: 'elite' })).toEqual({ kind: 'battle', intensity: 'elite' });
+    expect(contextForScreen('node')).toEqual({ kind: 'battle', intensity: 'normal' });
+  });
+
+  it('falls back to silence for unknown screens', () => {
+    expect(contextForScreen('unknownScreen')).toBe('silence');
+  });
+
+  it('covers every PostBootScreen nav state without falling to silence', () => {
+    const navStates = [
+      'menu', 'newGame', 'help', 'missions', 'missionDetail', 'map', 'node',
+      'battleResult', 'reward', 'end', 'defeat', 'hq', 'heroHall', 'heroDetail',
+      'barracks', 'troopDetail', 'workshop', 'itemDetail', 'archive', 'codexList',
+      'codexDetail', 'mastery', 'achievements', 'records', 'storyArchive',
+      'ascension', 'constellation', 'cyclePreparation', 'beyondSetup', 'endlessSetup',
+      'riftChamber', 'equipment', 'kits', 'banners', 'formation', 'settings',
+      'audioSettings', 'accessibilitySettings', 'controlsSettings', 'graphicsSettings',
+    ];
+    for (const state of navStates) {
+      expect(contextForScreen(state), state).not.toBe('silence');
+    }
   });
 });
 

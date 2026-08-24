@@ -18,8 +18,10 @@
  *   map (finish) → end (if boss) / defeat
  *   end / defeat → return → menu
  */
-import { useCallback, useState, type JSX } from 'react';
+import { useCallback, useEffect, useState, type JSX } from 'react';
 import { BottomActionBar } from '../ui/layout/BottomActionBar.js';
+import { useMusicDirector } from '../features/audio/music-director-hooks.js';
+import { contextForScreen } from '../features/audio/music-context-map.js';
 import type { HqSection } from './hq/HqOverviewScreen.js';
 import type { ArchiveSection } from './hq/ArchiveHubScreen.js';
 import { renderRegisteredScreen } from './screen-renderer.js';
@@ -79,6 +81,19 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
   const { snapshot, map, hasSave, continueRun, loading } = useExpedition();
   const [activeMissionId, setActiveMissionId] = useState('mission_tutorial');
   const [nav, setNav] = useState<NavState>(() => (snapshot && map ? 'map' : 'menu'));
+
+  // Phase 39: drive the music director from the active screen.
+  const musicDirector = useMusicDirector();
+  const navScreen = typeof nav === 'string' ? nav : nav.kind;
+  const currentNodeType = snapshot?.currentNodeType ?? '';
+  const navIntensity = currentNodeType === 'boss'
+    ? 'boss' as const
+    : currentNodeType === 'elite'
+      ? 'elite' as const
+      : 'normal' as const;
+  useEffect(() => {
+    musicDirector.request(contextForScreen(navScreen, { regionId: activeMissionId, intensity: navIntensity }));
+  }, [navScreen, activeMissionId, navIntensity, musicDirector]);
 
   const handleNewGame = useCallback(() => { setNav('newGame'); }, []);
   const handleHelp = useCallback(() => { setNav('help'); }, []);

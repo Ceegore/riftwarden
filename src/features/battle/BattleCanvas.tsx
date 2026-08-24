@@ -1,11 +1,16 @@
 /**
  * BattleCanvas: React component wrapping a PixiJS Application
  * for rendering the combat scene during expedition battles.
+ *
+ * Phase 41: measures frame time and auto-adjusts visual quality
+ * via the auto-quality selector.
  */
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { JSX } from 'react';
 import type { Ticker } from 'pixi.js';
 import { BattleRenderer, type UnitRenderData } from './battle-renderer.js';
+import { createQualityState, reportFrame } from '../../game/performance/auto-quality.js';
+import type { QualityState } from '../../game/performance/auto-quality.js';
 
 export interface BattleCanvasProps {
   readonly width?: number;
@@ -16,6 +21,8 @@ export interface BattleCanvasProps {
 export function BattleCanvas({ width = 640, height = 360, units }: BattleCanvasProps): JSX.Element {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rendererRef = useRef<BattleRenderer | null>(null);
+  const qualityRef = useRef<QualityState>(createQualityState());
+  const [displayTier, setDisplayTier] = useState<string>('high');
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -23,9 +30,18 @@ export function BattleCanvas({ width = 640, height = 360, units }: BattleCanvasP
 
     const renderer = new BattleRenderer({ width, height });
     rendererRef.current = renderer;
+    qualityRef.current = createQualityState();
 
     let cancelled = false;
-    const tick = (ticker: Ticker): void => { renderer.animate(ticker.deltaMS); };
+    const tick = (ticker: Ticker): void => {
+      renderer.animate(ticker.deltaMS);
+      const next = reportFrame(qualityRef.current, ticker.deltaMS);
+      qualityRef.current = next;
+      if (next.currentTier !== renderer.qualityTier) {
+        renderer.setQuality(next.currentTier);
+        setDisplayTier(next.currentTier);
+      }
+    };
     renderer.init(canvas).then(() => {
       if (cancelled) return;
       renderer.renderUnits(units);
@@ -49,7 +65,7 @@ export function BattleCanvas({ width = 640, height = 360, units }: BattleCanvasP
   }, [units]);
 
   return (
-    <div className="rw-battle-canvas-wrapper" role="img" aria-label="Battle scene">
+    <div className="rw-battle-canvas-wrapper" role="img" aria-label={`Battle scene (${displayTier} quality)`}>
       <canvas
         ref={canvasRef}
         width={width}
