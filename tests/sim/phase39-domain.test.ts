@@ -169,10 +169,20 @@ describe('music context map', () => {
     expect(ctx).toEqual({ kind: 'region', regionId: 'woodlands' });
   });
 
-  it('maps node boss to bossPhase and combat to battle', () => {
-    expect(contextForScreen('node', { intensity: 'boss' })).toEqual({ kind: 'bossPhase', phase: 1 });
-    expect(contextForScreen('node', { intensity: 'elite' })).toEqual({ kind: 'battle', intensity: 'elite' });
-    expect(contextForScreen('node')).toEqual({ kind: 'battle', intensity: 'normal' });
+  it('maps node combat types to battle/boss and non-combat to region', () => {
+    expect(contextForScreen('node', { nodeType: 'boss' })).toEqual({ kind: 'bossPhase', phase: 1 });
+    expect(contextForScreen('node', { nodeType: 'elite' })).toEqual({ kind: 'battle', intensity: 'elite' });
+    expect(contextForScreen('node', { nodeType: 'battle' })).toEqual({ kind: 'battle', intensity: 'normal' });
+    // Non-combat nodes keep the region theme, not combat music.
+    expect(contextForScreen('node', { nodeType: 'merchant', regionId: 'woodlands' })).toEqual({ kind: 'region', regionId: 'woodlands' });
+    expect(contextForScreen('node', { nodeType: 'event' })).toEqual({ kind: 'region', regionId: 'standard' });
+    expect(contextForScreen('node', { nodeType: 'treasure' })).toEqual({ kind: 'region', regionId: 'standard' });
+  });
+
+  it('keeps combat theme on the battle result screen', () => {
+    expect(contextForScreen('battleResult', { nodeType: 'boss' })).toEqual({ kind: 'bossPhase', phase: 1 });
+    expect(contextForScreen('battleResult', { nodeType: 'elite' })).toEqual({ kind: 'battle', intensity: 'elite' });
+    expect(contextForScreen('battleResult', { nodeType: 'battle' })).toEqual({ kind: 'battle', intensity: 'normal' });
   });
 
   it('falls back to silence for unknown screens', () => {

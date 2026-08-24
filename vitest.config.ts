@@ -70,7 +70,7 @@ export default defineConfig({
       { test: { name: 'phase36', include: ['tests/sim/phase36-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
       { test: { name: 'phase37', include: ['tests/sim/phase37-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
       { test: { name: 'phase38', include: ['tests/sim/phase38-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
-      { test: { name: 'phase39', include: ['tests/sim/phase39-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase39', include: ['tests/sim/phase39-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
       { test: { name: 'phase40', include: ['tests/sim/phase40-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
       { test: { name: 'phase41', include: ['tests/sim/phase41-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'simulation', include: ['tests/simulation/**/*.test.ts'], sequence: { concurrent: false }, setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },

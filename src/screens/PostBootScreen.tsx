@@ -86,14 +86,12 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
   const musicDirector = useMusicDirector();
   const navScreen = typeof nav === 'string' ? nav : nav.kind;
   const currentNodeType = snapshot?.currentNodeType ?? '';
-  const navIntensity = currentNodeType === 'boss'
-    ? 'boss' as const
-    : currentNodeType === 'elite'
-      ? 'elite' as const
-      : 'normal' as const;
   useEffect(() => {
-    musicDirector.request(contextForScreen(navScreen, { regionId: activeMissionId, intensity: navIntensity }));
-  }, [navScreen, activeMissionId, navIntensity, musicDirector]);
+    musicDirector.request(contextForScreen(navScreen, {
+      regionId: activeMissionId,
+      nodeType: currentNodeType,
+    }));
+  }, [navScreen, activeMissionId, currentNodeType, musicDirector]);
 
   const handleNewGame = useCallback(() => { setNav('newGame'); }, []);
   const handleHelp = useCallback(() => { setNav('help'); }, []);

@@ -10,6 +10,7 @@ import type { JSX } from 'react';
 import type { Ticker } from 'pixi.js';
 import { BattleRenderer, type UnitRenderData } from './battle-renderer.js';
 import { createQualityState, reportFrame } from '../../game/performance/auto-quality.js';
+import { loadQualityPreference } from '../../game/performance/graphics-settings-store.js';
 import type { QualityState } from '../../game/performance/auto-quality.js';
 
 export interface BattleCanvasProps {
@@ -30,7 +31,10 @@ export function BattleCanvas({ width = 640, height = 360, units }: BattleCanvasP
 
     const renderer = new BattleRenderer({ width, height });
     rendererRef.current = renderer;
-    qualityRef.current = createQualityState();
+    const initialTier = loadQualityPreference();
+    renderer.setQuality(initialTier);
+    qualityRef.current = { ...createQualityState(), currentTier: initialTier };
+    setDisplayTier(initialTier);
 
     let cancelled = false;
     const tick = (ticker: Ticker): void => {

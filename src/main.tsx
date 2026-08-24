@@ -6,6 +6,7 @@ import { createBootstrapLocaleController } from './app/boot/locale-bootstrap';
 import { LocaleProvider } from './locales/locale-context';
 import { A11yShell } from './ui/a11y/A11yShell.js';
 import { MusicDirectorProvider } from './features/audio/music-director-context.js';
+import { MusicPlayback } from './features/audio/MusicPlayback.js';
 import './styles/index.css';
 
 const rootElement = document.getElementById('root');
@@ -21,6 +22,7 @@ createRoot(rootElement).render(
   <StrictMode>
     <A11yShell>
       <MusicDirectorProvider>
+        <MusicPlayback />
         <LocaleProvider controller={localeController}>
           <App />
         </LocaleProvider>

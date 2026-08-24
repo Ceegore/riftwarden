@@ -4,12 +4,27 @@
  *
  * Every PostBootScreen NavState (string literal or object `kind`) is
  * covered so no reachable screen accidentally crossfades to silence.
+ *
+ * Combat nodes (battle/elite/boss) request battle or boss music; all other
+ * node types continue the region theme so merchants, events, and treasure
+ * rooms do not trigger combat music.
  */
 import type { MusicContext } from '../../game/content/audio/music-director.js';
 
 export interface MusicContextOptions {
   readonly regionId?: string;
-  readonly intensity?: 'normal' | 'elite' | 'boss';
+  /** Current node type when a run is active (battle/elite/boss/…). */
+  readonly nodeType?: string;
+}
+
+function regionFor(options: MusicContextOptions | undefined): MusicContext {
+  return { kind: 'region', regionId: options?.regionId ?? 'standard' };
+}
+
+function battleFor(nodeType: string | undefined): MusicContext {
+  if (nodeType === 'boss') return { kind: 'bossPhase', phase: 1 };
+  if (nodeType === 'elite') return { kind: 'battle', intensity: 'elite' };
+  return { kind: 'battle', intensity: 'normal' };
 }
 
 export function contextForScreen(screen: string, options?: MusicContextOptions): MusicContext {
@@ -58,16 +73,21 @@ export function contextForScreen(screen: string, options?: MusicContextOptions):
 
     // Expedition: region exploration.
     case 'map':
-      return { kind: 'region', regionId: options?.regionId ?? 'standard' };
+      return regionFor(options);
     case 'reward':
-      return { kind: 'region', regionId: options?.regionId ?? 'standard' };
+      return regionFor(options);
 
-    // Combat: battle theme, boss phase for boss nodes.
+    // Combat: only battle/elite/boss request battle music; other node
+    // types (merchant, event, …) keep the region theme.
     case 'node':
-      if (options?.intensity === 'boss') return { kind: 'bossPhase', phase: 1 };
-      return { kind: 'battle', intensity: options?.intensity ?? 'normal' };
+      if (options?.nodeType === 'battle' || options?.nodeType === 'elite' || options?.nodeType === 'boss') {
+        return battleFor(options.nodeType);
+      }
+      return regionFor(options);
+
+    // Battle result: keep the combat theme while settling the outcome.
     case 'battleResult':
-      return { kind: 'battle', intensity: options?.intensity ?? 'normal' };
+      return battleFor(options?.nodeType);
 
     default:
       return 'silence';

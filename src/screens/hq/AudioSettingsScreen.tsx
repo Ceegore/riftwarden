@@ -1,9 +1,10 @@
 /**
  * Phase 39: Audio settings screen (S60).
- * Controls bus volumes, polyphony profile, and master mute.
- * Backed by the pure bus-mixer model — no actual audio playback.
+ * Controls bus volumes, polyphony profile, and master mute. Backed by the
+ * persistent bus-settings store so changes affect live playback immediately
+ * and survive a reload.
  */
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import type { JSX } from 'react';
 import { Button } from '../../ui/components/Button.js';
 import { StatRow } from '../../ui/components/StatRow.js';
@@ -12,11 +13,11 @@ import { BottomActionBar } from '../../ui/layout/BottomActionBar.js';
 import { ScrollRegion } from '../../ui/layout/ScrollRegion.js';
 import { SegmentedControl } from '../../ui/components/SegmentedControl.js';
 import {
-  createBusSettings, setBusVolume, toggleBusMute, setMasterMute,
+  loadBusSettings, saveBusSettings, setBusVolume, toggleBusMute, setMasterMute,
   setPolyphonyProfile, busDisplayName,
-  POLYPHONY_LIMITS,
-} from '../../game/content/audio/bus-mixer.js';
-import type { AudioBus, PolyphonyProfile } from '../../game/content/audio/bus-mixer.js';
+} from '../../game/content/audio/bus-settings-store.js';
+import { POLYPHONY_LIMITS } from '../../game/content/audio/bus-mixer.js';
+import type { AudioBus, PolyphonyProfile } from '../../game/content/audio/bus-settings-store.js';
 
 export interface AudioSettingsScreenProps {
   readonly onBack: () => void;
@@ -36,7 +37,12 @@ const VOLUME_OPTIONS: readonly { readonly value: number; readonly label: string 
 ];
 
 export function AudioSettingsScreen({ onBack }: AudioSettingsScreenProps): JSX.Element {
-  const [settings, setSettings] = useState(() => createBusSettings());
+  const [settings, setSettings] = useState(() => loadBusSettings());
+
+  const commit = useCallback((next: typeof settings) => {
+    setSettings(next);
+    saveBusSettings(next);
+  }, []);
 
   return (
     <ScreenFrame labelledBy="audio-settings-title">
@@ -48,7 +54,7 @@ export function AudioSettingsScreen({ onBack }: AudioSettingsScreenProps): JSX.E
           <Button
             label={settings.masterMuted ? 'Muted' : 'Unmuted'}
             variant={settings.masterMuted ? 'danger' : 'primary'}
-            onClick={() => { setSettings(setMasterMute(settings, !settings.masterMuted)); }}
+            onClick={() => { commit(setMasterMute(settings, !settings.masterMuted)); }}
           />
         </section>
 
@@ -57,7 +63,7 @@ export function AudioSettingsScreen({ onBack }: AudioSettingsScreenProps): JSX.E
           <SegmentedControl
             options={PROFILE_OPTIONS}
             value={settings.profile}
-            onChange={(v) => { setSettings(setPolyphonyProfile(settings, v)); }}
+            onChange={(v) => { commit(setPolyphonyProfile(settings, v)); }}
           />
         </section>
 
@@ -68,12 +74,12 @@ export function AudioSettingsScreen({ onBack }: AudioSettingsScreenProps): JSX.E
             <SegmentedControl
               options={VOLUME_OPTIONS}
               value={settings.volume[bus]}
-              onChange={(v) => { setSettings(setBusVolume(settings, bus, v)); }}
+              onChange={(v) => { commit(setBusVolume(settings, bus, v)); }}
             />
             <Button
               label={settings.muted[bus] ? `${busDisplayName(bus)}: Muted` : `${busDisplayName(bus)}: Unmuted`}
               variant={settings.muted[bus] ? 'danger' : 'secondary'}
-              onClick={() => { setSettings(toggleBusMute(settings, bus)); }}
+              onClick={() => { commit(toggleBusMute(settings, bus)); }}
             />
           </section>
         ))}

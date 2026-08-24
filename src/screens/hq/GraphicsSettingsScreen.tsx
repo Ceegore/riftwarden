@@ -1,8 +1,9 @@
 /**
  * Phase 41: Graphics settings screen (S61).
- * Controls quality tier and GPU settings.
+ * Controls quality tier and shows the resulting frame budget.
+ * Changes persist and feed the BattleCanvas initial tier.
  */
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import type { JSX } from 'react';
 import { Button } from '../../ui/components/Button.js';
 import { StatRow } from '../../ui/components/StatRow.js';
@@ -10,6 +11,7 @@ import { ScreenFrame } from '../../ui/layout/ScreenFrame.js';
 import { BottomActionBar } from '../../ui/layout/BottomActionBar.js';
 import { ScrollRegion } from '../../ui/layout/ScrollRegion.js';
 import { budgetForTier } from '../../game/performance/auto-quality.js';
+import { loadQualityPreference, saveQualityPreference } from '../../game/performance/graphics-settings-store.js';
 import type { QualityTier } from '../../game/performance/auto-quality.js';
 
 export interface GraphicsSettingsScreenProps {
@@ -23,10 +25,12 @@ const TIERS: readonly { readonly value: QualityTier; readonly label: string }[] 
 ];
 
 export function GraphicsSettingsScreen({ onBack }: GraphicsSettingsScreenProps): JSX.Element {
-  const [tier, setTier] = useState<QualityTier>(() => {
-    // Default to high; auto-quality can override at runtime
-    return 'high';
-  });
+  const [tier, setTier] = useState<QualityTier>(() => loadQualityPreference());
+
+  const handleSelect = useCallback((value: QualityTier) => {
+    setTier(value);
+    saveQualityPreference(value);
+  }, []);
 
   const budget = budgetForTier(tier);
 
@@ -42,7 +46,7 @@ export function GraphicsSettingsScreen({ onBack }: GraphicsSettingsScreenProps):
               key={t.value}
               label={t.label}
               variant={tier === t.value ? 'primary' : 'secondary'}
-              onClick={() => { setTier(t.value); }}
+              onClick={() => { handleSelect(t.value); }}
             />
           ))}
         </section>
