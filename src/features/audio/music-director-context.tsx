@@ -9,6 +9,7 @@
 import { useCallback, useMemo, useState, type ReactNode } from 'react';
 import {
   createDirector, requestMusic, pauseDirector, resumeDirector, applyTransition,
+  setBossStem,
   type DirectorState, type MusicContext,
 } from '../../game/content/audio/music-director.js';
 import { MusicDirectorContext, type MusicDirectorApi } from './music-director-hooks.js';
@@ -22,10 +23,11 @@ export function MusicDirectorProvider({ children }: { readonly children: ReactNo
 
   const pause = useCallback(() => { setState((prev) => pauseDirector(prev)); }, []);
   const resume = useCallback(() => { setState((prev) => resumeDirector(prev)); }, []);
+  const setStem = useCallback((layer: number) => { setState((prev) => setBossStem(prev, layer)); }, []);
 
   const api = useMemo<MusicDirectorApi>(
-    () => ({ state, request, pause, resume }),
-    [state, request, pause, resume],
+    () => ({ state, request, pause, resume, setStem }),
+    [state, request, pause, resume, setStem],
   );
 
   return (

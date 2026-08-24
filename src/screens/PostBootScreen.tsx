@@ -93,6 +93,20 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
     }));
   }, [navScreen, activeMissionId, currentNodeType, musicDirector]);
 
+  // Boss stem layering: advance the stem as combat intensity ramps.
+  // Layer 0 = intro (map / entering), 1 = ENGAGE committed, 2 = after
+  // first reward claim, 3 = boss defeated / settle phase.
+  const bossStemLayer = snapshot === null || currentNodeType !== 'boss'
+    ? 0
+    : navScreen === 'node'
+      ? (snapshot.state.snapshots[snapshot.currentNodeId]?.kind === 'REWARD' ? 2 : 1)
+      : navScreen === 'battleResult'
+        ? 3
+        : 0;
+  useEffect(() => {
+    musicDirector.setStem(bossStemLayer);
+  }, [bossStemLayer, musicDirector]);
+
   const handleNewGame = useCallback(() => { setNav('newGame'); }, []);
   const handleHelp = useCallback(() => { setNav('help'); }, []);
   const handleMissions = useCallback(() => { setNav('missions'); }, []);

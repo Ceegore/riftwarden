@@ -16,9 +16,12 @@ export function MusicPlayback(): JSX.Element {
 
   useEffect(() => {
     adapterRef.current = new MusicPlaybackAdapter();
+    // Expose for e2e test inspection.
+    (window as unknown as Record<string, unknown>)['__rw_music_adapter'] = adapterRef.current;
     return () => {
       adapterRef.current?.dispose();
       adapterRef.current = null;
+      delete (window as unknown as Record<string, unknown>)['__rw_music_adapter'];
     };
   }, []);
 
@@ -28,8 +31,8 @@ export function MusicPlayback(): JSX.Element {
 
   useEffect(() => {
     const crossfadeMs = state.currentContext === 'silence' ? 0 : (state.crossfadeMs > 0 ? state.crossfadeMs : 600);
-    adapterRef.current?.applyContext(state.currentContext, crossfadeMs);
-  }, [state.currentContext, state.crossfadeMs]);
+    adapterRef.current?.applyContext(state.currentContext, crossfadeMs, state.bossStemLayer);
+  }, [state.currentContext, state.crossfadeMs, state.bossStemLayer]);
 
   useEffect(() => {
     if (state.paused) adapterRef.current?.pause(); else adapterRef.current?.resume();

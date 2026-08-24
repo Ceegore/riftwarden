@@ -7,10 +7,14 @@
  * rather than sample files. When real assets land, only `applyContext`
  * changes — the director/bus-mixer contracts stay identical.
  *
+ * Boss stem layering (GDD §22.5): when the context is bossPhase, the stem
+ * layer (0–3) selects more aggressive textures. Layer changes morph the
+ * live oscillator shape, frequency, and detune over 200 ms.
+ *
  * Audio never holds gameplay authority: every failure degrades to silence.
  */
 import type { MusicContext } from '../../game/content/audio/music-director.js';
-import { textureForContext, type PlaybackTexture } from '../../game/content/audio/playback-textures.js';
+import { textureForContextWithStem, type PlaybackTexture } from '../../game/content/audio/playback-textures.js';
 import { effectiveVolume, type BusSettings, type AudioBus } from '../../game/content/audio/bus-settings-store.js';
 
 type AudioContextCtor = new () => AudioContext;
@@ -24,6 +28,8 @@ function audioContextCtor(): AudioContextCtor | null {
 }
 
 export class MusicPlaybackAdapter {
+  // Exposed for e2e tests to inspect the current music context.
+  contextKey: string | null = null;
   private ctx: AudioContext | null = null;
   private masterGain: GainNode | null = null;
   private readonly busGains = new Map<AudioBus, GainNode>();
@@ -32,7 +38,6 @@ export class MusicPlaybackAdapter {
   private stepTimer: number | null = null;
   private stepIndex = 0;
   private texture: PlaybackTexture | null = null;
-  private contextKey: string | null = null;
   private paused = false;
 
   get isRunning(): boolean { return this.ctx !== null && this.voice !== null; }
@@ -123,10 +128,13 @@ export class MusicPlaybackAdapter {
   }
 
   /** Switch texture with a short gain dip as the crossfade. */
-  applyContext(ctx: MusicContext, crossfadeMs: number): void {
+  applyContext(ctx: MusicContext, crossfadeMs: number, stemLayer = 0): void {
     const key = typeof ctx === 'string' ? ctx : ctx.kind;
-    if (key === this.contextKey) return;
-    const texture = textureForContext(ctx);
+    if (key === this.contextKey) {
+      this.setStemLive(stemLayer);
+      return;
+    }
+    const texture = textureForContextWithStem(ctx, stemLayer);
     if (this.ctx === null) {
       this.startVoice(texture, 1);
       this.contextKey = key;
@@ -143,6 +151,21 @@ export class MusicPlaybackAdapter {
     this.stopVoice();
     this.startVoice(texture, 1);
     this.contextKey = key;
+  }
+
+  /** Smoothly morph the live oscillator toward the new stem texture. */
+  private setStemLive(stemLayer: number): void {
+    const voice = this.voice;
+    const audioCtx = this.ctx;
+    if (voice === null || audioCtx === null) return;
+    const tex = textureForContextWithStem({ kind: 'bossPhase', phase: 1 }, stemLayer);
+    const now = audioCtx.currentTime;
+    voice.type = tex.shape;
+    voice.frequency.cancelScheduledValues(now);
+    voice.frequency.setTargetAtTime(tex.rootHz, now, 0.1);
+    voice.detune.cancelScheduledValues(now);
+    voice.detune.setTargetAtTime(tex.detuneCents, now, 0.1);
+    this.texture = tex;
   }
 
   setBusSettings(settings: BusSettings): void {

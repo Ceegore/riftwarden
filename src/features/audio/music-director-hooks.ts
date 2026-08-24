@@ -10,6 +10,8 @@ export interface MusicDirectorApi {
   readonly request: (context: MusicContext) => void;
   readonly pause: () => void;
   readonly resume: () => void;
+  /** Advance the boss stem layer (0–3). Idempotent at boundaries. */
+  readonly setStem: (layer: number) => void;
 }
 
 export const MusicDirectorContext = createContext<MusicDirectorApi | null>(null);

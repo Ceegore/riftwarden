@@ -29,8 +29,8 @@ export interface MapGenerationInput {
 const LEVELS = 6;
 const ROLE_BY_LEVEL: readonly (NodeRole | undefined)[] = ['start', undefined, 'preparation', 'anchor', undefined, 'boss'];
 
-/** GDD §19.2 regional weights for normal slots (sum 100). */
-const NORMAL_TYPE_WEIGHTS: readonly (readonly [NodeType, number])[] = [
+/** GDD §19.2 default regional weights for normal slots (sum 100). */
+export const DEFAULT_TYPE_WEIGHTS: readonly (readonly [NodeType, number])[] = [
   ['battle', 35],
   ['elite', 12],
   ['event', 15],
@@ -46,10 +46,10 @@ function isFullContent(contentRevision: string): boolean {
   return contentRevision.startsWith('32');
 }
 
-function pickNormalType(r: number): NodeType {
+function pickNormalType(r: number, weights: readonly (readonly [NodeType, number])[]): NodeType {
   const roll = r % 100;
   let cursor = 0;
-  for (const [type, weight] of NORMAL_TYPE_WEIGHTS) {
+  for (const [type, weight] of weights) {
     cursor += weight;
     if (roll < cursor) return type;
   }
@@ -87,7 +87,8 @@ export function structuralHash(nodes: readonly MapNode[], edges: readonly MapEdg
 }
 
 /** Builds one deterministic candidate for (seed, profile, attempt). */
-export function buildCandidate(input: MapGenerationInput, profile: MapProfile, attempt: number): ExpeditionMap {
+export function buildCandidate(input: MapGenerationInput, profile: MapProfile, attempt: number, weights?: readonly (readonly [NodeType, number])[]): ExpeditionMap {
+  const typeWeights = weights ?? DEFAULT_TYPE_WEIGHTS;
   let r = input.seed >>> 0;
   for (let i = 0; i < input.contentRevision.length; i += 1) {
     r = nextU32(r ^ input.contentRevision.charCodeAt(i));
@@ -101,7 +102,7 @@ export function buildCandidate(input: MapGenerationInput, profile: MapProfile, a
     r = nextU32(r);
     const role = ROLE_BY_LEVEL[level] ?? 'normal';
     const fullContent = isFullContent(input.contentRevision);
-    const type = role === 'normal' && fullContent ? pickNormalType(nextU32(r)) : typeForRole(role, fullContent);
+    const type = role === 'normal' && fullContent ? pickNormalType(nextU32(r), typeWeights) : typeForRole(role, fullContent);
     let id = `n${String(level)}_${String(r % 997).padStart(3, '0')}`;
     let guard = 0;
     while (mainIds.has(id) && guard < 16) {
@@ -123,7 +124,7 @@ export function buildCandidate(input: MapGenerationInput, profile: MapProfile, a
       const sideCount = r % 3;
       for (let side = 0; side < sideCount; side += 1) {
         r = nextU32(r);
-        const sideType = isFullContent(input.contentRevision) ? pickNormalType(nextU32(r)) : 'battle';
+        const sideType = isFullContent(input.contentRevision) ? pickNormalType(nextU32(r), typeWeights) : 'battle';
         const sideId = `n${String(level)}s${String(side)}_${String(r % 997).padStart(3, '0')}`;
         nodes.push(makeNode(sideId, level, 'normal', sideType, sideType === 'event' ? eventPreviewKey(r) : undefined));
         const from = path[level - 1];
@@ -184,9 +185,9 @@ export function buildFallback(input: MapGenerationInput, profile: MapProfile, ca
   };
 }
 
-export function generateMap(input: MapGenerationInput, profile: MapProfile): ExpeditionMap {
+export function generateMap(input: MapGenerationInput, profile: MapProfile, weights?: readonly (readonly [NodeType, number])[]): ExpeditionMap {
   for (let attempt = 1; attempt <= profile.attemptCap; attempt += 1) {
-    const candidate = buildCandidate(input, profile, attempt);
+    const candidate = buildCandidate(input, profile, attempt, weights);
     if (validateMap(candidate, profile).length === 0) return candidate;
   }
   return buildFallback(input, profile, profile.attemptCap);
