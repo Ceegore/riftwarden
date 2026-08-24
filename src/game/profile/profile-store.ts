@@ -45,6 +45,18 @@ export function loadOrCreateProfile(): Profile {
   return loadProfile() ?? createInitialProfile();
 }
 
+/** Add the campaign's starter hero at expedition launch without changing empty-profile fixtures. */
+export function ensureStarterHero(profile: Profile): Profile {
+  if (Object.values(profile.heroes).some((hero) => hero.unlocked)) return profile;
+  return {
+    ...profile,
+    heroes: {
+      ...profile.heroes,
+      hero_aurel: { id: 'hero_aurel', unlocked: true, level: 1, fame: 0 },
+    },
+  };
+}
+
 export function clearProfile(): void {
   localStorage.removeItem(PROFILE_KEY);
 }

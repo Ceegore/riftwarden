@@ -11,7 +11,8 @@ import { ScrollRegion } from '../../ui/layout/ScrollRegion.js';
 import { loadCodexState } from '../../game/codex/codex-store.js';
 import type { CodexCategory } from '../../game/codex/types.js';
 
-const CATEGORY_LABELS: Record<CodexCategory, string> = {
+const CATEGORY_LABELS: Record<CodexCategory | 'all', string> = {
+  all: 'All',
   enemy: 'Enemies',
   item: 'Items',
   relic: 'Relics',
@@ -45,9 +46,9 @@ export function CodexListScreen({ onSelectEntry, onBack }: CodexListScreenProps)
         {allCategories.map((cat) => (
           <Button
             key={cat}
-            labelKey={`ui.codex.filter.${cat}`}
+            label={CATEGORY_LABELS[cat]}
             variant={filter === cat ? 'primary' : 'secondary'}
-            onClick={() => setFilter(cat)}
+            onClick={() => { setFilter(cat); }}
           />
         ))}
       </div>
@@ -61,7 +62,7 @@ export function CodexListScreen({ onSelectEntry, onBack }: CodexListScreenProps)
               key={entry.id}
               title={entry.id}
               state="default"
-              onSelect={() => onSelectEntry(entry.id)}
+              onSelect={() => { onSelectEntry(entry.id); }}
             >
               <StatRow label="Category" value={CATEGORY_LABELS[entry.category]} />
               <StatRow label="Encounters" value={String(entry.timesEncountered)} />

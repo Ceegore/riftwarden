@@ -1,16 +1,16 @@
 /**
  * GENERATED FILE — do not edit by hand.
  * Regenerate with: node tools/sim/write-locale-bootstrap.mjs
- * Generated at: 2026-08-23T18:58:48.905Z
+ * Generated at: 2026-08-23T20:27:44.193Z
  *
  * Bootstrap locale bundle (LOCALE_BOOTSTRAP_CONTRACT): a stopgap bundle that
  * lets the app boot in a browser before the real localization compiler
  * pipeline lands. Every key currently referenced in the app source maps to a
  * readable fallback label. Missing keys are a failing unit test.
  */
-import type { CompiledBundle, LocaleId } from './compiled-types.js';
+import type { CompiledBundle, CompiledMessage, LocaleId } from './compiled-types.js';
 
-const MESSAGES: Readonly<Record<string, import('./compiled-types.js').CompiledMessage>> = Object.freeze({
+const MESSAGES: Readonly<Record<string, CompiledMessage>> = Object.freeze({
   "beyond.boss_rush": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Boss Rush" }]),
     parameters: Object.freeze({}),
@@ -731,6 +731,12 @@ const MESSAGES: Readonly<Record<string, import('./compiled-types.js').CompiledMe
     budget: '0',
     compactKey: null,
   }),
+  "ui.common.apply": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Apply" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
   "ui.common.back": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Back" }]),
     parameters: Object.freeze({}),
@@ -755,6 +761,12 @@ const MESSAGES: Readonly<Record<string, import('./compiled-types.js').CompiledMe
     budget: '0',
     compactKey: null,
   }),
+  "ui.common.clear": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Clear" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
   "ui.common.confirm": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Confirm" }]),
     parameters: Object.freeze({}),
@@ -775,6 +787,12 @@ const MESSAGES: Readonly<Record<string, import('./compiled-types.js').CompiledMe
   }),
   "ui.common.enter_node": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Enter Node" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.common.equip": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Equip" }]),
     parameters: Object.freeze({}),
     budget: '0',
     compactKey: null,
@@ -815,14 +833,32 @@ const MESSAGES: Readonly<Record<string, import('./compiled-types.js').CompiledMe
     budget: '0',
     compactKey: null,
   }),
+  "ui.common.remove": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Remove" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
   "ui.common.return_to_hq": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Return To Hq" }]),
     parameters: Object.freeze({}),
     budget: '0',
     compactKey: null,
   }),
+  "ui.common.select": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Select" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
   "ui.common.start": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Start" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.common.unequip": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Unequip" }]),
     parameters: Object.freeze({}),
     budget: '0',
     compactKey: null,

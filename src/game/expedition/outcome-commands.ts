@@ -42,6 +42,11 @@ function assertBatchValid(state: NodeRunState, commands: readonly OutcomeCommand
       case 'RECRUIT_TROOP':
         assertId('RECRUIT_TROOP', command.troopTypeId);
         break;
+      case 'KILLS_EARNED':
+        if (!Number.isSafeInteger(command.amount) || command.amount <= 0) {
+          throw new ExpeditionError('UNKNOWN_OUTCOME_COMMAND', { kind: command.kind, reason: 'non-positive kills' });
+        }
+        break;
       case 'POLISH_ITEM':
         assertId('POLISH_ITEM', command.itemId);
         break;
@@ -140,6 +145,10 @@ export function applyOutcomeCommands(state: NodeRunState, commands: readonly Out
         break;
       case 'GOLD_EARNED':
         next = { ...next, revision: next.revision + 1, goldEarned: next.goldEarned + command.amount };
+        outcomeIds.push(outcomeId);
+        break;
+      case 'KILLS_EARNED':
+        next = { ...next, revision: next.revision + 1, killsEarned: next.killsEarned + command.amount };
         outcomeIds.push(outcomeId);
         break;
       default:

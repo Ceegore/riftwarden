@@ -16,9 +16,11 @@ import {
   loadAllPersistentState,
   applyExpeditionTracking,
   saveAllPersistentStateExport,
+  trackingHeroIds,
 } from '../../game/expedition/settlement-bridge.js';
 import { commitTransaction } from '../../game/profile/transaction-service.js';
 import { loadOrCreateProfile, saveProfile } from '../../game/profile/profile-store.js';
+import { missionByMapProfileId } from '../../game/mission/mission-definitions.js';
 
 export interface DefeatRecoveryScreenProps {
   readonly onReturn: () => void;
@@ -41,8 +43,11 @@ export function DefeatRecoveryScreen({ onReturn, missionId = 'mission_tutorial' 
     const allState = loadAllPersistentState();
     const nodesVisited = Object.keys(snapshot.state.visits).length;
     const goldEarned = snapshot.state.goldEarned;
+    const effectiveMissionId = missionId === 'mission_tutorial'
+      ? missionByMapProfileId(snapshot.state.modeId)?.id ?? missionId
+      : missionId;
     const updated = applyExpeditionTracking(
-      snapshot.state, 'defeat', missionId, goldEarned, nodesVisited, allState,
+      snapshot.state, 'defeat', effectiveMissionId, goldEarned, nodesVisited, allState, trackingHeroIds(),
     );
     saveAllPersistentStateExport(updated);
 
@@ -50,7 +55,12 @@ export function DefeatRecoveryScreen({ onReturn, missionId = 'mission_tutorial' 
     onReturn();
   }, [snapshot, abandon, onReturn, missionId]);
 
-  if (!snapshot) {
+  const settlementData = useMemo(
+    () => snapshot ? buildSettlementRequests(snapshot.state, 'defeat') : null,
+    [snapshot],
+  );
+
+  if (!snapshot || settlementData === null) {
     return (
       <ScreenFrame labelledBy="defeat-title">
         <h1 id="defeat-title">Expedition Lost</h1>
@@ -59,14 +69,12 @@ export function DefeatRecoveryScreen({ onReturn, missionId = 'mission_tutorial' 
     );
   }
 
-  const { settlement, requests } = useMemo(
-    () => buildSettlementRequests(snapshot.state, 'defeat'),
-    [snapshot.state],
-  );
-
+  const { settlement, requests } = settlementData;
   const lostGold = settlement.lostGold;
   const keptLootCount = settlement.keptLoot.length;
   const lostLootCount = settlement.lostLoot.length;
+  const lostRelicCount = settlement.lostRelics.length;
+  const lostRecruitCount = settlement.lostRecruits.length;
 
   return (
     <ScreenFrame labelledBy="defeat-title">
@@ -92,6 +100,24 @@ export function DefeatRecoveryScreen({ onReturn, missionId = 'mission_tutorial' 
         <section>
           <h3>Unsecured loot lost ({lostLootCount})</h3>
           {settlement.lostLoot.map((id) => (
+            <StatRow key={id} label={id} value="Lost" />
+          ))}
+        </section>
+      )}
+
+      {lostRelicCount > 0 && (
+        <section>
+          <h3>Temporary relics lost ({lostRelicCount})</h3>
+          {settlement.lostRelics.map((id) => (
+            <StatRow key={id} label={id} value="Lost" />
+          ))}
+        </section>
+      )}
+
+      {lostRecruitCount > 0 && (
+        <section>
+          <h3>Temporary recruits lost ({lostRecruitCount})</h3>
+          {settlement.lostRecruits.map((id) => (
             <StatRow key={id} label={id} value="Lost" />
           ))}
         </section>

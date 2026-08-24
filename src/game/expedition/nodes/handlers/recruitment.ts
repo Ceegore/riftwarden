@@ -42,7 +42,7 @@ function buildRecruitmentOffers(state: NodeRunState, nodeId: string): OfferSnaps
       priceGold: index === 0 ? 0 : RECRUITMENT_OFFER_COST_GOLD,
       stock: 1,
       troopTypeId,
-      labelKey: `recruitment.${nodeId}.${String(index)}`,
+      labelKey: `Recruit ${troopTypeId}`,
     });
   }
   return {

@@ -42,22 +42,22 @@ const MOCK_COPY: Record<SystemCopyKey, string> = {
 const systemCopy: PreliminarySystemCopy = {
   locale: 'en',
   t(key: SystemCopyKey): string {
-    return MOCK_COPY[key] ?? key;
+    return MOCK_COPY[key];
   },
 };
 
 // -- Boot services (minimal stubs; real platform adapters replace these) ---
 const bootServices: BootServices = {
-  async bootNative(_signal): Promise<void> { /* web-only */ },
-  async bootWeb(_signal): Promise<void> { /* CSS/fonts already loaded */ },
-  async loadSettings(_signal): Promise<void> { /* default settings */ },
-  async validateContent(_signal): Promise<void> { /* content revision ok */ },
-  async loadSave(_signal) {
+  bootNative: () => Promise.resolve(),
+  bootWeb: () => Promise.resolve(),
+  loadSettings: () => Promise.resolve(),
+  validateContent: () => Promise.resolve(),
+  loadSave: () => {
     // Route to TITLE when any progress exists — an in-progress expedition
     // (stored via the expedition save codec) or a settled profile (gold,
     // heroes, items from previous runs). Otherwise first-run onboarding.
     const hasProgress = hasStoredExpedition() || loadProfile() !== null;
-    return hasProgress ? { kind: 'title' as const } : { kind: 'first_run' as const };
+    return Promise.resolve(hasProgress ? { kind: 'title' as const } : { kind: 'first_run' as const });
   },
 };
 

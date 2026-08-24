@@ -33,7 +33,7 @@ function buildOffers(state: NodeRunState, nodeId: string, count: number, seed: n
       priceGold: 10 + (cursor % 91),
       stock: 1,
       rewardId: `reward:${nodeId}:${String(index)}`,
-      labelKey: `offer.${nodeId}.${String(index)}`,
+      labelKey: `Merchant Offer ${String(index + 1)}`,
     });
   }
   return {

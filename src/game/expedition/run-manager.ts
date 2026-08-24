@@ -5,11 +5,18 @@
  */
 import { generateMap } from './map-generator.js';
 import { createAndSaveExpedition, hasStoredExpedition, restoreStoredExpedition, saveExpedition, clearStore, readMeta } from './expedition-store.js';
-import type { ExpeditionRunner } from './expedition-runner.js';
-import type { NodeActionRequest, NodeRunState } from './nodes/types.js';
+import { restoreExpedition, type ExpeditionRunner } from './expedition-runner.js';
+import type { NodeActionRequest, NodeRunState, TransactionRecord } from './nodes/types.js';
 import type { ExpeditionMap, MapProfile, NodeId, NodeType } from './types.js';
+import { recordCombatMasteryKills, trackingHeroIds } from './settlement-bridge.js';
 
 type Listener = () => void;
+
+const activeListeners = new Set<() => void>();
+
+function notifyActiveListeners(): void {
+  for (const listener of activeListeners) listener();
+}
 
 const DEFAULT_PROFILE: MapProfile = {
   id: 'expedition.act1.standard',
@@ -24,10 +31,12 @@ export interface RunSnapshot {
   readonly state: NodeRunState;
   readonly currentNodeId: NodeId;
   readonly currentNodeType: NodeType;
+  readonly currentNodePayloadKey: string;
   readonly reachableNodes: readonly NodeId[];
   readonly runStatus: 'active' | 'finished';
   readonly gold: number;
   readonly instability: number;
+  readonly killsEarned: number;
   readonly securedLoot: readonly string[];
   readonly unsecuredLoot: readonly string[];
 }
@@ -55,6 +64,7 @@ export class RunManager {
     const map = generateMap({ seed, profileId: profile.id, contentRevision: '32.0' }, profile);
     const runner = createAndSaveExpedition(map, { startGold });
     instance = new RunManager(runner, map);
+    notifyActiveListeners();
     return instance;
   }
 
@@ -62,10 +72,12 @@ export class RunManager {
   static restore(): RunManager | null {
     const meta = readMeta();
     if (!meta) return null;
-    const map = generateMap({ seed: meta.mapSeed, profileId: DEFAULT_PROFILE.id, contentRevision: '32.0' }, DEFAULT_PROFILE);
+    const profile: MapProfile = { ...DEFAULT_PROFILE, id: meta.profileId ?? DEFAULT_PROFILE.id };
+    const map = generateMap({ seed: meta.mapSeed, profileId: profile.id, contentRevision: '32.0' }, profile);
     const runner = restoreStoredExpedition(map);
     if (!runner) return null;
     instance = new RunManager(runner, map);
+    notifyActiveListeners();
     return instance;
   }
 
@@ -75,6 +87,12 @@ export class RunManager {
     instance?.dispose();
     clearStore();
     instance = null;
+    notifyActiveListeners();
+  }
+
+  static subscribeActive(listener: () => void): () => void {
+    activeListeners.add(listener);
+    return () => { activeListeners.delete(listener); };
   }
 
   private dispose(): void { this.listeners.clear(); }
@@ -87,10 +105,12 @@ export class RunManager {
       state: s,
       currentNodeId: this.runner.currentNodeId,
       currentNodeType: this.runner.definition.type,
+      currentNodePayloadKey: this.runner.definition.payloadKey,
       reachableNodes: this.runner.reachableNodes,
       runStatus: s.runStatus,
       gold: s.gold,
       instability: s.instability,
+      killsEarned: s.killsEarned,
       securedLoot: s.securedLoot,
       unsecuredLoot: s.unsecuredLoot,
     };
@@ -103,9 +123,33 @@ export class RunManager {
     this.persistAndNotify();
   }
 
-  act(request: NodeActionRequest): void {
-    this.runner = this.runner.act(request);
+  act(request: NodeActionRequest): TransactionRecord {
+    const before = this.runner;
+    const next = before.act(request);
+    let nextState = next.state;
+    const record = nextState.ledger[request.transactionId];
+    const isCombatEngage = request.action === 'ENGAGE' &&
+      (before.definition.type === 'battle' || before.definition.type === 'elite' || before.definition.type === 'boss');
+    if (isCombatEngage && record?.status === 'COMMITTED') {
+      const targetKills = nextState.killsEarned;
+      if (targetKills > before.state.masteryKillsApplied && recordCombatMasteryKills(
+        trackingHeroIds(), targetKills, before.state.runId, request.transactionId,
+      )) {
+        nextState = {
+          ...nextState,
+          masteryKillsApplied: targetKills,
+        };
+      }
+    }
+    this.runner = nextState === next.state
+      ? next
+      : restoreExpedition(nextState, this.map, next.currentNodeId);
+    const committedRecord = this.runner.state.ledger[request.transactionId];
+    if (committedRecord === undefined) {
+      throw new Error(`EXPEDITION_TRANSACTION_MISSING:${request.transactionId}`);
+    }
     this.persistAndNotify();
+    return committedRecord;
   }
 
   resolve(): void {

@@ -62,10 +62,7 @@ function pickActionForNode(runner: ExpeditionRunner): NodeActionRequest | null {
       ? { transactionId: `tx-${nodeId}`, nodeId, action: 'SECURE' }
       : null;
   }
-  if (type === 'story') {
-    return { transactionId: `tx-${nodeId}`, nodeId, action: 'CONTINUE' };
-  }
-  return null;
+  return { transactionId: `tx-${nodeId}`, nodeId, action: 'CONTINUE' };
 }
 
 const PROFILE: MapProfile = {

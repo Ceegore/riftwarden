@@ -81,7 +81,7 @@ export function recordMissionCompletion(
   // Cascade: any mission whose requirements are all completed becomes available.
   for (const def of MISSIONS) {
     const current = newMissions[def.id];
-    if (!current || current.status !== 'locked') continue;
+    if (current?.status !== 'locked') continue;
     const allCleared = def.requiredMissions.every((req) => {
       const reqProg = newMissions[req];
       return reqProg?.status === 'completed';

@@ -117,7 +117,7 @@ function buildRunner(
     },
     visit(enterTxId: string, actionRequest?: NodeActionRequest): ExpeditionRunner {
       let next = self.enter(enterTxId);
-      if (actionRequest !== undefined) {
+      if (actionRequest !== undefined && actionRequest.action !== 'ENTER') {
         next = next.act(actionRequest);
       }
       return next.resolve();

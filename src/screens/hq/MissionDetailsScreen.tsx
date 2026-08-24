@@ -10,12 +10,14 @@ import { ScreenFrame } from '../../ui/layout/ScreenFrame.js';
 import { BottomActionBar } from '../../ui/layout/BottomActionBar.js';
 import { useExpedition } from '../../features/expedition/useExpedition.js';
 import { loadMissionState } from '../../game/mission/mission-store.js';
+import { ensureStarterHero, loadOrCreateProfile, saveProfile } from '../../game/profile/profile-store.js';
 import { missionById } from '../../game/mission/mission-definitions.js';
 import type { MissionDefinition } from '../../game/mission/types.js';
+import { resolveExpeditionSeed } from '../../features/expedition/transaction-ids.js';
 
 export interface MissionDetailsScreenProps {
   readonly mission: MissionDefinition;
-  readonly onLaunched: () => void;
+  readonly onLaunched: (missionId: string) => void;
   readonly onBack: () => void;
 }
 
@@ -30,10 +32,11 @@ export function MissionDetailsScreen({ mission, onLaunched, onBack }: MissionDet
 
   const handleLaunch = useCallback(() => {
     if (!canLaunch) return;
-    const seed = Date.now();
+    const seed = resolveExpeditionSeed();
+    saveProfile(ensureStarterHero(loadOrCreateProfile()));
     newRun(seed, 100, mission.mapProfileId);
-    onLaunched();
-  }, [canLaunch, newRun, mission.mapProfileId, onLaunched]);
+    onLaunched(mission.id);
+  }, [canLaunch, mission.id, mission.mapProfileId, newRun, onLaunched]);
 
   const prog = missionState.missions[mission.id];
 

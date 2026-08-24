@@ -4,7 +4,7 @@
  */
 import { useCallback, useEffect, useState } from 'react';
 import { RunManager, type RunSnapshot } from '../../game/expedition/run-manager.js';
-import type { NodeActionRequest } from '../../game/expedition/nodes/types.js';
+import type { NodeActionRequest, TransactionRecord } from '../../game/expedition/nodes/types.js';
 import type { ExpeditionMap, NodeId } from '../../game/expedition/types.js';
 import { mainPath } from '../../game/expedition/expedition-runner.js';
 
@@ -15,14 +15,14 @@ export interface UseExpeditionResult {
   readonly hasSave: boolean;
   readonly loading: boolean;
 
-  newRun(seed: number, startGold?: number, mapProfileId?: string): void;
-  continueRun(): void;
-  abandon(): void;
-  enter(txId: string): void;
-  act(request: NodeActionRequest): void;
-  resolve(): void;
-  advance(nodeId: NodeId): void;
-  finish(): void;
+  readonly newRun: (seed: number, startGold?: number, mapProfileId?: string) => void;
+  readonly continueRun: () => void;
+  readonly abandon: () => void;
+  readonly enter: (txId: string) => void;
+  readonly act: (request: NodeActionRequest) => TransactionRecord | undefined;
+  readonly resolve: () => void;
+  readonly advance: (nodeId: NodeId) => void;
+  readonly finish: () => void;
 }
 
 export function useExpedition(): UseExpeditionResult {
@@ -31,9 +31,18 @@ export function useExpedition(): UseExpeditionResult {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const refresh = (): void => {
+      const mgr = RunManager.active;
+      setSnapshot(mgr?.snapshot() ?? null);
+      setMap(mgr?.map ?? null);
+    };
+    const unsubscribeActive = RunManager.subscribeActive(refresh);
     const mgr = RunManager.active;
-    if (!mgr) return;
-    return mgr.subscribe(() => setSnapshot(mgr.snapshot()));
+    const unsubscribeRun = mgr?.subscribe(refresh);
+    return () => {
+      unsubscribeActive();
+      unsubscribeRun?.();
+    };
   }, []);
 
   const newRun = useCallback((seed: number, startGold = 100, mapProfileId?: string) => {
@@ -61,7 +70,7 @@ export function useExpedition(): UseExpeditionResult {
   }, []);
 
   const enter = useCallback((txId: string) => { RunManager.active?.enter(txId); }, []);
-  const act = useCallback((req: NodeActionRequest) => { RunManager.active?.act(req); }, []);
+  const act = useCallback((req: NodeActionRequest): TransactionRecord | undefined => RunManager.active?.act(req), []);
   const resolve = useCallback(() => { RunManager.active?.resolve(); }, []);
   const advance = useCallback((nid: NodeId) => { RunManager.active?.advance(nid); }, []);
   const finish = useCallback(() => { RunManager.active?.finish(); }, []);

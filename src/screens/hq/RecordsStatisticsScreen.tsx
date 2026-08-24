@@ -28,7 +28,7 @@ export function RecordsStatisticsScreen({ onBack }: RecordsStatisticsScreenProps
         <StatRow label="Defeats" value={String(records.totalDefeats)} />
         <StatRow label="Win rate" value={
           records.totalExpeditions > 0
-            ? `${Math.round((records.totalVictories / records.totalExpeditions) * 100)}%`
+            ? `${String(Math.round((records.totalVictories / records.totalExpeditions) * 100))}%`
             : '—'
         } />
       </section>
@@ -41,11 +41,11 @@ export function RecordsStatisticsScreen({ onBack }: RecordsStatisticsScreenProps
         <StatRow label="Nodes visited" value={String(records.totalNodesVisited)} />
       </section>
 
-      {records.recordsPerMission && Object.keys(records.recordsPerMission).length > 0 ? (
+      {Object.keys(records.recordsPerMission).length > 0 ? (
         <section>
           <h2>Per Mission</h2>
           {Object.entries(records.recordsPerMission).map(([id, rec]) => (
-            <StatRow key={id} label={id} value={`Best: ${rec.bestGold}g · ${rec.completions}×`} />
+            <StatRow key={id} label={id} value={`Best: ${String(rec.bestGold)}g · ${String(rec.completions)}×`} />
           ))}
         </section>
       ) : null}
@@ -58,8 +58,8 @@ export function RecordsStatisticsScreen({ onBack }: RecordsStatisticsScreenProps
           ) : (
             records.recentRuns.map((run, i) => (
               <GameCard
-                key={`${run.timestamp}-${i}`}
-                title={`${run.missionId}`}
+                key={`${String(run.timestamp)}-${String(i)}`}
+                title={run.missionId}
                 state={run.result === 'victory' ? 'selected' : 'default'}
               >
                 <StatRow label="Result" value={run.result} />

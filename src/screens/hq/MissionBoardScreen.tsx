@@ -62,7 +62,7 @@ export function MissionBoardScreen({ onSelectMission, onBack }: MissionBoardScre
               key={definition.id}
               title={definition.id}
               state={progress.status === 'completed' ? 'selected' : 'default'}
-              onSelect={() => onSelectMission(definition)}
+              onSelect={() => { onSelectMission(definition); }}
             >
               <StatRow label="Status" value={STATUS_LABELS[progress.status] ?? progress.status} />
               <StatRow label="Difficulty" value={DIFFICULTY_LABELS[definition.difficulty] ?? definition.difficulty} />

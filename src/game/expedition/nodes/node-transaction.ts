@@ -46,6 +46,20 @@ function withVisit(state: NodeRunState, visit: NodeVisitState): NodeRunState {
   return { ...state, visits: { ...state.visits, [visit.nodeId]: visit } };
 }
 
+function hasCommittedAction(state: NodeRunState, nodeId: string, action: string): boolean {
+  return Object.values(state.ledger).some(
+    (entry) => entry.nodeId === nodeId && entry.status === 'COMMITTED' && entry.action === action,
+  );
+}
+
+function openVisitForRetry(visit: NodeVisitState): NodeVisitState {
+  return {
+    nodeId: visit.nodeId,
+    status: 'OPEN',
+    previewRevision: visit.previewRevision,
+  };
+}
+
 /**
  * Phase 1: durable preparation. Marks the visit COMMITTING so a kill here
  * resumes via the ledger instead of re-rolling. Idempotent for the same
@@ -106,10 +120,15 @@ export function commitNodeAction(
     const result = rejected(request, 'NODE_ALREADY_RESOLVED');
     return { state: recordResult(state, result), result, replayed: false };
   }
-  const violation = validate(definition, request, state);
+  const violation = request.action === 'ENTER' && hasCommittedAction(state, request.nodeId, 'ENTER')
+    ? 'ACTION_LIMIT'
+    : validate(definition, request, state);
   if (violation !== null) {
     const result = rejected(request, violation);
-    return { state: recordResult(state, result), result, replayed: false };
+    const restoredVisit = visit.status === 'COMMITTING' && visit.transactionId === request.transactionId
+      ? openVisitForRetry(visit)
+      : visit;
+    return { state: recordResult(withVisit(state, restoredVisit), result), result, replayed: false };
   }
   const committed = commit(definition, request, state);
   const result: TransactionRecord = {

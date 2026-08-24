@@ -9,6 +9,7 @@ import { BottomActionBar } from '../../ui/layout/BottomActionBar.js';
 import { ScrollRegion } from '../../ui/layout/ScrollRegion.js';
 import { useExpedition } from '../../features/expedition/useExpedition.js';
 import type { NodeId } from '../../game/expedition/types.js';
+import { resolveExpeditionSeed } from '../../features/expedition/transaction-ids.js';
 
 export interface DungeonMapScreenProps {
   readonly onEnterNode: () => void;
@@ -30,7 +31,7 @@ export function DungeonMapScreen({ onEnterNode, onFinish, onBack }: DungeonMapSc
   const { snapshot, map, mainPathNodes, advance, newRun, loading } = useExpedition();
   const [selectedNode, setSelectedNode] = useState<NodeId | null>(null);
 
-  const handleStart = useCallback(() => newRun(Date.now()), [newRun]);
+  const handleStart = useCallback(() => { newRun(resolveExpeditionSeed()); }, [newRun]);
 
   const handleAdvance = useCallback(() => {
     if (!selectedNode || !snapshot) return;
@@ -53,7 +54,7 @@ export function DungeonMapScreen({ onEnterNode, onFinish, onBack }: DungeonMapSc
   const handleEnterCurrent = useCallback(() => {
     if (!snapshot) return;
     const visit = snapshot.state.visits[snapshot.currentNodeId];
-    if (!visit || visit.status !== 'RESOLVED') {
+    if (visit?.status !== 'RESOLVED') {
       onEnterNode();
     }
   }, [snapshot, onEnterNode]);
@@ -94,7 +95,7 @@ export function DungeonMapScreen({ onEnterNode, onFinish, onBack }: DungeonMapSc
                 key={nodeId}
                 title={`${String(index + 1)}. ${nodeLabel(node.type)}`}
                 state="default"
-                onSelect={() => setSelectedNode(nodeId)}
+                onSelect={() => { setSelectedNode(nodeId); }}
               >
                 <StatRow label="Type" value={nodeLabel(node.type)} />
                 <StatRow label="Level" value={String(node.level)} />

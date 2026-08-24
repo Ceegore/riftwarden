@@ -28,6 +28,10 @@ import { CyclePreparationScreen } from './CyclePreparationScreen.js';
 import { BeyondSetupScreen } from './BeyondSetupScreen.js';
 import { EndlessSetupScreen } from './EndlessSetupScreen.js';
 import { RiftChamberScreen } from './RiftChamberScreen.js';
+import { EquipmentScreen } from './EquipmentScreen.js';
+import { KitAssemblyScreen } from './KitAssemblyScreen.js';
+import { BannerSetupScreen } from './BannerSetupScreen.js';
+import { FormationScreen } from './FormationScreen.js';
 
 export const hqScreenModules: Readonly<Record<string, ScreenModule>> = {
   'screen.newGame': { default: NewGameScreen },
@@ -56,4 +60,9 @@ export const hqScreenModules: Readonly<Record<string, ScreenModule>> = {
   'screen.beyondSetup': { default: BeyondSetupScreen },
   'screen.endlessSetup': { default: EndlessSetupScreen },
   'screen.riftChamber': { default: RiftChamberScreen },
+  // Phase 37
+  'screen.equipmentPicker': { default: EquipmentScreen },
+  'screen.kitPicker': { default: KitAssemblyScreen },
+  'screen.bannerPicker': { default: BannerSetupScreen },
+  'screen.formationPreview': { default: FormationScreen },
 };

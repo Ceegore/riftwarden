@@ -129,6 +129,9 @@ export interface NodeRunState {
   readonly gold: number;
   readonly instability: number;
   readonly goldEarned: number;
+  readonly killsEarned: number;
+  /** Kill total already applied to per-hero mastery during this run. */
+  readonly masteryKillsApplied: number;
   readonly securedLoot: readonly string[];
   readonly unsecuredLoot: readonly string[];
   readonly relics: readonly string[];
@@ -157,7 +160,8 @@ export type OutcomeCommand =
   | { readonly kind: 'RECRUIT_TROOP'; readonly troopTypeId: string }
   | { readonly kind: 'POLISH_ITEM'; readonly itemId: string }
   | { readonly kind: 'REPAIR_ITEM'; readonly itemId: string }
-  | { readonly kind: 'GOLD_EARNED'; readonly amount: number };
+  | { readonly kind: 'GOLD_EARNED'; readonly amount: number }
+  | { readonly kind: 'KILLS_EARNED'; readonly amount: number };
 
 /** Result of applying one outcome command batch (exactly-once per batch). */
 export interface CommandBatchResult {

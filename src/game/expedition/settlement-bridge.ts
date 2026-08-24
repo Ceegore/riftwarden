@@ -9,12 +9,14 @@ import { loadCodexState, saveCodexState, discoverEntity, clearCodexState } from 
 import type { CodexState } from '../codex/types.js';
 import { loadRecordsState, saveRecordsState, recordRun, clearRecordsState } from '../records/records-store.js';
 import type { RecordsState } from '../records/types.js';
-import { loadMasteryState, saveMasteryState, addMasteryExpedition, clearMasteryState } from '../mastery/mastery-store.js';
+import { loadMasteryState, saveMasteryState, addMasteryExpedition, addMasteryKills, clearMasteryState, processedCombatKillsForRun } from '../mastery/mastery-store.js';
 import type { MasteryState } from '../mastery/types.js';
 import { loadStoryArchiveState, saveStoryArchiveState, unlockStoryFragment, clearStoryArchiveState } from '../story/story-store.js';
 import type { StoryArchiveState } from '../story/types.js';
 import type { NodeRunState } from './nodes/types.js';
 import type { ExpeditionOutcome } from './expedition-settlement.js';
+import { loadOrCreateProfile } from '../profile/profile-store.js';
+import { loadFormationState } from '../formations/formation-store.js';
 
 export interface AllPersistentState {
   readonly achievements: AchievementState;
@@ -68,17 +70,69 @@ const OUTCOME_ACHIEVEMENTS: Record<ExpeditionOutcome, string[]> = {
  * - Unlock relevant story fragments
  * - Update hero mastery expedition counts
  */
+export function recordCombatMasteryKills(
+  heroIds: readonly string[],
+  targetKills: number,
+  runId: string,
+  transactionId: string,
+): boolean {
+  if (heroIds.length === 0 || !Number.isSafeInteger(targetKills) || targetKills <= 0) return false;
+  try {
+    let mastery = loadMasteryState();
+    const alreadyApplied = processedCombatKillsForRun(mastery, runId);
+    const missing = Math.max(0, targetKills - alreadyApplied);
+    if (missing > 0) {
+      for (const heroId of heroIds) mastery = addMasteryKills(mastery, heroId, missing);
+      const markers = {
+        ...(mastery.processedCombatTransactions ?? {}),
+        [`${runId}:${transactionId}`]: missing,
+      };
+      mastery = { ...mastery, processedCombatTransactions: markers };
+      saveMasteryState(mastery);
+    }
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export function trackingHeroIds(explicit?: string | readonly string[]): readonly string[] {
+  if (explicit !== undefined) {
+    const ids = typeof explicit === 'string' ? [explicit] : explicit;
+    return [...new Set(ids.filter((id) => id.length > 0))];
+  }
+  const formation = loadFormationState();
+  const placed = Object.values(formation.placement).filter((id): id is string => typeof id === 'string' && id.length > 0);
+  if (placed.length > 0) {
+    const unlocked = new Set(Object.values(loadOrCreateProfile().heroes).filter((hero) => hero.unlocked).map((hero) => hero.id));
+    const validPlaced = [...new Set(placed)].filter((id) => unlocked.has(id));
+    if (validPlaced.length > 0) return validPlaced;
+  }
+  const profile = loadOrCreateProfile();
+  return Object.values(profile.heroes)
+    .filter((hero) => hero.unlocked)
+    .map((hero) => hero.id)
+    .sort();
+}
+
 export function applyExpeditionTracking(
-  _state: NodeRunState,
+  state: NodeRunState,
   outcome: ExpeditionOutcome,
   missionId: string,
   goldEarned: number,
   nodesVisited: number,
   allState: AllPersistentState,
-  heroIdWhom?: string,
+  heroIdWhom?: string | readonly string[],
 ): AllPersistentState {
   let { achievements, records, mastery, story } = allState;
   const codex = allState.codex; // codex doesn't change from settlement
+  const killsEarned = Number.isSafeInteger(state.killsEarned) && state.killsEarned > 0 ? state.killsEarned : 0;
+  const masteryKillsApplied = Math.max(
+    Number.isSafeInteger(state.masteryKillsApplied) ? state.masteryKillsApplied : 0,
+    processedCombatKillsForRun(mastery, state.runId),
+  );
+  const masteryKillsRemaining = Math.max(0, killsEarned - masteryKillsApplied);
+  const heroIds = trackingHeroIds(heroIdWhom);
 
   // --- Achievements ---
   // Expedition count
@@ -91,21 +145,37 @@ export function applyExpeditionTracking(
   for (const achId of OUTCOME_ACHIEVEMENTS[outcome]) {
     achievements = incrementAchievement(achievements, achId, 1).state;
   }
-  // Nodes visited
+  // Nodes visited and combat kills
   achievements = incrementAchievement(achievements, 'nodes_visited_100', nodesVisited).state;
+  achievements = incrementAchievement(achievements, 'kill_10', killsEarned).state;
+  achievements = incrementAchievement(achievements, 'kill_50', killsEarned).state;
+  achievements = incrementAchievement(achievements, 'kill_200', killsEarned).state;
 
   // --- Records ---
   records = recordRun(records, {
     missionId,
     goldEarned,
+    killsEarned,
     result: outcome === 'retreat' ? 'retreat' : outcome,
     nodesVisited,
     timestamp: Date.now(),
   });
 
   // --- Mastery ---
-  if (heroIdWhom) {
-    mastery = addMasteryExpedition(mastery, heroIdWhom);
+  for (const heroId of heroIds) {
+    mastery = addMasteryExpedition(mastery, heroId);
+    if (masteryKillsRemaining > 0) {
+      mastery = addMasteryKills(mastery, heroId, masteryKillsRemaining);
+    }
+  }
+  if (masteryKillsRemaining > 0 && heroIds.length > 0) {
+    mastery = {
+      ...mastery,
+      processedCombatTransactions: {
+        ...(mastery.processedCombatTransactions ?? {}),
+        [`${state.runId}:settlement`]: masteryKillsRemaining,
+      },
+    };
   }
 
   // --- Story ---
@@ -129,16 +199,17 @@ export function applyNodeCodexDiscovery(
   codex: CodexState,
   nodeType: string,
   entityHint?: string,
+  includeNodeType = true,
 ): CodexState {
   let updated = codex;
 
-  // Discover the node type itself
-  updated = discoverEntity(updated, `nodetype_${nodeType}`, 'nodeType');
+  if (includeNodeType) {
+    updated = discoverEntity(updated, `nodetype_${nodeType}`, 'nodeType');
+  }
 
-  // If the node had an entity reference, discover that too
   if (entityHint) {
     let category: 'enemy' | 'item' | 'relic' | 'hero' | 'troop' = 'enemy';
-    if (entityHint.startsWith('item_') || entityHint.startsWith('equip_')) category = 'item';
+    if (entityHint.startsWith('item_') || entityHint.startsWith('equip_') || entityHint.startsWith('reward:') || entityHint.startsWith('treasure:')) category = 'item';
     else if (entityHint.startsWith('relic_')) category = 'relic';
     else if (entityHint.startsWith('hero_')) category = 'hero';
     else if (entityHint.startsWith('troop_')) category = 'troop';

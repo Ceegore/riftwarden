@@ -63,7 +63,7 @@ export function recordRun(state: RecordsState, run: RunRecord): RecordsState {
     totalExpeditions: state.totalExpeditions + 1,
     totalVictories: state.totalVictories + (run.result === 'victory' ? 1 : 0),
     totalDefeats: state.totalDefeats + (run.result === 'defeat' ? 1 : 0),
-    totalKills: state.totalKills,
+    totalKills: state.totalKills + run.killsEarned,
     totalGoldEarned: state.totalGoldEarned + run.goldEarned,
     totalNodesVisited: state.totalNodesVisited + run.nodesVisited,
     bestGoldRun: Math.max(state.bestGoldRun, run.goldEarned),

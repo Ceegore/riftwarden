@@ -79,13 +79,16 @@ export function missionById(id: string): MissionDefinition | undefined {
   return MISSIONS.find((m) => m.id === id);
 }
 
+/** Resolve a saved expedition's map profile back to its mission identity. */
+export function missionByMapProfileId(mapProfileId: string): MissionDefinition | undefined {
+  return MISSIONS.find((mission) => mission.mapProfileId === mapProfileId);
+}
+
 /** All mission ids that a given mission depends on, transitively. */
 export function transitiveRequirements(missionId: string): ReadonlySet<string> {
   const deps = new Set<string>();
   const queue = [missionId];
-  for (let i = 0; i < queue.length; i++) {
-    const current = queue[i];
-    if (current === undefined) continue;
+  for (const current of queue) {
     const def = missionById(current);
     if (!def) continue;
     for (const req of def.requiredMissions) {

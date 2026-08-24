@@ -28,7 +28,7 @@ export function StoryArchiveScreen({ onBack }: StoryArchiveScreenProps): JSX.Ele
 
       <StatRow
         label="Unlocked"
-        value={`${unlocked.length} / ${fragments.length}`}
+        value={`${String(unlocked.length)} / ${String(fragments.length)}`}
       />
 
       <ScrollRegion label="Story fragments">

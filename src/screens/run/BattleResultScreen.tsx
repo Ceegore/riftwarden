@@ -25,21 +25,9 @@ export function BattleResultScreen({ onContinue }: BattleResultScreenProps): JSX
     const visit = snapshot.state.visits[nodeId];
     if (!visit) return null;
 
-    // Find the most recent committed transaction for this node.
-    const ledgerEntries = Object.values(snapshot.state.ledger)
-      .filter((r) => r.nodeId === nodeId && r.status === 'COMMITTED')
-      .sort((a, b) => {
-        // Sort by id for deterministic ordering.
-        if (a.transactionId < b.transactionId) return -1;
-        if (a.transactionId > b.transactionId) return 1;
-        return 0;
-      });
-
-    const lastTx = ledgerEntries[ledgerEntries.length - 1];
-    const hasRewards =
-      snapshot.state.snapshots[nodeId]?.kind === 'REWARD' &&
-      snapshot.state.snapshots[nodeId]?.rewardIds !== undefined &&
-      (snapshot.state.snapshots[nodeId] as { rewardIds: readonly string[] }).rewardIds.length > 0;
+    // The visit transaction id is the durable ordering source; lexical
+    // ordering of UI-generated ids is not a reliable action order.
+    const lastTx = visit.transactionId === undefined ? undefined : snapshot.state.ledger[visit.transactionId];
 
     return {
       action: lastTx?.action ?? 'NONE',
@@ -48,7 +36,6 @@ export function BattleResultScreen({ onContinue }: BattleResultScreenProps): JSX
       instability: snapshot.instability,
       securedCount: snapshot.securedLoot.length,
       unsecuredCount: snapshot.unsecuredLoot.length,
-      hasRewards,
     };
   }, [snapshot]);
 

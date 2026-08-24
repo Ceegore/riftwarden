@@ -34,7 +34,7 @@ function readManifest(storage: StorageLike, family: SaveFamily): SaveManifest | 
     const slot = value['activeSlot'] as Slot;
     if (!(ALL_SLOTS as readonly string[]).includes(slot)) return null;
     for (const key of ['commitId', 'schemaVersion', 'simulationVersion'] as const) {
-      if (typeof value[key] !== 'number' || !Number.isSafeInteger(value[key] as number) || (value[key] as number) < 0) return null;
+      if (typeof value[key] !== 'number' || !Number.isSafeInteger(value[key]) || (value[key]) < 0) return null;
     }
     if (typeof value['contentVersion'] !== 'string' || typeof value['payloadSha256'] !== 'string') return null;
     return {
@@ -74,7 +74,7 @@ export class LocalStorageSaveStore implements NativeSaveStore {
   private readonly storage: StorageLike;
 
   constructor(storage?: StorageLike) {
-    this.storage = storage ?? globalThis.localStorage as StorageLike | undefined ?? new MapStorage();
+    this.storage = storage ?? globalThis.localStorage;
   }
 
   capabilities(): Promise<readonly string[]> {
@@ -82,10 +82,11 @@ export class LocalStorageSaveStore implements NativeSaveStore {
   }
 
   async load(family: SaveFamily): Promise<SaveEnvelope<JsonValue>> {
+    await Promise.resolve();
     const manifest = readManifest(this.storage, family);
     if (manifest) {
       const active = readSlot(this.storage, family, manifest.activeSlot);
-      if (active && active.commitId === manifest.commitId) return active;
+      if (active?.commitId === manifest.commitId) return active;
     }
     let best: { commitId: number; envelope: SaveEnvelope<JsonValue> } | null = null;
     for (const slot of ALL_SLOTS) {
@@ -99,6 +100,7 @@ export class LocalStorageSaveStore implements NativeSaveStore {
   }
 
   async commit(request: CommitRequest): Promise<CommitResult> {
+    await Promise.resolve();
     validateEnvelope(request.envelope);
     const manifest = readManifest(this.storage, request.family);
     const next = manifest ? nextSlot(manifest.activeSlot) : 'A';
@@ -120,6 +122,7 @@ export class LocalStorageSaveStore implements NativeSaveStore {
   }
 
   async inspect(family: SaveFamily): Promise<Readonly<{ activeSlot: Slot; commitId: number; slots: readonly Slot[] }>> {
+    await Promise.resolve();
     const manifest = readManifest(this.storage, family);
     const slots: Slot[] = [];
     for (const slot of ALL_SLOTS) {
@@ -133,14 +136,8 @@ export class LocalStorageSaveStore implements NativeSaveStore {
   }
 
   async cleanupOrphans(): Promise<readonly string[]> {
+    await Promise.resolve();
     return [];
   }
 }
 
-/** In-memory Map-based StorageLike for testing. */
-class MapStorage implements StorageLike {
-  private readonly map = new Map<string, string>();
-  getItem(key: string): string | null { return this.map.get(key) ?? null; }
-  setItem(key: string, value: string): void { this.map.set(key, value); }
-  removeItem(key: string): void { this.map.delete(key); }
-}

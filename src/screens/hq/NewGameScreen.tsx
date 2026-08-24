@@ -13,11 +13,13 @@ import { BottomActionBar } from '../../ui/layout/BottomActionBar.js';
 import { ScrollRegion } from '../../ui/layout/ScrollRegion.js';
 import { useExpedition } from '../../features/expedition/useExpedition.js';
 import { loadMissionState } from '../../game/mission/mission-store.js';
+import { ensureStarterHero, loadOrCreateProfile, saveProfile } from '../../game/profile/profile-store.js';
 import { MISSIONS, missionById } from '../../game/mission/mission-definitions.js';
 import type { MissionDefinition } from '../../game/mission/types.js';
+import { resolveExpeditionSeed } from '../../features/expedition/transaction-ids.js';
 
 export interface NewGameScreenProps {
-  readonly onLaunched: () => void;
+  readonly onLaunched: (missionId: string) => void;
   readonly onBack: () => void;
 }
 
@@ -38,9 +40,10 @@ export function NewGameScreen({ onLaunched, onBack }: NewGameScreenProps): JSX.E
 
   const handleLaunch = useCallback(() => {
     if (!selectedMission) return;
-    const seed = Date.now();
+    const seed = resolveExpeditionSeed();
+    saveProfile(ensureStarterHero(loadOrCreateProfile()));
     newRun(seed, 100, selectedMission.mapProfileId);
-    onLaunched();
+    onLaunched(selectedMission.id);
   }, [selectedMission, newRun, onLaunched]);
 
   if (selectedMission) {
@@ -76,7 +79,7 @@ export function NewGameScreen({ onLaunched, onBack }: NewGameScreenProps): JSX.E
         )}
         <BottomActionBar>
           <Button labelKey="ui.common.launch" variant="primary" onClick={handleLaunch} disabled={loading} />
-          <Button labelKey="ui.common.back" variant="secondary" onClick={() => setSelectedMission(null)} />
+          <Button labelKey="ui.common.back" variant="secondary" onClick={() => { setSelectedMission(null); }} />
         </BottomActionBar>
       </ScreenFrame>
     );
@@ -93,7 +96,7 @@ export function NewGameScreen({ onLaunched, onBack }: NewGameScreenProps): JSX.E
               key={mission.id}
               title={`${mission.id} (${mission.difficulty})`}
               state="default"
-              onSelect={() => setSelectedMission(mission)}
+              onSelect={() => { setSelectedMission(mission); }}
             >
               <StatRow label="Difficulty" value={mission.difficulty} />
               <StatRow label="Gold mult" value={`×${String(mission.goldMultiplier)}`} />

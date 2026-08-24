@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "maxReturnDepth": 8,
+  "maxStringLength": 160,
+  "schemas": {
+    "params.none": {
+      "required": {},
+      "optional": {}
+    },
+    "params.mission": {
+      "required": {
+        "missionId": "string"
+      },
+      "optional": {}
+    },
+    "params.entity": {
+      "required": {
+        "entityId": "string"
+      },
+      "optional": {
+        "tab": "string"
+      }
+    },
+    "params.picker": {
+      "required": {
+        "ownerId": "string",
+        "slotId": "string",
+        "mode": "string"
+      },
+      "optional": {}
+    },
+    "params.node": {
+      "required": {
+        "nodeId": "string"
+      },
+      "optional": {
+        "runId": "string",
+        "source": "string"
+      }
+    },
+    "params.runContext": {
+      "required": {
+        "runId": "string"
+      },
+      "optional": {
+        "source": "string",
+        "resume": "boolean",
+        "turn": "number"
+      }
+    },
+    "overlay.confirmation": {
+      "required": {},
+      "optional": {}
+    },
+    "overlay.tooltipGlossary": {
+      "required": {},
+      "optional": {}
+    },
+    "overlay.comparison": {
+      "required": {},
+      "optional": {}
+    },
+    "overlay.unlock": {
+      "required": {},
+      "optional": {}
+    },
+    "overlay.toast": {
+      "required": {},
+      "optional": {}
+    },
+    "overlay.loading": {
+      "required": {},
+      "optional": {}
+    },
+    "overlay.unsavedChanges": {
+      "required": {},
+      "optional": {}
+    }
+  }
+}

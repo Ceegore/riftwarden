@@ -31,8 +31,12 @@ export function AchievementsScreen({ onBack }: AchievementsScreenProps): JSX.Ele
   const categories = useMemo(() => {
     const cats = new Map<AchievementCategory, typeof ACHIEVEMENTS[number][]>();
     for (const def of ACHIEVEMENTS) {
-      if (!cats.has(def.category)) cats.set(def.category, []);
-      cats.get(def.category)!.push(def);
+      const category = cats.get(def.category);
+      if (category === undefined) {
+        cats.set(def.category, [def]);
+      } else {
+        category.push(def);
+      }
     }
     return cats;
   }, []);
@@ -42,7 +46,7 @@ export function AchievementsScreen({ onBack }: AchievementsScreenProps): JSX.Ele
       <h1 id="ach-title">Achievements</h1>
       <StatRow
         label="Earned"
-        value={`${stats.earned} / ${stats.total}`}
+        value={`${String(stats.earned)} / ${String(stats.total)}`}
       />
 
       <ScrollRegion label="Achievement list">
@@ -57,18 +61,18 @@ export function AchievementsScreen({ onBack }: AchievementsScreenProps): JSX.Ele
                 return (
                   <GameCard
                     key={def.id}
-                    title={<span>{def.titleKey}{def.tier > 1 ? ` ★${def.tier}` : ''}</span>}
+                    title={<span>{def.titleKey}{def.tier > 1 ? ` ★${String(def.tier)}` : ''}</span>}
                     state={prog?.earned ? 'selected' : 'default'}
                   >
                     <p>{def.descriptionKey}</p>
                     <StatRow
                       label="Progress"
-                      value={`${prog?.current ?? 0} / ${def.target}`}
+                      value={`${String(prog?.current ?? 0)} / ${String(def.target)}`}
                       details={
                         <progress
                           value={pct}
                           max={100}
-                          aria-label={`${pct}%`}
+                          aria-label={`${String(pct)}%`}
                           style={{ width: '100%', marginTop: 4 }}
                         />
                       }

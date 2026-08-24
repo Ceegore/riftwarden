@@ -44,9 +44,9 @@ export function ArchiveHubScreen({ onNavigate, onBack }: ArchiveHubScreenProps):
       <h1 id="archive-title">Archive</h1>
 
       <StatRow label="Codex entries" value={String(codexDiscovered)} />
-      <StatRow label="Stories unlocked" value={`${storyUnlocked} / ${storyTotal}`} />
+      <StatRow label="Stories unlocked" value={`${String(storyUnlocked)} / ${String(storyTotal)}`} />
       <StatRow label="Expeditions recorded" value={String(records.totalExpeditions)} />
-      <StatRow label="Achievements earned" value={`${achStats.earned} / ${achStats.total}`} />
+      <StatRow label="Achievements earned" value={`${String(achStats.earned)} / ${String(achStats.total)}`} />
 
       <ScrollRegion label="Archive sections">
         {SECTIONS.map((section) => (
@@ -54,7 +54,7 @@ export function ArchiveHubScreen({ onNavigate, onBack }: ArchiveHubScreenProps):
             key={section.key}
             title={section.label}
             state="default"
-            onSelect={() => onNavigate(section.key)}
+            onSelect={() => { onNavigate(section.key); }}
           >
             <p>{section.hint}</p>
           </GameCard>

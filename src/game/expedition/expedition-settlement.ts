@@ -6,8 +6,8 @@
  * executes atomically through commitTransaction.
  *
  * Gold is credited to the profile wallet. Loot ids become owned items
- * (if not already owned). Relics and recruits are recorded as inventory
- * entries keyed by their content id. Duplicates are silently replayed.
+ * (if not already owned). Relics and recruits are run-temporary and are
+ * reported by settlement screens but are not persisted to the profile.
  */
 import type { NodeRunState } from './nodes/types.js';
 import type { Profile, TransactionRequest } from '../profile/types.js';
@@ -65,46 +65,8 @@ function settlementToRequests(
     seq++;
   }
 
-  // Relics: persisted as inventory entries.
-  for (const relicId of settlement.lostRelics) {
-    requests.push({
-      transactionId: `${baseTxId}-relic-${String(seq)}`,
-      kind: 'BUY_COPY',
-      costGold: 0,
-      mutate(profile: Profile): Profile {
-        return {
-          ...profile,
-          items: {
-            ...profile.items,
-            [relicId]: { id: relicId, owned: true, polished: false, isBanner: false },
-          },
-        };
-      },
-    });
-    seq++;
-  }
-
-  // Recruits: persisted as hero unlocks or inventory entries.
-  for (const recruitId of settlement.lostRecruits) {
-    requests.push({
-      transactionId: `${baseTxId}-recruit-${String(seq)}`,
-      kind: 'BUY_COPY',
-      costGold: 0,
-      mutate(profile: Profile): Profile {
-        const existing = profile.heroes[recruitId];
-        if (existing?.unlocked) return profile;
-        return {
-          ...profile,
-          heroes: {
-            ...profile.heroes,
-            [recruitId]: { id: recruitId, unlocked: true, level: 1 as const, fame: 0 },
-          },
-        };
-      },
-    });
-    seq++;
-  }
-
+  // Relics and recruits are temporary run content. They expire at settlement;
+  // only permanent loot and earned gold become profile transactions.
   return requests;
 }
 

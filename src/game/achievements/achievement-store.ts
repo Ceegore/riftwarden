@@ -30,7 +30,7 @@ export function loadAchievementState(): AchievementState {
     const achievements: Record<string, AchievementProgress> = {};
     for (const def of ACHIEVEMENTS) {
       const entry = parsed[def.id] as Record<string, unknown> | undefined;
-      const ea = typeof entry?.['earnedAt'] === 'number' ? entry['earnedAt'] as number : undefined;
+      const ea = typeof entry?.['earnedAt'] === 'number' ? entry['earnedAt'] : undefined;
       achievements[def.id] = makeProgress(
         def.id,
         entry?.['earned'] === true,
@@ -63,6 +63,7 @@ export function incrementAchievement(
   achievementId: string,
   amount: number,
 ): { state: AchievementState; newlyEarned: boolean } {
+  if (!Number.isSafeInteger(amount) || amount < 0) return { state, newlyEarned: false };
   const def = ACHIEVEMENTS.find((a) => a.id === achievementId);
   const prog = state.achievements[achievementId];
   if (!def || !prog || prog.earned) return { state, newlyEarned: false };
@@ -70,14 +71,14 @@ export function incrementAchievement(
   const newCurrent = Math.min(prog.current + amount, def.target);
   const earned = newCurrent >= def.target;
 
-  const newEarnedAt = earned && !prog.earned ? Date.now() : prog.earnedAt;
+  const newEarnedAt = earned ? Date.now() : prog.earnedAt;
   const updated = makeProgress(achievementId, earned, newCurrent, newEarnedAt);
 
   const newState: AchievementState = {
     achievements: { ...state.achievements, [achievementId]: updated },
   };
 
-  return { state: newState, newlyEarned: earned && !prog.earned };
+  return { state: newState, newlyEarned: earned };
 }
 
 export function clearAchievementState(): void {

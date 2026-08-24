@@ -2,7 +2,7 @@
  * Reward choice screen (S54): shows the reward options from a combat node
  * snapshot and lets the user pick one. Calls onDone when finished.
  */
-import { useCallback } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import type { JSX } from 'react';
 import { Button } from '../../ui/components/Button.js';
 import { ResourcePill } from '../../ui/components/ResourcePill.js';
@@ -11,6 +11,7 @@ import { ScreenFrame } from '../../ui/layout/ScreenFrame.js';
 import { BottomActionBar } from '../../ui/layout/BottomActionBar.js';
 import { useExpedition } from '../../features/expedition/useExpedition.js';
 import type { NodeActionRequest } from '../../game/expedition/nodes/types.js';
+import { actionTransactionId } from '../../features/expedition/transaction-ids.js';
 
 export interface RewardChoiceScreenProps {
   readonly onDone: () => void;
@@ -18,17 +19,36 @@ export interface RewardChoiceScreenProps {
 
 export function RewardChoiceScreen({ onDone }: RewardChoiceScreenProps): JSX.Element {
   const { snapshot, act, resolve } = useExpedition();
+  const [claimedId, setClaimedId] = useState<string | null>(null);
+  const [actionError, setActionError] = useState<string | null>(null);
+
+  const alreadyClaimed = useMemo(() => {
+    if (!snapshot) return false;
+    return Object.values(snapshot.state.ledger).some(
+      (entry) => entry.nodeId === snapshot.currentNodeId && entry.action === 'CLAIM_REWARD' && entry.status === 'COMMITTED',
+    );
+  }, [snapshot]);
 
   const handleClaim = useCallback((optionId: string) => {
     if (!snapshot) return;
-    const txId = `ui-claim-${String(Date.now())}`;
+    const txId = actionTransactionId(snapshot.state.runId, snapshot.currentNodeId, 'CLAIM_REWARD', optionId);
     const request: NodeActionRequest = {
       transactionId: txId,
       nodeId: snapshot.currentNodeId,
       action: 'CLAIM_REWARD',
       optionId,
     };
-    act(request);
+    try {
+      const outcome = act(request);
+      if (outcome?.status !== 'COMMITTED') {
+        setActionError(outcome?.reason ?? 'Reward unavailable');
+        return;
+      }
+      setClaimedId(optionId);
+      setActionError(null);
+    } catch {
+      setActionError('Reward unavailable');
+    }
   }, [snapshot, act]);
 
   const handleDone = useCallback(() => { resolve(); onDone(); }, [resolve, onDone]);
@@ -51,14 +71,15 @@ export function RewardChoiceScreen({ onDone }: RewardChoiceScreenProps): JSX.Ele
       <div className="rw-expedition-resources">
         <ResourcePill icon="◆" value={snapshot.gold} nameKey="ui.resource.gold" />
       </div>
+      {actionError && <p role="alert">{actionError}</p>}
       {rewardIds.map((id) => (
         <div key={id}>
-          <StatRow label={id} value="" />
-          <Button labelKey="ui.common.claim" variant="primary" onClick={() => handleClaim(id)} />
+          <StatRow label={id} value={claimedId === id ? 'Claimed' : ''} />
+          <Button labelKey={claimedId === id || alreadyClaimed ? 'ui.common.claimed' : 'ui.common.claim'} variant={claimedId === id || alreadyClaimed ? 'secondary' : 'primary'} onClick={() => { handleClaim(id); }} disabled={claimedId !== null || alreadyClaimed} />
         </div>
       ))}
       <BottomActionBar>
-        <Button labelKey="ui.common.continue" variant="primary" onClick={handleDone} />
+        <Button labelKey="ui.common.continue" variant="primary" onClick={handleDone} disabled={rewardIds.length > 0 && claimedId === null && !alreadyClaimed} />
       </BottomActionBar>
     </ScreenFrame>
   );

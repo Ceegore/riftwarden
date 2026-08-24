@@ -34,7 +34,7 @@ export function BarracksScreen({ onSelect, onBack }: BarracksScreenProps): JSX.E
               key={troop.typeId}
               title={troop.typeId}
               state="default"
-              onSelect={() => onSelect(troop.typeId)}
+              onSelect={() => { onSelect(troop.typeId); }}
             >
               <StatRow label="Contract level" value={String(troop.contractLevel)} />
               <StatRow label="Copies" value={String(troop.copies.length)} />

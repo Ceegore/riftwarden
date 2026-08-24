@@ -32,7 +32,7 @@ export function WorkshopScreen({ onSelect, onBack }: WorkshopScreenProps): JSX.E
       ) : (
         <ScrollRegion label="Owned items">
           {owned.map((item) => (
-            <GameCard key={item.id} title={item.id} state="default" onSelect={() => onSelect(item.id)}>
+            <GameCard key={item.id} title={item.id} state="default" onSelect={() => { onSelect(item.id); }}>
               <StatRow label="Kind" value={item.isBanner ? 'Banner' : item.ownerId !== undefined ? 'Equipped item' : 'Item / Relic'} />
               <StatRow label="Polish" value={item.polished ? 'Polished' : 'Base'} />
             </GameCard>

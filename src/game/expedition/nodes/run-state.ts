@@ -31,6 +31,8 @@ export function createNodeRunState(source: NodeRunStateSource): NodeRunState {
     gold: source.gold,
     instability: 0,
     goldEarned: 0,
+    killsEarned: 0,
+    masteryKillsApplied: 0,
     securedLoot: [],
     unsecuredLoot: [],
     relics: [],

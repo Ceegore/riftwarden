@@ -6,6 +6,7 @@
 export interface RunRecord {
   readonly missionId: string;
   readonly goldEarned: number;
+  readonly killsEarned: number;
   readonly result: 'victory' | 'defeat' | 'retreat';
   readonly nodesVisited: number;
   readonly timestamp: number;

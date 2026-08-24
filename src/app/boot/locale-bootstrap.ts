@@ -24,7 +24,7 @@ const noopAdapter: LocaleSwitchAdapter = {
     };
   },
   restoreFocusAndScroll() { /* no-op */ },
-  async persistLocale(_locale) { /* no-op */ },
+  persistLocale: () => Promise.resolve(),
 };
 
 function channelToBuildChannel(channel: string): BuildChannel {
@@ -37,14 +37,14 @@ function channelToBuildChannel(channel: string): BuildChannel {
 export function createBootstrapLocaleController(channel: string): LocaleController {
   const buildChannel = channelToBuildChannel(channel);
   const loaders: Partial<Record<LocaleId, () => Promise<CompiledBundle>>> = {
-    de: async (): Promise<CompiledBundle> => BOOTSTRAP_BUNDLES['de'],
-    en: async (): Promise<CompiledBundle> => BOOTSTRAP_BUNDLES['en'],
+    de: () => Promise.resolve(BOOTSTRAP_BUNDLES.de),
+    en: () => Promise.resolve(BOOTSTRAP_BUNDLES.en),
   };
   // Pseudo-locale must never be wired into a release registry (§release contract).
   if (buildChannel !== 'release') {
-    loaders['qps-ploc'] = async (): Promise<CompiledBundle> => BOOTSTRAP_BUNDLES['qps-ploc'];
+    loaders['qps-ploc'] = () => Promise.resolve(BOOTSTRAP_BUNDLES['qps-ploc']);
   }
   const registry = createLocaleRegistry(buildChannel, loaders);
   const initial: LocaleId = 'en';
-  return new LocaleController(registry, noopAdapter, initial, BOOTSTRAP_BUNDLES[initial] as CompiledBundle);
+  return new LocaleController(registry, noopAdapter, initial, BOOTSTRAP_BUNDLES[initial]);
 }

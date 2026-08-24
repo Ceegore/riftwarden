@@ -6,6 +6,7 @@ import { commitTransaction } from '../../src/game/profile/transaction-service.js
 import type { Profile } from '../../src/game/profile/types.js';
 import type { MapProfile, ExpeditionMap } from '../../src/game/expedition/types.js';
 import { settleVictory, settleDefeat } from '../../src/game/expedition/run-economy.js';
+import { createNodeRunState } from '../../src/game/expedition/nodes/run-state.js';
 
 const PROFILE: MapProfile = {
   id: 'settle.v1',
@@ -113,6 +114,30 @@ describe('phase32 settlement', () => {
       profile = result.profile;
       expect(result.result.status).toBe('COMMITTED');
     }
+  });
+
+  it('does not persist temporary relics or recruits at settlement', () => {
+    const state = createNodeRunState({
+      runId: 'settle-temporary-content',
+      modeId: 'settle.v1',
+      contentRevision: '32.0',
+      seed: 1,
+      mapHash: 'test',
+      gold: 100,
+    });
+    const withContent = {
+      ...state,
+      securedLoot: ['item_permanent'],
+      relics: ['relic_temporary'],
+      recruits: ['troop_temporary'],
+    };
+    const { requests } = buildSettlementRequests(withContent, 'victory');
+    let profile = emptyProfile();
+    for (const request of requests) profile = commitTransaction(profile, request).profile;
+    expect(profile.items['item_permanent']?.owned).toBe(true);
+    expect(profile.items['relic_temporary']).toBeUndefined();
+    expect(profile.heroes['troop_temporary']).toBeUndefined();
+    expect(profile.troops['troop_temporary']).toBeUndefined();
   });
 
   it('defeat settlement applies to profile without errors', () => {

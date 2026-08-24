@@ -18,34 +18,10 @@
  *   map (finish) → end (if boss) / defeat
  *   end / defeat → return → menu
  */
-import { useCallback, useEffect, useState, type JSX } from 'react';
-import { DungeonMapScreen } from './run/DungeonMapScreen.js';
-import { NodeScreen } from './run/NodeScreen.js';
-import { BattleResultScreen } from './run/BattleResultScreen.js';
-import { RewardChoiceScreen } from './run/RewardChoiceScreen.js';
-import { ExpeditionEndScreen } from './run/ExpeditionEndScreen.js';
-import { DefeatRecoveryScreen } from './run/DefeatRecoveryScreen.js';
-import { NewGameScreen } from './hq/NewGameScreen.js';
-import { GlobalHelpScreen } from './hq/GlobalHelpScreen.js';
-import { MissionBoardScreen } from './hq/MissionBoardScreen.js';
-import { MissionDetailsScreen } from './hq/MissionDetailsScreen.js';
-import { HqOverviewScreen, type HqSection } from './hq/HqOverviewScreen.js';
-import { HeroHallScreen } from './hq/HeroHallScreen.js';
-import { HeroDetailsScreen } from './hq/HeroDetailsScreen.js';
-import { BarracksScreen } from './hq/BarracksScreen.js';
-import { TroopDetailsScreen } from './hq/TroopDetailsScreen.js';
-import { WorkshopScreen } from './hq/WorkshopScreen.js';
-import { ItemDetailsScreen } from './hq/ItemDetailsScreen.js';
-import { ArchiveHubScreen, type ArchiveSection } from './hq/ArchiveHubScreen.js';
-import { CodexListScreen } from './hq/CodexListScreen.js';
-import { CodexDetailsScreen } from './hq/CodexDetailsScreen.js';
-import { MasteryScreen } from './hq/MasteryScreen.js';
-import { AchievementsScreen } from './hq/AchievementsScreen.js';
-import { RecordsStatisticsScreen } from './hq/RecordsStatisticsScreen.js';
-import { StoryArchiveScreen } from './hq/StoryArchiveScreen.js';
-import { AscensionRanksScreen } from './hq/AscensionRanksScreen.js';
-import { ConstellationScreen } from './hq/ConstellationScreen.js';
-import { RiftChamberScreen } from './hq/RiftChamberScreen.js';
+import { useCallback, useState, type JSX } from 'react';
+import type { HqSection } from './hq/HqOverviewScreen.js';
+import type { ArchiveSection } from './hq/ArchiveHubScreen.js';
+import { renderRegisteredScreen } from './screen-renderer.js';
 import { Button } from '../ui/components/Button.js';
 import { ScreenFrame } from '../ui/layout/ScreenFrame.js';
 import { useExpedition } from '../features/expedition/useExpedition.js';
@@ -82,29 +58,29 @@ type NavState =
   // Phase 36
   | 'ascension'
   | 'constellation'
-  | 'riftChamber';
+  | 'cyclePreparation'
+  | 'beyondSetup'
+  | 'endlessSetup'
+  | 'riftChamber'
+  // Phase 37
+  | 'equipment'
+  | 'kits'
+  | 'banners'
+  | 'formation';
 
 export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalStep, 'RECOVERY_REQUIRED'> }): JSX.Element {
   const { snapshot, map, hasSave, continueRun, loading } = useExpedition();
+  const [activeMissionId, setActiveMissionId] = useState('mission_tutorial');
   const [nav, setNav] = useState<NavState>(() => (snapshot && map ? 'map' : 'menu'));
 
-  // Sync nav when expedition state changes externally (abandon, restore).
-  useEffect(() => {
-    if (snapshot && map) {
-      if (nav === 'menu') setNav('map');
-    } else {
-      if (nav !== 'menu') setNav('menu');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [snapshot, map]);
+  const handleNewGame = useCallback(() => { setNav('newGame'); }, []);
+  const handleHelp = useCallback(() => { setNav('help'); }, []);
+  const handleMissions = useCallback(() => { setNav('missions'); }, []);
+  const handleContinue = useCallback(() => { continueRun(); setNav('map'); }, [continueRun]);
+  const handleMenu = useCallback(() => { setNav('menu'); }, []);
 
-  const handleNewGame = useCallback(() => setNav('newGame'), []);
-  const handleHelp = useCallback(() => setNav('help'), []);
-  const handleMissions = useCallback(() => setNav('missions'), []);
-  const handleContinue = useCallback(() => { continueRun(); }, [continueRun]);
-  const handleMenu = useCallback(() => setNav('menu'), []);
-
-  const handleLaunched = useCallback(() => {
+  const handleLaunched = useCallback((missionId: string) => {
+    setActiveMissionId(missionId);
     setNav('map');
   }, []);
 
@@ -137,14 +113,14 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
     }
   }, [snapshot]);
 
-  const handleRewardDone = useCallback(() => setNav('map'), []);
+  const handleRewardDone = useCallback(() => { setNav('map'); }, []);
 
   const handleFinish = useCallback((result: 'end' | 'defeat') => {
     setNav(result);
   }, []);
 
-  const handleReturnToMenu = useCallback(() => setNav('menu'), []);
-  const handleOpenHq = useCallback(() => setNav('hq'), []);
+  const handleReturnToMenu = useCallback(() => { setNav('menu'); }, []);
+  const handleOpenHq = useCallback(() => { setNav('hq'); }, []);
 
   const handleHqNavigate = useCallback((section: HqSection) => {
     switch (section) {
@@ -158,6 +134,13 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
       case 'riftChamber':  setNav('riftChamber'); break;
       case 'ascension':    setNav('ascension'); break;
       case 'constellation':setNav('constellation'); break;
+      case 'cyclePreparation': setNav('cyclePreparation'); break;
+      case 'beyondSetup': setNav('beyondSetup'); break;
+      case 'endlessSetup': setNav('endlessSetup'); break;
+      case 'equipment':   setNav('equipment'); break;
+      case 'kits':         setNav('kits'); break;
+      case 'banners':      setNav('banners'); break;
+      case 'formation':    setNav('formation'); break;
       case 'help':         setNav('help'); break;
     }
   }, []);
@@ -191,123 +174,150 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
   // -- Render based on nav state --
 
   if (nav === 'map') {
-    return <DungeonMapScreen onEnterNode={handleEnterNode} onFinish={handleFinish} onBack={handleMenu} />;
+    return renderRegisteredScreen('dungeonMap', { onEnterNode: handleEnterNode, onFinish: handleFinish, onBack: handleMenu });
   }
 
   if (typeof nav === 'object' && nav.kind === 'node') {
-    return <NodeScreen onResolved={handleNodeResolved} nextHint={nav.nextAfterResolve} />;
+    return renderRegisteredScreen('nodePreview', { onResolved: handleNodeResolved, nextHint: nav.nextAfterResolve });
   }
 
   if (nav === 'battleResult') {
-    return <BattleResultScreen onContinue={handleBattleResultContinue} />;
+    return renderRegisteredScreen('battleResult', { onContinue: handleBattleResultContinue });
   }
 
   if (nav === 'reward') {
-    return <RewardChoiceScreen onDone={handleRewardDone} />;
+    return renderRegisteredScreen('rewardChoice', { onDone: handleRewardDone });
   }
 
   if (nav === 'end') {
-    return <ExpeditionEndScreen onReturn={handleReturnToMenu} />;
+    return renderRegisteredScreen('expeditionEnd', { onReturn: handleReturnToMenu, missionId: activeMissionId });
   }
 
   if (nav === 'defeat') {
-    return <DefeatRecoveryScreen onReturn={handleReturnToMenu} />;
+    return renderRegisteredScreen('defeatRecovery', { onReturn: handleReturnToMenu, missionId: activeMissionId });
   }
 
   if (nav === 'newGame') {
-    return <NewGameScreen onLaunched={handleLaunched} onBack={handleMenu} />;
+    return renderRegisteredScreen('newGame', { onLaunched: handleLaunched, onBack: handleMenu });
   }
 
   if (nav === 'help') {
-    return <GlobalHelpScreen onBack={handleMenu} />;
+    return renderRegisteredScreen('globalHelp', { onBack: handleMenu });
   }
 
   if (nav === 'hq') {
-    return <HqOverviewScreen onNavigate={handleHqNavigate} onBack={handleMenu} />;
+    return renderRegisteredScreen('hqOverview', { onNavigate: handleHqNavigate, onBack: handleMenu });
   }
 
   if (nav === 'heroHall') {
-    return <HeroHallScreen onSelect={handleHeroSelect} onBack={() => setNav('hq')} />;
+    return renderRegisteredScreen('heroHall', { onSelect: handleHeroSelect, onBack: () => { setNav('hq'); } });
   }
 
   if (typeof nav === 'object' && nav.kind === 'heroDetail') {
-    return <HeroDetailsScreen heroId={nav.heroId} onBack={() => setNav('heroHall')} />;
+    return renderRegisteredScreen('heroDetails', { heroId: nav.heroId, onBack: () => { setNav('heroHall'); } });
   }
 
   if (nav === 'barracks') {
-    return <BarracksScreen onSelect={handleTroopSelect} onBack={() => setNav('hq')} />;
+    return renderRegisteredScreen('barracks', { onSelect: handleTroopSelect, onBack: () => { setNav('hq'); } });
   }
 
   if (typeof nav === 'object' && nav.kind === 'troopDetail') {
-    return <TroopDetailsScreen troopTypeId={nav.troopTypeId} onBack={() => setNav('barracks')} />;
+    return renderRegisteredScreen('troopDetails', { troopTypeId: nav.troopTypeId, onBack: () => { setNav('barracks'); } });
   }
 
   if (nav === 'workshop') {
-    return <WorkshopScreen onSelect={handleItemSelect} onBack={() => setNav('hq')} />;
+    return renderRegisteredScreen('workshop', { onSelect: handleItemSelect, onBack: () => { setNav('hq'); } });
   }
 
   if (typeof nav === 'object' && nav.kind === 'itemDetail') {
-    return <ItemDetailsScreen itemId={nav.itemId} onBack={() => setNav('workshop')} />;
+    return renderRegisteredScreen('itemDetails', { itemId: nav.itemId, onBack: () => { setNav('workshop'); } });
   }
 
   if (nav === 'missions') {
-    return <MissionBoardScreen onSelectMission={handleSelectMission} onBack={handleMenu} />;
+    return renderRegisteredScreen('missionBoard', { onSelectMission: handleSelectMission, onBack: handleMenu });
   }
 
   if (typeof nav === 'object' && nav.kind === 'missionDetail') {
-    return (
-      <MissionDetailsScreen
-        mission={nav.mission}
-        onLaunched={handleLaunched}
-        onBack={() => setNav('missions')}
-      />
-    );
+    return renderRegisteredScreen('missionDetails', {
+      mission: nav.mission,
+      onLaunched: handleLaunched,
+      onBack: () => { setNav('missions'); },
+    });
   }
 
   // Phase 35
   if (nav === 'archive') {
-    return <ArchiveHubScreen onNavigate={handleArchiveNavigate} onBack={() => setNav('hq')} />;
+    return renderRegisteredScreen('archiveHub', { onNavigate: handleArchiveNavigate, onBack: () => { setNav('hq'); } });
   }
 
   if (nav === 'codexList') {
-    return <CodexListScreen onSelectEntry={handleCodexEntrySelect} onBack={() => setNav('archive')} />;
+    return renderRegisteredScreen('codexList', { onSelectEntry: handleCodexEntrySelect, onBack: () => { setNav('archive'); } });
   }
 
-  if (typeof nav === 'object' && nav.kind === 'codexDetail') {
-    return <CodexDetailsScreen entryId={nav.entryId} onBack={() => setNav('codexList')} />;
+  if (typeof nav === 'object') {
+    return renderRegisteredScreen('codexDetails', { entryId: nav.entryId, onBack: () => { setNav('codexList'); } });
   }
 
   if (nav === 'mastery') {
-    return <MasteryScreen onBack={() => setNav('hq')} />;
+    return renderRegisteredScreen('mastery', { onBack: () => { setNav('hq'); } });
   }
 
   if (nav === 'achievements') {
-    return <AchievementsScreen onBack={() => setNav('hq')} />;
+    return renderRegisteredScreen('achievements', { onBack: () => { setNav('hq'); } });
   }
 
   if (nav === 'records') {
-    return <RecordsStatisticsScreen onBack={() => setNav('archive')} />;
+    return renderRegisteredScreen('recordsStatistics', { onBack: () => { setNav('archive'); } });
   }
 
   if (nav === 'storyArchive') {
-    return <StoryArchiveScreen onBack={() => setNav('archive')} />;
+    return renderRegisteredScreen('storyArchive', { onBack: () => { setNav('archive'); } });
   }
 
   // Phase 36
   if (nav === 'ascension') {
-    return <AscensionRanksScreen onBack={() => setNav('hq')} />;
+    return renderRegisteredScreen('ascensionRanks', { onBack: () => { setNav('hq'); } });
   }
 
   if (nav === 'constellation') {
-    return <ConstellationScreen onBack={() => setNav('hq')} />;
+    return renderRegisteredScreen('constellation', { onBack: () => { setNav('hq'); } });
   }
 
   if (nav === 'riftChamber') {
-    return <RiftChamberScreen onBack={() => setNav('hq')} />;
+    return renderRegisteredScreen('riftChamber', { onBack: () => { setNav('hq'); } });
+  }
+
+  if (nav === 'cyclePreparation') {
+    return renderRegisteredScreen('cyclePreparation', { onBack: () => { setNav('hq'); } });
+  }
+
+  if (nav === 'beyondSetup') {
+    return renderRegisteredScreen('beyondSetup', { onBack: () => { setNav('hq'); } });
+  }
+
+  if (nav === 'endlessSetup') {
+    return renderRegisteredScreen('endlessSetup', { onBack: () => { setNav('hq'); } });
+  }
+
+  // Phase 37
+  if (nav === 'equipment') {
+    return renderRegisteredScreen('equipmentPicker', { onBack: () => { setNav('hq'); } });
+  }
+
+  if (nav === 'kits') {
+    return renderRegisteredScreen('kitPicker', { onBack: () => { setNav('hq'); } });
+  }
+
+  if (nav === 'banners') {
+    return renderRegisteredScreen('bannerPicker', { onBack: () => { setNav('hq'); } });
+  }
+
+  if (nav === 'formation') {
+    return renderRegisteredScreen('formationPreview', { onBack: () => { setNav('hq'); } });
   }
 
   // 'menu' state.
-  if (step === 'FIRST_RUN') {
+  if (step === 'FIRST_RUN' && !hasSave) {
     return (
       <ScreenFrame labelledBy="first-run-title">
         <h1 id="first-run-title">Welcome</h1>

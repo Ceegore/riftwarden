@@ -13,6 +13,7 @@ import { StatRow } from '../../ui/components/StatRow.js';
 import { ScreenFrame } from '../../ui/layout/ScreenFrame.js';
 import { ScrollRegion } from '../../ui/layout/ScrollRegion.js';
 import { loadOrCreateProfile } from '../../game/profile/profile-store.js';
+import { loadBannerState } from '../../game/banners/banner-store.js';
 
 export type HqSection =
   | 'missions'
@@ -25,7 +26,14 @@ export type HqSection =
   | 'help'
   | 'riftChamber'
   | 'ascension'
-  | 'constellation';
+  | 'constellation'
+  | 'cyclePreparation'
+  | 'beyondSetup'
+  | 'endlessSetup'
+  | 'equipment'
+  | 'kits'
+  | 'banners'
+  | 'formation';
 
 export interface HqOverviewScreenProps {
   readonly onNavigate: (section: HqSection) => void;
@@ -42,17 +50,24 @@ const SECTIONS: readonly { readonly key: HqSection; readonly label: string; read
   { key: 'mastery',      label: 'Mastery',          hint: 'Hero mastery progress and milestones' },
   { key: 'ascension',    label: 'Ascension Ranks',  hint: 'Prestige system and permanent bonuses' },
   { key: 'constellation',label: 'Constellation',    hint: 'Meta-progression skill tree' },
+  { key: 'cyclePreparation', label: 'Cycle Preparation', hint: 'Configure endless cycle modifiers' },
+  { key: 'beyondSetup', label: 'Beyond Setup', hint: 'Choose post-ascension mutators' },
+  { key: 'endlessSetup', label: 'Endless Setup', hint: 'Configure an endless expedition' },
   { key: 'achievements', label: 'Achievements',     hint: 'Tracked goals and milestones' },
+  { key: 'equipment',    label: 'Equipment',        hint: 'Manage hero gear and item slots' },
+  { key: 'kits',         label: 'Kit Assembly',     hint: 'Apply pre-built equipment kits to heroes' },
+  { key: 'banners',      label: 'Banner Setup',     hint: 'Select an active banner for expedition bonuses' },
+  { key: 'formation',    label: 'Formation',        hint: 'Choose a party formation for combat' },
   { key: 'help',         label: 'Help',             hint: 'How to play reference' },
 ];
 
 export function HqOverviewScreen({ onNavigate, onBack }: HqOverviewScreenProps): JSX.Element {
   const profile = useMemo(() => loadOrCreateProfile(), []);
 
-  const heroCount = Object.keys(profile.heroes).length;
+  const heroCount = Object.values(profile.heroes).filter((hero) => hero.unlocked).length;
   const troopCount = Object.values(profile.troops).reduce((sum, t) => sum + t.copies.length, 0);
   const itemCount = Object.values(profile.items).filter((item) => item.owned).length;
-  const bannerCount = Object.values(profile.items).filter((item) => item.owned && item.isBanner).length;
+  const bannerCount = loadBannerState().activeBanner === null ? 0 : 1;
 
   return (
     <ScreenFrame labelledBy="hq-title">
@@ -77,7 +92,7 @@ export function HqOverviewScreen({ onNavigate, onBack }: HqOverviewScreenProps):
             key={section.key}
             title={section.label}
             state="default"
-            onSelect={() => onNavigate(section.key)}
+            onSelect={() => { onNavigate(section.key); }}
           >
             <p>{section.hint}</p>
           </GameCard>

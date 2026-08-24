@@ -81,8 +81,9 @@ function makeCombatHandler(
     },
     validate(definition, request, state) {
       assertVisitOpen(state, definition.nodeId);
-      if (hasCommittedAction(state, definition.nodeId, ['DECLINE', 'CLAIM_REWARD'])) return 'ACTION_LIMIT';
-      if (request.action === 'ENTER' || request.action === 'ENGAGE' || request.action === 'DECLINE') {
+      if (hasCommittedAction(state, definition.nodeId, ['DECLINE'])) return 'ACTION_LIMIT';
+      if (request.action === 'ENGAGE') {
+        if (hasCommittedAction(state, definition.nodeId, ['ENGAGE', 'CLAIM_REWARD'])) return 'ACTION_LIMIT';
         return null;
       }
       if (request.action === 'CLAIM_REWARD') {
@@ -93,6 +94,12 @@ function makeCombatHandler(
         if (!snapshot.rewardIds.includes(request.optionId)) {
           throw new ExpeditionError('UNKNOWN_OFFER', { nodeId: definition.nodeId, offerId: request.optionId });
         }
+        if (hasCommittedAction(state, definition.nodeId, ['CLAIM_REWARD'])) return 'ACTION_LIMIT';
+        if (!hasCommittedAction(state, definition.nodeId, ['ENGAGE'])) return 'PREREQUISITE_MISSING';
+        return null;
+      }
+      if (request.action === 'DECLINE' && hasCommittedAction(state, definition.nodeId, ['ENGAGE', 'CLAIM_REWARD'])) return 'ACTION_LIMIT';
+      if (request.action === 'ENTER' || request.action === 'DECLINE') {
         return null;
       }
       throw new ExpeditionError('UNKNOWN_ACTION', { nodeId: definition.nodeId, action: request.action });
@@ -112,6 +119,10 @@ function makeCombatHandler(
         if (hasLootChance && (snapshot.rollSlots['loot'] ?? 0) < LOOT_CHANCE_PERMILLE) {
           commands.push({ kind: 'GRANT_UNSECURED_LOOT', rewardId: `reward:${definition.nodeId}:loot` });
         }
+        // Kills awarded: deterministic from roll slots
+        const killsBase = rewardCount === 2 ? 3 : 5;
+        const killsExtra = (snapshot.rollSlots['gold'] ?? 0) % (rewardCount === 2 ? 4 : 8);
+        commands.push({ kind: 'KILLS_EARNED', amount: killsBase + killsExtra });
         return applyOutcomeCommands(state, commands);
       }
       if (request.action === 'CLAIM_REWARD') {

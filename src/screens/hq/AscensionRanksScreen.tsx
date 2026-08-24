@@ -44,7 +44,7 @@ export function AscensionRanksScreen({ onBack }: AscensionRanksScreenProps): JSX
         {ranks.map((rank) => (
           <GameCard
             key={rank.level}
-            title={`Rank ${rank.level}: ${rank.titleKey}`}
+            title={`Rank ${String(rank.level)}: ${rank.titleKey}`}
             state={rank.unlocked ? 'selected' : 'locked'}
           >
             <StatRow label="Requirement" value={rank.requirement} />

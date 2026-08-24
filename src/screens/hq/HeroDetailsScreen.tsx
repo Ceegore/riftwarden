@@ -20,7 +20,7 @@ export function HeroDetailsScreen({ heroId, onBack }: HeroDetailsScreenProps): J
   const profile = useMemo(() => loadOrCreateProfile(), []);
   const hero = profile.heroes[heroId];
 
-  if (!hero || !hero.unlocked) {
+  if (!hero?.unlocked) {
     return (
       <ScreenFrame labelledBy="hero-detail-title">
         <h1 id="hero-detail-title">{heroId}</h1>
@@ -41,7 +41,7 @@ export function HeroDetailsScreen({ heroId, onBack }: HeroDetailsScreenProps): J
         <ResourcePill icon="★" value={hero.level} nameKey="ui.hero.level" />
         <ResourcePill icon="✧" value={hero.fame} nameKey="ui.hero.fame" />
       </div>
-      <StatRow label="Status" value={hero.unlocked ? 'Unlocked' : 'Locked'} />
+      <StatRow label="Status" value="Unlocked" />
       <StatRow label="Equipment" value={hero.equipmentId ?? 'None'} />
       {equippedItem !== undefined && (
         <StatRow label="Equipment polished" value={equippedItem.polished ? 'Yes' : 'No'} />

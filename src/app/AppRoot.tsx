@@ -86,7 +86,12 @@ export function AppRoot({
         case 'safe_restart':
           dispatch({ type: 'RESET_REQUESTED', monotonicMs: now });
           break;
-        default:
+        case 'continue':
+        case 'open_diagnostics_summary':
+        case 'export_diagnostics':
+        case 'load_backup':
+        case 'repair_save':
+        case 'resume_battle':
           break;
       }
     };

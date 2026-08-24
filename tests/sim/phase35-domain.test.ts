@@ -68,7 +68,7 @@ describe('Phase 35 — achievements', () => {
   });
 
   it('does not re-earn already earned achievements', () => {
-    let state = loadAchievementState();
+    const state = loadAchievementState();
     const r1 = incrementAchievement(state, 'kill_10', 10);
     expect(r1.newlyEarned).toBe(true);
     const r2 = incrementAchievement(r1.state, 'kill_10', 5);
@@ -142,6 +142,7 @@ describe('Phase 35 — records', () => {
     const run: RunRecord = {
       missionId: 'mission_tutorial',
       goldEarned: 500,
+      killsEarned: 3,
       result: 'victory',
       nodesVisited: 6,
       timestamp: Date.now(),
@@ -159,8 +160,8 @@ describe('Phase 35 — records', () => {
 
   it('tracks per-mission best gold', () => {
     let state = loadRecordsState();
-    state = recordRun(state, { missionId: 'mission_tutorial', goldEarned: 300, result: 'victory', nodesVisited: 6, timestamp: 1 });
-    state = recordRun(state, { missionId: 'mission_tutorial', goldEarned: 700, result: 'victory', nodesVisited: 6, timestamp: 2 });
+    state = recordRun(state, { missionId: 'mission_tutorial', goldEarned: 300, killsEarned: 0, result: 'victory', nodesVisited: 6, timestamp: 1 });
+    state = recordRun(state, { missionId: 'mission_tutorial', goldEarned: 700, killsEarned: 0, result: 'victory', nodesVisited: 6, timestamp: 2 });
     expect(state.recordsPerMission['mission_tutorial']?.bestGold).toBe(700);
     expect(state.recordsPerMission['mission_tutorial']?.completions).toBe(2);
   });
@@ -168,14 +169,14 @@ describe('Phase 35 — records', () => {
   it('caps recent runs at 20', () => {
     let state = loadRecordsState();
     for (let i = 0; i < 25; i++) {
-      state = recordRun(state, { missionId: 'mission_tutorial', goldEarned: 100, result: 'victory', nodesVisited: 6, timestamp: i });
+      state = recordRun(state, { missionId: 'mission_tutorial', goldEarned: 100, killsEarned: 0, result: 'victory', nodesVisited: 6, timestamp: i });
     }
     expect(state.recentRuns.length).toBeLessThanOrEqual(20);
   });
 
   it('round-trips through localStorage', () => {
     let state = loadRecordsState();
-    state = recordRun(state, { missionId: 'mission_tutorial', goldEarned: 500, result: 'victory', nodesVisited: 6, timestamp: 1 });
+    state = recordRun(state, { missionId: 'mission_tutorial', goldEarned: 500, killsEarned: 3, result: 'victory', nodesVisited: 6, timestamp: 1 });
     saveRecordsState(state);
     const reloaded = loadRecordsState();
     expect(reloaded.totalExpeditions).toBe(1);

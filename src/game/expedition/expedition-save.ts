@@ -31,9 +31,11 @@ const STATE_KEYS = [
   'gold',
   'goldEarned',
   'instability',
+  'killsEarned',
   'knowledge',
   'ledger',
   'mapHash',
+  'masteryKillsApplied',
   'modeId',
   'recruits',
   'relics',
@@ -202,7 +204,7 @@ function decodeEventOption(value: unknown, field: string): EventOptionState {
 
 function decodeState(value: unknown): NodeRunState {
   const entry = record(value, 'state');
-  requiredKeys(entry, STATE_KEYS, 'state');
+  closedKeys(entry, STATE_KEYS.filter((key) => key !== 'killsEarned' && key !== 'masteryKillsApplied'), ['killsEarned', 'masteryKillsApplied'], 'state');
   const visitsRecord = record(entry['visits'], 'state.visits');
   const snapshotsRecord = record(entry['snapshots'], 'state.snapshots');
   const ledgerRecord = record(entry['ledger'], 'state.ledger');
@@ -224,6 +226,8 @@ function decodeState(value: unknown): NodeRunState {
     gold: integerValue(entry['gold'], 'state.gold'),
     instability: integerValue(entry['instability'], 'state.instability'),
     goldEarned: integerValue(entry['goldEarned'], 'state.goldEarned'),
+    killsEarned: entry['killsEarned'] === undefined ? 0 : integerValue(entry['killsEarned'], 'state.killsEarned'),
+    masteryKillsApplied: entry['masteryKillsApplied'] === undefined ? 0 : integerValue(entry['masteryKillsApplied'], 'state.masteryKillsApplied'),
     securedLoot: stringList(entry['securedLoot'], 'state.securedLoot'),
     unsecuredLoot: stringList(entry['unsecuredLoot'], 'state.unsecuredLoot'),
     relics: stringList(entry['relics'], 'state.relics'),

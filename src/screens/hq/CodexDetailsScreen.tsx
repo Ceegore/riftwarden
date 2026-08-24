@@ -27,7 +27,7 @@ export function CodexDetailsScreen({ entryId, onBack }: CodexDetailsScreenProps)
   const state = useMemo(() => loadCodexState(), []);
   const entry = state.entries[entryId];
 
-  if (!entry || !entry.discovered) {
+  if (!entry?.discovered) {
     return (
       <ScreenFrame labelledBy="codex-detail-title">
         <h1 id="codex-detail-title">Not Found</h1>

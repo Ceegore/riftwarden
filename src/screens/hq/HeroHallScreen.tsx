@@ -31,7 +31,7 @@ export function HeroHallScreen({ onSelect, onBack }: HeroHallScreenProps): JSX.E
       ) : (
         <ScrollRegion label="Heroes">
           {sorted.map((hero) => (
-            <GameCard key={hero.id} title={hero.id} state="default" onSelect={() => onSelect(hero.id)}>
+            <GameCard key={hero.id} title={hero.id} state="default" onSelect={() => { onSelect(hero.id); }}>
               <StatRow label="Level" value={String(hero.level)} />
               <StatRow label="Fame" value={String(hero.fame)} />
             </GameCard>

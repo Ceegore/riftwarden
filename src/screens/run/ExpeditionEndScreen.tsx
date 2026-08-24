@@ -16,9 +16,12 @@ import {
   loadAllPersistentState,
   applyExpeditionTracking,
   saveAllPersistentStateExport,
+  trackingHeroIds,
 } from '../../game/expedition/settlement-bridge.js';
 import { commitTransaction } from '../../game/profile/transaction-service.js';
 import { loadOrCreateProfile, saveProfile } from '../../game/profile/profile-store.js';
+import { loadMissionState, recordMissionCompletion, saveMissionState } from '../../game/mission/mission-store.js';
+import { missionByMapProfileId } from '../../game/mission/mission-definitions.js';
 
 export interface ExpeditionEndScreenProps {
   readonly onReturn: () => void;
@@ -28,7 +31,7 @@ export interface ExpeditionEndScreenProps {
 export function ExpeditionEndScreen({ onReturn, missionId = 'mission_tutorial' }: ExpeditionEndScreenProps): JSX.Element {
   const { snapshot, finish, abandon } = useExpedition();
 
-  const handleFinish = useCallback(() => finish(), [finish]);
+  const handleFinish = useCallback(() => { finish(); }, [finish]);
 
   const handleCommitAndReturn = useCallback(() => {
     if (!snapshot) return;
@@ -44,8 +47,13 @@ export function ExpeditionEndScreen({ onReturn, missionId = 'mission_tutorial' }
     const allState = loadAllPersistentState();
     const nodesVisited = Object.keys(snapshot.state.visits).length;
     const goldEarned = snapshot.state.goldEarned;
+    const effectiveMissionId = missionId === 'mission_tutorial'
+      ? missionByMapProfileId(snapshot.state.modeId)?.id ?? missionId
+      : missionId;
+    const missionState = recordMissionCompletion(loadMissionState(), effectiveMissionId, goldEarned);
+    saveMissionState(missionState);
     const updated = applyExpeditionTracking(
-      snapshot.state, 'victory', missionId, goldEarned, nodesVisited, allState,
+      snapshot.state, 'victory', effectiveMissionId, goldEarned, nodesVisited, allState, trackingHeroIds(),
     );
     saveAllPersistentStateExport(updated);
 
@@ -53,7 +61,12 @@ export function ExpeditionEndScreen({ onReturn, missionId = 'mission_tutorial' }
     onReturn();
   }, [snapshot, abandon, onReturn, missionId]);
 
-  if (!snapshot) {
+  const settlementData = useMemo(
+    () => snapshot ? buildSettlementRequests(snapshot.state, 'victory') : null,
+    [snapshot],
+  );
+
+  if (!snapshot || settlementData === null) {
     return (
       <ScreenFrame labelledBy="end-title">
         <h1 id="end-title">Expedition Complete</h1>
@@ -62,11 +75,7 @@ export function ExpeditionEndScreen({ onReturn, missionId = 'mission_tutorial' }
     );
   }
 
-  const { settlement, requests } = useMemo(
-    () => buildSettlementRequests(snapshot.state, 'victory'),
-    [snapshot.state],
-  );
-
+  const { settlement, requests } = settlementData;
   const isFinished = snapshot.runStatus === 'finished';
   const lootCount = settlement.keptLoot.length;
   const relicCount = settlement.lostRelics.length;
@@ -91,18 +100,18 @@ export function ExpeditionEndScreen({ onReturn, missionId = 'mission_tutorial' }
 
       {relicCount > 0 && (
         <section>
-          <h3>Relics kept ({relicCount})</h3>
+          <h3>Temporary relics expired ({relicCount})</h3>
           {settlement.lostRelics.map((id) => (
-            <StatRow key={id} label={id} value="Acquired" />
+            <StatRow key={id} label={id} value="Expired" />
           ))}
         </section>
       )}
 
       {recruitCount > 0 && (
         <section>
-          <h3>Recruits joined ({recruitCount})</h3>
+          <h3>Temporary recruits expired ({recruitCount})</h3>
           {settlement.lostRecruits.map((id) => (
-            <StatRow key={id} label={id} value="Recruited" />
+            <StatRow key={id} label={id} value="Expired" />
           ))}
         </section>
       )}

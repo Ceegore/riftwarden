@@ -19,7 +19,7 @@ export function ItemDetailsScreen({ itemId, onBack }: ItemDetailsScreenProps): J
   const profile = useMemo(() => loadOrCreateProfile(), []);
   const item = profile.items[itemId];
 
-  if (!item || !item.owned) {
+  if (!item?.owned) {
     return (
       <ScreenFrame labelledBy="item-detail-title">
         <h1 id="item-detail-title">{itemId}</h1>

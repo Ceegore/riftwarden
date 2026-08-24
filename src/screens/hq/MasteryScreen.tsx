@@ -44,14 +44,14 @@ export function MasteryScreen({ onBack }: MasteryScreenProps): JSX.Element {
             return (
               <GameCard
                 key={hero.id}
-                title={<span>{hero.id}{tier > 0 ? ` ★${tier}` : ''}</span>}
+                title={<span>{hero.id}{tier > 0 ? ` ★${String(tier)}` : ''}</span>}
                 state="default"
               >
                 <StatRow label="Kills" value={String(m.kills)} />
                 <StatRow label="Expeditions" value={String(m.expeditions)} />
-                <StatRow label="Mastery Tier" value={`Tier ${tier}`} />
+                <StatRow label="Mastery Tier" value={`Tier ${String(tier)}`} />
                 {nextMilestone !== undefined ? (
-                  <StatRow label="Next milestone" value={`${m.kills} / ${nextMilestone} kills`} />
+                  <StatRow label="Next milestone" value={`${String(m.kills)} / ${String(nextMilestone)} kills`} />
                 ) : (
                   <StatRow label="Next milestone" value="Max tier reached" />
                 )}

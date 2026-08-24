@@ -14,6 +14,7 @@ const META_KEY = 'rw.expedition.meta.v1';
 
 export interface StoreMeta {
   readonly runId: string;
+  readonly profileId?: string;
   readonly mapSeed: number;
   readonly mapHash: string;
   readonly updatedAt: string;
@@ -23,6 +24,7 @@ export function saveExpedition(runner: ExpeditionRunner): StoreMeta {
   const serialized = encodeExpeditionSave(runner);
   const meta: StoreMeta = {
     runId: runner.state.runId,
+    profileId: runner.state.modeId,
     mapSeed: runner.state.seed,
     mapHash: runner.state.mapHash,
     updatedAt: new Date().toISOString(),
@@ -40,6 +42,7 @@ export function readMeta(): StoreMeta | null {
     const entry = JSON.parse(raw) as Record<string, unknown>;
     if (
       typeof entry['runId'] === 'string' &&
+      (entry['profileId'] === undefined || typeof entry['profileId'] === 'string') &&
       typeof entry['mapSeed'] === 'number' &&
       typeof entry['mapHash'] === 'string' &&
       typeof entry['updatedAt'] === 'string'
@@ -68,11 +71,8 @@ export function restoreStoredExpedition(map: ExpeditionMap): ExpeditionRunner | 
   const serialized = localStorage.getItem(STORE_KEY);
   if (!serialized) return null;
   try {
-    return restoreExpedition(
-      decodeExpeditionSave(JSON.parse(serialized)).state,
-      map,
-      decodeExpeditionSave(JSON.parse(serialized)).currentNodeId,
-    );
+    const decoded = decodeExpeditionSave(JSON.parse(serialized));
+    return restoreExpedition(decoded.state, map, decoded.currentNodeId);
   } catch {
     return null;
   }

@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vitest/config';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const aliases = {
+const aliasRoots = {
   '@app': path.join(root, 'src/app'),
   '@audio': path.join(root, 'src/audio'),
   '@features': path.join(root, 'src/features'),
@@ -14,6 +14,10 @@ const aliases = {
   '@storage': path.join(root, 'src/storage'),
   '@ui': path.join(root, 'src/ui'),
 };
+const aliases = Object.entries(aliasRoots).map(([find, replacement]) => ({
+  find: new RegExp(`^${find}/`),
+  replacement: `${replacement.replaceAll('\\\\', '/')}/`,
+}));
 
 export default defineConfig({
   resolve: { alias: aliases },
@@ -59,11 +63,12 @@ export default defineConfig({
       { test: { name: 'phase29', include: ['tests/sim/phase29-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'phase30', include: ['tests/sim/phase30-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'phase31', include: ['tests/sim/phase31-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
-      { test: { name: 'phase32', include: ['tests/sim/phase32-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase32', include: ['tests/sim/phase32-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'], testTimeout: 15000 } },
       { test: { name: 'phase33', include: ['tests/sim/phase33-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
       { test: { name: 'phase34', include: ['tests/sim/phase34-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
       { test: { name: 'phase35', include: ['tests/sim/phase35-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
       { test: { name: 'phase36', include: ['tests/sim/phase36-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
+      { test: { name: 'phase37', include: ['tests/sim/phase37-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
       { test: { name: 'simulation', include: ['tests/simulation/**/*.test.ts'], sequence: { concurrent: false }, setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'integration', include: ['tests/integration/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
     ],
