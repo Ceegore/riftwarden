@@ -32,6 +32,11 @@ import { EquipmentScreen } from './EquipmentScreen.js';
 import { KitAssemblyScreen } from './KitAssemblyScreen.js';
 import { BannerSetupScreen } from './BannerSetupScreen.js';
 import { FormationScreen } from './FormationScreen.js';
+// Phase 39-41: Settings screens
+import { AudioSettingsScreen } from './AudioSettingsScreen.js';
+import { AccessibilitySettingsScreen } from './AccessibilitySettingsScreen.js';
+import { ControlsSettingsScreen } from './ControlsSettingsScreen.js';
+import { GraphicsSettingsScreen } from './GraphicsSettingsScreen.js';
 
 export const hqScreenModules: Readonly<Record<string, ScreenModule>> = {
   'screen.newGame': { default: NewGameScreen },
@@ -65,4 +70,9 @@ export const hqScreenModules: Readonly<Record<string, ScreenModule>> = {
   'screen.kitPicker': { default: KitAssemblyScreen },
   'screen.bannerPicker': { default: BannerSetupScreen },
   'screen.formationPreview': { default: FormationScreen },
+  // Phase 39-41: Settings
+  'screen.accessibilitySettings': { default: AccessibilitySettingsScreen },
+  'screen.audioSettings': { default: AudioSettingsScreen },
+  'screen.controlsSettings': { default: ControlsSettingsScreen },
+  'screen.graphicsSettings': { default: GraphicsSettingsScreen },
 };

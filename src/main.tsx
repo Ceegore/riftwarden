@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { App } from './app/App';
 import { createBootstrapLocaleController } from './app/boot/locale-bootstrap';
 import { LocaleProvider } from './locales/locale-context';
+import { A11yShell } from './ui/a11y/A11yShell.js';
 import './styles/index.css';
 
 const rootElement = document.getElementById('root');
@@ -17,8 +18,10 @@ const localeController = createBootstrapLocaleController('dev');
 
 createRoot(rootElement).render(
   <StrictMode>
-    <LocaleProvider controller={localeController}>
-      <App />
-    </LocaleProvider>
+    <A11yShell>
+      <LocaleProvider controller={localeController}>
+        <App />
+      </LocaleProvider>
+    </A11yShell>
   </StrictMode>,
 );

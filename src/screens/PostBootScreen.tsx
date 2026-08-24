@@ -19,6 +19,7 @@
  *   end / defeat → return → menu
  */
 import { useCallback, useState, type JSX } from 'react';
+import { BottomActionBar } from '../ui/layout/BottomActionBar.js';
 import type { HqSection } from './hq/HqOverviewScreen.js';
 import type { ArchiveSection } from './hq/ArchiveHubScreen.js';
 import { renderRegisteredScreen } from './screen-renderer.js';
@@ -66,7 +67,13 @@ type NavState =
   | 'equipment'
   | 'kits'
   | 'banners'
-  | 'formation';
+  | 'formation'
+  // Phase 39-41: Settings
+  | 'settings'
+  | 'audioSettings'
+  | 'accessibilitySettings'
+  | 'controlsSettings'
+  | 'graphicsSettings';
 
 export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalStep, 'RECOVERY_REQUIRED'> }): JSX.Element {
   const { snapshot, map, hasSave, continueRun, loading } = useExpedition();
@@ -121,6 +128,7 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
 
   const handleReturnToMenu = useCallback(() => { setNav('menu'); }, []);
   const handleOpenHq = useCallback(() => { setNav('hq'); }, []);
+  const handleSettings = useCallback(() => { setNav('settings'); }, []);
 
   const handleHqNavigate = useCallback((section: HqSection) => {
     switch (section) {
@@ -316,6 +324,38 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
     return renderRegisteredScreen('formationPreview', { onBack: () => { setNav('hq'); } });
   }
 
+  // Phase 39-41: Settings screens
+  if (nav === 'settings') {
+    return (
+      <ScreenFrame labelledBy="settings-title">
+        <h1 id="settings-title">Settings</h1>
+        <Button label="Audio" variant="secondary" onClick={() => { setNav('audioSettings'); }} />
+        <Button label="Accessibility" variant="secondary" onClick={() => { setNav('accessibilitySettings'); }} />
+        <Button label="Controls" variant="secondary" onClick={() => { setNav('controlsSettings'); }} />
+        <Button label="Graphics" variant="secondary" onClick={() => { setNav('graphicsSettings'); }} />
+        <BottomActionBar>
+          <Button labelKey="ui.common.back" variant="secondary" onClick={handleMenu} />
+        </BottomActionBar>
+      </ScreenFrame>
+    );
+  }
+
+  if (nav === 'audioSettings') {
+    return renderRegisteredScreen('audioSettings', { onBack: () => { setNav('settings'); } });
+  }
+
+  if (nav === 'accessibilitySettings') {
+    return renderRegisteredScreen('accessibilitySettings', { onBack: () => { setNav('settings'); } });
+  }
+
+  if (nav === 'controlsSettings') {
+    return renderRegisteredScreen('controlsSettings', { onBack: () => { setNav('settings'); } });
+  }
+
+  if (nav === 'graphicsSettings') {
+    return renderRegisteredScreen('graphicsSettings', { onBack: () => { setNav('settings'); } });
+  }
+
   // 'menu' state.
   if (step === 'FIRST_RUN' && !hasSave) {
     return (
@@ -324,6 +364,7 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
         <p>Start your first expedition.</p>
         <Button labelKey="ui.common.start" variant="primary" onClick={handleNewGame} disabled={loading} />
         <Button labelKey="ui.common.help" variant="secondary" onClick={handleHelp} />
+        <Button label="Settings" variant="secondary" onClick={handleSettings} />
       </ScreenFrame>
     );
   }
@@ -338,6 +379,7 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
         <Button labelKey="ui.common.missions" variant="secondary" onClick={handleMissions} />
         <Button labelKey="ui.common.hq" variant="secondary" onClick={handleOpenHq} />
         <Button labelKey="ui.common.help" variant="secondary" onClick={handleHelp} />
+        <Button label="Settings" variant="secondary" onClick={handleSettings} />
       </ScreenFrame>
     );
   }

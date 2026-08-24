@@ -7,7 +7,9 @@
  * and cue ID. Audio never holds gameplay authority.
  */
 
-import { BUS_DEFAULTS, BUS_LABELS, type AudioBus } from './audio-manifest-types.js';
+import { BUS_DEFAULTS, BUS_LABELS } from './audio-manifest-types.js';
+import type { AudioBus } from './audio-manifest-types.js';
+export type { AudioBus } from './audio-manifest-types.js';
 
 export type PolyphonyProfile = 'high' | 'medium' | 'low';
 
@@ -17,17 +19,37 @@ export const POLYPHONY_LIMITS: Readonly<Record<PolyphonyProfile, number>> = Obje
   low: 10,
 });
 
+export interface BusVolume {
+  readonly master: number;
+  readonly music: number;
+  readonly sfx: number;
+  readonly voice: number;
+  readonly ui: number;
+  readonly ambient: number;
+}
+
+export interface BusMute {
+  readonly master: boolean;
+  readonly music: boolean;
+  readonly sfx: boolean;
+  readonly voice: boolean;
+  readonly ui: boolean;
+  readonly ambient: boolean;
+}
+
 export interface BusSettings {
-  readonly volume: Readonly<Record<AudioBus, number>>;
-  readonly muted: Readonly<Record<AudioBus, boolean>>;
+  readonly volume: BusVolume;
+  readonly muted: BusMute;
   readonly profile: PolyphonyProfile;
   readonly masterMuted: boolean;
 }
 
+const DEFAULT_MUTES: BusMute = Object.freeze({ master: false, music: false, sfx: false, voice: false, ui: false, ambient: false });
+
 export function createBusSettings(profile: PolyphonyProfile = 'high'): BusSettings {
   return {
-    volume: BUS_DEFAULTS,
-    muted: Object.freeze({ master: false, music: false, sfx: false, voice: false, ui: false, ambient: false }),
+    volume: { master: BUS_DEFAULTS.master, music: BUS_DEFAULTS.music, sfx: BUS_DEFAULTS.sfx, voice: BUS_DEFAULTS.voice, ui: BUS_DEFAULTS.ui, ambient: BUS_DEFAULTS.ambient },
+    muted: DEFAULT_MUTES,
     profile,
     masterMuted: false,
   };
@@ -42,9 +64,10 @@ export function setBusVolume(state: BusSettings, bus: AudioBus, value: number): 
 }
 
 export function toggleBusMute(state: BusSettings, bus: AudioBus): BusSettings {
+  const current = state.muted[bus];
   return {
     ...state,
-    muted: { ...state.muted, [bus]: !state.muted[bus] },
+    muted: { ...state.muted, [bus]: !current },
   };
 }
 
