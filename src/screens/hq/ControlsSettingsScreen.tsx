@@ -1,42 +1,74 @@
 /**
  * Phase 40: Controls settings screen (S63).
- * Shows keyboard and gamepad binding reference.
+ * Shows keyboard and gamepad bindings from the input registry,
+ * including repeat delay and double-tap prevention flags.
  */
+import { useState } from 'react';
 import type { JSX } from 'react';
 import { Button } from '../../ui/components/Button.js';
 import { StatRow } from '../../ui/components/StatRow.js';
 import { ScreenFrame } from '../../ui/layout/ScreenFrame.js';
 import { BottomActionBar } from '../../ui/layout/BottomActionBar.js';
 import { ScrollRegion } from '../../ui/layout/ScrollRegion.js';
+import { InputRegistry } from '../../platform/input/input-registry.js';
+import type { SemanticAction } from '../../platform/input/input-registry.js';
 
 export interface ControlsSettingsScreenProps {
   readonly onBack: () => void;
 }
 
-const BINDINGS: readonly { readonly action: string; readonly keys: string; readonly gamepad: string }[] = [
-  { action: 'Confirm',   keys: 'Enter / Space',      gamepad: 'A' },
-  { action: 'Back',      keys: 'Escape / Backspace',   gamepad: 'B' },
-  { action: 'Menu',      keys: 'M',                    gamepad: 'Menu' },
-  { action: 'Up',        keys: 'Arrow Up / W',         gamepad: 'D-Pad Up' },
-  { action: 'Down',      keys: 'Arrow Down / S',       gamepad: 'D-Pad Down' },
-  { action: 'Left',      keys: 'Arrow Left / A',       gamepad: 'D-Pad Left' },
-  { action: 'Right',     keys: 'Arrow Right / D',      gamepad: 'D-Pad Right' },
-  { action: 'Next Tab',  keys: 'Tab',                   gamepad: 'RB' },
-  { action: 'Prev Tab',  keys: 'Shift + Tab',           gamepad: 'LB' },
-  { action: 'Skip',      keys: 'Space',                 gamepad: 'Start' },
-  { action: 'Pause',     keys: 'P',                     gamepad: 'Menu' },
-  { action: 'Shoulder L',keys: 'Q',                     gamepad: 'LB' },
-  { action: 'Shoulder R',keys: 'E',                     gamepad: 'RB' },
-];
+/** Human-readable labels for semantic actions. */
+const ACTION_LABELS: Readonly<Record<SemanticAction, string>> = {
+  confirm: 'Confirm',
+  back: 'Back',
+  cancel: 'Cancel',
+  menu: 'Menu',
+  up: 'Up',
+  down: 'Down',
+  left: 'Left',
+  right: 'Right',
+  nextTab: 'Next Tab',
+  prevTab: 'Prev Tab',
+  skip: 'Skip',
+  pause: 'Pause',
+  shoulderLeft: 'Shoulder L',
+  shoulderRight: 'Shoulder R',
+};
+
+/** Map gamepad button index to a human label. */
+function gamepadLabel(index: number): string {
+  const labels: Readonly<Record<number, string>> = {
+    0: 'A', 1: 'B', 2: 'X', 3: 'Y',
+    4: 'LB', 5: 'RB', 6: 'LT', 7: 'RT',
+    8: 'Select', 9: 'Start',
+    12: 'D-Up', 13: 'D-Down', 14: 'D-Left', 15: 'D-Right',
+  };
+  return labels[index] ?? `Btn ${String(index)}`;
+}
 
 export function ControlsSettingsScreen({ onBack }: ControlsSettingsScreenProps): JSX.Element {
+  const [registry] = useState(() => new InputRegistry());
+
   return (
     <ScreenFrame labelledBy="controls-title">
       <h1 id="controls-title">Controls</h1>
       <ScrollRegion label="Control bindings">
-        {BINDINGS.map((b) => (
-          <StatRow key={b.action} label={b.action} value={`${b.keys}  |  ${b.gamepad}`} />
-        ))}
+        {(['confirm', 'back', 'cancel', 'menu', 'up', 'down', 'left', 'right',
+           'nextTab', 'prevTab', 'skip', 'pause', 'shoulderLeft', 'shoulderRight'] as const).map((action) => {
+          const binding = registry.getBinding(action);
+          if (!binding) return null;
+          const keys = binding.keys.join(', ');
+          const gamepad = binding.gamepadButtons.map((i) => gamepadLabel(i)).join(', ');
+          return (
+            <section key={action}>
+              <h2>{ACTION_LABELS[action]}</h2>
+              <StatRow label="Keyboard" value={keys} />
+              <StatRow label="Gamepad" value={gamepad} />
+              <StatRow label="Repeat Delay" value={`${String(binding.repeatDelay)}ms`} />
+              <StatRow label="Double-Tap Prevention" value={binding.preventDoubleTap ? 'Yes' : 'No'} />
+            </section>
+          );
+        })}
       </ScrollRegion>
       <BottomActionBar>
         <Button labelKey="ui.common.back" variant="secondary" onClick={onBack} />

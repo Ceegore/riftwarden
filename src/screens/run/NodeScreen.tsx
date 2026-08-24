@@ -7,6 +7,8 @@ import { ScreenFrame } from '../../ui/layout/ScreenFrame.js';
 import { BottomActionBar } from '../../ui/layout/BottomActionBar.js';
 import { useExpedition } from '../../features/expedition/useExpedition.js';
 import { BattleCanvas } from '../../features/battle/BattleCanvas.js';
+import { BattleTacticalView } from '../../features/battle/BattleTacticalView.js';
+import { loadA11ySettings } from '../../game/settings/a11y-settings.js';
 import type { UnitRenderData } from '../../features/battle/battle-renderer.js';
 import type { NodeActionRequest } from '../../game/expedition/nodes/types.js';
 import { applyNodeCodexDiscovery } from '../../game/expedition/settlement-bridge.js';
@@ -153,14 +155,24 @@ function discoverNodeInCodex(snapshot: NonNullable<ReturnType<typeof useExpediti
 }
 
 function battleUnits(snapshot: NonNullable<ReturnType<typeof useExpedition>['snapshot']>): readonly UnitRenderData[] {
+  const s = snapshot.state;
   const enemyCount = snapshot.currentNodeType === 'boss' ? 3 : snapshot.currentNodeType === 'elite' ? 3 : 2;
-  const allies = Object.keys(snapshot.state.troopCopies).length > 0 ? Math.min(3, Object.keys(snapshot.state.troopCopies).length + 1) : 1;
+
+  // Allies: troop copies + recruits from the run state.
+  const troopIds = Object.keys(s.troopCopies).filter((id) => (s.troopCopies[id] ?? 0) > 0);
+  const allyCount = Math.min(3, Math.max(1, troopIds.length + s.recruits.length));
   const units: UnitRenderData[] = [];
-  for (let index = 0; index < allies; index += 1) {
-    units.push({ id: `ally-${String(index)}`, label: `Ally ${String(index + 1)}`, hp: 100, maxHp: 100, side: 'ally', x: 120 + index * 72, y: 250 });
+  for (let index = 0; index < allyCount; index += 1) {
+    const troopId = troopIds[index];
+    const label = troopId ?? `Ally ${String(index + 1)}`;
+    units.push({ id: `ally-${String(index)}`, label, hp: 100, maxHp: 100, side: 'ally', x: 120 + index * 72, y: 250 });
   }
+
+  const enemyLabel = snapshot.currentNodePayloadKey !== ''
+    ? snapshot.currentNodePayloadKey
+    : snapshot.currentNodeType;
   for (let index = 0; index < enemyCount; index += 1) {
-    units.push({ id: `enemy-${String(index)}`, label: `Enemy ${String(index + 1)}`, hp: 100, maxHp: 100, side: 'enemy', x: 460 + index * 72, y: 250 });
+    units.push({ id: `enemy-${String(index)}`, label: `${enemyLabel} ${String(index + 1)}`, hp: 100, maxHp: 100, side: 'enemy', x: 460 + index * 72, y: 250 });
   }
   return units;
 }
@@ -242,6 +254,7 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
   const { gold, instability } = snapshot;
   const nodeActions = actionsForType(currentNodeType, snapshot);
   const combat = currentNodeType === 'battle' || currentNodeType === 'elite' || currentNodeType === 'boss';
+  const reducedMotion = loadA11ySettings().reducedMotion;
 
   return (
     <ScreenFrame labelledBy="node-title">
@@ -252,7 +265,11 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
         <ResourcePill icon="⚠" value={instability} nameKey="ui.resource.instability" />
       </div>
 
-      {combat && phase !== 'resolved' && <BattleCanvas units={battleUnits(snapshot)} />}
+      {combat && phase !== 'resolved' && (
+        reducedMotion
+          ? <BattleTacticalView units={battleUnits(snapshot)} />
+          : <BattleCanvas units={battleUnits(snapshot)} />
+      )}
       {phase === 'entering' && <p>Entering node...</p>}
 
       {phase === 'acting' && (

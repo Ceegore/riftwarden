@@ -1,0 +1,2970 @@
+{
+  "generatedAt": "2026-08-24T13:55:07.243Z",
+  "sourceRevision": "unknown",
+  "requirements": [
+    {
+      "phase": "phase01-31",
+      "contract": "MAP_GENERATOR_CONTRACT",
+      "requirementId": "REQ_MAP_GENERATOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "NODE_REGISTRY_CONTRACT",
+      "requirementId": "REQ_NODE_REGISTRY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "OFFER_SNAPSHOT_CONTRACT",
+      "requirementId": "REQ_OFFER_SNAPSHOT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "NODE_TRANSACTION_CONTRACT",
+      "requirementId": "REQ_NODE_TRANSACTION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "SAVE_RECOVERY_CONTRACT",
+      "requirementId": "REQ_SAVE_RECOVERY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "RUN_DOMAIN_CONTRACT",
+      "requirementId": "REQ_RUN_DOMAIN_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "SETTLEMENT_CONTRACT",
+      "requirementId": "REQ_SETTLEMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "ACHIEVEMENT_CODEX_CONTRACT",
+      "requirementId": "REQ_ACHIEVEMENT_CODEX_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "ASCENSION_CONTRACT",
+      "requirementId": "REQ_ASCENSION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "EQUIPMENT_CONTRACT",
+      "requirementId": "REQ_EQUIPMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "KIT_BANNER_CONTRACT",
+      "requirementId": "REQ_KIT_BANNER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "PIXI_BATTLE_CONTRACT",
+      "requirementId": "REQ_PIXI_BATTLE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "ASSET_MANIFEST_CONTRACT",
+      "requirementId": "REQ_ASSET_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "AUDIO_MANIFEST_CONTRACT",
+      "requirementId": "REQ_AUDIO_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "MUSIC_DIRECTOR_CONTRACT",
+      "requirementId": "REQ_MUSIC_DIRECTOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "BUS_MIXER_CONTRACT",
+      "requirementId": "REQ_BUS_MIXER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "requirementId": "REQ_ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "AUTO_QUALITY_CONTRACT",
+      "requirementId": "REQ_AUTO_QUALITY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase01-31",
+      "contract": "PRIVACY_OFFLINE_CONTRACT",
+      "requirementId": "REQ_PRIVACY_OFFLINE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase1-domain.test.ts",
+        "tests/sim/phase1-contracts.test.ts",
+        "tests/sim/phase1-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase1-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "MAP_GENERATOR_CONTRACT",
+      "requirementId": "REQ_MAP_GENERATOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "NODE_REGISTRY_CONTRACT",
+      "requirementId": "REQ_NODE_REGISTRY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "OFFER_SNAPSHOT_CONTRACT",
+      "requirementId": "REQ_OFFER_SNAPSHOT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "NODE_TRANSACTION_CONTRACT",
+      "requirementId": "REQ_NODE_TRANSACTION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "SAVE_RECOVERY_CONTRACT",
+      "requirementId": "REQ_SAVE_RECOVERY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "RUN_DOMAIN_CONTRACT",
+      "requirementId": "REQ_RUN_DOMAIN_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "SETTLEMENT_CONTRACT",
+      "requirementId": "REQ_SETTLEMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "ACHIEVEMENT_CODEX_CONTRACT",
+      "requirementId": "REQ_ACHIEVEMENT_CODEX_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "ASCENSION_CONTRACT",
+      "requirementId": "REQ_ASCENSION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "EQUIPMENT_CONTRACT",
+      "requirementId": "REQ_EQUIPMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "KIT_BANNER_CONTRACT",
+      "requirementId": "REQ_KIT_BANNER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "PIXI_BATTLE_CONTRACT",
+      "requirementId": "REQ_PIXI_BATTLE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "ASSET_MANIFEST_CONTRACT",
+      "requirementId": "REQ_ASSET_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "AUDIO_MANIFEST_CONTRACT",
+      "requirementId": "REQ_AUDIO_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "MUSIC_DIRECTOR_CONTRACT",
+      "requirementId": "REQ_MUSIC_DIRECTOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "BUS_MIXER_CONTRACT",
+      "requirementId": "REQ_BUS_MIXER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "requirementId": "REQ_ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "AUTO_QUALITY_CONTRACT",
+      "requirementId": "REQ_AUTO_QUALITY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase32",
+      "contract": "PRIVACY_OFFLINE_CONTRACT",
+      "requirementId": "REQ_PRIVACY_OFFLINE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase32-domain.test.ts",
+        "tests/sim/phase32-contracts.test.ts",
+        "tests/sim/phase32-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase32-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "MAP_GENERATOR_CONTRACT",
+      "requirementId": "REQ_MAP_GENERATOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "NODE_REGISTRY_CONTRACT",
+      "requirementId": "REQ_NODE_REGISTRY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "OFFER_SNAPSHOT_CONTRACT",
+      "requirementId": "REQ_OFFER_SNAPSHOT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "NODE_TRANSACTION_CONTRACT",
+      "requirementId": "REQ_NODE_TRANSACTION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "SAVE_RECOVERY_CONTRACT",
+      "requirementId": "REQ_SAVE_RECOVERY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "RUN_DOMAIN_CONTRACT",
+      "requirementId": "REQ_RUN_DOMAIN_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "SETTLEMENT_CONTRACT",
+      "requirementId": "REQ_SETTLEMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "ACHIEVEMENT_CODEX_CONTRACT",
+      "requirementId": "REQ_ACHIEVEMENT_CODEX_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "ASCENSION_CONTRACT",
+      "requirementId": "REQ_ASCENSION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "EQUIPMENT_CONTRACT",
+      "requirementId": "REQ_EQUIPMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "KIT_BANNER_CONTRACT",
+      "requirementId": "REQ_KIT_BANNER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "PIXI_BATTLE_CONTRACT",
+      "requirementId": "REQ_PIXI_BATTLE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "ASSET_MANIFEST_CONTRACT",
+      "requirementId": "REQ_ASSET_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "AUDIO_MANIFEST_CONTRACT",
+      "requirementId": "REQ_AUDIO_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "MUSIC_DIRECTOR_CONTRACT",
+      "requirementId": "REQ_MUSIC_DIRECTOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "BUS_MIXER_CONTRACT",
+      "requirementId": "REQ_BUS_MIXER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "requirementId": "REQ_ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "AUTO_QUALITY_CONTRACT",
+      "requirementId": "REQ_AUTO_QUALITY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase33",
+      "contract": "PRIVACY_OFFLINE_CONTRACT",
+      "requirementId": "REQ_PRIVACY_OFFLINE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase33-domain.test.ts",
+        "tests/sim/phase33-contracts.test.ts",
+        "tests/sim/phase33-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase33-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "MAP_GENERATOR_CONTRACT",
+      "requirementId": "REQ_MAP_GENERATOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "NODE_REGISTRY_CONTRACT",
+      "requirementId": "REQ_NODE_REGISTRY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "OFFER_SNAPSHOT_CONTRACT",
+      "requirementId": "REQ_OFFER_SNAPSHOT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "NODE_TRANSACTION_CONTRACT",
+      "requirementId": "REQ_NODE_TRANSACTION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "SAVE_RECOVERY_CONTRACT",
+      "requirementId": "REQ_SAVE_RECOVERY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "RUN_DOMAIN_CONTRACT",
+      "requirementId": "REQ_RUN_DOMAIN_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "SETTLEMENT_CONTRACT",
+      "requirementId": "REQ_SETTLEMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "ACHIEVEMENT_CODEX_CONTRACT",
+      "requirementId": "REQ_ACHIEVEMENT_CODEX_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "ASCENSION_CONTRACT",
+      "requirementId": "REQ_ASCENSION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "EQUIPMENT_CONTRACT",
+      "requirementId": "REQ_EQUIPMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "KIT_BANNER_CONTRACT",
+      "requirementId": "REQ_KIT_BANNER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "PIXI_BATTLE_CONTRACT",
+      "requirementId": "REQ_PIXI_BATTLE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "ASSET_MANIFEST_CONTRACT",
+      "requirementId": "REQ_ASSET_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "AUDIO_MANIFEST_CONTRACT",
+      "requirementId": "REQ_AUDIO_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "MUSIC_DIRECTOR_CONTRACT",
+      "requirementId": "REQ_MUSIC_DIRECTOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "BUS_MIXER_CONTRACT",
+      "requirementId": "REQ_BUS_MIXER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "requirementId": "REQ_ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "AUTO_QUALITY_CONTRACT",
+      "requirementId": "REQ_AUTO_QUALITY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase34",
+      "contract": "PRIVACY_OFFLINE_CONTRACT",
+      "requirementId": "REQ_PRIVACY_OFFLINE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase34-domain.test.ts",
+        "tests/sim/phase34-contracts.test.ts",
+        "tests/sim/phase34-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase34-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "MAP_GENERATOR_CONTRACT",
+      "requirementId": "REQ_MAP_GENERATOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "NODE_REGISTRY_CONTRACT",
+      "requirementId": "REQ_NODE_REGISTRY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "OFFER_SNAPSHOT_CONTRACT",
+      "requirementId": "REQ_OFFER_SNAPSHOT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "NODE_TRANSACTION_CONTRACT",
+      "requirementId": "REQ_NODE_TRANSACTION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "SAVE_RECOVERY_CONTRACT",
+      "requirementId": "REQ_SAVE_RECOVERY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "RUN_DOMAIN_CONTRACT",
+      "requirementId": "REQ_RUN_DOMAIN_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "SETTLEMENT_CONTRACT",
+      "requirementId": "REQ_SETTLEMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "ACHIEVEMENT_CODEX_CONTRACT",
+      "requirementId": "REQ_ACHIEVEMENT_CODEX_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "ASCENSION_CONTRACT",
+      "requirementId": "REQ_ASCENSION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "EQUIPMENT_CONTRACT",
+      "requirementId": "REQ_EQUIPMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "KIT_BANNER_CONTRACT",
+      "requirementId": "REQ_KIT_BANNER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "PIXI_BATTLE_CONTRACT",
+      "requirementId": "REQ_PIXI_BATTLE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "ASSET_MANIFEST_CONTRACT",
+      "requirementId": "REQ_ASSET_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "AUDIO_MANIFEST_CONTRACT",
+      "requirementId": "REQ_AUDIO_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "MUSIC_DIRECTOR_CONTRACT",
+      "requirementId": "REQ_MUSIC_DIRECTOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "BUS_MIXER_CONTRACT",
+      "requirementId": "REQ_BUS_MIXER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "requirementId": "REQ_ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "AUTO_QUALITY_CONTRACT",
+      "requirementId": "REQ_AUTO_QUALITY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase35",
+      "contract": "PRIVACY_OFFLINE_CONTRACT",
+      "requirementId": "REQ_PRIVACY_OFFLINE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase35-domain.test.ts",
+        "tests/sim/phase35-contracts.test.ts",
+        "tests/sim/phase35-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase35-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "MAP_GENERATOR_CONTRACT",
+      "requirementId": "REQ_MAP_GENERATOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "NODE_REGISTRY_CONTRACT",
+      "requirementId": "REQ_NODE_REGISTRY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "OFFER_SNAPSHOT_CONTRACT",
+      "requirementId": "REQ_OFFER_SNAPSHOT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "NODE_TRANSACTION_CONTRACT",
+      "requirementId": "REQ_NODE_TRANSACTION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "SAVE_RECOVERY_CONTRACT",
+      "requirementId": "REQ_SAVE_RECOVERY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "RUN_DOMAIN_CONTRACT",
+      "requirementId": "REQ_RUN_DOMAIN_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "SETTLEMENT_CONTRACT",
+      "requirementId": "REQ_SETTLEMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "ACHIEVEMENT_CODEX_CONTRACT",
+      "requirementId": "REQ_ACHIEVEMENT_CODEX_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "ASCENSION_CONTRACT",
+      "requirementId": "REQ_ASCENSION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "EQUIPMENT_CONTRACT",
+      "requirementId": "REQ_EQUIPMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "KIT_BANNER_CONTRACT",
+      "requirementId": "REQ_KIT_BANNER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "PIXI_BATTLE_CONTRACT",
+      "requirementId": "REQ_PIXI_BATTLE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "ASSET_MANIFEST_CONTRACT",
+      "requirementId": "REQ_ASSET_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "AUDIO_MANIFEST_CONTRACT",
+      "requirementId": "REQ_AUDIO_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "MUSIC_DIRECTOR_CONTRACT",
+      "requirementId": "REQ_MUSIC_DIRECTOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "BUS_MIXER_CONTRACT",
+      "requirementId": "REQ_BUS_MIXER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "requirementId": "REQ_ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "AUTO_QUALITY_CONTRACT",
+      "requirementId": "REQ_AUTO_QUALITY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase36",
+      "contract": "PRIVACY_OFFLINE_CONTRACT",
+      "requirementId": "REQ_PRIVACY_OFFLINE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase36-domain.test.ts",
+        "tests/sim/phase36-contracts.test.ts",
+        "tests/sim/phase36-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase36-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "MAP_GENERATOR_CONTRACT",
+      "requirementId": "REQ_MAP_GENERATOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "NODE_REGISTRY_CONTRACT",
+      "requirementId": "REQ_NODE_REGISTRY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "OFFER_SNAPSHOT_CONTRACT",
+      "requirementId": "REQ_OFFER_SNAPSHOT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "NODE_TRANSACTION_CONTRACT",
+      "requirementId": "REQ_NODE_TRANSACTION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "SAVE_RECOVERY_CONTRACT",
+      "requirementId": "REQ_SAVE_RECOVERY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "RUN_DOMAIN_CONTRACT",
+      "requirementId": "REQ_RUN_DOMAIN_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "SETTLEMENT_CONTRACT",
+      "requirementId": "REQ_SETTLEMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "ACHIEVEMENT_CODEX_CONTRACT",
+      "requirementId": "REQ_ACHIEVEMENT_CODEX_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "ASCENSION_CONTRACT",
+      "requirementId": "REQ_ASCENSION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "EQUIPMENT_CONTRACT",
+      "requirementId": "REQ_EQUIPMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "KIT_BANNER_CONTRACT",
+      "requirementId": "REQ_KIT_BANNER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "PIXI_BATTLE_CONTRACT",
+      "requirementId": "REQ_PIXI_BATTLE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "ASSET_MANIFEST_CONTRACT",
+      "requirementId": "REQ_ASSET_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "AUDIO_MANIFEST_CONTRACT",
+      "requirementId": "REQ_AUDIO_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "MUSIC_DIRECTOR_CONTRACT",
+      "requirementId": "REQ_MUSIC_DIRECTOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "BUS_MIXER_CONTRACT",
+      "requirementId": "REQ_BUS_MIXER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "requirementId": "REQ_ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "AUTO_QUALITY_CONTRACT",
+      "requirementId": "REQ_AUTO_QUALITY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase37",
+      "contract": "PRIVACY_OFFLINE_CONTRACT",
+      "requirementId": "REQ_PRIVACY_OFFLINE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase37-domain.test.ts",
+        "tests/sim/phase37-contracts.test.ts",
+        "tests/sim/phase37-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase37-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "MAP_GENERATOR_CONTRACT",
+      "requirementId": "REQ_MAP_GENERATOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "NODE_REGISTRY_CONTRACT",
+      "requirementId": "REQ_NODE_REGISTRY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "OFFER_SNAPSHOT_CONTRACT",
+      "requirementId": "REQ_OFFER_SNAPSHOT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "NODE_TRANSACTION_CONTRACT",
+      "requirementId": "REQ_NODE_TRANSACTION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "SAVE_RECOVERY_CONTRACT",
+      "requirementId": "REQ_SAVE_RECOVERY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "RUN_DOMAIN_CONTRACT",
+      "requirementId": "REQ_RUN_DOMAIN_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "SETTLEMENT_CONTRACT",
+      "requirementId": "REQ_SETTLEMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "ACHIEVEMENT_CODEX_CONTRACT",
+      "requirementId": "REQ_ACHIEVEMENT_CODEX_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "ASCENSION_CONTRACT",
+      "requirementId": "REQ_ASCENSION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "EQUIPMENT_CONTRACT",
+      "requirementId": "REQ_EQUIPMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "KIT_BANNER_CONTRACT",
+      "requirementId": "REQ_KIT_BANNER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "PIXI_BATTLE_CONTRACT",
+      "requirementId": "REQ_PIXI_BATTLE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "ASSET_MANIFEST_CONTRACT",
+      "requirementId": "REQ_ASSET_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "AUDIO_MANIFEST_CONTRACT",
+      "requirementId": "REQ_AUDIO_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "MUSIC_DIRECTOR_CONTRACT",
+      "requirementId": "REQ_MUSIC_DIRECTOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "BUS_MIXER_CONTRACT",
+      "requirementId": "REQ_BUS_MIXER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "requirementId": "REQ_ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "AUTO_QUALITY_CONTRACT",
+      "requirementId": "REQ_AUTO_QUALITY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase38",
+      "contract": "PRIVACY_OFFLINE_CONTRACT",
+      "requirementId": "REQ_PRIVACY_OFFLINE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase38-domain.test.ts",
+        "tests/sim/phase38-contracts.test.ts",
+        "tests/sim/phase38-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase38-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "MAP_GENERATOR_CONTRACT",
+      "requirementId": "REQ_MAP_GENERATOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "NODE_REGISTRY_CONTRACT",
+      "requirementId": "REQ_NODE_REGISTRY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "OFFER_SNAPSHOT_CONTRACT",
+      "requirementId": "REQ_OFFER_SNAPSHOT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "NODE_TRANSACTION_CONTRACT",
+      "requirementId": "REQ_NODE_TRANSACTION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "SAVE_RECOVERY_CONTRACT",
+      "requirementId": "REQ_SAVE_RECOVERY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "RUN_DOMAIN_CONTRACT",
+      "requirementId": "REQ_RUN_DOMAIN_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "SETTLEMENT_CONTRACT",
+      "requirementId": "REQ_SETTLEMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "ACHIEVEMENT_CODEX_CONTRACT",
+      "requirementId": "REQ_ACHIEVEMENT_CODEX_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "ASCENSION_CONTRACT",
+      "requirementId": "REQ_ASCENSION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "EQUIPMENT_CONTRACT",
+      "requirementId": "REQ_EQUIPMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "KIT_BANNER_CONTRACT",
+      "requirementId": "REQ_KIT_BANNER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "PIXI_BATTLE_CONTRACT",
+      "requirementId": "REQ_PIXI_BATTLE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "ASSET_MANIFEST_CONTRACT",
+      "requirementId": "REQ_ASSET_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "AUDIO_MANIFEST_CONTRACT",
+      "requirementId": "REQ_AUDIO_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "MUSIC_DIRECTOR_CONTRACT",
+      "requirementId": "REQ_MUSIC_DIRECTOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "BUS_MIXER_CONTRACT",
+      "requirementId": "REQ_BUS_MIXER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "requirementId": "REQ_ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "AUTO_QUALITY_CONTRACT",
+      "requirementId": "REQ_AUTO_QUALITY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase39",
+      "contract": "PRIVACY_OFFLINE_CONTRACT",
+      "requirementId": "REQ_PRIVACY_OFFLINE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase39-domain.test.ts",
+        "tests/sim/phase39-contracts.test.ts",
+        "tests/sim/phase39-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase39-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "MAP_GENERATOR_CONTRACT",
+      "requirementId": "REQ_MAP_GENERATOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "NODE_REGISTRY_CONTRACT",
+      "requirementId": "REQ_NODE_REGISTRY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "OFFER_SNAPSHOT_CONTRACT",
+      "requirementId": "REQ_OFFER_SNAPSHOT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "NODE_TRANSACTION_CONTRACT",
+      "requirementId": "REQ_NODE_TRANSACTION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "SAVE_RECOVERY_CONTRACT",
+      "requirementId": "REQ_SAVE_RECOVERY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "RUN_DOMAIN_CONTRACT",
+      "requirementId": "REQ_RUN_DOMAIN_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "SETTLEMENT_CONTRACT",
+      "requirementId": "REQ_SETTLEMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "ACHIEVEMENT_CODEX_CONTRACT",
+      "requirementId": "REQ_ACHIEVEMENT_CODEX_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "ASCENSION_CONTRACT",
+      "requirementId": "REQ_ASCENSION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "EQUIPMENT_CONTRACT",
+      "requirementId": "REQ_EQUIPMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "KIT_BANNER_CONTRACT",
+      "requirementId": "REQ_KIT_BANNER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "PIXI_BATTLE_CONTRACT",
+      "requirementId": "REQ_PIXI_BATTLE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "ASSET_MANIFEST_CONTRACT",
+      "requirementId": "REQ_ASSET_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "AUDIO_MANIFEST_CONTRACT",
+      "requirementId": "REQ_AUDIO_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "MUSIC_DIRECTOR_CONTRACT",
+      "requirementId": "REQ_MUSIC_DIRECTOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "BUS_MIXER_CONTRACT",
+      "requirementId": "REQ_BUS_MIXER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "requirementId": "REQ_ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "AUTO_QUALITY_CONTRACT",
+      "requirementId": "REQ_AUTO_QUALITY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase40",
+      "contract": "PRIVACY_OFFLINE_CONTRACT",
+      "requirementId": "REQ_PRIVACY_OFFLINE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase40-domain.test.ts",
+        "tests/sim/phase40-contracts.test.ts",
+        "tests/sim/phase40-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase40-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "MAP_GENERATOR_CONTRACT",
+      "requirementId": "REQ_MAP_GENERATOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "NODE_REGISTRY_CONTRACT",
+      "requirementId": "REQ_NODE_REGISTRY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "OFFER_SNAPSHOT_CONTRACT",
+      "requirementId": "REQ_OFFER_SNAPSHOT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "NODE_TRANSACTION_CONTRACT",
+      "requirementId": "REQ_NODE_TRANSACTION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "SAVE_RECOVERY_CONTRACT",
+      "requirementId": "REQ_SAVE_RECOVERY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "RUN_DOMAIN_CONTRACT",
+      "requirementId": "REQ_RUN_DOMAIN_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "SETTLEMENT_CONTRACT",
+      "requirementId": "REQ_SETTLEMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "ACHIEVEMENT_CODEX_CONTRACT",
+      "requirementId": "REQ_ACHIEVEMENT_CODEX_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "ASCENSION_CONTRACT",
+      "requirementId": "REQ_ASCENSION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "EQUIPMENT_CONTRACT",
+      "requirementId": "REQ_EQUIPMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "KIT_BANNER_CONTRACT",
+      "requirementId": "REQ_KIT_BANNER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "PIXI_BATTLE_CONTRACT",
+      "requirementId": "REQ_PIXI_BATTLE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "ASSET_MANIFEST_CONTRACT",
+      "requirementId": "REQ_ASSET_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "AUDIO_MANIFEST_CONTRACT",
+      "requirementId": "REQ_AUDIO_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "MUSIC_DIRECTOR_CONTRACT",
+      "requirementId": "REQ_MUSIC_DIRECTOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "BUS_MIXER_CONTRACT",
+      "requirementId": "REQ_BUS_MIXER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "requirementId": "REQ_ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "AUTO_QUALITY_CONTRACT",
+      "requirementId": "REQ_AUTO_QUALITY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase41",
+      "contract": "PRIVACY_OFFLINE_CONTRACT",
+      "requirementId": "REQ_PRIVACY_OFFLINE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase41-domain.test.ts",
+        "tests/sim/phase41-contracts.test.ts",
+        "tests/sim/phase41-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase41-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "MAP_GENERATOR_CONTRACT",
+      "requirementId": "REQ_MAP_GENERATOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "NODE_REGISTRY_CONTRACT",
+      "requirementId": "REQ_NODE_REGISTRY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "OFFER_SNAPSHOT_CONTRACT",
+      "requirementId": "REQ_OFFER_SNAPSHOT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "NODE_TRANSACTION_CONTRACT",
+      "requirementId": "REQ_NODE_TRANSACTION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "SAVE_RECOVERY_CONTRACT",
+      "requirementId": "REQ_SAVE_RECOVERY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "RUN_DOMAIN_CONTRACT",
+      "requirementId": "REQ_RUN_DOMAIN_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "SETTLEMENT_CONTRACT",
+      "requirementId": "REQ_SETTLEMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "ACHIEVEMENT_CODEX_CONTRACT",
+      "requirementId": "REQ_ACHIEVEMENT_CODEX_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "ASCENSION_CONTRACT",
+      "requirementId": "REQ_ASCENSION_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "EQUIPMENT_CONTRACT",
+      "requirementId": "REQ_EQUIPMENT_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "KIT_BANNER_CONTRACT",
+      "requirementId": "REQ_KIT_BANNER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "PIXI_BATTLE_CONTRACT",
+      "requirementId": "REQ_PIXI_BATTLE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "ASSET_MANIFEST_CONTRACT",
+      "requirementId": "REQ_ASSET_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "AUDIO_MANIFEST_CONTRACT",
+      "requirementId": "REQ_AUDIO_MANIFEST_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "MUSIC_DIRECTOR_CONTRACT",
+      "requirementId": "REQ_MUSIC_DIRECTOR_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "BUS_MIXER_CONTRACT",
+      "requirementId": "REQ_BUS_MIXER_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "requirementId": "REQ_ACCESSIBILITY_SETTINGS_PERSISTENCE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "AUTO_QUALITY_CONTRACT",
+      "requirementId": "REQ_AUTO_QUALITY_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    },
+    {
+      "phase": "phase42-49",
+      "contract": "PRIVACY_OFFLINE_CONTRACT",
+      "requirementId": "REQ_PRIVACY_OFFLINE_CONTRACT",
+      "status": "TESTED",
+      "testFiles": [
+        "tests/sim/phase42-domain.test.ts",
+        "tests/sim/phase42-contracts.test.ts",
+        "tests/sim/phase42-golden.test.ts"
+      ],
+      "evidencePath": "docs/reports/phase42-report.md",
+      "reviewed": false
+    }
+  ]
+}

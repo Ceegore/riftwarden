@@ -55,6 +55,7 @@
     "verify:repo": "node tools/repo/verify-root.mjs",
     "check:text-normalization": "node tools/repo/check-text-normalization.mjs",
     "check:file-length": "node tools/check-file-length.mjs",
+    "check:bundle-size": "node tools/build/check-bundle-size.mjs",
     "test:repo": "node --test tests/unit/repo/*.test.mjs",
     "requirements:validate": "node tools/requirements/validate.mjs --mode=gate",
     "cap:sync": "pnpm build:release && cap sync",

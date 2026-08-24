@@ -419,6 +419,7 @@ export function PostBootScreen({ step }: { readonly step: Exclude<BootTerminalSt
       <Button labelKey="ui.common.missions" variant="secondary" onClick={handleMissions} />
       <Button labelKey="ui.common.hq" variant="secondary" onClick={handleOpenHq} />
       <Button labelKey="ui.common.help" variant="secondary" onClick={handleHelp} />
+      <Button label="Settings" variant="secondary" onClick={handleSettings} />
     </ScreenFrame>
   );
 }
