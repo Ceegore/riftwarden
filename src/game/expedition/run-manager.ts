@@ -9,6 +9,7 @@ import { restoreExpedition, type ExpeditionRunner } from './expedition-runner.js
 import type { NodeActionRequest, NodeRunState, TransactionRecord } from './nodes/types.js';
 import type { ExpeditionMap, MapProfile, NodeId, NodeType } from './types.js';
 import { recordCombatMasteryKills, trackingHeroIds } from './settlement-bridge.js';
+import { REGION_PROFILES } from '../content/runtime/region-profiles.js';
 
 type Listener = () => void;
 
@@ -58,10 +59,10 @@ export class RunManager {
   /** Create a fresh expedition and make it the active instance. */
   static create(seed: number, startGold = 100, mapProfileId?: string): RunManager {
     instance?.dispose();
-    const profile: MapProfile = mapProfileId !== undefined
-      ? { ...DEFAULT_PROFILE, id: mapProfileId }
-      : DEFAULT_PROFILE;
-    const map = generateMap({ seed, profileId: profile.id, contentRevision: '32.0' }, profile);
+    const profileId = mapProfileId ?? DEFAULT_PROFILE.id;
+    const profile: MapProfile = { ...DEFAULT_PROFILE, id: profileId };
+    const regionWeights = REGION_PROFILES[profileId]?.typeWeights;
+    const map = generateMap({ seed, profileId: profile.id, contentRevision: '32.0' }, profile, regionWeights);
     const runner = createAndSaveExpedition(map, { startGold });
     instance = new RunManager(runner, map);
     notifyActiveListeners();
@@ -72,8 +73,10 @@ export class RunManager {
   static restore(): RunManager | null {
     const meta = readMeta();
     if (!meta) return null;
-    const profile: MapProfile = { ...DEFAULT_PROFILE, id: meta.profileId ?? DEFAULT_PROFILE.id };
-    const map = generateMap({ seed: meta.mapSeed, profileId: profile.id, contentRevision: '32.0' }, profile);
+    const profileId = meta.profileId ?? DEFAULT_PROFILE.id;
+    const profile: MapProfile = { ...DEFAULT_PROFILE, id: profileId };
+    const regionWeights = REGION_PROFILES[profileId]?.typeWeights;
+    const map = generateMap({ seed: meta.mapSeed, profileId, contentRevision: '32.0' }, profile, regionWeights);
     const runner = restoreStoredExpedition(map);
     if (!runner) return null;
     instance = new RunManager(runner, map);
