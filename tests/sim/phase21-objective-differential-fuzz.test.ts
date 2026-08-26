@@ -6,7 +6,10 @@ import { createPhase19Systems } from '../../src/game/sim/core/phase19-systems.js
 import { createPhase20Systems } from '../../src/game/sim/core/phase20-systems.js';
 import { createPhase21Systems, type Phase21RuntimeConfig } from '../../src/game/sim/core/phase21-systems.js';
 import { createAbilityInstance } from '../../src/game/sim/ability/ability-system.js';
-import { createSnapshot } from '../../src/game/sim/snapshot/snapshot.js';
+import { createSnapshot, verifySnapshot } from '../../src/game/sim/snapshot/snapshot.js';
+import { restoreStreamsForResume } from '../../src/game/sim/snapshot/random-resume.js';
+import { RandomSession } from '../../src/game/sim/random/random-session.js';
+import { RollSlotRegistry } from '../../src/game/sim/random/roll-slot-registry.js';
 import {
   applyEventProgress, applyEventRecordProgress, createObjectiveCollection, evaluateSurvival,
   type EventRecordLike, type Objective,
@@ -27,7 +30,7 @@ import { asX100 } from '../../src/game/sim/geometry/x100.js';
 import { sequence } from '../../src/game/sim/core/primitives.js';
 
 /**
- * Phase 21 §8 objective differential fuzz. Two independent implementations of
+ * Phase 21 §8 objective differential fuzz. Independent implementations of
  * the same contract must agree:
  *
  * 1. Pure level: the kernel persists events as projections ({type, sourceId,
@@ -42,6 +45,11 @@ import { sequence } from '../../src/game/sim/core/primitives.js';
  *    must equal state.objectives after every tick. This catches seeding lag,
  *    exclusion drift, and projection loss — the bug classes that broke
  *    kill_regulars and snapshots earlier.
+ * 3. Resume level: the battle is snapshotted mid-fight, restored, and the
+ *    remainder must be byte-identical to the uninterrupted run (checksums,
+ *    objectives) and to a fresh oracle fold of the resumed event stream — so
+ *    the previousTickEvents/objectives projection can neither lose nor
+ *    duplicate objective progress across save/resume.
  */
 
 /** Deterministic 32-bit PRNG (mulberry32) for value generation. */
@@ -341,5 +349,83 @@ describe('P21 §8 differential fuzz — kernel vs independent oracle', () => {
     // The destroy_object objective completes exactly on the object's defeat.
     const destroy = run.state.objectives?.find((o) => o.id === 'obj_core');
     expect(destroy?.complete).toBe(true);
+  });
+
+  it('objectives survive snapshot resume byte-for-byte and keep matching a fresh oracle fold', { timeout: 120_000 }, () => {
+    const cfg: Phase21RuntimeConfig = Object.freeze({
+      bossPhaseDefinitions: defs,
+      waves,
+      spawnBodies: bodies,
+      bossObjects: Object.freeze([objectContent('obj_core', 'boss_slot_0', 500), objectContent('obj_ward', 'boss_slot_1', 500)]),
+      objectives,
+    });
+    const bossObjectIds = new Set(['obj_core', 'obj_ward']);
+    const seed = createObjectiveCollection(objectives);
+
+    // Uninterrupted reference: per-tick objectives + checksums.
+    const reference = new Map<number, { objectives: readonly Objective[]; checksum: string }>();
+    {
+      let current = buildBattle();
+      const random = randomSession();
+      let oracle = seed;
+      let prevEvents: readonly KernelEvent[] = Object.freeze([]);
+      for (let t = 0; t < 70; t++) {
+        oracle = oracleFold(oracle, prevEvents, 'boss_ash_unit', bossObjectIds, current.tick);
+        const r = stepBattle({ state: current, input, random, rules: {}, content: {}, systems: systems(cfg) });
+        current = r.state;
+        reference.set(current.tick, { objectives: createObjectiveCollection(current.objectives ?? []), checksum: createSnapshot(current).checksum });
+        prevEvents = r.events;
+        if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(current.phase.phase)) break;
+      }
+      // The battle runs well past the resume point (fireballs kill the boss
+      // objects/boss, never an early terminal).
+      expect(reference.size).toBeGreaterThan(30);
+    }
+
+    // Prefix to a mid-battle tick; snapshot + verify; resume with restored streams.
+    const resumeAt = 20;
+    let current = buildBattle();
+    const prefixRandom = randomSession();
+    let oracle = seed;
+    let prevEvents: readonly KernelEvent[] = Object.freeze([]);
+    for (let t = 0; t < 70 && current.tick < resumeAt; t++) {
+      oracle = oracleFold(oracle, prevEvents, 'boss_ash_unit', bossObjectIds, current.tick);
+      const r = stepBattle({ state: current, input, random: prefixRandom, rules: {}, content: {}, systems: systems(cfg) });
+      current = r.state;
+      prevEvents = r.events;
+    }
+    expect(current.tick).toBe(resumeAt);
+    const snap = createSnapshot(current);
+    expect(verifySnapshot(snap)).toBe(true);
+    const restoredStreams = restoreStreamsForResume(snap.authoritativeStreams, [1, 2, 3, 4] as never);
+
+    // The resumed kernel and the fresh oracle fold both continue from the same
+    // boundary state the prefix produced (deterministic ⇒ identical to the
+    // reference's boundary), so any divergence is a projection defect.
+    let resumed: BattleModel = snap;
+    const resumedRandom = new RandomSession(restoredStreams, new RollSlotRegistry([]), false);
+    let resumedOracle = oracle;
+    let resumedPrev = prevEvents;
+    let ticksCompared = 0;
+    for (let t = resumeAt; t < 70; t++) {
+      resumedOracle = oracleFold(resumedOracle, resumedPrev, 'boss_ash_unit', bossObjectIds, resumed.tick);
+      const r = stepBattle({ state: resumed, input, random: resumedRandom, rules: {}, content: {}, systems: systems(cfg) });
+      resumed = r.state;
+      const expected = reference.get(resumed.tick);
+      expect(expected, `tick ${String(resumed.tick)}`).toBeDefined();
+      if (expected === undefined) throw new Error(`uninterrupted trace missing tick ${String(resumed.tick)}`);
+      const asTuple = (os: readonly Objective[]) => os.map((o) => [o.id, o.progress, o.complete] as const);
+      const runtimeObjectives = createObjectiveCollection(resumed.objectives ?? []);
+      expect(asTuple(runtimeObjectives), `resumed kernel vs uninterrupted at tick ${String(resumed.tick)}`)
+        .toEqual(asTuple(expected.objectives));
+      expect(asTuple(runtimeObjectives), `resumed kernel vs fresh oracle at tick ${String(resumed.tick)}`)
+        .toEqual(asTuple(resumedOracle));
+      // Byte-identical resume: the full snapshot checksum matches the uninterrupted run.
+      expect(createSnapshot(resumed).checksum, `checksum at tick ${String(resumed.tick)}`).toBe(expected.checksum);
+      resumedPrev = r.events;
+      ticksCompared += 1;
+      if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(resumed.phase.phase)) break;
+    }
+    expect(ticksCompared).toBeGreaterThan(5);
   });
 });
