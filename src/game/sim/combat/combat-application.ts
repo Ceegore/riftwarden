@@ -207,7 +207,15 @@ export function createCombatApplicationSystem(config: CombatApplicationConfig = 
         }
         let nextLp = target.lp;
         if (application.kind === 'damage') {
-          const policy = config.bossObjectPolicies?.get(target.id);
+          // §4/§5 hard invulnerability: while the boss's committed invulnerable
+          // window is active (invulnerableUntilTick in the future), hits land
+          // but deal nothing — mirrors the §6 `immune` boss-object gate so the
+          // event stream stays deterministic (DamageApplied with zero delta).
+          const bp = context.state.bossPhase;
+          const bossInvulnerable = bp?.entityId === target.id
+            && bp.invulnerableUntilTick !== null
+            && context.state.tick < bp.invulnerableUntilTick;
+          const policy = bossInvulnerable ? 'immune' : config.bossObjectPolicies?.get(target.id);
           const result = applyDamagePipeline(target, shields, application, policy);
           shields = result.shields;
           for (const detail of result.consumption.perSource) {

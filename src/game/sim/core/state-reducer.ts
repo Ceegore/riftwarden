@@ -244,6 +244,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
       case 'apply_lp_delta': {
         requireEntity(entities, command.entityId);
         if (!Number.isSafeInteger(command.delta)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'lp-delta-not-integer', entityId: command.entityId, delta: command.delta });
+        if (bossPhase?.entityId === command.entityId && command.delta < 0 && bossPhase.invulnerableUntilTick !== null && args.atTick < bossPhase.invulnerableUntilTick) break; // §4/§5 boss invulnerable window
         // §9.3: the deadlock melee buff ends on the buffed unit's first hit.
         entities = entities.map((e) => {
           if (e.id !== command.entityId) return e;
@@ -285,8 +286,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   if (timeCollapseSinceTick !== undefined) extras['timeCollapseSinceTick'] = timeCollapseSinceTick; if (bossDamageDealt !== undefined) extras['bossDamageDealt'] = bossDamageDealt; if (forcedOutcome !== undefined) extras['forcedOutcome'] = forcedOutcome; if (statuses !== undefined) extras['statuses'] = statuses;
   if (pendingCleanses !== undefined) extras['pendingCleanses'] = pendingCleanses; if (abilities !== undefined) extras['abilities'] = abilities; if (plannedEffects !== undefined) extras['plannedEffects'] = plannedEffects;
   if (temporaryEntities !== undefined) extras['temporaryEntities'] = temporaryEntities; if (synergyTiers !== undefined) extras['synergyTiers'] = synergyTiers; if (bossPhase !== undefined) extras['bossPhase'] = bossPhase;
-  if (modifiers !== undefined) extras['modifiers'] = modifiers; if (hazards !== undefined) extras['hazards'] = hazards; if (objectives !== undefined) extras['objectives'] = objectives;
-  if (spawnedWaves !== undefined) extras['spawnedWaves'] = spawnedWaves;
+  if (modifiers !== undefined) extras['modifiers'] = modifiers; if (hazards !== undefined) extras['hazards'] = hazards; if (objectives !== undefined) extras['objectives'] = objectives; if (spawnedWaves !== undefined) extras['spawnedWaves'] = spawnedWaves;
   return Object.freeze({
     ...args.state,
     phase,
