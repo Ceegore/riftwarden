@@ -34,7 +34,8 @@ export const EncounterSourceSchema = z.object({
   enemySlots: z.array(z.object({ unitId: ContentIdSchema, lane: z.enum(["top","middle","bottom"]), depth: z.enum(["front","middle","back"]), eliteId: ContentIdSchema.nullable() }).strict()).min(1),
   modifierIds: z.array(ContentIdSchema),
   reinforcementWaves: z.array(z.object({ atSeconds: z.number().nonnegative(), encounterId: ContentIdSchema }).strict()),
-  objective: z.enum(["defeat_all", "survive", "defeat_boss"]),
+  /** §P21-T03: `protect_object` missions protect the linked boss objects (their `objectiveLink` names the derived objective). */
+  objective: z.enum(["defeat_all", "survive", "defeat_boss", "protect_object"]),
   /** §P21-T03: boss objects placed into the battle registry (damage/status/cleanup policies). */
   bossObjects: z.array(BossObjectSourceSchema).default([]),
   rewardTableId: ContentIdSchema,

@@ -1,4 +1,6 @@
 import { KernelInvariantError } from '../core/invariant-error.js';
+import type { Objective } from '../objectives/combat-objective.js';
+import { createObjectiveCollection } from '../objectives/combat-objective.js';
 import type { BossObjectContent, BossObjectSpec, DamagePolicy } from './boss-object-manager.js';
 import { validateBossObjectContent } from './boss-object-manager.js';
 
@@ -79,4 +81,51 @@ export function bossObjectPoliciesFromContent(entries: readonly ContentBossObjec
 /** Derives the stage-I status gate (ids whose statusPolicy is `block`). */
 export function blockedStatusTargetsFromContent(entries: readonly ContentBossObjectEntry[]): ReadonlySet<string> {
   return new Set(entries.filter((entry) => entry.statusPolicy === 'block').map((entry) => entry.entityId));
+}
+
+/** The encounter mission kinds the content schema can express (EncounterSourceSchema.objective). */
+export type EncounterObjectiveKind = 'defeat_all' | 'survive' | 'defeat_boss' | 'protect_object';
+
+/** The encounter content the objective derivation reads (EncounterSourceSchema fields). */
+export interface EncounterObjectiveSource {
+  readonly encounterId: string;
+  readonly objective: EncounterObjectiveKind;
+  readonly bossObjects: readonly ContentBossObjectEntry[];
+}
+
+const EMPTY_OBJECTIVES: readonly Objective[] = Object.freeze([]);
+
+/**
+ * §P21-T03: derives the sim objectives the encounter content itself mandates.
+ * Only `protect_object` is fully expressible in content: its protected targets
+ * are the boss objects whose `objectiveLink` names the derived objective, and
+ * each linked objective protects exactly one object (a shared link is a
+ * duplicate-id content error). The other mission kinds (defeat_all / survive /
+ * defeat_boss) are composed by the battle builder from enemy slots, wave tables
+ * and boss definitions — the encounter carries neither the kill counts,
+ * durations nor boss entity ids needed to derive them, so they are not
+ * invented here and the result stays frozen/validated via
+ * `createObjectiveCollection`.
+ */
+export function objectivesFromEncounterContent(source: EncounterObjectiveSource): readonly Objective[] {
+  if (source.objective !== 'protect_object') return EMPTY_OBJECTIVES;
+  const linked = source.bossObjects.filter(
+    (entry): entry is ContentBossObjectEntry & { readonly objectiveLink: string } => entry.objectiveLink !== null,
+  );
+  if (linked.length === 0) {
+    throw new KernelInvariantError('P21_OBJECTIVE_INVALID', {
+      reason: 'protect-object-without-linked-target',
+      encounterId: source.encounterId,
+    });
+  }
+  return createObjectiveCollection(linked.map((entry) =>
+    Object.freeze({
+      id: entry.objectiveLink,
+      kind: 'protect_object' as const,
+      targetId: entry.entityId,
+      required: 1,
+      progress: 0,
+      complete: false,
+    }),
+  ));
 }

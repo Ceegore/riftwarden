@@ -7,7 +7,7 @@ import { stepBattle } from '../../src/game/sim/core/battle-kernel.js';
 import { createPhase17Systems } from '../../src/game/sim/core/phase17-systems.js';
 import { createPhase21Systems } from '../../src/game/sim/core/phase21-systems.js';
 import { createSnapshot } from '../../src/game/sim/snapshot/snapshot.js';
-import { bossObjectsFromContent, bossObjectPoliciesFromContent, blockedStatusTargetsFromContent, type ContentBossObjectEntry } from '../../src/game/sim/boss/encounter-adapter.js';
+import { bossObjectsFromContent, bossObjectPoliciesFromContent, blockedStatusTargetsFromContent, objectivesFromEncounterContent, type ContentBossObjectEntry, type EncounterObjectiveSource } from '../../src/game/sim/boss/encounter-adapter.js';
 import { battle, entity, randomSession, tick } from './test-helpers.js';
 import { migrateEntity } from '../../src/game/sim/core/migrate.js';
 import type { TickInput } from '../../src/game/sim/core/tick-input.js';
@@ -36,6 +36,15 @@ function bossObjectEncounter(): { entries: readonly ContentBossObjectEntry[] } {
   return { entries: parsed.bossObjects };
 }
 
+function protectEncounterSource(): EncounterObjectiveSource {
+  const raw = readFileSync(path.join(here, '../../content/source/world/encounters.json'), 'utf8');
+  const envelope = JSON.parse(raw) as { entities: readonly { id?: string }[] };
+  const entity = envelope.entities.find((e) => e.id === 'encounter_fixture_protect_object');
+  expect(entity).toBeDefined();
+  const parsed = EncounterSourceSchema.parse(entity);
+  return { encounterId: parsed.id, objective: parsed.objective, bossObjects: parsed.bossObjects };
+}
+
 describe('P21 content boss-object adapter (§6)', () => {
   it('the content schema accepts the boss-object encounter and the adapter maps it 1:1', () => {
     const { entries } = bossObjectEncounter();
@@ -49,6 +58,99 @@ describe('P21 content boss-object adapter (§6)', () => {
     expect(bossObjects[1]?.spec.statusPolicy).toBe('block');
     expect(bossObjects[1]?.spec.cleanupPolicy).toBe('on_battle_end');
     expect(bossObjects[0]?.maxLp).toBe(800);
+  });
+
+  it('derives a protect_object objective from the linked boss object (1:1, frozen, validated)', () => {
+    const source = protectEncounterSource();
+    expect(source.objective).toBe('protect_object');
+    const objectives = objectivesFromEncounterContent(source);
+    expect(objectives).toEqual([
+      Object.freeze({ id: 'obj_protect_heart', kind: 'protect_object', targetId: 'obj_ash_heart', required: 1, progress: 0, complete: false }),
+    ]);
+    expect(Object.isFrozen(objectives)).toBe(true);
+    expect(Object.isFrozen(objectives[0])).toBe(true);
+  });
+
+  it('returns no objectives for mission kinds the encounter content cannot express', () => {
+    const base = protectEncounterSource();
+    for (const objective of ['defeat_all', 'survive', 'defeat_boss'] as const) {
+      expect(objectivesFromEncounterContent({ ...base, objective })).toEqual([]);
+    }
+  });
+
+  it('protect_object without any linked boss object is a content error', () => {
+    const source = protectEncounterSource();
+    const unlinked = source.bossObjects.map((entry) => ({ ...entry, objectiveLink: null }));
+    let caught: unknown = null;
+    try {
+      objectivesFromEncounterContent({ ...source, bossObjects: unlinked });
+    } catch (error) {
+      caught = error;
+    }
+    expect(caught).toBeInstanceOf(Error);
+    expect((caught as Error).message).toBe('P21_OBJECTIVE_INVALID');
+    expect((caught as { details?: { reason?: string } }).details?.reason).toBe('protect-object-without-linked-target');
+  });
+
+  it('two objects sharing one objective link is a duplicate-id content error', () => {
+    const source = protectEncounterSource();
+    const first = source.bossObjects[0];
+    expect(first).toBeDefined();
+    if (first === undefined) throw new Error('fixture missing linked boss object');
+    const duplicate = { ...first, entityId: 'obj_ash_heart_dupe', targetable: true };
+    let caught: unknown = null;
+    try {
+      objectivesFromEncounterContent({ ...source, bossObjects: [first, duplicate] });
+    } catch (error) {
+      caught = error;
+    }
+    expect(caught).toBeInstanceOf(Error);
+    expect((caught as Error).message).toBe('P21_OBJECTIVE_INVALID');
+    expect((caught as { details?: { reason?: string } }).details?.reason).toBe('duplicate-id');
+  });
+
+  it('the content-derived protect objective guards the object end-to-end (DEFEAT on destruction)', () => {
+    const source = protectEncounterSource();
+    const objectives = objectivesFromEncounterContent(source);
+    expect(objectives[0]?.kind).toBe('protect_object');
+    const bossObjects = bossObjectsFromContent(source.bossObjects);
+    const protectedObject = bossObjects[0];
+    expect(protectedObject).toBeDefined();
+    if (protectedObject === undefined) throw new Error('fixture missing boss object');
+    const protectedId = protectedObject.entityId;
+    const body = buildBossObjectBody(protectedObject, tick(0));
+    const temp = buildBossObject(protectedObject.spec, protectedObject.entityId, protectedObject.side, protectedObject.ownerId, protectedObject.sourceId, 0, 0);
+    const state = battle({
+      simulationVersion: 'phase21-protect-fixture-v1',
+      entities: Object.freeze([
+        migrateEntity({ entity: entity('unit_p', { side: 'player', lane: 'middle', x100: 1800, maxLp: 1000, lp: 1000 }), radiusX100: 100 }),
+        body,
+      ]),
+      temporaryEntities: Object.freeze([temp]),
+      pendingCombatApplications: Object.freeze([
+        Object.freeze({ kind: 'damage', sourceId: 'unit_enemy_attacker', targetId: protectedId, effectId: 'ef_kill', attackInstanceId: 1, effectIndex: 0, rawAmount: 1000, damageTypeOrdinal: 0, defense: 0, coverReductionBps: 0, bossCapBps: null }),
+      ]),
+      objectives,
+    });
+    const systems = Object.freeze([
+      ...createPhase17Systems({ speedsX100PerSecond: {}, bossObjectPolicies: bossObjectPoliciesFromContent(source.bossObjects) }),
+      ...createPhase21Systems({ objectives, bossObjects }),
+    ]);
+    const random = randomSession();
+    let current = state;
+    let terminal: { phase: string; endReason: string | null } | null = null;
+    for (let i = 0; i < 20 && terminal === null; i++) {
+      const r = stepBattle({ state: current, input, random, rules: {}, content: {}, systems });
+      current = r.state;
+      if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(current.phase.phase)) {
+        terminal = { phase: current.phase.phase, endReason: current.endReason };
+      }
+    }
+    expect(terminal).not.toBeNull();
+    expect(terminal?.phase).toBe('DEFEAT');
+    expect(terminal?.endReason).toBe('protect_object_failed');
+    const terminalObjective = current.objectives?.find((o) => o.id === 'obj_protect_heart');
+    expect(terminalObjective?.complete).toBe(false);
   });
 
   it('derives the damage-policy map and the blocked status set', () => {

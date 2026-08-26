@@ -25,6 +25,46 @@
       ]
     },
     {
+      "id": "encounter_fixture_protect_object",
+      "regionId": "region_fixture",
+      "kind": "boss",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [],
+      "reinforcementWaves": [],
+      "objective": "protect_object",
+      "bossObjects": [
+        {
+          "entityId": "obj_ash_heart",
+          "side": "player",
+          "ownerId": "player_garrison",
+          "sourceId": "content_ash",
+          "slotId": "boss_slot_0",
+          "lane": "middle",
+          "x100": 5000,
+          "targetable": true,
+          "objectiveLink": "obj_protect_heart",
+          "damagePolicy": "normal",
+          "statusPolicy": "allow",
+          "cleanupPolicy": "on_battle_end",
+          "fallback": "FAIL",
+          "maxLp": 500,
+          "radiusX100": 110
+        }
+      ],
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_protect_object.preview",
+      "allowedModes": [
+        "campaign"
+      ]
+    },
+    {
       "id": "encounter_fixture_boss_object",
       "regionId": "region_fixture",
       "kind": "boss",

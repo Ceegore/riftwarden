@@ -162,7 +162,7 @@ export const ENTITY_SCHEMAS = Object.freeze({
     enemySlots: z.array(EnemySlot).min(1),
     modifierIds: z.array(ContentId),
     reinforcementWaves: z.array(ReinforcementWave),
-    objective: z.enum(["defeat_all", "survive", "defeat_boss"]),
+    objective: z.enum(["defeat_all", "survive", "defeat_boss", "protect_object"]),
     bossObjects: z.array(z.object({
       entityId: ContentId,
       side: z.enum(["player", "enemy"]),

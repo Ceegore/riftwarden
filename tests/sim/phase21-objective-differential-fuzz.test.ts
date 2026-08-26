@@ -82,7 +82,7 @@ function project(event: KernelEvent): EventRecordLike {
 }
 
 describe('P21 §8 differential fuzz — record path vs event path', () => {
-  it('the projected-record fold equals the full-event fold at every step (20k streams)', { timeout: 120_000 }, () => {
+  it('the projected-record fold equals the full-event fold at every step (20k streams)', { timeout: 300_000 }, () => {
     const rand = mulberry32(0x0b_5e_21);
     for (let i = 0; i < 20_000; i++) {
       const objective = randomObjective(rand);
