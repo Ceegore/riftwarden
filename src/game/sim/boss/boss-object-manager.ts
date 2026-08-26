@@ -1,6 +1,10 @@
 import { KernelInvariantError } from '../core/invariant-error.js';
 import { asciiCompare } from '../core/primitives.js';
-import { asX100, LANES, type Lane } from '../geometry/x100.js';
+import type { KernelEntity } from '../core/entity.js';
+import type { KernelSystem, TickContext } from '../core/tick-context.js';
+import type { KernelEventInput } from '../events/event-types.js';
+import { asFieldX100, LANES, type Lane } from '../geometry/x100.js';
+import { TemporaryRegistry } from '../summon/temporary-registry.js';
 import type { TempEntity, TempSide } from '../summon/temporary-entity.js';
 
 /**
@@ -47,10 +51,31 @@ export interface BossObjectPlacement {
   readonly diagnostic: string | null;
 }
 
+/** Content entry: one encounter boss object, resolved to a registry record (§6). */
+export interface BossObjectContent {
+  readonly entityId: string;
+  readonly side: TempSide;
+  readonly ownerId: string;
+  readonly sourceId: string;
+  readonly spec: BossObjectSpec;
+  /** Combat-body stats: the placed object is also a targetable kernel entity. */
+  readonly maxLp: number;
+  readonly radiusX100: number;
+}
+
+import { validateBossObjectContent, buildBossObjectBody, bossObjectDamageAmount, bossObjectHpDelta } from './boss-object-combat.js';
+export { validateBossObjectContent, buildBossObjectBody, bossObjectDamageAmount, bossObjectHpDelta };
+
+
 const ID = /^[a-z][a-z0-9_]*$/;
 
 function assertId(value: string, field: string): void {
   if (!ID.test(value)) throw new KernelInvariantError('P21_OBJECT_INVALID', { field, value });
+}
+
+/** Validates a boss-object id format (mirrors ContentIdSchema, §6). */
+export function assertBossObjectId(value: string, field: string): void {
+  assertId(value, field);
 }
 
 /** Validates a boss-object slot specification (§6). */
@@ -59,7 +84,7 @@ export function validateBossObjectSpec(spec: BossObjectSpec): void {
     throw new KernelInvariantError('P21_OBJECT_INVALID', { field: 'slotId', slotId: spec.slotId });
   }
   if (!(LANES as readonly string[]).includes(spec.lane)) throw new KernelInvariantError('P21_OBJECT_INVALID', { field: 'lane', lane: spec.lane });
-  asX100(spec.x100);
+  asFieldX100(spec.x100); // slot x100 is a field position: must be 0..10000 (§6)
   if (typeof spec.targetable !== 'boolean') throw new KernelInvariantError('P21_OBJECT_INVALID', { field: 'targetable' });
   if (spec.objectiveLink !== null) assertId(spec.objectiveLink, 'objectiveLink');
   if (!(DAMAGE_POLICIES as readonly string[]).includes(spec.damagePolicy)) throw new KernelInvariantError('P21_OBJECT_INVALID', { field: 'damagePolicy', damagePolicy: spec.damagePolicy });
@@ -115,4 +140,115 @@ export function placeBossObject(spec: BossObjectSpec, entity: TempEntity, occupi
 /** Canonical order for boss-object specs: slot id code-unit compare (§6 stable slots). */
 export function compareBossObjectSpecs(a: BossObjectSpec, b: BossObjectSpec): number {
   return asciiCompare(a.slotId, b.slotId);
+}
+
+function cleanupEvent(entity: TempEntity): KernelEventInput {
+  return Object.freeze({
+    type: 'Removed',
+    sourceId: entity.ownerId,
+    targetIds: Object.freeze([entity.id]),
+    contentIds: Object.freeze([entity.sourceId]),
+    payload: Object.freeze({}),
+    logTags: Object.freeze(['sim.phase21']),
+  });
+}
+
+/**
+ * §6 stage-K cleanup system. Implements the boss-object cleanup lifecycle:
+ * - `on_objective`: the registry entry (and its combat body, if still ACTIVE)
+ *   is removed once the linked objective completes;
+ * - `on_battle_end`: removed as soon as the battle enters its ending phase
+ *   (RESOLVING_END or a terminal outcome — every end path passes through
+ *   RESOLVING_END, so the final terminal snapshot is clean);
+ * - `manual`: never auto-removed.
+ * Each removal emits the canonical `Removed` event (owner source, object
+ * target) and re-publishes the registry. Content config is static and
+ * re-supplied on resume, matching the wave/spawn hooks.
+ */
+export function createBossObjectCleanupSystem(config: { readonly bossObjects?: readonly BossObjectContent[] } = {}): KernelSystem {
+  return Object.freeze({
+    id: 'boss.object.k2.cleanup',
+    stage: 'K' as const,
+    run(context: TickContext): void {
+      const entries = config.bossObjects;
+      if (entries === undefined || entries.length === 0) return;
+      const registry = TemporaryRegistry.restore(context.state.temporaryEntities ?? Object.freeze([]));
+      const objectives = new Map((context.state.objectives ?? Object.freeze([])).map((o) => [o.id, o] as const));
+      const phase = context.state.phase.phase;
+      const battleEnding = phase === 'RESOLVING_END' || phase === 'VICTORY' || phase === 'DEFEAT' || phase === 'DRAW_ABORT';
+      const removed: TempEntity[] = [];
+      for (const entry of entries) {
+        const entity = registry.get(entry.entityId);
+        if (entity === undefined) continue; // never placed / already removed
+        const spec = entry.spec;
+        if (spec.cleanupPolicy === 'manual') continue;
+        if (spec.cleanupPolicy === 'on_battle_end' && battleEnding) {
+          removed.push(entity);
+          continue;
+        }
+        if (spec.cleanupPolicy === 'on_objective' && spec.objectiveLink !== null) {
+          const objective = objectives.get(spec.objectiveLink);
+          if (objective?.complete === true) removed.push(entity);
+        }
+      }
+      if (removed.length === 0) return;
+      const existingIds = new Set(context.state.entities.map((e) => e.id));
+      for (const entity of removed) {
+        registry.remove(entity.id);
+        context.commands.push({ kind: 'append_event', event: cleanupEvent(entity) });
+        // The combat body follows the registry entry: a cleaned object never
+        // lingers as an attackable ACTIVE body.
+        if (existingIds.has(entity.id)) context.commands.push({ kind: 'remove_entity', entityId: entity.id });
+      }
+      context.commands.push({ kind: 'set_temporary_entities', entities: registry.snapshot() });
+    },
+  });
+}
+
+/**
+ * §6 stage-K placement system. Commits content-defined boss objects into the
+ * temporary registry once at battle start (state tick 0, canonical slot order);
+ * a resumed battle already carries its placed objects in the restored registry
+ * and the system is a no-op on later ticks. Occupied slots follow only the
+ * spec's fallback (BLOCKED/DEFERRED, stable P21_OBJECT_SLOT_BLOCKED
+ * diagnostic) — never silent stacking, never improvised placement.
+ */
+export function createBossObjectPlacementSystem(config: { readonly bossObjects?: readonly BossObjectContent[] } = {}): KernelSystem {
+  return Object.freeze({
+    id: 'boss.object.k1.place',
+    stage: 'K' as const,
+    run(context: TickContext): void {
+      const entries = config.bossObjects;
+      if (entries === undefined || entries.length === 0) return;
+      const seen = new Set<string>();
+      for (const entry of entries) {
+        validateBossObjectContent(entry);
+        if (seen.has(entry.entityId)) throw new KernelInvariantError('P21_OBJECT_INVALID', { reason: 'duplicate-entry-id', entityId: entry.entityId });
+        seen.add(entry.entityId);
+      }
+      if (context.state.tick !== 0) return; // placed once at battle start (§6)
+      const existingIds = new Set(context.state.entities.map((e) => e.id));
+      const registry = TemporaryRegistry.restore(context.state.temporaryEntities ?? Object.freeze([]));
+      const ordered = [...entries].sort((a, b) => compareBossObjectSpecs(a.spec, b.spec));
+      const placedEntities: TempEntity[] = [];
+      const placedBodies: KernelEntity[] = [];
+      ordered.forEach((entry, index) => {
+        if (registry.has(entry.entityId) || existingIds.has(entry.entityId)) return; // already committed/resumed
+        const entity = buildBossObject(entry.spec, entry.entityId, entry.side, entry.ownerId, entry.sourceId, context.state.tick, index);
+        const result = placeBossObject(entry.spec, entity, registry.slotOccupied(entry.side, entry.spec.slotId));
+        if (result.kind === 'PLACED') {
+          placedEntities.push(entity);
+          // §6 combat body: the placed object is a targetable kernel entity.
+          const body = buildBossObjectBody(entry, context.state.tick);
+          existingIds.add(body.id);
+          placedBodies.push(body);
+        }
+        // BLOCKED/DEFERRED: no placement; the fallback contract is the
+        // diagnostic, never a silent replacement. (§6)
+      });
+      for (const placed of placedEntities) registry.add(placed);
+      if (placedEntities.length > 0) context.commands.push({ kind: 'set_temporary_entities', entities: registry.snapshot() });
+      for (const body of placedBodies) context.commands.push({ kind: 'spawn_entity', entity: body });
+    },
+  });
 }

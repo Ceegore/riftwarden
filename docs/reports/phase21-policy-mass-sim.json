@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "gate": "G21-POLICY",
+  "sourceRevision": null,
+  "runtime": {
+    "node": "v25.8.0",
+    "platform": "win32",
+    "arch": "x64"
+  },
+  "battles": 2001,
+  "groups": 3,
+  "ticksPerBattle": 12,
+  "comboCount": 18,
+  "mode": "phase21-policy-corpus",
+  "perGroupHashes": {
+    "group_0": "5d31de125a06e4d84b5ea511169119c991407a4860b15df52f754fc3bcf81b52",
+    "group_1": "e57a8386b2fdaf4182ae8ba8d5d375758b2511bc8ef9167737a063eddffb64f5",
+    "group_2": "764e6dfd01c23e13218ed8b2a9ddbe65604d0335cd6b298c6375821d7a11aa26"
+  },
+  "hashDrift": 0,
+  "gateViolations": 0,
+  "gateStats": {
+    "normalDropped": 667,
+    "immuneDropped": 0,
+    "shieldOnlyDropped": 0,
+    "allowTicked": 6003,
+    "blockTicked": 0
+  },
+  "byCombo": {
+    "normal/allow/on_objective": {
+      "count": 667,
+      "directReachedHp": 667,
+      "ticked": 667
+    },
+    "normal/allow/on_battle_end": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 667
+    },
+    "normal/allow/manual": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 667
+    },
+    "normal/block/on_objective": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 0
+    },
+    "normal/block/on_battle_end": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 0
+    },
+    "normal/block/manual": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 0
+    },
+    "immune/allow/on_objective": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 667
+    },
+    "immune/allow/on_battle_end": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 667
+    },
+    "immune/allow/manual": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 667
+    },
+    "immune/block/on_objective": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 0
+    },
+    "immune/block/on_battle_end": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 0
+    },
+    "immune/block/manual": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 0
+    },
+    "shield_only/allow/on_objective": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 667
+    },
+    "shield_only/allow/on_battle_end": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 667
+    },
+    "shield_only/allow/manual": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 667
+    },
+    "shield_only/block/on_objective": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 0
+    },
+    "shield_only/block/on_battle_end": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 0
+    },
+    "shield_only/block/manual": {
+      "count": 667,
+      "directReachedHp": 0,
+      "ticked": 0
+    }
+  },
+  "status": "PASS"
+}

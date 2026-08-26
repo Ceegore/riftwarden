@@ -64,6 +64,9 @@ export function validateObjective(o: Objective): void {
 /** §8 monotonic progress application: never decreases, never overshoots. */
 export function applyProgress(o: Objective, delta: number): Objective {
   if (o.complete || delta <= 0) return o;
+  if (!Number.isSafeInteger(delta)) {
+    throw new KernelInvariantError('P21_OBJECTIVE_INVALID', { field: 'delta', delta });
+  }
   const progress = Math.min(o.required, o.progress + delta);
   return Object.freeze({ ...o, progress, complete: progress >= o.required });
 }

@@ -1,6 +1,7 @@
 import { asX100, laneOrdinal, type Lane } from '../geometry/x100.js';
+import { FRONT_DEADLOCK_TICKS } from '../../rules/mechanic-rules.js';
 
-export const FRONT_DEADLOCK_TICKS = 60;
+export { FRONT_DEADLOCK_TICKS };
 export const DEADLOCK_MELEE_BONUS_X100 = asX100(50);
 
 export interface DeadlockCandidate {

@@ -68,6 +68,8 @@ function emitLifecycleEvent(context: TickContext, event: AbilityEvent, instance:
       context.commands.push({ kind: 'append_event', event: abilityEventInput('AbilityInterrupted', sourceId, [], contentIds, { remainingChargeTicks: instance.chargeTicks }) });
       break;
     case 'rejected':
+      context.commands.push({ kind: 'append_event', event: abilityEventInput('AbilityRejected', sourceId, [], contentIds, { reasonOrdinal: abilityRejectOrdinal('not_ready') }) });
+      break;
     case 'exhausted':
       context.commands.push({ kind: 'append_event', event: abilityEventInput('AbilityRejected', sourceId, [], contentIds, { reasonOrdinal: abilityRejectOrdinal('exhausted') }) });
       break;

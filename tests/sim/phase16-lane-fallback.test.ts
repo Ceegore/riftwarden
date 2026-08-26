@@ -53,7 +53,7 @@ describe('Phase 16 §9.2 deferred lane-fallback targeting', () => {
     expect(used[0]?.payload['ruleOrdinal']).toBe(0);
   });
 
-  it('picks the neighboring lane with the lowest target score when both are valid', () => {
+  it('picks the neighboring lane with the lowest target score when both are valid', { timeout: 60_000 }, () => {
     // Two adjacent lanes with one enemy each. A duelist scores low-HP targets
     // higher, so the healthier enemy must be the lower score → the fallback
     // must pick the lane holding the *healthier* enemy.

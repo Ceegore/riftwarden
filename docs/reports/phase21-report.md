@@ -57,12 +57,16 @@
   objective-resolution systems use functional ids (`boss.l1.*`,
   `objective.l1.*`) so they sort BEFORE `phase17.l1.battle_end`, satisfying §8's
   "objective evaluation before the generic end resolver".
-- Boundary (documented, not a defect): reinforcement spawn bodies and
-  boss-object combat bodies remain content ports (§9 steps 4–6 deferral, same
-  as Phase 20 summons); the wave cursor and boss-object registry — the §8/§6
-  authorities — are fully wired. `kill_regulars` progress derives from the
-  canonical event log with a one-tick lag (defeats register the tick after),
-  matching the Phase 19 trigger-history pattern.
+- Reinforcement content port completed: `createReinforcementSystem` now
+  accepts a content `spawnBodies` resolver — when wired, due waves spawn real
+  combat bodies in the wave's fixed order and count as §9.4 qualifying
+  progress; without it the original deferral (cursor + events only) is
+  preserved and pinned. Boss-object combat bodies remain a content port
+  (§9 steps 4–6 deferral, same as Phase 20 summons); the wave cursor and
+  boss-object registry — the §8/§6 authorities — are fully wired.
+  `kill_regulars` progress derives from the canonical event log with a
+  one-tick lag (defeats register the tick after), matching the Phase 19
+  trigger-history pattern.
 - No open P0/P1.
 
 ## F. Gate G21

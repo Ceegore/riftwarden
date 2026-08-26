@@ -38,12 +38,15 @@ const anchorHandler: NodeHandler = {
       return null;
     }
     if (request.action === 'SERVICE') {
-      return state.gold < ANCHOR_SERVICE_COST_GOLD ? 'INSUFFICIENT_GOLD' : null;
+      if (state.gold < ANCHOR_SERVICE_COST_GOLD) return 'INSUFFICIENT_GOLD';
+      // Same floor rule as the merchant service: refuse a reduction the run
+      // cannot use instead of crashing with NEGATIVE_RESOURCE.
+      return state.instability < ANCHOR_SERVICE_INSTABILITY_REDUCTION ? 'OPTION_UNAVAILABLE' : null;
     }
     throw new ExpeditionError('UNKNOWN_ACTION', { nodeId: definition.nodeId, action: request.action });
   },
   commit(definition, request, state) {
-    if (request.action === 'ENTER') return applyOutcomeCommands(state, enterCommands(definition));
+    if (request.action === 'ENTER') return applyOutcomeCommands(state, enterCommands(definition, state));
     if (request.action === 'SECURE') {
       const commands = secureCommands(state);
       return commands.length === 0 ? { state, outcomeIds: [] } : applyOutcomeCommands(state, commands);
@@ -78,7 +81,7 @@ const storyHandler: NodeHandler = {
     throw new ExpeditionError('UNKNOWN_ACTION', { nodeId: definition.nodeId, action: request.action });
   },
   commit(definition, request, state) {
-    if (request.action === 'ENTER') return applyOutcomeCommands(state, enterCommands(definition));
+    if (request.action === 'ENTER') return applyOutcomeCommands(state, enterCommands(definition, state));
     return { state, outcomeIds: [] };
   },
 };

@@ -100,6 +100,28 @@ test('dataset-specific value is not false positive', () => {
   assert.deepEqual(auditTree(d, { entries: [] }), []);
 });
 
+test('comment-only lines and trailing comments are not flagged', () => {
+  const d = mkdtempSync(join(tmpdir(), 'p11-'));
+  mkdirSync(join(d, 'src'));
+  // Doc prose mentions rule literals; executable code carries none.
+  writeFileSync(join(d, 'src', 'battle.ts'), [
+    '/** §8: relic limits are 6 (NORMAL) / 8 (ASCENSION); 30-tick cadence. */',
+    '// 5400-tick hard limit documented here.',
+    'export const softLimitTicks = 2700; // trailing comment: 3600 boss limit',
+    'export const hardLimitTicks = 5400;',
+    ''
+  ].join('\n'));
+  const res = auditTree(d, { entries: [] });
+  const paths = res.map((x) => x.path);
+  assert.ok(!paths.some((p) => p.endsWith(':1')), 'JSDoc prose must not flag');
+  assert.ok(!paths.some((p) => p.endsWith(':2')), 'line comment prose must not flag');
+  const line3 = res.filter((x) => x.path.endsWith(':3')).map((x) => x.message);
+  assert.ok(line3.includes('hard rule literal 2700'), 'executable literal on the line must flag');
+  assert.ok(!line3.includes('hard rule literal 3600'), 'trailing comment literal must not flag');
+  const line4 = res.filter((x) => x.path.endsWith(':4')).map((x) => x.message);
+  assert.ok(line4.includes('hard rule literal 5400'), 'real executable literal must still flag');
+});
+
 test('underscore-separated rule literal is detected', () => {
   const d = mkdtempSync(join(tmpdir(), 'p11-'));
   mkdirSync(join(d, 'src'));
@@ -137,6 +159,27 @@ test('exact allowlist suppresses finding', () => {
     entries: [{ path: 'src/battle.ts', literal: 7, lineSha256: lineSha256(line), helperTraceId: 'P11-TEMP', owner: 'qa', reason: 'temporary compatibility exception', expiresOn: '9999-12-31' }]
   };
   assert.deepEqual(auditTree(d, allow), []);
+});
+
+test('string literals carry no rule values and are not flagged', () => {
+  const d = mkdtempSync(join(tmpdir(), 'p11-'));
+  mkdirSync(join(d, 'src'));
+  // Rule keywords/literals inside string literals are data (perk keys, authored
+  // seconds), not executable rule values — like comments they must not flag.
+  writeFileSync(join(d, 'src', 'battle.ts'), [
+    "export const rows = [",
+    "  { level: 3, perkKeys: ['ascension.perk.relic_slot'] },",
+    "  { label: '0.45s attack interval' },",
+    "];",
+    "export const softLimitTicks = 2700;",
+    ''
+  ].join('\n'));
+  const res = auditTree(d, { entries: [] });
+  const paths = res.map((x) => x.path);
+  assert.ok(!paths.some((p) => p.endsWith(':2')), 'relic keyword inside string must not flag');
+  assert.ok(!paths.some((p) => p.endsWith(':3')), '45 inside string must not flag');
+  const line5 = res.filter((x) => x.path.endsWith(':5')).map((x) => x.message);
+  assert.ok(line5.includes('hard rule literal 2700'), 'real executable literal must still flag');
 });
 
 test('allowlist entry without owner or reason blocks with P11_ALLOWLIST_INVALID', () => {

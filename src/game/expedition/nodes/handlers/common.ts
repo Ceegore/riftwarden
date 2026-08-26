@@ -8,10 +8,21 @@ import { definitionOf } from '../../node-registry.js';
 import { ExpeditionError } from '../../expedition-error.js';
 import type { NodeDefinition, NodePreviewData, NodeRunState, OutcomeCommand, RewardSnapshot } from '../types.js';
 
-/** ENTER applies the registry default delta; reload never re-applies it. */
-export function enterCommands(definition: NodeDefinition): readonly OutcomeCommand[] {
+/**
+ * ENTER applies the registry default delta; reload never re-applies it.
+ * A negative default (anchor rest) clamps at zero — instability is bounded
+ * below at 0, so entering the anchor at instability < 10 reduces to 0
+ * instead of throwing NEGATIVE_RESOURCE on a legitimate game action.
+ */
+export function enterCommands(definition: NodeDefinition, state?: NodeRunState): readonly OutcomeCommand[] {
   const delta = definitionOf(definition.type).defaultInstabilityDelta;
-  return delta === 0 ? [] : [{ kind: 'INSTABILITY_DELTA', amount: delta }];
+  if (delta === 0) return [];
+  if (delta < 0 && state !== undefined) {
+    const applied = Math.max(0, state.instability + delta);
+    if (applied === state.instability) return [];
+    return [{ kind: 'INSTABILITY_DELTA', amount: applied - state.instability }];
+  }
+  return [{ kind: 'INSTABILITY_DELTA', amount: delta }];
 }
 
 export function assertVisitOpen(state: NodeRunState, nodeId: string): void {

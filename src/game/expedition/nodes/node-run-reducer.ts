@@ -119,7 +119,7 @@ export function applyGoldDelta(state: NodeRunState, amount: number): NodeRunStat
 
 export function applyInstabilityDelta(state: NodeRunState, amount: number): NodeRunState {
   const next = state.instability + amount;
-  if (next < 0) throw new ExpeditionError('NEGATIVE_RESOURCE', { key: 'instability', amount, next });
+  if (!Number.isSafeInteger(next) || next < 0) throw new ExpeditionError('NEGATIVE_RESOURCE', { key: 'instability', amount, next });
   return { ...state, revision: state.revision + 1, instability: next };
 }
 

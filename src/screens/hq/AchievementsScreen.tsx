@@ -4,6 +4,7 @@
  */
 import { useMemo, type JSX } from 'react';
 import { Button } from '../../ui/components/Button.js';
+import { roundPercent } from '../../ui/format/rounding.js';
 import { GameCard } from '../../ui/components/GameCard.js';
 import { StatRow } from '../../ui/components/StatRow.js';
 import { ScreenFrame } from '../../ui/layout/ScreenFrame.js';
@@ -57,7 +58,7 @@ export function AchievementsScreen({ onBack }: AchievementsScreenProps): JSX.Ele
               <h2>{CATEGORY_LABELS[cat]} ({earned}/{defs.length})</h2>
               {defs.map((def) => {
                 const prog = state.achievements[def.id];
-                const pct = prog ? Math.min(100, Math.round((prog.current / def.target) * 100)) : 0;
+                const pct = prog ? Math.min(100, roundPercent(prog.current / def.target)) : 0;
                 return (
                   <GameCard
                     key={def.id}

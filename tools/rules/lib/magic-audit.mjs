@@ -27,11 +27,25 @@ function entryInvalid(e) {
 // max_units keep their underscores because only digit-to-digit separators are
 // removed, and the preceding word-boundary check keeps type names out.
 const normalizeDigits = (line) => line.replace(/(\d)_(?=\d)/g, '$1');
+// Comments and string literals carry no executable rule values, so
+// documentation prose and data strings must not produce
+// P11_MAGIC_VALUE_DUPLICATE findings. Full-line comments (//, /*, *) are
+// dropped entirely; trailing comment segments and quoted string contents are
+// stripped from code lines. The allowlist hash below still covers the
+// original source line so existing entries stay byte-stable.
+const stripComments = (line) => {
+  const trimmed = line.trimStart();
+  if (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('/*')) return '';
+  return line
+    .replace(/\/\*[\s\S]*?\*\//g, ' ')
+    .replace(/\/\/.*$/, '')
+    .replace(/'(?:[^'\\\n]|\\.)*'|"(?:[^"\\\n]|\\.)*"/g, ' ');
+};
 export function auditTree(root,allowlist={entries:[]}) {
  const diagnostics=[]; const now=new Date().toISOString().slice(0,10);
  for(const file of walk(root)) { const rel=relative(root,file).replaceAll('\\','/'); if(allowedPath.test(rel))continue;
   const lines=readFileSync(file,'utf8').split(/\r?\n/);
-  lines.forEach((line,i)=>{ if(!semantics.test(line))return; const normalized=normalizeDigits(line); for(const literal of literals){const rx=new RegExp(`(?<![A-Za-z0-9_])${literal}(?![\\d])`);if(!rx.test(normalized))continue;
+  lines.forEach((line,i)=>{ const code=stripComments(line); if(!semantics.test(code))return; const normalized=normalizeDigits(code); for(const literal of literals){const rx=new RegExp(`(?<![A-Za-z0-9_])${literal}(?![\\d])`);if(!rx.test(normalized))continue;
    const hash=lineSha256(line); const matching=(allowlist.entries??[]).filter(e=>e.path===rel&&e.literal===literal&&e.lineSha256===hash);
    const invalid=matching.find(entryInvalid);
    if (invalid) {

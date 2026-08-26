@@ -9,9 +9,9 @@
  * storage) run through the Phase 31 transaction framework, never here.
  */
 import type { NodeRunState, OutcomeCommand } from './nodes/types.js';
+import { RELIC_LIMIT_NORMAL, RELIC_LIMIT_ASCENSION } from '../rules/mechanic-rules.js';
 
-export const RELIC_LIMIT_NORMAL = 6;
-export const RELIC_LIMIT_ASCENSION = 8;
+export { RELIC_LIMIT_NORMAL, RELIC_LIMIT_ASCENSION };
 export const RETREAT_LATE_GOLD_KEEP_PERMILLE = 800;
 export const DEFEAT_GOLD_KEEP_PERMILLE = 600;
 export const DUPLICATE_CONVERSION_PERMILLE = 450;

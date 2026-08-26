@@ -4,8 +4,20 @@
   "contentRevision": "33.0",
   "defaultMission": "mission_tutorial",
   "missions": {
-    "mission_tutorial": { "difficulty": "easy", "goldMultiplier": 1.0, "instabilityRate": 1.0 },
-    "mission_woodlands": { "difficulty": "medium", "goldMultiplier": 1.2, "instabilityRate": 1.0 },
-    "mission_depths": { "difficulty": "hard", "goldMultiplier": 1.5, "instabilityRate": 1.3 }
+    "mission_tutorial": {
+      "difficulty": "easy",
+      "goldMultiplier": 1,
+      "instabilityRate": 1
+    },
+    "mission_woodlands": {
+      "difficulty": "medium",
+      "goldMultiplier": 1.2,
+      "instabilityRate": 1
+    },
+    "mission_depths": {
+      "difficulty": "hard",
+      "goldMultiplier": 1.5,
+      "instabilityRate": 1.3
+    }
   }
 }

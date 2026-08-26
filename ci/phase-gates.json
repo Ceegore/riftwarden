@@ -145,6 +145,12 @@
       "ownerPhase": 17,
       "requiredFromPhase": 17,
       "command": "pnpm test:phase17 && pnpm phase17:validate-readiness"
+    },
+    {
+      "id": "crossruntime-gates",
+      "ownerPhase": 14,
+      "requiredFromPhase": 14,
+      "command": "pnpm sim:crossruntime:browsers"
     }
   ]
 }

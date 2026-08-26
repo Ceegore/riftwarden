@@ -106,7 +106,7 @@ function makeCombatHandler(
     },
     commit(definition, request, state) {
       if (request.action === 'ENTER') {
-        return applyOutcomeCommands(state, enterCommands(definition));
+        return applyOutcomeCommands(state, enterCommands(definition, state));
       }
       const snapshot = materializeReward(state, definition, rewardCount);
       if (request.action === 'ENGAGE') {

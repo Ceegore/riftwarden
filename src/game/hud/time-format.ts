@@ -1,3 +1,4 @@
+import { roundToTenths } from '../../ui/format/rounding.js';
 import { HudError } from './hud-error.js';
 
 /**
@@ -16,5 +17,5 @@ export function remainingSeconds(currentTick: number, dueTick: number, tickRate:
 
 /** Tenth-of-a-second display rounding (bounded error for tick rates >= 5). */
 export function formatTenths(seconds: number): number {
-  return Math.round(seconds * 10) / 10;
+  return roundToTenths(seconds);
 }

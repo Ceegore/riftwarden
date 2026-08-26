@@ -43,6 +43,13 @@ export interface PeriodicEffectConfig {
 export interface StatusSystemConfig {
   /** §7.2 content-supplied per-tick coefficients keyed by `dedupKey`. */
   readonly periodic?: Readonly<Record<string, PeriodicEffectConfig>>;
+  /**
+   * §6 boss-object status gate: entity ids whose status policy is `block`.
+   * Statuses must never land on these objects — the system silently drops any
+   * instance targeting a blocked id before the periodic/expiry pass, so a
+   * blocked status never ticks and never emits. Absent → no gate.
+   */
+  readonly blockedStatusTargets?: ReadonlySet<string>;
 }
 
 const EMPTY: StatusCollection = Object.freeze([]);
@@ -65,8 +72,20 @@ export function createStatusSystem(config: StatusSystemConfig = {}): KernelSyste
     id: 'phase18.i1.status',
     stage: 'I' as const,
     run(context: TickContext): void {
-      const statuses: StatusCollection = context.state.statuses ?? EMPTY;
+      let statuses: StatusCollection = context.state.statuses ?? EMPTY;
       if (statuses.length === 0) return;
+      // §6 boss-object status gate: instances targeting a blocked object are
+      // dropped silently before any processing — they never tick, never emit
+      // and never appear in the canonical collection.
+      const blocked = config.blockedStatusTargets;
+      if (blocked !== undefined && blocked.size > 0) {
+        const filtered = statuses.filter((instance) => !blocked.has(instance.targetId));
+        if (filtered.length !== statuses.length) {
+          context.commands.push({ kind: 'set_statuses', statuses: createStatusCollection(filtered) });
+          statuses = filtered;
+          if (statuses.length === 0) return;
+        }
+      }
       const now = context.state.tick;
       const stackCounts = new Map<string, number>();
       for (const instance of statuses) {

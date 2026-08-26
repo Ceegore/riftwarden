@@ -62,8 +62,8 @@ function assertBatchValid(state: NodeRunState, commands: readonly OutcomeCommand
   for (const command of commands) {
     if (command.kind === 'GOLD_DELTA') gold += command.amount;
     if (command.kind === 'INSTABILITY_DELTA') instability += command.amount;
-    if (gold < 0 || instability < 0) {
-      throw new ExpeditionError('NEGATIVE_RESOURCE', { kind: gold < 0 ? 'gold' : 'instability', gold, instability });
+    if (!Number.isSafeInteger(gold) || !Number.isSafeInteger(instability) || gold < 0 || instability < 0) {
+      throw new ExpeditionError('NEGATIVE_RESOURCE', { kind: gold < 0 || !Number.isSafeInteger(gold) ? 'gold' : 'instability', gold, instability });
     }
   }
 }

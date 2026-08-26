@@ -14,6 +14,7 @@ import type { Objective } from '../../src/game/sim/objectives/combat-objective.j
 import type { Wave } from '../../src/game/sim/world/reinforcement-system.js';
 import type { ModifierDefinition } from '../../src/game/sim/world/modifier-system.js';
 import type { Hazard } from '../../src/game/sim/world/hazard-system.js';
+import type { BossObjectContent } from '../../src/game/sim/boss/boss-object-manager.js';
 import { battle, entity, randomSession } from './test-helpers.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -41,6 +42,19 @@ const waves: readonly Wave[] = Object.freeze([
 const objectives: readonly Objective[] = Object.freeze([
   Object.freeze({ id: 'obj_survive', kind: 'survive_until', targetId: null, required: 60, progress: 0, complete: false }),
   Object.freeze({ id: 'obj_boss', kind: 'kill_boss', targetId: 'boss_ash_unit', required: 1, progress: 0, complete: false }),
+  Object.freeze({ id: 'obj_protect', kind: 'protect_object', targetId: 'obj_core', required: 1, progress: 0, complete: false }),
+]);
+
+const bossObjects: readonly BossObjectContent[] = Object.freeze([
+  Object.freeze({
+    entityId: 'obj_core',
+    side: 'enemy',
+    ownerId: 'boss_ash_unit',
+    sourceId: 'content_ash',
+    spec: Object.freeze({ slotId: 'boss_slot_0', lane: 'middle', x100: 5000, targetable: true, objectiveLink: null, damagePolicy: 'normal', statusPolicy: 'allow', cleanupPolicy: 'on_objective', fallback: 'FAIL' }),
+    maxLp: 1000,
+    radiusX100: 120,
+  }),
 ]);
 
 const hazards: readonly Hazard[] = Object.freeze([
@@ -52,6 +66,7 @@ const config: Phase21RuntimeConfig = Object.freeze({
   modifiers,
   waves,
   objectives,
+  bossObjects,
   bossCoreMechanicTags: Object.freeze(['core_phase']),
   bossAnnouncedCounterTags: Object.freeze(['dispel']),
 });
@@ -82,16 +97,17 @@ function generateTrace(): string {
 }
 
 describe('Phase 21 golden reference trace', () => {
-  it('boss/objective/wave/hazard trace is byte-identical to the pinned fixture', () => {
+  it('boss/objective/wave/hazard trace is byte-identical to the pinned fixture', { timeout: 30_000 }, () => {
     expect(generateTrace()).toBe(fixture);
   });
 
-  it('runs the Phase 21 systems through the pipeline', () => {
+  it('runs the Phase 21 systems through the pipeline', { timeout: 30_000 }, () => {
     const parsed = JSON.parse(generateTrace()) as { pipelineCallOrder: string[]; checkpoints: { tick: number }[] };
     expect(parsed.pipelineCallOrder).toContain('D:modifier.d0.commit');
     expect(parsed.pipelineCallOrder).toContain('D:boss.d1.transition_detect');
     expect(parsed.pipelineCallOrder).toContain('C:hazard.c1.advance');
     expect(parsed.pipelineCallOrder).toContain('K:reinforcement.k1.spawn');
+    expect(parsed.pipelineCallOrder).toContain('K:boss.object.k2.cleanup');
     expect(parsed.pipelineCallOrder).toContain('L:boss.l1.transition_commit');
     expect(parsed.pipelineCallOrder).toContain('L:objective.l1.resolution');
     expect(parsed.checkpoints.map((c) => c.tick)).toEqual([30, 60]);

@@ -51,6 +51,25 @@ describe('phase32 expedition save codec', () => {
     expect(() => decodeExpeditionSave({ ...value, state: { ...value.state, unknown: true } })).toThrow(SaveError);
   });
 
+  it('rejects an OFFERS snapshot whose offers field is not an array', () => {
+    // Enter the start node to materialize a snapshot, then corrupt it.
+    const runner = createExpedition(mapFor(707), { startGold: 100 }).enter('offers-corrupt');
+    const value = JSON.parse(encodeExpeditionSave(runner)) as {
+      state: { snapshots: Record<string, unknown> };
+    };
+    const snapshots = { ...value.state.snapshots };
+    // A corrupted OFFERS snapshot must fail loudly instead of silently
+    // decoding to an empty offer list (which could grant nothing on resume).
+    const nodeId = Object.keys(snapshots)[0];
+    if (nodeId === undefined) throw new Error('fixture has no snapshots');
+    snapshots[nodeId] = {
+      ...(snapshots[nodeId] as Record<string, unknown>),
+      kind: 'OFFERS',
+      offers: 'not-an-array',
+    };
+    expect(() => decodeExpeditionSave({ ...value, state: { ...value.state, snapshots } })).toThrow(SaveError);
+  });
+
   it('rejects a serialized save against a different map', () => {
     const runner = createExpedition(mapFor(704), { startGold: 100 });
     const serialized = encodeExpeditionSave(runner);

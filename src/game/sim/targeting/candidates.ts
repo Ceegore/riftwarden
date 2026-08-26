@@ -39,6 +39,7 @@ export function buildCandidates(source: KernelEntity, entities: readonly KernelE
       summoned: origin === 'summoned',
       shielded: e.shield > 0,
       construct: origin === 'construct',
+      bossObject: origin === 'boss_object',
       // Not derivable from the Phase 16 kernel snapshot; the hook reports them
       // as false until Phase 17 content supplies the data.
       backline: false,

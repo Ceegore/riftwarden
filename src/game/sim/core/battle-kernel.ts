@@ -10,6 +10,7 @@ import type { KernelSystem, TickContext } from './tick-context.js';
 import type { RandomSession } from '../random/random-session.js';
 import { canonicalJson } from '../snapshot/canonical-json.js';
 import { createSnapshot, shouldCheckpoint, type BattleSnapshotData } from '../snapshot/snapshot.js';
+import { GAME_RULES } from '../../rules/game-rules.js';
 import { EventQueue } from '../scheduler/event-queue.js';
 import { EventLog } from '../events/event-log.js';
 import type { KernelEvent } from '../events/event-types.js';
@@ -35,7 +36,7 @@ export function stepBattle(args: StepBattleArgs): KernelStepResult {
   if (args.input.paused || isTerminalBattlePhase(args.state.phase.phase)) {
     return Object.freeze({ state: args.state, events: Object.freeze([]), checkpoint: null, callOrder: Object.freeze([]) });
   }
-  if (args.state.tick >= 5400 && !isTerminalBattlePhase(args.state.phase.phase)) {
+  if (args.state.tick >= GAME_RULES.absoluteBattleAbortTicks && !isTerminalBattlePhase(args.state.phase.phase)) {
     throw new KernelInvariantError('P14_HARD_LIMIT', { tick: args.state.tick });
   }
   if (canonicalJson(args.random.streams.snapshotAuthoritative()) !== canonicalJson(args.state.authoritativeStreams)) {

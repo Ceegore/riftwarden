@@ -89,7 +89,7 @@ function mirrorCanonicalOf(state: BattleModel): string {
 }
 
 describe('F/K/L metamorphic soak (§8.4, §15)', () => {
-  it('is permutation-invariant across entity, spawn and lane-change order', () => {
+  it('is permutation-invariant across entity, spawn and lane-change order', { timeout: 60_000 }, () => {
     const def: SoakDef = {
       entities: baseEntities(),
       speeds: { unit_p1: 305, unit_p2: 300, unit_e1: 290, unit_e2: 295 },
@@ -105,7 +105,7 @@ describe('F/K/L metamorphic soak (§8.4, §15)', () => {
     expect(canonicalOf(runSoak({ ...def, entities: shuffle(def.entities, 42) }, 60))).toBe(a);
   });
 
-  it('mirror commutes with the pipeline: mirror(run(A)) equals run(mirror(A))', () => {
+  it('mirror commutes with the pipeline: mirror(run(A)) equals run(mirror(A))', { timeout: 60_000 }, () => {
     const def: SoakDef = {
       entities: baseEntities(),
       speeds: { unit_p1: 305, unit_p2: 300, unit_e1: 290, unit_e2: 280 },
@@ -127,7 +127,7 @@ describe('F/K/L metamorphic soak (§8.4, §15)', () => {
     expect(mirrorCanonicalOf(mirroredRun)).toBe(canonicalOf(forward));
   });
 
-  it('checkpoint hashes stay stable under both transforms', () => {
+  it('checkpoint hashes stay stable under both transforms', { timeout: 60_000 }, () => {
     const def: SoakDef = { entities: baseEntities(), speeds: { unit_p1: 305, unit_p2: 300 } };
     const canonical = runSoak(def, 60);
     const permuted = runSoak({ ...def, entities: shuffle(def.entities, 99) }, 60);

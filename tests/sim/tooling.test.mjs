@@ -151,6 +151,35 @@ test('phase17 mass-sim evidence (basic-attack + projectile active) is PASS with 
   assert.ok(report.endHeapBytes <= report.peakHeapBytes, 'heap must not grow unbounded');
 });
 
+test('phase21-policy mass-sim evidence (all policy combos) is PASS with zero drift and zero gate violations', () => {
+  const report = JSON.parse(readFileSync(join(root, 'docs', 'reports', 'phase21-policy-mass-sim.json'), 'utf8'));
+  assert.equal(report.status, 'PASS');
+  assert.equal(report.mode, 'phase21-policy-corpus');
+  assert.equal(report.hashDrift, 0);
+  assert.equal(report.gateViolations, 0);
+  assert.equal(report.comboCount, 18);
+  assert.equal(report.groups, 3);
+  assert.ok(report.battles >= 2000, 'default sweep is 2000 battles');
+  const g = report.gateStats;
+  // The direct-damage gate never lets a hit reach immune/shield_only HP.
+  assert.equal(g.immuneDropped, 0);
+  assert.equal(g.shieldOnlyDropped, 0);
+  // The status gate never lets a burn tick on a `block` target.
+  assert.equal(g.blockTicked, 0);
+  // Both gates were exercised non-trivially across the sweep.
+  assert.ok(g.normalDropped > 0, 'normal objects received direct damage');
+  assert.ok(g.allowTicked > 0, 'allow objects fired their periodic burn');
+  // Every combo is present and independently gated.
+  const keys = Object.keys(report.byCombo);
+  assert.equal(keys.length, 18);
+  for (const key of keys) {
+    const entry = report.byCombo[key];
+    if (key.startsWith('normal')) assert.ok(entry.count > 0);
+    else assert.equal(entry.directReachedHp, 0, `${key} must never reach object HP`);
+    if (key.includes('/block/')) assert.equal(entry.ticked, 0, `${key} block must never tick`);
+  }
+});
+
 test('phase14 readiness gate honors present evidence and blocks on device work', () => {
   const d = mkdtempSync(join(tmpdir(), 'p14-ready-'));
   mkdirSync(join(d, 'contracts', 'phase15'), { recursive: true });

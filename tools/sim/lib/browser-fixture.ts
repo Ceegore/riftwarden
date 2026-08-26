@@ -13,6 +13,7 @@ import { createPhase16Systems } from '../../../src/game/sim/core/phase16-systems
 import { createPhase17Systems } from '../../../src/game/sim/core/phase17-systems.js';
 import { asX100 } from '../../../src/game/sim/geometry/x100.js';
 import './browser-fixture-phase18.js';
+import './browser-fixture-phase19-21.js';
 import { sequence, tick } from '../../../src/game/sim/core/primitives.js';
 import { RngStreamMap } from '../../../src/game/sim/random/rng-stream-map.js';
 import { RandomSession } from '../../../src/game/sim/random/random-session.js';

@@ -42,7 +42,7 @@ export const altarHandler: NodeHandler = {
     return null;
   },
   commit(definition, request, state) {
-    if (request.action === 'ENTER') return applyOutcomeCommands(state, enterCommands(definition));
+    if (request.action === 'ENTER') return applyOutcomeCommands(state, enterCommands(definition, state));
     if (request.action === 'ACCEPT') {
       // Benefit and downside are applied in parallel: one visible confirmation.
       return applyOutcomeCommands(state, [

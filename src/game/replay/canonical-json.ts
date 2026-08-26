@@ -1,23 +1,22 @@
+/**
+ * Replay canonical JSON — delegates to the shared implementation, wrapping
+ * violations in `RandomInvariantError` with backward-compatible error codes.
+ */
 import { RandomInvariantError } from '../sim/random/invariant-error.js';
+import { canonicalJsonWith, canonicalUtf8With } from '../sim/canonical-json-shared.js';
 import type { JsonValue } from './json-value.js';
 
-function encode(value: unknown, seen: Set<object>): string {
-  if (value === null || typeof value === 'boolean' || typeof value === 'string') return JSON.stringify(value);
-  if (typeof value === 'number') {
-    if (!Number.isSafeInteger(value) || Object.is(value, -0)) throw new RandomInvariantError('P13_CANONICAL_JSON');
-    return String(value);
-  }
-  if (typeof value !== 'object') throw new RandomInvariantError('P13_CANONICAL_JSON');
-  if (seen.has(value)) throw new RandomInvariantError('P13_CANONICAL_JSON');
-  seen.add(value);
-  try {
-    if (Array.isArray(value)) return `[${value.map((item) => encode(item, seen)).join(',')}]`;
-    const proto = Object.getPrototypeOf(value) as object | null;
-    if (proto !== Object.prototype && proto !== null) throw new RandomInvariantError('P13_CANONICAL_JSON');
-    const record = value as Record<string, unknown>;
-    return `{${Object.keys(record).sort().map((key) => `${JSON.stringify(key)}:${encode(record[key], seen)}`).join(',')}}`;
-  } finally { seen.delete(value); }
+function error(reason: string, detail?: Readonly<Record<string, unknown>>): RandomInvariantError {
+  // Map shared error reasons back to the original replay error code so
+  // existing tests and catchers that look for P13_CANONICAL_JSON still work.
+  const code = reason.startsWith('P_CANONICAL_JSON') ? 'P13_CANONICAL_JSON' : reason;
+  return new RandomInvariantError(code, (detail ?? {}) as Readonly<Record<string, string | number | boolean>>);
 }
 
-export function canonicalJson(value: JsonValue): string { return encode(value, new Set()); }
-export function canonicalUtf8(value: JsonValue): Uint8Array { return new TextEncoder().encode(canonicalJson(value)); }
+export function canonicalJson(value: JsonValue): string {
+  return canonicalJsonWith(value, error);
+}
+
+export function canonicalUtf8(value: JsonValue): Uint8Array {
+  return canonicalUtf8With(value, error);
+}

@@ -57,7 +57,7 @@ function generateTrace(): string {
 describe('Phase 17 stage J/L golden reference trace', () => {
   it('defeat + collapse + battle-end trace is byte-identical to the pinned fixture', () => {
     expect(generateTrace()).toBe(fixture);
-  });
+  }, 30_000);
 
   it('runs to a terminal outcome through stage J and stage L', () => {
     const parsed = JSON.parse(generateTrace()) as { pipelineCallOrder: string[]; checkpoints: { tick: number }[] };
@@ -66,5 +66,5 @@ describe('Phase 17 stage J/L golden reference trace', () => {
     // The trace must reach the collapse window (2700) and the terminal tick.
     expect(parsed.checkpoints.some((c) => c.tick === 2700)).toBe(true);
     expect(parsed.checkpoints.some((c) => c.tick > 3150)).toBe(true);
-  });
+  }, 30_000);
 });

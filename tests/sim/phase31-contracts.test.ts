@@ -44,9 +44,9 @@ describe('phase31 constants contract', () => {
     expect(COPY_LIMIT_PER_TROOP_TYPE).toBe(constants.copyLimitPerTroopType);
   });
 
-  it('pins the profile revision and seven transaction kinds', () => {
+  it('pins the profile revision and nine transaction kinds', () => {
     expect(PROFILE_REVISION).toBe(31);
-    expect(TRANSACTION_KINDS).toEqual(['BUY_COPY', 'BUY_CONTRACT', 'EQUIP', 'REMOVE', 'POLISH', 'SET_BANNER', 'SET_KIT']);
+    expect(TRANSACTION_KINDS).toEqual(['BUY_COPY', 'BUY_CONTRACT', 'EQUIP', 'REMOVE', 'POLISH', 'SET_BANNER', 'SET_KIT', 'CREDIT_GOLD', 'GRANT_ITEM']);
   });
 });
 

@@ -8,6 +8,7 @@ import { createAbilityCollection } from '../ability/ability-collection.js';
 import { canonicalizeEffectBatch } from '../ability/effect-executor.js';
 import { createTemporaryCollection } from '../summon/temporary-registry.js';
 import { canonicalizeSynergyTiers } from '../synergy/synergy-counter.js';
+import { TECHNICAL_RULES } from '../../rules/technical-rules.js';
 import { createModifierCollection } from '../world/modifier-system.js';
 import { createHazardCollection } from '../world/hazard-system.js';
 import { createObjectiveCollection } from '../objectives/combat-objective.js';
@@ -37,6 +38,7 @@ export function snapshotPayload(state:BattleModel):Omit<BattleSnapshotData,'chec
   if(state.hazards!==undefined)extras['hazards']=createHazardCollection(state.hazards);
   if(state.objectives!==undefined)extras['objectives']=createObjectiveCollection(state.objectives);
   if(state.spawnedWaves!==undefined)extras['spawnedWaves']=Object.freeze([...state.spawnedWaves].sort(asciiCompare));
+  if(state.forcedOutcome!==undefined)extras['forcedOutcome']=Object.freeze({outcome:state.forcedOutcome.outcome,reason:state.forcedOutcome.reason});
   return Object.freeze({schemaVersion:1,simulationVersion:state.simulationVersion,battleId:state.battleId,tick:state.tick,nextSequence:state.nextSequence,emittedEventCount:state.emittedEventCount,phase:Object.freeze({...state.phase}),entities:Object.freeze(entities.map((e)=>Object.freeze({...e,phase:Object.freeze({...e.phase}),timers:Object.freeze({...e.timers})}))),scheduledEvents:Object.freeze([...state.scheduledEvents].sort(compareScheduled)),authoritativeStreams:streams,endReason:state.endReason,...extras});
 }
 export function createSnapshot(state:BattleModel):BattleSnapshotData{const payload=snapshotPayload(state);return Object.freeze({...payload,checksum:sha256Hex(canonicalUtf8(payload))});}
@@ -47,4 +49,4 @@ export function verifySnapshot(snapshot:BattleSnapshotData):boolean{
   const canonical=snapshotPayload(payload);
   return sha256Hex(canonicalUtf8(canonical))===checksum;
 }
-export function shouldCheckpoint(tick:number,terminal:boolean):boolean{return tick%30===0||terminal;}
+export function shouldCheckpoint(tick:number,terminal:boolean):boolean{return tick%TECHNICAL_RULES.simulationTicksPerSecond===0||terminal;}

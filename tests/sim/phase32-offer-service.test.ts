@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { attachSnapshot, decrementStock, materializeOffers, replaceSnapshot, rerollOffers, MERCHANT_MAX_REROLLS, MERCHANT_OFFER_COUNT } from '../../src/game/expedition/offers/offer-service.js';
-import { merchantHandler } from '../../src/game/expedition/nodes/handlers/merchant.js';
+import { merchantHandler, MERCHANT_SERVICE_INSTABILITY_REDUCTION } from '../../src/game/expedition/nodes/handlers/merchant.js';
+import { anchorStoryHandlers, ANCHOR_SERVICE_INSTABILITY_REDUCTION } from '../../src/game/expedition/nodes/handlers/anchor.js';
 import { commitFlow, definition, openAndPrepare, request, baseState, offerOf } from './phase32-helpers.js';
 
 describe('phase32 offer snapshots', () => {
@@ -148,6 +149,20 @@ describe('phase32 merchant handler', () => {
     expect(service.state.gold).toBe(70);
   });
 
+  it('refuses the service at low instability instead of crashing', () => {
+    const state = prepared(100);
+    expect(state.instability).toBe(0);
+    const service = commitFlow(state, merchantHandler, def, request(def.nodeId, 'SERVICE', 'tx-service-low'));
+    expect(service.outcome.result.status).toBe('REJECTED');
+    expect(service.outcome.result.reason).toBe('OPTION_UNAVAILABLE');
+    expect(service.state.gold).toBe(100);
+    expect(service.state.instability).toBe(0);
+    // One tick below the reduction is refused too — never a NEGATIVE_RESOURCE.
+    const nearFloor = commitFlow({ ...state, instability: MERCHANT_SERVICE_INSTABILITY_REDUCTION - 1 }, merchantHandler, def, request(def.nodeId, 'SERVICE', 'tx-service-near'));
+    expect(nearFloor.outcome.result.status).toBe('REJECTED');
+    expect(nearFloor.outcome.result.reason).toBe('OPTION_UNAVAILABLE');
+  });
+
   it('reload reproduces the same offers and replays the same transaction', () => {
     const a = prepared(100);
     const b = prepared(100);
@@ -175,5 +190,46 @@ describe('phase32 merchant handler', () => {
 
   it('merchant max rerolls constant matches the pinned fixture', () => {
     expect(MERCHANT_MAX_REROLLS).toBe(1);
+  });
+});
+
+describe('phase32 anchor instability floor', () => {
+  const anchorHandler = anchorStoryHandlers[0];
+  if (anchorHandler === undefined) throw new Error('anchor handler missing');
+  const def = definition('node-anchor-floor', 'anchor');
+
+  it('entering the anchor at zero instability clamps to zero (no crash)', () => {
+    const state = openAndPrepare(baseState({ instability: 0 }), anchorHandler, def);
+    const enter = commitFlow(state, anchorHandler, def, request(def.nodeId, 'ENTER', 'tx-anchor-enter-0'));
+    expect(enter.outcome.result.status).toBe('COMMITTED');
+    expect(enter.state.instability).toBe(0);
+    expect(enter.state.gold).toBe(100);
+  });
+
+  it('entering the anchor reduces instability but never below zero', () => {
+    const low = openAndPrepare(baseState({ instability: 5 }), anchorHandler, def);
+    const entered = commitFlow(low, anchorHandler, def, request(def.nodeId, 'ENTER', 'tx-anchor-enter-5'));
+    expect(entered.outcome.result.status).toBe('COMMITTED');
+    expect(entered.state.instability).toBe(0);
+
+    const high = openAndPrepare(baseState({ instability: 15 }), anchorHandler, def);
+    const enteredHigh = commitFlow(high, anchorHandler, def, request(def.nodeId, 'ENTER', 'tx-anchor-enter-15'));
+    expect(enteredHigh.state.instability).toBe(5);
+  });
+
+  it('refuses the anchor service at low instability with a visible reason', () => {
+    const state = openAndPrepare(baseState({ instability: 0 }), anchorHandler, def);
+    const service = commitFlow(state, anchorHandler, def, request(def.nodeId, 'SERVICE', 'tx-anchor-service-0'));
+    expect(service.outcome.result.status).toBe('REJECTED');
+    expect(service.outcome.result.reason).toBe('OPTION_UNAVAILABLE');
+    expect(service.state.gold).toBe(100);
+  });
+
+  it('applies the anchor service reduction when instability is sufficient', () => {
+    const state = openAndPrepare(baseState({ instability: 10 }), anchorHandler, def);
+    const service = commitFlow(state, anchorHandler, def, request(def.nodeId, 'SERVICE', 'tx-anchor-service-ok'));
+    expect(service.outcome.result.status).toBe('COMMITTED');
+    expect(service.state.instability).toBe(10 - ANCHOR_SERVICE_INSTABILITY_REDUCTION);
+    expect(service.state.gold).toBe(100 - 30);
   });
 });

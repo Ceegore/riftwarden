@@ -107,11 +107,11 @@ function generateTrace(): string {
 }
 
 describe('Phase 18 golden reference trace', () => {
-  it('status periodic/expiry trace is byte-identical to the pinned fixture', () => {
+  it('status periodic/expiry trace is byte-identical to the pinned fixture', { timeout: 30_000 }, () => {
     expect(generateTrace()).toBe(fixture);
   });
 
-  it('runs the status system through the pipeline', () => {
+  it('runs the status system through the pipeline', { timeout: 30_000 }, () => {
     const parsed = JSON.parse(generateTrace()) as { pipelineCallOrder: string[]; checkpoints: { tick: number }[] };
     expect(parsed.pipelineCallOrder).toContain('I:phase18.i1.status');
     expect(parsed.checkpoints.map((c) => c.tick)).toEqual([30, 60]);

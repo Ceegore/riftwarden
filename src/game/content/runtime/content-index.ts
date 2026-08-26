@@ -39,7 +39,7 @@ export class ContentIndex {
   constructor(manifest: ContentManifest, source: Map<string, Map<string, unknown>>) {
     this.manifest = deepFreeze(structuredClone(manifest));
     const outer = new Map<string, ReadonlyMap<string, Readonly<unknown>>>();
-    for (const [type, entities] of [...source.entries()].sort(([a], [b]) => a.localeCompare(b, "en"))) {
+    for (const [type, entities] of [...source.entries()].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))) {
       const stable = new Map<string, Readonly<unknown>>();
       for (const [id, entity] of [...entities.entries()].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))) {
         stable.set(id, deepFreeze(structuredClone(entity)) as Readonly<unknown>);

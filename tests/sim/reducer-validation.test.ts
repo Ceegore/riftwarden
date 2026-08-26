@@ -111,6 +111,11 @@ describe('reducer bounds validation', () => {
     expect(() => stepBattle({ state: battle(), input, random: randomSession(), rules: {}, content: {}, systems: [system] })).toThrow(/P14_SNAPSHOT_INVALID/);
   });
 
+  it('set_position with an invalid lane blocks', () => {
+    const system: KernelSystem = { id: 'bad.pos.lane', stage: 'F', run(c) { c.commands.push({ kind: 'set_position', entityId: 'entity_alpha', lane: 'sideways' as never, x100: 4000 }); } };
+    expect(() => stepBattle({ state: battle(), input, random: randomSession(), rules: {}, content: {}, systems: [system] })).toThrow(/P14_SNAPSHOT_INVALID/);
+  });
+
   it('set_timer with negative or float ticks blocks', () => {
     const negative: KernelSystem = { id: 'bad.timer.neg', stage: 'B', run(c) { c.commands.push({ kind: 'set_timer', entityId: 'entity_alpha', timer: 'cooldown', ticks: -1 }); } };
     expect(() => stepBattle({ state: battle(), input, random: randomSession(), rules: {}, content: {}, systems: [negative] })).toThrow(/P14_SNAPSHOT_INVALID/);

@@ -17,8 +17,66 @@
       "modifierIds": [],
       "reinforcementWaves": [],
       "objective": "defeat_all",
+      "bossObjects": [],
       "rewardTableId": "reward_fixture_basic",
       "previewDisclosureKey": "content.encounter.encounter_fixture_first.preview",
+      "allowedModes": [
+        "campaign"
+      ]
+    },
+    {
+      "id": "encounter_fixture_boss_object",
+      "regionId": "region_fixture",
+      "kind": "boss",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [],
+      "reinforcementWaves": [],
+      "objective": "defeat_boss",
+      "bossObjects": [
+        {
+          "entityId": "obj_ash_core",
+          "side": "enemy",
+          "ownerId": "boss_ash_unit",
+          "sourceId": "content_ash",
+          "slotId": "boss_slot_0",
+          "lane": "middle",
+          "x100": 5000,
+          "targetable": true,
+          "objectiveLink": null,
+          "damagePolicy": "normal",
+          "statusPolicy": "allow",
+          "cleanupPolicy": "on_battle_end",
+          "fallback": "FAIL",
+          "maxLp": 800,
+          "radiusX100": 120
+        },
+        {
+          "entityId": "obj_ash_ward",
+          "side": "enemy",
+          "ownerId": "boss_ash_unit",
+          "sourceId": "content_ash",
+          "slotId": "boss_slot_1",
+          "lane": "top",
+          "x100": 5200,
+          "targetable": true,
+          "objectiveLink": null,
+          "damagePolicy": "shield_only",
+          "statusPolicy": "block",
+          "cleanupPolicy": "on_battle_end",
+          "fallback": "FAIL",
+          "maxLp": 600,
+          "radiusX100": 110
+        }
+      ],
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_boss_object.preview",
       "allowedModes": [
         "campaign"
       ]

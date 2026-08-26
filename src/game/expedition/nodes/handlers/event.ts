@@ -59,7 +59,7 @@ export const eventHandler: NodeHandler = {
   },
   commit(definition, request, state) {
     if (request.action === 'ENTER') {
-      return applyOutcomeCommands(state, enterCommands(definition));
+      return applyOutcomeCommands(state, enterCommands(definition, state));
     }
     if (request.action === 'DECLINE') {
       return { state, outcomeIds: [] };

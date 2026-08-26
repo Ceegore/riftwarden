@@ -1,5 +1,6 @@
 import { KernelInvariantError } from '../core/invariant-error.js';
 import { asciiCompare } from '../core/primitives.js';
+import { GAME_RULES } from '../../rules/game-rules.js';
 
 /**
  * Phase 20 §3.3 temporary-entity model. Temporary entities (SUMMON, CONSTRUCT,
@@ -10,7 +11,7 @@ import { asciiCompare } from '../core/primitives.js';
  * All numbers are authoritative integers — no floats, no wallclock, no locale.
  */
 
-export const SUMMON_CAP_PER_SIDE = 6;
+export const SUMMON_CAP_PER_SIDE = GAME_RULES.maxActiveSummonsPerSide;
 export const RECURSIVE_SPAWN_BUDGET = 64;
 export const REPAIR_DELAY_TICKS = 90;
 

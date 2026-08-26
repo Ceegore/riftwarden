@@ -3,29 +3,10 @@ import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { ENTRY_MODULES } from './kernel-entry-map.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..', '..');
-
-const ENTRY_MODULES = {
-  primitives: 'src/game/sim/core/primitives.ts',
-  battleKernel: 'src/game/sim/core/battle-kernel.ts',
-  noopSystems: 'src/game/sim/core/noop-systems.ts',
-  snapshot: 'src/game/sim/snapshot/snapshot.ts',
-  random: 'src/game/sim/random/index.ts',
-  events: 'src/game/sim/events/index.ts',
-  migrate: 'src/game/sim/core/migrate.ts',
-  phase15Systems: 'src/game/sim/core/phase15-systems.ts',
-  phase16Systems: 'src/game/sim/core/phase16-systems.ts',
-  phase17Systems: 'src/game/sim/core/phase17-systems.ts',
-  phase18Systems: 'src/game/sim/core/phase18-systems.ts',
-  phase19Systems: 'src/game/sim/core/phase19-systems.ts',
-  phase20Systems: 'src/game/sim/core/phase20-systems.ts',
-  phase21Systems: 'src/game/sim/core/phase21-systems.ts',
-  abilitySystem: 'src/game/sim/ability/ability-system.ts',
-  x100: 'src/game/sim/geometry/x100.ts',
-  monitor: 'src/game/sim/monitor/invariant-monitor.ts',
-};
 
 /**
  * Loads the sim kernel by bundling it with Vite's SSR build (Rolldown) into a

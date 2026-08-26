@@ -1,5 +1,6 @@
 import { RandomInvariantError } from '../sim/random/invariant-error.js';
 import { parseRunSeed } from '../sim/random/run-seed.js';
+import { REPLAY_SPEED_MILLI, type ReplaySpeedMilli } from '../rules/mechanic-rules.js';
 import type { JsonValue } from './json-value.js';
 import type { ReplayAuthoritative, ReplayDecision, ReplayDisplaySpeedEvent, ReplayFile } from './replay-types.js';
 
@@ -39,8 +40,8 @@ function speedEvent(value: unknown): ReplayDisplaySpeedEvent {
   const r = object(value) as unknown as SpeedEventRecord;
   exact(r, ['tick', 'speedMilli']);
   const speed = integer(r.speedMilli);
-  if (![500, 1000, 2000, 3000].includes(speed)) throw new RandomInvariantError('P13_REPLAY_FIELD');
-  return Object.freeze({ tick: integer(r.tick), speedMilli: speed as 500 | 1000 | 2000 | 3000 });
+  if (!(REPLAY_SPEED_MILLI as readonly number[]).includes(speed)) throw new RandomInvariantError('P13_REPLAY_FIELD');
+  return Object.freeze({ tick: integer(r.tick), speedMilli: speed as ReplaySpeedMilli });
 }
 function assertMonotonic(items: readonly { tick: number; sequence?: number }[]): void {
   for (let i = 1; i < items.length; i += 1) {

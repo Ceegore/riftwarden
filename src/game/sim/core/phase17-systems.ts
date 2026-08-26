@@ -4,6 +4,7 @@ import { createProjectileSystem } from '../projectile/projectile-system.js';
 import { createCombatApplicationSystem } from '../combat/combat-application.js';
 import { createDefeatResolverSystem, type DefeatHookInput } from '../combat/defeat-resolver.js';
 import { createBattleEndResolverSystem, type BattleEndConfig } from '../combat/battle-end-resolver.js';
+import type { DamagePolicy } from '../boss/boss-object-manager.js';
 import type { KernelSystem } from './tick-context.js';
 
 export interface Phase17SystemsConfig extends Phase16SystemsConfig {
@@ -13,6 +14,8 @@ export interface Phase17SystemsConfig extends Phase16SystemsConfig {
   readonly defeatHooks?: Partial<DefeatHookInput>;
   /** Stage-L battle-end configuration (T06). Absent → normal/elite limits. */
   readonly battleEnd?: BattleEndConfig;
+  /** §6 boss-object damage policy per entity id (normal/immune/shield_only). */
+  readonly bossObjectPolicies?: ReadonlyMap<string, DamagePolicy>;
 }
 
 /**
@@ -38,7 +41,15 @@ export function createPhase17Systems(config: Phase17SystemsConfig): readonly Ker
   const mapped = base.map((system): KernelSystem => {
     if (system.id === 'phase16.g1.attack_prep') return createBasicAttackSystem(config.basicAttack ?? { parameters: {} });
     if (system.id === 'noop.resolve_committed') return createProjectileSystem();
-    if (system.id === 'noop.apply_effects') return createCombatApplicationSystem(config.battleEnd?.bossIds === undefined ? {} : { bossIds: config.battleEnd.bossIds });
+    if (system.id === 'noop.apply_effects') {
+      const bossIds = config.battleEnd?.bossIds;
+      const policies = config.bossObjectPolicies;
+      return createCombatApplicationSystem(
+        bossIds === undefined && policies === undefined
+          ? {}
+          : Object.freeze({ ...(bossIds === undefined ? {} : { bossIds } as const), ...(policies === undefined ? {} : { bossObjectPolicies: policies } as const) }),
+      );
+    }
     if (system.id === 'noop.death_resolution') return createDefeatResolverSystem(config.defeatHooks);
     return system;
   });

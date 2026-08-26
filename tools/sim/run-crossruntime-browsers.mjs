@@ -7,6 +7,9 @@ import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadKernel, runNodeReferenceTrace, runNodePhase15ReferenceTrace, runNodePhase16ReferenceTrace, runNodePhase17ReferenceTrace, runNodePhase17JLReferenceTrace } from './lib/kernel-loader.mjs';
 import { runNodePhase18ReferenceTrace } from './lib/phase18-trace.mjs';
+import { runNodePhase19ReferenceTrace } from './lib/phase19-trace.mjs';
+import { runNodePhase20ReferenceTrace } from './lib/phase20-trace.mjs';
+import { runNodePhase21ReferenceTrace } from './lib/phase21-trace.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', '..');
@@ -82,6 +85,36 @@ try {
     process.exit(1);
   }
 
+  // Phase 19 reference: ability trigger/effect trace.
+  const node19 = runNodePhase19ReferenceTrace(api);
+  const pinned19 = JSON.parse(readFileSync(join(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase19.json'), 'utf8'));
+  const expected19_30 = pinned19.checkpoints.find((c) => c.tick === 30)?.checksum;
+  const expected19_60 = pinned19.checkpoints.find((c) => c.tick === 60)?.checksum;
+  if (node19.tick30 !== expected19_30 || node19.tick60 !== expected19_60 || node19.endHash !== pinned19.finalSnapshotChecksum) {
+    console.error(JSON.stringify({ status: 'FAIL', reason: 'node19-drift-vs-pinned-fixture', node19 }, null, 2));
+    process.exit(1);
+  }
+
+  // Phase 20 reference: synergy/summon/expiry trace.
+  const node20 = runNodePhase20ReferenceTrace(api);
+  const pinned20 = JSON.parse(readFileSync(join(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase20.json'), 'utf8'));
+  const expected20_30 = pinned20.checkpoints.find((c) => c.tick === 30)?.checksum;
+  const expected20_60 = pinned20.checkpoints.find((c) => c.tick === 60)?.checksum;
+  if (node20.tick30 !== expected20_30 || node20.tick60 !== expected20_60 || node20.endHash !== pinned20.finalSnapshotChecksum) {
+    console.error(JSON.stringify({ status: 'FAIL', reason: 'node20-drift-vs-pinned-fixture', node20 }, null, 2));
+    process.exit(1);
+  }
+
+  // Phase 21 reference: boss/objective/wave/hazard trace.
+  const node21 = runNodePhase21ReferenceTrace(api);
+  const pinned21 = JSON.parse(readFileSync(join(root, 'tests', 'sim', 'fixtures', 'reference-traces-phase21.json'), 'utf8'));
+  const expected21_30 = pinned21.checkpoints.find((c) => c.tick === 30)?.checksum;
+  const expected21_60 = pinned21.checkpoints.find((c) => c.tick === 60)?.checksum;
+  if (node21.tick30 !== expected21_30 || node21.tick60 !== expected21_60 || node21.endHash !== pinned21.finalSnapshotChecksum) {
+    console.error(JSON.stringify({ status: 'FAIL', reason: 'node21-drift-vs-pinned-fixture', node21 }, null, 2));
+    process.exit(1);
+  }
+
   // Build the browser oracle as a self-contained IIFE so it needs no module
   // server or ESM loader inside the page.
   const buildResult = await build({
@@ -119,6 +152,15 @@ try {
   const runtimes18 = {
     node: { status: 'REFERENCE', version: process.version, host: process.platform, ...pick(node18) },
   };
+  const runtimes19 = {
+    node: { status: 'REFERENCE', version: process.version, host: process.platform, ...pick(node19) },
+  };
+  const runtimes20 = {
+    node: { status: 'REFERENCE', version: process.version, host: process.platform, ...pick(node20) },
+  };
+  const runtimes21 = {
+    node: { status: 'REFERENCE', version: process.version, host: process.platform, ...pick(node21) },
+  };
   let browserFailures = 0;
 
   for (const [name, { launch }] of Object.entries(DESKTOP_BROWSERS)) {
@@ -134,13 +176,19 @@ try {
       const result17 = await page.evaluate(() => globalThis.__P17_CROSSRUNTIME__);
       const result17jl = await page.evaluate(() => globalThis.__P17JL_CROSSRUNTIME__);
       const result18 = await page.evaluate(() => globalThis.__P18_CROSSRUNTIME__);
+      const result19 = await page.evaluate(() => globalThis.__P19_CROSSRUNTIME__);
+      const result20 = await page.evaluate(() => globalThis.__P20_CROSSRUNTIME__);
+      const result21 = await page.evaluate(() => globalThis.__P21_CROSSRUNTIME__);
       const drift = driftField(result, node);
       const drift15 = driftField(result15, node15);
       const drift16 = driftField(result16, node16);
       const drift17 = driftField(result17, node17);
       const drift17jl = driftField(result17jl, node17jl);
       const drift18 = driftField(result18, node18);
-      const ok = drift === null && drift15 === null && drift16 === null && drift17 === null && drift17jl === null && drift18 === null;
+      const drift19 = driftField(result19, node19);
+      const drift20 = driftField(result20, node20);
+      const drift21 = driftField(result21, node21);
+      const ok = drift === null && drift15 === null && drift16 === null && drift17 === null && drift17jl === null && drift18 === null && drift19 === null && drift20 === null && drift21 === null;
       if (!ok) browserFailures++;
       runtimes[name] = {
         status: ok ? 'PASS' : 'FAIL',
@@ -227,18 +275,64 @@ try {
         exitCode: drift18 === null ? 0 : 1,
         ...(drift18 === null ? {} : { drift: drift18 }),
       };
+      runtimes19[name] = {
+        status: drift19 === null ? 'PASS' : 'FAIL',
+        version,
+        host: `${process.platform} (Playwright)`,
+        startHash: result19.startHash,
+        tick30: result19.tick30,
+        tick60: result19.tick60,
+        endHash: result19.endHash,
+        endTick: result19.endTick,
+        endReason: result19.endReason,
+        eventCount: result19.eventCount,
+        exitCode: drift19 === null ? 0 : 1,
+        ...(drift19 === null ? {} : { drift: drift19 }),
+      };
+      runtimes20[name] = {
+        status: drift20 === null ? 'PASS' : 'FAIL',
+        version,
+        host: `${process.platform} (Playwright)`,
+        startHash: result20.startHash,
+        tick30: result20.tick30,
+        tick60: result20.tick60,
+        endHash: result20.endHash,
+        endTick: result20.endTick,
+        endReason: result20.endReason,
+        eventCount: result20.eventCount,
+        exitCode: drift20 === null ? 0 : 1,
+        ...(drift20 === null ? {} : { drift: drift20 }),
+      };
+      runtimes21[name] = {
+        status: drift21 === null ? 'PASS' : 'FAIL',
+        version,
+        host: `${process.platform} (Playwright)`,
+        startHash: result21.startHash,
+        tick30: result21.tick30,
+        tick60: result21.tick60,
+        endHash: result21.endHash,
+        endTick: result21.endTick,
+        endReason: result21.endReason,
+        eventCount: result21.eventCount,
+        exitCode: drift21 === null ? 0 : 1,
+        ...(drift21 === null ? {} : { drift: drift21 }),
+      };
     } finally {
       await browser.close();
     }
   }
 
   for (const key of ['android_webview', 'ios_wkwebview']) {
-    runtimes[key] = { status: 'NOT_RUN', version: null, host: null, startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null };
-    runtimes15[key] = { status: 'NOT_RUN', version: null, host: null, startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null };
-    runtimes16[key] = { status: 'NOT_RUN', version: null, host: null, startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null };
-    runtimes17[key] = { status: 'NOT_RUN', version: null, host: null, startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null };
-    runtimes17jl[key] = { status: 'NOT_RUN', version: null, host: null, startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null };
-    runtimes18[key] = { status: 'NOT_RUN', version: null, host: null, startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null };
+    const notRun = { status: 'NOT_RUN', version: null, host: null, startHash: null, tick30: null, tick60: null, endHash: null, endTick: null, endReason: null, eventCount: null, exitCode: null };
+    runtimes[key] = notRun;
+    runtimes15[key] = notRun;
+    runtimes16[key] = notRun;
+    runtimes17[key] = notRun;
+    runtimes17jl[key] = notRun;
+    runtimes18[key] = notRun;
+    runtimes19[key] = notRun;
+    runtimes20[key] = notRun;
+    runtimes21[key] = notRun;
   }
 
   const matrix = {
@@ -289,6 +383,30 @@ try {
       status: 'PARTIAL',
       note: 'Phase 18 status periodic/expiry trace (burn/poison/regeneration + EffectTick/EffectRemoved): desktop engines hash-identical to the Node reference and the pinned fixture; WebViews NOT_RUN.',
       runtimes: runtimes18,
+    },
+    phase19: {
+      phase: 19,
+      gate: 'G19',
+      fixture: 'tests/sim/fixtures/reference-traces-phase19.json',
+      status: 'PARTIAL',
+      note: 'Phase 19 ability trigger/effect trace (fireball tick_interval + nearest-target damage): desktop engines hash-identical to the Node reference and the pinned fixture; WebViews NOT_RUN.',
+      runtimes: runtimes19,
+    },
+    phase20: {
+      phase: 20,
+      gate: 'G20',
+      fixture: 'tests/sim/fixtures/reference-traces-phase20.json',
+      status: 'PARTIAL',
+      note: 'Phase 20 synergy/summon/expiry trace (synergy tier commit + registry summon commit): desktop engines hash-identical to the Node reference and the pinned fixture; WebViews NOT_RUN.',
+      runtimes: runtimes20,
+    },
+    phase21: {
+      phase: 21,
+      gate: 'G21',
+      fixture: 'tests/sim/fixtures/reference-traces-phase21.json',
+      status: 'PARTIAL',
+      note: 'Phase 21 boss/objective/wave/hazard trace (boss transition + objective resolution + reinforcement wave + hazard lifecycle): desktop engines hash-identical to the Node reference and the pinned fixture; WebViews NOT_RUN.',
+      runtimes: runtimes21,
     },
   };
   writeFileSync(out, `${JSON.stringify(matrix, null, 2)}\n`);

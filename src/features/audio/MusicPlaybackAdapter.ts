@@ -14,6 +14,7 @@
  * Audio never holds gameplay authority: every failure degrades to silence.
  */
 import type { MusicContext } from '../../game/content/audio/music-director.js';
+import { roundToNearest } from '../../ui/format/rounding.js';
 import { textureForContextWithStem, type PlaybackTexture } from '../../game/content/audio/playback-textures.js';
 import { effectiveVolume, type BusSettings, type AudioBus } from '../../game/content/audio/bus-settings-store.js';
 
@@ -112,7 +113,7 @@ export class MusicPlaybackAdapter {
     this.paused = false;
 
     if (texture.stepSemitones.length > 1 && texture.tempoHz > 0) {
-      const intervalMs = Math.max(80, Math.round(1000 / texture.tempoHz));
+      const intervalMs = Math.max(80, roundToNearest(1000 / texture.tempoHz));
       this.stepTimer = window.setInterval(() => {
         const voice = this.voice;
         const tex = this.texture;

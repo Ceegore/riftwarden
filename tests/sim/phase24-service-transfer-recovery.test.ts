@@ -254,6 +254,17 @@ describe('P24 transfer policy', () => {
     expectCode(() => {
       validateEntries([{ name: 'profile.json', size: 1_000_000, compressedSize: 1, isLink: false }]);
     }, 'BOMB_RATIO');
+    // compressedSize must be a non-negative safe integer (a NaN/negative/
+    // fractional value must not silently bypass or mis-fire the bomb check).
+    expectCode(() => {
+      validateEntries([{ name: 'profile.json', size: 10, compressedSize: Number.NaN, isLink: false }]);
+    }, 'INVALID_ARGUMENT');
+    expectCode(() => {
+      validateEntries([{ name: 'profile.json', size: 10, compressedSize: -1, isLink: false }]);
+    }, 'INVALID_ARGUMENT');
+    expectCode(() => {
+      validateEntries([{ name: 'profile.json', size: 10, compressedSize: 0.5, isLink: false }]);
+    }, 'INVALID_ARGUMENT');
   });
 
   it('validates quarantine containers and previews without touching active saves', () => {

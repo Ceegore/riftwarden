@@ -2,6 +2,9 @@ import { KernelInvariantError } from '../core/invariant-error.js';
 import type { KernelEntity } from '../core/entity.js';
 import type { BattlePhase } from '../core/battle-state.js';
 import type { KernelSystem, TickContext } from '../core/tick-context.js';
+import { mulDivRound } from '../math/fixed-math.js';
+import { GAME_RULES } from '../../rules/game-rules.js';
+import { TECHNICAL_RULES } from '../../rules/technical-rules.js';
 import { aggregateShields } from './shield-ledger.js';
 
 /**
@@ -24,10 +27,10 @@ import { aggregateShields } from './shield-ledger.js';
  * kernel's 3-tick resolving window is the deadline).
  */
 
-export const SOFT_LIMIT_NORMAL_TICKS = 2700;
-export const SOFT_LIMIT_BOSS_TICKS = 3600;
-export const COLLAPSE_WINDOW_TICKS = 450;
-export const HARD_LIMIT_TICKS = 5400;
+export const SOFT_LIMIT_NORMAL_TICKS = GAME_RULES.normalRiftCollapseStartTicks;
+export const SOFT_LIMIT_BOSS_TICKS = GAME_RULES.bossRiftCollapseStartTicks;
+export const COLLAPSE_WINDOW_TICKS = GAME_RULES.riftCollapseDurationTicks;
+export const HARD_LIMIT_TICKS = GAME_RULES.absoluteBattleAbortTicks;
 export const COLLAPSE_DAMAGE_INTERVAL_TICKS = 90;
 /** 8% max-LP pure damage per collapse interval (§10). */
 export const COLLAPSE_DAMAGE_BPS = 800;
@@ -72,7 +75,9 @@ export function chapter76Score(entities: readonly KernelEntity[], side: 'player'
   for (const e of entities) {
     if (e.side !== side) continue;
     const origin = e.origin ?? 'regular';
-    if (origin === 'summoned' || origin === 'construct') continue;
+    // Boss objects are never regular units (§P21-T03): they hold no
+    // Chapter-76 ratio/count weight, like summons and constructs.
+    if (origin === 'summoned' || origin === 'construct' || origin === 'boss_object') continue;
     regularCount += 1;
     lpShield += e.lp + aggregateShields(e.shields ?? Object.freeze([]));
     maxLp += e.maxLp;
@@ -110,13 +115,17 @@ export function resolveBattleEnd(state: {
   readonly phase: { readonly phase: BattlePhase };
   /** Chapter-76 boss-damage ledger: damage each side dealt to opposing bosses. */
   readonly bossDamageDealt?: Readonly<{ player: number; enemy: number }>;
+  /** Mission-forced terminal outcome (protect_object failure, §P21-T03). */
+  readonly forcedOutcome?: Readonly<{ outcome: 'VICTORY' | 'DEFEAT' | 'DRAW_ABORT'; reason: string }>;
 }, config: BattleEndConfig, resolvingEndTicks: number): BattleEndDecision {
   const tick = state.tick;
   if (state.phase.phase === 'RESOLVING_END') {
     // The 3-tick resolving window (kernel deadline) is honored before the
-    // terminal decision. Elimination is re-checked first — it wins over the
-    // Chapter-76 timeout order.
-    if (resolvingEndTicks < 3) return { action: 'none' };
+    // terminal decision. A mission-forced outcome (e.g. protect_object
+    // failure, §P21-T03) wins over elimination and the Chapter-76 order.
+    if (resolvingEndTicks < TECHNICAL_RULES.resolvingEndMaxTicks) return { action: 'none' };
+    const forced = state.forcedOutcome;
+    if (forced !== undefined) return { action: 'finalize', outcome: forced.outcome, reason: forced.reason };
     const playerAlive = sideHasCombatCapable(state.entities, 'player');
     const enemyAlive = sideHasCombatCapable(state.entities, 'enemy');
     if (!playerAlive && !enemyAlive) return { action: 'finalize', outcome: 'DRAW_ABORT', reason: 'mutual_extermination' };
@@ -152,9 +161,12 @@ export function isCollapseActiveFor(state: { readonly tick: number; readonly tim
   return state.tick >= state.timeCollapseSinceTick && state.tick < state.timeCollapseSinceTick + COLLAPSE_WINDOW_TICKS;
 }
 
-/** §10 collapse tick: 8% max-LP pure damage, integer, non-negative. */
+/** §10 collapse tick: 8% max-LP pure damage, integer, non-negative. Uses
+ * mulDivRound (round-half-away-from-zero) for consistency with the §8.1
+ * integer pipeline — never Math.floor, which would systematically under-apply
+ * collapse damage at non-exact divisions. */
 export function collapseDamageFor(entity: KernelEntity): number {
-  return Math.max(1, Math.floor((entity.maxLp * COLLAPSE_DAMAGE_BPS) / 10000));
+  return Math.max(1, mulDivRound(entity.maxLp, COLLAPSE_DAMAGE_BPS, TECHNICAL_RULES.basisPointsScale));
 }
 
 /**

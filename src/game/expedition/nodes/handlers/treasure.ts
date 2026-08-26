@@ -35,7 +35,7 @@ export const treasureHandler: NodeHandler = {
     throw new ExpeditionError('UNKNOWN_ACTION', { nodeId: definition.nodeId, action: request.action });
   },
   commit(definition, request, state) {
-    if (request.action === 'ENTER') return applyOutcomeCommands(state, enterCommands(definition));
+    if (request.action === 'ENTER') return applyOutcomeCommands(state, enterCommands(definition, state));
     if (request.action === 'TAKE') {
       return applyOutcomeCommands(state, [{ kind: 'GRANT_UNSECURED_LOOT', rewardId: `${TREASURE_REWARD_ID}:${definition.nodeId}` }]);
     }

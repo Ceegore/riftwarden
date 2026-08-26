@@ -46,6 +46,20 @@ test('callsite audit flags local BPS math outside math', () => {
   assert.ok(report.findings.some((x) => x.code === 'P12_LOCAL_BPS_MATH'));
 });
 
+test('callsite audit allows sanctioned rounding modules and flags others', () => {
+  const d = mkdtempSync(join(tmpdir(), 'p12-'));
+  mkdirSync(join(d, 'game', 'sim', 'math'), { recursive: true });
+  mkdirSync(join(d, 'ui', 'format'), { recursive: true });
+  mkdirSync(join(d, 'app'), { recursive: true });
+  writeFileSync(join(d, 'game', 'sim', 'math', 'rounding.ts'), 'export function r() { return Math.round(1.5); }\n');
+  writeFileSync(join(d, 'ui', 'format', 'rounding.ts'), 'export function r() { return Math.round(1.5); }\n');
+  writeFileSync(join(d, 'app', 'battle.ts'), 'const x = Math.round(1.5);\n');
+  const res = run(['tools/math/audit-math-callsites.mjs', d]);
+  const report = JSON.parse(res.stdout);
+  assert.equal(report.status, 'BLOCKED', 'unsanctioned files must still flag');
+  assert.deepEqual(report.findings, [{ code: 'P12_LOCAL_ROUNDING', file: 'app/battle.ts' }]);
+});
+
 test('callsite audit passes on the clean src tree', () => {
   const res = run(['tools/math/audit-math-callsites.mjs', 'src']);
   const report = JSON.parse(res.stdout);

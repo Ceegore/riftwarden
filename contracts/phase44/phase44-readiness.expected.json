@@ -1,5 +1,16 @@
 {
-  "schemaVersion": 1, "phase": 44, "gate": "G44",
-  "evidence": { "checklist": "docs/reports/phase44-checklist.md", "modules": [] },
-  "hardBlockers": ["P44_G44_G43_GATE_BLOCKED","P44_G44_NO_APPLE_DEVELOPER_ACCOUNT","P44_G44_NO_REAL_IOS_DEVICE","P44_G44_NO_DISTRIBUTION_CERTIFICATE","P44_G44_NO_TESTFLIGHT_INSTALL"]
+  "schemaVersion": 1,
+  "phase": 44,
+  "gate": "G44",
+  "evidence": {
+    "checklist": "docs/reports/phase44-checklist.md",
+    "modules": []
+  },
+  "hardBlockers": [
+    "P44_G44_G43_GATE_BLOCKED",
+    "P44_G44_NO_APPLE_DEVELOPER_ACCOUNT",
+    "P44_G44_NO_REAL_IOS_DEVICE",
+    "P44_G44_NO_DISTRIBUTION_CERTIFICATE",
+    "P44_G44_NO_TESTFLIGHT_INSTALL"
+  ]
 }

@@ -47,8 +47,11 @@ function frontDistance(entity: KernelEntity): number {
  * advances the 30-tick stuck counter, the 3-repath lane fallback, the 60-tick
  * front-deadlock counter and the 300+300 no-progress endcap. Qualifying progress
  * resets both global counters (§9.4): a committed spawn resets them in the
- * same tick via the stage-K spawn system, while damage/heal/death/phase
- * progress signals arrive with Phase 14/16. Render/audio events never count.
+ * same tick via the stage-K spawn system, a real kill via the stage-J defeat
+ * resolver (phase17.j1.defeat_resolver), and damage/heal that actually
+ * reaches HP via the stage-I combat application
+ * (phase17.i1.combat_application). Shield-only absorption, zero-damage hits
+ * and render/audio events never count.
  */
 export function createAntiStuckSystem(config: AntiStuckSystemConfig): KernelSystem {
   const stopGap = config.stopGapX100 === undefined ? asX100(10) : nonNegativeX100(config.stopGapX100);

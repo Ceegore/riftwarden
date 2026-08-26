@@ -22,6 +22,7 @@ function baseCandidate(overrides: Partial<Candidate> = {}): Candidate {
     summoned: false,
     shielded: false,
     construct: false,
+    bossObject: false,
     backline: false,
     buffed: false,
     threatensSource: false,

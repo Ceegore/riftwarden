@@ -140,4 +140,3 @@ export class LocalStorageSaveStore implements NativeSaveStore {
     return [];
   }
 }
-

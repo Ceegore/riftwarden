@@ -4,7 +4,7 @@ import type { Lane } from '../geometry/x100.js';
 export type Role = 'defender'|'fighter'|'breaker'|'duelist'|'marksman'|'mage'|'controller'|'healer'|'support'|'summoner'|'constructor';
 
 /** Where an entity came from; drives the regular/summoned/construct flags. */
-export type EntityOrigin = 'regular'|'summoned'|'construct';
+export type EntityOrigin = 'regular'|'summoned'|'construct'|'boss_object';
 
 /** One target candidate for the query/score pipeline (kit shape, kernel ids). */
 export interface Candidate {
@@ -20,6 +20,7 @@ export interface Candidate {
   readonly summoned: boolean;
   readonly shielded: boolean;
   readonly construct: boolean;
+  readonly bossObject: boolean;
   readonly backline: boolean;
   readonly buffed: boolean;
   readonly threatensSource: boolean;

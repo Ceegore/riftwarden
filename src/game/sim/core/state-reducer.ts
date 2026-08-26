@@ -54,7 +54,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   let entities = [...args.state.entities], phase = args.state.phase, endReason = args.state.endReason;
   let globalNoProgressTicks = args.state.globalNoProgressTicks, riftCollapseTicks = args.state.riftCollapseTicks, riftCollapseWarningEmitted = args.state.riftCollapseWarningEmitted;
   let projectiles = args.state.projectiles, pendingCombatApplications = args.state.pendingCombatApplications, combatApplicationSeq = args.state.combatApplicationSeq;
-  let timeCollapseSinceTick = args.state.timeCollapseSinceTick, bossDamageDealt = args.state.bossDamageDealt;
+  let timeCollapseSinceTick = args.state.timeCollapseSinceTick, bossDamageDealt = args.state.bossDamageDealt, forcedOutcome = args.state.forcedOutcome;
   let statuses = args.state.statuses, pendingCleanses = args.state.pendingCleanses;
   let abilities = args.state.abilities, plannedEffects = args.state.plannedEffects, temporaryEntities = args.state.temporaryEntities, synergyTiers = args.state.synergyTiers, bossPhase = args.state.bossPhase, modifiers = args.state.modifiers, hazards = args.state.hazards, objectives = args.state.objectives, spawnedWaves = args.state.spawnedWaves;
   const beforeEvents = args.log.size();
@@ -83,6 +83,11 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
       case 'battle_transition':
         battleTransitions.push(command);
         break;
+      case 'force_battle_outcome':
+        if (!(['VICTORY', 'DEFEAT', 'DRAW_ABORT'] as readonly string[]).includes(command.outcome)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'forced-outcome-invalid', outcome: command.outcome });
+        if (typeof command.reason !== 'string' || command.reason.length === 0) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'forced-outcome-reason-invalid' });
+        forcedOutcome = Object.freeze({ outcome: command.outcome, reason: command.reason });
+        break;
       case 'spawn_entity':
         if (entities.some((e) => e.id === command.entity.id)) throw new KernelInvariantError('P14_DUPLICATE_ENTITY', { id: command.entity.id });
         validateEntity(command.entity);
@@ -98,6 +103,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         break;
       case 'set_position':
         requireEntity(entities, command.entityId);
+        assertLane(command.lane);
         if (!Number.isSafeInteger(command.x100) || command.x100 < 0 || command.x100 > 10000 || Object.is(command.x100, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'x100-out-of-range', entityId: command.entityId, x100: command.x100 });
         entities = entities.map((e) => (e.id === command.entityId ? Object.freeze({ ...e, lane: command.lane, x100: command.x100 }) : e));
         break;
@@ -194,12 +200,10 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         if (command.sinceTick !== null && (!Number.isSafeInteger(command.sinceTick) || command.sinceTick < 0 || Object.is(command.sinceTick, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'time-collapse-invalid', sinceTick: command.sinceTick });
         timeCollapseSinceTick = command.sinceTick ?? undefined;
         break;
-      case 'record_boss_damage': {
+      case 'record_boss_damage':
         if (!Number.isSafeInteger(command.amount) || command.amount < 0) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'boss-damage-amount', amount: command.amount });
-        const current = bossDamageDealt ?? Object.freeze({ player: 0, enemy: 0 });
-        bossDamageDealt = Object.freeze({ ...current, [command.side]: current[command.side] + command.amount });
+        bossDamageDealt = Object.freeze({ ...(bossDamageDealt ?? Object.freeze({ player: 0, enemy: 0 })), [command.side]: (bossDamageDealt?.[command.side] ?? 0) + command.amount });
         break;
-      }
       case 'set_projectiles': {
         if (!Array.isArray(command.projectiles)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'projectiles-not-array' });
         const validated: ProjectileState[] = command.projectiles.map((projectile) => { if (typeof projectile !== 'object' || projectile === null) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'projectile-invalid' }); validateProjectileState(projectile as ProjectileState); return projectile as ProjectileState; });
@@ -244,8 +248,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
         entities = entities.map((e) => {
           if (e.id !== command.entityId) return e;
           const next = Object.freeze({ ...e, lp: Math.max(0, Math.min(e.maxLp, e.lp + command.delta)) });
-          if (command.delta < 0 && command.sourceId != null && next.deadlockBuffedEntityId != null) return Object.freeze({ ...next, deadlockBuffedEntityId: null, deadlockBuffConsumed: true });
-          return next;
+          return command.delta < 0 && command.sourceId != null && next.deadlockBuffedEntityId != null ? Object.freeze({ ...next, deadlockBuffedEntityId: null, deadlockBuffConsumed: true }) : next;
         });
         break;
       }
@@ -268,24 +271,21 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
 
   if (battleTransitions.length > 0) {
     const ordered = [...battleTransitions].sort((a, b) => b.priority - a.priority || (a.to < b.to ? -1 : a.to > b.to ? 1 : 0));
-    const winner = ordered[0];
-    const conflict = ordered[1];
-    if (winner !== undefined && conflict?.priority === winner.priority && conflict.to !== winner.to) throw new KernelInvariantError('P14_TRANSITION_CONFLICT', { kind: 'battle' });
-    if (winner) phase = transitionBattlePhase(phase, winner.to, args.atTick);
-    if (winner && isTerminalBattlePhase(phase.phase)) endReason = winner.reason;
+    const winner = ordered[0] ?? Object.freeze({ to: 'ACTIVE' as const, priority: 0, reason: 'unreachable' });
+    // Like selectEntityTransition: ANY same-priority request targeting another phase is a hard conflict — not just the second element, so [VICTORY, VICTORY, DEFEAT] is caught too.
+    if (ordered.some((r, i) => i > 0 && r.priority === winner.priority && r.to !== winner.to)) throw new KernelInvariantError('P14_TRANSITION_CONFLICT', { kind: 'battle', winner: winner.to });
+    phase = transitionBattlePhase(phase, winner.to, args.atTick);
+    if (isTerminalBattlePhase(phase.phase)) endReason = winner.reason;
   }
 
   args.queue.commitPlanned(args.allocate);
   const extras: Record<string, unknown> = {};
-  if (globalNoProgressTicks !== undefined) extras['globalNoProgressTicks'] = globalNoProgressTicks; if (riftCollapseTicks !== undefined) extras['riftCollapseTicks'] = riftCollapseTicks;
-  if (riftCollapseWarningEmitted !== undefined) extras['riftCollapseWarningEmitted'] = riftCollapseWarningEmitted; if (projectiles !== undefined) extras['projectiles'] = projectiles;
-  if (pendingCombatApplications !== undefined) extras['pendingCombatApplications'] = pendingCombatApplications; if (combatApplicationSeq !== undefined) extras['combatApplicationSeq'] = combatApplicationSeq;
-  if (timeCollapseSinceTick !== undefined) extras['timeCollapseSinceTick'] = timeCollapseSinceTick; if (bossDamageDealt !== undefined) extras['bossDamageDealt'] = bossDamageDealt;
-  if (statuses !== undefined) extras['statuses'] = statuses; if (pendingCleanses !== undefined) extras['pendingCleanses'] = pendingCleanses;
-  if (abilities !== undefined) extras['abilities'] = abilities; if (plannedEffects !== undefined) extras['plannedEffects'] = plannedEffects;
-  if (temporaryEntities !== undefined) extras['temporaryEntities'] = temporaryEntities; if (synergyTiers !== undefined) extras['synergyTiers'] = synergyTiers;
-  if (bossPhase !== undefined) extras['bossPhase'] = bossPhase; if (modifiers !== undefined) extras['modifiers'] = modifiers;
-  if (hazards !== undefined) extras['hazards'] = hazards; if (objectives !== undefined) extras['objectives'] = objectives;
+  if (globalNoProgressTicks !== undefined) extras['globalNoProgressTicks'] = globalNoProgressTicks; if (riftCollapseTicks !== undefined) extras['riftCollapseTicks'] = riftCollapseTicks; if (riftCollapseWarningEmitted !== undefined) extras['riftCollapseWarningEmitted'] = riftCollapseWarningEmitted;
+  if (projectiles !== undefined) extras['projectiles'] = projectiles; if (pendingCombatApplications !== undefined) extras['pendingCombatApplications'] = pendingCombatApplications; if (combatApplicationSeq !== undefined) extras['combatApplicationSeq'] = combatApplicationSeq;
+  if (timeCollapseSinceTick !== undefined) extras['timeCollapseSinceTick'] = timeCollapseSinceTick; if (bossDamageDealt !== undefined) extras['bossDamageDealt'] = bossDamageDealt; if (forcedOutcome !== undefined) extras['forcedOutcome'] = forcedOutcome; if (statuses !== undefined) extras['statuses'] = statuses;
+  if (pendingCleanses !== undefined) extras['pendingCleanses'] = pendingCleanses; if (abilities !== undefined) extras['abilities'] = abilities; if (plannedEffects !== undefined) extras['plannedEffects'] = plannedEffects;
+  if (temporaryEntities !== undefined) extras['temporaryEntities'] = temporaryEntities; if (synergyTiers !== undefined) extras['synergyTiers'] = synergyTiers; if (bossPhase !== undefined) extras['bossPhase'] = bossPhase;
+  if (modifiers !== undefined) extras['modifiers'] = modifiers; if (hazards !== undefined) extras['hazards'] = hazards; if (objectives !== undefined) extras['objectives'] = objectives;
   if (spawnedWaves !== undefined) extras['spawnedWaves'] = spawnedWaves;
   return Object.freeze({
     ...args.state,

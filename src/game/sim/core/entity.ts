@@ -34,7 +34,7 @@ export interface KernelEntity {
   readonly deadlockBuffConsumed?: boolean;
   readonly deadlockBuffedEntityId?: string|null;
   // Phase 16 additive fields (targeting/attack foundation).
-  readonly origin?: 'regular'|'summoned'|'construct';
+  readonly origin?: 'regular'|'summoned'|'construct'|'boss_object';
   readonly inRangeSinceTick?: number|null;
   // Phase 17 additive fields (attack lifecycle).
   readonly attackState?: AttackState|null;
@@ -93,7 +93,7 @@ export function validateEntity(entity: KernelEntity): void {
   if (entity.deadlockBuffConsumed !== undefined && typeof entity.deadlockBuffConsumed !== 'boolean') throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'deadlockBuffConsumed',value:entity.deadlockBuffConsumed});
   if (entity.deadlockBuffedEntityId !== undefined && entity.deadlockBuffedEntityId !== null && !ID.test(entity.deadlockBuffedEntityId)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'deadlockBuffedEntityId',value:entity.deadlockBuffedEntityId});
   const origin: unknown = entity.origin;
-  if (origin !== undefined && origin !== 'regular' && origin !== 'summoned' && origin !== 'construct') throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'origin',value:origin});
+  if (origin !== undefined && origin !== 'regular' && origin !== 'summoned' && origin !== 'construct' && origin !== 'boss_object') throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'origin',value:origin});
   if (entity.inRangeSinceTick !== undefined && entity.inRangeSinceTick !== null && (!Number.isSafeInteger(entity.inRangeSinceTick) || entity.inRangeSinceTick < 0 || Object.is(entity.inRangeSinceTick, -0))) throw new KernelInvariantError('P14_SNAPSHOT_INVALID',{entityId:entity.id,field:'inRangeSinceTick',value:entity.inRangeSinceTick});
   if (entity.attackState !== undefined && entity.attackState !== null) {
     const attack = entity.attackState;

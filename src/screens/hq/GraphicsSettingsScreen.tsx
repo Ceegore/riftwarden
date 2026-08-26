@@ -6,6 +6,7 @@
 import { useCallback, useState } from 'react';
 import type { JSX } from 'react';
 import { Button } from '../../ui/components/Button.js';
+import { roundPercent } from '../../ui/format/rounding.js';
 import { StatRow } from '../../ui/components/StatRow.js';
 import { ScreenFrame } from '../../ui/layout/ScreenFrame.js';
 import { BottomActionBar } from '../../ui/layout/BottomActionBar.js';
@@ -55,8 +56,8 @@ export function GraphicsSettingsScreen({ onBack }: GraphicsSettingsScreenProps):
           <h2>Performance Budget</h2>
           <StatRow label="Frame Target" value={`${String(budget.targetMs)}ms`} />
           <StatRow label="Sample Window" value={String(budget.sampleWindow)} />
-          <StatRow label="Degrade At" value={`${String(Math.round(budget.degradationThreshold * 100))}%`} />
-          <StatRow label="Upgrade At" value={`${String(Math.round(budget.upgradeThreshold * 100))}%`} />
+          <StatRow label="Degrade At" value={`${String(roundPercent(budget.degradationThreshold))}%`} />
+          <StatRow label="Upgrade At" value={`${String(roundPercent(budget.upgradeThreshold))}%`} />
         </section>
       </ScrollRegion>
 

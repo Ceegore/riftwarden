@@ -25,6 +25,7 @@ export type KernelCommand =
   | Readonly<{kind:'append_event'; event:KernelEventInput}>
   | Readonly<{kind:'entity_transition'; entityId:string; request:TransitionRequest}>
   | Readonly<{kind:'battle_transition'; to:BattlePhase; priority:number; reason:string}>
+  | Readonly<{kind:'force_battle_outcome'; outcome:'VICTORY'|'DEFEAT'|'DRAW_ABORT'; reason:string}>
   | Readonly<{kind:'spawn_entity'; entity:KernelEntity}>
   | Readonly<{kind:'remove_entity'; entityId:string}>
   | Readonly<{kind:'set_target'; entityId:string; targetId:string|null}>

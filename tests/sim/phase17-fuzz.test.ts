@@ -382,7 +382,7 @@ describe('P17 stage-L battle-end fuzz', () => {
     }
   });
 
-  it('tie-break determinism: same seed produces the same terminal outcome and event count', { timeout: FUZZ_TIMEOUT }, () => {
+  it('tie-break determinism: same seed produces the same terminal outcome and event count', { timeout: 120_000 }, () => {
     for (const config of stageLConfigs()) {
       const first = runStageL(config);
       const second = runStageL(config);

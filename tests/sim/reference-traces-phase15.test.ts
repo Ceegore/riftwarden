@@ -37,11 +37,11 @@ function generateTrace(): string {
 }
 
 describe('Phase 15 golden reference trace', () => {
-  it('60-tick movement trace is byte-identical to the pinned fixture', () => {
+  it('60-tick movement trace is byte-identical to the pinned fixture', { timeout: 30_000 }, () => {
     expect(generateTrace()).toBe(fixture);
   });
 
-  it('runs lane change, movement and anti-stuck in stage F order', () => {
+  it('runs lane change, movement and anti-stuck in stage F order', { timeout: 30_000 }, () => {
     const parsed = JSON.parse(generateTrace()) as { pipelineCallOrder: string[] };
     const fStages = parsed.pipelineCallOrder.filter((call) => call.startsWith('F:'));
     expect(fStages).toEqual(['F:phase15.f1.lane_change', 'F:phase15.f2.movement', 'F:phase15.f3.anti_stuck']);

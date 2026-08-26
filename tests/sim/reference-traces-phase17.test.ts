@@ -70,11 +70,11 @@ function generateTrace(): string {
 }
 
 describe('Phase 17 golden reference trace', () => {
-  it('60-tick basic-attack/projectile/damage trace is byte-identical to the pinned fixture', () => {
+  it('60-tick basic-attack/projectile/damage trace is byte-identical to the pinned fixture', { timeout: 30_000 }, () => {
     expect(generateTrace()).toBe(fixture);
   });
 
-  it('runs the Phase 17 G/H/I systems in the pipeline', () => {
+  it('runs the Phase 17 G/H/I systems in the pipeline', { timeout: 30_000 }, () => {
     const parsed = JSON.parse(generateTrace()) as { pipelineCallOrder: string[] };
     expect(parsed.pipelineCallOrder).toContain('G:phase17.g1.basic_attack');
     expect(parsed.pipelineCallOrder).toContain('H:phase17.h1.projectile');

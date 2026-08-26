@@ -1,5 +1,15 @@
 {
-  "schemaVersion": 1, "phase": 47, "gate": "G47",
-  "evidence": { "checklist": "docs/reports/phase47-checklist.md", "modules": [] },
-  "hardBlockers": ["P47_G47_G46_GATE_BLOCKED","P47_G47_NO_RELEASE_BRANCH","P47_G47_NO_SIGNED_ARTIFACTS","P47_G47_NO_GO_NOGO_DECISION"]
+  "schemaVersion": 1,
+  "phase": 47,
+  "gate": "G47",
+  "evidence": {
+    "checklist": "docs/reports/phase47-checklist.md",
+    "modules": []
+  },
+  "hardBlockers": [
+    "P47_G47_G46_GATE_BLOCKED",
+    "P47_G47_NO_RELEASE_BRANCH",
+    "P47_G47_NO_SIGNED_ARTIFACTS",
+    "P47_G47_NO_GO_NOGO_DECISION"
+  ]
 }

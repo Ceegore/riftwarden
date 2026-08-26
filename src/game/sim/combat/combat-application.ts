@@ -6,6 +6,7 @@ import { basisPoints, milliValue } from '../../rules/units.js';
 import type { KernelEventInput } from '../events/event-types.js';
 import { aggregateShields, consumeShields, expireShields, validateShieldSource, type ShieldConsumption, type ShieldSource } from './shield-ledger.js';
 import { COLLAPSE_HEAL_FACTOR_BPS, COLLAPSE_WINDOW_TICKS } from './battle-end-resolver.js';
+import { bossObjectDamageAmount, bossObjectHpDelta, type DamagePolicy } from '../boss/boss-object-manager.js';
 
 /** Damage type ordinals (§8.1): physical, magical, pure. */
 export const DAMAGE_TYPE_PHYSICAL = 0;
@@ -75,9 +76,13 @@ export interface DamageOutcome {
 }
 
 /** §8.1 integer pipeline: raw -> defense -> boss cap -> cover -> min/null
- * rule -> shield ledger -> HP, round-half-away-from-zero at every step. Pure
- * damage skips defense; a successful non-negated hit deals at least 1. */
-export function applyDamagePipeline(target: KernelEntity, shields: readonly ShieldSource[], application: Extract<PendingCombatApplication, { kind: 'damage' }>): { readonly outcome: DamageOutcome; readonly shields: readonly ShieldSource[]; readonly consumption: ShieldConsumption } {
+ * rule -> boss-object policy gate -> shield ledger -> HP,
+ * round-half-away-from-zero at every step. Pure damage skips defense; a
+ * successful non-negated hit deals at least 1. The optional §6 boss-object
+ * damage policy gates the hit after the min/null rule (`immune` negates the
+ * whole hit before shields) and gates the HP delta after shields
+ * (`shield_only` lets shields absorb but never reduces object HP). */
+export function applyDamagePipeline(target: KernelEntity, shields: readonly ShieldSource[], application: Extract<PendingCombatApplication, { kind: 'damage' }>, policy?: DamagePolicy): { readonly outcome: DamageOutcome; readonly shields: readonly ShieldSource[]; readonly consumption: ShieldConsumption } {
   const hpBefore = target.lp;
   const shieldBefore = aggregateShields(shields);
   let value = application.rawAmount;
@@ -95,11 +100,16 @@ export function applyDamagePipeline(target: KernelEntity, shields: readonly Shie
   // attack always deals at least 1 damage (before the shield ledger).
   if (value < 0) value = 0;
   else if (value === 0 && application.rawAmount > 0) value = 1;
+  // §6 boss-object gate: `immune` negates the entire hit before shields —
+  // nothing is absorbed, nothing reaches HP.
+  if (policy !== undefined) value = bossObjectDamageAmount(policy, value);
   const { sources, consumption } = consumeShields(shields, value);
   const absorbedShield = consumption.absorbed;
   const postShield = Math.max(0, value - absorbedShield);
   // HP never goes below 0; the applied delta is clamped to remaining LP.
-  const finalHpDelta = Math.min(postShield, target.lp);
+  // §6 boss-object gate: `shield_only` never reduces object HP — shields
+  // absorb, the overflow is discarded.
+  const finalHpDelta = bossObjectHpDelta(policy, Math.min(postShield, target.lp));
   const hpAfter = target.lp - finalHpDelta;
   const shieldAfter = aggregateShields(sources);
   return {
@@ -165,11 +175,15 @@ function eventFor(application: PendingCombatApplication, event: string, targetId
 
 /** Stage I system (§8). Applies every queued combat application strictly:
  * damage/heal/shield mutate LP and the ledger, each emits its §8.4 apply
- * event. No death effects or removes here — that is stage J (T05, not
+ * event. Real damage and real heals reset the §9.4 global no-progress endcap
+ * (qualifying progress), mirroring the stage-J kill reset and the stage-K
+ * spawn reset. No death effects or removes here — that is stage J (T05, not
  * pre-taken). Expired shields drop first with a separate event. */
 export interface CombatApplicationConfig {
   /** Boss entity ids for the Chapter-76 boss-damage tie-break (§10). */
   readonly bossIds?: ReadonlySet<string>;
+  /** §6 boss-object damage policy per entity id (normal/immune/shield_only). */
+  readonly bossObjectPolicies?: ReadonlyMap<string, DamagePolicy>;
 }
 
 export function createCombatApplicationSystem(config: CombatApplicationConfig = {}): KernelSystem {
@@ -193,12 +207,19 @@ export function createCombatApplicationSystem(config: CombatApplicationConfig = 
         }
         let nextLp = target.lp;
         if (application.kind === 'damage') {
-          const result = applyDamagePipeline(target, shields, application);
+          const policy = config.bossObjectPolicies?.get(target.id);
+          const result = applyDamagePipeline(target, shields, application, policy);
           shields = result.shields;
           for (const detail of result.consumption.perSource) {
             context.commands.push({ kind: 'append_event', event: eventFor(application, 'ShieldAbsorbed', target.id, { amount: detail.absorbed, remaining: detail.remainingAfter }) });
           }
           context.commands.push({ kind: 'apply_lp_delta', entityId: target.id, delta: -result.outcome.finalHpDelta, sourceId: application.sourceId });
+          // §9.4: damage that actually reaches HP is qualifying progress — a
+          // battle dealing damage must never time out while it is still
+          // advancing. Shield-only absorption and 0-damage hits do not count.
+          if (result.outcome.finalHpDelta > 0) {
+            context.commands.push({ kind: 'set_global_progress', noProgressTicks: 0, collapseTicks: 0, warned: false });
+          }
           // §10 Chapter-76: damage dealt to a boss is attributed to the opposing
           // side (no friendly fire), feeding the boss-damage tie-break. The
           // effective damage is the post-shield amount that reached HP.
@@ -221,6 +242,8 @@ export function createCombatApplicationSystem(config: CombatApplicationConfig = 
           const outcome = applyHealPipeline(target, { ...application, healFactorBps: factor });
           if (outcome.finalHpDelta > 0) {
             context.commands.push({ kind: 'apply_lp_delta', entityId: target.id, delta: outcome.finalHpDelta, sourceId: application.sourceId });
+            // §9.4: a heal that actually restores HP is qualifying progress.
+            context.commands.push({ kind: 'set_global_progress', noProgressTicks: 0, collapseTicks: 0, warned: false });
           }
           context.commands.push({ kind: 'append_event', event: eventFor(application, 'HealApplied', target.id, healPayload(application, outcome)) });
           nextLp = Math.min(target.maxLp, target.lp + outcome.finalHpDelta);

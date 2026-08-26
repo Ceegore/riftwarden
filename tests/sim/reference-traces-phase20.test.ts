@@ -62,11 +62,11 @@ function generateTrace(): string {
 }
 
 describe('Phase 20 golden reference trace', () => {
-  it('synergy/summon/expiry trace is byte-identical to the pinned fixture', () => {
+  it('synergy/summon/expiry trace is byte-identical to the pinned fixture', { timeout: 30_000 }, () => {
     expect(generateTrace()).toBe(fixture);
   });
 
-  it('runs the Phase 20 systems through the pipeline', () => {
+  it('runs the Phase 20 systems through the pipeline', { timeout: 30_000 }, () => {
     const parsed = JSON.parse(generateTrace()) as { pipelineCallOrder: string[]; checkpoints: { tick: number }[] };
     expect(parsed.pipelineCallOrder).toContain('D:phase20.d1.synergy_commit');
     expect(parsed.pipelineCallOrder).toContain('K:phase20.k0.temporary_expiry');

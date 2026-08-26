@@ -26,5 +26,5 @@ export function applyBasisPoints(value: number, bps: BasisPoints): number {
   return mulDivRound(value, bps, TECHNICAL_RULES.basisPointsScale);
 }
 export function ratioBasisPoints(numerator: number, denominator: number): BasisPoints {
-  return basisPoints(mulDivRound(numerator, TECHNICAL_RULES.basisPointsScale, denominator), -50_000, 50_000);
+  return basisPoints(mulDivRound(numerator, TECHNICAL_RULES.basisPointsScale, denominator), -TECHNICAL_RULES.basisPointsNormalMax, TECHNICAL_RULES.basisPointsNormalMax);
 }

@@ -7,7 +7,7 @@
  */
 export type CurrencyId = 'gold' | 'riftEssence';
 
-export type TransactionKind = 'BUY_COPY' | 'BUY_CONTRACT' | 'EQUIP' | 'REMOVE' | 'POLISH' | 'SET_BANNER' | 'SET_KIT';
+export type TransactionKind = 'BUY_COPY' | 'BUY_CONTRACT' | 'EQUIP' | 'REMOVE' | 'POLISH' | 'SET_BANNER' | 'SET_KIT' | 'CREDIT_GOLD' | 'GRANT_ITEM';
 
 export interface Wallet {
   readonly gold: number;
@@ -75,4 +75,6 @@ export const TRANSACTION_KINDS: readonly TransactionKind[] = [
   'POLISH',
   'SET_BANNER',
   'SET_KIT',
+  'CREDIT_GOLD',
+  'GRANT_ITEM',
 ];

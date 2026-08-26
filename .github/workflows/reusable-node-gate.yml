@@ -160,6 +160,10 @@ jobs:
               pnpm test:phase17
               pnpm phase17:validate-readiness
               ;;
+            crossruntime-gates)
+              pnpm exec playwright install --with-deps chromium firefox webkit
+              pnpm sim:crossruntime:browsers
+              ;;
             asset-manifest-validate)
               pnpm assets:validate
               ;;

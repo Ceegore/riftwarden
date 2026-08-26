@@ -28,6 +28,18 @@ public final class NativeSaveStorePlugin extends Plugin {
     @PluginMethod
     public void writeAtomic(PluginCall call) { rejectNotImplemented(call, "writeAtomic"); }
 
+    @PluginMethod
+    public void commit(PluginCall call) { rejectNotImplemented(call, "commit"); }
+
+    @PluginMethod
+    public void load(PluginCall call) { rejectNotImplemented(call, "load"); }
+
+    @PluginMethod
+    public void inspect(PluginCall call) { rejectNotImplemented(call, "inspect"); }
+
+    @PluginMethod
+    public void cleanupOrphans(PluginCall call) { rejectNotImplemented(call, "cleanupOrphans"); }
+
     private void rejectNotImplemented(PluginCall call, String method) {
         call.reject("NativeSaveStore." + method + " is not implemented in Phase 04.", "NOT_IMPLEMENTED");
     }

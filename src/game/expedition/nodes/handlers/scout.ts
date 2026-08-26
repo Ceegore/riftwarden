@@ -32,7 +32,7 @@ export const scoutHandler: NodeHandler = {
     throw new ExpeditionError('UNKNOWN_ACTION', { nodeId: definition.nodeId, action: request.action });
   },
   commit(definition, request, state) {
-    if (request.action === 'ENTER') return applyOutcomeCommands(state, enterCommands(definition));
+    if (request.action === 'ENTER') return applyOutcomeCommands(state, enterCommands(definition, state));
     if (request.action === 'REVEAL_PATH') {
       return applyOutcomeCommands(state, [{ kind: 'GRANT_KNOWLEDGE', knowledgeId: `scout.path:${definition.nodeId}` }]);
     }

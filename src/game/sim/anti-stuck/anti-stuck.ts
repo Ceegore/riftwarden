@@ -1,6 +1,7 @@
 import { asX100, type X100 } from '../geometry/x100.js';
+import { STUCK_TICKS } from '../../rules/mechanic-rules.js';
 
-export const STUCK_TICKS = 30;
+export { STUCK_TICKS };
 export const REPATH_COUNT = 3;
 export const REPATH_WINDOW_TICKS = 120;
 // §9.1 fix (GDD row: "Stopdistanz +0,1 X"): the repathed unit's legal stop

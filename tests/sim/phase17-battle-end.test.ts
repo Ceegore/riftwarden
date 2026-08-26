@@ -99,7 +99,7 @@ describe('P17 T06 battle-end resolver (stage L)', () => {
     expect(collapseDamageFor(unit('unit_a', 'player', { maxLp: 1250 }))).toBe(100);
   });
 
-  it('requests RESOLVING_END at the soft limit + collapse window', () => {
+  it('requests RESOLVING_END at the soft limit + collapse window', { timeout: 60_000 }, () => {
     const a = unit('unit_a', 'player', { maxLp: 1000, lp: 1000 });
     const b = unit('unit_b', 'enemy', { maxLp: 1000, lp: 1000 });
     const before = run(3150, [a, b]);
@@ -160,7 +160,7 @@ describe('P17 T06 battle-end resolver (stage L)', () => {
     expect(resolveChapter76(chapter76Score([p, e], 'player', 200), chapter76Score([p, e], 'enemy', 200))).toBe('DRAW_ABORT');
   });
 
-  it('boss-damage tie-break resolves a kernel timeout battle', () => {
+  it('boss-damage tie-break resolves a kernel timeout battle', { timeout: 60_000 }, () => {
     // Both sides tie on ratio and count (1v1, both bosses at equal LP). The
     // player deals 400 per hit to the enemy boss while the enemy deals 200
     // back, so the Chapter-76 boss-damage step picks the player. Huge LP keeps

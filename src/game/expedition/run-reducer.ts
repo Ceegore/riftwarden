@@ -82,7 +82,7 @@ export function applyResourceDelta(state: RunState, key: string, delta: number, 
 export function applyInstabilityDelta(state: RunState, delta: number, expectedRevision: number): RunState {
   assertRevision(state, expectedRevision);
   const next = state.instability + delta;
-  if (next < 0) throw new ExpeditionError('NEGATIVE_RESOURCE', { key: 'instability', delta, next });
+  if (!Number.isSafeInteger(next) || next < 0) throw new ExpeditionError('NEGATIVE_RESOURCE', { key: 'instability', delta, next });
   return { ...state, revision: state.revision + 1, instability: next };
 }
 

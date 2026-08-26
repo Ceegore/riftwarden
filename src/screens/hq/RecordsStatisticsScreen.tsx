@@ -4,6 +4,7 @@
  */
 import { useMemo, type JSX } from 'react';
 import { Button } from '../../ui/components/Button.js';
+import { roundPercent } from '../../ui/format/rounding.js';
 import { GameCard } from '../../ui/components/GameCard.js';
 import { StatRow } from '../../ui/components/StatRow.js';
 import { ScreenFrame } from '../../ui/layout/ScreenFrame.js';
@@ -28,7 +29,7 @@ export function RecordsStatisticsScreen({ onBack }: RecordsStatisticsScreenProps
         <StatRow label="Defeats" value={String(records.totalDefeats)} />
         <StatRow label="Win rate" value={
           records.totalExpeditions > 0
-            ? `${String(Math.round((records.totalVictories / records.totalExpeditions) * 100))}%`
+            ? `${String(roundPercent(records.totalVictories / records.totalExpeditions))}%`
             : '—'
         } />
       </section>

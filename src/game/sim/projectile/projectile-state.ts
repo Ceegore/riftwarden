@@ -1,5 +1,6 @@
 import { KernelInvariantError } from '../core/invariant-error.js';
 import type { Lane, X100 } from '../geometry/x100.js';
+import { MAX_PROJECTILE_TRAVEL_TICKS } from '../../rules/mechanic-rules.js';
 import { asX100, nonNegativeX100 } from '../geometry/x100.js';
 import type { KernelEntity } from '../core/entity.js';
 import { edgeDistanceX100, type Body } from '../geometry/distance.js';
@@ -180,7 +181,7 @@ export function forecastTravelTicks(state: ProjectileState): number {
     const moved = direction * step.stepX100;
     if (Math.abs(moved) >= remaining) remaining = 0;
     else remaining -= Math.abs(moved);
-    if (ticks > 10_000) return 10_000;
+    if (ticks > MAX_PROJECTILE_TRAVEL_TICKS) return MAX_PROJECTILE_TRAVEL_TICKS;
   }
   return ticks;
 }

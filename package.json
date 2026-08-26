@@ -131,6 +131,7 @@
     "kernel:audit": "node tools/sim/audit-kernel-imports.mjs",
     "kernel:validate-readiness": "node tools/sim/validate-phase13-readiness.mjs",
     "sim:mass": "node tools/sim/run-mass-sim.mjs",
+    "sim:mass:phase21:policies": "node tools/sim/run-phase21-policy-mass-sim.mjs --battles 2000",
     "sim:crossruntime": "node tools/sim/generate-crossruntime-matrix.mjs",
     "sim:crossruntime:browsers": "node tools/sim/run-crossruntime-browsers.mjs",
     "phase15:validate-readiness": "node tools/sim/validate-phase14-readiness.mjs",

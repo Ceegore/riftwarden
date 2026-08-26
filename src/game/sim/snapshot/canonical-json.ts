@@ -1,32 +1,21 @@
+/**
+ * Snapshot canonical JSON — delegates to the shared implementation, wrapping
+ * violations in `KernelInvariantError` with backward-compatible error codes.
+ */
 import { KernelInvariantError } from '../core/invariant-error.js';
+import { canonicalJsonWith, canonicalUtf8With } from '../canonical-json-shared.js';
 
-function encode(value: unknown, seen: Set<object>): string {
-  if (value === null || typeof value === 'boolean' || typeof value === 'string') return JSON.stringify(value);
-  if (typeof value === 'number') {
-    if (!Number.isSafeInteger(value) || Object.is(value, -0)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { value });
-    return String(value);
-  }
-  if (typeof value !== 'object') throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { type: typeof value });
-  if (seen.has(value)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'cycle' });
-  seen.add(value);
-  try {
-    if (Array.isArray(value)) return `[${value.map((item) => encode(item, seen)).join(',')}]`;
-    const proto = Object.getPrototypeOf(value) as object | null;
-    if (proto !== Object.prototype && proto !== null) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'prototype' });
-    const record = value as Record<string, unknown>;
-    return `{${Object.keys(record)
-      .sort()
-      .map((key) => `${JSON.stringify(key)}:${encode(record[key], seen)}`)
-      .join(',')}}`;
-  } finally {
-    seen.delete(value);
-  }
+function error(reason: string, detail?: Readonly<Record<string, unknown>>): KernelInvariantError {
+  // Map shared error reasons back to the original snapshot error code so
+  // existing tests and catchers that look for P14_SNAPSHOT_INVALID still work.
+  const code = reason.startsWith('P_CANONICAL_JSON') ? 'P14_SNAPSHOT_INVALID' : reason;
+  return new KernelInvariantError(code, detail ?? {});
 }
 
 export function canonicalJson(value: unknown): string {
-  return encode(value, new Set());
+  return canonicalJsonWith(value, error);
 }
 
 export function canonicalUtf8(value: unknown): Uint8Array {
-  return new TextEncoder().encode(canonicalJson(value));
+  return canonicalUtf8With(value, error);
 }

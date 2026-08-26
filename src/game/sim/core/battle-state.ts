@@ -1,5 +1,6 @@
 import { KernelInvariantError } from './invariant-error.js';
 import type { Tick } from './primitives.js';
+import { TECHNICAL_RULES } from '../../rules/technical-rules.js';
 
 export const BATTLE_PHASES = ['PREPARED','INTRO','ACTIVE','PHASE_TRANSITION','RESOLVING_END','VICTORY','DEFEAT','DRAW_ABORT'] as const;
 export type BattlePhase = (typeof BATTLE_PHASES)[number];
@@ -18,6 +19,6 @@ export function transitionBattlePhase(state: BattlePhaseState, to: BattlePhase, 
 export function advanceResolvingEnd(state: BattlePhaseState): BattlePhaseState {
   if (state.phase !== 'RESOLVING_END') return state;
   const count = state.resolvingEndTicks + 1;
-  if (count > 3) throw new KernelInvariantError('P14_RESOLVING_END_LIMIT',{count});
+  if (count > TECHNICAL_RULES.resolvingEndMaxTicks) throw new KernelInvariantError('P14_RESOLVING_END_LIMIT',{count});
   return Object.freeze({...state,resolvingEndTicks:count});
 }

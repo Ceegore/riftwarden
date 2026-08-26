@@ -1,5 +1,6 @@
 import { KernelInvariantError } from '../core/invariant-error.js';
 import { asciiCompare } from '../core/primitives.js';
+import { GAME_RULES } from '../../rules/game-rules.js';
 import { createTempEntity, type SpawnRequest, type SpawnResult, type TempEntity } from './temporary-entity.js';
 import type { TemporaryRegistry } from './temporary-registry.js';
 
@@ -45,7 +46,7 @@ function makeSummon(request: SpawnRequest): TempEntity {
 
 /** §5.2/§5.3 single atomic commit against the registry. */
 export function commitSummon(registry: TemporaryRegistry, request: SpawnRequest): SpawnResult {
-  if (registry.summonCount(request.side) >= 6) {
+  if (registry.summonCount(request.side) >= GAME_RULES.maxActiveSummonsPerSide) {
     const oldest = registry.oldestSummon(request.side);
     if (request.policy === 'BLOCK') {
       return Object.freeze({ kind: 'BLOCKED', entityId: request.reservedEntityId, diagnostic: 'SpawnLimitBlocked' });

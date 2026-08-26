@@ -29,6 +29,34 @@ describe('state reducer', () => {
     expect(() => stepBattle({ state, input, random: randomSession(), rules: {}, content: {}, systems: [system] })).toThrow(/P14_TRANSITION_CONFLICT/);
   });
 
+  it('battle transition conflict is detected beyond the second request', () => {
+    // [VICTORY, VICTORY, DEFEAT] at the same priority: the DEFEAT must be a
+    // hard conflict, not silently dropped because the first two agree.
+    const system: KernelSystem = {
+      id: 'end.multi', stage: 'L',
+      run(c) {
+        c.commands.push({ kind: 'battle_transition', to: 'VICTORY', priority: 10, reason: 'a' });
+        c.commands.push({ kind: 'battle_transition', to: 'VICTORY', priority: 10, reason: 'b' });
+        c.commands.push({ kind: 'battle_transition', to: 'DEFEAT', priority: 10, reason: 'c' });
+      },
+    };
+    const state = battle({ phase: { phase: 'RESOLVING_END', enteredTick: tick(0), resolvingEndTicks: 0 } });
+    expect(() => stepBattle({ state, input, random: randomSession(), rules: {}, content: {}, systems: [system] })).toThrow(/P14_TRANSITION_CONFLICT/);
+  });
+
+  it('same-target same-priority battle transitions are idempotent', () => {
+    const system: KernelSystem = {
+      id: 'end.dup', stage: 'L',
+      run(c) {
+        c.commands.push({ kind: 'battle_transition', to: 'VICTORY', priority: 10, reason: 'a' });
+        c.commands.push({ kind: 'battle_transition', to: 'VICTORY', priority: 10, reason: 'b' });
+      },
+    };
+    const state = battle({ phase: { phase: 'RESOLVING_END', enteredTick: tick(0), resolvingEndTicks: 0 } });
+    const r = stepBattle({ state, input, random: randomSession(), rules: {}, content: {}, systems: [system] });
+    expect(r.state.phase.phase).toBe('VICTORY');
+  });
+
   it('higher-priority entity transition wins once per tick', () => {
     const system: KernelSystem = {
       id: 'entity', stage: 'J',

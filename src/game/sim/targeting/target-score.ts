@@ -1,3 +1,4 @@
+import { SUMMONED_DEFAULT_TARGET_WEIGHT } from '../../rules/mechanic-rules.js';
 import type { Candidate, Modifier, QueryContext, ScoreBreakdown } from './types.js';
 
 const LANE_INDEX: Readonly<Record<string, number>> = Object.freeze({ top: 0, middle: 1, bottom: 2 });
@@ -21,7 +22,7 @@ export function scoreCandidate(c: Candidate, x: QueryContext): ScoreBreakdown {
   else if (laneAdjacent(c.lane, x.sourceLane) && !x.ownLaneHasTarget) add('adjacent_no_own_target', 15);
   if (c.threatensSource) add('threatens_source', 12);
   if (c.regular) add('regular_target', 8);
-  if (c.summoned && !x.antiSummoner) add('summoned_default', -8);
+  if (c.summoned && !x.antiSummoner) add('summoned_default', SUMMONED_DEFAULT_TARGET_WEIGHT);
   if (x.role === 'duelist' && c.hp * 100 < c.maxHp * 30) add('duelist_low_hp', 10);
   if (x.role === 'breaker' && (c.shielded || c.construct)) add('breaker_shield_construct', 30);
   if ((x.role === 'duelist' || x.role === 'fighter') && c.backline) add('hunter_backline', 28);

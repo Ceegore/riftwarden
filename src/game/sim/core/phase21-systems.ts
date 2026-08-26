@@ -9,9 +9,11 @@ import { createModifierCollection, validateEncounter } from '../world/modifier-s
 import type { Hazard } from '../world/hazard-system.js';
 import { createHazardCollection } from '../world/hazard-system.js';
 import type { Objective } from '../objectives/combat-objective.js';
-import { applyEventRecordProgress, createObjectiveCollection, evaluateSurvival } from '../objectives/combat-objective.js';
-import type { Wave } from '../world/reinforcement-system.js';
-import { createSpawnedWaveCursor, dueWaves, validateWave } from '../world/reinforcement-system.js';
+import { createObjectiveResolutionSystem } from '../objectives/objective-resolution-system.js';
+import type { Wave, ReinforcementBody } from '../world/reinforcement-system.js';
+import { buildReinforcementEntity, createSpawnedWaveCursor, dueWaves, validateReinforcementBody, validateWave } from '../world/reinforcement-system.js';
+import type { BossObjectContent } from '../boss/boss-object-manager.js';
+import { createBossObjectCleanupSystem, createBossObjectPlacementSystem } from '../boss/boss-object-manager.js';
 
 /**
  * Phase 21 §3 runtime wiring (T02/T04/T05). Deterministic systems:
@@ -21,7 +23,10 @@ import { createSpawnedWaveCursor, dueWaves, validateWave } from '../world/reinfo
  * - stage C: `hazard.c1.advance` walks the scheduled→telegraph→resolve→expire
  *   lifecycle and emits the telegraph/resolve events at their boundary ticks.
  * - stage K: `reinforcement.k1.spawn` commits due waves into the wave cursor
- *   (spawn bodies remain a content port, §9 steps 4–6 deferral).
+ *   and — when content wires a `spawnBodies` resolver — spawns the wave's
+ *   combat bodies in its fixed order (content-port completion, §8);
+ *   `boss.object.k1.place` commits content-defined boss objects into the
+ *   temporary registry once at battle start (§6).
  * - stage L: `boss.l1.transition_commit` commits exactly one transition at its
  *   inclusive commit tick; `objective.l1.resolution` derives objective progress
  *   from the canonical previous-tick event log. Both ids sort BEFORE
@@ -38,9 +43,20 @@ export interface Phase21RuntimeConfig {
   readonly bossAnnouncedCounterTags?: readonly string[];
   /** Reinforcement waves with stable ids and spawn order (§8). */
   readonly waves?: readonly Wave[];
+  /**
+   * Content: resolves a wave's spawn profile to real combat bodies (stats +
+   * placement). When present, due waves spawn actual entities in the wave's
+   * fixed order and count as §9.4 qualifying progress; when absent, waves only
+   * advance the cursor and emit queue/spawn events (content-port deferral).
+   */
+  readonly spawnBodies?: (wave: Wave) => readonly ReinforcementBody[];
+  /** Content: encounter boss objects placed into the temporary registry at battle start (§6). */
+  readonly bossObjects?: readonly BossObjectContent[];
   /** Mission objectives with required counts; progress starts at zero (§8). */
   readonly objectives?: readonly Objective[];
 }
+
+export type { ReinforcementBody } from '../world/reinforcement-system.js';
 
 function eventInput(type: EventType, sourceId: string | null, targetIds: readonly string[], contentIds: readonly string[], payload: Readonly<Record<string, number>>): KernelEventInput {
   return Object.freeze({ type, sourceId, targetIds: Object.freeze([...targetIds]), contentIds: Object.freeze([...contentIds]), payload: Object.freeze({ ...payload }), logTags: Object.freeze(['sim.phase21']) });
@@ -133,7 +149,13 @@ export function createHazardAdvanceSystem(): KernelSystem {
   });
 }
 
-/** Stage K: commit due reinforcement waves into the wave cursor (§8). */
+/**
+ * Stage K: commit due reinforcement waves into the wave cursor (§8). When the
+ * content `spawnBodies` resolver is wired, each due wave additionally spawns
+ * real entities in its fixed order and counts as §9.4 qualifying progress
+ * (like the Phase-15 spawn system); without it, waves only emit events and
+ * advance the cursor (documented content-port deferral).
+ */
 export function createReinforcementSystem(config: Phase21RuntimeConfig = {}): KernelSystem {
   return Object.freeze({
     id: 'reinforcement.k1.spawn',
@@ -145,9 +167,36 @@ export function createReinforcementSystem(config: Phase21RuntimeConfig = {}): Ke
       const spawned = new Set(context.state.spawnedWaves ?? []);
       const due = dueWaves(waves, context.state.tick, spawned);
       if (due.length === 0) return;
+      const existingIds = new Set(context.state.entities.map((e) => e.id));
+      let spawnedAny = false;
       for (const wave of due) {
         context.commands.push({ kind: 'append_event', event: eventInput('ReinforcementQueued', null, [wave.id], [wave.id, wave.spawnProfile], { spawnTick: wave.scheduledTick }) });
         context.commands.push({ kind: 'append_event', event: eventInput('ReinforcementSpawned', null, [wave.id], [wave.id], { count: wave.entityIds.length }) });
+        const bodies = config.spawnBodies ? config.spawnBodies(wave) : null;
+        if (bodies === null) continue;
+        const bodyById = new Map<string, ReinforcementBody>();
+        for (const body of bodies) {
+          validateReinforcementBody(body, wave.id);
+          if (bodyById.has(body.entityId)) throw new KernelInvariantError('P21_WAVE_INVALID', { waveId: wave.id, reason: 'duplicate-body', entityId: body.entityId });
+          bodyById.set(body.entityId, body);
+        }
+        if (bodyById.size !== wave.entityIds.length || !wave.entityIds.every((id) => bodyById.has(id))) {
+          throw new KernelInvariantError('P21_WAVE_INVALID', { waveId: wave.id, reason: 'body-coverage-mismatch', entityIds: wave.entityIds.length, bodies: bodyById.size });
+        }
+        // Fixed spawn order (§8): commit bodies in exactly the wave's order.
+        for (const entityId of wave.entityIds) {
+          const body = bodyById.get(entityId);
+          if (body === undefined) throw new KernelInvariantError('P21_WAVE_INVALID', { waveId: wave.id, reason: 'missing-body', entityId });
+          if (existingIds.has(body.entityId)) throw new KernelInvariantError('P14_DUPLICATE_ENTITY', { id: body.entityId });
+          existingIds.add(body.entityId);
+          context.commands.push({ kind: 'spawn_entity', entity: buildReinforcementEntity(body, wave.side, context.state.tick) });
+          spawnedAny = true;
+        }
+      }
+      // §9.4: a committed wave that actually spawns bodies is qualifying
+      // progress and resets both global counters (mirrors the Phase-15 spawn).
+      if (spawnedAny) {
+        context.commands.push({ kind: 'set_global_progress', noProgressTicks: 0, collapseTicks: 0, warned: false });
       }
       context.commands.push({ kind: 'set_spawned_waves', spawnedWaves: createSpawnedWaveCursor([...(context.state.spawnedWaves ?? []), ...due.map((w) => w.id)]) });
     },
@@ -182,39 +231,6 @@ export function createBossPhaseCommitSystem(config: Phase21RuntimeConfig = {}): 
   });
 }
 
-/** Stage L: derive objective progress from the canonical previous-tick event log (§8). */
-export function createObjectiveResolutionSystem(config: Phase21RuntimeConfig = {}): KernelSystem {
-  return Object.freeze({
-    id: 'objective.l1.resolution',
-    stage: 'L',
-    run(context: TickContext): void {
-      const initial = config.objectives;
-      if (initial === undefined) return; // not an objective mission
-      const bossEntityId = context.state.bossPhase?.entityId ?? null;
-      const objectives = context.state.objectives;
-      const seeded = objectives ?? createObjectiveCollection(initial.map((o) => Object.freeze({ ...o, progress: 0, complete: false })));
-      const records = context.state.previousTickEvents ?? Object.freeze([]);
-      const aliveObjects = new Set((context.state.temporaryEntities ?? []).map((t) => t.id));
-      const next = seeded.map((o) => {
-        const afterRecords = records.reduce((acc, record) => {
-          // A boss defeat never counts toward kill_regulars.
-          if (o.kind === 'kill_regulars' && bossEntityId !== null && record.targetIds.includes(bossEntityId)) return acc;
-          return applyEventRecordProgress(acc, record);
-        }, o);
-        if (o.kind === 'survive_until') return evaluateSurvival(afterRecords, context.state.tick);
-        if (o.kind === 'protect_object') {
-          const alive = o.targetId !== null && aliveObjects.has(o.targetId);
-          return alive ? Object.freeze({ ...afterRecords, progress: afterRecords.required, complete: true }) : afterRecords;
-        }
-        return afterRecords;
-      });
-      if (objectives === undefined || JSON.stringify(next) !== JSON.stringify(seeded)) {
-        context.commands.push({ kind: 'set_objectives', objectives: createObjectiveCollection(next) });
-      }
-    },
-  });
-}
-
 /** Phase 21 A–M composition (§3): modifier + boss detect (D), hazard (C), wave (K), boss commit + objective (L). */
 export function createPhase21Systems(config: Phase21RuntimeConfig = {}): readonly KernelSystem[] {
   if (config.bossPhaseDefinitions !== undefined) {
@@ -229,6 +245,8 @@ export function createPhase21Systems(config: Phase21RuntimeConfig = {}): readonl
     createBossPhaseDetectSystem(config),
     createHazardAdvanceSystem(),
     createReinforcementSystem(config),
+    createBossObjectPlacementSystem(config.bossObjects === undefined ? {} : { bossObjects: config.bossObjects }),
+    createBossObjectCleanupSystem(config.bossObjects === undefined ? {} : { bossObjects: config.bossObjects }),
     createBossPhaseCommitSystem(config),
     createObjectiveResolutionSystem(config),
   ]);

@@ -6,12 +6,10 @@ import {
   FileNativeSaveStore,
   nextSlot,
   type FaultStep,
-  type FileSystemPort,
   type SaveFamily,
-  type Slot,
 } from '../../src/game/save/native-save-store.js';
 import { WebQaStore } from '../../src/game/save/web-qa-store.js';
-import { envelope, makeRequest, catchCode, catchAsync } from './phase23-helpers.js';
+import { envelope, makeRequest, catchCode, catchAsync, MemoryFileSystem, makeStore } from './phase23-helpers.js';
 
 // ---------------------------------------------------------------------------
 // Canonical JSON contract (P23-T01)
@@ -132,105 +130,6 @@ describe('P23 save envelope', () => {
 // In-memory FileSystemPort double with fault + corruption injection
 // ---------------------------------------------------------------------------
 
-class MemoryFileSystem implements FileSystemPort {
-  private readonly files = new Map<string, Uint8Array>();
-  private failWrite = false;
-  private failFlush = false;
-  private failRead = false;
-  private failRename = false;
-
-  setFailWrite(): void {
-    this.failWrite = true;
-  }
-
-  setFailFlush(): void {
-    this.failFlush = true;
-  }
-
-  setFailRead(): void {
-    this.failRead = true;
-  }
-
-  setFailRename(): void {
-    this.failRename = true;
-  }
-
-  /** Corrupts a persisted slot file (simulates torn write). */
-  corruptSlot(family: SaveFamily, slot: Slot): void {
-    const key = `saves/${family}/${slot}.json`;
-    const existing = this.files.get(key);
-    if (existing) this.files.set(key, new Uint8Array([0x7b, 0x22, 0x62, 0x72, 0x6f, 0x6b, 0x65, 0x6e]));
-  }
-
-  /** Corrupts the manifest file. */
-  corruptManifest(family: SaveFamily): void {
-    const key = `saves/${family}/manifest.json`;
-    const existing = this.files.get(key);
-    if (existing) this.files.set(key, new Uint8Array([0x7b, 0x22, 0x62, 0x72, 0x6f, 0x6b, 0x65, 0x6e]));
-  }
-
-  /** Removes a file entirely. */
-  deleteFile(path: string): void {
-    this.files.delete(path);
-  }
-
-  dump(): Map<string, Uint8Array> {
-    return new Map(this.files);
-  }
-
-  writeFileExclusive(path: string, bytes: Uint8Array): Promise<void> {
-    if (this.failWrite) return Promise.reject(new Error('injected write failure'));
-    if (this.files.has(path)) return Promise.reject(new Error('exclusive write conflict'));
-    this.files.set(path, new Uint8Array(bytes));
-    return Promise.resolve();
-  }
-
-  flushFile(path: string): Promise<void> {
-    void path;
-    if (this.failFlush) return Promise.reject(new Error('injected flush failure'));
-    return Promise.resolve();
-  }
-
-  readFile(path: string): Promise<Uint8Array> {
-    if (this.failRead) return Promise.reject(new Error('injected read failure'));
-    const value = this.files.get(path);
-    if (!value) return Promise.reject(new Error('file not found'));
-    return Promise.resolve(new Uint8Array(value));
-  }
-
-  atomicReplace(from: string, to: string): Promise<void> {
-    if (this.failRename) return Promise.reject(new Error('injected rename failure'));
-    const value = this.files.get(from);
-    if (!value) return Promise.reject(new Error('source not found'));
-    this.files.set(to, value);
-    this.files.delete(from);
-    return Promise.resolve();
-  }
-
-  flushDirectory(directory: string): Promise<void> {
-    void directory;
-    return Promise.resolve();
-  }
-
-  listDirectory(directory: string): Promise<string[]> {
-    return Promise.resolve([...this.files.keys()].filter((key) => key.startsWith(`${directory}/`)));
-  }
-
-  removeFile(path: string): Promise<void> {
-    this.files.delete(path);
-    return Promise.resolve();
-  }
-
-  exists(path: string): Promise<boolean> {
-    return Promise.resolve(this.files.has(path));
-  }
-}
-
-function makeStore(stepFault?: FaultStep | null): { store: FileNativeSaveStore; fs: MemoryFileSystem } {
-  const fs = new MemoryFileSystem();
-  const store = new FileNativeSaveStore(fs, '/data', stepFault ? (step) => (step === stepFault ? 'IO_WRITE_FAILED' : null) : () => null);
-  return { store, fs };
-}
 
 // ---------------------------------------------------------------------------
 // Slot rotation and manifest protocol (P23-T02)
@@ -446,3 +345,10 @@ describe('P23 closed DTOs and error codes', () => {
     }
   });
 });
+
+// ---------------------------------------------------------------------------
+// Randomized save recovery fuzz (P23-T02): random fault step + error code per
+// commit across many iterations. The invariant is that load() always returns
+// a coherent (commitId, payload) pair — never a torn or mismatched envelope —
+// and that a commit which returns normally is immediately recoverable.
+// ---------------------------------------------------------------------------

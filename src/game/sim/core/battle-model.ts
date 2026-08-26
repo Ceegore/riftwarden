@@ -51,6 +51,11 @@ export interface BattleModel {
   // Phase 17 additive battle-end field (T06): total damage each side dealt to
   // the opposing boss(es), used by the Chapter-76 boss-damage tie-break.
   readonly bossDamageDealt?: Readonly<{ player: number; enemy: number }>;
+  // Phase 21 additive battle-end field (§8): an outcome forced by mission
+  // logic (e.g. protect_object failure), with the terminal reason. The stage-L
+  // battle-end resolver honors it above elimination/Chapter-76 when
+  // finalizing RESOLVING_END.
+  readonly forcedOutcome?: Readonly<{ outcome: 'VICTORY' | 'DEFEAT' | 'DRAW_ABORT'; reason: string }>;
   // Phase 18 additive status field (T01–T06): canonically sorted active status
   // instances, projected into the snapshot. Absent on Phase 14–17 fixtures.
   readonly statuses?: readonly StatusInstance[];

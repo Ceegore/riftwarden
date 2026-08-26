@@ -1,5 +1,6 @@
 import { KernelInvariantError } from '../core/invariant-error.js';
 import { mulDivRound } from '../math/fixed-math.js';
+import { PERCENT_SCALE } from '../../rules/mechanic-rules.js';
 import type { TargetSnapshot } from './ability-target-query.js';
 import type { SourceSnapshot } from './effect-command.js';
 
@@ -182,7 +183,7 @@ function fullCharge(config: AbilityConfig): number {
 
 /** §8.2: default interrupt loss is 35% of current charge (integer, round half away from zero). */
 export function interruptChargeLoss(instance: AbilityInstance): number {
-  return mulDivRound(instance.chargeTicks, DEFAULT_INTERRUPT_LOSS_PERCENT, 100);
+  return mulDivRound(instance.chargeTicks, DEFAULT_INTERRUPT_LOSS_PERCENT, PERCENT_SCALE);
 }
 
 /** Pure per-tick advance (§8.1/§8.2). */

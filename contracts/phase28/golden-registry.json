@@ -6,7 +6,7 @@
   "profileId": "slice.act1.standard",
   "contentRevision": "test-content-revision",
   "gateSampleMaps": 10000,
-  "kernelSha256": "8f7906d3df8e8d3c5aa9fdf0f669cb99f901db4a6bf14774000f07fd2b731ec2",
+  "kernelSha256": "b879b0b1d6ff53a09c35e18f25499ca58346979d5537a09182e9e9da9e02052d",
   "entries": [
     {
       "caseId": "golden-00",

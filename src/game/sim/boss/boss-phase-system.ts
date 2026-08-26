@@ -1,5 +1,7 @@
 import { KernelInvariantError } from '../core/invariant-error.js';
 import { asciiCompare } from '../core/primitives.js';
+import { MAX_INVULNERABLE_TICKS } from '../../rules/mechanic-rules.js';
+import { TECHNICAL_RULES } from '../../rules/technical-rules.js';
 
 /**
  * Phase 21 §4–§5 boss-phase authority (T01 coverage + T02 transition runtime).
@@ -15,8 +17,8 @@ import { asciiCompare } from '../core/primitives.js';
 export type BossId = string;
 export type PhaseId = string;
 
-export const DEFAULT_TRANSITION_TICKS = 45;
-export const MAX_INVULNERABLE_TICKS = 45;
+export const DEFAULT_TRANSITION_TICKS = TECHNICAL_RULES.phaseTransitionDefaultTicks;
+export { MAX_INVULNERABLE_TICKS };
 export const HP_PERMILLE_END = 1001; // exclusive upper bound of the 0..1000 range
 
 /** Action categories a transition may cancel or pause (§5, closed set). */

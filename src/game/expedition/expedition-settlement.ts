@@ -22,33 +22,40 @@ export interface SettlementRequests {
   readonly requests: readonly TransactionRequest[];
 }
 
-/** Convert a settlement into profile transaction requests. */
+/**
+ * Convert a settlement into profile transaction requests.
+ *
+ * Transaction ids are content-derived, not positional: the outcome is part of
+ * the id (so a victory and a retreat for the same run can never collide and
+ * replay each other's gold credit), and each loot grant is keyed by its stable
+ * reward id (so list reordering or an added/removed reward can never make one
+ * item reuse a previously committed id). Duplicate calls with the same outcome
+ * and rewards produce identical ids and replay idempotently.
+ */
 function settlementToRequests(
   settlement: Settlement,
   baseTxId: string,
 ): readonly TransactionRequest[] {
   const requests: TransactionRequest[] = [];
-  let seq = 0;
 
-  // Credit kept gold.
+  // Credit kept gold (at most one gold transaction per settlement).
   if (settlement.keptGold > 0) {
     const kept = settlement.keptGold;
     requests.push({
-      transactionId: `${baseTxId}-gold-${String(seq)}`,
-      kind: 'BUY_COPY', // closest generic mutation; gold credit is a wallet delta.
+      transactionId: `${baseTxId}-gold`,
+      kind: 'CREDIT_GOLD',
       costGold: 0,
       mutate(profile: Profile): Profile {
         return { ...profile, wallet: { ...profile.wallet, gold: profile.wallet.gold + kept } };
       },
     });
-    seq++;
   }
 
-  // Loot items: each kept reward becomes an owned item.
+  // Loot items: each kept reward becomes an owned item, keyed by reward id.
   for (const lootId of settlement.keptLoot) {
     requests.push({
-      transactionId: `${baseTxId}-loot-${String(seq)}`,
-      kind: 'BUY_COPY',
+      transactionId: `${baseTxId}-loot-${lootId}`,
+      kind: 'GRANT_ITEM',
       costGold: 0,
       mutate(profile: Profile): Profile {
         const existing = profile.items[lootId];
@@ -62,12 +69,27 @@ function settlementToRequests(
         };
       },
     });
-    seq++;
   }
 
   // Relics and recruits are temporary run content. They expire at settlement;
   // only permanent loot and earned gold become profile transactions.
   return requests;
+}
+
+/**
+ * Guards the settlement-to-request bridge: every produced transaction id must
+ * be unique within the batch, and every kind must be a declared profile
+ * transaction kind. A duplicate id would silently drop a reward on replay, so
+ * this is a hard structural violation rather than a silent repair.
+ */
+function assertUniqueTransactionIds(requests: readonly TransactionRequest[]): void {
+  const seen = new Set<string>();
+  for (const request of requests) {
+    if (seen.has(request.transactionId)) {
+      throw new Error(`duplicate settlement transaction id: ${request.transactionId}`);
+    }
+    seen.add(request.transactionId);
+  }
 }
 
 /**
@@ -93,10 +115,12 @@ export function buildSettlementRequests(
       break;
   }
 
-  const baseTxId = `settle-${state.runId}`;
+  const baseTxId = `settle-${state.runId}-${outcome}`;
+  const requests = settlementToRequests(settlement, baseTxId);
+  assertUniqueTransactionIds(requests);
   return {
     outcome,
     settlement,
-    requests: settlementToRequests(settlement, baseTxId),
+    requests,
   };
 }

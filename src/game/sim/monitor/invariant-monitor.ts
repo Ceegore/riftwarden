@@ -15,11 +15,12 @@
  *   8. battle end <= 5400 ticks (or shorter mission cap).
  *   9. no reward-commit mutation during active simulation.
  */
+import { GAME_RULES } from '../../rules/game-rules.js';
 
 /** Lane ordinal as exposed by the probe (0 = top, 1 = middle, 2 = bottom). */
 export const LANE_COUNT = 3;
 /** Hard battle limit from the Phase 22 constants contract. */
-export const HARD_BATTLE_LIMIT_TICKS = 5400;
+export const HARD_BATTLE_LIMIT_TICKS = GAME_RULES.absoluteBattleAbortTicks;
 /** Global event cap per battle from the Phase 22 constants contract. */
 export const MAX_EVENTS_PER_BATTLE = 10000;
 

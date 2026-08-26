@@ -9,6 +9,24 @@ export const TargetProfileSourceSchema = z.object({
   maxRangeX100: z.number().int().nonnegative(),
 }).strict();
 
+export const BossObjectSourceSchema = z.object({
+  entityId: ContentIdSchema,
+  side: z.enum(["player", "enemy"]),
+  ownerId: ContentIdSchema,
+  sourceId: ContentIdSchema,
+  slotId: z.enum(["boss_slot_0", "boss_slot_1", "boss_slot_2", "boss_slot_3"]),
+  lane: z.enum(["top", "middle", "bottom"]),
+  x100: z.number().int().nonnegative().max(10000),
+  targetable: z.boolean(),
+  objectiveLink: ContentIdSchema.nullable(),
+  damagePolicy: z.enum(["normal", "immune", "shield_only"]),
+  statusPolicy: z.enum(["allow", "block"]),
+  cleanupPolicy: z.enum(["on_objective", "on_battle_end", "manual"]),
+  fallback: z.enum(["FAIL", "DEFER"]),
+  maxLp: z.number().int().positive(),
+  radiusX100: z.number().int().positive(),
+}).strict();
+
 export const EncounterSourceSchema = z.object({
   id: ContentIdSchema,
   regionId: ContentIdSchema,
@@ -17,6 +35,8 @@ export const EncounterSourceSchema = z.object({
   modifierIds: z.array(ContentIdSchema),
   reinforcementWaves: z.array(z.object({ atSeconds: z.number().nonnegative(), encounterId: ContentIdSchema }).strict()),
   objective: z.enum(["defeat_all", "survive", "defeat_boss"]),
+  /** §P21-T03: boss objects placed into the battle registry (damage/status/cleanup policies). */
+  bossObjects: z.array(BossObjectSourceSchema).default([]),
   rewardTableId: ContentIdSchema,
   previewDisclosureKey: LocalizationKeySchema,
   allowedModes: z.array(z.enum(["campaign","campaign_replay","ascension","beyond","endless"])).min(1),

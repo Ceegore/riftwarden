@@ -2,9 +2,9 @@
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 
-const root = resolve(process.argv[2] ?? 'src');
+const root = resolve(process.argv[2] ?? 'src').replaceAll('\\', '/');
 const findings = [];
-const allowedRounding = new Set(['game/sim/math/rounding.ts']);
+const allowedRounding = new Set(['game/sim/math/rounding.ts', 'ui/format/rounding.ts']);
 function walk(p) {
   for (const e of readdirSync(p, { withFileTypes: true })) {
     const q = join(p, e.name);

@@ -19,6 +19,8 @@ import {
   replaceSnapshot,
   rerollOffers,
 } from '../../offers/offer-service.js';
+
+export const MERCHANT_SERVICE_INSTABILITY_REDUCTION = 10;
 import type { NodeHandler } from '../registry.js';
 import type { NodeRunState, OfferSnapshot, OutcomeCommand } from '../types.js';
 import { assertVisitOpen, enterCommands, previewOf, requireOffer } from './common.js';
@@ -58,13 +60,16 @@ export const merchantHandler: NodeHandler = {
       return rerollOffers(state, definition.nodeId, MERCHANT_MAX_REROLLS) === null ? 'REROLL_LIMIT' : null;
     }
     if (request.action === 'SERVICE') {
-      return state.gold < MERCHANT_SERVICE_PRICE_GOLD ? 'INSUFFICIENT_GOLD' : null;
+      if (state.gold < MERCHANT_SERVICE_PRICE_GOLD) return 'INSUFFICIENT_GOLD';
+      // Instability is bounded below at 0; buying a reduction you cannot use
+      // is refused with a visible reason, never a NEGATIVE_RESOURCE crash.
+      return state.instability < MERCHANT_SERVICE_INSTABILITY_REDUCTION ? 'OPTION_UNAVAILABLE' : null;
     }
     throw new ExpeditionError('UNKNOWN_ACTION', { nodeId: definition.nodeId, action: request.action });
   },
   commit(definition, request, state) {
     if (request.action === 'ENTER') {
-      return applyOutcomeCommands(state, enterCommands(definition));
+      return applyOutcomeCommands(state, enterCommands(definition, state));
     }
     if (request.action === 'DECLINE') {
       return { state, outcomeIds: [] };
@@ -104,7 +109,7 @@ export const merchantHandler: NodeHandler = {
     if (request.action === 'SERVICE') {
       return applyOutcomeCommands(state, [
         { kind: 'GOLD_DELTA', amount: -MERCHANT_SERVICE_PRICE_GOLD },
-        { kind: 'INSTABILITY_DELTA', amount: -10 },
+        { kind: 'INSTABILITY_DELTA', amount: -MERCHANT_SERVICE_INSTABILITY_REDUCTION },
       ]);
     }
     throw new ExpeditionError('UNKNOWN_ACTION', { nodeId: definition.nodeId, action: request.action });

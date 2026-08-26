@@ -82,7 +82,7 @@ describe('phase32 settlement', () => {
     expect(settlement.keptGold).toBeGreaterThan(0);
     // At minimum: gold credit + loot items + relics + recruits.
     expect(requests.length).toBeGreaterThan(0);
-    expect(requests[0]?.kind).toBe('BUY_COPY');
+    expect(requests[0]?.kind).toBe('CREDIT_GOLD');
   });
 
   it('victory settlement credits gold to the profile wallet', () => {

@@ -87,10 +87,13 @@ export function rerollOffers(state: NodeRunState, nodeId: string, maxRerolls: nu
   return { ...rebuilt, rerollsUsed: existing.rerollsUsed + 1 };
 }
 
-/** Decrements the stock of one bought offer in the stored snapshot. */
+/** Decrements the stock of one bought offer in the stored snapshot.
+ * Guard: stock can never go negative — an offer with stock <= 0 is returned
+ * unchanged (the validate step should have rejected the buy, but this is a
+ * defensive net so a direct caller can never produce a negative stock). */
 export function decrementStock(snapshot: OfferSnapshot, offerId: string): OfferSnapshot {
   return {
     ...snapshot,
-    offers: snapshot.offers.map((offer) => (offer.offerId === offerId ? { ...offer, stock: offer.stock - 1 } : offer)),
+    offers: snapshot.offers.map((offer) => (offer.offerId === offerId ? { ...offer, stock: Math.max(0, offer.stock - 1) } : offer)),
   };
 }

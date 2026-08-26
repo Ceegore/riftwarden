@@ -9,6 +9,7 @@
 
 import { BUS_DEFAULTS, BUS_LABELS } from './audio-manifest-types.js';
 import type { AudioBus } from './audio-manifest-types.js';
+import { roundToNearest } from '../../../ui/format/rounding.js';
 export type { AudioBus } from './audio-manifest-types.js';
 
 export type PolyphonyProfile = 'high' | 'medium' | 'low';
@@ -56,7 +57,7 @@ export function createBusSettings(profile: PolyphonyProfile = 'high'): BusSettin
 }
 
 export function setBusVolume(state: BusSettings, bus: AudioBus, value: number): BusSettings {
-  const clamped = Math.max(0, Math.min(100, Math.round(value)));
+  const clamped = Math.max(0, Math.min(100, roundToNearest(value)));
   return {
     ...state,
     volume: { ...state.volume, [bus]: clamped },

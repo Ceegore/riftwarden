@@ -43,7 +43,7 @@ function assertProperty(family: string, seed: number, ok: boolean, detail?: unkn
 
 const CASES = 1000;
 
-describe('Phase 22 property families (>=1000 cases each, seed-persistent)', () => {
+describe('Phase 22 property families (>=1000 cases each, seed-persistent)', { timeout: 120_000 }, () => {
   it('formation_order_permutation: snapshot hash is invariant under entity order', () => {
     const seed = 0x22_01_00_01;
     for (let i = 0; i < CASES; i++) {

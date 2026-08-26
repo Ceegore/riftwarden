@@ -149,12 +149,14 @@ function decodeSnapshot(value: unknown, nodeId: string): NodeSnapshot {
   const kind = stringValue(entry['kind'], `snapshots.${nodeId}.kind`);
   if (kind === 'OFFERS') {
     requiredKeys(entry, ['kind', 'nodeId', 'offers', 'rerollsUsed', 'rollSlots', 'seed', 'snapshotId'], `snapshots.${nodeId}`);
+    const offers = entry['offers'];
+    if (!Array.isArray(offers)) throw new SaveError('INVALID_FIELD', { field: `snapshots.${nodeId}.offers` });
     return {
       kind,
       nodeId: stringValue(entry['nodeId'], `snapshots.${nodeId}.nodeId`),
       snapshotId: stringValue(entry['snapshotId'], `snapshots.${nodeId}.snapshotId`),
       seed: integerValue(entry['seed'], `snapshots.${nodeId}.seed`),
-      offers: (Array.isArray(entry['offers']) ? entry['offers'] : []).map((offer, index) => decodeOffer(offer, `snapshots.${nodeId}.offers.${String(index)}`)),
+      offers: offers.map((offer, index) => decodeOffer(offer, `snapshots.${nodeId}.offers.${String(index)}`)),
       rollSlots: stringMap(entry['rollSlots'], `snapshots.${nodeId}.rollSlots`),
       rerollsUsed: integerValue(entry['rerollsUsed'], `snapshots.${nodeId}.rerollsUsed`),
     };

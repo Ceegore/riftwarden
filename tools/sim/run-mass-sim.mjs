@@ -317,6 +317,9 @@ if (phase15) {
       Object.freeze({ id: 'mod_mass_1', previewKey: 'preview_mod_mass_1', hooks: Object.freeze(['on_battle_start']), incompatibilityTags: Object.freeze([]), params: Object.freeze({}) }),
     ]),
     waves: Object.freeze([Object.freeze({ id: 'wave_mass_1', scheduledTick: 10, side: 'enemy', entityIds: Object.freeze(['unit_reinforce_a', 'unit_reinforce_b']), spawnProfile: 'profile_grunt', capPolicy: 'BLOCK' })]),
+    // §9 content port: the wave's combat bodies are real entities (stats +
+    // placement), spawned in the wave's fixed order, counting as §9.4 progress.
+    spawnBodies: (wave) => wave.entityIds.map((entityId, index) => Object.freeze({ entityId, lane: index === 0 ? 'middle' : 'bottom', x100: 9000 - index * 300, radiusX100: 120, maxLp: 600 })),
     objectives: Object.freeze([
       Object.freeze({ id: 'obj_survive', kind: 'survive_until', targetId: null, required: 60, progress: 0, complete: false }),
       Object.freeze({ id: 'obj_boss', kind: 'kill_boss', targetId: 'boss_ash_unit', required: 1, progress: 0, complete: false }),

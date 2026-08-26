@@ -40,7 +40,7 @@ export const workshopHandler: NodeHandler = {
     throw new ExpeditionError('UNKNOWN_ACTION', { nodeId: definition.nodeId, action: request.action });
   },
   commit(definition, request, state) {
-    if (request.action === 'ENTER') return applyOutcomeCommands(state, enterCommands(definition));
+    if (request.action === 'ENTER') return applyOutcomeCommands(state, enterCommands(definition, state));
     if (request.action === 'DECLINE') return { state, outcomeIds: [] };
     const cost = request.action === 'POLISH' ? POLISH_COST_GOLD : REPAIR_COST_GOLD;
     const effect: OutcomeCommand = request.action === 'POLISH'

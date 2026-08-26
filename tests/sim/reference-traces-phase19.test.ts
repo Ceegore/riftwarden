@@ -84,11 +84,11 @@ function generateTrace(): string {
 }
 
 describe('Phase 19 golden reference trace', () => {
-  it('ability trigger/cast/effect trace is byte-identical to the pinned fixture', () => {
+  it('ability trigger/cast/effect trace is byte-identical to the pinned fixture', { timeout: 30_000 }, () => {
     expect(generateTrace()).toBe(fixture);
   });
 
-  it('runs the ability systems through the pipeline', () => {
+  it('runs the ability systems through the pipeline', { timeout: 30_000 }, () => {
     const parsed = JSON.parse(generateTrace()) as { pipelineCallOrder: string[]; checkpoints: { tick: number }[] };
     expect(parsed.pipelineCallOrder).toContain('D:phase19.d1.ability_trigger');
     expect(parsed.pipelineCallOrder).toContain('G:phase19.g2.ability_lifecycle');

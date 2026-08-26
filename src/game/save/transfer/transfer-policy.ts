@@ -26,6 +26,12 @@ export function validateEntries(entries: readonly EntryMeta[]): void {
   const names = new Set<string>();
   for (const entry of entries) {
     if (!Number.isSafeInteger(entry.size) || entry.size < 0) throw new SaveError('INVALID_ARGUMENT', { field: 'size' });
+    // compressedSize must be a non-negative safe integer too; a NaN, negative
+    // or fractional value would otherwise silently skip (or mis-fire) the
+    // compression-bomb ratio check below.
+    if (!Number.isSafeInteger(entry.compressedSize) || entry.compressedSize < 0) {
+      throw new SaveError('INVALID_ARGUMENT', { field: 'compressedSize' });
+    }
     if (entry.name.includes('/') || entry.name.includes('\\') || entry.name.includes('..')) {
       throw new SaveError('INVALID_ENTRY_NAME', { name: entry.name });
     }

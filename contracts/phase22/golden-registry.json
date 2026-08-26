@@ -123,51 +123,51 @@
     {
       "checkpoints": [
         {
-          "checksum": "62b97d92375041c20941bcaa3503bafa49b621e39ebba2ee15ce8771eaf73fb7",
+          "checksum": "be7daf6063cf8945f99a624aa4e1868459a660bb790a97be798c2361082fbad2",
           "tick": 2700
         },
         {
-          "checksum": "d5f5d7b0d1434fe82a824f3bc42326b7d5e76f42fea4fbd37997f53ec7b65fd2",
+          "checksum": "f05d0f4a489a0593377b75b8769cd44c3f55f993775df6a009651f4cac8a067c",
           "tick": 2730
         },
         {
-          "checksum": "7505956c85bb4351233099cf07420193b57b895596dc3216d783967d3e7dfe1e",
+          "checksum": "404ef4cde55c28475b84b63a190de0cb9e3dea3735bf6249a95fbdf9b653badc",
           "tick": 2760
         },
         {
-          "checksum": "d36247cc67193f58c3e833a0d83de03d8d3ce4845770f41dc72057b6ba6517fa",
+          "checksum": "4eb31689473df5c3cf56222cfa869eb2bfa6a97201f2e1d871083b875fd9ba27",
           "tick": 2790
         },
         {
-          "checksum": "d869116fca0bec0e45d8c48a32e4ad58550c035c3dc3748e8ab987126f76a273",
+          "checksum": "bbc7713a39ece3f7de03c7c4fc20461e2ef25b9f92abdd7a75f850e4f9206fcb",
           "tick": 2820
         },
         {
-          "checksum": "8c350903be019fd1fe681e22b8fbd6ee60184b9f42e4569dcd82ed837f4e7c60",
+          "checksum": "4a63f963188e2f756c3b45d014276e0d2753ab5025f81665bf9be51d1e638d6f",
           "tick": 2850
         },
         {
-          "checksum": "129b8a0566c102b059ccb2e5b14b740cc25fba8f516fb85dedf2af1660a462c9",
+          "checksum": "960c5aa1613c03520895b63992186e20e4cb686f7b0919f9f70dee8d9da7c677",
           "tick": 2880
         },
         {
-          "checksum": "83baab68fa48d267f9b9c48d2d8b1beb90ddde780d29de5135c2fe4dac5b4fa6",
+          "checksum": "909e4e31f1089d034214149d0303e593bbf40d81b15ee92abdd3a018a3ac6f89",
           "tick": 2910
         },
         {
-          "checksum": "591d8f4f28887ca9ceb0e5e56c7ae41ed8b50bd686329546efd647f11534e65f",
+          "checksum": "83bef503ed99a9957d5b050d54ac70e6fd4e44fd53b2f6ddf9ce7ee2229bc99b",
           "tick": 2940
         },
         {
-          "checksum": "336d8642013ed500c50c7f9a1fadcadf82a5b95ca9a6a56f8d568b7dea21aec0",
+          "checksum": "ce2af17b2654a96a40589315a0a0e25a4243369ee962e25e2ebe3aefcf442934",
           "tick": 2970
         }
       ],
       "contentVersion": "content_fixture",
-      "endHash": "23a63b18e614b7c3397c8e369cea19f2f5d44c4e560b54b33eb1561f30d988c9",
+      "endHash": "6535246fffe05f76bcb003ec8fc5220a514738607b511f202be3e5b2bf9afb4d",
       "endReason": null,
       "endTick": 2980,
-      "eventCount": 27,
+      "eventCount": 26,
       "id": "golden_revive_005",
       "outcome": null,
       "purpose": "revive simultaneous death draw",
@@ -335,76 +335,76 @@
     {
       "checkpoints": [
         {
-          "checksum": "c0378e2501bd00254d87f400f8c5ef07c6257c231456286c15960203d202dd23",
+          "checksum": "e616493984485d193f84605c45ff4c406852473c87f4a96ab10a66b3fab332c0",
           "tick": 2700
         },
         {
-          "checksum": "40ec7a190005745468cf2022e382947c8c4acfec1ad75ceb69541a81ef25deb0",
+          "checksum": "c03ecb96eabf4d9c9a8733a7f27b99b59fad08cad4c6078e79e5ad55e2f6bf85",
           "tick": 2730
         },
         {
-          "checksum": "6cd493bc52421a4afd1b0708e0d590d78d84cffa2387cdf4eadc92e506d8bcbf",
+          "checksum": "1ecf6a92cce83172eede5cb20e5d86185aed3b8a79f8d37704bdf845e1dcc7e8",
           "tick": 2760
         },
         {
-          "checksum": "8220837c41b4a0b91bb85fbbf52eec7f0bd96f8cd5ff416d7152f9d4468af88c",
+          "checksum": "643d2ebb61598755c197377028143ff00b4971b13021c911deb7aff7ba2a9882",
           "tick": 2790
         },
         {
-          "checksum": "0f6a4fbac4d0331b73e20229e73eae02d9cfde97f29ecc8f747ed498205b9337",
+          "checksum": "be7815f924222380ba22b348257819884863f666803f1db8b7ed4e1fcd21db6d",
           "tick": 2820
         },
         {
-          "checksum": "86878df64b1fc5e86bb1314c6b924636bb1a67f73c26ba148aaa09c72b0ae6bd",
+          "checksum": "2acfcd3089664cd111713b14b7acf37ec1960fa7ae3941921e60711ef669c189",
           "tick": 2850
         },
         {
-          "checksum": "f6832f57945fcc6283ccd3e6da5ac034a36cdfbea611a0ec7b9992a983c88748",
+          "checksum": "ef50de297bf33248a727ebf343974afa626e6131468a9b1d4d6540b3e2c3fe28",
           "tick": 2880
         },
         {
-          "checksum": "ed9f9b58b346a34f49d6b5dc675490047dda4774b52a97a62493b7581730ce1d",
+          "checksum": "9d4b4115baa4bdef3552fbf9c295f9d263f6b18503ad6213a133a98b384a353d",
           "tick": 2910
         },
         {
-          "checksum": "4fc554afa15e3163b88df560edb2bd86929ac6ed2f8c44f32237f9b500024af6",
+          "checksum": "745f829170ac466f9410d093ce6599f362cb122789aa969b14b6f08b339225fb",
           "tick": 2940
         },
         {
-          "checksum": "0d111c0ac743f2c4efd232370841726b3eaae71dd31b02ea4f69ac8ef944fc54",
+          "checksum": "a54f84e4c8d5de7d96d3c6f97bca6aa764c4b662431a6dd0c0272faa5d8716aa",
           "tick": 2970
         },
         {
-          "checksum": "f24fed8ea97174f2cee518dd8192348f59dea55389550625c5b90dc6b923e35b",
+          "checksum": "9d6b8d81fb908bf736e21b79dc6bed11d2891198bc314f96b34dc726cd840d55",
           "tick": 3000
         },
         {
-          "checksum": "769b853f7af1363ef4ca7afb4d61c5a1d653ac59e8a7b06ffc3a7926ffec5e82",
+          "checksum": "754280b63682e21def01f81b82a29cd7b8c1023f544e88518a60538a8536660c",
           "tick": 3030
         },
         {
-          "checksum": "4b63b409a91714cfd7636b5e6137d0c38af3c5cb7f54b052ef17392f8048335b",
+          "checksum": "2414510e83c3e972fc73bea67cce619a0c609edf0be1f22f3b6abfd4034d1f11",
           "tick": 3060
         },
         {
-          "checksum": "271939c1547e0435a6bc1baa79006d853cda5be78b91358bd5f1ca341666c013",
+          "checksum": "bab6a087c7f674e2e27c3caff94cd47b7d70555dd914adb9efaf43f160b1181a",
           "tick": 3090
         },
         {
-          "checksum": "be712197d8fe1d688d986a27c1d8f50888d484010d9813cdb5d4f1954828c4fa",
+          "checksum": "55bce396ecf96bf54aa303fde324aa98b2cd3fe52d983a5acaca8211d5e77f16",
           "tick": 3120
         },
         {
-          "checksum": "778230f7c39492d54ddbfe836716dccc2cfbe4aad7378e2ce40ec519d1ad1e7b",
+          "checksum": "01524a9b8243522893a9d749c09030a05648d881649007ddb48558e1bb85e569",
           "tick": 3150
         },
         {
-          "checksum": "b00b0ce3d1b7ea3ab7b316916fb4739b5fa7e792dfea9688b0069c95b9de4460",
+          "checksum": "9ddcc1774c370eb4f91b64e6777ec2f3dc1924579d5a89187cf096d965f54b89",
           "tick": 3154
         }
       ],
       "contentVersion": "content_fixture",
-      "endHash": "b00b0ce3d1b7ea3ab7b316916fb4739b5fa7e792dfea9688b0069c95b9de4460",
+      "endHash": "9ddcc1774c370eb4f91b64e6777ec2f3dc1924579d5a89187cf096d965f54b89",
       "endReason": "chapter76_timeout",
       "endTick": 3154,
       "eventCount": 31,
@@ -425,51 +425,51 @@
     {
       "checkpoints": [
         {
-          "checksum": "74ffb2d9626011f0a1af6cfe8a926a127c8279e2f480a5a7491efb9f9a1d52ce",
+          "checksum": "69b5e501b9b5c574c67e9c059a34ebf93babd956e35fac4423173186c483902c",
           "tick": 2700
         },
         {
-          "checksum": "7b191fd9ad7e0816a66d4914ed6b4cf26871bb4af2d9997178e6bb52f5984469",
+          "checksum": "993d043c296db94ab2397b4df562f835f6461d9539bd59ea76b928914983f407",
           "tick": 2730
         },
         {
-          "checksum": "e68a7b7b808d08704584d7105be83f03cc325d5922f3bd8d030d8d7404c35f30",
+          "checksum": "dd87efe853b7467fd84b7c65170fe17b8d73208c8d68285f12afe8d15b80b5e7",
           "tick": 2760
         },
         {
-          "checksum": "7bb1fe9315dd40c7458784fe4d7d253b353e109c1173eaed5160045ed9186c56",
+          "checksum": "1f9b4cd7f76fc331afd2461cbfa43a83fe37265a812d97fedd121c70c0c714ea",
           "tick": 2790
         },
         {
-          "checksum": "1b417aa7af10b3acfdddb792c30684f2c9b733c2aabe8a0474fb6e43744c871a",
+          "checksum": "be68d01bd2eb7c5204b14b2b25b2f7b3a281dc225199ffe8308f8abf0f58c90e",
           "tick": 2820
         },
         {
-          "checksum": "c3423151b7d31cf503b021c94e297603f87ba49bb99f5c66ac12fe12d2e7a3af",
+          "checksum": "fc0d69efb61fe68dc6688f8dbc62b184c9e2ef6ac8a0bd1f2873c885da121084",
           "tick": 2850
         },
         {
-          "checksum": "1d486ea8f06362476a474d7fad5c1f67abba297ff2d82ea973f02a9245afc8d9",
+          "checksum": "e7dc233d38f8c65c3e0ca63ffdeb327d4b428d03aec4aefc707a8d2bc81addf8",
           "tick": 2880
         },
         {
-          "checksum": "2fcb88395ccccc75e4bc26c9ddc2605ac06330608fb01b0bfca0308e953619a9",
+          "checksum": "eb588f24970a15dac68982a6308a39e0e2a0db52a52a53a7199674c43fbbc2c8",
           "tick": 2910
         },
         {
-          "checksum": "a14bc3ad740deb764ba31d932aad57ef7e85ebfab88481ac9230db53e682fe08",
+          "checksum": "26ac7b1d353616c6b8ee6e6df955085958d880b85810c11a9d0635222171951a",
           "tick": 2940
         },
         {
-          "checksum": "b1330b78d8aeddd85721dee1ade3f0502553b022c4f348f14c85e4bc925f2d64",
+          "checksum": "be5e0177b3283008a74f097c47e674d0be98e7006152b4f6255934f6e1f7ad52",
           "tick": 2970
         }
       ],
       "contentVersion": "content_fixture",
-      "endHash": "56b2e4aea7a8188c8192f2277b702d7a66e6f6cd55025bdd805d59cf90997467",
+      "endHash": "ae929ace3d1548c33871d2e8bc58fab9db6eb85b8a849ce8dc2e0587a962f6bc",
       "endReason": null,
       "endTick": 2980,
-      "eventCount": 27,
+      "eventCount": 26,
       "id": "golden_save_301",
       "outcome": null,
       "purpose": "snapshot cast projectile spawn resume",

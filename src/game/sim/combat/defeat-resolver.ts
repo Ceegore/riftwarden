@@ -136,6 +136,12 @@ export function createDefeatResolverSystem(hooks: Partial<DefeatHookInput> = EMP
           // An entity already DEFEATED (e.g. a once-per-battle revive refused)
           // stays put — never re-transition or re-emit.
           if (entity.phase.phase === 'DEFEATED' || entity.phase.phase === 'REMOVED') continue;
+          // §9.4: a real kill is battle progress — reset the global
+          // no-progress endcap so a battle that is advancing toward
+          // elimination never times out (stage-I damage/heal and stage-K
+          // spawns reset it too; this is the death signal). Prevention/revive
+          // do not count.
+          context.commands.push({ kind: 'set_global_progress', noProgressTicks: 0, collapseTicks: 0, warned: false });
           const overkill = entity.pendingOverkill ?? 0;
           const removeNow = full.removeOnDefeat.has(entity.id);
           // With the remove hook, transition straight to REMOVED (a legal

@@ -42,10 +42,10 @@ test('entering a battle node discovers the enemy type in codex', async ({ page }
   await navigateToMap(page, 'Battle Node');
 
   // Read codex state from localStorage — should have a battle entry.
-  const codexState = await page.evaluate(() => {
+  const codexState = await page.evaluate((): unknown => {
     const raw = localStorage.getItem('rw.codex.v1');
     if (raw === null) return null;
-    try { return JSON.parse(raw); } catch { return null; }
+    try { return JSON.parse(raw) as unknown; } catch { return null; }
   });
   expect(codexState).not.toBeNull();
 
