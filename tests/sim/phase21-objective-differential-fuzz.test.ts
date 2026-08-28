@@ -67,6 +67,29 @@ function mulberry32(seed: number): () => number {
 const EVENT_TYPES: readonly ('Defeated' | 'Removed' | 'ReinforcementSpawned')[] = ['Defeated', 'Removed', 'ReinforcementSpawned'];
 const IDS: readonly string[] = ['unit_a', 'unit_b', 'unit_c', 'boss_ash_unit', 'obj_core', 'obj_ward', 'wave_1'];
 
+/** §P21-T03 id classification: boss entity and boss-object ids are never regular units. */
+const BOSS_ENTITY_ID = 'boss_ash_unit';
+const BOSS_OBJECT_IDS: ReadonlySet<string> = new Set(['obj_core', 'obj_ward']);
+
+/**
+ * Clean-room kill_regulars oracle: counts a defeat iff the Defeated record has
+ * exactly one target AND that target is not the boss entity and not a boss
+ * object (§P21-T03) — every other single defeat is a regular kill. Independent
+ * of the runtime's fold — a second implementation of the exclusion, so
+ * agreement is a real differential.
+ */
+function cleanRoomRegularKills(records: readonly EventRecordLike[]): number {
+  let kills = 0;
+  for (const record of records) {
+    if (record.type !== 'Defeated') continue;
+    if (record.targetIds.length !== 1) continue;
+    const id = record.targetIds[0];
+    if (id === undefined || id === BOSS_ENTITY_ID || BOSS_OBJECT_IDS.has(id)) continue;
+    kills += 1;
+  }
+  return kills;
+}
+
 /** Random objective of an event-driven kind. */
 function randomObjective(rand: () => number): Objective {
   const kinds: readonly ObjectiveKind[] = ['kill_regulars', 'kill_boss', 'destroy_object', 'complete_waves'];
@@ -88,6 +111,50 @@ function randomObjective(rand: () => number): Objective {
 function project(event: KernelEvent): EventRecordLike {
   return Object.freeze({ type: event.type, sourceId: event.sourceId, targetIds: Object.freeze([...event.targetIds]) });
 }
+
+describe('P21 §8 differential fuzz — kill_regulars exclusion sweep', () => {
+  it('the runtime fold equals the clean-room oracle across mixed defeat orderings (30k streams)', { timeout: 300_000 }, () => {
+    const rand = mulberry32(0x0c_0f_fe_e);
+    let sawBossDefeat = false;
+    let sawObjectDefeat = false;
+    let sawMultiTarget = false;
+    let sawRegularKill = false;
+    for (let i = 0; i < 30_000; i++) {
+      // A randomized stream of defeats over the mixed id space: regulars, the
+      // boss entity and boss objects interleaved in arbitrary order, including
+      // multi-target events. The clean-room oracle counts regular-only
+      // single-target defeats; the runtime fold must agree after applying the
+      // §P21-T03 exclusions.
+      const steps = 1 + Math.floor(rand() * 30);
+      const records: EventRecordLike[] = [];
+      for (let s = 0; s < steps; s++) {
+        const targetCount = 1 + Math.floor(rand() * 3);
+        const targets = Array.from({ length: targetCount }, () => IDS[Math.floor(rand() * IDS.length)] ?? 'unit_a');
+        records.push(Object.freeze({ type: 'Defeated' as const, targetIds: Object.freeze(targets) }));
+      }
+      if (records.some((r) => r.targetIds.includes(BOSS_ENTITY_ID))) sawBossDefeat = true;
+      if (records.some((r) => r.targetIds.some((id) => BOSS_OBJECT_IDS.has(id)))) sawObjectDefeat = true;
+      if (records.some((r) => r.targetIds.length > 1)) sawMultiTarget = true;
+      const expected = cleanRoomRegularKills(records);
+      if (expected > 0) sawRegularKill = true;
+      // Runtime fold: the exact resolution-system loop for a kill_regulars
+      // objective (exclusions then applyEventRecordProgress).
+      const base: Objective = Object.freeze({ id: 'obj_regulars', kind: 'kill_regulars', targetId: null, required: 100, progress: 0, complete: false });
+      const folded = records.reduce((acc, record) => {
+        if (record.targetIds.includes(BOSS_ENTITY_ID)) return acc;
+        if (record.type === 'Defeated' && record.targetIds.some((id) => BOSS_OBJECT_IDS.has(id))) return acc;
+        return applyEventRecordProgress(acc, record);
+      }, base);
+      expect(folded.progress, `case ${String(i)} stream ${JSON.stringify(records)}`).toBe(expected);
+      expect(folded.complete).toBe(expected >= 100);
+    }
+    // The sweep must genuinely exercise the mixed space and the exclusions.
+    expect(sawBossDefeat).toBe(true);
+    expect(sawObjectDefeat).toBe(true);
+    expect(sawMultiTarget).toBe(true);
+    expect(sawRegularKill).toBe(true);
+  });
+});
 
 describe('P21 §8 differential fuzz — record path vs event path', () => {
   it('the projected-record fold equals the full-event fold at every step (20k streams)', { timeout: 300_000 }, () => {

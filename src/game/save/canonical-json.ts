@@ -4,7 +4,7 @@
  * `finite-allowed` (accepts non-integer finite numbers like 1.5), matching
  * the original Phase 23 contract.
  */
-import { canonicalJsonWith, canonicalUtf8With, type NumberPolicy } from '../sim/canonical-json-shared.js';
+import { canonicalJsonWith, canonicalUtf8With, type NumberPolicy } from '../sim/random/canonical-json-shared.js';
 
 export type JsonScalar = null | boolean | string | number;
 export type JsonValue = JsonScalar | readonly JsonValue[] | { readonly [key: string]: JsonValue };

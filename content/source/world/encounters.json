@@ -17,6 +17,8 @@
       "modifierIds": [],
       "reinforcementWaves": [],
       "objective": "defeat_all",
+      "bossUnitId": null,
+      "survivalDurationSeconds": null,
       "bossObjects": [],
       "rewardTableId": "reward_fixture_basic",
       "previewDisclosureKey": "content.encounter.encounter_fixture_first.preview",
@@ -39,6 +41,8 @@
       "modifierIds": [],
       "reinforcementWaves": [],
       "objective": "protect_object",
+      "bossUnitId": null,
+      "survivalDurationSeconds": null,
       "bossObjects": [
         {
           "entityId": "obj_ash_heart",
@@ -65,6 +69,30 @@
       ]
     },
     {
+      "id": "encounter_fixture_survive",
+      "regionId": "region_fixture",
+      "kind": "survival",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [],
+      "reinforcementWaves": [],
+      "objective": "survive",
+      "bossUnitId": null,
+      "survivalDurationSeconds": 30,
+      "bossObjects": [],
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_survive.preview",
+      "allowedModes": [
+        "campaign"
+      ]
+    },
+    {
       "id": "encounter_fixture_boss_object",
       "regionId": "region_fixture",
       "kind": "boss",
@@ -79,6 +107,8 @@
       "modifierIds": [],
       "reinforcementWaves": [],
       "objective": "defeat_boss",
+      "bossUnitId": "boss_ash_unit",
+      "survivalDurationSeconds": null,
       "bossObjects": [
         {
           "entityId": "obj_ash_core",

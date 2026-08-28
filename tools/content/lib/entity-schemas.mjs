@@ -163,6 +163,8 @@ export const ENTITY_SCHEMAS = Object.freeze({
     modifierIds: z.array(ContentId),
     reinforcementWaves: z.array(ReinforcementWave),
     objective: z.enum(["defeat_all", "survive", "defeat_boss", "protect_object"]),
+    bossUnitId: ContentId.nullable().default(null),
+    survivalDurationSeconds: z.number().nonnegative().nullable().default(null),
     bossObjects: z.array(z.object({
       entityId: ContentId,
       side: z.enum(["player", "enemy"]),

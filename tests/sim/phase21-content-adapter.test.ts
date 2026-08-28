@@ -7,7 +7,7 @@ import { stepBattle } from '../../src/game/sim/core/battle-kernel.js';
 import { createPhase17Systems } from '../../src/game/sim/core/phase17-systems.js';
 import { createPhase21Systems } from '../../src/game/sim/core/phase21-systems.js';
 import { createSnapshot } from '../../src/game/sim/snapshot/snapshot.js';
-import { bossObjectsFromContent, bossObjectPoliciesFromContent, blockedStatusTargetsFromContent, objectivesFromEncounterContent, type ContentBossObjectEntry, type EncounterObjectiveSource } from '../../src/game/sim/boss/encounter-adapter.js';
+import { bossObjectsFromContent, bossObjectPoliciesFromContent, blockedStatusTargetsFromContent, buildEncounterLaunchConfig, objectivesFromEncounterContent, type ContentBossObjectEntry, type EncounterObjectiveSource } from '../../src/game/sim/boss/encounter-adapter.js';
 import { battle, entity, randomSession, tick } from './test-helpers.js';
 import { migrateEntity } from '../../src/game/sim/core/migrate.js';
 import type { TickInput } from '../../src/game/sim/core/tick-input.js';
@@ -42,7 +42,30 @@ function protectEncounterSource(): EncounterObjectiveSource {
   const entity = envelope.entities.find((e) => e.id === 'encounter_fixture_protect_object');
   expect(entity).toBeDefined();
   const parsed = EncounterSourceSchema.parse(entity);
-  return { encounterId: parsed.id, objective: parsed.objective, bossObjects: parsed.bossObjects };
+  return {
+    encounterId: parsed.id,
+    objective: parsed.objective,
+    bossObjects: parsed.bossObjects,
+    enemySlotCount: parsed.enemySlots.length,
+    bossUnitId: parsed.bossUnitId,
+    survivalDurationSeconds: parsed.survivalDurationSeconds,
+  };
+}
+
+function fixtureSource(id: string): EncounterObjectiveSource {
+  const raw = readFileSync(path.join(here, '../../content/source/world/encounters.json'), 'utf8');
+  const envelope = JSON.parse(raw) as { entities: readonly { id?: string }[] };
+  const entity = envelope.entities.find((e) => e.id === id);
+  expect(entity).toBeDefined();
+  const parsed = EncounterSourceSchema.parse(entity);
+  return {
+    encounterId: parsed.id,
+    objective: parsed.objective,
+    bossObjects: parsed.bossObjects,
+    enemySlotCount: parsed.enemySlots.length,
+    bossUnitId: parsed.bossUnitId,
+    survivalDurationSeconds: parsed.survivalDurationSeconds,
+  };
 }
 
 describe('P21 content boss-object adapter (§6)', () => {
@@ -71,11 +94,68 @@ describe('P21 content boss-object adapter (§6)', () => {
     expect(Object.isFrozen(objectives[0])).toBe(true);
   });
 
-  it('returns no objectives for mission kinds the encounter content cannot express', () => {
-    const base = protectEncounterSource();
-    for (const objective of ['defeat_all', 'survive', 'defeat_boss'] as const) {
-      expect(objectivesFromEncounterContent({ ...base, objective })).toEqual([]);
+  it('derives kill_regulars for defeat_all from the enemy slot count', () => {
+    const source = fixtureSource('encounter_fixture_first');
+    expect(source.objective).toBe('defeat_all');
+    const objectives = objectivesFromEncounterContent(source);
+    expect(objectives).toEqual([
+      Object.freeze({ id: 'obj_encounter_fixture_first_regulars', kind: 'kill_regulars', targetId: null, required: 1, progress: 0, complete: false }),
+    ]);
+    expect(Object.isFrozen(objectives)).toBe(true);
+  });
+
+  it('derives survive_until for survive from survivalDurationSeconds (30 ticks/s)', () => {
+    const source = fixtureSource('encounter_fixture_survive');
+    expect(source.objective).toBe('survive');
+    const objectives = objectivesFromEncounterContent(source);
+    expect(objectives).toEqual([
+      Object.freeze({ id: 'obj_encounter_fixture_survive_survive', kind: 'survive_until', targetId: null, required: 900, progress: 0, complete: false }),
+    ]);
+  });
+
+  it('derives kill_boss for defeat_boss from bossUnitId', () => {
+    const source = fixtureSource('encounter_fixture_boss_object');
+    expect(source.objective).toBe('defeat_boss');
+    const objectives = objectivesFromEncounterContent(source);
+    expect(objectives).toEqual([
+      Object.freeze({ id: 'obj_encounter_fixture_boss_object_boss', kind: 'kill_boss', targetId: 'boss_ash_unit', required: 1, progress: 0, complete: false }),
+    ]);
+  });
+
+  it('a mission kind missing its required field is a content error', () => {
+    const survive = fixtureSource('encounter_fixture_survive');
+    let caught: unknown = null;
+    try {
+      objectivesFromEncounterContent({ ...survive, survivalDurationSeconds: null });
+    } catch (error) {
+      caught = error;
     }
+    expect(caught).toBeInstanceOf(Error);
+    expect((caught as Error).message).toBe('P21_OBJECTIVE_INVALID');
+    expect((caught as { details?: { reason?: string } }).details?.reason).toBe('survive-without-duration');
+
+    const boss = fixtureSource('encounter_fixture_boss_object');
+    let caughtBoss: unknown = null;
+    try {
+      objectivesFromEncounterContent({ ...boss, bossUnitId: null });
+    } catch (error) {
+      caughtBoss = error;
+    }
+    expect(caughtBoss).toBeInstanceOf(Error);
+    expect((caughtBoss as Error).message).toBe('P21_OBJECTIVE_INVALID');
+    expect((caughtBoss as { details?: { reason?: string } }).details?.reason).toBe('defeat-boss-without-boss-unit');
+  });
+
+  it('buildEncounterLaunchConfig assembles objectives + every boss-object surface in one call', () => {
+    const source = fixtureSource('encounter_fixture_protect_object');
+    const config = buildEncounterLaunchConfig(source);
+    expect(config.objectives).toEqual([
+      Object.freeze({ id: 'obj_protect_heart', kind: 'protect_object', targetId: 'obj_ash_heart', required: 1, progress: 0, complete: false }),
+    ]);
+    expect(config.bossObjects.map((b) => b.entityId)).toEqual(['obj_ash_heart']);
+    expect(config.bossObjectPolicies.get('obj_ash_heart')).toBe('normal');
+    expect(config.blockedStatusTargets.size).toBe(0);
+    expect(Object.isFrozen(config)).toBe(true);
   });
 
   it('protect_object without any linked boss object is a content error', () => {

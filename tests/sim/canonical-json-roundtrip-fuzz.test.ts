@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { canonicalJsonWith, canonicalUtf8With, type NumberPolicy } from '../../src/game/sim/canonical-json-shared.js';
+import { canonicalJsonWith, canonicalUtf8With, type NumberPolicy } from '../../src/game/sim/random/canonical-json-shared.js';
 
 /** Deterministic 32-bit PRNG (mulberry32) for value generation. */
 function mulberry32(seed: number): () => number {

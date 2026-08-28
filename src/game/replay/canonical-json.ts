@@ -3,7 +3,7 @@
  * violations in `RandomInvariantError` with backward-compatible error codes.
  */
 import { RandomInvariantError } from '../sim/random/invariant-error.js';
-import { canonicalJsonWith, canonicalUtf8With } from '../sim/canonical-json-shared.js';
+import { canonicalJsonWith, canonicalUtf8With } from '../sim/random/canonical-json-shared.js';
 import type { JsonValue } from './json-value.js';
 
 function error(reason: string, detail?: Readonly<Record<string, unknown>>): RandomInvariantError {

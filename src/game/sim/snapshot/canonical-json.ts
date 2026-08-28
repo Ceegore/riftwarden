@@ -3,7 +3,7 @@
  * violations in `KernelInvariantError` with backward-compatible error codes.
  */
 import { KernelInvariantError } from '../core/invariant-error.js';
-import { canonicalJsonWith, canonicalUtf8With } from '../canonical-json-shared.js';
+import { canonicalJsonWith, canonicalUtf8With } from '../random/canonical-json-shared.js';
 
 function error(reason: string, detail?: Readonly<Record<string, unknown>>): KernelInvariantError {
   // Map shared error reasons back to the original snapshot error code so

@@ -151,6 +151,32 @@ test('phase17 mass-sim evidence (basic-attack + projectile active) is PASS with 
   assert.ok(report.endHeapBytes <= report.peakHeapBytes, 'heap must not grow unbounded');
 });
 
+test('content-driven battle launcher derives objectives via the adapter and resolves every encounter', () => {
+  const d = mkdtempSync(join(tmpdir(), 'p21-content-launch-'));
+  const res = run(['tools/sim/run-content-encounters.mjs', '--out', join(d, 'content-encounters.json')]);
+  assert.equal(res.status, 0, res.stderr);
+  const report = JSON.parse(readFileSync(join(d, 'content-encounters.json'), 'utf8'));
+  assert.equal(report.status, 'PASS');
+  assert.equal(report.invariantErrors, 0);
+  assert.equal(report.drift, 0);
+  assert.equal(report.seededFailures, 0);
+  assert.equal(report.encounters, 4);
+  const byId = report.perEncounter;
+  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object']) {
+    assert.equal(byId[key].status, 'PASS', key);
+    assert.equal(byId[key].objectivesSeeded, true, key);
+    assert.equal(byId[key].bossObjectsPlaced, true, key);
+    assert.equal(byId[key].drift, false, key);
+  }
+  // The content-derived mission kinds land in the battle exactly as derived.
+  assert.equal(byId['encounter_fixture_first'].objective, 'defeat_all');
+  assert.equal(byId['encounter_fixture_survive'].objective, 'survive');
+  assert.equal(byId['encounter_fixture_boss_object'].objective, 'defeat_boss');
+  assert.equal(byId['encounter_fixture_protect_object'].objective, 'protect_object');
+  // protect_object teeth: the enemy destroys the protected body → forced DEFEAT.
+  assert.equal(byId['encounter_fixture_protect_object'].teeth, true);
+});
+
 test('phase21-policy mass-sim evidence (all policy combos) is PASS with zero drift and zero gate violations', () => {
   const report = JSON.parse(readFileSync(join(root, 'docs', 'reports', 'phase21-policy-mass-sim.json'), 'utf8'));
   assert.equal(report.status, 'PASS');
