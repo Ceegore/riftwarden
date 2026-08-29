@@ -9,6 +9,7 @@ import { Phase21OutboundPanel } from '../../src/features/battle/outbound/Phase21
 import { LiveBattleOutboundPanel } from '../../src/features/battle/outbound/LiveBattleOutboundPanel.js';
 import { DefeatPanel } from '../../src/features/battle/outbound/DefeatPanel.js';
 import { VictoryPanel } from '../../src/features/battle/outbound/VictoryPanel.js';
+import { MissionBountyDisclosure } from '../../src/features/battle/outbound/MissionBountyDisclosure.js';
 import type { LiveOutboundInput, Phase21OutboundReport } from '../../src/features/battle/outbound/phase21-outbound-presenter.js';
 
 /**
@@ -99,11 +100,15 @@ function renderLive(input: LiveOutboundInput): string {
   }));
 }
 
-function renderDefeat(reengaged: boolean, attemptsRemaining = 3): string {
+function renderDefeat(reengaged: boolean, attemptsRemaining = 3, ceilingBlocked = false): string {
   return renderToStaticMarkup(createElement(LocaleProvider, {
     controller: controller(),
-    children: createElement(DefeatPanel, { onReengage: () => undefined, instabilityDelta: 5 * (reengaged ? 2 : 1), reengaged, attemptsRemaining }),
+    children: createElement(DefeatPanel, { onReengage: () => undefined, instabilityDelta: 5 * (reengaged ? 2 : 1), reengaged, attemptsRemaining, ceilingBlocked }),
   }));
+}
+
+function renderDisclosure(bounty: number, objectives: readonly string[]): string {
+  return renderToStaticMarkup(createElement(MissionBountyDisclosure, { bounty, objectives }));
 }
 
 function renderVictory(bounty: number, kinds: readonly string[]): string {
@@ -290,6 +295,22 @@ describe('P21 §9 outbound panel mount', () => {
     const capped = renderDefeat(true, 0);
     expect(capped).toContain('No re-engages left — retreat only.');
     expect(capped).toContain('disabled');
+    // §9 instability ceiling: even with attempts left, the affordance disables
+    // and the ceiling message replaces the escalating-tax readout.
+    const ceiling = renderDefeat(false, 2, true);
+    expect(ceiling).toContain('Instability ceiling reached — retreat only.');
+    expect(ceiling).toContain('disabled');
+    expect(ceiling).not.toContain('Re-engage costs');
+    // Below the ceiling the escalating tax still renders.
+    expect(renderDefeat(true, 2, false)).toContain('Re-engage costs +10 instability (escalating).');
+  });
+
+  it('renders the §9.5 mission bounty disclosure before ENGAGE', () => {
+    expect(renderDisclosure(10, ['heal_sustain'])).toContain('rw-mission-bounty');
+    expect(renderDisclosure(10, ['heal_sustain'])).toContain('On victory: +10 objective bounty (heal_sustain).');
+    // A mission that pays nothing (or unknown) discloses nothing.
+    expect(renderDisclosure(0, [])).toContain('rw-mission-bounty');
+    expect(renderDisclosure(0, [])).not.toContain('On victory:');
   });
 
   it('renders the §9.5 victory panel with the per-kind objective bounty', () => {

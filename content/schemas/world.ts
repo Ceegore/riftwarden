@@ -66,8 +66,8 @@ export const EncounterSourceSchema = z.object({
   reinforcementWaves: z.array(z.object({ atSeconds: z.number().nonnegative(), encounterId: ContentIdSchema }).strict()),
   /** §P21-T03: `protect_object` missions protect the linked boss objects (their `objectiveLink` names the derived objective). */
   objective: z.enum(["defeat_all", "survive", "defeat_boss", "protect_object", "complete_waves", "heal_sustain"]),
-  /** §P21-T03: total HP to heal for `heal_sustain` missions (`heal_sustain` objective required, accumulated HealApplied amounts). */
-  healSustainCount: z.number().int().positive().optional(),
+  /** §P21-T03: total HP to heal for `heal_sustain` missions (`heal_sustain` objective required, accumulated HealApplied amounts). Bounded by the §8.3 bankability ceiling (`SUSTAIN_BANKABILITY_CEILING` in `world/modifier-system.ts`); a requirement above it is unwinnable by construction and rejected here, so `content:validate` catches it. */
+  healSustainCount: z.number().int().positive().max(200_000).optional(),
   /** §10: content soft-limit override in seconds (default: 2700 normal / 3600 boss soft limit). */
   softLimitSeconds: z.number().nonnegative().nullable().default(null),
   /** §4: content boss phases (`PhaseDefinition` surface) the battle descends across the boss's HP. */

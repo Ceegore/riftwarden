@@ -22,6 +22,8 @@ const LOOT_CHANCE_PERMILLE = 350;
 export const DEFEAT_INSTABILITY_DELTA = 5;
 /** §9: re-engaging a lost fight escalates — attempt k costs 5×k instability, capped at 3 rewatches. */
 export const MAX_REENGAGE_ATTEMPTS = 3;
+/** §9: instability ceiling — 100, the same upper bound the altar's downside honours. */
+export const INSTABILITY_CEILING = 100;
 /**
  * §9.5 per-kind objective bounty: a VICTORY pays the sum over the completed
  * objective kinds. The amounts are the CONTRACT's — the UI only reports which
@@ -40,6 +42,27 @@ const MISSION_BOUNTY_BY_KIND: Readonly<Record<string, number>> = Object.freeze({
 /** §9.5: total gold bounty for the completed objective kinds (unknown kinds contribute 0). */
 export function bountyForKinds(kinds: readonly string[]): number {
   return kinds.reduce((sum, kind) => sum + (MISSION_BOUNTY_BY_KIND[kind] ?? 0), 0);
+}
+
+/**
+ * §9.5 pre-ENGAGE disclosure: maps each ENCOUNTER objective to the objective
+ * KIND its single-objective mission derives, so the UI can disclose the bounty
+ * the victory would grant before the player commits ENGAGE (the actual grant is
+ * always driven by the LIVE completed kinds — this is the announced potential).
+ */
+const ENCOUNTER_OBJECTIVE_TO_KIND: Readonly<Record<string, string>> = Object.freeze({
+  defeat_all: 'kill_regulars',
+  survive: 'survive_until',
+  defeat_boss: 'kill_boss',
+  protect_object: 'protect_object',
+  complete_waves: 'complete_waves',
+  heal_sustain: 'heal_sustain',
+});
+
+/** §9.5 total objective bounty a VICTORY on an encounter's mission pays (disclosed pre-ENGAGE). */
+export function bountyPreviewForEncounterObjective(objective: string): number {
+  const kind = ENCOUNTER_OBJECTIVE_TO_KIND[objective];
+  return kind === undefined ? 0 : bountyForKinds([kind]);
 }
 
 /** Count of committed ENGAGE_DEFEAT rewatches for a node (drives escalation + the cap). */
@@ -125,6 +148,11 @@ function makeCombatHandler(
         // instability 5, 10, 15), never a win.
         if (hasCommittedAction(state, definition.nodeId, ['ENGAGE', 'CLAIM_REWARD'])) return 'ACTION_LIMIT';
         if (committedEngageDefeats(state, definition.nodeId) >= MAX_REENGAGE_ATTEMPTS) return 'ACTION_LIMIT';
+        // §9 instability ceiling: the escalating tax must not push instability
+        // past 100 — the player cannot bleed re-engages past the bound the
+        // altar's downside honours. Whichever binds first (cap or ceiling) gate.
+        const attempts = committedEngageDefeats(state, definition.nodeId) + 1;
+        if (state.instability + DEFEAT_INSTABILITY_DELTA * attempts > INSTABILITY_CEILING) return 'OPTION_UNAVAILABLE';
         return null;
       }
       if (request.action === 'CLAIM_REWARD') {

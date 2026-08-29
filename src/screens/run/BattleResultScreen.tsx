@@ -11,6 +11,7 @@ import { StatRow } from '../../ui/components/StatRow.js';
 import { ScreenFrame } from '../../ui/layout/ScreenFrame.js';
 import { BottomActionBar } from '../../ui/layout/BottomActionBar.js';
 import { useExpedition } from '../../features/expedition/useExpedition.js';
+import { bountyForKinds } from '../../game/expedition/nodes/handlers/combat.js';
 
 export interface BattleResultScreenProps {
   readonly onContinue: () => void;
@@ -29,6 +30,10 @@ export function BattleResultScreen({ onContinue }: BattleResultScreenProps): JSX
     // ordering of UI-generated ids is not a reliable action order.
     const lastTx = visit.transactionId === undefined ? undefined : snapshot.state.ledger[visit.transactionId];
 
+    // §9.5 objective bounty: the victory ENGAGE persisted the completed
+    // objective kinds, so the result screen derives the contract's per-kind
+    // bounty durably (the UI never invents amounts).
+    const bounty = lastTx?.action === 'ENGAGE' ? bountyForKinds(lastTx.completedKinds ?? []) : 0;
     return {
       action: lastTx?.action ?? 'NONE',
       status: lastTx?.status ?? 'UNKNOWN',
@@ -36,6 +41,7 @@ export function BattleResultScreen({ onContinue }: BattleResultScreenProps): JSX
       instability: snapshot.instability,
       securedCount: snapshot.securedLoot.length,
       unsecuredCount: snapshot.unsecuredLoot.length,
+      bounty,
     };
   }, [snapshot]);
 
@@ -59,6 +65,7 @@ export function BattleResultScreen({ onContinue }: BattleResultScreenProps): JSX
 
       <StatRow label="Action" value={result.action} />
       <StatRow label="Result" value={result.status} />
+      {result.bounty > 0 && <StatRow label="Objective bounty" value={`+${String(result.bounty)} gold`} />}
       <StatRow label="Secured loot" value={String(result.securedCount)} />
       <StatRow label="Unsecured loot" value={String(result.unsecuredCount)} />
 

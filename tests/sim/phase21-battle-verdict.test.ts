@@ -11,6 +11,9 @@ import { generateMap } from '../../src/game/expedition/map-generator.js';
 import type { ExpeditionMap, MapProfile } from '../../src/game/expedition/types.js';
 import { battleResultOf } from '../../src/features/battle/sim/sim-battle-host.js';
 import type { LiveOutboundInput } from '../../src/features/battle/outbound/phase21-outbound-presenter.js';
+import { battleHandler, bountyForKinds } from '../../src/game/expedition/nodes/handlers/combat.js';
+import { createNodeRunState, openVisit } from '../../src/game/expedition/nodes/run-state.js';
+import type { NodeDefinition, NodeRunState } from '../../src/game/expedition/nodes/types.js';
 
 const FALLBACK_PROFILE: MapProfile = {
   id: 'exp-verdict.v1',
@@ -163,6 +166,51 @@ describe('phase21 battle verdict gating', () => {
     if (next !== undefined) {
       expect(exp.advance(next).currentNodeId).toBe(next);
     }
+  });
+
+  it('a mission victory ENGAGE persists the completed kinds so the result screen can derive the bounty', () => {
+    // §9.5 the post-ENGAGE result screen reads the last committed ledger record
+    // to derive the bounty durably (across reloads) — the completed kinds must
+    // ride the committed ENGAGE transaction, and bountyForKinds must recover the
+    // contract sum from them.
+    let exp = advanceToCombat(211);
+    const nodeId = exp.currentNodeId;
+    exp = exp.enter('tx-persist-enter').act({ transactionId: 'tx-persist-engage', nodeId, action: 'ENGAGE', completedKinds: ['heal_sustain', 'survive_until'] });
+    const record = exp.state.ledger['tx-persist-engage'] as { status: string; completedKinds?: readonly string[] };
+    expect(record.status).toBe('COMMITTED');
+    expect(record.completedKinds).toEqual(['heal_sustain', 'survive_until']);
+    expect(bountyForKinds(record.completedKinds ?? [])).toBe(20);
+  });
+
+  it('a re-engage is rejected at the instability ceiling', () => {
+    const DEF: NodeDefinition = Object.freeze({ nodeId: 'n1', type: 'battle', contentRevision: '32.0', payloadKey: 'e' });
+    const defeatState = (instability: number, rewatches = 0): NodeRunState => {
+      let state = openVisit(createNodeRunState({ runId: 'r1', modeId: 'm', contentRevision: '32.0', seed: 1, mapHash: 'h', gold: 500 }), 'n1', 0);
+      state = { ...state, instability };
+      for (let i = 0; i < rewatches; i += 1) {
+        state = {
+          ...state,
+          ledger: {
+            ...state.ledger,
+            [`tx-pre-${String(i)}`]: Object.freeze({
+              transactionId: `tx-pre-${String(i)}`, nodeId: 'n1', action: 'ENGAGE_DEFEAT', status: 'COMMITTED', outcomeIds: Object.freeze([]),
+            }),
+          },
+        };
+      }
+      return state;
+    };
+    const validateDefeat = (state: NodeRunState): string | null =>
+      battleHandler.validate(DEF, Object.freeze({ transactionId: 'tx-now', nodeId: 'n1', action: 'ENGAGE_DEFEAT' }), state);
+    // Fresh: 90 + 5 = 95 ≤ 100 → accepted.
+    expect(validateDefeat(defeatState(90))).toBeNull();
+    // 96 + 5 = 101 > 100 → rejected at the ceiling.
+    expect(validateDefeat(defeatState(96))).toBe('OPTION_UNAVAILABLE');
+    // After one rewatch (instability already 95) the NEXT tax is +10: 95 + 10 =
+    // 105 > 100 → the ceiling binds before the attempt cap (3 rewatches).
+    expect(validateDefeat(defeatState(95, 1))).toBe('OPTION_UNAVAILABLE');
+    // Below the ceiling the escalation is unaffected by it.
+    expect(validateDefeat(defeatState(85, 1))).toBeNull(); // 85 + 10 = 95 ≤ 100
   });
 
   it('a mission-completed victory ENGAGE pays the per-kind objective bounty on top of the base reward', () => {

@@ -41,6 +41,7 @@ import {
   CONTENT_ENCOUNTERS,
   CONTENT_MODIFIERS,
   encounterById,
+  isBossEncounter,
   resolveEncounterForNode,
   unitById,
   type ContentEncounterEntry,
@@ -200,14 +201,18 @@ function buildBattle(entry: ContentEncounterEntry, launch: ReturnType<typeof bui
   });
 }
 
-function systemsFor(launch: ReturnType<typeof buildEncounterLaunchConfig>): readonly KernelSystem[] {
+function systemsFor(entry: ContentEncounterEntry, launch: ReturnType<typeof buildEncounterLaunchConfig>): readonly KernelSystem[] {
   return Object.freeze([
     ...createPhase17Systems({
       speedsX100PerSecond: {},
       bossObjectPolicies: launch.bossObjectPolicies,
-      // §10 content soft-limit override: the encounter's `softLimitSeconds`
-      // opens the collapse window at its tick instead of the 2700/3600 default.
-      ...(launch.softLimitTicks === null ? {} : { battleEnd: { softLimitTicksOverride: launch.softLimitTicks } }),
+      // §10 soft-limit precedence: a boss-family encounter gets the 3600 boss
+      // default when no override is declared, but the encounter's content
+      // `softLimitSeconds` ALWAYS wins (never overridden by the boss default).
+      battleEnd: {
+        ...(isBossEncounter(entry) ? { bossBattle: true } : {}),
+        ...(launch.softLimitTicks === null ? {} : { softLimitTicksOverride: launch.softLimitTicks }),
+      },
       basicAttack: {
         parameters: {
           unit_p: {
@@ -320,7 +325,7 @@ function launchFor(entry: ContentEncounterEntry): { readonly launch: ReturnType<
     encounters: new Map([...CONTENT_ENCOUNTERS.entries()].map(([id, e]) => [id, { enemySlots: e.enemySlots }] as const)),
   });
   const launch = buildEncounterLaunchConfig(source, deps);
-  return Object.freeze({ launch, systems: systemsFor(launch) });
+  return Object.freeze({ launch, systems: systemsFor(entry, launch) });
 }
 
 /** Deterministic per-tick runner shared by the monolithic run and the live handle. */

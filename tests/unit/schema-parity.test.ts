@@ -182,6 +182,8 @@ const BATTERIES: Battery[] = [
       { label: "healSustainCount valid integer", op: "set", path: "healSustainCount", value: 5 },
       { label: "healSustainCount negative", op: "set", path: "healSustainCount", value: -1 },
       { label: "healSustainCount fractional", op: "set", path: "healSustainCount", value: 1.5 },
+      { label: "healSustainCount over bankability ceiling", op: "set", path: "healSustainCount", value: 200001 },
+      { label: "healSustainCount at bankability ceiling boundary", op: "set", path: "healSustainCount", value: 200000 },
       { label: "objective heal_sustain valid", op: "set", path: "objective", value: "heal_sustain" },
       { label: "empty allowedModes", op: "set", path: "allowedModes", value: [] },
       { label: "allowedModes entry violation", op: "set", path: "allowedModes", value: ["hardcore"] },

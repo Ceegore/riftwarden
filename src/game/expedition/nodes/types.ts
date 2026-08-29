@@ -86,6 +86,9 @@ export interface TransactionRecord {
   readonly status: 'COMMITTED' | 'REJECTED' | 'FAILED';
   readonly reason?: string;
   readonly outcomeIds: readonly string[];
+  /** §9.5: the objective kinds on a committed victory ENGAGE (persisted so the
+   * post-ENGAGE result screen can derive the bounty durably, across reloads). */
+  readonly completedKinds?: readonly string[];
 }
 
 /** User intent; the UI never rolls RNG or mutates wallets itself. */

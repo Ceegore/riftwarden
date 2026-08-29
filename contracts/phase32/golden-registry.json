@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "phase": 32,
   "kind": "node-snapshot-golden",
-  "sourceSha256": "928281708eab52787318d56b3c8f3561b933730d46bee4dab5de289e6e968b70",
+  "sourceSha256": "a99f03a286721779907a297ad62f1acc9b3180eae98fb46642b4b364a65df5a3",
   "pinnedOffers": [
     {
       "snapshotId": "golden-run-0:golden-merchant-0",

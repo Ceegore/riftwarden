@@ -11,8 +11,9 @@ import { BattleTacticalView } from '../../features/battle/BattleTacticalView.js'
 import { LiveBattleOutboundPanel } from '../../features/battle/outbound/LiveBattleOutboundPanel.js';
 import { DefeatPanel } from '../../features/battle/outbound/DefeatPanel.js';
 import { VictoryPanel } from '../../features/battle/outbound/VictoryPanel.js';
+import { MissionBountyDisclosure } from '../../features/battle/outbound/MissionBountyDisclosure.js';
 import type { LiveOutboundInput } from '../../features/battle/outbound/phase21-outbound-presenter.js';
-import { DEFEAT_INSTABILITY_DELTA, MAX_REENGAGE_ATTEMPTS } from '../../game/expedition/nodes/handlers/combat.js';
+import { DEFEAT_INSTABILITY_DELTA, INSTABILITY_CEILING, MAX_REENGAGE_ATTEMPTS, bountyPreviewForEncounterObjective } from '../../game/expedition/nodes/handlers/combat.js';
 import { battleResultOf, createLiveSimBattle, resolveExpeditionEncounter, type BattleVerdict, type FixtureEncounterEntry, type LiveSimBattleHandle } from '../../features/battle/sim/sim-battle-host.js';
 import { loadA11ySettings } from '../../game/settings/a11y-settings.js';
 import type { UnitRenderData } from '../../features/battle/battle-renderer.js';
@@ -211,6 +212,10 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
   const nextAfter: 'map' | 'battleResult' = committedAction?.action === 'ENGAGE'
     ? 'battleResult'
     : nextHint ?? 'map';
+  // §9 instability ceiling: the next escalating re-engage tax must not push
+  // instability past 100 — the panel disables the affordance when it would.
+  const reengageCeilingBlocked = snapshot !== null
+    && snapshot.instability + DEFEAT_INSTABILITY_DELTA * (reengageCount + 1) > INSTABILITY_CEILING;
 
   useEffect(() => {
     if (snapshot !== null && !enterCommitted && !enterRequested.current) {
@@ -284,6 +289,10 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
   // open for further rewatches or the retreat.
   const handleReengage = useCallback(() => {
     if (snapshot === null || encounter === null) return;
+    if (snapshot.instability + DEFEAT_INSTABILITY_DELTA * (reengageCount + 1) > INSTABILITY_CEILING) {
+      setActionError('Instability ceiling reached');
+      return;
+    }
     const nodeId = snapshot.currentNodeId;
     const txId = actionTransactionId(snapshot.state.runId, nodeId, 'ENGAGE_DEFEAT', 'none');
     try {
@@ -423,9 +432,15 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
               instabilityDelta={DEFEAT_INSTABILITY_DELTA * (reengageCount + 1)}
               reengaged={reengageCount > 0}
               attemptsRemaining={MAX_REENGAGE_ATTEMPTS - reengageCount}
+              ceilingBlocked={reengageCeilingBlocked}
             />
           )}
           {victorious && <VictoryPanel bounty={liveOutboundValue.bounty ?? 0} kinds={completedObjectiveKinds} />}
+          {/* §9.5 bounty preview disclosure: the mission's potential victory
+              bounty is shown before the player commits ENGAGE (contract amounts). */}
+          {!defeated && !victorious && encounter !== null && (
+            <MissionBountyDisclosure bounty={bountyPreviewForEncounterObjective(encounter.objective)} objectives={[encounter.objective]} />
+          )}
           <p>Choose your action:</p>
           {nodeActions.map((actionDef) => (
             <div key={`${actionDef.action}-${actionDef.optionId ?? actionDef.labelKey ?? actionDef.label ?? actionDef.action}`} className="rw-node-action">
