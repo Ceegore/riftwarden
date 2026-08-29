@@ -50,6 +50,7 @@ function sourceOf(id: string): EncounterObjectiveSource {
     enemySlotCount: parsed.enemySlots.length,
     bossUnitId: parsed.bossUnitId,
     survivalDurationSeconds: parsed.survivalDurationSeconds,
+    healSustainCount: parsed.healSustainCount ?? null,
     modifierIds: parsed.modifierIds,
     reinforcementWaves: parsed.reinforcementWaves,
     // The zod output is structurally the flattened ContentBossPhaseSource shape;
@@ -83,6 +84,27 @@ function encounterRegistry(): ReadonlyMap<string, EncounterSlotProfile> {
 function deps(): EncounterLaunchDeps {
   return Object.freeze({ modifiers: modifierRegistry(), encounters: encounterRegistry() });
 }
+
+  it('derives heal_sustain from healSustainCount (required healing applications)', () => {
+    const source = fixtureSource('encounter_fixture_first');
+    const sustain = { ...source, objective: 'heal_sustain' as const, healSustainCount: 3 };
+    const objectives = objectivesFromEncounterContent(sustain);
+    expect(objectives).toEqual([
+      Object.freeze({ id: 'obj_encounter_fixture_first_heal', kind: 'heal_sustain', targetId: null, required: 3, progress: 0, complete: false }),
+    ]);
+    expect(Object.isFrozen(objectives)).toBe(true);
+  });
+
+  it('a heal_sustain mission without healSustainCount is a content error', () => {
+    const source = fixtureSource('encounter_fixture_first');
+    let caught: unknown = null;
+    try {
+      objectivesFromEncounterContent({ ...source, objective: 'heal_sustain' as const, healSustainCount: null });
+    } catch (error) { caught = error; }
+    expect(caught).toBeInstanceOf(Error);
+    expect((caught as Error).message).toBe('P21_OBJECTIVE_INVALID');
+    expect((caught as { details?: { reason?: string } }).details?.reason).toBe('heal-sustain-without-count');
+  });
 
 describe('P21 content boss-object adapter (§6)', () => {
   it('the content schema accepts the boss-object encounter and the adapter maps it 1:1', () => {

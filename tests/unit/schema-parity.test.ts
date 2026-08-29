@@ -174,6 +174,10 @@ const BATTERIES: Battery[] = [
       { label: "bossPhases entry invulnerableTicks negative", op: "set", path: "bossPhases", value: [{ id: "phase_p", priority: 1, minHpPermille: 0, maxHpPermille: 1001, invulnerableTicks: -1 }] },
       { label: "bossPhases entry transitionLocked wrong type", op: "set", path: "bossPhases", value: [{ id: "phase_p", priority: 1, minHpPermille: 0, maxHpPermille: 1001, transitionLocked: "yes" }] },
       { label: "bossPhases entry unknown field", op: "set", path: "bossPhases", value: [{ id: "phase_p", priority: 1, minHpPermille: 0, maxHpPermille: 1001, bogus: 1 }] },
+      { label: "healSustainCount valid integer", op: "set", path: "healSustainCount", value: 5 },
+      { label: "healSustainCount negative", op: "set", path: "healSustainCount", value: -1 },
+      { label: "healSustainCount fractional", op: "set", path: "healSustainCount", value: 1.5 },
+      { label: "objective heal_sustain valid", op: "set", path: "objective", value: "heal_sustain" },
       { label: "empty allowedModes", op: "set", path: "allowedModes", value: [] },
       { label: "allowedModes entry violation", op: "set", path: "allowedModes", value: ["hardcore"] },
     ],
@@ -374,4 +378,45 @@ describe("schema parity: mirror-drift round-trip guard", () => {
       }
     });
   }
+});
+
+/**
+ * Objective-kind mirror sweep: the mission-kind enum is the surface most at
+ * risk of drifting between the .ts source and the .mjs mirror (a kind added to
+ * one but not the other silently accepts/rejects different content). This suite
+ * sweeps EVERY valid and invalid kind through both mirrors, and cross-checks
+ * that every kind actually declared in real content is accepted by both.
+ */
+describe("schema parity: objective-kind mirror sweep", () => {
+  const validKinds = Object.freeze(["defeat_all", "survive", "defeat_boss", "protect_object", "complete_waves", "heal_sustain"]);
+  const invalidKinds = Object.freeze(["win", "heal", "ambush", "timeout", "complete", ""]);
+  const mjsEnc = ENTITY_SCHEMAS["encounter"];
+  if (mjsEnc === undefined) throw new Error("no .mjs encounter schema");
+  for (const kind of validKinds) {
+    it(`accepts mission kind ${kind} in both mirrors`, () => {
+      const mutated = applyProbe(fixtureEntity("encounter"), { label: "objective", op: "set", path: "objective", value: kind });
+      expect(accepts(EncounterSourceSchema, mutated), `.ts rejected ${kind}`).toBe(true);
+      expect(accepts(mjsEnc, mutated), `.mjs rejected ${kind}`).toBe(true);
+    });
+  }
+  for (const kind of invalidKinds) {
+    it(`rejects invalid mission kind ${kind.length === 0 ? "(empty)" : kind} in both mirrors`, () => {
+      const mutated = applyProbe(fixtureEntity("encounter"), { label: "objective", op: "set", path: "objective", value: kind });
+      const tsAccepts = accepts(EncounterSourceSchema, mutated);
+      const mjsAccepts = accepts(mjsEnc, mutated);
+      expect(tsAccepts).toBe(false);
+      expect(mjsAccepts).toBe(false);
+    });
+  }
+  it("every mission kind declared in real content is accepted by both mirrors", () => {
+    const envelope = JSON.parse(fs.readFileSync(path.join(sourceRoot, "world/encounters.json"), "utf8")) as { entities: Entity[] };
+    const kinds = new Set<string>();
+    for (const entity of envelope.entities) kinds.add((entity as Entity)["objective"] as string);
+    expect(kinds.size).toBeGreaterThan(0);
+    for (const kind of kinds) {
+      const mutated = { ...fixtureEntity("encounter"), objective: kind };
+      expect(accepts(EncounterSourceSchema, mutated), `.ts rejected content-declared ${kind}`).toBe(true);
+      expect(accepts(mjsEnc, mutated), `.mjs rejected content-declared ${kind}`).toBe(true);
+    }
+  });
 });

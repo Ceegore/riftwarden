@@ -65,7 +65,9 @@ export const EncounterSourceSchema = z.object({
   modifierIds: z.array(ContentIdSchema),
   reinforcementWaves: z.array(z.object({ atSeconds: z.number().nonnegative(), encounterId: ContentIdSchema }).strict()),
   /** §P21-T03: `protect_object` missions protect the linked boss objects (their `objectiveLink` names the derived objective). */
-  objective: z.enum(["defeat_all", "survive", "defeat_boss", "protect_object", "complete_waves"]),
+  objective: z.enum(["defeat_all", "survive", "defeat_boss", "protect_object", "complete_waves", "heal_sustain"]),
+  /** §P21-T03: required healing applications for `heal_sustain` missions (`heal_sustain` objective required). */
+  healSustainCount: z.number().int().positive().optional(),
   /** §4: content boss phases (`PhaseDefinition` surface) the battle descends across the boss's HP. */
   bossPhases: z.array(BossPhaseSourceSchema).default([]),
   /** §P21-T03: the battle entity id of the boss for `defeat_boss` missions (the `kill_boss` objective target). */

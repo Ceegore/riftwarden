@@ -88,7 +88,7 @@ export function blockedStatusTargetsFromContent(entries: readonly ContentBossObj
 }
 
 /** The encounter mission kinds the content schema can express (EncounterSourceSchema.objective). */
-export type EncounterObjectiveKind = 'defeat_all' | 'survive' | 'defeat_boss' | 'protect_object' | 'complete_waves';
+export type EncounterObjectiveKind = 'defeat_all' | 'survive' | 'defeat_boss' | 'protect_object' | 'complete_waves' | 'heal_sustain';
 
 /** The encounter content the objective derivation reads (EncounterSourceSchema fields). */
 export interface EncounterObjectiveSource {
@@ -101,6 +101,8 @@ export interface EncounterObjectiveSource {
   readonly bossUnitId: string | null;
   /** §P21-T03: survival duration in seconds for `survive` missions (`survive_until` required, converted to ticks). */
   readonly survivalDurationSeconds: number | null;
+  /** §P21-T03: required healing applications for `heal_sustain` missions (`heal_sustain` objective required). */
+  readonly healSustainCount: number | null;
   /** §7: content modifier ids (`EncounterSourceSchema.modifierIds`), resolved against the modifier registry. */
   readonly modifierIds: readonly string[];
   /** §8: reinforcement waves and §4 boss phases across the boss's HP. */
@@ -203,17 +205,13 @@ export function objectivesFromEncounterContent(source: EncounterObjectiveSource)
       ]);
     }
     case 'survive': {
-      if (source.survivalDurationSeconds === null) contentError('survive-without-duration', source);
-      return createObjectiveCollection([
-        Object.freeze({
-          id: `obj_${source.encounterId}_survive`,
-          kind: 'survive_until' as const,
-          targetId: null,
-          required: secondsToTicks(source.survivalDurationSeconds),
-          progress: 0,
-          complete: false,
-        }),
-      ]);
+      const s = source.survivalDurationSeconds;
+      if (s === null) contentError('survive-without-duration', source);
+      if (!Number.isSafeInteger(s) || s <= 0) contentError('survive-duration-invalid', source);
+      return createObjectiveCollection([Object.freeze({
+        id: `obj_${source.encounterId}_survive`, kind: 'survive_until' as const, targetId: null,
+        required: numberSecondsToTicks(s).ticks, progress: 0, complete: false,
+      })]);
     }
     case 'defeat_boss': {
       if (source.bossUnitId === null) contentError('defeat-boss-without-boss-unit', source);
@@ -249,6 +247,13 @@ export function objectivesFromEncounterContent(source: EncounterObjectiveSource)
       return createObjectiveCollection([Object.freeze({
         id: `obj_${source.encounterId}_waves`, kind: 'complete_waves' as const, targetId: null,
         required: source.reinforcementWaves.length, progress: 0, complete: false,
+      })]);
+    }
+    case 'heal_sustain': {
+      if (source.healSustainCount === null) contentError('heal-sustain-without-count', source);
+      return createObjectiveCollection([Object.freeze({
+        id: `obj_${source.encounterId}_heal`, kind: 'heal_sustain' as const, targetId: null,
+        required: source.healSustainCount, progress: 0, complete: false,
       })]);
     }
     default:
@@ -292,8 +297,3 @@ export function buildEncounterLaunchConfig(source: EncounterObjectiveSource, dep
     bossPhaseDefinitions: bossPhasesFromEncounterContent(source.bossPhases, source.bossUnitId),
   });
 }
-
-const secondsToTicks = (seconds: number): number => {
-  if (!Number.isSafeInteger(seconds) || seconds <= 0) throw new KernelInvariantError('P21_OBJECTIVE_INVALID', { reason: 'survive-duration-invalid', survivalDurationSeconds: seconds });
-  return numberSecondsToTicks(seconds).ticks;
-};

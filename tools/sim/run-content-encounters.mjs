@@ -97,6 +97,7 @@ try {
       enemySlotCount: encounter.enemySlots.length,
       bossUnitId: encounter.bossUnitId ?? null,
       survivalDurationSeconds: encounter.survivalDurationSeconds ?? null,
+      healSustainCount: encounter.healSustainCount ?? null,
       modifierIds: Object.freeze(encounter.modifierIds ?? []),
       reinforcementWaves: Object.freeze(encounter.reinforcementWaves ?? []),
       bossPhases: Object.freeze(encounter.bossPhases ?? []),
