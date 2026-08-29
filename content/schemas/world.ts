@@ -66,12 +66,16 @@ export const EncounterSourceSchema = z.object({
   reinforcementWaves: z.array(z.object({ atSeconds: z.number().nonnegative(), encounterId: ContentIdSchema }).strict()),
   /** §P21-T03: `protect_object` missions protect the linked boss objects (their `objectiveLink` names the derived objective). */
   objective: z.enum(["defeat_all", "survive", "defeat_boss", "protect_object", "complete_waves", "heal_sustain"]),
-  /** §P21-T03: required healing applications for `heal_sustain` missions (`heal_sustain` objective required). */
+  /** §P21-T03: total HP to heal for `heal_sustain` missions (`heal_sustain` objective required, accumulated HealApplied amounts). */
   healSustainCount: z.number().int().positive().optional(),
   /** §4: content boss phases (`PhaseDefinition` surface) the battle descends across the boss's HP. */
   bossPhases: z.array(BossPhaseSourceSchema).default([]),
+  /** §4/§10: a second boss's phase declarations for multi-boss encounters (descends independently of `bossPhases`). */
+  bossPhasesSecondary: z.array(BossPhaseSourceSchema).default([]),
   /** §P21-T03: the battle entity id of the boss for `defeat_boss` missions (the `kill_boss` objective target). */
   bossUnitId: ContentIdSchema.nullable().default(null),
+  /** §P21-T03: the second boss's battle entity id for multi-boss encounters (paired with `bossPhasesSecondary`). */
+  bossUnitIdSecondary: ContentIdSchema.nullable().default(null),
   /** §P21-T03: survival duration in seconds for `survive` missions (converted to ticks at the kernel tick rate). */
   survivalDurationSeconds: z.number().nonnegative().nullable().default(null),
   /** §P21-T03: boss objects placed into the battle registry (damage/status/cleanup policies). */

@@ -43,9 +43,8 @@ function objectives(survive: boolean, kill: boolean, waves: boolean, heal: boole
     Object.freeze({ id: 'obj_waves', kind: 'complete_waves', targetId: null, required: 2, progress: waves ? 2 : 1, complete: waves }),
     // The sustain part: its requirement is closure of the heal mandate. A heal
     // objective is campaign-critical (the mission cannot end while the heal
-    // bar is un-met); here it is modeled as a milestone that only flips with
-    // sufficient accumulated healing.
-    Object.freeze({ id: 'obj_heal', kind: 'survive_until', targetId: null, required: 3, progress: heal ? 3 : 1, complete: heal }),
+    // bar is un-met); it flips only with sufficient accumulated healed HP.
+    Object.freeze({ id: 'obj_heal', kind: 'heal_sustain', targetId: null, required: 3, progress: heal ? 3 : 1, complete: heal }),
   ]);
 }
 
@@ -160,16 +159,16 @@ describe('P21 §8 heal-sustain composite oracle', () => {
     expect(a.terminalTick).toBeLessThanOrEqual(300 + RESOLVING_WINDOW + 2);
   });
 
-  it('a real heal_sustain objective gates the survive terminal until its heal requirement lands', { timeout: 120_000 }, () => {
+  it('a real heal_sustain objective gates the survive terminal until the required HP is healed', { timeout: 120_000 }, () => {
     const run = (): { terminalTick: number; healSustainCompleteTick: number | null; healApplied: number; allCompleteAtTerminal: boolean; checksum: string } => {
       const player = migrateEntity({ entity: entity('unit_p', { side: 'player', lane: 'middle', x100: 1800, maxLp: 1000, lp: 1000 }), radiusX100: 100 });
       const enemy = migrateEntity({ entity: entity('unit_e0', { side: 'enemy', lane: 'middle', x100: 6200, maxLp: 2000, lp: 2000 }), radiusX100: 100 });
-      // A mission needs BOTH the survive window (300) AND 5 healing applications
-      // to close — the heal_sustain objective is a real §8 gate, not just a
-      // clean-room factor.
+      // A mission needs BOTH the survive window (300) AND 500 accumulated healed
+      // HP to close — the heal_sustain objective is a real §8 gate whose
+      // progress is the sum of HealApplied amounts (amount-driven, §8).
       const objectivesList: readonly Objective[] = Object.freeze([
         Object.freeze({ id: 'obj_survive', kind: 'survive_until', targetId: null, required: 300, progress: 0, complete: false }),
-        Object.freeze({ id: 'obj_heal', kind: 'heal_sustain', targetId: null, required: 5, progress: 0, complete: false }),
+        Object.freeze({ id: 'obj_heal', kind: 'heal_sustain', targetId: null, required: 500, progress: 0, complete: false }),
       ]);
       const systems: readonly KernelSystem[] = Object.freeze([
         ...createPhase17Systems({
@@ -186,7 +185,7 @@ describe('P21 §8 heal-sustain composite oracle', () => {
         ...createPhase21Systems({ objectives: objectivesList }),
       ]);
       let current = battle({
-        simulationVersion: 'phase21-heal-sustain-objective-fuzz-v1',
+        simulationVersion: 'phase21-heal-sustain-objective-fuzz-v2',
         entities: Object.freeze([player, enemy]),
         abilities: Object.freeze([]),
         objectives: objectivesList,
@@ -225,14 +224,15 @@ describe('P21 §8 heal-sustain composite oracle', () => {
     const b = run();
     expect(b.checksum).toBe(a.checksum);
     expect(b.healSustainCompleteTick).toBe(a.healSustainCompleteTick);
-    // At least the required 5 heals landed, and the sustain gate genuinely closed
-    // (it completes at the 5th heal / tick 100, before the 300 window).
-    expect(a.healApplied).toBeGreaterThanOrEqual(5);
+    // The sustain gate closed on accumulated HP: enough heals landed to reach
+    // the 500-HP requirement well inside the 300 window.
+    expect(a.healApplied).toBeGreaterThanOrEqual(3);
     expect(a.healSustainCompleteTick).not.toBeNull();
     if (a.healSustainCompleteTick === null) throw new Error('heal_sustain never completed');
-    // The timers: heals every 20 ticks → sustained by tick 100, well inside the
-    // 300 window; the terminal comes only when ALL objectives are complete and
-    // the survive teeth fires.
+    // Heals every 20 ticks (each restoring the damage since the last heal, ~240)
+    // accumulate past 500 by roughly tick 60 — well inside the 300 window; the
+    // terminal comes only when ALL objectives are complete and the survive
+    // teeth fires.
     expect(a.healSustainCompleteTick).toBeLessThanOrEqual(115);
     expect(a.terminalTick).toBeGreaterThanOrEqual(300);
     expect(a.allCompleteAtTerminal).toBe(true);

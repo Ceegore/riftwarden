@@ -128,15 +128,27 @@ function issue(code: string, detail: string): ValidationIssue {
 /**
  * §4 coverage validator. Blocks gaps, overlaps, ambiguous same-priority
  * candidates, unreachable phases, missing previews and invulnerability over
- * 45 ticks. Coverage must span [0, 1001) without holes or overlaps.
+ * 45 ticks. Coverage must span [0, 1001) without holes or overlaps, and is
+ * enforced per boss (a union of two bosses' phase sets validates each boss
+ * independently — §10 multi-boss).
  */
 export function validateBossPhases(phases: readonly PhaseDefinition[]): readonly ValidationIssue[] {
   const out: ValidationIssue[] = [];
-  const sorted = [...phases].sort((a, b) => a.minHpPermille - b.minHpPermille || asciiCompare(a.id, b.id));
-  if (sorted.length === 0) {
+  const byBoss = new Map<string, PhaseDefinition[]>();
+  for (const p of phases) {
+    const list = byBoss.get(p.bossId) ?? [];
+    byBoss.set(p.bossId, [...list, p]);
+  }
+  if (byBoss.size === 0) {
     out.push(issue('P21_PHASE_GAP', 'no phases'));
     return Object.freeze(out);
   }
+  for (const group of byBoss.values()) validateBossPhaseGroup(group, out);
+  return Object.freeze(out);
+}
+
+function validateBossPhaseGroup(phases: readonly PhaseDefinition[], out: ValidationIssue[]): void {
+  const sorted = [...phases].sort((a, b) => a.minHpPermille - b.minHpPermille || asciiCompare(a.id, b.id));
   // Unreachable: a phase with a degenerate range or with no downward entry path.
   // The entry phase is the one covering full HP (maxHpPermille === 1001).
   const entryIds = new Set(sorted.filter((p) => p.maxHpPermille === HP_PERMILLE_END).map((p) => p.id));
@@ -170,12 +182,10 @@ export function validateBossPhases(phases: readonly PhaseDefinition[]): readonly
     for (let j = i + 1; j < sorted.length; j++) {
       const b = sorted[j];
       if (b === undefined) continue;
-      if (a.bossId !== b.bossId) continue;
       const overlaps = a.minHpPermille < b.maxHpPermille && b.minHpPermille < a.maxHpPermille;
       if (overlaps && a.priority === b.priority) out.push(issue('P21_TRANSITION_AMBIGUOUS', `${a.id}/${b.id}`));
     }
   }
-  return Object.freeze(out);
 }
 
 /** §5 detection (stage D): highest-priority, id-tie-broken eligible transition. */

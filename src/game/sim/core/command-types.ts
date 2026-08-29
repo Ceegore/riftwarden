@@ -59,6 +59,7 @@ export type KernelCommand =
   | Readonly<{kind:'set_temporary_entities'; entities:readonly TempEntity[]}>
   | Readonly<{kind:'set_synergy_tiers'; tiers:Readonly<Record<string, SynergyTier>>}>
   | Readonly<{kind:'set_boss_phase'; bossPhase:BossPhaseSnapshot}>
+  | Readonly<{kind:'set_boss_phase_secondary'; bossPhase:BossPhaseSnapshot}>
   | Readonly<{kind:'set_modifiers'; modifiers:readonly ModifierDefinition[]; hookLog?:readonly ModifierHookFiring[]}>
   | Readonly<{kind:'set_hazards'; hazards:readonly Hazard[]}>
   | Readonly<{kind:'set_objectives'; objectives:readonly Objective[]}>

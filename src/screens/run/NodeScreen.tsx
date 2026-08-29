@@ -8,6 +8,8 @@ import { BottomActionBar } from '../../ui/layout/BottomActionBar.js';
 import { useExpedition } from '../../features/expedition/useExpedition.js';
 import { BattleCanvas } from '../../features/battle/BattleCanvas.js';
 import { BattleTacticalView } from '../../features/battle/BattleTacticalView.js';
+import { LiveBattleOutboundPanel } from '../../features/battle/outbound/LiveBattleOutboundPanel.js';
+import type { LiveOutboundInput } from '../../features/battle/outbound/phase21-outbound-presenter.js';
 import { loadA11ySettings } from '../../game/settings/a11y-settings.js';
 import type { UnitRenderData } from '../../features/battle/battle-renderer.js';
 import type { NodeActionRequest } from '../../game/expedition/nodes/types.js';
@@ -255,6 +257,18 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
   const nodeActions = actionsForType(currentNodeType, snapshot);
   const combat = currentNodeType === 'battle' || currentNodeType === 'elite' || currentNodeType === 'boss';
   const reducedMotion = loadA11ySettings().reducedMotion;
+  // §9 live outbound feed: the expedition flow does not run the sim kernel yet,
+  // so the live bridge gets the node's declared battle context (objective by
+  // node kind) and an empty boss/hook surface until a battle sim state lands.
+  const liveOutbound: LiveOutboundInput = Object.freeze({
+    encounterId: snapshot.currentNodeId,
+    objective: currentNodeType === 'boss' || currentNodeType === 'elite' ? 'defeat_boss' : 'defeat_all',
+    tick: 0,
+    phase: Object.freeze({ phase: 'ACTIVE', endReason: null }),
+    bossPhase: null,
+    modifierHookLog: Object.freeze([]),
+    events: Object.freeze([]),
+  });
 
   return (
     <ScreenFrame labelledBy="node-title">
@@ -270,6 +284,7 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
           ? <BattleTacticalView units={battleUnits(snapshot)} />
           : <BattleCanvas units={battleUnits(snapshot)} />
       )}
+      {combat && phase !== 'resolved' && <LiveBattleOutboundPanel input={liveOutbound} />}
       {phase === 'entering' && <p>Entering node...</p>}
 
       {phase === 'acting' && (

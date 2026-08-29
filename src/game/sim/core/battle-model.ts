@@ -22,6 +22,8 @@ export interface TickEventRecord {
   readonly type: EventType;
   readonly sourceId: string | null;
   readonly targetIds: readonly string[];
+  /** HP actually restored by a `HealApplied` record (present only for heals, §8). */
+  readonly amount?: number;
 }
 
 export interface BattleModel {
@@ -85,6 +87,10 @@ export interface BattleModel {
   // state, visited phases and the committed invulnerability window. Absent on
   // non-boss (Phase 14–20) fixtures.
   readonly bossPhase?: BossPhaseSnapshot;
+  // Phase 21 additive boss-phase field (§10): a second boss-phase authority
+  // for multi-boss battles, descending independently of `bossPhase`. Absent
+  // on single-boss (Phase 14–21) fixtures.
+  readonly bossPhaseSecondary?: BossPhaseSnapshot;
   // Phase 21 additive encounter fields (§7/§8): active modifiers (with the
   // canonical record of every hook firing), planned and active hazards,
   // objective progress and the reinforcement wave cursor.

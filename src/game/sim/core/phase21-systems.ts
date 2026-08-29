@@ -103,24 +103,31 @@ function bossStateOf(snapshot: BossPhaseSnapshot, context: TickContext): BossPha
   });
 }
 
-/** Stage D: detect a boss-phase transition (idempotent; once per source phase §5). */
+/** The two §10 boss-phase authorities of a battle, in slot order (primary then secondary). */
+function bossSlotsOf(state: { readonly bossPhase?: BossPhaseSnapshot; readonly bossPhaseSecondary?: BossPhaseSnapshot }): readonly (BossPhaseSnapshot & { readonly slot: 'primary' | 'secondary' })[] {
+  const out: (BossPhaseSnapshot & { readonly slot: 'primary' | 'secondary' })[] = [];
+  if (state.bossPhase !== undefined) out.push(Object.freeze({ ...state.bossPhase, slot: 'primary' as const }));
+  if (state.bossPhaseSecondary !== undefined) out.push(Object.freeze({ ...state.bossPhaseSecondary, slot: 'secondary' as const }));
+  return out;
+}
+
+/** Stage D: detect a boss-phase transition (idempotent; once per source phase §5), for every boss authority. */
 export function createBossPhaseDetectSystem(config: Phase21RuntimeConfig = {}): KernelSystem {
   return Object.freeze({
     id: 'boss.d1.transition_detect',
     stage: 'D',
     run(context: TickContext): void {
-      const snapshot = context.state.bossPhase;
-      if (snapshot === undefined) return;
       const defs = config.bossPhaseDefinitions;
-      if (defs === undefined) return;
-      if (defs.length === 0) return;
-      if (snapshot.transition !== null) return; // one planned transition per source phase (§5)
-      const state = bossStateOf(snapshot, context);
-      const detected = detectTransition(state, defs, context.state.tick);
-      if (detected === null) return;
-      context.commands.push({ kind: 'set_boss_phase', bossPhase: createBossPhaseSnapshot({ ...snapshot, transition: detected }) });
-      context.commands.push({ kind: 'append_event', event: eventInput('PhaseTransitionPlanned', snapshot.entityId, [snapshot.entityId], [snapshot.bossId, detected.from, detected.to], { commitTick: detected.commitTick }) });
-      context.commands.push({ kind: 'append_event', event: eventInput('BossTelegraphStarted', snapshot.entityId, [snapshot.entityId], [snapshot.bossId, detected.to], { resolveTick: detected.commitTick }) });
+      if (defs === undefined || defs.length === 0) return;
+      for (const { slot, ...snapshot } of bossSlotsOf(context.state)) {
+        if (snapshot.transition !== null) continue; // one planned transition per source phase (§5)
+        const state = bossStateOf(snapshot, context);
+        const detected = detectTransition(state, defs, context.state.tick);
+        if (detected === null) continue;
+        context.commands.push({ kind: slot === 'primary' ? 'set_boss_phase' : 'set_boss_phase_secondary', bossPhase: createBossPhaseSnapshot({ ...snapshot, transition: detected }) });
+        context.commands.push({ kind: 'append_event', event: eventInput('PhaseTransitionPlanned', snapshot.entityId, [snapshot.entityId], [snapshot.bossId, detected.from, detected.to], { commitTick: detected.commitTick }) });
+        context.commands.push({ kind: 'append_event', event: eventInput('BossTelegraphStarted', snapshot.entityId, [snapshot.entityId], [snapshot.bossId, detected.to], { resolveTick: detected.commitTick }) });
+      }
     },
   });
 }
@@ -215,30 +222,30 @@ export function createReinforcementSystem(config: Phase21RuntimeConfig = {}): Ke
   });
 }
 
-/** Stage L: commit the planned boss-phase transition at its inclusive commit tick (§5). */
+/** Stage L: commit the planned boss-phase transition at its inclusive commit tick (§5), for every boss authority. */
 export function createBossPhaseCommitSystem(config: Phase21RuntimeConfig = {}): KernelSystem {
   return Object.freeze({
     id: 'boss.l1.transition_commit',
     stage: 'L',
     run(context: TickContext): void {
-      const snapshot = context.state.bossPhase;
-      if (snapshot === undefined) return;
       const defs = config.bossPhaseDefinitions;
-      if (snapshot.transition === null) return;
       if (defs === undefined) return;
-      const tr = snapshot.transition;
-      if (context.state.tick < tr.commitTick) return;
-      const invuln = phaseInvulnerableTicks(defs, tr.to);
-      const committed = createBossPhaseSnapshot({
-        ...snapshot,
-        phaseId: tr.to,
-        transition: null,
-        visited: [...snapshot.visited, tr.to],
-        invulnerableUntilTick: invuln > 0 ? context.state.tick + invuln : null,
-      });
-      context.commands.push({ kind: 'set_boss_phase', bossPhase: committed });
-      context.commands.push({ kind: 'append_event', event: eventInput('BossPhaseCompleted', snapshot.entityId, [snapshot.entityId], [snapshot.bossId, tr.from], {}) });
-      context.commands.push({ kind: 'append_event', event: eventInput('BossPhaseStarted', snapshot.entityId, [snapshot.entityId], [snapshot.bossId, committed.phaseId], {}) });
+      for (const { slot, ...snapshot } of bossSlotsOf(context.state)) {
+        if (snapshot.transition === null) continue;
+        const tr = snapshot.transition;
+        if (context.state.tick < tr.commitTick) continue;
+        const invuln = phaseInvulnerableTicks(defs, tr.to);
+        const committed = createBossPhaseSnapshot({
+          ...snapshot,
+          phaseId: tr.to,
+          transition: null,
+          visited: [...snapshot.visited, tr.to],
+          invulnerableUntilTick: invuln > 0 ? context.state.tick + invuln : null,
+        });
+        context.commands.push({ kind: slot === 'primary' ? 'set_boss_phase' : 'set_boss_phase_secondary', bossPhase: committed });
+        context.commands.push({ kind: 'append_event', event: eventInput('BossPhaseCompleted', snapshot.entityId, [snapshot.entityId], [snapshot.bossId, tr.from], {}) });
+        context.commands.push({ kind: 'append_event', event: eventInput('BossPhaseStarted', snapshot.entityId, [snapshot.entityId], [snapshot.bossId, committed.phaseId], {}) });
+      }
     },
   });
 }

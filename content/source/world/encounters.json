@@ -214,6 +214,66 @@
       "allowedModes": [
         "campaign"
       ]
+    },
+    {
+      "id": "encounter_fixture_boss_duo",
+      "regionId": "region_fixture",
+      "kind": "boss",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [],
+      "reinforcementWaves": [],
+      "objective": "defeat_boss",
+      "bossPhases": [
+        {
+          "id": "phase_duo_p1",
+          "priority": 1,
+          "minHpPermille": 501,
+          "maxHpPermille": 1001
+        },
+        {
+          "id": "phase_duo_p2",
+          "priority": 2,
+          "minHpPermille": 251,
+          "maxHpPermille": 501,
+          "invulnerableTicks": 5
+        },
+        {
+          "id": "phase_duo_p3",
+          "priority": 3,
+          "minHpPermille": 0,
+          "maxHpPermille": 251
+        }
+      ],
+      "bossUnitId": "boss_ash_unit",
+      "bossPhasesSecondary": [
+        {
+          "id": "phase_duo_q1",
+          "priority": 1,
+          "minHpPermille": 601,
+          "maxHpPermille": 1001
+        },
+        {
+          "id": "phase_duo_q2",
+          "priority": 2,
+          "minHpPermille": 0,
+          "maxHpPermille": 601
+        }
+      ],
+      "bossUnitIdSecondary": "boss_ember_unit",
+      "survivalDurationSeconds": null,
+      "bossObjects": [],
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_boss_duo.preview",
+      "allowedModes": [
+        "campaign"
+      ]
     }
   ]
 }

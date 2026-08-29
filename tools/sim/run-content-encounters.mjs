@@ -96,29 +96,37 @@ try {
       bossObjects: Object.freeze(encounter.bossObjects ?? []),
       enemySlotCount: encounter.enemySlots.length,
       bossUnitId: encounter.bossUnitId ?? null,
+      bossUnitIdSecondary: encounter.bossUnitIdSecondary ?? null,
       survivalDurationSeconds: encounter.survivalDurationSeconds ?? null,
       healSustainCount: encounter.healSustainCount ?? null,
       modifierIds: Object.freeze(encounter.modifierIds ?? []),
       reinforcementWaves: Object.freeze(encounter.reinforcementWaves ?? []),
       bossPhases: Object.freeze(encounter.bossPhases ?? []),
+      bossPhasesSecondary: Object.freeze(encounter.bossPhasesSecondary ?? []),
     });
   }
 
-  /** §4: initial BossPhaseSnapshot (entry phase at full HP) for a content phase set. */
-  function bossPhaseSnapshotFor(launch) {
+  /** §4/§10: initial BossPhaseSnapshots (entry phase at full HP), one per content boss authority. */
+  function bossPhaseSnapshotsFor(launch) {
     const defs = launch.bossPhaseDefinitions;
-    if (defs.length === 0) return undefined;
-    const bossId = defs[0]
-      .bossId;
-    const entry = defs.find((p) => p.maxHpPermille === 1001) ?? defs[0];
-    return Object.freeze({
-      entityId: bossId,
-      bossId,
-      phaseId: entry.id,
-      transition: null,
-      visited: Object.freeze([entry.id]),
-      invulnerableUntilTick: null,
-    });
+    const byBoss = new Map();
+    for (const def of defs) {
+      const list = byBoss.get(def.bossId) ?? [];
+      byBoss.set(def.bossId, [...list, def]);
+    }
+    const out = [];
+    for (const [bossId, group] of byBoss) {
+      const entry = group.find((p) => p.maxHpPermille === 1001) ?? group[0];
+      out.push(Object.freeze({
+        entityId: bossId,
+        bossId,
+        phaseId: entry.id,
+        transition: null,
+        visited: Object.freeze([entry.id]),
+        invulnerableUntilTick: null,
+      }));
+    }
+    return out;
   }
 
   const launchDeps = Object.freeze({
@@ -138,11 +146,16 @@ try {
       temps.push(...placed);
       entities.push(...launch.bossObjects.map((b) => api.bossObjectManager.buildBossObjectBody(b, primitives.tick(0))));
     }
-    // The boss battle entity for defeat_boss missions (declared bossUnitId).
+    // The boss battle entities for multi-boss encounters (bossUnitId + bossUnitIdSecondary).
     const bossId = encounter.bossUnitId ?? null;
     if (bossId !== null && !entities.some((e) => e.id === bossId)) {
       entities.push(mkEntity(bossId, 'enemy', 'middle', 7000, 3000));
     }
+    const bossIdSecondary = encounter.bossUnitIdSecondary ?? null;
+    if (bossIdSecondary !== null && !entities.some((e) => e.id === bossIdSecondary)) {
+      entities.push(mkEntity(bossIdSecondary, 'enemy', 'bottom', 7000, 3000));
+    }
+    const phaseSnapshots = bossPhaseSnapshotsFor(launch);
     return Object.freeze({
       schemaVersion: 1,
       simulationVersion: 'phase21-content-launch-v1',
@@ -153,7 +166,8 @@ try {
       phase: Object.freeze({ phase: 'ACTIVE', enteredTick: primitives.tick(0), resolvingEndTicks: 0 }),
       entities: Object.freeze(entities),
       temporaryEntities: Object.freeze(temps),
-      ...(launch.bossPhaseDefinitions.length > 0 ? { bossPhase: bossPhaseSnapshotFor(launch) } : {}),
+      ...(phaseSnapshots.length > 0 ? { bossPhase: phaseSnapshots[0] } : {}),
+      ...(phaseSnapshots.length > 1 ? { bossPhaseSecondary: phaseSnapshots[1] } : {}),
       // The standard ability surface (empty here) — its presence enables the
       // kernel's previous-tick history tracking that objective resolution folds.
       abilities: Object.freeze([]),
@@ -272,6 +286,11 @@ try {
       visited: Object.freeze([...a.state.bossPhase.visited]),
       transition: a.state.bossPhase.transition !== null,
     });
+    const phaseStateSecondary = a.state.bossPhaseSecondary === undefined ? null : Object.freeze({
+      phaseId: a.state.bossPhaseSecondary.phaseId,
+      visited: Object.freeze([...a.state.bossPhaseSecondary.visited]),
+      transition: a.state.bossPhaseSecondary.transition !== null,
+    });
     perEncounter[encounter.id] = {
       objective: encounter.objective,
       objectivesSeeded: seeded,
@@ -284,6 +303,7 @@ try {
       objectivesComplete,
       hooks: hookLog.map((f) => [f.modifierId, f.hook, f.atTick]),
       bossPhase: phaseState,
+      bossPhaseSecondary: phaseStateSecondary,
       checksum: checksumA,
       drift: checksumA !== checksumB,
       status: seeded && objectsPlaced && modifiersCommitted && hooksFired && wavesSpawned && objectivesComplete ? 'PASS' : 'FAIL',
@@ -370,6 +390,69 @@ try {
       // hook-driven boss scripting (planned -> started/completed with the tick).
       perEncounter[phasesEncounter.id].phaseTrace = phaseTrace;
       perEncounter[phasesEncounter.id].status = perEncounter[phasesEncounter.id].status === 'PASS' && phasesDescended ? 'PASS' : 'FAIL';
+    }
+  }
+
+  // Multi-boss teeth run: the duo encounter carries TWO boss-phase authorities
+  // (bossUnitId + bossUnitIdSecondary), each descending independently and
+  // interleaved in one battle. Proves §10 multi-boss wiring end-to-end.
+  const duoEncounter = encounters.get('encounter_fixture_boss_duo');
+  if (duoEncounter !== undefined) {
+    const launch = api.encounterAdapter.buildEncounterLaunchConfig(sourceFor(duoEncounter), launchDeps);
+    const duoBossIds = [...new Set(launch.bossPhaseDefinitions.map((d) => d.bossId))];
+    if (duoBossIds.length === 2) {
+      const [primaryId, secondaryId] = duoBossIds;
+      const duoTrace = [];
+      const duoSystems = Object.freeze([...api.phase21Systems.createPhase21Systems({
+        bossObjects: launch.bossObjects,
+        objectives: launch.objectives,
+        modifiers: launch.modifiers,
+        waves: launch.waves,
+        spawnBodies,
+        bossPhaseDefinitions: launch.bossPhaseDefinitions,
+      })]);
+      const duoRandom = new api.random.RandomSession(
+        api.random.RngStreamMap.fromRunSeed(api.random.parseRunSeed(['00000001', '00000002', '00000003', '00000004'])),
+        new api.random.RollSlotRegistry([]), false,
+      );
+      const seedBosses = (battle, seeds) => {
+        const byId = new Map(battle.entities.map((e) => [e.id, e]));
+        return { ...battle, entities: Object.freeze(battle.entities.map((e) => {
+          const seed = seeds[e.id];
+          if (seed === undefined) return e;
+          return { ...e, lp: Math.max(1, Math.floor((e.maxLp * seed) / 1000)) };
+        })) };
+      };
+      const stepUntil = (_start, phaseId, cap) => {
+        let current = { ..._start, authoritativeStreams: duoRandom.streams.snapshotAuthoritative() };
+        for (let t = 0; t < cap; t++) {
+          const r = api.battleKernel.stepBattle({ state: current, input, random: duoRandom, rules: {}, content: {}, systems: duoSystems });
+          current = r.state;
+          for (const event of r.events) {
+            if (['PhaseTransitionPlanned', 'BossPhaseCompleted', 'BossPhaseStarted', 'BossTelegraphStarted'].includes(event.type)) {
+              duoTrace.push([event.type, current.tick, event.contentIds.join('/')]);
+            }
+          }
+          if (current.bossPhase?.phaseId === phaseId || current.bossPhaseSecondary?.phaseId === phaseId) {
+            return { reached: true, state: current };
+          }
+        }
+        return { reached: false, state: current };
+      };
+      // Primary descends into p2 (40% HP) while the secondary stays in q1.
+      const p2 = stepUntil(seedBosses(buildBattle(duoEncounter, launch), { [primaryId]: 400 }), 'phase_duo_p2', 120);
+      // Secondary descends into q2 (50% HP) and the primary into p3 (12% HP):
+      // both authorities commit interleaved in the SAME battle.
+      const interleaved = p2.reached
+        ? stepUntil(seedBosses(p2.state, { [primaryId]: 120, [secondaryId]: 500 }), 'phase_duo_q2', 200)
+        : { reached: false };
+      const bothReached = interleaved.reached
+        ? interleaved.state.bossPhase?.phaseId === 'phase_duo_p3' && interleaved.state.bossPhaseSecondary?.phaseId === 'phase_duo_q2'
+        : false;
+      if (!bothReached) seededFailures += 1;
+      perEncounter[duoEncounter.id].multiBossDescended = bothReached;
+      perEncounter[duoEncounter.id].phaseTrace = duoTrace;
+      perEncounter[duoEncounter.id].status = perEncounter[duoEncounter.id].status === 'PASS' && bothReached ? 'PASS' : 'FAIL';
     }
   }
 

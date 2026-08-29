@@ -160,9 +160,9 @@ test('content-driven battle launcher derives objectives via the adapter and reso
   assert.equal(report.invariantErrors, 0);
   assert.equal(report.drift, 0);
   assert.equal(report.seededFailures, 0);
-  assert.equal(report.encounters, 5);
+  assert.equal(report.encounters, 6);
   const byId = report.perEncounter;
-  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object']) {
+  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object', 'encounter_fixture_boss_duo']) {
     assert.equal(byId[key].status, 'PASS', key);
     assert.equal(byId[key].objectivesSeeded, true, key);
     assert.equal(byId[key].bossObjectsPlaced, true, key);
@@ -173,14 +173,15 @@ test('content-driven battle launcher derives objectives via the adapter and reso
   assert.equal(byId['encounter_fixture_survive'].objective, 'survive');
   assert.equal(byId['encounter_fixture_waves'].objective, 'complete_waves');
   assert.equal(byId['encounter_fixture_boss_object'].objective, 'defeat_boss');
+  assert.equal(byId['encounter_fixture_boss_duo'].objective, 'defeat_boss');
   assert.equal(byId['encounter_fixture_protect_object'].objective, 'protect_object');
   // §7/§8 wiring: modifiers are committed and declared waves enter the cursor.
-  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object']) {
+  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object', 'encounter_fixture_boss_duo']) {
     assert.equal(byId[key].modifiersCommitted, true, key);
     assert.equal(byId[key].wavesSpawned, true, key);
   }
   // §8: every mission objective must actually complete (the gate is strict).
-  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object']) {
+  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object', 'encounter_fixture_boss_duo']) {
     assert.equal(byId[key].objectivesComplete, true, key);
   }
   // The survive window must actually elapse: terminal is VICTORY survive_complete.
@@ -212,6 +213,21 @@ test('content-driven battle launcher derives objectives via the adapter and reso
     assert.match(event[0], /^(PhaseTransitionPlanned|BossPhaseStarted|BossPhaseCompleted|BossTelegraphStarted)$/);
     assert.equal(typeof event[1], 'number');
   }
+  // §10 multi-boss: the duo encounter seeds a SECOND boss-phase authority and
+  // its teeth run descends BOTH bosses interleaved in one battle.
+  const duoPhase = byId['encounter_fixture_boss_duo'].bossPhase;
+  assert.equal(typeof duoPhase, 'object');
+  // The main run seeds BOTH authorities and both genuinely descend (the
+  // secondary reaches q2 as unit_p eliminates the enemy side).
+  const duoSecondary = byId['encounter_fixture_boss_duo'].bossPhaseSecondary;
+  assert.equal(typeof duoSecondary, 'object');
+  assert.ok(['phase_duo_q1', 'phase_duo_q2'].includes(duoSecondary.phaseId));
+  assert.equal(typeof duoSecondary.transition, 'boolean');
+  assert.ok(duoSecondary.visited.length >= 1);
+  assert.equal(byId['encounter_fixture_boss_duo'].multiBossDescended, true);
+  const duoTraceBosses = new Set(byId['encounter_fixture_boss_duo'].phaseTrace.map((event) => event[2].split('/')[0]));
+  assert.ok(duoTraceBosses.has('boss_ash_unit'));
+  assert.ok(duoTraceBosses.has('boss_ember_unit'));
 });
 
 test('phase21-policy mass-sim evidence (all policy combos) is PASS with zero drift and zero gate violations', () => {

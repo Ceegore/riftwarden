@@ -11,15 +11,12 @@ import type { BossObjectContent, BossObjectSpec, DamagePolicy } from './boss-obj
 import { validateBossObjectContent } from './boss-object-manager.js';
 import type { PhaseDefinition } from './boss-phase-system.js';
 import { bossPhasesFromEncounterContent, type ContentBossPhaseSource } from './boss-phase-content-adapter.js';
-
 /**
  * Phase 21 §6 content adapter (T03). Maps the flattened content entries the
  * schema expresses (content/source/world/encounters.json, validated by
- * EncounterSourceSchema) into the sim's runtime surfaces: boss objects
- * (placement + policies + blocked statuses), mission objectives, modifiers and
- * reinforcement waves. The mapping is pure and total: every field maps 1:1,
- * invalid entries are content errors (never silently dropped), and every
- * returned value is frozen so the configs remain immutable.
+ * EncounterSourceSchema) into sim runtime surfaces (boss objects, objectives,
+ * modifiers, waves, boss phases). Pure and total: every field maps 1:1,
+ * invalid entries are content errors, and every returned value is frozen.
  */
 
 /** The flattened content shape (mirrors BossObjectSourceSchema). */
@@ -101,7 +98,7 @@ export interface EncounterObjectiveSource {
   readonly bossUnitId: string | null;
   /** §P21-T03: survival duration in seconds for `survive` missions (`survive_until` required, converted to ticks). */
   readonly survivalDurationSeconds: number | null;
-  /** §P21-T03: required healing applications for `heal_sustain` missions (`heal_sustain` objective required). */
+  /** §P21-T03: total HP to heal for `heal_sustain` missions (`heal_sustain` objective required, accumulated HealApplied amounts). */
   readonly healSustainCount: number | null;
   /** §7: content modifier ids (`EncounterSourceSchema.modifierIds`), resolved against the modifier registry. */
   readonly modifierIds: readonly string[];
@@ -109,6 +106,10 @@ export interface EncounterObjectiveSource {
   readonly reinforcementWaves: readonly EncounterWaveSource[];
   /** §4: content boss phases (`EncounterSourceSchema.bossPhases`). */
   readonly bossPhases: readonly ContentBossPhaseSource[];
+  /** §10: second boss's phases for multi-boss encounters (`bossPhasesSecondary`). */
+  readonly bossPhasesSecondary?: readonly ContentBossPhaseSource[];
+  /** §P21-T03: second boss's battle entity id (`bossUnitIdSecondary`). */
+  readonly bossUnitIdSecondary?: string | null;
 }
 
 /** §8: one reinforcement-wave declaration (`EncounterSourceSchema.reinforcementWaves` element). */
@@ -116,7 +117,6 @@ export interface EncounterWaveSource {
   readonly atSeconds: number;
   readonly encounterId: string;
 }
-
 /** The minimal referenced-encounter shape the wave derivation reads (`enemySlots` composition). */
 export interface EncounterSlotProfile {
   readonly enemySlots: readonly { readonly unitId: string; readonly lane: Lane }[];
@@ -183,11 +183,9 @@ function contentError(reason: string, source: EncounterObjectiveSource): never {
 
 /**
  * §P21-T03: derives the sim objectives the encounter content mandates, one per
- * mission kind (defeat_all → kill_regulars by slot count; survive → survive_until
- * by duration; defeat_boss → kill_boss on `bossUnitId`; protect_object → one per
- * linked boss object; complete_waves → required = declared wave count), all
- * frozen and validated via `createObjectiveCollection`. Missions not expressible
- * in the encounter's fields are content errors — never silently dropped.
+ * mission kind (kill_regulars/survive_until/kill_boss/protect_object per linked
+ * object/complete_waves/heal_sustain), all frozen and validated via
+ * `createObjectiveCollection`. Inexpressible missions are content errors.
  */
 export function objectivesFromEncounterContent(source: EncounterObjectiveSource): readonly Objective[] {
   switch (source.objective) {
@@ -272,10 +270,8 @@ export interface EncounterLaunchConfig {
   readonly bossObjects: readonly BossObjectContent[];
   readonly bossObjectPolicies: ReadonlyMap<string, DamagePolicy>;
   readonly blockedStatusTargets: ReadonlySet<string>;
-  /** §7: resolved encounter modifiers committed at battle start. */
-  readonly modifiers: readonly ModifierDefinition[];
-  /** §8: resolved reinforcement waves committed by the stage-K system. */
-  readonly waves: readonly Wave[];
+  readonly modifiers: readonly ModifierDefinition[]; // §7: committed at battle start
+  readonly waves: readonly Wave[]; // §8: committed by the stage-K system
   readonly bossPhaseDefinitions: readonly PhaseDefinition[];
 }
 
@@ -294,6 +290,10 @@ export function buildEncounterLaunchConfig(source: EncounterObjectiveSource, dep
     blockedStatusTargets: blockedStatusTargetsFromContent(source.bossObjects),
     modifiers: modifiersFromEncounterContent(source.modifierIds, deps.modifiers),
     waves: wavesFromEncounterContent(source.reinforcementWaves, deps.encounters, source.encounterId),
-    bossPhaseDefinitions: bossPhasesFromEncounterContent(source.bossPhases, source.bossUnitId),
+    // §10 multi-boss: primary + secondary phase sets (each validated per boss).
+    bossPhaseDefinitions: Object.freeze([
+      ...bossPhasesFromEncounterContent(source.bossPhases, source.bossUnitId),
+      ...bossPhasesFromEncounterContent(source.bossPhasesSecondary ?? [], source.bossUnitIdSecondary ?? null),
+    ]),
   });
 }

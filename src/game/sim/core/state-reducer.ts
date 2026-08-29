@@ -41,7 +41,6 @@ function requireEntity(entities: readonly KernelEntity[], entityId: string): Ker
 }
 
 const LANES = ['top', 'middle', 'bottom'] as const;
-
 function assertLane(lane: string): void {
   if (!(LANES as readonly string[]).includes(lane)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'lane-invalid', lane });
 }
@@ -56,7 +55,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   let projectiles = args.state.projectiles, pendingCombatApplications = args.state.pendingCombatApplications, combatApplicationSeq = args.state.combatApplicationSeq;
   let timeCollapseSinceTick = args.state.timeCollapseSinceTick, bossDamageDealt = args.state.bossDamageDealt, forcedOutcome = args.state.forcedOutcome;
   let statuses = args.state.statuses, pendingCleanses = args.state.pendingCleanses;
-  let abilities = args.state.abilities, plannedEffects = args.state.plannedEffects, temporaryEntities = args.state.temporaryEntities, synergyTiers = args.state.synergyTiers, bossPhase = args.state.bossPhase, modifiers = args.state.modifiers, modifierHookLog = args.state.modifierHookLog, hazards = args.state.hazards, objectives = args.state.objectives, spawnedWaves = args.state.spawnedWaves;
+  let abilities = args.state.abilities, plannedEffects = args.state.plannedEffects, temporaryEntities = args.state.temporaryEntities, synergyTiers = args.state.synergyTiers, bossPhase = args.state.bossPhase, bossPhaseSecondary = args.state.bossPhaseSecondary, modifiers = args.state.modifiers, modifierHookLog = args.state.modifierHookLog, hazards = args.state.hazards, objectives = args.state.objectives, spawnedWaves = args.state.spawnedWaves;
   const beforeEvents = args.log.size();
   const transitions = new Map<string, TransitionRequest[]>();
   const battleTransitions: BattleTransitionRequest[] = [];
@@ -236,7 +235,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
       case 'set_synergy_tiers':
         synergyTiers = canonicalizeSynergyTiers(command.tiers);
         break;
-      case 'set_boss_phase': bossPhase = createBossPhaseSnapshot(command.bossPhase); break;
+      case 'set_boss_phase': bossPhase = createBossPhaseSnapshot(command.bossPhase); break; case 'set_boss_phase_secondary': bossPhaseSecondary = createBossPhaseSnapshot(command.bossPhase); break;
       case 'set_modifiers': modifiers = createModifierCollection(command.modifiers); if (command.hookLog !== undefined) modifierHookLog = createModifierHookCollection(command.hookLog); break;
       case 'set_hazards': hazards = createHazardCollection(command.hazards); break;
       case 'set_objectives': objectives = createObjectiveCollection(command.objectives); break;
@@ -245,7 +244,8 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
       case 'apply_lp_delta': {
         requireEntity(entities, command.entityId);
         if (!Number.isSafeInteger(command.delta)) throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'lp-delta-not-integer', entityId: command.entityId, delta: command.delta });
-        if (bossPhase?.entityId === command.entityId && command.delta < 0 && bossPhase.invulnerableUntilTick !== null && args.atTick < bossPhase.invulnerableUntilTick) break; // §4/§5 boss invulnerable window
+        const bossSlot = bossPhase?.entityId === command.entityId ? bossPhase : bossPhaseSecondary?.entityId === command.entityId ? bossPhaseSecondary : null;
+        if (bossSlot !== null && command.delta < 0 && bossSlot.invulnerableUntilTick !== null && args.atTick < bossSlot.invulnerableUntilTick) break; // §4/§5 boss invulnerable window
         // §9.3: the deadlock melee buff ends on the buffed unit's first hit.
         entities = entities.map((e) => {
           if (e.id !== command.entityId) return e;
@@ -285,7 +285,7 @@ export function applyStageCommands(args: ApplyStageCommandsArgs): BattleModel {
   if (projectiles !== undefined) extras['projectiles'] = projectiles; if (pendingCombatApplications !== undefined) extras['pendingCombatApplications'] = pendingCombatApplications; if (combatApplicationSeq !== undefined) extras['combatApplicationSeq'] = combatApplicationSeq;
   if (timeCollapseSinceTick !== undefined) extras['timeCollapseSinceTick'] = timeCollapseSinceTick; if (bossDamageDealt !== undefined) extras['bossDamageDealt'] = bossDamageDealt; if (forcedOutcome !== undefined) extras['forcedOutcome'] = forcedOutcome; if (statuses !== undefined) extras['statuses'] = statuses;
   if (pendingCleanses !== undefined) extras['pendingCleanses'] = pendingCleanses; if (abilities !== undefined) extras['abilities'] = abilities; if (plannedEffects !== undefined) extras['plannedEffects'] = plannedEffects;
-  if (temporaryEntities !== undefined) extras['temporaryEntities'] = temporaryEntities; if (synergyTiers !== undefined) extras['synergyTiers'] = synergyTiers; if (bossPhase !== undefined) extras['bossPhase'] = bossPhase;
+  if (temporaryEntities !== undefined) extras['temporaryEntities'] = temporaryEntities; if (synergyTiers !== undefined) extras['synergyTiers'] = synergyTiers; if (bossPhase !== undefined) extras['bossPhase'] = bossPhase; if (bossPhaseSecondary !== undefined) extras['bossPhaseSecondary'] = bossPhaseSecondary;
   if (modifiers !== undefined) extras['modifiers'] = modifiers; if (modifierHookLog !== undefined) extras['modifierHookLog'] = modifierHookLog; if (hazards !== undefined) extras['hazards'] = hazards; if (objectives !== undefined) extras['objectives'] = objectives; if (spawnedWaves !== undefined) extras['spawnedWaves'] = spawnedWaves;
   return Object.freeze({
     ...args.state,

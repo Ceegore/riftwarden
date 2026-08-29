@@ -56,6 +56,8 @@ function sourceOf(id: string): EncounterObjectiveSource {
     // The zod output is structurally the flattened ContentBossPhaseSource shape;
     // a cast is the documented schema->adapter seam (id-branding differs).
     bossPhases: parsed.bossPhases as readonly ContentBossPhaseSource[],
+    bossPhasesSecondary: parsed.bossPhasesSecondary as readonly ContentBossPhaseSource[],
+    bossUnitIdSecondary: parsed.bossUnitIdSecondary,
   };
 }
 
@@ -392,6 +394,39 @@ describe('P21 content boss-object adapter (§6)', () => {
     const source = fixtureSource('encounter_fixture_first');
     expect(source.bossPhases).toEqual([]);
     expect(buildEncounterLaunchConfig(source, deps()).bossPhaseDefinitions).toEqual([]);
+  });
+
+  it('derives TWO independent phase authorities from a multi-boss encounter (bossUnitId + bossUnitIdSecondary)', () => {
+    const source = fixtureSource('encounter_fixture_boss_duo');
+    expect(source.bossUnitId).toBe('boss_ash_unit');
+    expect(source.bossUnitIdSecondary).toBe('boss_ember_unit');
+    expect(source.bossPhases.length).toBeGreaterThan(0);
+    expect(source.bossPhasesSecondary?.length ?? 0).toBeGreaterThan(0);
+    const config = buildEncounterLaunchConfig(source, deps());
+    const defs = config.bossPhaseDefinitions;
+    // The union carries BOTH authorities' phases; each boss's own set is a
+    // validated, gap-free descent (per-boss validation in validateBossPhases).
+    const byBoss = new Map<string, PhaseDefinition[]>();
+    for (const d of defs) {
+      const list = byBoss.get(d.bossId) ?? [];
+      byBoss.set(d.bossId, [...list, d]);
+    }
+    expect([...byBoss.keys()].sort()).toEqual(['boss_ash_unit', 'boss_ember_unit']);
+    expect(byBoss.get('boss_ash_unit')?.map((d) => d.id)).toEqual(['phase_duo_p1', 'phase_duo_p2', 'phase_duo_p3']);
+    expect(byBoss.get('boss_ember_unit')?.map((d) => d.id)).toEqual(['phase_duo_q1', 'phase_duo_q2']);
+    expect(Object.isFrozen(config.bossPhaseDefinitions)).toBe(true);
+  });
+
+  it('secondary boss phases without a bossUnitIdSecondary is a content error', () => {
+    const source = fixtureSource('encounter_fixture_boss_duo');
+    const phaseSource: ContentBossPhaseSource = Object.freeze({ id: 'phase_probe_q', priority: 1, minHpPermille: 0, maxHpPermille: 1001 });
+    let caught: unknown = null;
+    try {
+      buildEncounterLaunchConfig({ ...source, bossUnitIdSecondary: null, bossPhasesSecondary: [phaseSource] }, deps());
+    } catch (error) { caught = error; }
+    expect(caught).toBeInstanceOf(Error);
+    expect((caught as Error).message).toBe('P21_PHASE_INVALID');
+    expect((caught as { details?: { reason?: string } }).details?.reason).toBe('boss-phases-without-boss-unit');
   });
 
   it('content boss phases without a bossUnitId is a content error', () => {

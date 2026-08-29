@@ -174,6 +174,11 @@ const BATTERIES: Battery[] = [
       { label: "bossPhases entry invulnerableTicks negative", op: "set", path: "bossPhases", value: [{ id: "phase_p", priority: 1, minHpPermille: 0, maxHpPermille: 1001, invulnerableTicks: -1 }] },
       { label: "bossPhases entry transitionLocked wrong type", op: "set", path: "bossPhases", value: [{ id: "phase_p", priority: 1, minHpPermille: 0, maxHpPermille: 1001, transitionLocked: "yes" }] },
       { label: "bossPhases entry unknown field", op: "set", path: "bossPhases", value: [{ id: "phase_p", priority: 1, minHpPermille: 0, maxHpPermille: 1001, bogus: 1 }] },
+      { label: "bossPhasesSecondary valid entry", op: "set", path: "bossPhasesSecondary", value: [{ id: "phase_q", priority: 1, minHpPermille: 0, maxHpPermille: 1001 }] },
+      { label: "bossPhasesSecondary entry missing id", op: "set", path: "bossPhasesSecondary", value: [{ priority: 1, minHpPermille: 0, maxHpPermille: 1001 }] },
+      { label: "bossPhasesSecondary entry max above range", op: "set", path: "bossPhasesSecondary", value: [{ id: "phase_q", priority: 1, minHpPermille: 0, maxHpPermille: 1002 }] },
+      { label: "bossUnitIdSecondary null allowed", op: "set", path: "bossUnitIdSecondary", value: null },
+      { label: "bossUnitIdSecondary wrong type", op: "set", path: "bossUnitIdSecondary", value: 7 },
       { label: "healSustainCount valid integer", op: "set", path: "healSustainCount", value: 5 },
       { label: "healSustainCount negative", op: "set", path: "healSustainCount", value: -1 },
       { label: "healSustainCount fractional", op: "set", path: "healSustainCount", value: 1.5 },
@@ -338,6 +343,7 @@ describe("schema parity: mirror-drift round-trip guard", () => {
   const mjsEnc = rawMjs;
   const cases = Object.freeze([
     { id: "encounter_fixture_boss_object", reason: "boss-phases" },
+    { id: "encounter_fixture_boss_duo", reason: "multi-boss (secondary phases)" },
     { id: "encounter_fixture_waves", reason: "complete_waves" },
   ]);
   for (const c of cases) {
@@ -360,21 +366,26 @@ describe("schema parity: mirror-drift round-trip guard", () => {
 
     it(`round-trip preserves the merged boss-phase/mission surfaces (${c.id})`, () => {
       const raw = firstEntityWith([c.id]);
-      const tsOut = tsEnc.parse(raw) as { bossPhases: unknown[]; objective: string; bossUnitId: string | null };
+      const tsOut = tsEnc.parse(raw) as { bossPhases: unknown[]; bossPhasesSecondary: unknown[]; objective: string; bossUnitId: string | null; bossUnitIdSecondary: string | null };
       const mjsResult = mjsEnc.safeParse(raw);
       expect(mjsResult.success).toBe(true);
       if (!mjsResult.success) throw new Error(`.mjs rejected ${c.id}`);
-      const mjsData = mjsResult.data as { bossPhases: unknown[]; objective: string };
-      // The two mirrors see the same boss-phase count and objective kind — the
-      // guard that keeps them from drifting apart on the new surface.
+      const mjsData = mjsResult.data as { bossPhases: unknown[]; bossPhasesSecondary: unknown[]; objective: string; bossUnitId: string | null; bossUnitIdSecondary: string | null };
+      // The two mirrors see the same boss-phase counts, secondary boss surface
+      // and objective kind — the guard that keeps them from drifting apart.
       expect(mjsData.bossPhases.length).toBe(tsOut.bossPhases.length);
+      expect(mjsData.bossPhasesSecondary.length).toBe(tsOut.bossPhasesSecondary.length);
+      expect(mjsData.bossUnitId).toBe(tsOut.bossUnitId);
+      expect(mjsData.bossUnitIdSecondary).toBe(tsOut.bossUnitIdSecondary);
       expect(mjsData.objective).toBe(tsOut.objective);
-      if (tsOut.bossPhases.length > 0) {
-        const tsPhase = tsOut.bossPhases[0] as { id: string; minHpPermille: number; maxHpPermille: number };
-        const mjsPhase = mjsData.bossPhases[0] as { id: string; minHpPermille: number; maxHpPermille: number };
-        expect(mjsPhase.id).toBe(tsPhase.id);
-        expect(mjsPhase.minHpPermille).toBe(tsPhase.minHpPermille);
-        expect(mjsPhase.maxHpPermille).toBe(tsPhase.maxHpPermille);
+      for (const list of [tsOut.bossPhases, tsOut.bossPhasesSecondary] as const) {
+        if (list.length > 0) {
+          const tsPhase = list[0] as { id: string; minHpPermille: number; maxHpPermille: number };
+          const mjsPhase = (list === tsOut.bossPhases ? mjsData.bossPhases : mjsData.bossPhasesSecondary)[0] as { id: string; minHpPermille: number; maxHpPermille: number };
+          expect(mjsPhase.id).toBe(tsPhase.id);
+          expect(mjsPhase.minHpPermille).toBe(tsPhase.minHpPermille);
+          expect(mjsPhase.maxHpPermille).toBe(tsPhase.maxHpPermille);
+        }
       }
     });
   }

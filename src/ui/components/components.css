@@ -38,3 +38,14 @@ html.rw-high-contrast .rw-stat-row {
 .rw-toast-region { position:fixed; z-index:var(--rw-z-toast); inset-block-end:var(--rw-space-24); inset-inline:var(--rw-space-24); }
 .rw-visually-hidden { position:absolute; inline-size:1px; block-size:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
 @media (prefers-reduced-motion:reduce) { .rw-button { transition:opacity var(--rw-motion-fast); transform:none; } }
+
+/* Phase 21 §9 outbound panel: hook-driven boss scripting surfaced on the battle screen. */
+.rw-phase21-outbound { display:grid; gap:var(--rw-space-8); inline-size:100%; }
+.rw-phase21-outbound-head { display:flex; align-items:baseline; justify-content:space-between; gap:var(--rw-space-12); color:var(--rw-color-text-secondary); }
+.rw-phase21-encounter { border-radius:var(--rw-radius-control); border:var(--rw-border-control-width) solid var(--rw-color-border); background:var(--rw-color-panel-raised); padding:var(--rw-space-12); }
+.rw-phase21-encounter-head { display:flex; align-items:center; justify-content:space-between; gap:var(--rw-space-12); }
+.rw-phase21-encounter-meta { color:var(--rw-color-text-secondary); font-size:0.9em; }
+.rw-phase21-ok { color:var(--rw-color-success); }
+.rw-phase21-bad { color:var(--rw-color-danger); }
+.rw-phase21-phases,.rw-phase21-hooks,.rw-phase21-trace { margin-block:var(--rw-space-8) 0; padding-inline-start:var(--rw-space-16); color:var(--rw-color-text-secondary); }
+.rw-phase21-active { color:var(--rw-color-text-primary); font-weight:600; }

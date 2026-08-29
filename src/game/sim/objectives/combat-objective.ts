@@ -5,11 +5,10 @@ import type { KernelEvent } from '../events/event-types.js';
 /**
  * Phase 21 §8 combat objectives (T05). Closed objective kinds: defeat regulars,
  * defeat the boss, destroy/protect a boss object, survive until a tick, complete
- * reinforcement waves, and heal-sustain (receive `required` healing
- * applications), plus composite mission conditions. Progress is derived from
- * canonical combat events — never from UI state — and objective resolution runs
- * in stage L before the generic end resolver, without ever producing an
- * impossible state.
+ * reinforcement waves, and heal-sustain (accumulate `required` healed HP), plus
+ * composite mission conditions. Progress is derived from canonical combat
+ * events — never from UI state — and objective resolution runs in stage L
+ * before the generic end resolver, without ever producing an impossible state.
  */
 
 export const OBJECTIVE_KINDS = [
@@ -90,7 +89,7 @@ export function applyEventProgress(o: Objective, event: KernelEvent): Objective 
     case 'complete_waves':
       return event.type === 'ReinforcementSpawned' ? applyProgress(o, 1) : o;
     case 'heal_sustain':
-      return event.type === 'HealApplied' ? applyProgress(o, 1) : o;
+      return event.type === 'HealApplied' ? applyProgress(o, Math.max(1, event.payload['finalHpDelta'] ?? 1)) : o;
     case 'protect_object':
     case 'survive_until':
       return o;
@@ -101,6 +100,8 @@ export function applyEventProgress(o: Objective, event: KernelEvent): Objective 
 export interface EventRecordLike {
   readonly type: string;
   readonly targetIds: readonly string[];
+  /** HP actually restored by a `HealApplied` record (present only for heals). */
+  readonly amount?: number;
 }
 
 /** §8 runtime progress from a persisted event record (previous-tick event log). */
@@ -115,7 +116,7 @@ export function applyEventRecordProgress(o: Objective, record: EventRecordLike):
     case 'complete_waves':
       return record.type === 'ReinforcementSpawned' ? applyProgress(o, 1) : o;
     case 'heal_sustain':
-      return record.type === 'HealApplied' ? applyProgress(o, 1) : o;
+      return record.type === 'HealApplied' ? applyProgress(o, Math.max(1, record.amount ?? 1)) : o;
     case 'protect_object':
     case 'survive_until':
       return o;
