@@ -16,9 +16,9 @@ import { GLOBAL_NO_PROGRESS_WARNING_TICKS } from '../../../game/sim/anti-stuck/a
 export type OutboundHookEvent = readonly [modifierId: string, hook: string, atTick: number];
 export type OutboundPhaseEvent = readonly [type: string, tick: number, detail: string];
 
-export type OutboundBossPhase = { readonly phaseId: string; readonly visited: readonly string[]; readonly transition: boolean };
+export interface OutboundBossPhase { readonly phaseId: string; readonly visited: readonly string[]; readonly transition: boolean }
 
-export type EncounterOutbound = {
+export interface EncounterOutbound {
   readonly objective: string;
   readonly terminal: { readonly phase: string; readonly reason: string | null } | null;
   readonly ticks: number;
@@ -35,45 +35,60 @@ export type EncounterOutbound = {
   readonly collapse?: CollapsePresentation;
   /** Light mission-objective projection (live battles carry it). */
   readonly objectives?: readonly ObjectiveProjection[];
-};
+  /** Heal-stream observations (live battles carry them). */
+  readonly healStream?: readonly HealStreamEntry[];
+}
 
 /** A mission objective's observable progress (id/kind/progress/required/complete). */
-export type ObjectiveProjection = {
+export interface ObjectiveProjection {
   readonly id: string;
   readonly kind: string;
   readonly progress: number;
   readonly required: number;
   readonly complete: boolean;
-};
+}
+
+/**
+ * One heal-stream observation from a live battle: an APPLIED heal reports the
+ * final HP delta it conferred (targetId + delta); a BLOCKED entry is a
+ * lifesteal that the §6 immune / invulnerable-window gate suppressed before it
+ * could heal (`delta` carries the would-have-been amount).
+ */
+export interface HealStreamEntry {
+  readonly tick: number;
+  readonly targetId: string;
+  readonly delta: number;
+  readonly blocked: boolean;
+}
 
 export type OutboundTelegraph = readonly [phaseId: string, plannedTick: number, resolveTick: number];
 
-export type Phase21OutboundReport = {
+export interface Phase21OutboundReport {
   readonly gate: string;
   readonly status: string;
   readonly drift: number;
   readonly seededFailures: number;
   readonly perEncounter: Readonly<Record<string, EncounterOutbound>>;
-};
+}
 
-export type PhaseTrailStep = {
+export interface PhaseTrailStep {
   readonly phaseId: string;
   readonly active: boolean;
-};
+}
 
-export type HookEntry = {
+export interface HookEntry {
   readonly modifierId: string;
   readonly hook: string;
   readonly atTick: number;
-};
+}
 
-export type TraceEntry = {
+export interface TraceEntry {
   readonly type: string;
   readonly tick: number;
   readonly detail: string;
-};
+}
 
-export type TelegraphPresentation = {
+export interface TelegraphPresentation {
   readonly phaseId: string;
   readonly plannedTick: number;
   /** Commit tick the telegraph counts down to (the event's own tick when none was carried). */
@@ -81,7 +96,7 @@ export type TelegraphPresentation = {
   /** Ticks remaining until resolve from the snapshot's tick (0 once resolved). */
   readonly countdown: number;
   readonly resolved: boolean;
-};
+}
 
 /**
  * §10 rift-collapse outbound projection. The live battle exposes the raw
@@ -89,7 +104,7 @@ export type TelegraphPresentation = {
  * presentation the panel reads — active window, remaining ticks, the heal
  * factor the kernel applies, and the endcap countdown state.
  */
-export type CollapsePresentation = {
+export interface CollapsePresentation {
   /** §10 collapse window is active (soft limit passed, healing halved). */
   readonly active: boolean;
   /** First tick of the collapse window (null when not yet reached). */
@@ -104,9 +119,9 @@ export type CollapsePresentation = {
   readonly endcapCollapseTicks: number;
   /** §9.4: ticks until the no-progress warning (0 once warned). */
   readonly ticksToWarning: number;
-};
+}
 
-export type EncounterPresentation = {
+export interface EncounterPresentation {
   readonly encounterId: string;
   readonly objective: string;
   readonly terminalPhase: string | null;
@@ -125,7 +140,9 @@ export type EncounterPresentation = {
   readonly collapse?: CollapsePresentation;
   /** Light mission-objective projection (absent when the outbound carries none). */
   readonly objectives?: readonly ObjectiveProjection[];
-};
+  /** Heal-stream observations (absent when the outbound carries none). */
+  readonly healStream?: readonly HealStreamEntry[];
+}
 
 function terminalOf(entry: EncounterOutbound): readonly [string | null, string | null] {
   const t = entry.terminal;
@@ -176,6 +193,8 @@ export interface LiveOutboundInput {
   readonly riftCollapseWarningEmitted?: boolean;
   /** Mission-objective progress (the panel path streams it; omit for static reports). */
   readonly objectives?: readonly ObjectiveProjection[];
+  /** Heal-stream observations (applied + §6 suppressed heals). */
+  readonly healStream?: readonly HealStreamEntry[];
 }
 
 const TRACE_TYPES: readonly string[] = Object.freeze(['PhaseTransitionPlanned', 'BossTelegraphStarted', 'BossPhaseCompleted', 'BossPhaseStarted']);
@@ -243,6 +262,7 @@ export function encounterOutboundFromBattle(input: LiveOutboundInput): Encounter
     telegraphs: Object.freeze(telegraphs),
     collapse: collapsePresentationOf(input),
     ...(input.objectives === undefined ? {} : { objectives: Object.freeze(input.objectives.map((o) => Object.freeze({ ...o }))) }),
+    ...(input.healStream === undefined ? {} : { healStream: Object.freeze(input.healStream.map((h) => Object.freeze({ ...h }))) }),
   });
 }
 
@@ -281,6 +301,7 @@ export function presentPhase21Report(report: Phase21OutboundReport): readonly En
       telegraphs,
       ...(entry.collapse === undefined ? {} : { collapse: entry.collapse }),
       ...(entry.objectives === undefined ? {} : { objectives: entry.objectives }),
+      ...(entry.healStream === undefined ? {} : { healStream: entry.healStream }),
     });
   }));
 }

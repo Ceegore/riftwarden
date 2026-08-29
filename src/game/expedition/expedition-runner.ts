@@ -58,6 +58,15 @@ export interface ExpeditionRunner {
   resolve(): ExpeditionRunner;
 
   /**
+   * Resolve a combat node from the live battle's §9 terminal verdict. A WON
+   * battle resolves the visit (declares the node cleared: advancement works);
+   * a LOST battle does NOT resolve it — the visit stays COMMITTED, so
+   * `advance` throws until the player retreats (DECLINE → resolve) or
+   * re-fights. This ties the live sim's outcome to whether the node clears.
+   */
+  resolveBattle(won: boolean): ExpeditionRunner;
+
+  /**
    * Validate reachability and advance to the next node. The target must be
    * directly reachable from the current position.
    */
@@ -109,6 +118,12 @@ function buildRunner(
     resolve(): ExpeditionRunner {
       guard();
       return buildRunner(dispatchResolve(state, currentNodeId), map, currentNodeId);
+    },
+    resolveBattle(won: boolean): ExpeditionRunner {
+      guard();
+      // Won clears; lost gates (visit kept non-RESOLVED so advance throws).
+      const next = won ? dispatchResolve(state, currentNodeId) : state;
+      return buildRunner(next, map, currentNodeId);
     },
     advance(nextNodeId: NodeId): ExpeditionRunner {
       guard();

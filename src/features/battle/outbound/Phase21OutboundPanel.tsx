@@ -95,6 +95,17 @@ function EncounterRow({ row }: { readonly row: EncounterPresentation }): JSX.Ele
           ))}
         </ul>
       )}
+      {row.healStream !== undefined && row.healStream.length > 0 && (
+        <ul className="rw-phase21-heals" aria-label="heal stream">
+          {row.healStream.map((heal, i) => (
+            <li key={`${String(heal.tick)}:${heal.targetId}:${String(i)}`} className={heal.blocked ? 'rw-phase21-heal-blocked' : undefined}>
+              {heal.blocked
+                ? <LocalizedText messageKey="ui.phase21.heal.blocked" params={{ target: heal.targetId, healDelta: heal.delta }} />
+                : <LocalizedText messageKey="ui.phase21.heal.applied" params={{ target: heal.targetId, healDelta: heal.delta }} />}
+            </li>
+          ))}
+        </ul>
+      )}
       {row.hookTrace.length > 0 && (
         <ul className="rw-phase21-hooks" aria-label="modifier hook telegraphs">
           {row.hookTrace.map((hook, i) => (

@@ -1,7 +1,7 @@
 /**
  * GENERATED FILE — do not edit by hand.
  * Regenerate with: node tools/sim/write-locale-bootstrap.mjs
- * Generated at: 2026-08-29T18:47:29.448Z
+ * Generated at: 2026-08-29T19:48:12.882Z
  *
  * Bootstrap locale bundle (LOCALE_BOOTSTRAP_CONTRACT): a stopgap bundle that
  * lets the app boot in a browser before the real localization compiler
@@ -1484,6 +1484,18 @@ const MESSAGES: Readonly<Record<string, import('./compiled-types.js').CompiledMe
   "ui.phase21.collapse.warning": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Warning" }]),
     parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.heal.applied": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "heal " }, { t: 'arg' as const, n: "target" }, { t: 'text' as const, v: " +{healDelta}" }]),
+    parameters: Object.freeze({ "target": 'string', "healDelta": 'number' }),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.heal.blocked": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "lifesteal blocked on " }, { t: 'arg' as const, n: "target" }, { t: 'text' as const, v: " ({healDelta} suppressed)" }]),
+    parameters: Object.freeze({ "target": 'string', "healDelta": 'number' }),
     budget: '0',
     compactKey: null,
   }),

@@ -160,6 +160,11 @@ export class RunManager {
     this.persistAndNotify();
   }
 
+  resolveBattle(won: boolean): void {
+    this.runner = this.runner.resolveBattle(won);
+    this.persistAndNotify();
+  }
+
   advance(nextNodeId: NodeId): void {
     this.runner = this.runner.advance(nextNodeId);
     this.persistAndNotify();

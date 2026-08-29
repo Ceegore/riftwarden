@@ -2,11 +2,15 @@ import { describe, expect, it } from 'vitest';
 import { createLiveSimBattle, createSimBattleHost, resolveExpeditionEncounter, sourceForEncounter } from '../../src/features/battle/sim/sim-battle-host.js';
 import { encounterOutboundFromBattle, presentPhase21Report, type Phase21OutboundReport } from '../../src/features/battle/outbound/phase21-outbound-presenter.js';
 import { buildEncounterLaunchConfig } from '../../src/game/sim/boss/encounter-adapter.js';
+import { createExpedition } from '../../src/game/expedition/expedition-runner.js';
+import { generateMap } from '../../src/game/expedition/map-generator.js';
+import type { ExpeditionMap, MapProfile } from '../../src/game/expedition/types.js';
 import {
   CONTENT_ENCOUNTERS,
   encounterById,
   isBossEncounter,
   isDuoEncounter,
+  isSustainEncounter,
   resolveEncounterForNode,
 } from '../../src/game/content/runtime/encounter-registry.js';
 
@@ -162,6 +166,70 @@ describe('P21 §9 expedition battle wiring', () => {
 
     // DETERMINISM: the seed replays the identical live terminal.
     expect(runLive()).toEqual(live);
+  });
+
+  it('an expedition sustain group (battle node keyed to heal_sustain) completes and clears to the map on a win', { timeout: 120_000 }, () => {
+    const SUSTAIN = 'encounter_fixture_heal_sustain';
+    const profile: MapProfile = {
+      id: 'exp-sustain.v1', logicalLevels: 6, targetVisited: [5, 8] as const,
+      mandatoryRoles: ['anchor', 'preparation', 'boss'], attemptCap: 50, fallbackTemplateId: 'fallback.v1',
+    };
+    const base = generateMap({ seed: 707, profileId: 'exp-sustain.v1', contentRevision: '32.0' }, profile);
+    // Walk the generated map to the FIRST battle node and record the path.
+    let probe = createExpedition(base, { startGold: 200 });
+    const path: string[] = [probe.currentNodeId];
+    while (probe.handler.type !== 'battle') {
+      const next = probe.reachableNodes[0];
+      if (next === undefined) throw new Error('no path to a battle node');
+      probe = probe.enter(`ts-walk-${String(path.length)}`).resolve().advance(next);
+      path.push(next);
+    }
+    const battleId = probe.currentNodeId;
+    // Relabel that battle node as a SUSTAIN node (carries the heal_sustain
+    // encounter as its payload key — a sustain group in the map pool).
+    const map: ExpeditionMap = {
+      ...base,
+      nodes: Object.freeze(base.nodes.map((n) => n.id === battleId ? { ...n, previewKey: SUSTAIN } : n)),
+    };
+
+    // 1) A battle node in the pool resolves to the sustain encounter
+    //    (payload-key-first via the content registry).
+    const encounter = resolveExpeditionEncounter('battle', SUSTAIN);
+    expect(encounter).not.toBeNull();
+    if (encounter === null) throw new Error('sustain node unresolved');
+    expect(encounter.id).toBe(SUSTAIN);
+    expect(isSustainEncounter(encounter)).toBe(true);
+
+    // 2) The live host runs the REAL sustain battle: the damaged-player seed lets
+    //    the lifesteal loop carry the mission to completion.
+    const handle = createLiveSimBattle({ encounter });
+    let last = handle.snapshot();
+    for (let i = 0; i < 2000 && !['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(last.phase.phase); i++) {
+      last = handle.step();
+    }
+    expect(last.phase.phase).toBe('VICTORY');
+    const heal = last.objectives?.find((o) => o.kind === 'heal_sustain');
+    expect(heal?.complete).toBe(true);
+    expect(heal?.progress).toBe(1000);
+
+    // 3) A WON fight clears the node to the map: resolveBattle(true) marks the
+    //    visit RESOLVED so advancement to the next reachable node works.
+    let run = createExpedition(map, { startGold: 200 });
+    for (const nodeId of path) {
+      if (nodeId === battleId) break;
+      const next = run.reachableNodes[0];
+      if (next === undefined) throw new Error('path dead-end');
+      run = run.enter(`ts-r-${nodeId}`).resolve().advance(next);
+    }
+    expect(run.currentNodeId).toBe(battleId);
+    run = run.enter('ts-sustain-enter');
+    expect(run.state.visits[battleId]?.status).toBe('COMMITTED');
+    run = run.resolveBattle(true);
+    expect(run.state.visits[battleId]?.status).toBe('RESOLVED');
+    const onward = run.reachableNodes[0];
+    if (onward !== undefined) {
+      expect(run.advance(onward).currentNodeId).toBe(onward);
+    }
   });
 
   it('the resolved source builds a valid launch config (adapter path is live)', () => {

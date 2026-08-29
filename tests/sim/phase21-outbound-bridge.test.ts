@@ -3,13 +3,15 @@ import { stepBattle } from '../../src/game/sim/core/battle-kernel.js';
 import { migrateEntity } from '../../src/game/sim/core/migrate.js';
 import { createPhase17Systems } from '../../src/game/sim/core/phase17-systems.js';
 import { createPhase21Systems } from '../../src/game/sim/core/phase21-systems.js';
+import { buildBossObjectBody, type BossObjectContent, type DamagePolicy } from '../../src/game/sim/boss/boss-object-manager.js';
 import { encounterOutboundFromBattle, presentPhase21Report, type EncounterOutbound, type Phase21OutboundReport } from '../../src/features/battle/outbound/phase21-outbound-presenter.js';
 import type { ModifierDefinition } from '../../src/game/sim/world/modifier-system.js';
 import type { BossPhaseSnapshot, PhaseDefinition } from '../../src/game/sim/boss/boss-phase-system.js';
 import type { KernelSystem } from '../../src/game/sim/core/tick-context.js';
 import type { TickInput } from '../../src/game/sim/core/tick-input.js';
 import type { BattleModel } from '../../src/game/sim/core/battle-model.js';
-import { battle, entity, randomSession } from './test-helpers.js';
+import { asX100 } from '../../src/game/sim/geometry/x100.js';
+import { battle, entity, randomSession, tick } from './test-helpers.js';
 
 /**
  * Phase 21 §9 outbound live bridge. The outbound UI panel consumes the launcher
@@ -41,6 +43,11 @@ const modifiers: readonly ModifierDefinition[] = Object.freeze([
 function bossPhaseSeed(): BossPhaseSnapshot {
   return Object.freeze({ entityId: BOSS_ID, bossId: BOSS_ID, phaseId: 'p1', transition: null, visited: Object.freeze(['p1']), invulnerableUntilTick: null });
 }
+
+const attack = (rawAmount: number) => Object.freeze({
+  attackIntervalTicks: 10, prepareTicks: 1, recoveryTicks: 3, preferredRangeX100: asX100(9000),
+  delivery: Object.freeze({ kind: 'direct', rawAmount, damageTypeOrdinal: 0, defense: 0, bossCapBps: null }),
+});
 
 function buildSystems(): readonly KernelSystem[] {
   return Object.freeze([
@@ -199,6 +206,77 @@ describe('P21 §9 outbound live battle bridge', () => {
     expect(row.terminalPhase).toBeNull();
     expect(row.terminalReason).toBeNull();
     expect(row.encounterId).toBe('encounter_fixture_boss_object');
+  });
+
+  it('maps a live heal stream (applied + §6 blocked lifesteal) into the outbound/bridge', { timeout: 60_000 }, () => {
+    const HEAL: ModifierDefinition = Object.freeze({
+      id: 'mod_fixture_lifesteal', previewKey: 'preview_ls', hooks: Object.freeze(['on_damage_applied'] as const), incompatibilityTags: Object.freeze([]), params: Object.freeze({ heal_bps: 5000 }),
+    });
+    const SHIELD_OBJ = 'obj_shield_bridge';
+    const IMMUNE_OBJ = 'obj_immune_bridge';
+    const object = (entityId: string, damagePolicy: 'shield_only' | 'immune', slotId: 'boss_slot_0' | 'boss_slot_1'): BossObjectContent => Object.freeze({
+      entityId, side: 'enemy', ownerId: 'owner', sourceId: 'content',
+      spec: Object.freeze({ slotId, lane: 'middle', x100: 6200, targetable: true, objectiveLink: null, damagePolicy, statusPolicy: 'allow', cleanupPolicy: 'manual', fallback: 'FAIL' }),
+      maxLp: 800, radiusX100: 120,
+    });
+    const shieldObject = object(SHIELD_OBJ, 'shield_only', 'boss_slot_0');
+    const immuneObject = object(IMMUNE_OBJ, 'immune', 'boss_slot_1');
+    const systems: readonly KernelSystem[] = Object.freeze([
+      ...createPhase17Systems({
+        speedsX100PerSecond: {},
+        bossObjectPolicies: new Map<string, DamagePolicy>([[SHIELD_OBJ, 'shield_only'], [IMMUNE_OBJ, 'immune']]),
+        targeting: { focusTargetId: { unit_p: SHIELD_OBJ, unit_p2: IMMUNE_OBJ } },
+        basicAttack: { parameters: { unit_p: attack(300), unit_p2: attack(300) } },
+      }),
+      ...createPhase21Systems({ bossObjects: [shieldObject, immuneObject], modifiers: [HEAL] }),
+    ]);
+    const atk1 = migrateEntity({ entity: entity('unit_p', { side: 'player', lane: 'middle', x100: 1800, maxLp: 5000, lp: 2500 }), radiusX100: 100 });
+    const atk2 = migrateEntity({ entity: entity('unit_p2', { side: 'player', lane: 'middle', x100: 2400, maxLp: 5000, lp: 2500 }), radiusX100: 100 });
+    const shieldBody = buildBossObjectBody(shieldObject, tick(0));
+    const immuneBody = buildBossObjectBody(immuneObject, tick(0));
+    let state = battle({
+      simulationVersion: 'phase21-heal-stream-bridge-v1',
+      entities: Object.freeze([atk1, atk2, shieldBody, immuneBody]),
+      abilities: Object.freeze([]),
+    });
+    const random = randomSession();
+    const rawHeal: { tick: number; targetId: string; delta: number; blocked: boolean }[] = [];
+    for (let t = 0; t < 160; t++) {
+      const r = stepBattle({ state, input, random, rules: {}, content: {}, systems });
+      state = r.state;
+      for (const event of r.events) {
+        if (event.type === 'HealApplied') {
+          rawHeal.push({ tick: state.tick, targetId: event.targetIds[0] ?? event.sourceId ?? '', delta: event.payload['finalHpDelta'] ?? 0, blocked: false });
+        } else if (event.type === 'LifestealBlocked') {
+          rawHeal.push({ tick: state.tick, targetId: event.targetIds[0] ?? '', delta: event.payload['targetAmount'] ?? 0, blocked: true });
+        }
+      }
+    }
+    // Bridge the heal stream into the SAME outbound surface the panel consumes.
+    const entry: EncounterOutbound = encounterOutboundFromBattle({
+      encounterId: 'encounter_fixture_heal_stream',
+      objective: 'heal_sustain',
+      tick: state.tick,
+      phase: { phase: state.phase.phase, endReason: state.endReason },
+      bossPhase: state.bossPhase ?? null,
+      modifierHookLog: state.modifierHookLog ?? [],
+      events: [],
+      healStream: Object.freeze(rawHeal),
+    });
+    expect(entry.healStream).toBeDefined();
+    const rows = presentPhase21Report(Object.freeze({
+      gate: 'G21-LIVE-BRIDGE', status: 'PASS', drift: 0, seededFailures: 0,
+      perEncounter: Object.freeze({ encounter_fixture_heal_stream: entry }),
+    }));
+    const row = rows[0];
+    expect(row).toBeDefined();
+    if (row === undefined) throw new Error('no row');
+    // APPLIED: unit_p lifesteals 150 from its shield_only hit.
+    expect(row.healStream?.some((h) => h.targetId === 'unit_p' && h.delta === 150 && !h.blocked)).toBe(true);
+    // BLOCKED: the immune object's hit yields a LifestealBlocked (suppressed amount).
+    expect(row.healStream?.some((h) => h.targetId === IMMUNE_OBJ && h.blocked && h.delta > 0)).toBe(true);
+    // unit_p2 never lands a heal (all its hits are on the immune object).
+    expect(row.healStream?.some((h) => h.targetId === 'unit_p2' && !h.blocked)).toBe(false);
   });
 
   it('bridges the §10 rift-collapse state into the outbound collapse readout', { timeout: 60_000 }, () => {

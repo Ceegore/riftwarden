@@ -33,7 +33,7 @@ import { RandomSession } from '../../../game/sim/random/random-session.js';
 import type { KernelSystem } from '../../../game/sim/core/tick-context.js';
 import type { TickInput } from '../../../game/sim/core/tick-input.js';
 import type { BattleModel } from '../../../game/sim/core/battle-model.js';
-import type { LiveOutboundInput } from '../outbound/phase21-outbound-presenter.js';
+import type { HealStreamEntry, LiveOutboundInput } from '../outbound/phase21-outbound-presenter.js';
 import type { Lane } from '../../../game/sim/geometry/x100.js';
 import type { Wave } from '../../../game/sim/world/reinforcement-system.js';
 import {
@@ -46,6 +46,22 @@ import {
 } from '../../../game/content/runtime/encounter-registry.js';
 
 export type { ContentEncounterEntry as FixtureEncounterEntry } from '../../../game/content/runtime/encounter-registry.js';
+
+/**
+ * §9 terminal verdict of a live outbound sense. Maps the kernel battle phase
+ * to the four UI-visible verdicts. `active` means the battle has not reached a
+ * terminal phase yet; the ENGAGE lockout happens on the terminal verdict (see
+ * `resolveBattle` in the expedition runner).
+ */
+export type BattleVerdict = 'active' | 'victory' | 'defeat' | 'abort';
+
+export function battleResultOf(input: LiveOutboundInput): BattleVerdict {
+  const phase = input.phase.phase;
+  if (phase === 'VICTORY') return 'victory';
+  if (phase === 'DEFEAT') return 'defeat';
+  if (phase === 'DRAW_ABORT') return 'abort';
+  return 'active';
+}
 
 const input: TickInput = Object.freeze({ paused: false, decisions: Object.freeze([]), contentVersion: 'content_fixture' });
 
@@ -210,7 +226,7 @@ function systemsFor(launch: ReturnType<typeof buildEncounterLaunchConfig>): read
   ]);
 }
 
-function liveFrom(state: BattleModel, events: readonly { type: string; tick: number; contentIds: readonly string[]; resolveTick?: number }[], entry: ContentEncounterEntry): LiveOutboundInput {
+function liveFrom(state: BattleModel, events: readonly { type: string; tick: number; contentIds: readonly string[]; resolveTick?: number }[], entry: ContentEncounterEntry, healStream: readonly HealStreamEntry[]): LiveOutboundInput {
   return Object.freeze({
     encounterId: entry.id,
     objective: entry.objective,
@@ -247,6 +263,10 @@ function liveFrom(state: BattleModel, events: readonly { type: string; tick: num
         complete: o.complete,
       }))),
     }),
+    // §7 heal stream: applied heals (HealApplied deltas) + §6 suppressed
+    // lifesteal heals (LifestealBlocked), so the panel renders blocked-vs-
+    // applied heals live with {healDelta, target} params.
+    healStream: Object.freeze(healStream.map((h) => Object.freeze({ ...h }))),
   });
 }
 
@@ -299,10 +319,11 @@ function createBattleRunner(entry: ContentEncounterEntry, launch: ReturnType<typ
   const random = new RandomSession(RngStreamMap.fromRunSeed(parseRunSeed(['00000001', '00000002', '00000003', '00000004'])), new RollSlotRegistry([]), false);
   let state: BattleModel = { ...buildBattle(entry, launch), authoritativeStreams: random.streams.snapshotAuthoritative() };
   const events: { type: string; tick: number; contentIds: readonly string[]; resolveTick?: number }[] = [];
+  const healStream: HealStreamEntry[] = [];
   let terminal = false;
   let cached: LiveOutboundInput | null = null;
   const live = (): LiveOutboundInput => {
-    if (cached === null) cached = liveFrom(state, events, entry);
+    if (cached === null) cached = liveFrom(state, events, entry, healStream);
     return cached;
   };
   return Object.freeze({
@@ -318,6 +339,21 @@ function createBattleRunner(entry: ContentEncounterEntry, launch: ReturnType<typ
           contentIds: Object.freeze([...e.contentIds]),
           ...(e.payload['resolveTick'] === undefined ? {} : { resolveTick: e.payload['resolveTick'] }),
         }));
+        if (e.type === 'HealApplied') {
+          healStream.push(Object.freeze({
+            tick: state.tick,
+            targetId: e.targetIds[0] ?? e.sourceId ?? '',
+            delta: e.payload['finalHpDelta'] ?? 0,
+            blocked: false,
+          }));
+        } else if (e.type === 'LifestealBlocked') {
+          healStream.push(Object.freeze({
+            tick: state.tick,
+            targetId: e.targetIds[0] ?? '',
+            delta: e.payload['targetAmount'] ?? 0,
+            blocked: true,
+          }));
+        }
       }
       if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(state.phase.phase)) terminal = true;
       cached = null;

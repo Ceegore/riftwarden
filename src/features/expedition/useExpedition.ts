@@ -21,6 +21,8 @@ export interface UseExpeditionResult {
   readonly enter: (txId: string) => void;
   readonly act: (request: NodeActionRequest) => TransactionRecord | undefined;
   readonly resolve: () => void;
+  /** `§9` resolves a combat node from the live battle verdict (won clears, lost gates). */
+  readonly resolveBattle: (won: boolean) => void;
   readonly advance: (nodeId: NodeId) => void;
   readonly finish: () => void;
 }
@@ -72,6 +74,7 @@ export function useExpedition(): UseExpeditionResult {
   const enter = useCallback((txId: string) => { RunManager.active?.enter(txId); }, []);
   const act = useCallback((req: NodeActionRequest): TransactionRecord | undefined => RunManager.active?.act(req), []);
   const resolve = useCallback(() => { RunManager.active?.resolve(); }, []);
+  const resolveBattle = useCallback((won: boolean) => { RunManager.active?.resolveBattle(won); }, []);
   const advance = useCallback((nid: NodeId) => { RunManager.active?.advance(nid); }, []);
   const finish = useCallback(() => { RunManager.active?.finish(); }, []);
 
@@ -87,6 +90,7 @@ export function useExpedition(): UseExpeditionResult {
     enter,
     act,
     resolve,
+    resolveBattle,
     advance,
     finish,
   };

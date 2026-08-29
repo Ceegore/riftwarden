@@ -59,6 +59,7 @@
     "LaneChangeCompleted",
     "LaneChangeInterrupted",
     "LaneLogicalSwitched",
+    "LifestealBlocked",
     "ModifierTriggered",
     "MovedLane",
     "PhaseStarted",

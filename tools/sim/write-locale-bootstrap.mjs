@@ -93,6 +93,8 @@ const PARAM_TEMPLATES = Object.freeze({
   'ui.phase21.telegraph.resolved': Object.freeze({ template: 'telegraph → {phase} · resolved @ {tick}', parameters: Object.freeze({ phase: 'string', tick: 'number' }) }),
   'ui.phase21.hook.at': Object.freeze({ template: '{hook} @ {tick}', parameters: Object.freeze({ hook: 'string', tick: 'number' }) }),
   'ui.phase21.trace.at': Object.freeze({ template: '@ {tick}', parameters: Object.freeze({ tick: 'number' }) }),
+  'ui.phase21.heal.applied': Object.freeze({ template: 'heal {target} +{healDelta}', parameters: Object.freeze({ target: 'string', healDelta: 'number' }) }),
+  'ui.phase21.heal.blocked': Object.freeze({ template: 'lifesteal blocked on {target} ({healDelta} suppressed)', parameters: Object.freeze({ target: 'string', healDelta: 'number' }) }),
 });
 
 /** Compiles an ICU-ish template (`text {arg} text`) into compiled AST nodes + declared parameter kinds. */

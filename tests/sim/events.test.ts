@@ -9,7 +9,7 @@ const required = [
   'AttackPrepared', 'AttackInterrupted', 'AttackCommitted', 'AttackRecoveryStarted', 'AttackCycleCompleted', 'ProjectileSpawned', 'DamageApplied', 'HealApplied', 'ShieldApplied', 'ShieldAbsorbed', 'ShieldExpired', 'EffectApplied', 'EffectRefreshed', 'EffectIgnored', 'EffectRemoved', 'EffectTick', 'EffectResisted',
   'ChargeReady', 'AbilityPrepared', 'AbilityInterrupted', 'AbilityCommitted', 'AbilityResolved',
   'AbilityTriggered', 'AbilityTargetSelected', 'AbilityWaitingTarget', 'AbilityCastStarted', 'AbilityEffectQueued', 'AbilityRecovered', 'AbilityCooldownStarted', 'AbilityReady', 'AbilityConsumed', 'AbilityRejected',
-  'ModifierTriggered', 'HazardTelegraphed', 'HazardResolved', 'ReinforcementQueued', 'ReinforcementSpawned',
+  'ModifierTriggered', 'HazardTelegraphed', 'HazardResolved', 'ReinforcementQueued', 'ReinforcementSpawned', 'LifestealBlocked',
   'PhaseTransitionPlanned', 'BossTelegraphStarted', 'BossPhaseStarted', 'BossPhaseCompleted',
   'InvalidTargetPrevented', 'SummonLimitBlocked', 'FallbackRuleUsed', 'SafetyCapTriggered',
   'LaneLogicalSwitched', 'LaneChangeCompleted', 'LaneChangeInterrupted',
@@ -17,7 +17,7 @@ const required = [
 ];
 
 describe('event registry', () => {
-  it('all 64 required event types are registered', () => {
+  it('all 65 required event types are registered', () => {
     expect(Object.keys(EVENT_SPEC).sort()).toEqual([...required].sort());
   });
 

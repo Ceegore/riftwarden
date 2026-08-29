@@ -54,9 +54,9 @@ export interface ContentModifierEntry extends ContentModifierSource {
   readonly id: string;
 }
 
-type EncounterEnvelope = { readonly entities: readonly ContentEncounterEntry[] };
-type ModifierEnvelope = { readonly entities: readonly ContentModifierEntry[] };
-type UnitEnvelope = { readonly entities: readonly ContentUnitEntry[] };
+interface EncounterEnvelope { readonly entities: readonly ContentEncounterEntry[] }
+interface ModifierEnvelope { readonly entities: readonly ContentModifierEntry[] }
+interface UnitEnvelope { readonly entities: readonly ContentUnitEntry[] }
 
 export const CONTENT_ENCOUNTERS: ReadonlyMap<string, Readonly<ContentEncounterEntry>> = new Map(
   (encountersData as unknown as EncounterEnvelope).entities.map((e) => [e.id, Object.freeze(e)] as const),
@@ -89,6 +89,11 @@ export function modifierById(id: string): Readonly<ContentModifierEntry> | null 
 export function isBossEncounter(entry: Readonly<ContentEncounterEntry>): boolean {
   const bossId = entry.bossUnitId;
   return bossId !== undefined && bossId !== null && bossId !== '';
+}
+
+/** Sustained-heal mission encounter (heal_sustain objective). */
+export function isSustainEncounter(entry: Readonly<ContentEncounterEntry>): boolean {
+  return entry.objective === 'heal_sustain';
 }
 
 /** Duo encounter: a boss-family encounter with a secondary boss authority. */

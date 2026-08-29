@@ -149,25 +149,34 @@ export function createModifierLifestealSystem(config: LifestealRuntimeConfig = {
         if (secondary !== undefined && secondary.entityId === targetId && secondary.invulnerableUntilTick !== null && context.state.tick < secondary.invulnerableUntilTick) return true;
         return false;
       };
-      const heals: readonly PendingCombatApplication[] = Object.freeze(
-        pending
-          .filter((application): application is Extract<PendingCombatApplication, { kind: 'damage' }> =>
-            application.kind === 'damage' && application.rawAmount > 0
-            && !immuneTargets.has(application.targetId)
-            && !inInvulnerableWindow(application.targetId))
-          .map((application) => Object.freeze({
-            kind: 'heal' as const,
-            sourceId: application.sourceId,
-            targetId: application.sourceId,
-            effectId: 'lifesteal',
-            attackInstanceId: application.attackInstanceId,
-            effectIndex: application.effectIndex,
-            rawAmount: applyHookBps(application.rawAmount, scale),
-            healFactorBps: 10000,
-          })),
-      );
-      if (heals.length === 0) return;
-      context.commands.push({ kind: 'set_combat_applications', applications: Object.freeze([...pending, ...heals]) });
+      // §6: hits the stage-I pipeline will negate cannot lifesteal. An `immune`
+      // boss object never takes damage; a boss inside its committed invulnerable
+      // window is treated as `immune` by combat-application. A suppressed hit is
+      // surfaced as a `LifestealBlocked` event (world category, deterministic,
+      // no combat effect) so the live outbound can render blocked-vs-applied
+      // heals; the heal-sized value it WOULD have produced is carried in
+      // `targetAmount`.
+      const heals: PendingCombatApplication[] = [];
+      const blocked: KernelEventInput[] = [];
+      for (const application of pending) {
+        if (application.kind !== 'damage' || application.rawAmount <= 0) continue;
+        if (immuneTargets.has(application.targetId) || inInvulnerableWindow(application.targetId)) {
+          blocked.push(eventInput('LifestealBlocked', application.sourceId, Object.freeze([application.targetId]), Object.freeze(['lifesteal']), { targetAmount: applyHookBps(application.rawAmount, scale) }));
+          continue;
+        }
+        heals.push(Object.freeze({
+          kind: 'heal' as const,
+          sourceId: application.sourceId,
+          targetId: application.sourceId,
+          effectId: 'lifesteal',
+          attackInstanceId: application.attackInstanceId,
+          effectIndex: application.effectIndex,
+          rawAmount: applyHookBps(application.rawAmount, scale),
+          healFactorBps: 10000,
+        }));
+      }
+      if (heals.length > 0) context.commands.push({ kind: 'set_combat_applications', applications: Object.freeze([...pending, ...heals]) });
+      for (const event of blocked) context.commands.push({ kind: 'append_event', event });
     },
   });
 }

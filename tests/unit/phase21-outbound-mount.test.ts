@@ -51,6 +51,8 @@ function enBundle(): CompiledBundle {
       'ui.phase21.collapse.countdown': msg([text('no progress — warning in '), arg('ticks'), text('/'), arg('window'), text(' ticks')], { ticks: 'number', window: 'number' }),
       'ui.phase21.trace.at': msg([text('@ '), arg('tick')], { tick: 'number' }),
       'ui.phase21.trace.planned': msg([text('planned')]),
+      'ui.phase21.heal.applied': msg([text('heal '), arg('target'), text(' +'), arg('healDelta')], { target: 'string', healDelta: 'number' }),
+      'ui.phase21.heal.blocked': msg([text('lifesteal blocked on '), arg('target'), text(' ('), arg('healDelta'), text(' suppressed)')], { target: 'string', healDelta: 'number' }),
       'ui.phase21.trace.telegraph': msg([text('telegraph')]),
       'ui.phase21.trace.exited': msg([text('exited')]),
       'ui.phase21.trace.entered': msg([text('entered')]),
@@ -240,6 +242,23 @@ describe('P21 §9 outbound panel mount', () => {
     // Fresh battle (0 no-progress ticks, no window): no collapse readout at all.
     const freshHtml = renderLive(Object.freeze({ ...noWindow, noProgressTicks: 0 }));
     expect(freshHtml).not.toContain('rw-phase21-collapse');
+  });
+
+  it('renders the live heal stream (applied + §6 blocked) from ui.phase21.* keys', () => {
+    const healInput: LiveOutboundInput = Object.freeze({
+      ...LIVE_INPUT,
+      healStream: Object.freeze([
+        Object.freeze({ tick: 16, targetId: 'unit_p', delta: 150, blocked: false }),
+        Object.freeze({ tick: 16, targetId: 'obj_immune_bridge', delta: 150, blocked: true }),
+      ]),
+    });
+    const html = renderLive(healInput);
+    expect(html).toContain('rw-phase21-heals');
+    expect(html).toContain('heal unit_p +150');
+    expect(html).toContain('lifesteal blocked on obj_immune_bridge (150 suppressed)');
+    expect(html).toContain('rw-phase21-heal-blocked');
+    // A missing ui.phase21.heal.* key here would be a L10N runtime error —
+    // rendering the stream IS the battery for the block vs applied split.
   });
 
   it('a non-boss battle renders a row without phase machinery', () => {

@@ -10,7 +10,7 @@ import { BattleCanvas } from '../../features/battle/BattleCanvas.js';
 import { BattleTacticalView } from '../../features/battle/BattleTacticalView.js';
 import { LiveBattleOutboundPanel } from '../../features/battle/outbound/LiveBattleOutboundPanel.js';
 import type { LiveOutboundInput } from '../../features/battle/outbound/phase21-outbound-presenter.js';
-import { createLiveSimBattle, resolveExpeditionEncounter, type FixtureEncounterEntry, type LiveSimBattleHandle } from '../../features/battle/sim/sim-battle-host.js';
+import { battleResultOf, createLiveSimBattle, resolveExpeditionEncounter, type BattleVerdict, type FixtureEncounterEntry, type LiveSimBattleHandle } from '../../features/battle/sim/sim-battle-host.js';
 import { loadA11ySettings } from '../../game/settings/a11y-settings.js';
 import type { UnitRenderData } from '../../features/battle/battle-renderer.js';
 import type { NodeActionRequest } from '../../game/expedition/nodes/types.js';
@@ -269,12 +269,14 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
   const liveHandleRef = useRef<LiveSimBattleHandle | null>(null);
   const [liveOutbound, setLiveOutbound] = useState<LiveOutboundInput | null>(null);
   const [liveRunning, setLiveRunning] = useState(false);
+  const [liveVerdict, setLiveVerdict] = useState<BattleVerdict>('active');
   const battleVisible = combat && phase !== 'resolved';
 
   useEffect(() => {
     liveHandleRef.current = null;
     setLiveOutbound(null);
     setLiveRunning(false);
+    setLiveVerdict('active');
     if (encounter === null) return;
     try {
       const handle = createLiveSimBattle({ encounter });
@@ -297,9 +299,10 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
       }
       const next = handle.step();
       setLiveOutbound(next);
+      setLiveVerdict(battleResultOf(next));
       if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(next.phase.phase)) setLiveRunning(false);
     }, 100);
-    return () => window.clearInterval(id);
+    return () => { window.clearInterval(id); };
   }, [battleVisible, liveRunning]);
 
   const liveOutboundValue: LiveOutboundInput = liveOutbound ?? fallbackOutbound;
@@ -314,7 +317,13 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
   }
 
   const { gold, instability } = snapshot;
-  const nodeActions = actionsForType(currentNodeType, snapshot);
+  const defeated = combat && liveVerdict === 'defeat';
+  // §9 ENGAGE lockout: a terminal DEFEAT from the live battle gates the win
+  // path — the node's reward is lost and only a retreat (DECLINE) clears it.
+  const nodeActions = defeated
+    ? actionsForType(currentNodeType, snapshot).map((actionDef) =>
+      actionDef.action === 'ENGAGE' ? { ...actionDef, available: false } : actionDef)
+    : actionsForType(currentNodeType, snapshot);
   const reducedMotion = loadA11ySettings().reducedMotion;
 
   return (
@@ -347,6 +356,7 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
               setLiveRunning(false);
               const next = handle.step();
               setLiveOutbound(next);
+              setLiveVerdict(battleResultOf(next));
               if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(next.phase.phase)) setLiveRunning(false);
             }}
           />
@@ -359,6 +369,7 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
       {phase === 'acting' && (
         <div className="rw-node-actions">
           {actionError && <p role="alert">{actionError}</p>}
+          {defeated && <p role="alert">Defeated — the node is gated; retreat to continue.</p>}
           <p>Choose your action:</p>
           {nodeActions.map((actionDef) => (
             <div key={`${actionDef.action}-${actionDef.optionId ?? actionDef.labelKey ?? actionDef.label ?? actionDef.action}`} className="rw-node-action">
