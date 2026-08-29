@@ -8,6 +8,7 @@ import type { CompiledBundle, CompiledMessage, CompiledNode } from '../../src/lo
 import { Phase21OutboundPanel } from '../../src/features/battle/outbound/Phase21OutboundPanel.js';
 import { LiveBattleOutboundPanel } from '../../src/features/battle/outbound/LiveBattleOutboundPanel.js';
 import { DefeatPanel } from '../../src/features/battle/outbound/DefeatPanel.js';
+import { VictoryPanel } from '../../src/features/battle/outbound/VictoryPanel.js';
 import type { LiveOutboundInput, Phase21OutboundReport } from '../../src/features/battle/outbound/phase21-outbound-presenter.js';
 
 /**
@@ -98,11 +99,15 @@ function renderLive(input: LiveOutboundInput): string {
   }));
 }
 
-function renderDefeat(reengaged: boolean): string {
+function renderDefeat(reengaged: boolean, attemptsRemaining = 3): string {
   return renderToStaticMarkup(createElement(LocaleProvider, {
     controller: controller(),
-    children: createElement(DefeatPanel, { onReengage: () => undefined, instabilityDelta: 5, reengaged }),
+    children: createElement(DefeatPanel, { onReengage: () => undefined, instabilityDelta: 5 * (reengaged ? 2 : 1), reengaged, attemptsRemaining }),
   }));
+}
+
+function renderVictory(bounty: number, kinds: readonly string[]): string {
+  return renderToStaticMarkup(createElement(VictoryPanel, { bounty, kinds }));
 }
 
 const LIVE_INPUT: LiveOutboundInput = Object.freeze({
@@ -270,16 +275,30 @@ describe('P21 §9 outbound panel mount', () => {
     // rendering the stream IS the battery for the block vs applied split.
   });
 
-  it('renders the §9 defeat panel with the re-engage affordance and the +5 instability feedback', () => {
+  it('renders the §9 defeat panel with the re-engage affordance, escalating tax and cap', () => {
     // Fresh defeat: the re-engage button is present, no tax feedback yet.
     const fresh = renderDefeat(false);
     expect(fresh).toContain('rw-defeat-panel');
     expect(fresh).toContain('Re-engage');
     expect(fresh).not.toContain('instability');
-    // After a committed rewatch: the deterministic-rewatch note + the tax.
+    // After a committed rewatch: the deterministic-rewatch note + the NEXT
+    // (escalated) tax — attempt 2 costs +10, not the flat +5.
     const rewatched = renderDefeat(true);
     expect(rewatched).toContain('Re-engaged — the battle replays identically.');
-    expect(rewatched).toContain('Re-engage costs +5 instability.');
+    expect(rewatched).toContain('Re-engage costs +10 instability (escalating).');
+    // At the cap: the button is disabled and only the retreat message remains.
+    const capped = renderDefeat(true, 0);
+    expect(capped).toContain('No re-engages left — retreat only.');
+    expect(capped).toContain('disabled');
+  });
+
+  it('renders the §9.5 victory panel with the per-kind objective bounty', () => {
+    const html = renderVictory(25, ['kill_boss', 'survive_until']);
+    expect(html).toContain('rw-victory-panel');
+    expect(html).toContain('Victory — the node is cleared.');
+    expect(html).toContain('Objective bounty +25 gold (kill_boss, survive_until) on ENGAGE.');
+    // A zero bounty shows the victory without the bounty line.
+    expect(renderVictory(0, [])).not.toContain('Objective bounty');
   });
 
   it('a non-boss battle renders a row without phase machinery', () => {

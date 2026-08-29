@@ -243,6 +243,16 @@ export function validateEncounter(
  * factor but never changes these structural facts; bankability (requirement vs
  * the pre-window grind) is proven empirically by the launcher teeth.
  */
+/**
+ * §8.3 bankability ceiling: the sustain counter is capped at `required` — the
+ * runtime fold (`applyProgress`) clamps progress, so no encounter can bank
+ * MORE than the mission needs. The policy pins the ceiling on the other side
+ * too: a requirement above this guardrail demands more banked HP than the
+ * sustain pipeline can plausibly produce inside a battle window and is a
+ * content error (regression guard against unwinnable numbers).
+ */
+export const SUSTAIN_BANKABILITY_CEILING = 200_000;
+
 export function validateSustainPolicy(source: {
   readonly healSustainCount: number | null;
   readonly modifiers: readonly ModifierDefinition[];
@@ -255,6 +265,9 @@ export function validateSustainPolicy(source: {
   const out: ValidationIssue[] = [];
   if (source.healSustainCount === null) return Object.freeze(out);
   if (source.healSustainCount <= 0) out.push(issue('P21_SUSTAIN_REQUIREMENT_EMPTY', `healSustainCount ${String(source.healSustainCount)}`));
+  if (source.healSustainCount > SUSTAIN_BANKABILITY_CEILING) {
+    out.push(issue('P21_SUSTAIN_REQUIREMENT_OVER_CEILING', `healSustainCount ${String(source.healSustainCount)} > ceiling ${String(SUSTAIN_BANKABILITY_CEILING)}`));
+  }
   const scale = hookBpsScale(source.modifiers, 'on_damage_applied', 'heal_bps');
   const hasHealSource = source.modifiers.some((m) => m.hooks.includes('on_damage_applied') && m.params['heal_bps'] !== undefined);
   if (!hasHealSource) out.push(issue('P21_SUSTAIN_NO_HEAL_SOURCE', 'no on_damage_applied heal_bps modifier'));

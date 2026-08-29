@@ -68,6 +68,8 @@ export const EncounterSourceSchema = z.object({
   objective: z.enum(["defeat_all", "survive", "defeat_boss", "protect_object", "complete_waves", "heal_sustain"]),
   /** §P21-T03: total HP to heal for `heal_sustain` missions (`heal_sustain` objective required, accumulated HealApplied amounts). */
   healSustainCount: z.number().int().positive().optional(),
+  /** §10: content soft-limit override in seconds (default: 2700 normal / 3600 boss soft limit). */
+  softLimitSeconds: z.number().nonnegative().nullable().default(null),
   /** §4: content boss phases (`PhaseDefinition` surface) the battle descends across the boss's HP. */
   bossPhases: z.array(BossPhaseSourceSchema).default([]),
   /** §4/§10: a second boss's phase declarations for multi-boss encounters (descends independently of `bossPhases`). */

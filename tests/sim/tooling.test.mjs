@@ -186,10 +186,11 @@ test('content-driven battle launcher derives objectives via the adapter and reso
   }
   // §10 sustain × collapse TIPPING teeth: the 80000-requirement encounter is
   // NOT bankable by the pre-window grind, so it loses IN the window — the
-  // halved heal rate (150→75 observed) turns the player's net intake negative
-  // and the collapse damage kills them at ~2885 (DEFEAT side_eliminated). The
-  // win side of the boundary stays the 1000-requirement encounter (VICTORY,
-  // banked pre-window).
+  // content soft-limit override (softLimitSeconds 60 → 1800 ticks) opens the
+  // collapse window early, the halved heal rate (150→75 observed) turns the
+  // player's net intake negative and the collapse damage kills them
+  // (DEFEAT side_eliminated). The win side of the boundary stays the
+  // 1000-requirement encounter (VICTORY, banked pre-window).
   const collapseEntry = byId['encounter_fixture_sustain_collapse'];
   assert.equal(collapseEntry.sustainCollapseTeeth, true);
   assert.equal(collapseEntry.terminal.phase, 'DEFEAT');
@@ -199,7 +200,8 @@ test('content-driven battle launcher derives objectives via the adapter and reso
   assert.equal(collapseEntry.inWindowDeath, true);
   assert.equal(collapseEntry.objectivesComplete, false);
   assert.ok(collapseEntry.counterAtDeath < collapseEntry.requirement, 'the requirement is NOT bankable');
-  assert.ok(collapseEntry.ticks > 2700 && collapseEntry.ticks < 3150, 'the death lands inside the §10 window');
+  assert.equal(collapseEntry.softLimitTicks, 1800, 'the content soft-limit override (60s → 1800 ticks) drives the window');
+  assert.ok(collapseEntry.ticks > 1800 && collapseEntry.ticks < 2250, 'the death lands inside the overridden §10 window');
   // §8.3 sustain POLICY pass: every heal_sustain encounter's contract is
   // validated at launch time (positive requirement, positive composite heal
   // scale, a damageable target) — both sustain encounters must be clean.

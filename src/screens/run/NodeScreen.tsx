@@ -10,7 +10,9 @@ import { BattleCanvas } from '../../features/battle/BattleCanvas.js';
 import { BattleTacticalView } from '../../features/battle/BattleTacticalView.js';
 import { LiveBattleOutboundPanel } from '../../features/battle/outbound/LiveBattleOutboundPanel.js';
 import { DefeatPanel } from '../../features/battle/outbound/DefeatPanel.js';
+import { VictoryPanel } from '../../features/battle/outbound/VictoryPanel.js';
 import type { LiveOutboundInput } from '../../features/battle/outbound/phase21-outbound-presenter.js';
+import { DEFEAT_INSTABILITY_DELTA, MAX_REENGAGE_ATTEMPTS } from '../../game/expedition/nodes/handlers/combat.js';
 import { battleResultOf, createLiveSimBattle, resolveExpeditionEncounter, type BattleVerdict, type FixtureEncounterEntry, type LiveSimBattleHandle } from '../../features/battle/sim/sim-battle-host.js';
 import { loadA11ySettings } from '../../game/settings/a11y-settings.js';
 import type { UnitRenderData } from '../../features/battle/battle-renderer.js';
@@ -189,11 +191,18 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
   const currentNodeType = snapshot?.currentNodeType ?? '';
   const enterTxId = snapshot === null ? '' : enterTransactionId(snapshot.state.runId, snapshot.currentNodeId);
   const enterCommitted = snapshot?.state.ledger[enterTxId]?.status === 'COMMITTED';
+  // §9: an ENGAGE_DEFEAT rewatch commits a ledger action but does NOT resolve
+  // the node — it keeps the acting phase open for further rewatches / retreat.
   const committedAction = snapshot === null
     ? undefined
     : Object.values(snapshot.state.ledger).find(
-      (entry) => entry.nodeId === snapshot.currentNodeId && entry.status === 'COMMITTED' && entry.action !== 'ENTER',
+      (entry) => entry.nodeId === snapshot.currentNodeId && entry.status === 'COMMITTED' && entry.action !== 'ENTER' && entry.action !== 'ENGAGE_DEFEAT',
     );
+  const reengageCount = snapshot === null
+    ? 0
+    : Object.values(snapshot.state.ledger).filter(
+      (entry) => entry.nodeId === snapshot.currentNodeId && entry.status === 'COMMITTED' && entry.action === 'ENGAGE_DEFEAT',
+    ).length;
   const phase = snapshot === null || !enterCommitted
     ? 'entering'
     : committedAction === undefined
@@ -246,7 +255,6 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
   const [liveOutbound, setLiveOutbound] = useState<LiveOutboundInput | null>(null);
   const [liveRunning, setLiveRunning] = useState(false);
   const [liveVerdict, setLiveVerdict] = useState<BattleVerdict>('active');
-  const [reengaged, setReengaged] = useState(false);
   const battleVisible = combat && phase !== 'resolved';
 
   const startLiveBattle = useCallback((handle: LiveSimBattleHandle): void => {
@@ -261,7 +269,6 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
     setLiveOutbound(null);
     setLiveRunning(false);
     setLiveVerdict('active');
-    setReengaged(false);
     if (encounter === null) return;
     try {
       startLiveBattle(createLiveSimBattle({ encounter }));
@@ -286,7 +293,6 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
         return;
       }
       setActionError(null);
-      setReengaged(true);
       startLiveBattle(createLiveSimBattle({ encounter }));
     } catch {
       setActionError('Re-engage unavailable');
@@ -310,7 +316,11 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
   }, [battleVisible, liveRunning]);
 
   const liveOutboundValue: LiveOutboundInput = liveOutbound ?? fallbackOutbound;
-  const liveMissionComplete = (liveOutboundValue.objectives ?? []).some((o) => o.complete);
+  // §9.5: the completed objective kinds drive the bounty display and ride the
+  // victory ENGAGE request (the contract decides how much each kind pays).
+  const completedObjectiveKinds = (liveOutboundValue.objectives ?? []).filter((o) => o.complete).map((o) => o.kind);
+  const liveMissionComplete = (liveOutboundValue.objectives ?? []).length > 0
+    && (liveOutboundValue.objectives ?? []).every((o) => o.complete);
 
   const handleAction = useCallback((actionDef: ActionDef) => {
     if (!actionDef.available || snapshot === null) return;
@@ -322,9 +332,9 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
       nodeId,
       action: actionDef.action,
       ...(actionDef.optionId === undefined ? {} : { optionId: actionDef.optionId }),
-      // §9.5: the victory ENGAGE carries the mission-completed flag from the
-      // live battle's objective projection so the handler can grant the bounty.
-      ...(actionDef.action === 'ENGAGE' && liveMissionComplete ? { missionBonus: true } : {}),
+      // §9.5: the victory ENGAGE carries the completed objective kinds from the
+      // live battle's projection so the handler can grant the per-kind bounty.
+      ...(actionDef.action === 'ENGAGE' && liveMissionComplete ? { completedKinds: completedObjectiveKinds } : {}),
     };
     try {
       const outcome = act(request);
@@ -355,6 +365,7 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
 
   const { gold, instability } = snapshot;
   const defeated = combat && liveVerdict === 'defeat';
+  const victorious = combat && liveVerdict === 'victory';
   // §9 ENGAGE lockout: a terminal DEFEAT from the live battle gates the win
   // path — the node's reward is lost and only a retreat (DECLINE) clears it.
   const nodeActions = defeated
@@ -406,7 +417,15 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
       {phase === 'acting' && (
         <div className="rw-node-actions">
           {actionError && <p role="alert">{actionError}</p>}
-          {defeated && <DefeatPanel onReengage={handleReengage} instabilityDelta={5} reengaged={reengaged} />}
+          {defeated && (
+            <DefeatPanel
+              onReengage={handleReengage}
+              instabilityDelta={DEFEAT_INSTABILITY_DELTA * (reengageCount + 1)}
+              reengaged={reengageCount > 0}
+              attemptsRemaining={MAX_REENGAGE_ATTEMPTS - reengageCount}
+            />
+          )}
+          {victorious && <VictoryPanel bounty={liveOutboundValue.bounty ?? 0} kinds={completedObjectiveKinds} />}
           <p>Choose your action:</p>
           {nodeActions.map((actionDef) => (
             <div key={`${actionDef.action}-${actionDef.optionId ?? actionDef.labelKey ?? actionDef.label ?? actionDef.action}`} className="rw-node-action">

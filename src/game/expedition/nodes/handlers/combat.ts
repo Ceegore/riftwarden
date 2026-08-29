@@ -19,9 +19,35 @@ const ELITE_GOLD_MIN = 90;
 const ELITE_GOLD_SPAN = 51;
 const LOOT_CHANCE_PERMILLE = 350;
 /** §9: instability a DEFEAT costs (a lost fight pays nothing and hurts). */
-const DEFEAT_INSTABILITY_DELTA = 5;
-/** §9.5: gold bounty a victory ENGAGE grants when the sim's mission objective completed. */
-const MISSION_BONUS_GOLD = 10;
+export const DEFEAT_INSTABILITY_DELTA = 5;
+/** §9: re-engaging a lost fight escalates — attempt k costs 5×k instability, capped at 3 rewatches. */
+export const MAX_REENGAGE_ATTEMPTS = 3;
+/**
+ * §9.5 per-kind objective bounty: a VICTORY pays the sum over the completed
+ * objective kinds. The amounts are the CONTRACT's — the UI only reports which
+ * kinds completed (advisory), never how much they pay; unknown kinds pay 0.
+ */
+const MISSION_BOUNTY_BY_KIND: Readonly<Record<string, number>> = Object.freeze({
+  kill_regulars: 5,
+  kill_boss: 15,
+  destroy_object: 10,
+  protect_object: 10,
+  survive_until: 10,
+  complete_waves: 10,
+  heal_sustain: 10,
+});
+
+/** §9.5: total gold bounty for the completed objective kinds (unknown kinds contribute 0). */
+export function bountyForKinds(kinds: readonly string[]): number {
+  return kinds.reduce((sum, kind) => sum + (MISSION_BOUNTY_BY_KIND[kind] ?? 0), 0);
+}
+
+/** Count of committed ENGAGE_DEFEAT rewatches for a node (drives escalation + the cap). */
+function committedEngageDefeats(state: NodeRunState, nodeId: string): number {
+  return Object.values(state.ledger).filter(
+    (entry) => entry.nodeId === nodeId && entry.status === 'COMMITTED' && entry.action === 'ENGAGE_DEFEAT',
+  ).length;
+}
 
 function rewardSeed(state: NodeRunState, nodeId: string): number {
   return fnv1a32([state.runId, nodeId, state.contentRevision, 'reward']);
@@ -95,8 +121,10 @@ function makeCombatHandler(
       }
       if (request.action === 'ENGAGE_DEFEAT') {
         // §9 defeat: no rewards; RE-ENGAGE is a deterministic rewatch of the
-        // same lost sim (repeatable) — never a win.
+        // same lost sim — repeatable up to MAX_REENGAGE_ATTEMPTS (escalating
+        // instability 5, 10, 15), never a win.
         if (hasCommittedAction(state, definition.nodeId, ['ENGAGE', 'CLAIM_REWARD'])) return 'ACTION_LIMIT';
+        if (committedEngageDefeats(state, definition.nodeId) >= MAX_REENGAGE_ATTEMPTS) return 'ACTION_LIMIT';
         return null;
       }
       if (request.action === 'CLAIM_REWARD') {
@@ -134,13 +162,14 @@ function makeCombatHandler(
         if (hasLootChance && (snapshot.rollSlots['loot'] ?? 0) < LOOT_CHANCE_PERMILLE) {
           commands.push({ kind: 'GRANT_UNSECURED_LOOT', rewardId: `reward:${definition.nodeId}:loot` });
         }
-        // §9.5 objective-to-reward linkage: the deterministic sim completed the
-        // mission objective (UI-flagged on the request, sourced from the live
-        // battle's objective projection) → the victory pays the objective
-        // bounty on top of the base reward. Without the flag, no bounty.
-        if (request.missionBonus === true) {
-          commands.push({ kind: 'GOLD_DELTA', amount: MISSION_BONUS_GOLD });
-          commands.push({ kind: 'GOLD_EARNED', amount: MISSION_BONUS_GOLD });
+        // §9.5 objective-to-reward linkage: the deterministic sim completed
+        // the mission objectives (the UI reports which kinds completed from the
+        // live battle's objective projection) → the victory pays the per-kind
+        // objective bounty on top of the base reward. No kinds → no bounty.
+        const bounty = bountyForKinds(request.completedKinds ?? []);
+        if (bounty > 0) {
+          commands.push({ kind: 'GOLD_DELTA', amount: bounty });
+          commands.push({ kind: 'GOLD_EARNED', amount: bounty });
         }
         // Kills awarded: deterministic from roll slots
         const killsBase = rewardCount === 2 ? 3 : 5;
@@ -150,9 +179,11 @@ function makeCombatHandler(
       }
       if (request.action === 'ENGAGE_DEFEAT') {
         // §9 defeat: the live verdict pays NOTHING (no gold, loot or kills) and
-        // levies the instability penalty; the reward snapshot is untouched so a
+        // levies the ESCALATING instability penalty — attempt k costs 5×k
+        // (5, 10, 15… up to the cap). The reward snapshot is untouched so a
         // re-fought defeat (deterministic rewatch) behaves identically.
-        return applyOutcomeCommands(state, [{ kind: 'INSTABILITY_DELTA', amount: DEFEAT_INSTABILITY_DELTA }]);
+        const attempts = committedEngageDefeats(state, definition.nodeId) + 1;
+        return applyOutcomeCommands(state, [{ kind: 'INSTABILITY_DELTA', amount: DEFEAT_INSTABILITY_DELTA * attempts }]);
       }
       if (request.action === 'CLAIM_REWARD') {
         if (request.optionId === undefined) {

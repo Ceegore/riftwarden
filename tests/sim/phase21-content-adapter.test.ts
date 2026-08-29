@@ -51,6 +51,7 @@ function sourceOf(id: string): EncounterObjectiveSource {
     bossUnitId: parsed.bossUnitId,
     survivalDurationSeconds: parsed.survivalDurationSeconds,
     healSustainCount: parsed.healSustainCount ?? null,
+    softLimitSeconds: parsed.softLimitSeconds ?? null,
     modifierIds: parsed.modifierIds,
     reinforcementWaves: parsed.reinforcementWaves,
     // The zod output is structurally the flattened ContentBossPhaseSource shape;

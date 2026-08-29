@@ -12,11 +12,9 @@ import { validateBossObjectContent } from './boss-object-manager.js';
 import type { PhaseDefinition } from './boss-phase-system.js';
 import { bossPhasesFromEncounterContent, type ContentBossPhaseSource } from './boss-phase-content-adapter.js';
 /**
- * Phase 21 §6 content adapter (T03). Maps the flattened content entries the
- * schema expresses (content/source/world/encounters.json, validated by
- * EncounterSourceSchema) into sim runtime surfaces (boss objects, objectives,
- * modifiers, waves, boss phases). Pure and total: every field maps 1:1,
- * invalid entries are content errors, and every returned value is frozen.
+ * Phase 21 §6 content adapter (T03). Maps flattened encounter content
+ * (EncounterSourceSchema) into sim runtime surfaces. Pure and total: every
+ * field maps 1:1, invalid entries are content errors, results are frozen.
  */
 
 /** The flattened content shape (mirrors BossObjectSourceSchema). */
@@ -92,21 +90,21 @@ export interface EncounterObjectiveSource {
   readonly encounterId: string;
   readonly objective: EncounterObjectiveKind;
   readonly bossObjects: readonly ContentBossObjectEntry[];
-  /** Number of regular enemy slots the encounter places at battle start (`enemySlots.length`). */
+  /** Regular enemy slots the encounter places at battle start (`enemySlots.length`). */
   readonly enemySlotCount: number;
   /** §P21-T03: battle entity id of the boss for `defeat_boss` missions (`kill_boss` target). */
   readonly bossUnitId: string | null;
-  /** §P21-T03: survival duration in seconds for `survive` missions (`survive_until` required, converted to ticks). */
+  /** §P21-T03: survival duration seconds (`survive_until` required, in ticks); total HP to heal for `heal_sustain` missions. */
   readonly survivalDurationSeconds: number | null;
-  /** §P21-T03: total HP to heal for `heal_sustain` missions (`heal_sustain` objective required, accumulated HealApplied amounts). */
   readonly healSustainCount: number | null;
+  /** §10: content soft-limit override in seconds (null = the 2700 normal / 3600 boss default). */
+  readonly softLimitSeconds: number | null;
   /** §7: content modifier ids (`EncounterSourceSchema.modifierIds`), resolved against the modifier registry. */
   readonly modifierIds: readonly string[];
   /** §8: reinforcement waves and §4 boss phases across the boss's HP. */
   readonly reinforcementWaves: readonly EncounterWaveSource[];
-  /** §4: content boss phases (`EncounterSourceSchema.bossPhases`). */
+  /** §4: content boss phases (`bossPhases` primary, `bossPhasesSecondary` for multi-boss). */
   readonly bossPhases: readonly ContentBossPhaseSource[];
-  /** §10: second boss's phases for multi-boss encounters (`bossPhasesSecondary`). */
   readonly bossPhasesSecondary?: readonly ContentBossPhaseSource[];
   /** §P21-T03: second boss's battle entity id (`bossUnitIdSecondary`). */
   readonly bossUnitIdSecondary?: string | null;
@@ -174,8 +172,6 @@ export function wavesFromEncounterContent(
     return wave;
   }));
 }
-
-const EMPTY_OBJECTIVES: readonly Objective[] = Object.freeze([]);
 
 function contentError(reason: string, source: EncounterObjectiveSource): never {
   throw new KernelInvariantError('P21_OBJECTIVE_INVALID', { reason, encounterId: source.encounterId });
@@ -255,7 +251,7 @@ export function objectivesFromEncounterContent(source: EncounterObjectiveSource)
       })]);
     }
     default:
-      return EMPTY_OBJECTIVES;
+      return Object.freeze([]);
   }
 }
 
@@ -273,6 +269,7 @@ export interface EncounterLaunchConfig {
   readonly modifiers: readonly ModifierDefinition[]; // §7: committed at battle start
   readonly waves: readonly Wave[]; // §8: committed by the stage-K system
   readonly bossPhaseDefinitions: readonly PhaseDefinition[];
+  readonly softLimitTicks: number | null; // §10: soft-limit override in ticks (null = kernel default)
 }
 
 /** Content registries the launch derivation resolves ids against (pure, no fs). */
@@ -295,5 +292,7 @@ export function buildEncounterLaunchConfig(source: EncounterObjectiveSource, dep
       ...bossPhasesFromEncounterContent(source.bossPhases, source.bossUnitId),
       ...bossPhasesFromEncounterContent(source.bossPhasesSecondary ?? [], source.bossUnitIdSecondary ?? null),
     ]),
+    // §10 content soft-limit override (the tick the collapse window opens).
+    softLimitTicks: source.softLimitSeconds === null ? null : numberSecondsToTicks(source.softLimitSeconds).ticks,
   });
 }

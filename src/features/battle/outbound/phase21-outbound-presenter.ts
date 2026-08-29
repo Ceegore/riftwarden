@@ -195,6 +195,8 @@ export interface LiveOutboundInput {
   readonly objectives?: readonly ObjectiveProjection[];
   /** Heal-stream observations (applied + §6 suppressed heals). */
   readonly healStream?: readonly HealStreamEntry[];
+  /** §9.5 gold bounty the victory ENGAGE pays (per-kind sum over completed kinds). */
+  readonly bounty?: number;
 }
 
 const TRACE_TYPES: readonly string[] = Object.freeze(['PhaseTransitionPlanned', 'BossTelegraphStarted', 'BossPhaseCompleted', 'BossPhaseStarted']);

@@ -83,6 +83,7 @@ function oracleStep(
   let kills = 0;
   let won = false;
   let claimed = false;
+  let rewatches = 0;
   for (const action of committed) {
     if (action === 'ENTER') {
       inst += BATTLE_ENTER_INSTABILITY;
@@ -95,7 +96,9 @@ function oracleStep(
       continue;
     }
     if (action === 'ENGAGE_DEFEAT' && !won && !claimed) {
-      inst += DEFEAT_INSTABILITY_DELTA;
+      // §9 escalation: attempt k costs 5×k (5, 10, 15…), capped at 3.
+      rewatches += 1;
+      inst += DEFEAT_INSTABILITY_DELTA * rewatches;
       continue;
     }
     if (action === 'CLAIM_REWARD' && !claimed) {
@@ -116,7 +119,8 @@ function oracleAccepts(committed: readonly string[], action: string): boolean {
   if (has('DECLINE')) return false;
   if (action === 'ENTER') return committed.length === 0;
   if (action === 'ENGAGE') return !has('ENGAGE') && !has('ENGAGE_DEFEAT') && !has('CLAIM_REWARD');
-  if (action === 'ENGAGE_DEFEAT') return !has('ENGAGE') && !has('CLAIM_REWARD');
+  // §9 cap: at most MAX_REENGAGE_ATTEMPTS (3) rewatches — the fourth is rejected.
+  if (action === 'ENGAGE_DEFEAT') return !has('ENGAGE') && !has('CLAIM_REWARD') && committed.filter((a) => a === 'ENGAGE_DEFEAT').length < 3;
   if (action === 'CLAIM_REWARD') return has('ENGAGE') && !has('CLAIM_REWARD');
   if (action === 'DECLINE') return !has('ENGAGE') && !has('CLAIM_REWARD');
   return false;
@@ -180,9 +184,9 @@ describe('phase21 retreat-tax ledger differential', () => {
     expect(locked.steps[1]?.accepted).toBe(true);
     expect(locked.steps[2]?.accepted).toBe(false); // defeat after victory
     expect(locked.steps[3]?.accepted).toBe(false); // decline after victory
-    // Defeat: enter +5, each rewatch +5 (repeatable), victory rejected after.
+    // Defeat: enter +5, rewatches ESCALATE (+5 then +10), victory rejected after.
     const defeat = replay(302, ['ENTER', 'ENGAGE_DEFEAT', 'ENGAGE_DEFEAT', 'ENGAGE', 'DECLINE']);
-    expect(defeat.final).toEqual({ inst: 15, gold: 0, kills: 0 });
+    expect(defeat.final).toEqual({ inst: 20, gold: 0, kills: 0 });
     expect(defeat.steps.map((s) => [s.action, s.accepted])).toEqual([
       ['ENTER', true], ['ENGAGE_DEFEAT', true], ['ENGAGE_DEFEAT', true], ['ENGAGE', false], ['DECLINE', true],
     ]);
@@ -190,6 +194,13 @@ describe('phase21 retreat-tax ledger differential', () => {
     // (single rewatch then walk away) adds no extra tax.
     expect(replay(303, ['ENTER', 'DECLINE']).final).toEqual({ inst: 5, gold: 0, kills: 0 });
     expect(replay(304, ['ENTER', 'ENGAGE_DEFEAT', 'DECLINE']).final).toEqual({ inst: 10, gold: 0, kills: 0 });
+    // The cap: a fourth rewatch is rejected (5 + 10 + 15 = 30 defeat tax, then
+    // only the retreat remains).
+    const capped = replay(307, ['ENTER', 'ENGAGE_DEFEAT', 'ENGAGE_DEFEAT', 'ENGAGE_DEFEAT', 'ENGAGE_DEFEAT', 'DECLINE']);
+    expect(capped.final).toEqual({ inst: 35, gold: 0, kills: 0 });
+    expect(capped.steps.map((s) => [s.action, s.accepted])).toEqual([
+      ['ENTER', true], ['ENGAGE_DEFEAT', true], ['ENGAGE_DEFEAT', true], ['ENGAGE_DEFEAT', true], ['ENGAGE_DEFEAT', false], ['DECLINE', true],
+    ]);
     // The live path: resolveBattle(false) is a pure gate (no tax), and the
     // explicit retreat resolve() costs nothing either.
     const live = advanceToCombat(305);

@@ -99,6 +99,7 @@ try {
       bossUnitIdSecondary: encounter.bossUnitIdSecondary ?? null,
       survivalDurationSeconds: encounter.survivalDurationSeconds ?? null,
       healSustainCount: encounter.healSustainCount ?? null,
+      softLimitSeconds: encounter.softLimitSeconds ?? null,
       modifierIds: Object.freeze(encounter.modifierIds ?? []),
       reinforcementWaves: Object.freeze(encounter.reinforcementWaves ?? []),
       bossPhases: Object.freeze(encounter.bossPhases ?? []),
@@ -183,6 +184,9 @@ try {
       ...api.phase17Systems.createPhase17Systems({
         speedsX100PerSecond: {},
         bossObjectPolicies: damagePolicies,
+        // §10 content soft-limit override: the encounter's `softLimitSeconds`
+        // opens the collapse window at its tick instead of the 2700/3600 default.
+        ...(launch.softLimitTicks === null ? {} : { battleEnd: { softLimitTicksOverride: launch.softLimitTicks } }),
         basicAttack: {
           parameters: {
             unit_p: {
@@ -628,12 +632,13 @@ try {
   // §10 sustain × collapse TIPPING teeth: `encounter_fixture_sustain_collapse`
   // requires 80000 sustained HP — more than the pre-window grind can bank
   // (player 150/cycle + symmetric enemy self-heal 75/cycle = 225/cycle →
-  // 60750 by the 2700-tick soft limit), so the mission is still incomplete
-  // when the §10 window opens. Inside the window the heals are HALVED
-  // (150→75 player, 75→38 enemy) while the enemy still deals 150/cycle, so
-  // the player's net intake goes NEGATIVE and the collapse damage kills them
-  // in-window → DEFEAT. The halving is the lever: without it the net is zero
-  // and the counter reaches 80000 at tick ~3556 (well past the window). The
+  // ~40k by the 1800-tick CONTENT soft limit), so the mission is still
+  // incomplete when the §10 window opens. The soft limit is OVERRIDDEN by the
+  // encounter's `softLimitSeconds: 60` (→ tick 1800 instead of the 2700
+  // default) — the teeth prove the override shortens the window AND still
+  // tips: inside the window the heals are HALVED (150→75 player, 75→38
+  // enemy) while the enemy still deals 150/cycle, so the player's net intake
+  // goes NEGATIVE and the collapse damage kills them in-window → DEFEAT. The
   // win-side boundary is pinned by the existing heal encounter (requirement
   // 1000 ≪ bankable ceiling → VICTORY pre-window) vs this 80000 requirement
   // (≫ ceiling → in-window DEFEAT).
@@ -677,6 +682,9 @@ try {
         ...api.phase17Systems.createPhase17Systems({
           speedsX100PerSecond: {},
           targeting: { focusTargetId: { unit_p: 'unit_e1', unit_e1: 'unit_p' } },
+          // §10 the content soft-limit override is what these teeth prove: the
+          // window must open at the encounter's tick, not the 2700 default.
+          ...(launch.softLimitTicks === null ? {} : { battleEnd: { softLimitTicksOverride: launch.softLimitTicks } }),
           basicAttack: {
             parameters: {
               unit_p: { attackIntervalTicks: 10, prepareTicks: 1, recoveryTicks: 3, preferredRangeX100: x100.asX100(9000), delivery: { kind: 'direct', rawAmount: 300, damageTypeOrdinal: 0, defense: 0, bossCapBps: null } },
@@ -722,13 +730,14 @@ try {
       const a = runCollapse();
       const b = runCollapse();
       const objective = a.state.objectives?.find((o) => o.kind === 'heal_sustain');
-      const windowOpened = a.state.timeCollapseSinceTick === 2700;
+      const softLimit = launch.softLimitTicks ?? 2700;
+      const windowOpened = a.state.timeCollapseSinceTick === softLimit;
       // The §10 halving must be OBSERVED: pre-window player heals 150, and the
-      // window is active (≥ 2700) with player heals at the halved 75.
-      const preWindow = a.healStream.filter((h) => !h.blocked && h.targetId === 'unit_p' && h.tick < 2700);
-      const inWindow = a.healStream.filter((h) => !h.blocked && h.targetId === 'unit_p' && h.tick >= 2700);
+      // window is active (≥ the override tick) with player heals at the halved 75.
+      const preWindow = a.healStream.filter((h) => !h.blocked && h.targetId === 'unit_p' && h.tick < softLimit);
+      const inWindow = a.healStream.filter((h) => !h.blocked && h.targetId === 'unit_p' && h.tick >= softLimit);
       const halvingObserved = preWindow.some((h) => h.delta === 150) && inWindow.some((h) => h.delta === 75);
-      const inWindowDeath = a.deathTick !== null && a.deathTick >= 2700 && a.deathTick < 3150;
+      const inWindowDeath = a.deathTick !== null && a.deathTick >= softLimit && a.deathTick < softLimit + 450;
       const counter = objective?.progress ?? 0;
       const incomplete = objective?.complete === false && counter < 80000;
       const deterministic = api.snapshot.createSnapshot(a.state).checksum === api.snapshot.createSnapshot(b.state).checksum
@@ -755,6 +764,8 @@ try {
         inWindowDeath,
         counterAtDeath: counter,
         requirement: 80000,
+        // §10 the content override: 60s → 900 ticks, not the 2700 default.
+        softLimitTicks: launch.softLimitTicks,
         healStream: a.healStream.slice(0, 12),
         checksum: api.snapshot.createSnapshot(a.state).checksum,
         drift: false,

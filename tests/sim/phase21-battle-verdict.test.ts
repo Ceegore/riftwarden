@@ -123,7 +123,7 @@ describe('phase21 battle verdict gating', () => {
     expect(exp.state.ledger['tx-victory-decline']?.status).toBe('REJECTED');
   });
 
-  it('a DEFEAT ENGAGE pays nothing, levies instability, re-engages as a deterministic rewatch and retreats', () => {
+  it('a DEFEAT ENGAGE pays nothing, levies escalating instability, re-engages as a deterministic rewatch and retreats', () => {
     let exp = advanceToCombat(207);
     const nodeId = exp.currentNodeId;
     const goldBefore = exp.state.gold;
@@ -138,13 +138,21 @@ describe('phase21 battle verdict gating', () => {
     expect(exp.state.killsEarned).toBe(0);
     expect(exp.state.instability).toBe(instBefore + 5 + 5);
     // RE-ENGAGE: a lost fight is a deterministic rewatch of the same seed —
-    // repeatable, pays nothing again, and the sim verdict is unchanged (a
-    // defeat can never flip into a win at the contract level).
+    // repeatable up to the cap, pays nothing again, and the sim verdict is
+    // unchanged (a defeat can never flip into a win at the contract level).
+    // The penalty ESCALATES: attempt 2 costs +10, attempt 3 costs +15.
     exp = exp.act({ transactionId: 'tx-defeat-2', nodeId, action: 'ENGAGE_DEFEAT' });
     expect(exp.state.ledger['tx-defeat-2']?.status).toBe('COMMITTED');
     expect(exp.state.gold).toBe(goldBefore);
     expect(exp.state.killsEarned).toBe(0);
-    expect(exp.state.instability).toBe(instBefore + 5 + 10);
+    expect(exp.state.instability).toBe(instBefore + 5 + 5 + 10);
+    exp = exp.act({ transactionId: 'tx-defeat-3', nodeId, action: 'ENGAGE_DEFEAT' });
+    expect(exp.state.ledger['tx-defeat-3']?.status).toBe('COMMITTED');
+    expect(exp.state.instability).toBe(instBefore + 5 + 5 + 10 + 15);
+    // The CAP: a fourth rewatch is rejected (only the retreat remains).
+    exp = exp.act({ transactionId: 'tx-defeat-4', nodeId, action: 'ENGAGE_DEFEAT' });
+    expect(exp.state.ledger['tx-defeat-4']?.status).toBe('REJECTED');
+    expect(exp.state.instability).toBe(instBefore + 5 + 5 + 10 + 15);
     // A victory ENGAGE is rejected after the defeat (no flipping a loss).
     exp = exp.act({ transactionId: 'tx-defeat-victory', nodeId, action: 'ENGAGE' });
     expect(exp.state.ledger['tx-defeat-victory']?.status).toBe('REJECTED');
@@ -157,30 +165,37 @@ describe('phase21 battle verdict gating', () => {
     }
   });
 
-  it('a mission-completed victory ENGAGE pays the objective bounty on top of the base reward', () => {
+  it('a mission-completed victory ENGAGE pays the per-kind objective bounty on top of the base reward', () => {
     // §9.5 objective-to-reward linkage: the deterministic sim completed the
-    // mission (UI-flagged on the request from the live objective projection),
-    // so the victory pays the base reward PLUS the 10-gold bounty. The same
-    // node without the flag pays the base reward only.
+    // mission (the UI reports the completed kinds from the live objective
+    // projection), so the victory pays the base reward PLUS the per-kind
+    // bounty. The same node without completed kinds pays the base reward only.
     const withBonus = advanceToCombat(208);
     const nodeId = withBonus.currentNodeId;
     const goldBefore = withBonus.state.gold;
-    let exp = withBonus.enter('tx-bonus-enter').act({ transactionId: 'tx-bonus-engage', nodeId, action: 'ENGAGE', missionBonus: true });
+    let exp = withBonus.enter('tx-bonus-enter').act({ transactionId: 'tx-bonus-engage', nodeId, action: 'ENGAGE', completedKinds: ['heal_sustain'] });
     const bonusGold = exp.state.gold - goldBefore;
     expect(bonusGold).toBeGreaterThanOrEqual(11); // base (45..71) + 10 bounty
     expect(exp.state.ledger['tx-bonus-engage']?.status).toBe('COMMITTED');
-    // Without the flag on the SAME seed (identical base reward): exactly 10
+    // Without the kinds on the SAME seed (identical base reward): exactly 10
     // gold less — the bounty is isolated from the seed-derived base.
     const noBonus = advanceToCombat(208);
     const nId = noBonus.currentNodeId;
     const nBefore = noBonus.state.gold;
     const plain = noBonus.enter('tx-plain-enter').act({ transactionId: 'tx-plain-engage', nodeId: nId, action: 'ENGAGE' });
     expect(plain.state.gold - nBefore).toBe(bonusGold - 10);
+    // A per-kind sum: a multi-kind mission pays each completed kind (kill_boss
+    // 15 + survive_until 10 = 25 over the same base) — unknown kinds pay 0.
+    const multi = advanceToCombat(209);
+    const mId = multi.currentNodeId;
+    const mBefore = multi.state.gold;
+    const multiPaid = multi.enter('tx-multi-enter').act({ transactionId: 'tx-multi-engage', nodeId: mId, action: 'ENGAGE', completedKinds: ['kill_boss', 'survive_until', 'not_a_kind'] });
+    expect(multiPaid.state.gold - mBefore).toBeGreaterThanOrEqual(45 + 25);
     // A defeat ENGAGE never pays the bounty (it pays nothing at all).
     const defeat = advanceToCombat(210);
     const dId = defeat.currentNodeId;
     const dBefore = defeat.state.gold;
-    const lost = defeat.enter('tx-lost-enter').act({ transactionId: 'tx-lost-engage', nodeId: dId, action: 'ENGAGE_DEFEAT', missionBonus: true });
+    const lost = defeat.enter('tx-lost-enter').act({ transactionId: 'tx-lost-engage', nodeId: dId, action: 'ENGAGE_DEFEAT', completedKinds: ['heal_sustain'] });
     expect(lost.state.gold).toBe(dBefore);
   });
 });

@@ -42,11 +42,14 @@ export const COLLAPSE_HEAL_FACTOR_BPS = 5000;
 export interface BattleEndConfig {
   /** Boss battle → 3600-tick soft limit. Default normal/elite (2700). */
   readonly bossBattle?: boolean;
+  /** §10 content override: the battle's soft limit in ticks (an encounter's `softLimitSeconds`), instead of the 2700/3600 default. */
+  readonly softLimitTicksOverride?: number;
   /** Roles used by the Chapter-76 boss-damage tie-break (bosses only). */
   readonly bossIds?: ReadonlySet<string>;
 }
 
 export function softLimitTicks(config: BattleEndConfig): number {
+  if (config.softLimitTicksOverride !== undefined) return config.softLimitTicksOverride;
   return config.bossBattle === true ? SOFT_LIMIT_BOSS_TICKS : SOFT_LIMIT_NORMAL_TICKS;
 }
 
@@ -266,5 +269,9 @@ export function validateBattleEndConfig(config: BattleEndConfig): void {
   }
   if (config.bossBattle !== undefined && typeof config.bossBattle !== 'boolean') {
     throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'boss-battle-flag' });
+  }
+  if (config.softLimitTicksOverride !== undefined
+    && (!Number.isSafeInteger(config.softLimitTicksOverride) || config.softLimitTicksOverride < 1)) {
+    throw new KernelInvariantError('P14_SNAPSHOT_INVALID', { reason: 'soft-limit-override-invalid', softLimitTicks: config.softLimitTicksOverride });
   }
 }

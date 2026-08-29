@@ -12,14 +12,19 @@
  *      with NO heal source at all) never produces a heal → the zero-scale /
  *      no-source issues.
  *   3. REQUIREMENT — a non-positive healSustainCount is a content error.
+ *   4. BANKABILITY CEILING — the counter is capped at `required` (the runtime
+ *      fold clamps progress, so nothing above the need banks), and a
+ *      requirement above SUSTAIN_BANKABILITY_CEILING is structurally
+ *      unwinnable → P21_SUSTAIN_REQUIREMENT_OVER_CEILING.
  *
  * The §10 window halves the factor but never changes these facts, so the
  * checks are phase-independent. Bankability (requirement vs the pre-window
  * grind) is proven empirically by the launcher teeth, not here.
  */
 import { describe, expect, it } from 'vitest';
-import { validateSustainPolicy } from '../../src/game/sim/world/modifier-system.js';
+import { validateSustainPolicy, SUSTAIN_BANKABILITY_CEILING } from '../../src/game/sim/world/modifier-system.js';
 import type { ModifierDefinition } from '../../src/game/sim/world/modifier-system.js';
+import { applyProgress } from '../../src/game/sim/objectives/combat-objective.js';
 
 const LIFESTEAL: ModifierDefinition = Object.freeze({
   id: 'mod_policy_lifesteal', previewKey: 'preview_policy_ls', hooks: Object.freeze(['on_damage_applied'] as const), incompatibilityTags: Object.freeze([]), params: Object.freeze({ heal_bps: 5000 }),
@@ -62,6 +67,24 @@ describe('P21 §8.3 sustain policy (matrix mirrored at build time)', () => {
   it('rejects a non-positive requirement', () => {
     const issues = validateSustainPolicy({ healSustainCount: 0, modifiers: [LIFESTEAL], enemySlots: Object.freeze([Object.freeze({})]), bossObjects: Object.freeze([]) });
     expect(issues.map((i) => i.code)).toEqual(['P21_SUSTAIN_REQUIREMENT_EMPTY']);
+  });
+
+  it('rejects a requirement above the bankability ceiling (unwinnable by construction)', () => {
+    const issues = validateSustainPolicy({ healSustainCount: SUSTAIN_BANKABILITY_CEILING + 1, modifiers: [LIFESTEAL], enemySlots: Object.freeze([Object.freeze({})]), bossObjects: Object.freeze([]) });
+    expect(issues.map((i) => i.code)).toEqual(['P21_SUSTAIN_REQUIREMENT_OVER_CEILING']);
+  });
+
+  it('accepts the ceiling boundary exactly', () => {
+    expect(validateSustainPolicy({ healSustainCount: SUSTAIN_BANKABILITY_CEILING, modifiers: [LIFESTEAL], enemySlots: Object.freeze([Object.freeze({})]), bossObjects: Object.freeze([]) })).toEqual([]);
+  });
+
+  it('the runtime bankability ceiling clamps the counter at required (nothing above the need banks)', () => {
+    const base = Object.freeze({ id: 'obj_x_heal', kind: 'heal_sustain' as const, targetId: null, required: 100, progress: 99, complete: false });
+    // A heal worth 50 HP lands with 1 HP of need left: the counter banks 1, not 50.
+    expect(applyProgress(base, 50)).toEqual(Object.freeze({ id: 'obj_x_heal', kind: 'heal_sustain', targetId: null, required: 100, progress: 100, complete: true }));
+    // Once complete, nothing more banks.
+    const done = applyProgress(base, 50);
+    expect(applyProgress(done, 50)).toBe(done);
   });
 
   it('is a no-op for non-sustain encounters', () => {

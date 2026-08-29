@@ -17,6 +17,7 @@
  */
 
 import { buildEncounterLaunchConfig, type EncounterObjectiveSource } from '../../../game/sim/boss/encounter-adapter.js';
+import { bountyForKinds } from '../../../game/expedition/nodes/handlers/combat.js';
 import type { BossPhaseSnapshot, PhaseDefinition } from '../../../game/sim/boss/boss-phase-system.js';
 import { buildBossObject, buildBossObjectBody } from '../../../game/sim/boss/boss-object-manager.js';
 import { migrateEntity } from '../../../game/sim/core/migrate.js';
@@ -76,6 +77,7 @@ export function sourceForEncounter(entry: ContentEncounterEntry): EncounterObjec
     bossUnitIdSecondary: entry.bossUnitIdSecondary ?? null,
     survivalDurationSeconds: entry.survivalDurationSeconds ?? null,
     healSustainCount: entry.healSustainCount ?? null,
+    softLimitSeconds: entry.softLimitSeconds ?? null,
     modifierIds: Object.freeze(entry.modifierIds ?? []),
     reinforcementWaves: Object.freeze(entry.reinforcementWaves ?? []),
     bossPhases: Object.freeze(entry.bossPhases ?? []),
@@ -203,6 +205,9 @@ function systemsFor(launch: ReturnType<typeof buildEncounterLaunchConfig>): read
     ...createPhase17Systems({
       speedsX100PerSecond: {},
       bossObjectPolicies: launch.bossObjectPolicies,
+      // §10 content soft-limit override: the encounter's `softLimitSeconds`
+      // opens the collapse window at its tick instead of the 2700/3600 default.
+      ...(launch.softLimitTicks === null ? {} : { battleEnd: { softLimitTicksOverride: launch.softLimitTicks } }),
       basicAttack: {
         parameters: {
           unit_p: {
@@ -267,6 +272,10 @@ function liveFrom(state: BattleModel, events: readonly { type: string; tick: num
     // lifesteal heals (LifestealBlocked), so the panel renders blocked-vs-
     // applied heals live with {healDelta, target} params.
     healStream: Object.freeze(healStream.map((h) => Object.freeze({ ...h }))),
+    // §9.5 objective bounty: the gold the victory ENGAGE pays (per-kind sum
+    // over the completed objective kinds) — the contract amount, shown on the
+    // battle result so the reward is never a surprise.
+    bounty: bountyForKinds((state.objectives ?? []).filter((o) => o.complete).map((o) => o.kind)),
   });
 }
 

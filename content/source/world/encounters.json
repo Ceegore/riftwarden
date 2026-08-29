@@ -376,6 +376,7 @@
       "reinforcementWaves": [],
       "objective": "heal_sustain",
       "healSustainCount": 80000,
+      "softLimitSeconds": 60,
       "bossPhases": [],
       "bossPhasesSecondary": [],
       "bossUnitId": null,

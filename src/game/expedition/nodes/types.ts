@@ -94,10 +94,11 @@ export interface NodeActionRequest {
   readonly nodeId: string;
   readonly action: string;
   readonly optionId?: string;
-  /** §9.5: the live sim's mission objective completed at the terminal — the
-   * victory ENGAGE then grants the objective bounty. UI-supplied like the
-   * verdict itself (the deterministic sim is the source of truth). */
-  readonly missionBonus?: boolean;
+  /** §9.5: the objective kinds the live sim completed at the terminal — the
+   * victory ENGAGE then grants the per-kind objective bounty (the amounts are
+   * the contract's, never the UI's). UI-supplied like the verdict itself (the
+   * deterministic sim is the source of truth). */
+  readonly completedKinds?: readonly string[];
 }
 
 /** Content-side node instance: what the map and content revision say. */

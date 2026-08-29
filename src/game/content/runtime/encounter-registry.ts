@@ -41,6 +41,8 @@ export interface ContentEncounterEntry {
   readonly bossUnitIdSecondary?: string | null;
   readonly survivalDurationSeconds?: number | null;
   readonly healSustainCount?: number | null;
+  /** §10: content soft-limit override in seconds (null = the 2700 normal / 3600 boss default). */
+  readonly softLimitSeconds?: number | null;
   readonly bossPhases?: readonly ContentBossPhaseSource[];
   readonly bossPhasesSecondary?: readonly ContentBossPhaseSource[];
   readonly bossObjects?: readonly ContentBossObjectEntry[];

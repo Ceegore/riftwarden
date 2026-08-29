@@ -174,6 +174,7 @@ export const ENTITY_SCHEMAS = Object.freeze({
     reinforcementWaves: z.array(ReinforcementWave),
     objective: z.enum(["defeat_all", "survive", "defeat_boss", "protect_object", "complete_waves", "heal_sustain"]),
     healSustainCount: z.number().int().positive().optional(), // §P21-T03: total HP to heal for heal_sustain missions
+    softLimitSeconds: z.number().nonnegative().nullable().default(null), // §10: content soft-limit override in seconds
     bossPhases: z.array(BossPhase).default([]),
     bossPhasesSecondary: z.array(BossPhase).default([]), // §4/§10: second boss's phases for multi-boss encounters
     bossUnitId: ContentId.nullable().default(null),

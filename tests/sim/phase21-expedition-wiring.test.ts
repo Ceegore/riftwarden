@@ -135,6 +135,10 @@ describe('P21 §9 expedition battle wiring', () => {
     expect(live.phase.phase).toBe('VICTORY');
     expect(live.encounterId).toBe('encounter_fixture_heal_sustain');
 
+    // §9.5 the battle result carries the objective bounty: the heal_sustain
+    // kind completed → the victory ENGAGE pays its 10-gold bounty.
+    expect(live.bounty).toBe(10);
+
     // The mission objective streamed to completion: the heal_sustain objective
     // reached its required 1000 with real HealApplied progress.
     const heal = live.objectives?.find((o) => o.kind === 'heal_sustain');
