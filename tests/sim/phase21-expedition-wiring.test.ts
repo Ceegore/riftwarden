@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { createSimBattleHost, resolveExpeditionEncounter, sourceForEncounter } from '../../src/features/battle/sim/sim-battle-host.js';
+import { createLiveSimBattle, createSimBattleHost, resolveExpeditionEncounter, sourceForEncounter } from '../../src/features/battle/sim/sim-battle-host.js';
 import { encounterOutboundFromBattle, presentPhase21Report, type Phase21OutboundReport } from '../../src/features/battle/outbound/phase21-outbound-presenter.js';
 import { buildEncounterLaunchConfig } from '../../src/game/sim/boss/encounter-adapter.js';
 import {
@@ -112,6 +112,56 @@ describe('P21 §9 expedition battle wiring', () => {
     const battle = resolveEncounterForNode('battle', 'enemy_fixture_echo');
     expect(battle?.id).toBe('encounter_fixture_first');
     expect(isBossEncounter(battle ?? CONTENT_ENCOUNTERS.get('encounter_fixture_first')!)).toBe(false);
+  });
+
+  it('the live host plays the heal_sustain mission to completion (real heal source)', { timeout: 120_000 }, () => {
+    const encounter = encounterById('encounter_fixture_heal_sustain');
+    expect(encounter).not.toBeNull();
+    if (encounter === null) throw new Error('heal encounter unresolved');
+
+    const runLive = (): import('../../src/features/battle/outbound/phase21-outbound-presenter.js').LiveOutboundInput => {
+      const handle = createLiveSimBattle({ encounter });
+      let last = handle.snapshot();
+      for (let i = 0; i < 2000 && !['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(last.phase.phase); i++) {
+        last = handle.step();
+      }
+      return last;
+    };
+    const live = runLive();
+    expect(live.phase.phase).toBe('VICTORY');
+    expect(live.encounterId).toBe('encounter_fixture_heal_sustain');
+
+    // The mission objective streamed to completion: the heal_sustain objective
+    // reached its required 1000 with real HealApplied progress.
+    const heal = live.objectives?.find((o) => o.kind === 'heal_sustain');
+    expect(heal).toBeDefined();
+    expect(heal?.progress).toBe(1000);
+    expect(heal?.required).toBe(1000);
+    expect(heal?.complete).toBe(true);
+
+    // The lifesteal modifier committed and its on_damage_applied hooks fired.
+    expect(live.modifierHookLog.some((f) => f.modifierId === 'mod_fixture_lifesteal')).toBe(true);
+
+    // STEP-BY-STEP: the objective progress grows strictly during the live battle
+    // (the mission is genuinely in flight, not pre-solved).
+    const handle = createLiveSimBattle({ encounter });
+    let lastStep = handle.snapshot();
+    let sawPartial = false;
+    const progressOverTime: number[] = [];
+    for (let i = 0; i < 2000 && !['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(lastStep.phase.phase); i++) {
+      lastStep = handle.step();
+      const h = lastStep.objectives?.find((o) => o.kind === 'heal_sustain');
+      if (h !== undefined) {
+        progressOverTime.push(h.progress);
+        if (h.progress > 0 && !h.complete) sawPartial = true;
+      }
+    }
+    expect(progressOverTime.length).toBeGreaterThan(0);
+    expect(sawPartial).toBe(true);
+    expect(progressOverTime[progressOverTime.length - 1]).toBe(1000);
+
+    // DETERMINISM: the seed replays the identical live terminal.
+    expect(runLive()).toEqual(live);
   });
 
   it('the resolved source builds a valid launch config (adapter path is live)', () => {

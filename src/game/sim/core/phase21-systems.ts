@@ -30,7 +30,9 @@ import { createBossObjectCleanupSystem, createBossObjectPlacementSystem } from '
  *   scaled before the stage-I pipeline consumes it (§7);
  *   `phase21.z8.modifier_lifesteal` turns the same hook's composite `heal_bps`
  *   into real heals on the attackers (the §8.3 heal source a `heal_sustain`
- *   mission consumes), sized from the scaled damage.
+ *   mission consumes), sized from the queued damage's raw amount and gated by
+ *   the §6 hit-negation rules (immune boss objects / invulnerable windows deal
+ *   no damage, so they yield no heal).
  * - stage C: `hazard.c1.advance` walks the scheduled→telegraph→resolve→expire
  *   lifecycle and emits the telegraph/resolve events at their boundary ticks.
  * - stage K: `reinforcement.k1.spawn` commits due waves into the wave cursor

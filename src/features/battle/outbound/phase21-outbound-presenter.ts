@@ -33,6 +33,17 @@ export type EncounterOutbound = {
   readonly telegraphs?: readonly OutboundTelegraph[];
   /** §10 rift-collapse readout (live battles carry it; static reports may not). */
   readonly collapse?: CollapsePresentation;
+  /** Light mission-objective projection (live battles carry it). */
+  readonly objectives?: readonly ObjectiveProjection[];
+};
+
+/** A mission objective's observable progress (id/kind/progress/required/complete). */
+export type ObjectiveProjection = {
+  readonly id: string;
+  readonly kind: string;
+  readonly progress: number;
+  readonly required: number;
+  readonly complete: boolean;
 };
 
 export type OutboundTelegraph = readonly [phaseId: string, plannedTick: number, resolveTick: number];
@@ -112,6 +123,8 @@ export type EncounterPresentation = {
   readonly telegraphs: readonly TelegraphPresentation[];
   /** §10 rift-collapse readout (absent when the outbound carries no collapse state). */
   readonly collapse?: CollapsePresentation;
+  /** Light mission-objective projection (absent when the outbound carries none). */
+  readonly objectives?: readonly ObjectiveProjection[];
 };
 
 function terminalOf(entry: EncounterOutbound): readonly [string | null, string | null] {
@@ -161,6 +174,8 @@ export interface LiveOutboundInput {
   readonly riftCollapseTicks?: number;
   /** §9.4: whether the 300-tick no-progress warning has fired. */
   readonly riftCollapseWarningEmitted?: boolean;
+  /** Mission-objective progress (the panel path streams it; omit for static reports). */
+  readonly objectives?: readonly ObjectiveProjection[];
 }
 
 const TRACE_TYPES: readonly string[] = Object.freeze(['PhaseTransitionPlanned', 'BossTelegraphStarted', 'BossPhaseCompleted', 'BossPhaseStarted']);
@@ -227,6 +242,7 @@ export function encounterOutboundFromBattle(input: LiveOutboundInput): Encounter
     ),
     telegraphs: Object.freeze(telegraphs),
     collapse: collapsePresentationOf(input),
+    ...(input.objectives === undefined ? {} : { objectives: Object.freeze(input.objectives.map((o) => Object.freeze({ ...o }))) }),
   });
 }
 
@@ -264,6 +280,7 @@ export function presentPhase21Report(report: Phase21OutboundReport): readonly En
       phaseTrace,
       telegraphs,
       ...(entry.collapse === undefined ? {} : { collapse: entry.collapse }),
+      ...(entry.objectives === undefined ? {} : { objectives: entry.objectives }),
     });
   }));
 }

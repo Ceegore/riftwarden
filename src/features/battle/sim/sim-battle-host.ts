@@ -77,14 +77,14 @@ export function resolveExpeditionEncounter(nodeType: string, payloadKey: string)
   return resolveEncounterForNode(nodeType, payloadKey);
 }
 
-function mkEntity(id: string, side: 'player' | 'enemy', lane: Lane, x100v: number, maxLp = 1000): ReturnType<typeof migrateEntity> {
+function mkEntity(id: string, side: 'player' | 'enemy', lane: Lane, x100v: number, maxLp = 1000, lp: number = maxLp): ReturnType<typeof migrateEntity> {
   return migrateEntity({
     entity: Object.freeze({
       id,
       side,
       phase: Object.freeze({ phase: 'ACTIVE', enteredTick: tick(0), controlledReturn: null }),
       maxLp,
-      lp: maxLp,
+      lp,
       shield: 0,
       lane,
       x100: x100v,
@@ -137,8 +137,17 @@ function bossPhaseSnapshotsFor(defs: readonly PhaseDefinition[]): readonly { ent
 }
 
 function buildBattle(entry: ContentEncounterEntry, launch: ReturnType<typeof buildEncounterLaunchConfig>): BattleModel {
-  const player = mkEntity('unit_p', 'player', 'middle', 1800, 1000);
-  const enemies = entry.enemySlots.map((slot, index) => mkEntity(slot.unitId, 'enemy', slot.lane, 6200 + index * 400, 1000));
+  // §8.3 heal_sustain: the generic battle starts the player at FULL HP, so the
+  // lifesteal heals would clamp to 0 and the mission could never complete.
+  // Seed the player with room to heal and the enemy as a durable TANK (no
+  // enemy attack profile is wired below) — a self-healing enemy would sawtooth
+  // at its lifesteal amount and never die, so the tank keeps the sustain loop
+  // one-directional and the mission reaches a real VICTORY elimination. Both
+  // runs stay deterministic (the fixture seed defines every HP).
+  const sustain = entry.objective === 'heal_sustain';
+  const player = mkEntity('unit_p', 'player', 'middle', 1800, sustain ? 5000 : 1000, sustain ? 2500 : 1000);
+  const enemies = entry.enemySlots.map((slot, index) =>
+    mkEntity(slot.unitId, 'enemy', slot.lane, 6200 + index * 400, sustain ? 10000 : 1000));
   const entities = [player, ...enemies];
   const temps: ReturnType<typeof buildBossObject>[] = [];
   if (launch.bossObjects.length > 0) {
@@ -227,6 +236,17 @@ function liveFrom(state: BattleModel, events: readonly { type: string; tick: num
     noProgressTicks: state.globalNoProgressTicks ?? 0,
     riftCollapseTicks: state.riftCollapseTicks ?? 0,
     riftCollapseWarningEmitted: state.riftCollapseWarningEmitted ?? false,
+    // §8 mission-objective progress, so the live panel path streams a
+    // heal_sustain / survive / waves mission to completion tick by tick.
+    ...(state.objectives === undefined ? {} : {
+      objectives: Object.freeze(state.objectives.map((o) => Object.freeze({
+        id: o.id,
+        kind: o.kind,
+        progress: o.progress,
+        required: o.required,
+        complete: o.complete,
+      }))),
+    }),
   });
 }
 
