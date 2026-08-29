@@ -11,13 +11,17 @@
 export type OutboundHookEvent = readonly [modifierId: string, hook: string, atTick: number];
 export type OutboundPhaseEvent = readonly [type: string, tick: number, detail: string];
 
+export type OutboundBossPhase = { readonly phaseId: string; readonly visited: readonly string[]; readonly transition: boolean };
+
 export type EncounterOutbound = {
   readonly objective: string;
   readonly terminal: { readonly phase: string; readonly reason: string | null } | null;
   readonly ticks: number;
   readonly status: string;
   readonly hooks: readonly OutboundHookEvent[];
-  readonly bossPhase: { readonly phaseId: string; readonly visited: readonly string[]; readonly transition: boolean } | null;
+  readonly bossPhase: OutboundBossPhase | null;
+  /** The secondary boss authority (duo encounters) — same shape as the primary slot. */
+  readonly bossPhaseSecondary?: OutboundBossPhase | null;
   readonly phasesDescended?: boolean;
   readonly phaseTrace?: readonly OutboundPhaseEvent[];
   /** One telegraph per planned boss transition: [target phase, planned tick, resolve tick]. */
@@ -71,6 +75,8 @@ export type EncounterPresentation = {
   readonly isBossPhase: boolean;
   readonly phasesDescended: boolean;
   readonly phaseTrail: readonly PhaseTrailStep[];
+  /** Second boss authority's trail (duo encounters); empty when absent. */
+  readonly phaseTrailSecondary: readonly PhaseTrailStep[];
   readonly hookTrace: readonly HookEntry[];
   readonly phaseTrace: readonly TraceEntry[];
   readonly telegraphs: readonly TelegraphPresentation[];
@@ -109,6 +115,8 @@ export interface LiveOutboundInput {
   readonly tick: number;
   readonly phase: { readonly phase: string; readonly endReason: string | null };
   readonly bossPhase: { readonly phaseId: string; readonly visited: readonly string[]; readonly transition: unknown } | null;
+  /** Second boss authority (duo encounters); same shape as the primary slot. */
+  readonly bossPhaseSecondary?: { readonly phaseId: string; readonly visited: readonly string[]; readonly transition: unknown } | null;
   readonly modifierHookLog: readonly { readonly modifierId: string; readonly hook: string; readonly atTick: number }[];
   /** Canonical phase events; `BossTelegraphStarted` carries the resolve (commit) tick. */
   readonly events: readonly { readonly type: string; readonly tick: number; readonly contentIds: readonly string[]; readonly resolveTick?: number }[];
@@ -123,21 +131,27 @@ const TRACE_TYPES: readonly string[] = Object.freeze(['PhaseTransitionPlanned', 
  * emits, so Phase21OutboundPanel consumes a live battle exactly like a static
  * report. Structural input only — no sim import, still a pure mapper.
  */
+function outboundBossPhaseOf(phase: { readonly phaseId: string; readonly visited: readonly string[]; readonly transition: unknown } | null | undefined): OutboundBossPhase | null {
+  if (phase == null) return null;
+  return Object.freeze({ phaseId: phase.phaseId, visited: Object.freeze([...phase.visited]), transition: phase.transition !== null });
+}
+
 export function encounterOutboundFromBattle(input: LiveOutboundInput): EncounterOutbound {
   const terminalPhase = ['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(input.phase.phase) ? input.phase.phase : null;
   const telegraphs = input.events
     .filter((e) => e.type === 'BossTelegraphStarted' && e.contentIds.length >= 2)
     .map((e) => Object.freeze([e.contentIds[1] ?? '', e.tick, e.resolveTick ?? e.tick] as const));
+  const bossPhase = outboundBossPhaseOf(input.bossPhase);
+  const bossPhaseSecondary = outboundBossPhaseOf(input.bossPhaseSecondary);
   return Object.freeze({
     objective: input.objective,
     terminal: terminalPhase === null ? null : { phase: terminalPhase, reason: input.phase.endReason },
     ticks: input.tick,
     status: input.status ?? 'PASS',
     hooks: Object.freeze(input.modifierHookLog.map((f) => Object.freeze([f.modifierId, f.hook, f.atTick] as const))),
-    bossPhase: input.bossPhase === null
-      ? null
-      : Object.freeze({ phaseId: input.bossPhase.phaseId, visited: Object.freeze([...input.bossPhase.visited]), transition: input.bossPhase.transition !== null }),
-    phasesDescended: input.bossPhase !== null && input.bossPhase.visited.length > 1,
+    bossPhase,
+    bossPhaseSecondary,
+    phasesDescended: (bossPhase !== null && bossPhase.visited.length > 1) || (bossPhaseSecondary !== null && bossPhaseSecondary.visited.length > 1),
     phaseTrace: Object.freeze(
       input.events
         .filter((e) => TRACE_TYPES.includes(e.type))
@@ -173,9 +187,10 @@ export function presentPhase21Report(report: Phase21OutboundReport): readonly En
       terminalReason,
       ticks: entry.ticks,
       status: statusOf(entry.status),
-      isBossPhase: entry.bossPhase !== null,
+      isBossPhase: entry.bossPhase !== null || entry.bossPhaseSecondary != null,
       phasesDescended: entry.phasesDescended === true,
       phaseTrail: phaseTrailOf(entry.bossPhase),
+      phaseTrailSecondary: phaseTrailOf(entry.bossPhaseSecondary ?? null),
       hookTrace,
       phaseTrace,
       telegraphs,

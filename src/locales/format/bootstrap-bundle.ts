@@ -1,16 +1,28 @@
 /**
  * GENERATED FILE — do not edit by hand.
  * Regenerate with: node tools/sim/write-locale-bootstrap.mjs
- * Generated at: 2026-08-23T20:27:44.193Z
+ * Generated at: 2026-08-29T17:58:46.490Z
  *
  * Bootstrap locale bundle (LOCALE_BOOTSTRAP_CONTRACT): a stopgap bundle that
  * lets the app boot in a browser before the real localization compiler
  * pipeline lands. Every key currently referenced in the app source maps to a
  * readable fallback label. Missing keys are a failing unit test.
  */
-import type { CompiledBundle, CompiledMessage, LocaleId } from './compiled-types.js';
+import type { CompiledBundle, LocaleId } from './compiled-types.js';
 
-const MESSAGES: Readonly<Record<string, CompiledMessage>> = Object.freeze({
+const MESSAGES: Readonly<Record<string, import('./compiled-types.js').CompiledMessage>> = Object.freeze({
+  "Merchant Offer ${String(index + 1)}": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Merchant Offer ${String(Index + 1)}" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "Recruit ${troopTypeId}": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Recruit ${TroopTypeId}" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
   "beyond.boss_rush": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Boss Rush" }]),
     parameters: Object.freeze({}),
@@ -605,78 +617,6 @@ const MESSAGES: Readonly<Record<string, CompiledMessage>> = Object.freeze({
     budget: '0',
     compactKey: null,
   }),
-  "region.tutorial.desc": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "The Riftwarden's first trial. Battle-heavy corridors teach the basics of combat, gold management, and node navigation." }]),
-    parameters: Object.freeze({}),
-    budget: '0',
-    compactKey: null,
-  }),
-  "region.act1_standard.desc": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "Standard Act 1 expedition across the Verdant March. Balanced node distribution with moderate elite presence." }]),
-    parameters: Object.freeze({}),
-    budget: '0',
-    compactKey: null,
-  }),
-  "region.act1_hard.desc": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "Hard-mode Act 1: increased elite density, more scouts, and a higher instability rate. Fewer merchants to resupply." }]),
-    parameters: Object.freeze({}),
-    budget: '0',
-    compactKey: null,
-  }),
-  "region.act1_ascension.desc": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "Ascension Act 1: maximum challenge. Elites and scouts dominate, altars offer risky boons, and every resource is scarce." }]),
-    parameters: Object.freeze({}),
-    budget: '0',
-    compactKey: null,
-  }),
-  "region.act2_forest.desc": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "The Verdant Depths: event-rich forest with hidden scout paths and merchant outposts. Fewer elites, more exploration." }]),
-    parameters: Object.freeze({}),
-    budget: '0',
-    compactKey: null,
-  }),
-  "region.act2_caverns.desc": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "The Sunken Vaults: merchant and treasure bounty in ancient caverns. High elite risk guards the deepest chambers." }]),
-    parameters: Object.freeze({}),
-    budget: '0',
-    compactKey: null,
-  }),
-  "region.act3_mountains.desc": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "The Shatterpeak Range: battle-heavy mountain passes with scarce recruitment. Only the hardiest troops survive." }]),
-    parameters: Object.freeze({}),
-    budget: '0',
-    compactKey: null,
-  }),
-  "region.act3_ruins.desc": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "The Ashen Citadel: altar-heavy ruins where every choice invites instability. Great rewards for those who risk the rifts." }]),
-    parameters: Object.freeze({}),
-    budget: '0',
-    compactKey: null,
-  }),
-  "audio.boss_stem.0": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "Boss Intro — low square pulse, sparse contour, the storm gathers." }]),
-    parameters: Object.freeze({}),
-    budget: '0',
-    compactKey: null,
-  }),
-  "audio.boss_stem.1": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "Boss Escalation — higher root, faster contour, tension builds." }]),
-    parameters: Object.freeze({}),
-    budget: '0',
-    compactKey: null,
-  }),
-  "audio.boss_stem.2": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "Boss Peak — sawtooth bite, wide melodic jumps, fury unleashed." }]),
-    parameters: Object.freeze({}),
-    budget: '0',
-    compactKey: null,
-  }),
-  "audio.boss_stem.3": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "Boss Climax — highest root, fastest contour, strong detune, the final stand." }]),
-    parameters: Object.freeze({}),
-    budget: '0',
-    compactKey: null,
-  }),
   "node.type.altar": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Altar" }]),
     parameters: Object.freeze({}),
@@ -745,18 +685,6 @@ const MESSAGES: Readonly<Record<string, CompiledMessage>> = Object.freeze({
   }),
   "node.type.workshop": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Workshop" }]),
-    parameters: Object.freeze({}),
-    budget: '0',
-    compactKey: null,
-  }),
-  "offer.${nodeId}.${String(index)}": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "${String(Index)}" }]),
-    parameters: Object.freeze({}),
-    budget: '0',
-    compactKey: null,
-  }),
-  "recruitment.${nodeId}.${String(index)}": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "${String(Index)}" }]),
     parameters: Object.freeze({}),
     budget: '0',
     compactKey: null,
@@ -833,6 +761,12 @@ const MESSAGES: Readonly<Record<string, CompiledMessage>> = Object.freeze({
     budget: '0',
     compactKey: null,
   }),
+  "ui.common.claimed": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Claimed" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
   "ui.common.clear": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Clear" }]),
     parameters: Object.freeze({}),
@@ -893,6 +827,12 @@ const MESSAGES: Readonly<Record<string, CompiledMessage>> = Object.freeze({
     budget: '0',
     compactKey: null,
   }),
+  "ui.common.level": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Level" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
   "ui.common.missions": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Missions" }]),
     parameters: Object.freeze({}),
@@ -931,6 +871,72 @@ const MESSAGES: Readonly<Record<string, CompiledMessage>> = Object.freeze({
   }),
   "ui.common.unequip": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Unequip" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.compatibility.banner_not_equipment": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Banner Not Equipment" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.compatibility.incompatible_kind": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Incompatible Kind" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.dev.component_gallery.card_title": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Card Title" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.dev.component_gallery.modal_title": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Modal Title" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.dev.component_gallery.scale_label": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Scale Label" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.dev.component_gallery.scale_one": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Scale One" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.dev.component_gallery.scale_two": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Scale Two" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.dev.component_gallery.tab_one": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Tab One" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.dev.component_gallery.tab_two": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Tab Two" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.dev.component_gallery.title": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Title" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.dev.component_gallery.tooltip": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Tooltip" }]),
     parameters: Object.freeze({}),
     budget: '0',
     compactKey: null,
@@ -1379,6 +1385,18 @@ const MESSAGES: Readonly<Record<string, CompiledMessage>> = Object.freeze({
     budget: '0',
     compactKey: null,
   }),
+  "ui.expedition.repair": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Repair" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.expedition.reroll": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Reroll" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
   "ui.expedition.retreat": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Retreat" }]),
     parameters: Object.freeze({}),
@@ -1387,6 +1405,12 @@ const MESSAGES: Readonly<Record<string, CompiledMessage>> = Object.freeze({
   }),
   "ui.expedition.reveal": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Reveal" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.expedition.reveal_reward": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Reveal Reward" }]),
     parameters: Object.freeze({}),
     budget: '0',
     compactKey: null,
@@ -1421,12 +1445,6 @@ const MESSAGES: Readonly<Record<string, CompiledMessage>> = Object.freeze({
     budget: '0',
     compactKey: null,
   }),
-  "ui.merchant.${offer.offerId}": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "OfferId}" }]),
-    parameters: Object.freeze({}),
-    budget: '0',
-    compactKey: null,
-  }),
   "ui.merchant.m-1": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "M 1" }]),
     parameters: Object.freeze({}),
@@ -1451,8 +1469,80 @@ const MESSAGES: Readonly<Record<string, CompiledMessage>> = Object.freeze({
     budget: '0',
     compactKey: null,
   }),
-  "ui.recruit.${offer.offerId}": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "OfferId}" }]),
+  "ui.phase21.meta.objective": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Objective" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.outbound.encounters": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Encounters" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.outbound.failed": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Failed" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.outbound.title": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Title" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.phase.current": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Current" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.telegraph.prefix": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Prefix" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.telegraph.resolved_at": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Resolved At" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.telegraph.resolves_in": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Resolves In" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.ticks": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Ticks" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.trace.entered": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Entered" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.trace.exited": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Exited" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.trace.planned": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Planned" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.trace.telegraph": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Telegraph" }]),
     parameters: Object.freeze({}),
     budget: '0',
     compactKey: null,
@@ -1513,6 +1603,102 @@ const MESSAGES: Readonly<Record<string, CompiledMessage>> = Object.freeze({
   }),
   "ui.system.action.safe_restart": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Safe Restart" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.system.boot.long_wait": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Long Wait" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.system.boot.phase.content": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Content" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.system.boot.phase.native": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Native" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.system.boot.phase.save": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Save" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.system.boot.phase.settings": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Settings" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.system.boot.phase.web": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Web" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.system.boot.title": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Title" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.system.compatibility.body": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Body" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.system.compatibility.title": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Title" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.system.error.code_label": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Code Label" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.system.fatal.body": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Body" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.system.fatal.title": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Title" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.system.recovery.body": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Body" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.system.recovery.title": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Title" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.system.resume.body": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Body" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.system.resume.title": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Title" }]),
     parameters: Object.freeze({}),
     budget: '0',
     compactKey: null,

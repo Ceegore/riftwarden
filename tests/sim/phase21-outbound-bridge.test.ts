@@ -66,6 +66,72 @@ function buildBattle(): BattleModel {
 }
 
 describe('P21 §9 outbound live battle bridge', () => {
+  it('maps the live SECONDARY boss authority into its own panel trail (duo)', { timeout: 60_000 }, () => {
+    const SECONDARY_ID = 'boss_ember_unit';
+    const duoDefs: readonly PhaseDefinition[] = Object.freeze([
+      Object.freeze({ id: 'p1', bossId: BOSS_ID, priority: 1, minHpPermille: 501, maxHpPermille: 1001, previewKey: 'preview_p1' }),
+      Object.freeze({ id: 'p2', bossId: BOSS_ID, priority: 2, minHpPermille: 0, maxHpPermille: 501, previewKey: 'preview_p2' }),
+      Object.freeze({ id: 'q1', bossId: SECONDARY_ID, priority: 1, minHpPermille: 601, maxHpPermille: 1001, previewKey: 'preview_q1' }),
+      Object.freeze({ id: 'q2', bossId: SECONDARY_ID, priority: 2, minHpPermille: 0, maxHpPermille: 601, previewKey: 'preview_q2' }),
+    ]);
+    const duoSystems: readonly KernelSystem[] = Object.freeze([
+      ...createPhase17Systems({ speedsX100PerSecond: {} }),
+      ...createPhase21Systems({ bossPhaseDefinitions: duoDefs }),
+    ]);
+    const player = migrateEntity({ entity: entity('unit_p', { side: 'player', lane: 'middle', x100: 1800, maxLp: 1000, lp: 1000 }), radiusX100: 100 });
+    const primary = migrateEntity({ entity: entity(BOSS_ID, { side: 'enemy', lane: 'middle', x100: 7000, maxLp: 1000, lp: 900 }), radiusX100: 120 });
+    // Secondary seeded at 40% (q2's bracket) inside q1 → q1→q2 is planned and commits.
+    const secondary = migrateEntity({ entity: entity(SECONDARY_ID, { side: 'enemy', lane: 'bottom', x100: 7000, maxLp: 1000, lp: 400 }), radiusX100: 120 });
+    let state = battle({
+      simulationVersion: 'phase21-outbound-bridge-duo-v1',
+      entities: Object.freeze([player, primary, secondary]),
+      abilities: Object.freeze([]),
+      bossPhase: Object.freeze({ entityId: BOSS_ID, bossId: BOSS_ID, phaseId: 'p1', transition: null, visited: Object.freeze(['p1']), invulnerableUntilTick: null }),
+      bossPhaseSecondary: Object.freeze({ entityId: SECONDARY_ID, bossId: SECONDARY_ID, phaseId: 'q1', transition: null, visited: Object.freeze(['q1']), invulnerableUntilTick: null }),
+    });
+    const random = randomSession();
+    const events: { type: string; tick: number; contentIds: readonly string[]; resolveTick?: number }[] = [];
+    for (let t = 0; t < 70; t++) {
+      const r = stepBattle({ state, input, random, rules: {}, content: {}, systems: duoSystems });
+      state = r.state;
+      for (const event of r.events) {
+        events.push(Object.freeze({
+          type: event.type,
+          tick: state.tick,
+          contentIds: event.contentIds,
+          ...(event.payload['resolveTick'] === undefined ? {} : { resolveTick: event.payload['resolveTick'] }),
+        }));
+      }
+    }
+    expect(state.bossPhaseSecondary?.phaseId).toBe('q2');
+    const entry = encounterOutboundFromBattle({
+      encounterId: 'encounter_fixture_boss_duo',
+      objective: 'defeat_boss',
+      tick: state.tick,
+      phase: { phase: state.phase.phase, endReason: state.endReason },
+      bossPhase: state.bossPhase ?? null,
+      bossPhaseSecondary: state.bossPhaseSecondary ?? null,
+      modifierHookLog: state.modifierHookLog ?? [],
+      events,
+    });
+    expect(entry.bossPhaseSecondary).not.toBeNull();
+    const rows = presentPhase21Report(Object.freeze({
+      gate: 'G21-LIVE-BRIDGE',
+      status: 'PASS',
+      drift: 0,
+      seededFailures: 0,
+      perEncounter: Object.freeze({ encounter_fixture_boss_duo: entry }),
+    }));
+    const row = rows[0];
+    expect(row).toBeDefined();
+    if (row === undefined) throw new Error('no row');
+    expect(row.phaseTrailSecondary).toEqual([
+      Object.freeze({ phaseId: 'q1', active: false }),
+      Object.freeze({ phaseId: 'q2', active: true }),
+    ]);
+    expect(row.isBossPhase).toBe(true);
+  });
+
   it('maps the live boss phase, hook log and phase events into the panel rows', { timeout: 60_000 }, () => {
     const systems = buildSystems();
     let state = buildBattle();

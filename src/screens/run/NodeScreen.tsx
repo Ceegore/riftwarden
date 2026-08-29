@@ -10,7 +10,7 @@ import { BattleCanvas } from '../../features/battle/BattleCanvas.js';
 import { BattleTacticalView } from '../../features/battle/BattleTacticalView.js';
 import { LiveBattleOutboundPanel } from '../../features/battle/outbound/LiveBattleOutboundPanel.js';
 import type { LiveOutboundInput } from '../../features/battle/outbound/phase21-outbound-presenter.js';
-import { createSimBattleHost, resolveExpeditionEncounter } from '../../features/battle/sim/sim-battle-host.js';
+import { createLiveSimBattle, resolveExpeditionEncounter, type FixtureEncounterEntry, type LiveSimBattleHandle } from '../../features/battle/sim/sim-battle-host.js';
 import { loadA11ySettings } from '../../game/settings/a11y-settings.js';
 import type { UnitRenderData } from '../../features/battle/battle-renderer.js';
 import type { NodeActionRequest } from '../../game/expedition/nodes/types.js';
@@ -245,6 +245,65 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
     onResolved(nextAfter);
   }, [nextAfter, onResolved]);
 
+  // §9 live battle: the battle screen OWNS a real kernel battle for the node's
+  // encounter and steps it tick by tick (auto-run; pause/step via the control
+  // bar), so the telegraph countdown actually ticks DOWN and the panel streams
+  // the outbound sense tick by tick. Unresolvable nodes keep the honest
+  // stand-in feed.
+  const nodePayloadKey = snapshot?.currentNodePayloadKey ?? '';
+  const nodeId = snapshot?.currentNodeId ?? '';
+  const combat = currentNodeType === 'battle' || currentNodeType === 'elite' || currentNodeType === 'boss';
+  const encounter = useMemo<Readonly<FixtureEncounterEntry> | null>(
+    () => resolveExpeditionEncounter(currentNodeType, nodePayloadKey),
+    [currentNodeType, nodePayloadKey],
+  );
+  const fallbackOutbound = useMemo<LiveOutboundInput>(() => Object.freeze({
+    encounterId: nodeId,
+    objective: currentNodeType === 'boss' || currentNodeType === 'elite' ? 'defeat_boss' : 'defeat_all',
+    tick: 0,
+    phase: Object.freeze({ phase: 'ACTIVE', endReason: null }),
+    bossPhase: null,
+    modifierHookLog: Object.freeze([]),
+    events: Object.freeze([]),
+  }), [currentNodeType, nodeId]);
+  const liveHandleRef = useRef<LiveSimBattleHandle | null>(null);
+  const [liveOutbound, setLiveOutbound] = useState<LiveOutboundInput | null>(null);
+  const [liveRunning, setLiveRunning] = useState(false);
+  const battleVisible = combat && phase !== 'resolved';
+
+  useEffect(() => {
+    liveHandleRef.current = null;
+    setLiveOutbound(null);
+    setLiveRunning(false);
+    if (encounter === null) return;
+    try {
+      const handle = createLiveSimBattle({ encounter });
+      liveHandleRef.current = handle;
+      setLiveOutbound(handle.snapshot());
+      setLiveRunning(true);
+    } catch {
+      // A content-launch error must never block the expedition screen.
+      liveHandleRef.current = null;
+    }
+  }, [encounter]);
+
+  useEffect(() => {
+    if (!battleVisible || !liveRunning) return;
+    const id = window.setInterval(() => {
+      const handle = liveHandleRef.current;
+      if (handle === null) {
+        setLiveRunning(false);
+        return;
+      }
+      const next = handle.step();
+      setLiveOutbound(next);
+      if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(next.phase.phase)) setLiveRunning(false);
+    }, 100);
+    return () => window.clearInterval(id);
+  }, [battleVisible, liveRunning]);
+
+  const liveOutboundValue: LiveOutboundInput = liveOutbound ?? fallbackOutbound;
+
   if (!snapshot) {
     return (
       <ScreenFrame labelledBy="node-title">
@@ -256,34 +315,7 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
 
   const { gold, instability } = snapshot;
   const nodeActions = actionsForType(currentNodeType, snapshot);
-  const combat = currentNodeType === 'battle' || currentNodeType === 'elite' || currentNodeType === 'boss';
   const reducedMotion = loadA11ySettings().reducedMotion;
-  // §9 live outbound feed: run the REAL kernel battle for the node's encounter
-  // (via the sim battle host) and feed its boss phase, modifier hook log and
-  // canonical events into the live bridge. When the node cannot resolve to a
-  // fixture encounter (e.g. non-battle nodes), the honest stand-in surface is
-  // kept — the expedition does not own a battle sim state machine yet.
-  const nodePayloadKey = snapshot?.currentNodePayloadKey ?? '';
-  const nodeId = snapshot?.currentNodeId ?? '';
-  const liveOutbound = useMemo<LiveOutboundInput>(() => {
-    const fallback: LiveOutboundInput = Object.freeze({
-      encounterId: nodeId,
-      objective: currentNodeType === 'boss' || currentNodeType === 'elite' ? 'defeat_boss' : 'defeat_all',
-      tick: 0,
-      phase: Object.freeze({ phase: 'ACTIVE', endReason: null }),
-      bossPhase: null,
-      modifierHookLog: Object.freeze([]),
-      events: Object.freeze([]),
-    });
-    const encounter = resolveExpeditionEncounter(currentNodeType, nodePayloadKey);
-    if (encounter === null) return fallback;
-    try {
-      return createSimBattleHost({ encounter }).run();
-    } catch {
-      // A content-launch error must never block the expedition screen.
-      return fallback;
-    }
-  }, [currentNodeType, nodePayloadKey, nodeId]);
 
   return (
     <ScreenFrame labelledBy="node-title">
@@ -294,12 +326,34 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
         <ResourcePill icon="⚠" value={instability} nameKey="ui.resource.instability" />
       </div>
 
-      {combat && phase !== 'resolved' && (
+      {battleVisible && (
         reducedMotion
           ? <BattleTacticalView units={battleUnits(snapshot)} />
           : <BattleCanvas units={battleUnits(snapshot)} />
       )}
-      {combat && phase !== 'resolved' && <LiveBattleOutboundPanel input={liveOutbound} />}
+      {battleVisible && (
+        <div className="rw-live-battle-controls" aria-label="live battle controls">
+          <Button
+            label={liveRunning ? 'Pause' : 'Run'}
+            variant="secondary"
+            onClick={() => { setLiveRunning((v) => !v); }}
+          />
+          <Button
+            label="Step"
+            variant="secondary"
+            onClick={() => {
+              const handle = liveHandleRef.current;
+              if (handle === null) return;
+              setLiveRunning(false);
+              const next = handle.step();
+              setLiveOutbound(next);
+              if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(next.phase.phase)) setLiveRunning(false);
+            }}
+          />
+          <span className="rw-type-numeric">{`tick ${String(liveOutboundValue.tick)}`}</span>
+        </div>
+      )}
+      {battleVisible && <LiveBattleOutboundPanel input={liveOutboundValue} />}
       {phase === 'entering' && <p>Entering node...</p>}
 
       {phase === 'acting' && (

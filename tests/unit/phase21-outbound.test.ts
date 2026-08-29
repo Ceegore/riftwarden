@@ -108,7 +108,41 @@ describe('phase21 outbound presenter', () => {
     ]);
   });
 
-  it('an encounter without a boss phase has an empty trail and is not a boss row', () => {
+  it('maps a secondary boss authority into its own trail (duo encounters)', () => {
+    const report: Phase21OutboundReport = Object.freeze({
+      gate: 'G21-CONTENT-LAUNCH',
+      status: 'PASS',
+      drift: 0,
+      seededFailures: 0,
+      perEncounter: Object.freeze({
+        encounter_fixture_boss_duo: Object.freeze<EncounterOutbound>({
+          objective: 'defeat_boss',
+          terminal: { phase: 'VICTORY', reason: 'side_eliminated' },
+          ticks: 383,
+          status: 'PASS',
+          hooks: [],
+          bossPhase: { phaseId: 'phase_duo_p2', visited: ['phase_duo_p1', 'phase_duo_p2'], transition: false },
+          bossPhaseSecondary: { phaseId: 'phase_duo_q2', visited: ['phase_duo_q1', 'phase_duo_q2'], transition: false },
+          phasesDescended: true,
+        }),
+      }),
+    });
+    const rows = presentPhase21Report(report);
+    const row = rows[0];
+    expect(row).toBeDefined();
+    if (row === undefined) throw new Error('no row');
+    expect(row.isBossPhase).toBe(true);
+    expect(row.phaseTrail).toEqual([
+      Object.freeze({ phaseId: 'phase_duo_p1', active: false }),
+      Object.freeze({ phaseId: 'phase_duo_p2', active: true }),
+    ]);
+    expect(row.phaseTrailSecondary).toEqual([
+      Object.freeze({ phaseId: 'phase_duo_q1', active: false }),
+      Object.freeze({ phaseId: 'phase_duo_q2', active: true }),
+    ]);
+  });
+
+  it('an encounter without a boss phase has empty trails and is not a boss row', () => {
     const rows = presentPhase21Report(bossReport());
     const plain = rows.find((r) => r.encounterId === 'encounter_fixture_first');
     expect(plain?.isBossPhase).toBe(false);
@@ -153,6 +187,7 @@ describe('phase21 outbound presenter', () => {
       isBossPhase: false,
       phasesDescended: false,
       phaseTrail: [],
+      phaseTrailSecondary: [],
       hookTrace: [],
       phaseTrace: [],
       telegraphs: [],

@@ -254,6 +254,9 @@ function liveFrom(state: BattleModel, events: readonly { type: string; tick: num
     bossPhase: state.bossPhase === undefined
       ? null
       : Object.freeze({ phaseId: state.bossPhase.phaseId, visited: Object.freeze([...state.bossPhase.visited]), transition: state.bossPhase.transition !== null }),
+    bossPhaseSecondary: state.bossPhaseSecondary === undefined
+      ? null
+      : Object.freeze({ phaseId: state.bossPhaseSecondary.phaseId, visited: Object.freeze([...state.bossPhaseSecondary.visited]), transition: state.bossPhaseSecondary.transition !== null }),
     modifierHookLog: Object.freeze((state.modifierHookLog ?? []).map((f) => Object.freeze({ modifierId: f.modifierId, hook: f.hook, atTick: f.atTick }))),
     events: Object.freeze(events.map((e) => Object.freeze({
       type: e.type,
@@ -277,42 +280,97 @@ export interface SimBattleHost {
   run(): LiveOutboundInput;
 }
 
-/** Runs the real kernel battle for one fixture encounter and exposes the outbound sense. */
-export function createSimBattleHost(config: SimBattleHostConfig): SimBattleHost {
-  const entry = config.encounter;
+/**
+ * Live battle handle: owns ONE kernel battle and steps it one tick at a time,
+ * so the battle screen can run/pause/step a real fight and the outbound sense
+ * (boss phase, telegraph countdowns, hook log) streams tick by tick instead of
+ * a single replay on mount. `step()` past the terminal is a no-op (same
+ * snapshot), matching `stepBattle`'s terminal guard.
+ */
+export interface LiveSimBattleHandle {
+  readonly encounterId: string;
+  readonly objective: string;
+  /** Current outbound sense without advancing the battle. */
+  snapshot(): LiveOutboundInput;
+  /** Advances the battle exactly one tick and returns the new outbound sense. */
+  step(): LiveOutboundInput;
+}
+
+interface BattleRunner {
+  readonly snapshot: () => LiveOutboundInput;
+  readonly step: () => LiveOutboundInput;
+}
+
+function launchFor(entry: FixtureEncounterEntry): { readonly launch: ReturnType<typeof buildEncounterLaunchConfig>; readonly systems: readonly KernelSystem[] } {
   const source = sourceForEncounter(entry);
   const deps = Object.freeze({
     modifiers: FIXTURE_MODIFIERS,
     encounters: new Map([...FIXTURE_ENCOUNTERS.entries()].map(([id, e]) => [id, { enemySlots: e.enemySlots }] as const)),
   });
   const launch = buildEncounterLaunchConfig(source, deps);
-  const systems = systemsFor(launch);
-  const maxTicks = config.maxTicks ?? 1500;
+  return Object.freeze({ launch, systems: systemsFor(launch) });
+}
+
+/** Deterministic per-tick runner shared by the monolithic run and the live handle. */
+function createBattleRunner(entry: FixtureEncounterEntry, launch: ReturnType<typeof buildEncounterLaunchConfig>, systems: readonly KernelSystem[]): BattleRunner {
+  const random = new RandomSession(RngStreamMap.fromRunSeed(parseRunSeed(['00000001', '00000002', '00000003', '00000004'])), new RollSlotRegistry([]), false);
+  let state: BattleModel = { ...buildBattle(entry, launch), authoritativeStreams: random.streams.snapshotAuthoritative() };
+  const events: { type: string; tick: number; contentIds: readonly string[]; resolveTick?: number }[] = [];
+  let terminal = false;
   let cached: LiveOutboundInput | null = null;
+  const live = (): LiveOutboundInput => {
+    if (cached === null) cached = liveFrom(state, events, entry);
+    return cached;
+  };
+  return Object.freeze({
+    snapshot: (): LiveOutboundInput => live(),
+    step: (): LiveOutboundInput => {
+      if (terminal) return live();
+      const r = stepBattle({ state, input, random, rules: {}, content: {}, systems });
+      state = r.state;
+      for (const e of r.events) {
+        events.push(Object.freeze({
+          type: e.type,
+          tick: state.tick,
+          contentIds: Object.freeze([...e.contentIds]),
+          ...(e.payload['resolveTick'] === undefined ? {} : { resolveTick: e.payload['resolveTick'] }),
+        }));
+      }
+      if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(state.phase.phase)) terminal = true;
+      cached = null;
+      return live();
+    },
+  });
+}
+
+/** Runs the real kernel battle for one fixture encounter and exposes the outbound sense. */
+export function createSimBattleHost(config: SimBattleHostConfig): SimBattleHost {
+  const entry = config.encounter;
+  const { launch, systems } = launchFor(entry);
+  const runner = createBattleRunner(entry, launch, systems);
+  const maxTicks = config.maxTicks ?? 1500;
   return Object.freeze({
     encounterId: entry.id,
     objective: entry.objective,
     run(): LiveOutboundInput {
-      if (cached !== null) return cached;
-      const random = new RandomSession(RngStreamMap.fromRunSeed(parseRunSeed(['00000001', '00000002', '00000003', '00000004'])), new RollSlotRegistry([]), false);
-      let state: BattleModel = { ...buildBattle(entry, launch), authoritativeStreams: random.streams.snapshotAuthoritative() };
-      const events: { type: string; tick: number; contentIds: readonly string[]; resolveTick?: number }[] = [];
-      let terminal = false;
-      for (let t = 0; t < maxTicks && !terminal; t++) {
-        const r = stepBattle({ state, input, random, rules: {}, content: {}, systems });
-        state = r.state;
-        for (const e of r.events) {
-          events.push(Object.freeze({
-            type: e.type,
-            tick: state.tick,
-            contentIds: Object.freeze([...e.contentIds]),
-            ...(e.payload['resolveTick'] === undefined ? {} : { resolveTick: e.payload['resolveTick'] }),
-          }));
-        }
-        if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(state.phase.phase)) terminal = true;
+      let out = runner.snapshot();
+      for (let t = 0; t < maxTicks && !['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(out.phase.phase); t++) {
+        out = runner.step();
       }
-      cached = liveFrom(state, events, entry);
-      return cached;
+      return out;
     },
+  });
+}
+
+/** Live variant: the caller owns the battle and steps it tick by tick (run/pause/step). */
+export function createLiveSimBattle(config: SimBattleHostConfig): LiveSimBattleHandle {
+  const entry = config.encounter;
+  const { launch, systems } = launchFor(entry);
+  const runner = createBattleRunner(entry, launch, systems);
+  return Object.freeze({
+    encounterId: entry.id,
+    objective: entry.objective,
+    snapshot: runner.snapshot,
+    step: runner.step,
   });
 }

@@ -42,7 +42,8 @@ function collectValues(pattern, cwdDir = join(root, 'src')) {
     const m = /^[a-zA-Z_]+="([^"]+)"$/.exec(line.trim());
     const m2 = /^[a-zA-Z_]+: '([^']+)'$/.exec(line.trim());
     const m3 = /^[a-zA-Z_]+: `([^`]+)`$/.exec(line.trim());
-    const match = m ?? m2 ?? m3;
+    const m4 = /^'([^']+)'$/.exec(line.trim());
+    const match = m ?? m2 ?? m3 ?? m4;
     if (match) values.add(match[1]);
   }
   return values;
@@ -79,12 +80,18 @@ function humanize(key) {
 const keys = new Set();
 for (const value of collectValues('labelKey="([^"]+)"')) keys.add(value);
 for (const value of collectValues('nameKey="([^"]+)"')) keys.add(value);
+for (const value of collectValues('messageKey="([^"]+)"')) keys.add(value);
 // Object-literal keys like labelKey: 'ui.expedition.engage' and
 // dynamic templates like `ui.merchant.${offerId}`.
 for (const value of collectValues("labelKey: '([^']+)'")) keys.add(value);
 for (const value of collectValues("nameKey: '([^']+)'")) keys.add(value);
+for (const value of collectValues("messageKey: '([^']+)'")) keys.add(value);
 for (const value of collectValues('labelKey: `([^`]+)`')) keys.add(value);
 for (const value of collectValues('nameKey: `([^`]+)`')) keys.add(value);
+// Bare `ui.*` string literals anywhere in src (e.g. the trace-label map values
+// and fallbacks) — a superset of the attribute scans, so every referenced key
+// has a readable fallback message.
+for (const value of collectValues("'ui\\.[a-z0-9_.-]+'")) keys.add(value);
 for (const value of expandDynamicKeys()) keys.add(value);
 const ALL_KEYS = [...keys].sort();
 
