@@ -11,15 +11,13 @@ import type { BossObjectContent, BossObjectSpec, DamagePolicy } from './boss-obj
 import { validateBossObjectContent } from './boss-object-manager.js';
 
 /**
- * Phase 21 §6 content adapter (T03). Maps the flattened boss-object entries the
- * content schema expresses (content/source/world/encounters.json, validated by
- * BossObjectSourceSchema) into the sim's runtime config surfaces:
- * - `Phase21RuntimeConfig.bossObjects` (placement + cleanup);
- * - `Phase17SystemsConfig.bossObjectPolicies` (stage-I damage gate);
- * - `StatusSystemConfig.blockedStatusTargets` (stage-I status gate).
- * The mapping is pure and total: every field maps 1:1, invalid entries are
- * content errors (never silently dropped), and every returned value is frozen
- * so the configs remain immutable.
+ * Phase 21 §6 content adapter (T03). Maps the flattened content entries the
+ * schema expresses (content/source/world/encounters.json, validated by
+ * EncounterSourceSchema) into the sim's runtime surfaces: boss objects
+ * (placement + policies + blocked statuses), mission objectives, modifiers and
+ * reinforcement waves. The mapping is pure and total: every field maps 1:1,
+ * invalid entries are content errors (never silently dropped), and every
+ * returned value is frozen so the configs remain immutable.
  */
 
 /** The flattened content shape (mirrors BossObjectSourceSchema). */
@@ -90,7 +88,7 @@ export function blockedStatusTargetsFromContent(entries: readonly ContentBossObj
 }
 
 /** The encounter mission kinds the content schema can express (EncounterSourceSchema.objective). */
-export type EncounterObjectiveKind = 'defeat_all' | 'survive' | 'defeat_boss' | 'protect_object';
+export type EncounterObjectiveKind = 'defeat_all' | 'survive' | 'defeat_boss' | 'protect_object' | 'complete_waves';
 
 /** The encounter content the objective derivation reads (EncounterSourceSchema fields). */
 export interface EncounterObjectiveSource {
@@ -180,17 +178,12 @@ function contentError(reason: string, source: EncounterObjectiveSource): never {
 }
 
 /**
- * §P21-T03: derives the sim objectives the encounter content itself mandates,
- * one per mission kind, all frozen and validated via `createObjectiveCollection`:
- * - `defeat_all` → `kill_regulars` with required = enemy slot count (the regular
- *   units placed at battle start; boss/object defeats never count toward it);
- * - `survive` → `survive_until` with required = seconds converted to ticks at
- *   the kernel tick rate;
- * - `defeat_boss` → `kill_boss` targeting the declared `bossUnitId` battle entity;
- * - `protect_object` → one protect objective per boss object whose
- *   `objectiveLink` names it (a shared link is a duplicate-id content error).
- * Missions that are not expressible in the encounter's fields are content
- * errors — never silently dropped.
+ * §P21-T03: derives the sim objectives the encounter content mandates, one per
+ * mission kind (defeat_all → kill_regulars by slot count; survive → survive_until
+ * by duration; defeat_boss → kill_boss on `bossUnitId`; protect_object → one per
+ * linked boss object; complete_waves → required = declared wave count), all
+ * frozen and validated via `createObjectiveCollection`. Missions not expressible
+ * in the encounter's fields are content errors — never silently dropped.
  */
 export function objectivesFromEncounterContent(source: EncounterObjectiveSource): readonly Objective[] {
   switch (source.objective) {
@@ -248,6 +241,13 @@ export function objectivesFromEncounterContent(source: EncounterObjectiveSource)
           complete: false,
         }),
       ));
+    }
+    case 'complete_waves': {
+      if (source.reinforcementWaves.length === 0) contentError('complete-waves-without-waves', source);
+      return createObjectiveCollection([Object.freeze({
+        id: `obj_${source.encounterId}_waves`, kind: 'complete_waves' as const, targetId: null,
+        required: source.reinforcementWaves.length, progress: 0, complete: false,
+      })]);
     }
     default:
       return EMPTY_OBJECTIVES;

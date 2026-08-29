@@ -134,6 +134,33 @@ describe('P21 content boss-object adapter (§6)', () => {
     ]);
   });
 
+  it('derives complete_waves for the waves mission from the declared reinforcement waves', () => {
+    const source = fixtureSource('encounter_fixture_waves');
+    expect(source.objective).toBe('complete_waves');
+    expect(source.reinforcementWaves).toHaveLength(2);
+    const objectives = objectivesFromEncounterContent(source);
+    expect(objectives).toEqual([
+      Object.freeze({ id: 'obj_encounter_fixture_waves_waves', kind: 'complete_waves', targetId: null, required: 2, progress: 0, complete: false }),
+    ]);
+    // The content schema accepts the new mission kind end-to-end (raw entity).
+    const raw = JSON.parse(readFileSync(path.join(here, '../../content/source/world/encounters.json'), 'utf8')) as { entities: readonly unknown[] };
+    const rawWaves = raw.entities.find((e) => (e as { id?: string }).id === 'encounter_fixture_waves');
+    expect(EncounterSourceSchema.parse(rawWaves).objective).toBe('complete_waves');
+  });
+
+  it('a complete_waves mission without any declared waves is a content error', () => {
+    const source = fixtureSource('encounter_fixture_waves');
+    let caught: unknown = null;
+    try {
+      objectivesFromEncounterContent({ ...source, reinforcementWaves: [] });
+    } catch (error) {
+      caught = error;
+    }
+    expect(caught).toBeInstanceOf(Error);
+    expect((caught as Error).message).toBe('P21_OBJECTIVE_INVALID');
+    expect((caught as { details?: { reason?: string } }).details?.reason).toBe('complete-waves-without-waves');
+  });
+
   it('derives modifier definitions from modifierIds (preview key derived, frozen, validated)', () => {
     const source = fixtureSource('encounter_fixture_first');
     expect(source.modifierIds).toEqual(['mod_fixture_frenzy', 'mod_fixture_onslaught']);

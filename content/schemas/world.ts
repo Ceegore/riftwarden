@@ -54,7 +54,7 @@ export const EncounterSourceSchema = z.object({
   modifierIds: z.array(ContentIdSchema),
   reinforcementWaves: z.array(z.object({ atSeconds: z.number().nonnegative(), encounterId: ContentIdSchema }).strict()),
   /** §P21-T03: `protect_object` missions protect the linked boss objects (their `objectiveLink` names the derived objective). */
-  objective: z.enum(["defeat_all", "survive", "defeat_boss", "protect_object"]),
+  objective: z.enum(["defeat_all", "survive", "defeat_boss", "protect_object", "complete_waves"]),
   /** §P21-T03: the battle entity id of the boss for `defeat_boss` missions (the `kill_boss` objective target). */
   bossUnitId: ContentIdSchema.nullable().default(null),
   /** §P21-T03: survival duration in seconds for `survive` missions (converted to ticks at the kernel tick rate). */

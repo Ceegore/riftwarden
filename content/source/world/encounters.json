@@ -103,6 +103,39 @@
       ]
     },
     {
+      "id": "encounter_fixture_waves",
+      "regionId": "region_fixture",
+      "kind": "survival",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [],
+      "reinforcementWaves": [
+        {
+          "atSeconds": 5,
+          "encounterId": "encounter_fixture_first"
+        },
+        {
+          "atSeconds": 15,
+          "encounterId": "encounter_fixture_first"
+        }
+      ],
+      "objective": "complete_waves",
+      "bossUnitId": null,
+      "survivalDurationSeconds": null,
+      "bossObjects": [],
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_waves.preview",
+      "allowedModes": [
+        "campaign"
+      ]
+    },
+    {
       "id": "encounter_fixture_boss_object",
       "regionId": "region_fixture",
       "kind": "boss",

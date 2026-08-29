@@ -72,6 +72,17 @@ export function createObjectiveResolutionSystem(config: { readonly objectives?: 
           context.commands.push({ kind: 'battle_transition', to: 'RESOLVING_END', priority: 150, reason: 'survive_complete' });
         }
       }
+      // §8 waves teeth: a complete_waves mission ends VICTORY the tick every
+      // declared wave has spawned and all objectives are complete — the waves
+      // window drives resolution to completion (mirror of the survive teeth,
+      // so a waves battle never drifts into a late elimination/time-limit end).
+      const wavesDone = next.some((o) => o.kind === 'complete_waves' && o.complete);
+      if (wavesDone && objectiveAllowsBattleEnd(next) && !isTerminalBattlePhase(context.state.phase.phase)) {
+        context.commands.push({ kind: 'force_battle_outcome', outcome: 'VICTORY', reason: 'waves_complete' });
+        if (context.state.phase.phase === 'ACTIVE' || context.state.phase.phase === 'PHASE_TRANSITION') {
+          context.commands.push({ kind: 'battle_transition', to: 'RESOLVING_END', priority: 150, reason: 'waves_complete' });
+        }
+      }
       if (objectives === undefined || JSON.stringify(next) !== JSON.stringify(seeded)) {
         context.commands.push({ kind: 'set_objectives', objectives: createObjectiveCollection(next) });
       }
