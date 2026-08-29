@@ -55,6 +55,18 @@ function EncounterRow({ row }: { readonly row: EncounterPresentation }): JSX.Ele
           ))}
         </ol>
       )}
+      {row.telegraphs.length > 0 && (
+        <ul className="rw-phase21-telegraphs" aria-label="boss phase telegraph countdowns">
+          {row.telegraphs.map((telegraph) => (
+            <li key={`${telegraph.phaseId}:${String(telegraph.plannedTick)}`}>
+              telegraph → <code>{telegraph.phaseId}</code>
+              {telegraph.resolved
+                ? ` · resolved @ ${String(telegraph.resolveTick)}`
+                : ` · resolves in ${String(telegraph.countdown)} ticks`}
+            </li>
+          ))}
+        </ul>
+      )}
       {row.hookTrace.length > 0 && (
         <ul className="rw-phase21-hooks" aria-label="modifier hook telegraphs">
           {row.hookTrace.map((hook, i) => (

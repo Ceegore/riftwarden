@@ -20,7 +20,11 @@ export type EncounterOutbound = {
   readonly bossPhase: { readonly phaseId: string; readonly visited: readonly string[]; readonly transition: boolean } | null;
   readonly phasesDescended?: boolean;
   readonly phaseTrace?: readonly OutboundPhaseEvent[];
+  /** One telegraph per planned boss transition: [target phase, planned tick, resolve tick]. */
+  readonly telegraphs?: readonly OutboundTelegraph[];
 };
+
+export type OutboundTelegraph = readonly [phaseId: string, plannedTick: number, resolveTick: number];
 
 export type Phase21OutboundReport = {
   readonly gate: string;
@@ -47,6 +51,16 @@ export type TraceEntry = {
   readonly detail: string;
 };
 
+export type TelegraphPresentation = {
+  readonly phaseId: string;
+  readonly plannedTick: number;
+  /** Commit tick the telegraph counts down to (the event's own tick when none was carried). */
+  readonly resolveTick: number;
+  /** Ticks remaining until resolve from the snapshot's tick (0 once resolved). */
+  readonly countdown: number;
+  readonly resolved: boolean;
+};
+
 export type EncounterPresentation = {
   readonly encounterId: string;
   readonly objective: string;
@@ -59,6 +73,7 @@ export type EncounterPresentation = {
   readonly phaseTrail: readonly PhaseTrailStep[];
   readonly hookTrace: readonly HookEntry[];
   readonly phaseTrace: readonly TraceEntry[];
+  readonly telegraphs: readonly TelegraphPresentation[];
 };
 
 function terminalOf(entry: EncounterOutbound): readonly [string | null, string | null] {
@@ -95,7 +110,8 @@ export interface LiveOutboundInput {
   readonly phase: { readonly phase: string; readonly endReason: string | null };
   readonly bossPhase: { readonly phaseId: string; readonly visited: readonly string[]; readonly transition: unknown } | null;
   readonly modifierHookLog: readonly { readonly modifierId: string; readonly hook: string; readonly atTick: number }[];
-  readonly events: readonly { readonly type: string; readonly tick: number; readonly contentIds: readonly string[] }[];
+  /** Canonical phase events; `BossTelegraphStarted` carries the resolve (commit) tick. */
+  readonly events: readonly { readonly type: string; readonly tick: number; readonly contentIds: readonly string[]; readonly resolveTick?: number }[];
   readonly status?: string;
 }
 
@@ -109,6 +125,9 @@ const TRACE_TYPES: readonly string[] = Object.freeze(['PhaseTransitionPlanned', 
  */
 export function encounterOutboundFromBattle(input: LiveOutboundInput): EncounterOutbound {
   const terminalPhase = ['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(input.phase.phase) ? input.phase.phase : null;
+  const telegraphs = input.events
+    .filter((e) => e.type === 'BossTelegraphStarted' && e.contentIds.length >= 2)
+    .map((e) => Object.freeze([e.contentIds[1] ?? '', e.tick, e.resolveTick ?? e.tick] as const));
   return Object.freeze({
     objective: input.objective,
     terminal: terminalPhase === null ? null : { phase: terminalPhase, reason: input.phase.endReason },
@@ -124,6 +143,7 @@ export function encounterOutboundFromBattle(input: LiveOutboundInput): Encounter
         .filter((e) => TRACE_TYPES.includes(e.type))
         .map((e) => Object.freeze([e.type, e.tick, e.contentIds.join('/')] as const)),
     ),
+    telegraphs: Object.freeze(telegraphs),
   });
 }
 
@@ -136,6 +156,16 @@ export function presentPhase21Report(report: Phase21OutboundReport): readonly En
     const [terminalPhase, terminalReason] = terminalOf(entry);
     const hookTrace = Object.freeze(entry.hooks.map(([modifierId, hook, atTick]) => Object.freeze({ modifierId, hook, atTick })));
     const phaseTrace = Object.freeze((entry.phaseTrace ?? Object.freeze([])).map(([type, tick, detail]) => Object.freeze({ type, tick, detail })));
+    const telegraphs = Object.freeze((entry.telegraphs ?? Object.freeze([])).map(([phaseId, plannedTick, resolveTick]) => {
+      const resolved = entry.ticks >= resolveTick;
+      return Object.freeze({
+        phaseId,
+        plannedTick,
+        resolveTick,
+        countdown: resolved ? 0 : resolveTick - entry.ticks,
+        resolved,
+      });
+    }));
     return Object.freeze({
       encounterId: id,
       objective: entry.objective,
@@ -148,6 +178,7 @@ export function presentPhase21Report(report: Phase21OutboundReport): readonly En
       phaseTrail: phaseTrailOf(entry.bossPhase),
       hookTrace,
       phaseTrace,
+      telegraphs,
     });
   }));
 }

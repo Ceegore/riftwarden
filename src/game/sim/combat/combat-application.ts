@@ -207,14 +207,13 @@ export function createCombatApplicationSystem(config: CombatApplicationConfig = 
         }
         let nextLp = target.lp;
         if (application.kind === 'damage') {
-          // §4/§5 hard invulnerability: while the boss's committed invulnerable
-          // window is active (invulnerableUntilTick in the future), hits land
-          // but deal nothing — mirrors the §6 `immune` boss-object gate so the
-          // event stream stays deterministic (DamageApplied with zero delta).
-          const bp = context.state.bossPhase;
-          const bossInvulnerable = bp?.entityId === target.id
-            && bp.invulnerableUntilTick !== null
-            && context.state.tick < bp.invulnerableUntilTick;
+          // §4/§5/§10 hard invulnerability: while EITHER boss authority's
+          // committed invulnerable window is active for this target, hits
+          // land but deal nothing — mirrors the §6 `immune` boss-object gate.
+          const phaseSlot = context.state.bossPhase?.entityId === target.id ? context.state.bossPhase : null;
+          const secondSlot = context.state.bossPhaseSecondary?.entityId === target.id ? context.state.bossPhaseSecondary : null;
+          const activeSlot = phaseSlot ?? secondSlot;
+          const bossInvulnerable = activeSlot !== null && activeSlot.invulnerableUntilTick !== null && context.state.tick < activeSlot.invulnerableUntilTick;
           const policy = bossInvulnerable ? 'immune' : config.bossObjectPolicies?.get(target.id);
           const result = applyDamagePipeline(target, shields, application, policy);
           shields = result.shields;

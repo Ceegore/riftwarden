@@ -25,9 +25,11 @@ const LIVE_INPUT: LiveOutboundInput = Object.freeze({
   ]),
   events: Object.freeze([
     Object.freeze({ type: 'PhaseTransitionPlanned', tick: 1, contentIds: Object.freeze(['boss_ash_unit', 'phase_duo_p1', 'phase_duo_p2']) }),
-    Object.freeze({ type: 'BossTelegraphStarted', tick: 1, contentIds: Object.freeze(['boss_ash_unit', 'phase_duo_p2']) }),
+    Object.freeze({ type: 'BossTelegraphStarted', tick: 1, contentIds: Object.freeze(['boss_ash_unit', 'phase_duo_p2']), resolveTick: 46 }),
     Object.freeze({ type: 'BossPhaseStarted', tick: 46, contentIds: Object.freeze(['boss_ash_unit', 'phase_duo_p2']) }),
     Object.freeze({ type: 'BossPhaseStarted', tick: 92, contentIds: Object.freeze(['boss_ash_unit', 'phase_duo_p3']) }),
+    // Mid-flight telegraph: planned at 92, resolves at 136 → 44 ticks remain.
+    Object.freeze({ type: 'BossTelegraphStarted', tick: 92, contentIds: Object.freeze(['boss_ash_unit', 'phase_duo_p3']), resolveTick: 136 }),
   ]),
 });
 
@@ -51,6 +53,10 @@ const STATIC_REPORT: Phase21OutboundReport = Object.freeze({
         Object.freeze(['BossPhaseStarted', 46, 'boss_ash_unit/phase_duo_p2'] as const),
         Object.freeze(['BossPhaseStarted', 92, 'boss_ash_unit/phase_duo_p3'] as const),
       ]),
+      telegraphs: Object.freeze([
+        Object.freeze(['phase_duo_p2', 1, 46] as const),
+        Object.freeze(['phase_duo_p3', 46, 92] as const),
+      ]),
     }),
   }),
 });
@@ -69,6 +75,10 @@ describe('P21 §9 outbound panel mount', () => {
     expect(html).toContain('on_battle_start');
     expect(html).toContain('telegraph');
     expect(html).toContain('entered');
+    // The static report renders the telegraph countdown rows (both resolved).
+    expect(html).toContain('rw-phase21-telegraphs');
+    expect(html).toContain('resolved @ 46');
+    expect(html).toContain('resolved @ 92');
   });
 
   it('the live-battle mount bridges a running battle into the exact same panel', () => {
@@ -85,6 +95,11 @@ describe('P21 §9 outbound panel mount', () => {
     // A live ACTIVE battle has no terminal yet.
     expect(html).not.toContain('VICTORY');
     expect(html).not.toContain('side_eliminated');
+    // The mid-flight telegraph at tick 92 counts down to its resolve tick 136.
+    expect(html).toContain('rw-phase21-telegraphs');
+    expect(html).toContain('phase_duo_p3');
+    expect(html).toContain('resolves in 44 ticks');
+    expect(html).toContain('resolved @ 46');
   });
 
   it('a non-boss battle renders a row without phase machinery', () => {

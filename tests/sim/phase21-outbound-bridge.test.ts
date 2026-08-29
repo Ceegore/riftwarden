@@ -70,12 +70,17 @@ describe('P21 §9 outbound live battle bridge', () => {
     const systems = buildSystems();
     let state = buildBattle();
     const random = randomSession();
-    const events: { type: string; tick: number; contentIds: readonly string[] }[] = [];
+    const events: { type: string; tick: number; contentIds: readonly string[]; resolveTick?: number }[] = [];
     for (let t = 0; t < 70; t++) {
       const r = stepBattle({ state, input, random, rules: {}, content: {}, systems });
       state = r.state;
       for (const event of r.events) {
-        events.push({ type: event.type, tick: state.tick, contentIds: event.contentIds });
+        events.push(Object.freeze({
+          type: event.type,
+          tick: state.tick,
+          contentIds: event.contentIds,
+          ...(event.payload['resolveTick'] === undefined ? {} : { resolveTick: event.payload['resolveTick'] }),
+        }));
       }
     }
     // The live battle genuinely committed p1→p2 and fired the modifier hooks.
@@ -117,6 +122,11 @@ describe('P21 §9 outbound live battle bridge', () => {
     // The phase trace carries the planned + started events from the live stream.
     expect(row.phaseTrace.some((e) => e.type === 'PhaseTransitionPlanned' && e.detail.includes('p2'))).toBe(true);
     expect(row.phaseTrace.some((e) => e.type === 'BossPhaseStarted' && e.detail.includes('p2'))).toBe(true);
+    // The live telegraph surfaced with its real resolve tick: at the snapshot
+    // tick the p1→p2 telegraph has already resolved (commit happened).
+    expect(row.telegraphs.length).toBeGreaterThan(0);
+    expect(row.telegraphs[0]).toMatchObject({ phaseId: 'p2', resolved: true });
+    expect(row.telegraphs[0]?.resolveTick).toBeGreaterThan(row.telegraphs[0]?.plannedTick ?? 0);
     // 2 + 3. PANEL EQUIVALENCE + TERMINAL: same row shape, ACTIVE → null terminal.
     expect(row.isBossPhase).toBe(true);
     expect(row.phasesDescended).toBe(true);

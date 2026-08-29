@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { JSX } from 'react';
 import { Button } from '../../ui/components/Button.js';
 import { ResourcePill } from '../../ui/components/ResourcePill.js';
@@ -10,6 +10,7 @@ import { BattleCanvas } from '../../features/battle/BattleCanvas.js';
 import { BattleTacticalView } from '../../features/battle/BattleTacticalView.js';
 import { LiveBattleOutboundPanel } from '../../features/battle/outbound/LiveBattleOutboundPanel.js';
 import type { LiveOutboundInput } from '../../features/battle/outbound/phase21-outbound-presenter.js';
+import { createSimBattleHost, resolveExpeditionEncounter } from '../../features/battle/sim/sim-battle-host.js';
 import { loadA11ySettings } from '../../game/settings/a11y-settings.js';
 import type { UnitRenderData } from '../../features/battle/battle-renderer.js';
 import type { NodeActionRequest } from '../../game/expedition/nodes/types.js';
@@ -257,18 +258,32 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
   const nodeActions = actionsForType(currentNodeType, snapshot);
   const combat = currentNodeType === 'battle' || currentNodeType === 'elite' || currentNodeType === 'boss';
   const reducedMotion = loadA11ySettings().reducedMotion;
-  // §9 live outbound feed: the expedition flow does not run the sim kernel yet,
-  // so the live bridge gets the node's declared battle context (objective by
-  // node kind) and an empty boss/hook surface until a battle sim state lands.
-  const liveOutbound: LiveOutboundInput = Object.freeze({
-    encounterId: snapshot.currentNodeId,
-    objective: currentNodeType === 'boss' || currentNodeType === 'elite' ? 'defeat_boss' : 'defeat_all',
-    tick: 0,
-    phase: Object.freeze({ phase: 'ACTIVE', endReason: null }),
-    bossPhase: null,
-    modifierHookLog: Object.freeze([]),
-    events: Object.freeze([]),
-  });
+  // §9 live outbound feed: run the REAL kernel battle for the node's encounter
+  // (via the sim battle host) and feed its boss phase, modifier hook log and
+  // canonical events into the live bridge. When the node cannot resolve to a
+  // fixture encounter (e.g. non-battle nodes), the honest stand-in surface is
+  // kept — the expedition does not own a battle sim state machine yet.
+  const nodePayloadKey = snapshot?.currentNodePayloadKey ?? '';
+  const nodeId = snapshot?.currentNodeId ?? '';
+  const liveOutbound = useMemo<LiveOutboundInput>(() => {
+    const fallback: LiveOutboundInput = Object.freeze({
+      encounterId: nodeId,
+      objective: currentNodeType === 'boss' || currentNodeType === 'elite' ? 'defeat_boss' : 'defeat_all',
+      tick: 0,
+      phase: Object.freeze({ phase: 'ACTIVE', endReason: null }),
+      bossPhase: null,
+      modifierHookLog: Object.freeze([]),
+      events: Object.freeze([]),
+    });
+    const encounter = resolveExpeditionEncounter(currentNodeType, nodePayloadKey);
+    if (encounter === null) return fallback;
+    try {
+      return createSimBattleHost({ encounter }).run();
+    } catch {
+      // A content-launch error must never block the expedition screen.
+      return fallback;
+    }
+  }, [currentNodeType, nodePayloadKey, nodeId]);
 
   return (
     <ScreenFrame labelledBy="node-title">

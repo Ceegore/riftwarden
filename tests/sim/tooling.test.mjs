@@ -225,6 +225,9 @@ test('content-driven battle launcher derives objectives via the adapter and reso
   assert.equal(typeof duoSecondary.transition, 'boolean');
   assert.ok(duoSecondary.visited.length >= 1);
   assert.equal(byId['encounter_fixture_boss_duo'].multiBossDescended, true);
+  // §10 real-combat teeth: BOTH bosses descend under REAL applied combat damage
+  // (no HP re-seeding) in one interleaved battle.
+  assert.equal(byId['encounter_fixture_boss_duo'].multiBossRealCombat, true);
   const duoTraceBosses = new Set(byId['encounter_fixture_boss_duo'].phaseTrace.map((event) => event[2].split('/')[0]));
   assert.ok(duoTraceBosses.has('boss_ash_unit'));
   assert.ok(duoTraceBosses.has('boss_ember_unit'));

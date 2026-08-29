@@ -348,6 +348,7 @@ try {
       const defs = launch.bossPhaseDefinitions;
       const bossId = defs[0].bossId;
       const phaseTrace = [];
+      const telegraphs = [];
       const teethSystems = Object.freeze([...api.phase21Systems.createPhase21Systems({
         bossObjects: launch.bossObjects,
         objectives: launch.objectives,
@@ -374,6 +375,9 @@ try {
             if (['PhaseTransitionPlanned', 'BossPhaseCompleted', 'BossPhaseStarted', 'BossTelegraphStarted'].includes(event.type)) {
               phaseTrace.push([event.type, current.tick, event.contentIds.join('/')]);
             }
+            if (event.type === 'BossTelegraphStarted' && event.contentIds.length >= 2) {
+              telegraphs.push([event.contentIds[1], current.tick, event.payload['resolveTick'] ?? current.tick]);
+            }
           }
           if (current.bossPhase?.phaseId === phaseId) return { reached: true, state: current };
         }
@@ -389,6 +393,7 @@ try {
       // The full descent trail: a frontend can render the telegraphs/commits as
       // hook-driven boss scripting (planned -> started/completed with the tick).
       perEncounter[phasesEncounter.id].phaseTrace = phaseTrace;
+      perEncounter[phasesEncounter.id].telegraphs = telegraphs;
       perEncounter[phasesEncounter.id].status = perEncounter[phasesEncounter.id].status === 'PASS' && phasesDescended ? 'PASS' : 'FAIL';
     }
   }
@@ -403,6 +408,7 @@ try {
     if (duoBossIds.length === 2) {
       const [primaryId, secondaryId] = duoBossIds;
       const duoTrace = [];
+      const duoTelegraphs = [];
       const duoSystems = Object.freeze([...api.phase21Systems.createPhase21Systems({
         bossObjects: launch.bossObjects,
         objectives: launch.objectives,
@@ -432,6 +438,9 @@ try {
             if (['PhaseTransitionPlanned', 'BossPhaseCompleted', 'BossPhaseStarted', 'BossTelegraphStarted'].includes(event.type)) {
               duoTrace.push([event.type, current.tick, event.contentIds.join('/')]);
             }
+            if (event.type === 'BossTelegraphStarted' && event.contentIds.length >= 2) {
+              duoTelegraphs.push([event.contentIds[1], current.tick, event.payload['resolveTick'] ?? current.tick]);
+            }
           }
           if (current.bossPhase?.phaseId === phaseId || current.bossPhaseSecondary?.phaseId === phaseId) {
             return { reached: true, state: current };
@@ -452,7 +461,129 @@ try {
       if (!bothReached) seededFailures += 1;
       perEncounter[duoEncounter.id].multiBossDescended = bothReached;
       perEncounter[duoEncounter.id].phaseTrace = duoTrace;
+      perEncounter[duoEncounter.id].telegraphs = duoTelegraphs;
       perEncounter[duoEncounter.id].status = perEncounter[duoEncounter.id].status === 'PASS' && bothReached ? 'PASS' : 'FAIL';
+    }
+  }
+
+  // Real-combat multi-boss teeth: BOTH bosses descend under REAL combat damage
+  // (DamageApplied hits that actually move HP — no HP re-seeding). unit_p and
+  // unit_p2 focus-fire the primary/secondary boss, so each authority's HP
+  // crossings come from the applied damage stream and the phase trail is
+  // interleaved in ONE battle.
+  const realCombatEncounter = encounters.get('encounter_fixture_boss_duo');
+  if (realCombatEncounter !== undefined) {
+    const launch = api.encounterAdapter.buildEncounterLaunchConfig(sourceFor(realCombatEncounter), launchDeps);
+    const duoBossIds = [...new Set(launch.bossPhaseDefinitions.map((d) => d.bossId))];
+    if (duoBossIds.length === 2) {
+      const [primaryId, secondaryId] = duoBossIds;
+      const mkTeeth = (id, side, lane, x100v, maxLp) =>
+        migrate.migrateEntity({
+          entity: Object.freeze({
+            id, side,
+            phase: Object.freeze({ phase: 'ACTIVE', enteredTick: primitives.tick(0), controlledReturn: null }),
+            maxLp, lp: maxLp, shield: 0, lane, x100: x100v, targetId: null, timers: Object.freeze({}),
+          }),
+          radiusX100: 100,
+        });
+      const buildRealCombatBattle = () => {
+        const snapshots = bossPhaseSnapshotsFor(launch);
+        return Object.freeze({
+          schemaVersion: 1,
+          simulationVersion: 'phase21-content-launch-v1',
+          battleId: 'battle_fixture_duo_combat',
+          tick: primitives.tick(0),
+          nextSequence: primitives.sequence(0),
+          emittedEventCount: 0,
+          phase: Object.freeze({ phase: 'ACTIVE', enteredTick: primitives.tick(0), resolvingEndTicks: 0 }),
+          // No regular enemy: the only targets are the two bosses, so every
+          // applied hit is a boss hit (the combat damage is unambiguous).
+          entities: Object.freeze([
+            mkTeeth('unit_p', 'player', 'middle', 1800, 1000),
+            mkTeeth('unit_p2', 'player', 'bottom', 1800, 1000),
+            mkTeeth(primaryId, 'enemy', 'middle', 7000, 3000),
+            mkTeeth(secondaryId, 'enemy', 'bottom', 7000, 3000),
+          ]),
+          temporaryEntities: Object.freeze([]),
+          ...(snapshots.length > 0 ? { bossPhase: snapshots[0] } : {}),
+          ...(snapshots.length > 1 ? { bossPhaseSecondary: snapshots[1] } : {}),
+          abilities: Object.freeze([]),
+          scheduledEvents: Object.freeze([]),
+          authoritativeStreams: Object.freeze([]),
+          endReason: null,
+        });
+      };
+      const realCombatSystems = Object.freeze([
+        ...api.phase17Systems.createPhase17Systems({
+          speedsX100PerSecond: {},
+          // Each attacker focus-fires its own boss (deterministic targeting).
+          targeting: { focusTargetId: { unit_p: primaryId, unit_p2: secondaryId } },
+          basicAttack: {
+            parameters: {
+              unit_p: { attackIntervalTicks: 10, prepareTicks: 1, recoveryTicks: 3, preferredRangeX100: x100.asX100(9000), delivery: { kind: 'direct', rawAmount: 400, damageTypeOrdinal: 0, defense: 0, bossCapBps: null } },
+              unit_p2: { attackIntervalTicks: 10, prepareTicks: 1, recoveryTicks: 3, preferredRangeX100: x100.asX100(9000), delivery: { kind: 'direct', rawAmount: 400, damageTypeOrdinal: 0, defense: 0, bossCapBps: null } },
+            },
+          },
+        }),
+        ...api.phase21Systems.createPhase21Systems({
+          bossObjects: launch.bossObjects,
+          objectives: launch.objectives,
+          modifiers: launch.modifiers,
+          waves: launch.waves,
+          spawnBodies,
+          bossPhaseDefinitions: launch.bossPhaseDefinitions,
+        }),
+      ]);
+      const runRealCombat = () => {
+        const rcRandom = new api.random.RandomSession(
+          api.random.RngStreamMap.fromRunSeed(api.random.parseRunSeed(['00000001', '00000002', '00000003', '00000004'])),
+          new api.random.RollSlotRegistry([]), false,
+        );
+        let state = { ...buildRealCombatBattle(), authoritativeStreams: rcRandom.streams.snapshotAuthoritative() };
+        const damageDealt = { [primaryId]: 0, [secondaryId]: 0 };
+        const trace = [];
+        const telegraphs = [];
+        let ticks = 0;
+        for (let t = 0; t < 700 && !['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(state.phase.phase); t++) {
+          const r = api.battleKernel.stepBattle({ state, input, random: rcRandom, rules: {}, content: {}, systems: realCombatSystems });
+          state = r.state;
+          ticks += 1;
+          for (const event of r.events) {
+            if (event.type === 'DamageApplied' && event.targetIds.length === 1) {
+              const target = event.targetIds[0];
+              if (target === primaryId || target === secondaryId) damageDealt[target] += event.payload['finalHpDelta'] ?? 0;
+            }
+            if (event.type === 'BossTelegraphStarted' && event.contentIds.length >= 2) {
+              telegraphs.push([event.contentIds[1], state.tick, event.payload['resolveTick'] ?? state.tick]);
+            }
+            if (['PhaseTransitionPlanned', 'BossPhaseCompleted', 'BossPhaseStarted', 'BossTelegraphStarted'].includes(event.type)) {
+              trace.push([event.type, state.tick, event.contentIds.join('/')]);
+            }
+          }
+        }
+        const primary = state.entities.find((en) => en.id === primaryId);
+        const secondary = state.entities.find((en) => en.id === secondaryId);
+        return { state, ticks, damageDealt, trace, telegraphs, primaryLp: primary?.lp ?? -1, secondaryLp: secondary?.lp ?? -1 };
+      };
+      const a = runRealCombat();
+      const b = runRealCombat();
+      const primaryVisited = a.state.bossPhase?.visited ?? [];
+      const secondaryVisited = a.state.bossPhaseSecondary?.visited ?? [];
+      const descended = primaryVisited.includes('phase_duo_p2') && secondaryVisited.includes('phase_duo_q2');
+      // REAL combat proof: both bosses took actual damage and their LP fell
+      // strictly below max (no HP re-seeding); the DamageApplied stream carried it.
+      const realDamage = a.damageDealt[primaryId] > 0 && a.damageDealt[secondaryId] > 0
+        && a.primaryLp >= 0 && a.primaryLp < 3000 && a.secondaryLp >= 0 && a.secondaryLp < 3000;
+      // Interleaved: the phase trace names BOTH bosses in one battle.
+      const traceBosses = new Set(a.trace.map((event) => event[2].split('/')[0]));
+      const interleaved = traceBosses.has(primaryId) && traceBosses.has(secondaryId);
+      const deterministic = api.snapshot.createSnapshot(a.state).checksum === api.snapshot.createSnapshot(b.state).checksum
+        && a.ticks === b.ticks && a.trace.length === b.trace.length;
+      const realCombatOk = descended && realDamage && interleaved && deterministic;
+      if (!realCombatOk) seededFailures += 1;
+      perEncounter[realCombatEncounter.id].multiBossRealCombat = realCombatOk;
+      perEncounter[realCombatEncounter.id].telegraphs = a.telegraphs;
+      perEncounter[realCombatEncounter.id].status = perEncounter[realCombatEncounter.id].status === 'PASS' && realCombatOk ? 'PASS' : 'FAIL';
     }
   }
 

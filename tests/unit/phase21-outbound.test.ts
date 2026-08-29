@@ -21,6 +21,10 @@ function bossReport(): Phase21OutboundReport {
           ['BossTelegraphStarted', 2, 'boss_ash_unit/phase_ash_2'],
           ['BossPhaseStarted', 47, 'boss_ash_unit/phase_ash_2'],
         ],
+        telegraphs: [
+          ['phase_ash_2', 2, 47],
+          ['phase_ash_3', 47, 92],
+        ],
       }),
       encounter_fixture_first: Object.freeze<EncounterOutbound>({
         objective: 'defeat_all',
@@ -64,6 +68,43 @@ describe('phase21 outbound presenter', () => {
       ['PhaseTransitionPlanned', 2, 'boss_ash_unit/phase_ash_1/phase_ash_2'],
       ['BossTelegraphStarted', 2, 'boss_ash_unit/phase_ash_2'],
       ['BossPhaseStarted', 47, 'boss_ash_unit/phase_ash_2'],
+    ]);
+  });
+
+  it('presents the telegraph countdowns against the snapshot tick', () => {
+    const rows = presentPhase21Report(bossReport());
+    const boss = rows.find((r) => r.encounterId === 'encounter_fixture_boss_object');
+    // Terminal snapshot at tick 455: both telegraphs resolved (countdown 0).
+    expect(boss?.telegraphs).toEqual([
+      Object.freeze({ phaseId: 'phase_ash_2', plannedTick: 2, resolveTick: 47, countdown: 0, resolved: true }),
+      Object.freeze({ phaseId: 'phase_ash_3', plannedTick: 47, resolveTick: 92, countdown: 0, resolved: true }),
+    ]);
+  });
+
+  it('shows a live countdown for a mid-flight telegraph', () => {
+    const report: Phase21OutboundReport = Object.freeze({
+      gate: 'G21-LIVE-BATTLE',
+      status: 'PASS',
+      drift: 0,
+      seededFailures: 0,
+      perEncounter: Object.freeze({
+        encounter_fixture_boss_duo: Object.freeze<EncounterOutbound>({
+          objective: 'defeat_boss',
+          terminal: null,
+          ticks: 60,
+          status: 'PASS',
+          hooks: [],
+          bossPhase: { phaseId: 'phase_duo_p2', visited: ['phase_duo_p1', 'phase_duo_p2'], transition: false },
+          phasesDescended: true,
+          telegraphs: [['phase_duo_p3', 55, 100]],
+        }),
+      }),
+    });
+    const rows = presentPhase21Report(report);
+    const row = rows[0];
+    if (row === undefined) throw new Error('no row');
+    expect(row.telegraphs).toEqual([
+      Object.freeze({ phaseId: 'phase_duo_p3', plannedTick: 55, resolveTick: 100, countdown: 40, resolved: false }),
     ]);
   });
 
@@ -114,6 +155,7 @@ describe('phase21 outbound presenter', () => {
       phaseTrail: [],
       hookTrace: [],
       phaseTrace: [],
+      telegraphs: [],
     }));
   });
 });
