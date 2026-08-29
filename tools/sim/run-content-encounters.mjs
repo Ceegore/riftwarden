@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 // Phase 21 §P21-T03 content-driven battle launcher. Reads the real encounter
-// content (content/source/world/encounters.json + units.json), turns each
-// encounter into a battle through the encounter adapter (objectives + boss
-// objects + policies), steps the battle to its terminal outcome, and verifies:
+// content (content/source/world/encounters.json + modifiers.json + units.json),
+// turns each encounter into a battle through the encounter adapter (objectives
+// + boss objects + policies + modifiers + reinforcement waves), steps the
+// battle to its terminal outcome, and verifies:
 //   - OBJECTIVE RESOLUTION: every content-derived mission objective completes
-//     (defeat_all / survive / defeat_boss / protect_object) or fails exactly as
-//     the mission mandates (protect_object forces DEFEAT on destruction);
+//     (defeat_all / survive / defeat_boss / protect_object) — the survive
+//     window must actually elapse (VICTORY survive_complete), and protect_object
+//     forces DEFEAT on destruction;
+//   - CONTENT WIRING: the derived modifiers are committed and the declared
+//     reinforcement waves spawn their referenced compositions at their ticks;
 //   - ZERO DRIFT: two identical runs of the same encounter are byte-identical
 //     (same snapshot checksum, same terminal phase/reason);
 //   - NO INVARIANT ERRORS across the whole launch.
@@ -33,8 +37,34 @@ function readEntities(rel) {
   return new Map(envelope.entities.map((e) => [e.id, e]));
 }
 
+/**
+ * §8 content spawnBodies resolver: a wave's spawnProfile is the referenced
+ * encounter id; its combat bodies come from that encounter's slots + the unit
+ * stats (maxLp milli→plain, collision radius) — the wave is fully content-driven.
+ */
+function spawnBodiesFor(encounters, units) {
+  return (wave) => {
+    const template = encounters.get(wave.spawnProfile);
+    if (template === undefined) throw new Error(`wave spawnProfile ${wave.spawnProfile} has no encounter`);
+    // wave.entityIds are the adapter's distinct per-wave spawn ids, committed
+    // in the fixed §8 spawn order (index-aligned with the template slots).
+    return Object.freeze(template.enemySlots.map((slot, index) => {
+      const unit = units.get(slot.unitId);
+      if (unit === undefined) throw new Error(`wave unit ${slot.unitId} has no unit content`);
+      return Object.freeze({
+        entityId: wave.entityIds[index],
+        lane: slot.lane,
+        x100: 6200 + index * 400,
+        radiusX100: unit.collisionRadiusX100,
+        maxLp: Math.max(1, Math.round(unit.baseStats.maxHp / 1000)),
+      });
+    }));
+  };
+}
+
 try {
   const encounters = readEntities('content/source/world/encounters.json');
+  const modifiers = readEntities('content/source/world/modifiers.json');
   const units = readEntities('content/source/units/units.json');
   const { migrate, primitives, x100, battleKernel, snapshot } = api;
 
@@ -63,8 +93,16 @@ try {
       enemySlotCount: encounter.enemySlots.length,
       bossUnitId: encounter.bossUnitId ?? null,
       survivalDurationSeconds: encounter.survivalDurationSeconds ?? null,
+      modifierIds: Object.freeze(encounter.modifierIds ?? []),
+      reinforcementWaves: Object.freeze(encounter.reinforcementWaves ?? []),
     });
   }
+
+  const launchDeps = Object.freeze({
+    modifiers: new Map([...modifiers.values()].map((m) => [m.id, m])),
+    encounters: new Map([...encounters.values()].map((e) => [e.id, { enemySlots: e.enemySlots }])),
+  });
+  const spawnBodies = spawnBodiesFor(launchDeps.encounters, units);
 
   function buildBattle(encounter, launch) {
     const player = mkEntity('unit_p', 'player', 'middle', 1800, 1000);
@@ -122,6 +160,9 @@ try {
       ...api.phase21Systems.createPhase21Systems({
         bossObjects: launch.bossObjects,
         objectives: launch.objectives,
+        modifiers: launch.modifiers,
+        waves: launch.waves,
+        spawnBodies,
       }),
     ]);
   }
@@ -132,7 +173,9 @@ try {
     let state = { ...battle, authoritativeStreams: random.streams.snapshotAuthoritative() };
     let ticks = 0;
     let terminal = null;
-    for (let t = 0; t < 500 && terminal === null; t++) {
+    // The survive fixture's window is 900 ticks; the cap must exceed the
+    // longest mission window plus the resolving window (default 1500).
+    for (let t = 0; t < 1500 && terminal === null; t++) {
       const r = battleKernel.stepBattle({ state, input, random, rules: {}, content: {}, systems });
       state = r.state;
       ticks += 1;
@@ -151,7 +194,7 @@ try {
   for (const encounter of encounters.values()) {
     let launch;
     try {
-      launch = api.encounterAdapter.buildEncounterLaunchConfig(sourceFor(encounter));
+      launch = api.encounterAdapter.buildEncounterLaunchConfig(sourceFor(encounter), launchDeps);
     } catch (error) {
       invariantErrors += 1;
       perEncounter[encounter.id] = { status: 'LAUNCH_ERROR', error: error?.message ?? String(error) };
@@ -177,16 +220,31 @@ try {
     const placedObjects = launch.bossObjects.filter((obj) => a.state.entities.some((e) => e.id === obj.entityId)).length;
     const objectsPlaced = placedObjects === launch.bossObjects.length;
     if (!objectsPlaced) seededFailures += 1;
+    // §7: the derived modifiers must be committed into the battle state.
+    const committedModifierIds = (a.state.modifiers ?? []).map((m) => m.id).sort();
+    const expectedModifierIds = [...launch.modifiers.map((m) => m.id)].sort();
+    const modifiersCommitted = JSON.stringify(committedModifierIds) === JSON.stringify(expectedModifierIds);
+    if (!modifiersCommitted) seededFailures += 1;
+    // §8: the declared reinforcement waves must enter the spawned-wave cursor
+    // (the battle ran past their scheduled ticks).
+    const expectedWaveIds = launch.waves.map((w) => w.id).sort();
+    const actualWaveIds = (a.state.spawnedWaves ?? []).filter((id) => expectedWaveIds.includes(id)).sort();
+    const wavesSpawned = JSON.stringify(actualWaveIds) === JSON.stringify(expectedWaveIds);
+    if (!wavesSpawned) seededFailures += 1;
+    const objectivesComplete = a.state.objectives?.every((o) => o.complete) ?? true;
+    if (!objectivesComplete) seededFailures += 1;
     perEncounter[encounter.id] = {
       objective: encounter.objective,
       objectivesSeeded: seeded,
       bossObjectsPlaced: objectsPlaced,
+      modifiersCommitted,
+      wavesSpawned,
       terminal: a.terminal,
       ticks: a.ticks,
-      objectivesComplete: a.state.objectives?.every((o) => o.complete) ?? true,
+      objectivesComplete,
       checksum: checksumA,
       drift: checksumA !== checksumB,
-      status: seeded && objectsPlaced ? 'PASS' : 'FAIL',
+      status: seeded && objectsPlaced && modifiersCommitted && wavesSpawned && objectivesComplete ? 'PASS' : 'FAIL',
     };
   }
 
@@ -194,7 +252,7 @@ try {
   // objective flips incomplete, and the forced DEFEAT fires (protect_object_failed).
   const protectEncounter = encounters.get('encounter_fixture_protect_object');
   if (protectEncounter !== undefined) {
-    const launch = api.encounterAdapter.buildEncounterLaunchConfig(sourceFor(protectEncounter));
+    const launch = api.encounterAdapter.buildEncounterLaunchConfig(sourceFor(protectEncounter), launchDeps);
     const protectedBody = launch.bossObjects[0];
     if (protectedBody !== undefined) {
       const battle = buildBattle(protectEncounter, launch);

@@ -1,7 +1,7 @@
 import { isTerminalBattlePhase } from '../core/battle-state.js';
 import type { KernelSystem, TickContext } from '../core/tick-context.js';
 import type { Objective } from './combat-objective.js';
-import { applyEventRecordProgress, createObjectiveCollection, evaluateSurvival } from './combat-objective.js';
+import { applyEventRecordProgress, createObjectiveCollection, evaluateSurvival, objectiveAllowsBattleEnd } from './combat-objective.js';
 
 /**
  * Phase 21 §8 objective resolution (T05). Runs in stage L and derives every
@@ -60,6 +60,18 @@ export function createObjectiveResolutionSystem(config: { readonly objectives?: 
         }
         return afterRecords;
       });
+      // §8 survive teeth: once the survival window elapses and every objective
+      // is complete, the battle must end VICTORY — the survival mandate wins
+      // over the generic end resolver (mirror of protect_object's forced DEFEAT,
+      // priority 150; the forcedOutcome outranks the endcap and the resolver at
+      // RESOLVING_END finalize).
+      const surviveDone = next.some((o) => o.kind === 'survive_until' && o.complete);
+      if (surviveDone && objectiveAllowsBattleEnd(next) && !isTerminalBattlePhase(context.state.phase.phase)) {
+        context.commands.push({ kind: 'force_battle_outcome', outcome: 'VICTORY', reason: 'survive_complete' });
+        if (context.state.phase.phase === 'ACTIVE' || context.state.phase.phase === 'PHASE_TRANSITION') {
+          context.commands.push({ kind: 'battle_transition', to: 'RESOLVING_END', priority: 150, reason: 'survive_complete' });
+        }
+      }
       if (objectives === undefined || JSON.stringify(next) !== JSON.stringify(seeded)) {
         context.commands.push({ kind: 'set_objectives', objectives: createObjectiveCollection(next) });
       }

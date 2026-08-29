@@ -2,7 +2,7 @@ import { fail } from "./diagnostic.mjs";
 export const PREFIXES = Object.freeze({
  unit: ["hero_","troop_","summon_","enemy_","boss_"], ability:["ability_","attack_"], status:["status_"],
  targetProfile:["target_"], encounter:["encounter_"], mission:["mission_"], event:["event_"], rewardTable:["reward_"],
- item:["item_","talisman_","kit_","banner_"], relic:["relic_"], screen:["screen_"], visual:["visual_"], audio:["audio_"]
+ item:["item_","talisman_","kit_","banner_"], relic:["relic_"], screen:["screen_"], visual:["visual_"], audio:["audio_"], modifier:["mod_"]
 });
 export function validateId(id, entityType, sourcePath) {
   if(typeof id!=="string" || !/^[a-z][a-z0-9_]*$/.test(id)) fail("P09_ID_FORMAT",`Invalid ID ${String(id)}`,{sourcePath,entityId:id});

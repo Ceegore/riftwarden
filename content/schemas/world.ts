@@ -27,6 +27,25 @@ export const BossObjectSourceSchema = z.object({
   radiusX100: z.number().int().positive(),
 }).strict();
 
+export const MODIFIER_HOOKS = [
+  "on_phase_entry",
+  "on_phase_exit",
+  "on_damage_applied",
+  "on_spawn",
+  "on_battle_start",
+  "on_entity_defeated",
+] as const;
+
+/** §7: the content modifier surface mirrors `ModifierDefinition` 1:1 (stable id, preview key, hooks, incompatibility tags, deterministic integer params). */
+export const ModifierSourceSchema = z.object({
+  id: ContentIdSchema,
+  /** UI disclosure key; the sim's §7 `previewKey` (id-form) is derived as `preview_${id}` (the trace/mass-sim convention). */
+  previewDisclosureKey: LocalizationKeySchema,
+  hooks: z.array(z.enum(MODIFIER_HOOKS)).min(1),
+  incompatibilityTags: z.array(z.string().regex(/^[a-z][a-z0-9_]*(?:[._][a-z0-9_]+)*$/)),
+  params: z.record(z.string().regex(/^[a-z][a-z0-9_]*(?:[._][a-z0-9_]+)*$/), z.number().int()),
+}).strict();
+
 export const EncounterSourceSchema = z.object({
   id: ContentIdSchema,
   regionId: ContentIdSchema,

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "entityType": "modifier",
+  "entities": [
+    {
+      "id": "mod_fixture_frenzy",
+      "previewDisclosureKey": "content.modifier.mod_fixture_frenzy.preview",
+      "hooks": [
+        "on_battle_start"
+      ],
+      "incompatibilityTags": [],
+      "params": {
+        "attack_speed_bps": 12000
+      }
+    },
+    {
+      "id": "mod_fixture_vanguard",
+      "previewDisclosureKey": "content.modifier.mod_fixture_vanguard.preview",
+      "hooks": [
+        "on_spawn"
+      ],
+      "incompatibilityTags": [
+        "spawn_buff"
+      ],
+      "params": {
+        "max_hp_bps": 12500
+      }
+    }
+  ]
+}

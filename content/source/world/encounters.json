@@ -14,7 +14,9 @@
           "eliteId": null
         }
       ],
-      "modifierIds": [],
+      "modifierIds": [
+        "mod_fixture_frenzy"
+      ],
       "reinforcementWaves": [],
       "objective": "defeat_all",
       "bossUnitId": null,
@@ -81,7 +83,12 @@
         }
       ],
       "modifierIds": [],
-      "reinforcementWaves": [],
+      "reinforcementWaves": [
+        {
+          "atSeconds": 10,
+          "encounterId": "encounter_fixture_first"
+        }
+      ],
       "objective": "survive",
       "bossUnitId": null,
       "survivalDurationSeconds": 30,
@@ -134,7 +141,7 @@
           "sourceId": "content_ash",
           "slotId": "boss_slot_1",
           "lane": "top",
-          "x100": 5200,
+          "x100": 7600,
           "targetable": true,
           "objectiveLink": null,
           "damagePolicy": "shield_only",

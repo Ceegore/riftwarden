@@ -5,6 +5,8 @@ import type { KernelSystem, TickContext } from '../core/tick-context.js';
 import { mulDivRound } from '../math/fixed-math.js';
 import { GAME_RULES } from '../../rules/game-rules.js';
 import { TECHNICAL_RULES } from '../../rules/technical-rules.js';
+import type { Objective } from '../objectives/combat-objective.js';
+import { objectiveAllowsBattleEnd } from '../objectives/combat-objective.js';
 import { aggregateShields } from './shield-ledger.js';
 
 /**
@@ -117,6 +119,8 @@ export function resolveBattleEnd(state: {
   readonly bossDamageDealt?: Readonly<{ player: number; enemy: number }>;
   /** Mission-forced terminal outcome (protect_object failure, §P21-T03). */
   readonly forcedOutcome?: Readonly<{ outcome: 'VICTORY' | 'DEFEAT' | 'DRAW_ABORT'; reason: string }>;
+  /** Mission objectives (§8): the battle may not end while any is incomplete. */
+  readonly objectives?: readonly Objective[];
 }, config: BattleEndConfig, resolvingEndTicks: number): BattleEndDecision {
   const tick = state.tick;
   if (state.phase.phase === 'RESOLVING_END') {
@@ -140,9 +144,14 @@ export function resolveBattleEnd(state: {
   const softLimit = softLimitTicks(config);
   const playerAlive = sideHasCombatCapable(state.entities, 'player');
   const enemyAlive = sideHasCombatCapable(state.entities, 'enemy');
+  // §8: a mission in progress (survive_until window, incomplete kill count) must
+  // not end early by elimination or time limit — the battle continues until
+  // every objective is complete. A defeated player side is always terminal
+  // (the mission failed), and mission-forced outcomes win via `forcedOutcome`.
+  const missionDone = state.objectives === undefined || objectiveAllowsBattleEnd(state.objectives);
   if (!playerAlive && !enemyAlive) return { action: 'request_end', reason: 'mutual_extermination' };
   if (!playerAlive) return { action: 'request_end', reason: 'side_eliminated' };
-  if (!enemyAlive) return { action: 'request_end', reason: 'side_eliminated' };
+  if (!enemyAlive) return missionDone ? { action: 'request_end', reason: 'side_eliminated' } : { action: 'none' };
   // Rift collapse damage: within the 450-tick window (strictly inside — the
   // window-end tick requests RESOLVING_END instead), every 90 ticks.
   const collapseTick = tick - softLimit;
@@ -150,7 +159,7 @@ export function resolveBattleEnd(state: {
     return { action: 'collapse_damage' };
   }
   if (tick >= softLimit + COLLAPSE_WINDOW_TICKS) {
-    return { action: 'request_end', reason: 'time_limit' };
+    return missionDone ? { action: 'request_end', reason: 'time_limit' } : { action: 'none' };
   }
   return { action: 'none' };
 }

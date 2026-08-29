@@ -2,6 +2,11 @@ import { KernelInvariantError } from '../core/invariant-error.js';
 import { numberSecondsToTicks } from '../math/time-and-speed.js';
 import type { Objective } from '../objectives/combat-objective.js';
 import { createObjectiveCollection } from '../objectives/combat-objective.js';
+import type { ModifierDefinition, ModifierHook } from '../world/modifier-system.js';
+import { validateModifier } from '../world/modifier-system.js';
+import type { Wave } from '../world/reinforcement-system.js';
+import { validateWave } from '../world/reinforcement-system.js';
+import type { Lane } from '../geometry/x100.js';
 import type { BossObjectContent, BossObjectSpec, DamagePolicy } from './boss-object-manager.js';
 import { validateBossObjectContent } from './boss-object-manager.js';
 
@@ -98,6 +103,74 @@ export interface EncounterObjectiveSource {
   readonly bossUnitId: string | null;
   /** §P21-T03: survival duration in seconds for `survive` missions (`survive_until` required, converted to ticks). */
   readonly survivalDurationSeconds: number | null;
+  /** §7: content modifier ids (`EncounterSourceSchema.modifierIds`), resolved against the modifier registry. */
+  readonly modifierIds: readonly string[];
+  /** §8: reinforcement waves (`EncounterSourceSchema.reinforcementWaves`), resolved against the encounter registry. */
+  readonly reinforcementWaves: readonly EncounterWaveSource[];
+}
+
+/** §8: one reinforcement-wave declaration (`EncounterSourceSchema.reinforcementWaves` element). */
+export interface EncounterWaveSource {
+  readonly atSeconds: number;
+  readonly encounterId: string;
+}
+
+/** The minimal referenced-encounter shape the wave derivation reads (`enemySlots` composition). */
+export interface EncounterSlotProfile {
+  readonly enemySlots: readonly { readonly unitId: string; readonly lane: Lane }[];
+}
+
+/** The content modifier surface (mirrors ModifierSourceSchema). */
+export interface ContentModifierSource {
+  readonly id: string;
+  readonly previewDisclosureKey: string;
+  readonly hooks: readonly ModifierHook[];
+  readonly incompatibilityTags: readonly string[];
+  readonly params: Readonly<Record<string, number>>;
+}
+
+// §7: resolve content modifier ids to validated definitions (preview key derived as `preview_${id}`; unknown ids are content errors).
+export function modifiersFromEncounterContent(
+  ids: readonly string[],
+  registry: ReadonlyMap<string, ContentModifierSource>,
+): readonly ModifierDefinition[] {
+  return Object.freeze(ids.map((id) => {
+    const entry = registry.get(id);
+    if (entry === undefined) throw new KernelInvariantError('P21_MODIFIER_INVALID', { reason: 'unknown-modifier-id', modifierId: id });
+    const def: ModifierDefinition = Object.freeze({
+      id: entry.id,
+      previewKey: `preview_${entry.id}`,
+      hooks: Object.freeze([...entry.hooks]),
+      incompatibilityTags: Object.freeze([...entry.incompatibilityTags]),
+      params: Object.freeze({ ...entry.params }),
+    });
+    validateModifier(def);
+    return def;
+  }));
+}
+
+// §8: derive the sim `Wave`s an encounter's reinforcement declarations mandate (missing/empty referenced encounters are content errors).
+export function wavesFromEncounterContent(
+  waves: readonly EncounterWaveSource[],
+  encounters: ReadonlyMap<string, EncounterSlotProfile>,
+  sourceEncounterId: string,
+): readonly Wave[] {
+  return Object.freeze(waves.map((w, index) => {
+    const profile = encounters.get(w.encounterId);
+    if (profile === undefined) throw new KernelInvariantError('P21_WAVE_INVALID', { reason: 'unknown-wave-encounter', encounterId: w.encounterId, sourceEncounterId });
+    if (profile.enemySlots.length === 0) throw new KernelInvariantError('P21_WAVE_INVALID', { reason: 'empty-wave-encounter', encounterId: w.encounterId });
+    // Distinct spawn ids: a defeated base-body lingers (LP 0) — reusing the slot unit id would collide (P14_DUPLICATE_ENTITY).
+    const wave: Wave = Object.freeze({
+      id: `${sourceEncounterId}_wave_${String(index)}`,
+      scheduledTick: numberSecondsToTicks(w.atSeconds).ticks,
+      side: 'enemy',
+      entityIds: Object.freeze(profile.enemySlots.map((slot, slotIndex) => `${sourceEncounterId}_wave_${String(index)}_${slot.unitId}_${String(slotIndex)}`)),
+      spawnProfile: w.encounterId,
+      capPolicy: 'BLOCK',
+    });
+    validateWave(wave);
+    return wave;
+  }));
 }
 
 const EMPTY_OBJECTIVES: readonly Objective[] = Object.freeze([]);
@@ -192,15 +265,27 @@ export interface EncounterLaunchConfig {
   readonly bossObjects: readonly BossObjectContent[];
   readonly bossObjectPolicies: ReadonlyMap<string, DamagePolicy>;
   readonly blockedStatusTargets: ReadonlySet<string>;
+  /** §7: resolved encounter modifiers committed at battle start. */
+  readonly modifiers: readonly ModifierDefinition[];
+  /** §8: resolved reinforcement waves committed by the stage-K system. */
+  readonly waves: readonly Wave[];
+}
+
+/** Content registries the launch derivation resolves ids against (pure, no fs). */
+export interface EncounterLaunchDeps {
+  readonly modifiers: ReadonlyMap<string, ContentModifierSource>;
+  readonly encounters: ReadonlyMap<string, EncounterSlotProfile>;
 }
 
 /** Assembles the full content→launch config for an encounter (§P21-T03). */
-export function buildEncounterLaunchConfig(source: EncounterObjectiveSource): EncounterLaunchConfig {
+export function buildEncounterLaunchConfig(source: EncounterObjectiveSource, deps: EncounterLaunchDeps): EncounterLaunchConfig {
   return Object.freeze({
     objectives: objectivesFromEncounterContent(source),
     bossObjects: bossObjectsFromContent(source.bossObjects),
     bossObjectPolicies: bossObjectPoliciesFromContent(source.bossObjects),
     blockedStatusTargets: blockedStatusTargetsFromContent(source.bossObjects),
+    modifiers: modifiersFromEncounterContent(source.modifierIds, deps.modifiers),
+    waves: wavesFromEncounterContent(source.reinforcementWaves, deps.encounters, source.encounterId),
   });
 }
 

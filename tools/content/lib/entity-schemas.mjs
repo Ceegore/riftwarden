@@ -187,6 +187,14 @@ export const ENTITY_SCHEMAS = Object.freeze({
     allowedModes: z.array(z.enum(["campaign", "campaign_replay", "ascension", "beyond", "endless"])).min(1),
   }).strict(),
 
+  modifier: z.object({
+    id: ContentId,
+    previewDisclosureKey: LocalizationKey,
+    hooks: z.array(z.enum(["on_phase_entry", "on_phase_exit", "on_damage_applied", "on_spawn", "on_battle_start", "on_entity_defeated"])).min(1),
+    incompatibilityTags: z.array(z.string().regex(/^[a-z][a-z0-9_]*(?:[._][a-z0-9_]+)*$/)),
+    params: z.record(z.string().regex(/^[a-z][a-z0-9_]*(?:[._][a-z0-9_]+)*$/), z.number().int()),
+  }).strict(),
+
   mission: z.object({
     id: ContentId,
     act: z.number().int().min(1).max(4),

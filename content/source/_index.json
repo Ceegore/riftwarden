@@ -28,6 +28,10 @@
       "entityType": "encounter"
     },
     {
+      "path": "world/modifiers.json",
+      "entityType": "modifier"
+    },
+    {
       "path": "world/missions.json",
       "entityType": "mission"
     },

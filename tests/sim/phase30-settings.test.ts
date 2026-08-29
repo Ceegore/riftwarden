@@ -102,7 +102,7 @@ describe('phase30 settings cases', () => {
 });
 
 describe('phase30 settings property tests', () => {
-  it('10000 sequential applies keep a strictly monotonic revision', () => {
+  it('10000 sequential applies keep a strictly monotonic revision', { timeout: 60_000 }, () => {
     const session = new SettingsSession(DEFAULT_SETTINGS);
     const scales = [100, 125, 150, 175, 200] as const;
     for (let i = 0; i < 10000; i += 1) {

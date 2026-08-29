@@ -173,6 +173,18 @@ test('content-driven battle launcher derives objectives via the adapter and reso
   assert.equal(byId['encounter_fixture_survive'].objective, 'survive');
   assert.equal(byId['encounter_fixture_boss_object'].objective, 'defeat_boss');
   assert.equal(byId['encounter_fixture_protect_object'].objective, 'protect_object');
+  // §7/§8 wiring: modifiers are committed and declared waves enter the cursor.
+  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object']) {
+    assert.equal(byId[key].modifiersCommitted, true, key);
+    assert.equal(byId[key].wavesSpawned, true, key);
+  }
+  // §8: every mission objective must actually complete (the gate is strict).
+  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object']) {
+    assert.equal(byId[key].objectivesComplete, true, key);
+  }
+  // The survive window must actually elapse: terminal is VICTORY survive_complete.
+  assert.equal(byId['encounter_fixture_survive'].terminal.reason, 'survive_complete');
+  assert.equal(byId['encounter_fixture_survive'].terminal.phase, 'VICTORY');
   // protect_object teeth: the enemy destroys the protected body → forced DEFEAT.
   assert.equal(byId['encounter_fixture_protect_object'].teeth, true);
 });

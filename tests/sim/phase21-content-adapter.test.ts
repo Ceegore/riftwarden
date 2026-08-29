@@ -7,7 +7,7 @@ import { stepBattle } from '../../src/game/sim/core/battle-kernel.js';
 import { createPhase17Systems } from '../../src/game/sim/core/phase17-systems.js';
 import { createPhase21Systems } from '../../src/game/sim/core/phase21-systems.js';
 import { createSnapshot } from '../../src/game/sim/snapshot/snapshot.js';
-import { bossObjectsFromContent, bossObjectPoliciesFromContent, blockedStatusTargetsFromContent, buildEncounterLaunchConfig, objectivesFromEncounterContent, type ContentBossObjectEntry, type EncounterObjectiveSource } from '../../src/game/sim/boss/encounter-adapter.js';
+import { bossObjectsFromContent, bossObjectPoliciesFromContent, blockedStatusTargetsFromContent, buildEncounterLaunchConfig, modifiersFromEncounterContent, objectivesFromEncounterContent, wavesFromEncounterContent, type ContentBossObjectEntry, type ContentModifierSource, type EncounterLaunchDeps, type EncounterObjectiveSource, type EncounterSlotProfile } from '../../src/game/sim/boss/encounter-adapter.js';
 import { battle, entity, randomSession, tick } from './test-helpers.js';
 import { migrateEntity } from '../../src/game/sim/core/migrate.js';
 import type { TickInput } from '../../src/game/sim/core/tick-input.js';
@@ -36,23 +36,7 @@ function bossObjectEncounter(): { entries: readonly ContentBossObjectEntry[] } {
   return { entries: parsed.bossObjects };
 }
 
-function protectEncounterSource(): EncounterObjectiveSource {
-  const raw = readFileSync(path.join(here, '../../content/source/world/encounters.json'), 'utf8');
-  const envelope = JSON.parse(raw) as { entities: readonly { id?: string }[] };
-  const entity = envelope.entities.find((e) => e.id === 'encounter_fixture_protect_object');
-  expect(entity).toBeDefined();
-  const parsed = EncounterSourceSchema.parse(entity);
-  return {
-    encounterId: parsed.id,
-    objective: parsed.objective,
-    bossObjects: parsed.bossObjects,
-    enemySlotCount: parsed.enemySlots.length,
-    bossUnitId: parsed.bossUnitId,
-    survivalDurationSeconds: parsed.survivalDurationSeconds,
-  };
-}
-
-function fixtureSource(id: string): EncounterObjectiveSource {
+function sourceOf(id: string): EncounterObjectiveSource {
   const raw = readFileSync(path.join(here, '../../content/source/world/encounters.json'), 'utf8');
   const envelope = JSON.parse(raw) as { entities: readonly { id?: string }[] };
   const entity = envelope.entities.find((e) => e.id === id);
@@ -65,7 +49,35 @@ function fixtureSource(id: string): EncounterObjectiveSource {
     enemySlotCount: parsed.enemySlots.length,
     bossUnitId: parsed.bossUnitId,
     survivalDurationSeconds: parsed.survivalDurationSeconds,
+    modifierIds: parsed.modifierIds,
+    reinforcementWaves: parsed.reinforcementWaves,
   };
+}
+
+function protectEncounterSource(): EncounterObjectiveSource {
+  return sourceOf('encounter_fixture_protect_object');
+}
+
+function fixtureSource(id: string): EncounterObjectiveSource {
+  return sourceOf(id);
+}
+
+/** Content modifier registry (real modifiers.json) for launch derivation tests. */
+function modifierRegistry(): ReadonlyMap<string, ContentModifierSource> {
+  const raw = readFileSync(path.join(here, '../../content/source/world/modifiers.json'), 'utf8');
+  const envelope = JSON.parse(raw) as { entities: readonly ContentModifierSource[] };
+  return new Map(envelope.entities.map((m) => [m.id, m] as const));
+}
+
+/** Encounter slot-profile registry (real encounters.json) for wave derivation tests. */
+function encounterRegistry(): ReadonlyMap<string, EncounterSlotProfile> {
+  const raw = readFileSync(path.join(here, '../../content/source/world/encounters.json'), 'utf8');
+  const envelope = JSON.parse(raw) as { entities: readonly { id: string; enemySlots: readonly { unitId: string; lane: 'top' | 'middle' | 'bottom' }[] }[] };
+  return new Map(envelope.entities.map((e) => [e.id, { enemySlots: e.enemySlots }] as const));
+}
+
+function deps(): EncounterLaunchDeps {
+  return Object.freeze({ modifiers: modifierRegistry(), encounters: encounterRegistry() });
 }
 
 describe('P21 content boss-object adapter (§6)', () => {
@@ -122,6 +134,64 @@ describe('P21 content boss-object adapter (§6)', () => {
     ]);
   });
 
+  it('derives modifier definitions from modifierIds (preview key derived, frozen, validated)', () => {
+    const source = fixtureSource('encounter_fixture_first');
+    expect(source.modifierIds).toEqual(['mod_fixture_frenzy']);
+    const modifiers = modifiersFromEncounterContent(source.modifierIds, modifierRegistry());
+    expect(modifiers).toHaveLength(1);
+    expect(modifiers[0]).toEqual({
+      id: 'mod_fixture_frenzy',
+      previewKey: 'preview_mod_fixture_frenzy',
+      hooks: ['on_battle_start'],
+      incompatibilityTags: [],
+      params: { attack_speed_bps: 12000 },
+    });
+    expect(Object.isFrozen(modifiers)).toBe(true);
+    expect(Object.isFrozen(modifiers[0])).toBe(true);
+  });
+
+  it('an unknown modifier id is a content error', () => {
+    let caught: unknown = null;
+    try {
+      modifiersFromEncounterContent(['mod_fixture_missing'], modifierRegistry());
+    } catch (error) {
+      caught = error;
+    }
+    expect(caught).toBeInstanceOf(Error);
+    expect((caught as Error).message).toBe('P21_MODIFIER_INVALID');
+    expect((caught as { details?: { reason?: string } }).details?.reason).toBe('unknown-modifier-id');
+  });
+
+  it('derives reinforcement waves from reinforcementWaves (scheduled ticks, fixed spawn order)', () => {
+    const source = fixtureSource('encounter_fixture_survive');
+    expect(source.reinforcementWaves).toEqual([{ atSeconds: 10, encounterId: 'encounter_fixture_first' }]);
+    const waves = wavesFromEncounterContent(source.reinforcementWaves, encounterRegistry(), source.encounterId);
+    expect(waves).toEqual([
+      Object.freeze({
+        id: 'encounter_fixture_survive_wave_0',
+        scheduledTick: 300,
+        side: 'enemy',
+        entityIds: ['encounter_fixture_survive_wave_0_enemy_fixture_echo_0'],
+        spawnProfile: 'encounter_fixture_first',
+        capPolicy: 'BLOCK',
+      }),
+    ]);
+    expect(Object.isFrozen(waves)).toBe(true);
+  });
+
+  it('a wave referencing a missing encounter is a content error', () => {
+    const source = fixtureSource('encounter_fixture_survive');
+    let caught: unknown = null;
+    try {
+      wavesFromEncounterContent([{ atSeconds: 5, encounterId: 'encounter_fixture_missing' }], encounterRegistry(), source.encounterId);
+    } catch (error) {
+      caught = error;
+    }
+    expect(caught).toBeInstanceOf(Error);
+    expect((caught as Error).message).toBe('P21_WAVE_INVALID');
+    expect((caught as { details?: { reason?: string } }).details?.reason).toBe('unknown-wave-encounter');
+  });
+
   it('a mission kind missing its required field is a content error', () => {
     const survive = fixtureSource('encounter_fixture_survive');
     let caught: unknown = null;
@@ -148,7 +218,7 @@ describe('P21 content boss-object adapter (§6)', () => {
 
   it('buildEncounterLaunchConfig assembles objectives + every boss-object surface in one call', () => {
     const source = fixtureSource('encounter_fixture_protect_object');
-    const config = buildEncounterLaunchConfig(source);
+    const config = buildEncounterLaunchConfig(source, deps());
     expect(config.objectives).toEqual([
       Object.freeze({ id: 'obj_protect_heart', kind: 'protect_object', targetId: 'obj_ash_heart', required: 1, progress: 0, complete: false }),
     ]);

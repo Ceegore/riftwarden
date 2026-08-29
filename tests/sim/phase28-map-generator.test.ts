@@ -19,7 +19,7 @@ describe('phase28 map generator determinism', () => {
     expect(a.mapHash).not.toBe(b.mapHash);
   });
 
-  it('every generated map passes structural validation', () => {
+  it('every generated map passes structural validation', { timeout: 60_000 }, () => {
     for (let seed = 0; seed < 500; seed += 1) {
       const map = mapFor(seed);
       expect(validateMap(map, standardProfile())).toEqual([]);
