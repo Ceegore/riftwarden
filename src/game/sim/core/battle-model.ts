@@ -13,7 +13,7 @@ import type { EventType } from '../events/event-spec.js';
 import type { TempEntity } from '../summon/temporary-entity.js';
 import type { SynergyTier } from '../synergy/synergy-counter.js';
 import type { BossPhaseSnapshot } from '../boss/boss-phase-system.js';
-import type { ModifierDefinition } from '../world/modifier-system.js';
+import type { ModifierDefinition, ModifierHookFiring } from '../world/modifier-system.js';
 import type { Hazard } from '../world/hazard-system.js';
 import type { Objective } from '../objectives/combat-objective.js';
 
@@ -85,9 +85,11 @@ export interface BattleModel {
   // state, visited phases and the committed invulnerability window. Absent on
   // non-boss (Phase 14–20) fixtures.
   readonly bossPhase?: BossPhaseSnapshot;
-  // Phase 21 additive encounter fields (§7/§8): active modifiers, planned and
-  // active hazards, objective progress and the reinforcement wave cursor.
+  // Phase 21 additive encounter fields (§7/§8): active modifiers (with the
+  // canonical record of every hook firing), planned and active hazards,
+  // objective progress and the reinforcement wave cursor.
   readonly modifiers?: readonly ModifierDefinition[];
+  readonly modifierHookLog?: readonly ModifierHookFiring[];
   readonly hazards?: readonly Hazard[];
   readonly objectives?: readonly Objective[];
   readonly spawnedWaves?: readonly string[];

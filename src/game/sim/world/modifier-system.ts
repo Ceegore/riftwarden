@@ -1,5 +1,6 @@
 import { KernelInvariantError } from '../core/invariant-error.js';
 import { asciiCompare } from '../core/primitives.js';
+import { mulDivRound } from '../math/fixed-math.js';
 
 /**
  * Phase 21 §7 modifier authority (T04). All 18 release modifiers are visible
@@ -50,6 +51,12 @@ function assertId(value: string, field: string): void {
   if (!ID.test(value)) throw new KernelInvariantError('P21_MODIFIER_INVALID', { field, value });
 }
 
+function assertTick(value: number, field: string): void {
+  if (!Number.isSafeInteger(value) || value < 0 || Object.is(value, -0)) {
+    throw new KernelInvariantError('P21_MODIFIER_INVALID', { field, value });
+  }
+}
+
 /** Validates one modifier definition (§7). */
 export function validateModifier(def: ModifierDefinition): void {
   assertId(def.id, 'id');
@@ -89,6 +96,108 @@ export function createModifierCollection(defs: readonly ModifierDefinition[]): r
     ids.add(d.id);
     return Object.freeze({ ...d, hooks: Object.freeze([...d.hooks]), incompatibilityTags: Object.freeze([...d.incompatibilityTags]), params: Object.freeze({ ...d.params }) });
   }));
+}
+
+/**
+ * §7 one recorded hook firing (canonical, deterministic). `params` are the
+ * §7-announced parameters of the committed definition — the hook's observable
+ * effect surface — copied frozen at firing time.
+ */
+export interface ModifierHookFiring {
+  readonly modifierId: string;
+  readonly hook: ModifierHook;
+  readonly atTick: number;
+  readonly params: Readonly<Record<string, number>>;
+}
+
+/**
+ * Canonical modifier-hook log (§7 snapshot projection): validates every
+ * firing, rejects duplicate (modifierId, hook, atTick) keys and returns a
+ * deep-frozen set ordered by (atTick, modifierId, hook).
+ */
+export function createModifierHookCollection(firings: readonly ModifierHookFiring[]): readonly ModifierHookFiring[] {
+  const keys = new Set<string>();
+  return Object.freeze([...firings]
+    .sort((a, b) => a.atTick - b.atTick || asciiCompare(a.modifierId, b.modifierId) || asciiCompare(a.hook, b.hook))
+    .map((f) => {
+      assertId(f.modifierId, 'modifierId');
+      if (!(MODIFIER_HOOKS as readonly string[]).includes(f.hook)) throw new KernelInvariantError('P21_MODIFIER_INVALID', { field: 'hook', hook: f.hook });
+      assertTick(f.atTick, 'atTick');
+      for (const [key, value] of Object.entries(f.params)) {
+        if (!TAG.test(key) || !Number.isSafeInteger(value) || Object.is(value, -0)) {
+          throw new KernelInvariantError('P21_MODIFIER_INVALID', { field: 'params', key, value });
+        }
+      }
+      const key = `${f.modifierId}:${f.hook}:${String(f.atTick)}`;
+      if (keys.has(key)) throw new KernelInvariantError('P21_MODIFIER_INVALID', { reason: 'duplicate-firing', key });
+      keys.add(key);
+      return Object.freeze({ ...f, params: Object.freeze({ ...f.params }) });
+    }));
+}
+
+/** §7 canonical event types that drive the response hooks. */
+const HOOK_EVENT_TYPES: Readonly<Record<string, ModifierHook>> = Object.freeze({
+  Defeated: 'on_entity_defeated',
+  DamageApplied: 'on_damage_applied',
+  ReinforcementSpawned: 'on_spawn',
+  BossPhaseStarted: 'on_phase_entry',
+  BossPhaseCompleted: 'on_phase_exit',
+});
+
+/** §7 battle-start hooks: every committed modifier declaring `on_battle_start` fires once at battle start. */
+export function battleStartHooks(defs: readonly ModifierDefinition[], atTick: number): readonly ModifierHookFiring[] {
+  return Object.freeze(defs
+    .filter((d) => d.hooks.includes('on_battle_start'))
+    .map((d) => Object.freeze({ modifierId: d.id, hook: 'on_battle_start' as const, atTick, params: Object.freeze({ ...d.params }) })));
+}
+
+/**
+ * §7 event-driven hooks: responds to the canonical previous-tick event records
+ * (the same records the objective resolver folds) — one firing per
+ * (modifier, hook) per tick, mirroring how the objective system derives
+ * progress. The firing carries the committed definition's params so the launch
+ * report can prove which §7-announced effect each hook applied.
+ */
+export function evaluateModifierHooks(
+  defs: readonly ModifierDefinition[],
+  records: readonly { readonly type: string }[],
+  atTick: number,
+): readonly ModifierHookFiring[] {
+  const seen = new Set<string>();
+  const out: ModifierHookFiring[] = [];
+  for (const record of records) {
+    const hook = HOOK_EVENT_TYPES[record.type];
+    if (hook === undefined) continue;
+    for (const def of defs) {
+      if (!def.hooks.includes(hook)) continue;
+      const key = `${def.id}:${hook}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(Object.freeze({ modifierId: def.id, hook, atTick, params: Object.freeze({ ...def.params }) }));
+    }
+  }
+  return Object.freeze(out.sort((a, b) => asciiCompare(a.modifierId, b.modifierId) || asciiCompare(a.hook, b.hook)));
+}
+
+/**
+ * §7 canonical hook effect: the composite basis-point scale a modifier set
+ * applies for one hook parameter (10000 = no effect; multiple modifiers
+ * compose multiplicatively, round-half-away-from-zero at every step).
+ */
+export function hookBpsScale(defs: readonly ModifierDefinition[], hook: ModifierHook, paramKey: string): number {
+  let scale = 10000;
+  for (const def of defs) {
+    if (!def.hooks.includes(hook)) continue;
+    const value = def.params[paramKey];
+    if (value === undefined) continue;
+    scale = mulDivRound(scale, value, 10000);
+  }
+  return scale;
+}
+
+/** §7 applies a basis-point scale to a deterministic integer (identity when unscaled). */
+export function applyHookBps(value: number, scaleBps: number): number {
+  return scaleBps === 10000 ? value : mulDivRound(value, scaleBps, 10000);
 }
 
 /**

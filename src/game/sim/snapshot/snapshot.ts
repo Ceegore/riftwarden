@@ -9,7 +9,7 @@ import { canonicalizeEffectBatch } from '../ability/effect-executor.js';
 import { createTemporaryCollection } from '../summon/temporary-registry.js';
 import { canonicalizeSynergyTiers } from '../synergy/synergy-counter.js';
 import { TECHNICAL_RULES } from '../../rules/technical-rules.js';
-import { createModifierCollection } from '../world/modifier-system.js';
+import { createModifierCollection, createModifierHookCollection } from '../world/modifier-system.js';
 import { createHazardCollection } from '../world/hazard-system.js';
 import { createObjectiveCollection } from '../objectives/combat-objective.js';
 import { canonicalUtf8 } from './canonical-json.js';
@@ -35,6 +35,7 @@ export function snapshotPayload(state:BattleModel):Omit<BattleSnapshotData,'chec
   if(state.synergyTiers!==undefined)extras['synergyTiers']=canonicalizeSynergyTiers(state.synergyTiers);
   if(state.bossPhase!==undefined)extras['bossPhase']=Object.freeze({entityId:state.bossPhase.entityId,bossId:state.bossPhase.bossId,phaseId:state.bossPhase.phaseId,transition:state.bossPhase.transition===null?null:Object.freeze({from:state.bossPhase.transition.from,to:state.bossPhase.transition.to,startTick:state.bossPhase.transition.startTick,commitTick:state.bossPhase.transition.commitTick}),visited:Object.freeze([...state.bossPhase.visited].sort(asciiCompare)),invulnerableUntilTick:state.bossPhase.invulnerableUntilTick});
   if(state.modifiers!==undefined)extras['modifiers']=createModifierCollection(state.modifiers);
+  if(state.modifierHookLog!==undefined)extras['modifierHookLog']=createModifierHookCollection(state.modifierHookLog);
   if(state.hazards!==undefined)extras['hazards']=createHazardCollection(state.hazards);
   if(state.objectives!==undefined)extras['objectives']=createObjectiveCollection(state.objectives);
   if(state.spawnedWaves!==undefined)extras['spawnedWaves']=Object.freeze([...state.spawnedWaves].sort(asciiCompare));

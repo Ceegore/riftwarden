@@ -136,9 +136,9 @@ describe('P21 content boss-object adapter (§6)', () => {
 
   it('derives modifier definitions from modifierIds (preview key derived, frozen, validated)', () => {
     const source = fixtureSource('encounter_fixture_first');
-    expect(source.modifierIds).toEqual(['mod_fixture_frenzy']);
+    expect(source.modifierIds).toEqual(['mod_fixture_frenzy', 'mod_fixture_onslaught']);
     const modifiers = modifiersFromEncounterContent(source.modifierIds, modifierRegistry());
-    expect(modifiers).toHaveLength(1);
+    expect(modifiers).toHaveLength(2);
     expect(modifiers[0]).toEqual({
       id: 'mod_fixture_frenzy',
       previewKey: 'preview_mod_fixture_frenzy',
@@ -146,8 +146,27 @@ describe('P21 content boss-object adapter (§6)', () => {
       incompatibilityTags: [],
       params: { attack_speed_bps: 12000 },
     });
+    expect(modifiers[1]).toEqual({
+      id: 'mod_fixture_onslaught',
+      previewKey: 'preview_mod_fixture_onslaught',
+      hooks: ['on_damage_applied'],
+      incompatibilityTags: [],
+      params: { damage_bps: 12500 },
+    });
     expect(Object.isFrozen(modifiers)).toBe(true);
     expect(Object.isFrozen(modifiers[0])).toBe(true);
+    expect(Object.isFrozen(modifiers[1])).toBe(true);
+  });
+
+  it('resolves the content hooks (on_spawn / on_damage_applied) through the launch config', () => {
+    const survive = buildEncounterLaunchConfig(fixtureSource('encounter_fixture_survive'), deps());
+    const vanguard = survive.modifiers.find((m) => m.id === 'mod_fixture_vanguard');
+    expect(vanguard?.hooks).toEqual(['on_spawn']);
+    expect(vanguard?.params).toEqual({ max_hp_bps: 12500 });
+    const first = buildEncounterLaunchConfig(fixtureSource('encounter_fixture_first'), deps());
+    const onslaught = first.modifiers.find((m) => m.id === 'mod_fixture_onslaught');
+    expect(onslaught?.hooks).toEqual(['on_damage_applied']);
+    expect(onslaught?.params).toEqual({ damage_bps: 12500 });
   });
 
   it('an unknown modifier id is a content error', () => {

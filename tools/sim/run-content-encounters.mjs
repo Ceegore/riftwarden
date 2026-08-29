@@ -225,6 +225,13 @@ try {
     const expectedModifierIds = [...launch.modifiers.map((m) => m.id)].sort();
     const modifiersCommitted = JSON.stringify(committedModifierIds) === JSON.stringify(expectedModifierIds);
     if (!modifiersCommitted) seededFailures += 1;
+    // §7 hook execution: every committed modifier's declared hooks must appear
+    // in the battle's canonical hook log (on_battle_start at tick 0,
+    // on_spawn/on_damage_applied/on_phase_entry/on_entity_defeated from the
+    // canonical event stream the battle actually produced).
+    const hookLog = a.state.modifierHookLog ?? [];
+    const hooksFired = launch.modifiers.every((m) => m.hooks.every((hook) => hookLog.some((f) => f.modifierId === m.id && f.hook === hook)));
+    if (!hooksFired) seededFailures += 1;
     // §8: the declared reinforcement waves must enter the spawned-wave cursor
     // (the battle ran past their scheduled ticks).
     const expectedWaveIds = launch.waves.map((w) => w.id).sort();
@@ -238,13 +245,15 @@ try {
       objectivesSeeded: seeded,
       bossObjectsPlaced: objectsPlaced,
       modifiersCommitted,
+      hooksFired,
       wavesSpawned,
       terminal: a.terminal,
       ticks: a.ticks,
       objectivesComplete,
+      hooks: hookLog.map((f) => [f.modifierId, f.hook, f.atTick]),
       checksum: checksumA,
       drift: checksumA !== checksumB,
-      status: seeded && objectsPlaced && modifiersCommitted && wavesSpawned && objectivesComplete ? 'PASS' : 'FAIL',
+      status: seeded && objectsPlaced && modifiersCommitted && hooksFired && wavesSpawned && objectivesComplete ? 'PASS' : 'FAIL',
     };
   }
 

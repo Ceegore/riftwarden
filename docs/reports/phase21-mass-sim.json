@@ -11,7 +11,7 @@
   "battles": 2000,
   "ticksPerBattle": 60,
   "totalTicks": 120000,
-  "totalEvents": 16000,
+  "totalEvents": 18000,
   "entityDistribution": {
     "player": 3,
     "enemy": 3
@@ -20,25 +20,25 @@
   "warmup": 10,
   "runs": 1,
   "tickLatencyMs": {
-    "median": 2.502,
-    "p95": 7.974,
-    "p99": 21.259,
-    "max": 215.53,
-    "variance": 31.639154
+    "median": 1.229,
+    "p95": 3.099,
+    "p99": 5.362,
+    "max": 195.789,
+    "variance": 2.675103
   },
   "hashLatencyMs": {
-    "median": 0.309,
-    "p95": 0.875,
-    "p99": 2.838,
-    "max": 102.006,
-    "variance": 3.56038
+    "median": 0.171,
+    "p95": 0.448,
+    "p99": 0.9,
+    "max": 4.409,
+    "variance": 0.034177
   },
-  "peakRssBytes": 191553536,
-  "peakHeapBytes": 58961080,
-  "endRssBytes": 191553536,
-  "endHeapBytes": 42907616,
+  "peakRssBytes": 197361664,
+  "peakHeapBytes": 60809440,
+  "endRssBytes": 197361664,
+  "endHeapBytes": 60015000,
   "invariantErrors": 0,
   "hashDrift": 0,
-  "referenceFinalHash": "875541ada3b8049f494e9cad1af1eec582e49bda59d0549d6d3825038007a602",
+  "referenceFinalHash": "5748cc3ae2fdcf3612d99ba92074a6da3de7f7a9ddf31dbaa6e3a7d87c226a00",
   "status": "PASS"
 }

@@ -215,19 +215,19 @@
     {
       "checkpoints": [
         {
-          "checksum": "039182a17f2aefa10c032b83fe22d27f341da63d7ea75bbb8f2479df34c53a5b",
+          "checksum": "3af6b522458a88cc1cf19b52bce98351ff0a6003c1741fc7035abd86c9262a00",
           "tick": 30
         },
         {
-          "checksum": "4a473c43a9c709f4a0b40ebb23943784aed427cba161d0a06912a8842499dd26",
+          "checksum": "45298d38727f1ebe4ec1ad08cea88648de19cdc5bd3ebbf6952fb22480d57051",
           "tick": 60
         }
       ],
       "contentVersion": "content_fixture",
-      "endHash": "4a473c43a9c709f4a0b40ebb23943784aed427cba161d0a06912a8842499dd26",
+      "endHash": "45298d38727f1ebe4ec1ad08cea88648de19cdc5bd3ebbf6952fb22480d57051",
       "endReason": null,
       "endTick": 60,
-      "eventCount": 8,
+      "eventCount": 9,
       "id": "golden_boss_ash_101",
       "outcome": null,
       "purpose": "ash boss all phases normal ascension",
@@ -245,19 +245,19 @@
     {
       "checkpoints": [
         {
-          "checksum": "8caa7f2f830c9a5ac9e18f969b546e6308cbfeafd4de1b30c8e583c29a97e37d",
+          "checksum": "dd7b5333808e44d7cc45ed231e836dc687d7220c3ab9c5ab121b65718f6d4f2c",
           "tick": 30
         },
         {
-          "checksum": "fd870166a1e247f964d6b8c015dabe3080034ae3dad9bf7a9957ab971cf69527",
+          "checksum": "a6ab8967f99f83faca56f14322783f8e20ca809a3ac1009d1fb4b4aae734d7b0",
           "tick": 60
         }
       ],
       "contentVersion": "content_fixture",
-      "endHash": "fd870166a1e247f964d6b8c015dabe3080034ae3dad9bf7a9957ab971cf69527",
+      "endHash": "a6ab8967f99f83faca56f14322783f8e20ca809a3ac1009d1fb4b4aae734d7b0",
       "endReason": null,
       "endTick": 60,
-      "eventCount": 8,
+      "eventCount": 9,
       "id": "golden_boss_thorn_102",
       "outcome": null,
       "purpose": "plant slots shield vulnerability",
@@ -275,19 +275,19 @@
     {
       "checkpoints": [
         {
-          "checksum": "9cb3347c8e7536c4313c04b256963c60fae376bab772966610f1fcb45b3fe7b6",
+          "checksum": "c11fc28ccd611e9b9a603874462f97272edb5e853ee720da7323673de5c55cfe",
           "tick": 30
         },
         {
-          "checksum": "d48a1dc4be1220e76a2423398905509a1fb19bfec3d5e7ec89d61cd0b34a99c7",
+          "checksum": "c627d5b21a1635c025e622f6d3c9a1eac05cee18581bb0fc2b6b9f801049021a",
           "tick": 60
         }
       ],
       "contentVersion": "content_fixture",
-      "endHash": "d48a1dc4be1220e76a2423398905509a1fb19bfec3d5e7ec89d61cd0b34a99c7",
+      "endHash": "c627d5b21a1635c025e622f6d3c9a1eac05cee18581bb0fc2b6b9f801049021a",
       "endReason": null,
       "endTick": 60,
-      "eventCount": 8,
+      "eventCount": 9,
       "id": "golden_boss_smith_103",
       "outcome": null,
       "purpose": "construct slots overheat",
@@ -305,19 +305,19 @@
     {
       "checkpoints": [
         {
-          "checksum": "a222c9ba2cca286ee67b6dbd7646968200b26d0e853eb4726a467d6f935c95a9",
+          "checksum": "7642af947d12551e8721b128750eb34148d749fbac3c920d13a0b3e884c80fb6",
           "tick": 30
         },
         {
-          "checksum": "90247b22fcc0c0f79b640d043f9e4e0293265e34b12cc860bda446ac7a998819",
+          "checksum": "bd1751915b06618b28e6e7415545ccae010c35373e2f16c4d03a8ba78d6f350d",
           "tick": 60
         }
       ],
       "contentVersion": "content_fixture",
-      "endHash": "90247b22fcc0c0f79b640d043f9e4e0293265e34b12cc860bda446ac7a998819",
+      "endHash": "bd1751915b06618b28e6e7415545ccae010c35373e2f16c4d03a8ba78d6f350d",
       "endReason": null,
       "endTick": 60,
-      "eventCount": 8,
+      "eventCount": 9,
       "id": "golden_boss_heart_104",
       "outcome": null,
       "purpose": "four final phases curator rank10",

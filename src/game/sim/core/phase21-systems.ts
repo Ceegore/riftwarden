@@ -5,7 +5,8 @@ import type { EventType } from '../events/event-spec.js';
 import type { BossPhaseSnapshot, BossPhaseState, PhaseDefinition } from '../boss/boss-phase-system.js';
 import { createBossPhaseSnapshot, detectTransition, phaseInvulnerableTicks, validateBossPhases } from '../boss/boss-phase-system.js';
 import type { ModifierDefinition } from '../world/modifier-system.js';
-import { createModifierCollection, validateEncounter } from '../world/modifier-system.js';
+import { applyHookBps, createModifierCollection, hookBpsScale, validateEncounter } from '../world/modifier-system.js';
+import { createModifierDamageScaleSystem, createModifierHookSystem } from '../world/modifier-runtime.js';
 import type { Hazard } from '../world/hazard-system.js';
 import { createHazardCollection } from '../world/hazard-system.js';
 import type { Objective } from '../objectives/combat-objective.js';
@@ -18,8 +19,15 @@ import { createBossObjectCleanupSystem, createBossObjectPlacementSystem } from '
 /**
  * Phase 21 §3 runtime wiring (T02/T04/T05). Deterministic systems:
  * - stage D: `modifier.d0.commit` commits the encounter modifiers once and the
- *   encounter validator rejects neutralized mechanics; `boss.d1.transition_detect`
- *   detects boss-phase transitions and plans them (idempotent).
+ *   encounter validator rejects neutralized mechanics; `modifier.h0.hook_eval`
+ *   fires the committed hooks (`on_battle_start` at battle start, the rest from
+ *   the canonical previous-tick event log) and records them in state;
+ *   `boss.d1.transition_detect` detects boss-phase transitions and plans them
+ *   (idempotent).
+ * - stage H: `modifier.z9.damage_scale` rewrites the queued damage applications
+ *   by the committed `on_damage_applied` hooks' composite `damage_bps` — it
+ *   sorts after the projectile/ability dispatchers so every queued hit is
+ *   scaled before the stage-I pipeline consumes it (§7).
  * - stage C: `hazard.c1.advance` walks the scheduled→telegraph→resolve→expire
  *   lifecycle and emits the telegraph/resolve events at their boundary ticks.
  * - stage K: `reinforcement.k1.spawn` commits due waves into the wave cursor
@@ -174,8 +182,12 @@ export function createReinforcementSystem(config: Phase21RuntimeConfig = {}): Ke
         context.commands.push({ kind: 'append_event', event: eventInput('ReinforcementSpawned', null, [wave.id], [wave.id], { count: wave.entityIds.length }) });
         const bodies = config.spawnBodies ? config.spawnBodies(wave) : null;
         if (bodies === null) continue;
+        // §7 on_spawn effect: the committed hooks' composite max_hp_bps scales
+        // the wave bodies' max LP (identity when no on_spawn modifier is active).
+        const spawnScale = hookBpsScale(context.state.modifiers ?? Object.freeze([]), 'on_spawn', 'max_hp_bps');
+        const scaledBodies = spawnScale === 10000 ? bodies : bodies.map((body) => Object.freeze({ ...body, maxLp: Math.max(1, applyHookBps(body.maxLp, spawnScale)) }));
         const bodyById = new Map<string, ReinforcementBody>();
-        for (const body of bodies) {
+        for (const body of scaledBodies) {
           validateReinforcementBody(body, wave.id);
           if (bodyById.has(body.entityId)) throw new KernelInvariantError('P21_WAVE_INVALID', { waveId: wave.id, reason: 'duplicate-body', entityId: body.entityId });
           bodyById.set(body.entityId, body);
@@ -242,6 +254,8 @@ export function createPhase21Systems(config: Phase21RuntimeConfig = {}): readonl
   }
   return Object.freeze([
     createModifierCommitSystem(config),
+    createModifierHookSystem(config),
+    createModifierDamageScaleSystem(config),
     createBossPhaseDetectSystem(config),
     createHazardAdvanceSystem(),
     createReinforcementSystem(config),

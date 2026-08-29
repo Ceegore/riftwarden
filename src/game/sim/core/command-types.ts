@@ -16,7 +16,7 @@ import type { EffectCommand } from '../ability/effect-command.js';
 import type { TempEntity } from '../summon/temporary-entity.js';
 import type { SynergyTier } from '../synergy/synergy-counter.js';
 import type { BossPhaseSnapshot } from '../boss/boss-phase-system.js';
-import type { ModifierDefinition } from '../world/modifier-system.js';
+import type { ModifierDefinition, ModifierHookFiring } from '../world/modifier-system.js';
 import type { Hazard } from '../world/hazard-system.js';
 import type { Objective } from '../objectives/combat-objective.js';
 
@@ -59,10 +59,11 @@ export type KernelCommand =
   | Readonly<{kind:'set_temporary_entities'; entities:readonly TempEntity[]}>
   | Readonly<{kind:'set_synergy_tiers'; tiers:Readonly<Record<string, SynergyTier>>}>
   | Readonly<{kind:'set_boss_phase'; bossPhase:BossPhaseSnapshot}>
-  | Readonly<{kind:'set_modifiers'; modifiers:readonly ModifierDefinition[]}>
+  | Readonly<{kind:'set_modifiers'; modifiers:readonly ModifierDefinition[]; hookLog?:readonly ModifierHookFiring[]}>
   | Readonly<{kind:'set_hazards'; hazards:readonly Hazard[]}>
   | Readonly<{kind:'set_objectives'; objectives:readonly Objective[]}>
   | Readonly<{kind:'set_spawned_waves'; spawnedWaves:readonly string[]}>
+  | Readonly<{kind:'set_combat_applications'; applications:readonly PendingCombatApplication[]}>
   | Readonly<{kind:'checkpoint_marker'; reason:'interval'|'terminal'}>;
 
 export interface CleanseDispelRequest { readonly targetId:string; readonly kind:CleanseDispelKind; }

@@ -385,6 +385,131 @@ describe('P21 runtime: modifiers', () => {
   });
 });
 
+describe('P21 runtime: modifier hooks (§7)', () => {
+  const battleStart = Object.freeze({
+    id: 'mod_start', previewKey: 'preview_mod_start', hooks: Object.freeze(['on_battle_start'] as const), incompatibilityTags: Object.freeze([]), params: Object.freeze({ attack_speed_bps: 12000 }),
+  });
+  const phaseEntry = Object.freeze({
+    id: 'mod_entry', previewKey: 'preview_mod_entry', hooks: Object.freeze(['on_phase_entry'] as const), incompatibilityTags: Object.freeze([]), params: Object.freeze({}),
+  });
+
+  it('fires on_battle_start at the commit tick and records the §7 params in state', () => {
+    const r = runWith(baseState(), { bossPhaseDefinitions: defs, modifiers: Object.freeze([battleStart]) }, 1);
+    expect(r.state.modifierHookLog).toEqual([
+      Object.freeze({ modifierId: 'mod_start', hook: 'on_battle_start', atTick: 0, params: Object.freeze({ attack_speed_bps: 12000 }) }),
+    ]);
+    const triggered = r.events.find((e) => e.type === 'ModifierTriggered');
+    expect(triggered).toBeDefined();
+    expect(triggered?.contentIds).toEqual(['mod_start', 'on_battle_start']);
+    expect(triggered?.payload['triggerOrdinal']).toBe(1);
+  });
+
+  it('never re-fires on_battle_start on later ticks (battle-start fires once)', () => {
+    const r = runWith(baseState(), { bossPhaseDefinitions: defs, modifiers: Object.freeze([battleStart]) }, 5);
+    const firings = (r.state.modifierHookLog ?? []).filter((f) => f.hook === 'on_battle_start');
+    expect(firings).toHaveLength(1);
+    expect(firings[0]?.atTick).toBe(0);
+  });
+
+  it('fires on_phase_entry in response to a BossPhaseStarted event record (one firing per modifier/hook per tick)', () => {
+    const state = baseState({
+      previousTickEvents: Object.freeze([
+        Object.freeze({ type: 'BossPhaseStarted', sourceId: 'boss_ash_unit', targetIds: Object.freeze(['boss_ash_unit']) }),
+        Object.freeze({ type: 'BossPhaseStarted', sourceId: 'boss_ash_unit', targetIds: Object.freeze(['boss_ash_unit']) }),
+      ]),
+    });
+    const r = runWith(state, { bossPhaseDefinitions: defs, modifiers: Object.freeze([phaseEntry]) }, 1);
+    const firings = (r.state.modifierHookLog ?? []).filter((f) => f.hook === 'on_phase_entry');
+    expect(firings).toHaveLength(1);
+    expect(firings[0]?.modifierId).toBe('mod_entry');
+    expect(firings[0]?.atTick).toBe(0);
+    // Two identical records in one tick collapse to one firing (deterministic key).
+    expect(r.events.filter((e) => e.type === 'ModifierTriggered' && e.contentIds.includes('on_phase_entry')).length).toBe(1);
+  });
+
+  it('scales on_spawn wave bodies by the committed max_hp_bps and records the firing', () => {
+    const waves: readonly Wave[] = Object.freeze([
+      Object.freeze({ id: 'wave_a', scheduledTick: 3, side: 'enemy', entityIds: Object.freeze(['unit_e1', 'unit_e2']), spawnProfile: 'profile_grunt', capPolicy: 'BLOCK' }),
+    ]);
+    const bodies = (wave: Wave): readonly ReinforcementBody[] =>
+      wave.entityIds.map((entityId, index) => Object.freeze({
+        entityId, lane: index === 0 ? 'middle' : 'bottom', x100: 9000 - index * 100, radiusX100: 120, maxLp: 500,
+      }));
+    const spawnMod = Object.freeze({
+      id: 'mod_vanguard', previewKey: 'preview_mod_vanguard', hooks: Object.freeze(['on_spawn'] as const), incompatibilityTags: Object.freeze([]), params: Object.freeze({ max_hp_bps: 12500 }),
+    });
+    const r = runWith(baseState({ spawnedWaves: Object.freeze([]) }), { bossPhaseDefinitions: defs, modifiers: Object.freeze([spawnMod]), waves, spawnBodies: bodies }, 6);
+    // The wave body max LP is scaled 500 → 625 by the hook's §7 params.
+    const spawned = r.state.entities.filter((e) => e.id.startsWith('unit_e'));
+    expect(spawned.map((e) => e.maxLp)).toEqual([625, 625]);
+    expect(spawned.map((e) => e.lp)).toEqual([625, 625]);
+    // The firing is recorded in response to the ReinforcementSpawned event.
+    const firing = (r.state.modifierHookLog ?? []).find((f) => f.hook === 'on_spawn');
+    expect(firing?.modifierId).toBe('mod_vanguard');
+    expect(firing?.params).toEqual({ max_hp_bps: 12500 });
+  });
+
+  it('scales on_damage_applied damage before the stage-I pipeline and records the firing', () => {
+    const damageMod = Object.freeze({
+      id: 'mod_onslaught', previewKey: 'preview_mod_onslaught', hooks: Object.freeze(['on_damage_applied'] as const), incompatibilityTags: Object.freeze([]), params: Object.freeze({ damage_bps: 12500 }),
+    });
+    const migratedBoss = migrateEntity({ entity: entity('boss_ash_unit', { side: 'enemy', maxLp: 1000, lp: 400 }), radiusX100: 120 });
+    const state = baseState({
+      entities: Object.freeze([migratedBoss]),
+      pendingCombatApplications: Object.freeze([
+        Object.freeze({ kind: 'damage', sourceId: 'unit_p', targetId: 'boss_ash_unit', effectId: 'ef_hit', attackInstanceId: 1, effectIndex: 0, rawAmount: 100, damageTypeOrdinal: 0, defense: 0, coverReductionBps: 0, bossCapBps: null }),
+      ]),
+    });
+    const systems = Object.freeze([...createPhase17Systems({ speedsX100PerSecond: {} }), ...createPhase21Systems({ bossPhaseDefinitions: defs, modifiers: Object.freeze([damageMod]) })]);
+    let current = state;
+    const events: KernelEvent[] = [];
+    const random = randomSession();
+    for (let i = 0; i < 2; i++) {
+      const r = stepBattle({ state: current, input, random, rules: {}, content: {}, systems });
+      current = r.state;
+      events.push(...r.events);
+    }
+    // rawAmount 100 → 125 (round-half-away-from-zero), so the boss lost 125 LP.
+    expect(current.entities.find((e) => e.id === 'boss_ash_unit')?.lp).toBe(275);
+    const hit = events.find((e) => e.type === 'DamageApplied');
+    expect(hit?.payload['rawAmount']).toBe(125);
+    expect(hit?.payload['finalHpDelta']).toBe(125);
+    const firing = (current.modifierHookLog ?? []).find((f) => f.hook === 'on_damage_applied');
+    expect(firing?.modifierId).toBe('mod_onslaught');
+    expect(firing?.params).toEqual({ damage_bps: 12500 });
+  });
+
+  it('leaves damage unscaled when no on_damage_applied modifier is committed', () => {
+    const migratedBoss = migrateEntity({ entity: entity('boss_ash_unit', { side: 'enemy', maxLp: 1000, lp: 400 }), radiusX100: 120 });
+    const state = baseState({
+      entities: Object.freeze([migratedBoss]),
+      pendingCombatApplications: Object.freeze([
+        Object.freeze({ kind: 'damage', sourceId: 'unit_p', targetId: 'boss_ash_unit', effectId: 'ef_hit', attackInstanceId: 1, effectIndex: 0, rawAmount: 100, damageTypeOrdinal: 0, defense: 0, coverReductionBps: 0, bossCapBps: null }),
+      ]),
+    });
+    const systems = Object.freeze([...createPhase17Systems({ speedsX100PerSecond: {} }), ...createPhase21Systems({ bossPhaseDefinitions: defs })]);
+    let current = state;
+    const events: KernelEvent[] = [];
+    const random = randomSession();
+    for (let i = 0; i < 2; i++) {
+      const r = stepBattle({ state: current, input, random, rules: {}, content: {}, systems });
+      current = r.state;
+      events.push(...r.events);
+    }
+    expect(current.entities.find((e) => e.id === 'boss_ash_unit')?.lp).toBe(300);
+    const hit = events.find((e) => e.type === 'DamageApplied');
+    expect(hit?.payload['rawAmount']).toBe(100);
+  });
+
+  it('is deterministic across runs (identical hook log and trigger ordinals)', () => {
+    const cfg: Phase21RuntimeConfig = { bossPhaseDefinitions: defs, modifiers: Object.freeze([battleStart]) };
+    const a = runWith(baseState(), cfg, 10);
+    const b = runWith(baseState(), cfg, 10);
+    expect(a.state.modifierHookLog).toEqual(b.state.modifierHookLog);
+    expect(createSnapshot(a.state).checksum).toBe(createSnapshot(b.state).checksum);
+  });
+});
+
 describe('P21 runtime: determinism', () => {
   it('produces byte-identical snapshots for the same seed and content', () => {
     const objectives: readonly Objective[] = Object.freeze([

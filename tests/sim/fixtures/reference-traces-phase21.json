@@ -5,6 +5,8 @@
     "C:hazard.c1.advance",
     "D:boss.d1.transition_detect",
     "D:modifier.d0.commit",
+    "D:modifier.h0.hook_eval",
+    "H:phase19.z9.modifier_damage_scale",
     "K:boss.object.k1.place",
     "K:boss.object.k2.cleanup",
     "K:reinforcement.k1.spawn",
@@ -14,12 +16,12 @@
   "checkpoints": [
     {
       "tick": 30,
-      "checksum": "f6e7eb19cc1a69fc596f771912883925926c288070324da549e7ef8215e37154"
+      "checksum": "54a379724be50d489744ec3bf84bc0f38ef38e8a0f66c281bca80d628cce729b"
     },
     {
       "tick": 60,
-      "checksum": "bae57e4d45b66be08e23f19ddc6b10b2f3a4d31eee0ef0aee45979ba99d01bd7"
+      "checksum": "70113c6336fda491b24c2e1a54deb0f2190910322ff85775167fd62594204e09"
     }
   ],
-  "finalSnapshotChecksum": "bae57e4d45b66be08e23f19ddc6b10b2f3a4d31eee0ef0aee45979ba99d01bd7"
+  "finalSnapshotChecksum": "70113c6336fda491b24c2e1a54deb0f2190910322ff85775167fd62594204e09"
 }

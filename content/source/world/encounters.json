@@ -15,7 +15,8 @@
         }
       ],
       "modifierIds": [
-        "mod_fixture_frenzy"
+        "mod_fixture_frenzy",
+        "mod_fixture_onslaught"
       ],
       "reinforcementWaves": [],
       "objective": "defeat_all",
@@ -82,7 +83,9 @@
           "eliteId": null
         }
       ],
-      "modifierIds": [],
+      "modifierIds": [
+        "mod_fixture_vanguard"
+      ],
       "reinforcementWaves": [
         {
           "atSeconds": 10,
