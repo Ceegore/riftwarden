@@ -9,6 +9,7 @@ import { useExpedition } from '../../features/expedition/useExpedition.js';
 import { BattleCanvas } from '../../features/battle/BattleCanvas.js';
 import { BattleTacticalView } from '../../features/battle/BattleTacticalView.js';
 import { LiveBattleOutboundPanel } from '../../features/battle/outbound/LiveBattleOutboundPanel.js';
+import { DefeatPanel } from '../../features/battle/outbound/DefeatPanel.js';
 import type { LiveOutboundInput } from '../../features/battle/outbound/phase21-outbound-presenter.js';
 import { battleResultOf, createLiveSimBattle, resolveExpeditionEncounter, type BattleVerdict, type FixtureEncounterEntry, type LiveSimBattleHandle } from '../../features/battle/sim/sim-battle-host.js';
 import { loadA11ySettings } from '../../game/settings/a11y-settings.js';
@@ -216,31 +217,6 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
     }
   }, [enterCommitted, snapshot]);
 
-  const handleAction = useCallback((actionDef: ActionDef) => {
-    if (!actionDef.available || snapshot === null) return;
-    const nodeId = snapshot.currentNodeId;
-    const optionKey = actionDef.optionId ?? 'none';
-    const txId = actionTransactionId(snapshot.state.runId, nodeId, actionDef.action, optionKey);
-    const request: NodeActionRequest = {
-      transactionId: txId,
-      nodeId,
-      action: actionDef.action,
-      ...(actionDef.optionId === undefined ? {} : { optionId: actionDef.optionId }),
-    };
-    try {
-      const outcome = act(request);
-      if (outcome?.status !== 'COMMITTED') {
-        setActionError(outcome?.reason ?? 'Action rejected');
-        return;
-      }
-      const keepsRewardPending = actionDef.action === 'ENGAGE' && ['battle', 'elite', 'boss'].includes(currentNodeType);
-      if (!keepsRewardPending) resolve();
-      setActionError(null);
-    } catch {
-      setActionError('Action unavailable');
-    }
-  }, [act, currentNodeType, resolve, snapshot]);
-
   const handleDone = useCallback(() => {
     onResolved(nextAfter);
   }, [nextAfter, onResolved]);
@@ -270,24 +246,52 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
   const [liveOutbound, setLiveOutbound] = useState<LiveOutboundInput | null>(null);
   const [liveRunning, setLiveRunning] = useState(false);
   const [liveVerdict, setLiveVerdict] = useState<BattleVerdict>('active');
+  const [reengaged, setReengaged] = useState(false);
   const battleVisible = combat && phase !== 'resolved';
+
+  const startLiveBattle = useCallback((handle: LiveSimBattleHandle): void => {
+    liveHandleRef.current = handle;
+    setLiveOutbound(handle.snapshot());
+    setLiveRunning(true);
+    setLiveVerdict('active');
+  }, []);
 
   useEffect(() => {
     liveHandleRef.current = null;
     setLiveOutbound(null);
     setLiveRunning(false);
     setLiveVerdict('active');
+    setReengaged(false);
     if (encounter === null) return;
     try {
-      const handle = createLiveSimBattle({ encounter });
-      liveHandleRef.current = handle;
-      setLiveOutbound(handle.snapshot());
-      setLiveRunning(true);
+      startLiveBattle(createLiveSimBattle({ encounter }));
     } catch {
       // A content-launch error must never block the expedition screen.
       liveHandleRef.current = null;
     }
-  }, [encounter]);
+  }, [encounter, startLiveBattle]);
+
+  // §9 re-engage: commits the ENGAGE_DEFEAT rewatch (deterministic — same
+  // seed replays the same lost battle; pays nothing, +5 instability) and
+  // RESTARTS the live battle so the rewatch actually replays. The node stays
+  // open for further rewatches or the retreat.
+  const handleReengage = useCallback(() => {
+    if (snapshot === null || encounter === null) return;
+    const nodeId = snapshot.currentNodeId;
+    const txId = actionTransactionId(snapshot.state.runId, nodeId, 'ENGAGE_DEFEAT', 'none');
+    try {
+      const outcome = act({ transactionId: txId, nodeId, action: 'ENGAGE_DEFEAT' });
+      if (outcome?.status !== 'COMMITTED') {
+        setActionError(outcome?.reason ?? 'Re-engage rejected');
+        return;
+      }
+      setActionError(null);
+      setReengaged(true);
+      startLiveBattle(createLiveSimBattle({ encounter }));
+    } catch {
+      setActionError('Re-engage unavailable');
+    }
+  }, [act, encounter, snapshot, startLiveBattle]);
 
   useEffect(() => {
     if (!battleVisible || !liveRunning) return;
@@ -306,6 +310,39 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
   }, [battleVisible, liveRunning]);
 
   const liveOutboundValue: LiveOutboundInput = liveOutbound ?? fallbackOutbound;
+  const liveMissionComplete = (liveOutboundValue.objectives ?? []).some((o) => o.complete);
+
+  const handleAction = useCallback((actionDef: ActionDef) => {
+    if (!actionDef.available || snapshot === null) return;
+    const nodeId = snapshot.currentNodeId;
+    const optionKey = actionDef.optionId ?? 'none';
+    const txId = actionTransactionId(snapshot.state.runId, nodeId, actionDef.action, optionKey);
+    const request: NodeActionRequest = {
+      transactionId: txId,
+      nodeId,
+      action: actionDef.action,
+      ...(actionDef.optionId === undefined ? {} : { optionId: actionDef.optionId }),
+      // §9.5: the victory ENGAGE carries the mission-completed flag from the
+      // live battle's objective projection so the handler can grant the bounty.
+      ...(actionDef.action === 'ENGAGE' && liveMissionComplete ? { missionBonus: true } : {}),
+    };
+    try {
+      const outcome = act(request);
+      if (outcome?.status !== 'COMMITTED') {
+        setActionError(outcome?.reason ?? 'Action rejected');
+        return;
+      }
+      // §9: a victory ENGAGE keeps the node open (reward pending on the
+      // battle-result screen) and a defeat RE-ENGAGE (ENGAGE_DEFEAT) keeps it
+      // open for further rewatches / the retreat — only other actions resolve.
+      const keepsNodeOpen = (actionDef.action === 'ENGAGE' || actionDef.action === 'ENGAGE_DEFEAT')
+        && ['battle', 'elite', 'boss'].includes(currentNodeType);
+      if (!keepsNodeOpen) resolve();
+      setActionError(null);
+    } catch {
+      setActionError('Action unavailable');
+    }
+  }, [act, currentNodeType, liveMissionComplete, resolve, snapshot]);
 
   if (!snapshot) {
     return (
@@ -369,7 +406,7 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
       {phase === 'acting' && (
         <div className="rw-node-actions">
           {actionError && <p role="alert">{actionError}</p>}
-          {defeated && <p role="alert">Defeated — the node is gated; retreat to continue.</p>}
+          {defeated && <DefeatPanel onReengage={handleReengage} instabilityDelta={5} reengaged={reengaged} />}
           <p>Choose your action:</p>
           {nodeActions.map((actionDef) => (
             <div key={`${actionDef.action}-${actionDef.optionId ?? actionDef.labelKey ?? actionDef.label ?? actionDef.action}`} className="rw-node-action">

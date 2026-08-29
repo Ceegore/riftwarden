@@ -7,6 +7,7 @@ import { createLocaleRegistry } from '../../src/locales/registry.js';
 import type { CompiledBundle, CompiledMessage, CompiledNode } from '../../src/locales/format/compiled-types.js';
 import { Phase21OutboundPanel } from '../../src/features/battle/outbound/Phase21OutboundPanel.js';
 import { LiveBattleOutboundPanel } from '../../src/features/battle/outbound/LiveBattleOutboundPanel.js';
+import { DefeatPanel } from '../../src/features/battle/outbound/DefeatPanel.js';
 import type { LiveOutboundInput, Phase21OutboundReport } from '../../src/features/battle/outbound/phase21-outbound-presenter.js';
 
 /**
@@ -54,6 +55,7 @@ function enBundle(): CompiledBundle {
       'ui.phase21.heal.applied': msg([text('heal '), arg('target'), text(' +'), arg('healDelta')], { target: 'string', healDelta: 'number' }),
       'ui.phase21.heal.blocked': msg([text('lifesteal blocked on '), arg('target'), text(' ('), arg('healDelta'), text(' suppressed)')], { target: 'string', healDelta: 'number' }),
       'ui.phase21.trace.telegraph': msg([text('telegraph')]),
+      'ui.expedition.reengage': msg([text('Re-engage')]),
       'ui.phase21.trace.exited': msg([text('exited')]),
       'ui.phase21.trace.entered': msg([text('entered')]),
     }),
@@ -93,6 +95,13 @@ function renderLive(input: LiveOutboundInput): string {
   return renderToStaticMarkup(createElement(LocaleProvider, {
     controller: controller(),
     children: createElement(LiveBattleOutboundPanel, { input }),
+  }));
+}
+
+function renderDefeat(reengaged: boolean): string {
+  return renderToStaticMarkup(createElement(LocaleProvider, {
+    controller: controller(),
+    children: createElement(DefeatPanel, { onReengage: () => undefined, instabilityDelta: 5, reengaged }),
   }));
 }
 
@@ -259,6 +268,18 @@ describe('P21 §9 outbound panel mount', () => {
     expect(html).toContain('rw-phase21-heal-blocked');
     // A missing ui.phase21.heal.* key here would be a L10N runtime error —
     // rendering the stream IS the battery for the block vs applied split.
+  });
+
+  it('renders the §9 defeat panel with the re-engage affordance and the +5 instability feedback', () => {
+    // Fresh defeat: the re-engage button is present, no tax feedback yet.
+    const fresh = renderDefeat(false);
+    expect(fresh).toContain('rw-defeat-panel');
+    expect(fresh).toContain('Re-engage');
+    expect(fresh).not.toContain('instability');
+    // After a committed rewatch: the deterministic-rewatch note + the tax.
+    const rewatched = renderDefeat(true);
+    expect(rewatched).toContain('Re-engaged — the battle replays identically.');
+    expect(rewatched).toContain('Re-engage costs +5 instability.');
   });
 
   it('a non-boss battle renders a row without phase machinery', () => {

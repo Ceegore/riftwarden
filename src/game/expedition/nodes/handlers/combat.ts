@@ -20,6 +20,8 @@ const ELITE_GOLD_SPAN = 51;
 const LOOT_CHANCE_PERMILLE = 350;
 /** §9: instability a DEFEAT costs (a lost fight pays nothing and hurts). */
 const DEFEAT_INSTABILITY_DELTA = 5;
+/** §9.5: gold bounty a victory ENGAGE grants when the sim's mission objective completed. */
+const MISSION_BONUS_GOLD = 10;
 
 function rewardSeed(state: NodeRunState, nodeId: string): number {
   return fnv1a32([state.runId, nodeId, state.contentRevision, 'reward']);
@@ -131,6 +133,14 @@ function makeCombatHandler(
         }
         if (hasLootChance && (snapshot.rollSlots['loot'] ?? 0) < LOOT_CHANCE_PERMILLE) {
           commands.push({ kind: 'GRANT_UNSECURED_LOOT', rewardId: `reward:${definition.nodeId}:loot` });
+        }
+        // §9.5 objective-to-reward linkage: the deterministic sim completed the
+        // mission objective (UI-flagged on the request, sourced from the live
+        // battle's objective projection) → the victory pays the objective
+        // bounty on top of the base reward. Without the flag, no bounty.
+        if (request.missionBonus === true) {
+          commands.push({ kind: 'GOLD_DELTA', amount: MISSION_BONUS_GOLD });
+          commands.push({ kind: 'GOLD_EARNED', amount: MISSION_BONUS_GOLD });
         }
         // Kills awarded: deterministic from roll slots
         const killsBase = rewardCount === 2 ? 3 : 5;

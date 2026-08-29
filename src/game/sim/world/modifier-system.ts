@@ -231,3 +231,36 @@ export function validateEncounter(
   }
   return Object.freeze(out);
 }
+
+/**
+ * §8.3 sustain POLICY validator — the heal-stream audit matrix mirrored into a
+ * build-time contract check for `heal_sustain` encounters. Structural checks
+ * only (no sim run): the requirement must be positive, a `heal_bps` source
+ * must exist and fold to a positive composite scale, and the §6 target set
+ * must contain at least one DAMAGEABLE enemy body (a regular enemy slot, or a
+ * non-`immune` targetable boss object) — otherwise the lifesteal loop can
+ * never fire and the mission is unwinnable. The §10 window halves the heal
+ * factor but never changes these structural facts; bankability (requirement vs
+ * the pre-window grind) is proven empirically by the launcher teeth.
+ */
+export function validateSustainPolicy(source: {
+  readonly healSustainCount: number | null;
+  readonly modifiers: readonly ModifierDefinition[];
+  readonly enemySlots: readonly unknown[];
+  readonly bossObjects: readonly {
+    readonly entityId: string;
+    readonly spec: { readonly damagePolicy: string; readonly targetable: boolean };
+  }[];
+}): readonly ValidationIssue[] {
+  const out: ValidationIssue[] = [];
+  if (source.healSustainCount === null) return Object.freeze(out);
+  if (source.healSustainCount <= 0) out.push(issue('P21_SUSTAIN_REQUIREMENT_EMPTY', `healSustainCount ${String(source.healSustainCount)}`));
+  const scale = hookBpsScale(source.modifiers, 'on_damage_applied', 'heal_bps');
+  const hasHealSource = source.modifiers.some((m) => m.hooks.includes('on_damage_applied') && m.params['heal_bps'] !== undefined);
+  if (!hasHealSource) out.push(issue('P21_SUSTAIN_NO_HEAL_SOURCE', 'no on_damage_applied heal_bps modifier'));
+  if (hasHealSource && scale <= 0) out.push(issue('P21_SUSTAIN_ZERO_HEAL_SCALE', `composite heal_bps folds to ${String(scale)}`));
+  const damageableBodies = source.enemySlots.length
+    + source.bossObjects.filter((b) => b.spec.targetable && b.spec.damagePolicy !== 'immune').length;
+  if (damageableBodies === 0) out.push(issue('P21_SUSTAIN_NO_DAMAGE_SOURCE', 'every enemy body is immune or absent'));
+  return Object.freeze(out);
+}

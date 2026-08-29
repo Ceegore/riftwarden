@@ -1,7 +1,7 @@
 /**
  * GENERATED FILE — do not edit by hand.
  * Regenerate with: node tools/sim/write-locale-bootstrap.mjs
- * Generated at: 2026-08-29T19:48:12.882Z
+ * Generated at: 2026-08-29T21:02:04.114Z
  *
  * Bootstrap locale bundle (LOCALE_BOOTSTRAP_CONTRACT): a stopgap bundle that
  * lets the app boot in a browser before the real localization compiler
@@ -1381,6 +1381,12 @@ const MESSAGES: Readonly<Record<string, import('./compiled-types.js').CompiledMe
   }),
   "ui.expedition.polish": Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: "Polish" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.expedition.reengage": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Reengage" }]),
     parameters: Object.freeze({}),
     budget: '0',
     compactKey: null,

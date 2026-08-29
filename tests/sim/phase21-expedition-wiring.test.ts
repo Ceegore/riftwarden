@@ -90,7 +90,7 @@ describe('P21 §9 expedition battle wiring', () => {
   it('resolves via the content runtime registry, payloadKey-first, from real content', () => {
     // The registry is the compiled-content projection: every registered
     // encounter resolves by id and is frozen.
-    expect(CONTENT_ENCOUNTERS.size).toBe(8);
+    expect(CONTENT_ENCOUNTERS.size).toBe(9);
     for (const entry of CONTENT_ENCOUNTERS.values()) {
       expect(Object.isFrozen(entry)).toBe(true);
       expect(encounterById(entry.id)?.id).toBe(entry.id);

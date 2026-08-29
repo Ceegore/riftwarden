@@ -156,4 +156,31 @@ describe('phase21 battle verdict gating', () => {
       expect(exp.advance(next).currentNodeId).toBe(next);
     }
   });
+
+  it('a mission-completed victory ENGAGE pays the objective bounty on top of the base reward', () => {
+    // §9.5 objective-to-reward linkage: the deterministic sim completed the
+    // mission (UI-flagged on the request from the live objective projection),
+    // so the victory pays the base reward PLUS the 10-gold bounty. The same
+    // node without the flag pays the base reward only.
+    const withBonus = advanceToCombat(208);
+    const nodeId = withBonus.currentNodeId;
+    const goldBefore = withBonus.state.gold;
+    let exp = withBonus.enter('tx-bonus-enter').act({ transactionId: 'tx-bonus-engage', nodeId, action: 'ENGAGE', missionBonus: true });
+    const bonusGold = exp.state.gold - goldBefore;
+    expect(bonusGold).toBeGreaterThanOrEqual(11); // base (45..71) + 10 bounty
+    expect(exp.state.ledger['tx-bonus-engage']?.status).toBe('COMMITTED');
+    // Without the flag on the SAME seed (identical base reward): exactly 10
+    // gold less — the bounty is isolated from the seed-derived base.
+    const noBonus = advanceToCombat(208);
+    const nId = noBonus.currentNodeId;
+    const nBefore = noBonus.state.gold;
+    const plain = noBonus.enter('tx-plain-enter').act({ transactionId: 'tx-plain-engage', nodeId: nId, action: 'ENGAGE' });
+    expect(plain.state.gold - nBefore).toBe(bonusGold - 10);
+    // A defeat ENGAGE never pays the bounty (it pays nothing at all).
+    const defeat = advanceToCombat(210);
+    const dId = defeat.currentNodeId;
+    const dBefore = defeat.state.gold;
+    const lost = defeat.enter('tx-lost-enter').act({ transactionId: 'tx-lost-engage', nodeId: dId, action: 'ENGAGE_DEFEAT', missionBonus: true });
+    expect(lost.state.gold).toBe(dBefore);
+  });
 });

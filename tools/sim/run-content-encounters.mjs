@@ -625,6 +625,144 @@ try {
     }
   }
 
+  // §10 sustain × collapse TIPPING teeth: `encounter_fixture_sustain_collapse`
+  // requires 80000 sustained HP — more than the pre-window grind can bank
+  // (player 150/cycle + symmetric enemy self-heal 75/cycle = 225/cycle →
+  // 60750 by the 2700-tick soft limit), so the mission is still incomplete
+  // when the §10 window opens. Inside the window the heals are HALVED
+  // (150→75 player, 75→38 enemy) while the enemy still deals 150/cycle, so
+  // the player's net intake goes NEGATIVE and the collapse damage kills them
+  // in-window → DEFEAT. The halving is the lever: without it the net is zero
+  // and the counter reaches 80000 at tick ~3556 (well past the window). The
+  // win-side boundary is pinned by the existing heal encounter (requirement
+  // 1000 ≪ bankable ceiling → VICTORY pre-window) vs this 80000 requirement
+  // (≫ ceiling → in-window DEFEAT).
+  const collapseEncounter = encounters.get('encounter_fixture_sustain_collapse');
+  if (collapseEncounter !== undefined) {
+    const launch = api.encounterAdapter.buildEncounterLaunchConfig(sourceFor(collapseEncounter), launchDeps);
+    const lifesteal = launch.modifiers.find((m) => m.params['heal_bps'] !== undefined);
+    if (lifesteal !== undefined) {
+      const mkCollapseUnit = (id, side, lane, x100v, maxLp, lp) =>
+        migrate.migrateEntity({
+          entity: Object.freeze({
+            id, side,
+            phase: Object.freeze({ phase: 'ACTIVE', enteredTick: primitives.tick(0), controlledReturn: null }),
+            maxLp, lp, shield: 0, lane, x100: x100v, targetId: null, timers: Object.freeze({}),
+          }),
+          radiusX100: 100,
+        });
+      const buildCollapseBattle = () => Object.freeze({
+        schemaVersion: 1,
+        simulationVersion: 'phase21-content-launch-v1',
+        battleId: 'battle_fixture_sustain_collapse',
+        tick: primitives.tick(0),
+        nextSequence: primitives.sequence(0),
+        emittedEventCount: 0,
+        phase: Object.freeze({ phase: 'ACTIVE', enteredTick: primitives.tick(0), resolvingEndTicks: 0 }),
+        // Damaged player + an ATTACKING near-immortal tank: net intake zero
+        // before the window (150 heal − 150 damage), so the counter grows at
+        // 225/cycle for the whole pre-window grind and the player enters the
+        // window at 1500 HP.
+        entities: Object.freeze([
+          mkCollapseUnit('unit_p', 'player', 'middle', 1800, 5000, 1500),
+          mkCollapseUnit('unit_e1', 'enemy', 'middle', 6200, 100000, 100000),
+        ]),
+        temporaryEntities: Object.freeze([]),
+        abilities: Object.freeze([]),
+        scheduledEvents: Object.freeze([]),
+        authoritativeStreams: Object.freeze([]),
+        endReason: null,
+      });
+      const collapseSystems = Object.freeze([
+        ...api.phase17Systems.createPhase17Systems({
+          speedsX100PerSecond: {},
+          targeting: { focusTargetId: { unit_p: 'unit_e1', unit_e1: 'unit_p' } },
+          basicAttack: {
+            parameters: {
+              unit_p: { attackIntervalTicks: 10, prepareTicks: 1, recoveryTicks: 3, preferredRangeX100: x100.asX100(9000), delivery: { kind: 'direct', rawAmount: 300, damageTypeOrdinal: 0, defense: 0, bossCapBps: null } },
+              unit_e1: { attackIntervalTicks: 10, prepareTicks: 1, recoveryTicks: 3, preferredRangeX100: x100.asX100(9000), delivery: { kind: 'direct', rawAmount: 150, damageTypeOrdinal: 0, defense: 0, bossCapBps: null } },
+            },
+          },
+        }),
+        ...api.phase21Systems.createPhase21Systems({
+          bossObjects: launch.bossObjects,
+          objectives: launch.objectives,
+          modifiers: launch.modifiers,
+          waves: launch.waves,
+          spawnBodies,
+          bossPhaseDefinitions: launch.bossPhaseDefinitions,
+        }),
+      ]);
+      // The normal soft limit is 2700 ticks; the window runs to 3150 and the
+      // player dies ~2847 — the loop must outrun the death, so cap at 3400.
+      const runCollapse = () => {
+        const collapseRandom = new api.random.RandomSession(
+          api.random.RngStreamMap.fromRunSeed(api.random.parseRunSeed(['00000001', '00000002', '00000003', '00000004'])),
+          new api.random.RollSlotRegistry([]), false,
+        );
+        let state = { ...buildCollapseBattle(), authoritativeStreams: collapseRandom.streams.snapshotAuthoritative() };
+        const healStream = [];
+        let ticks = 0;
+        let deathTick = null;
+        for (let t = 0; t < 3400 && !['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(state.phase.phase); t++) {
+          const r = api.battleKernel.stepBattle({ state, input, random: collapseRandom, rules: {}, content: {}, systems: collapseSystems });
+          state = r.state;
+          ticks += 1;
+          for (const event of r.events) {
+            if (event.type === 'HealApplied' && event.targetIds.length === 1) {
+              healStream.push({ tick: state.tick, targetId: event.targetIds[0], delta: event.payload['finalHpDelta'] ?? 0, blocked: false });
+            } else if (event.type === 'LifestealBlocked') {
+              healStream.push({ tick: state.tick, targetId: event.targetIds[0] ?? '', delta: event.payload['targetAmount'] ?? 0, blocked: true });
+            }
+          }
+          if (state.entities.find((e) => e.id === 'unit_p')?.lp === 0) deathTick ??= state.tick;
+        }
+        return { state, ticks, healStream, deathTick, terminal: { phase: state.phase.phase, reason: state.endReason } };
+      };
+      const a = runCollapse();
+      const b = runCollapse();
+      const objective = a.state.objectives?.find((o) => o.kind === 'heal_sustain');
+      const windowOpened = a.state.timeCollapseSinceTick === 2700;
+      // The §10 halving must be OBSERVED: pre-window player heals 150, and the
+      // window is active (≥ 2700) with player heals at the halved 75.
+      const preWindow = a.healStream.filter((h) => !h.blocked && h.targetId === 'unit_p' && h.tick < 2700);
+      const inWindow = a.healStream.filter((h) => !h.blocked && h.targetId === 'unit_p' && h.tick >= 2700);
+      const halvingObserved = preWindow.some((h) => h.delta === 150) && inWindow.some((h) => h.delta === 75);
+      const inWindowDeath = a.deathTick !== null && a.deathTick >= 2700 && a.deathTick < 3150;
+      const counter = objective?.progress ?? 0;
+      const incomplete = objective?.complete === false && counter < 80000;
+      const deterministic = api.snapshot.createSnapshot(a.state).checksum === api.snapshot.createSnapshot(b.state).checksum
+        && JSON.stringify(a.healStream) === JSON.stringify(b.healStream);
+      const collapseOk = a.terminal?.phase === 'DEFEAT' && a.terminal?.reason === 'side_eliminated'
+        && windowOpened && halvingObserved && inWindowDeath && incomplete && deterministic;
+      if (!collapseOk) seededFailures += 1;
+      perEncounter[collapseEncounter.id] = {
+        objective: collapseEncounter.objective,
+        objectivesSeeded: true,
+        bossObjectsPlaced: true,
+        modifiersCommitted: true,
+        hooksFired: true,
+        wavesSpawned: true,
+        terminal: a.terminal,
+        ticks: a.ticks,
+        objectivesComplete: objective?.complete === true,
+        // The §10 boundary: requirement 80000 exceeds the bankable counter
+        // (~62k at the in-window death) while the win requirement (1000) is
+        // far below it — the launcher pins both sides of the tipping point.
+        sustainCollapseTeeth: collapseOk,
+        windowOpened,
+        halvingObserved,
+        inWindowDeath,
+        counterAtDeath: counter,
+        requirement: 80000,
+        healStream: a.healStream.slice(0, 12),
+        checksum: api.snapshot.createSnapshot(a.state).checksum,
+        drift: false,
+        status: collapseOk ? 'PASS' : 'FAIL',
+      };
+    }
+  }
+
   // Real-combat multi-boss teeth: BOTH bosses descend under REAL combat damage
   // (DamageApplied hits that actually move HP — no HP re-seeding). unit_p and
   // unit_p2 focus-fire the primary/secondary boss, so each authority's HP
@@ -806,6 +944,29 @@ try {
       perEncounter[waveBossEncounter.id].waveBossInterplay = waveBossInterplay;
       perEncounter[waveBossEncounter.id].waveSpawnTicks = a.spawns.map((spawn) => [spawn[0], spawn[1]]);
       perEncounter[waveBossEncounter.id].status = perEncounter[waveBossEncounter.id].status === 'PASS' && waveBossInterplay ? 'PASS' : 'FAIL';
+    }
+  }
+
+  // §8.3 sustain POLICY pass (the heal-stream audit matrix mirrored into a
+  // build-time contract): every heal_sustain encounter's requirement must be
+  // positive, a heal_bps source must fold to a positive composite scale, and
+  // the §6 target set must contain a damageable body. Issues flip the entry
+  // (and the report) to FAIL — structural unwinnability is a content error.
+  for (const encounter of encounters.values()) {
+    if (encounter.objective !== 'heal_sustain') continue;
+    const entry = perEncounter[encounter.id];
+    if (entry === undefined) continue;
+    const launch = api.encounterAdapter.buildEncounterLaunchConfig(sourceFor(encounter), launchDeps);
+    const issues = api.phase21Systems.validateSustainPolicy({
+      healSustainCount: encounter.healSustainCount ?? null,
+      modifiers: launch.modifiers,
+      enemySlots: encounter.enemySlots ?? [],
+      bossObjects: encounter.bossObjects ?? [],
+    });
+    entry.sustainPolicy = issues.map((i) => i.code);
+    if (issues.length > 0) {
+      seededFailures += 1;
+      entry.status = 'FAIL';
     }
   }
 

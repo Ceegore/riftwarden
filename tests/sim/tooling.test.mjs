@@ -160,9 +160,9 @@ test('content-driven battle launcher derives objectives via the adapter and reso
   assert.equal(report.invariantErrors, 0);
   assert.equal(report.drift, 0);
   assert.equal(report.seededFailures, 0);
-  assert.equal(report.encounters, 8);
+  assert.equal(report.encounters, 9);
   const byId = report.perEncounter;
-  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object', 'encounter_fixture_boss_duo', 'encounter_fixture_wave_boss', 'encounter_fixture_heal_sustain']) {
+  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object', 'encounter_fixture_boss_duo', 'encounter_fixture_wave_boss', 'encounter_fixture_heal_sustain', 'encounter_fixture_sustain_collapse']) {
     assert.equal(byId[key].status, 'PASS', key);
     assert.equal(byId[key].objectivesSeeded, true, key);
     assert.equal(byId[key].bossObjectsPlaced, true, key);
@@ -183,6 +183,29 @@ test('content-driven battle launcher derives objectives via the adapter and reso
   // §8: every mission objective must actually complete (the gate is strict).
   for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object', 'encounter_fixture_boss_duo', 'encounter_fixture_wave_boss', 'encounter_fixture_heal_sustain']) {
     assert.equal(byId[key].objectivesComplete, true, key);
+  }
+  // §10 sustain × collapse TIPPING teeth: the 80000-requirement encounter is
+  // NOT bankable by the pre-window grind, so it loses IN the window — the
+  // halved heal rate (150→75 observed) turns the player's net intake negative
+  // and the collapse damage kills them at ~2885 (DEFEAT side_eliminated). The
+  // win side of the boundary stays the 1000-requirement encounter (VICTORY,
+  // banked pre-window).
+  const collapseEntry = byId['encounter_fixture_sustain_collapse'];
+  assert.equal(collapseEntry.sustainCollapseTeeth, true);
+  assert.equal(collapseEntry.terminal.phase, 'DEFEAT');
+  assert.equal(collapseEntry.terminal.reason, 'side_eliminated');
+  assert.equal(collapseEntry.windowOpened, true);
+  assert.equal(collapseEntry.halvingObserved, true);
+  assert.equal(collapseEntry.inWindowDeath, true);
+  assert.equal(collapseEntry.objectivesComplete, false);
+  assert.ok(collapseEntry.counterAtDeath < collapseEntry.requirement, 'the requirement is NOT bankable');
+  assert.ok(collapseEntry.ticks > 2700 && collapseEntry.ticks < 3150, 'the death lands inside the §10 window');
+  // §8.3 sustain POLICY pass: every heal_sustain encounter's contract is
+  // validated at launch time (positive requirement, positive composite heal
+  // scale, a damageable target) — both sustain encounters must be clean.
+  for (const key of ['encounter_fixture_heal_sustain', 'encounter_fixture_sustain_collapse']) {
+    assert.deepEqual(byId[key].sustainPolicy, [], `${key} sustain policy is clean`);
+    assert.equal(byId[key].status, 'PASS', key);
   }
   // The survive window must actually elapse: terminal is VICTORY survive_complete.
   assert.equal(byId['encounter_fixture_survive'].terminal.reason, 'survive_complete');

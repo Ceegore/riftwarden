@@ -94,6 +94,10 @@ export interface NodeActionRequest {
   readonly nodeId: string;
   readonly action: string;
   readonly optionId?: string;
+  /** §9.5: the live sim's mission objective completed at the terminal — the
+   * victory ENGAGE then grants the objective bounty. UI-supplied like the
+   * verdict itself (the deterministic sim is the source of truth). */
+  readonly missionBonus?: boolean;
 }
 
 /** Content-side node instance: what the map and content revision say. */

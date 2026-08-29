@@ -357,6 +357,36 @@
       "allowedModes": [
         "campaign"
       ]
+    },
+    {
+      "id": "encounter_fixture_sustain_collapse",
+      "regionId": "region_fixture",
+      "kind": "survival",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [
+        "mod_fixture_lifesteal"
+      ],
+      "reinforcementWaves": [],
+      "objective": "heal_sustain",
+      "healSustainCount": 80000,
+      "bossPhases": [],
+      "bossPhasesSecondary": [],
+      "bossUnitId": null,
+      "bossUnitIdSecondary": null,
+      "survivalDurationSeconds": null,
+      "bossObjects": [],
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_sustain_collapse.preview",
+      "allowedModes": [
+        "campaign"
+      ]
     }
   ]
 }
