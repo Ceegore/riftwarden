@@ -89,7 +89,12 @@ export function applyEventProgress(o: Objective, event: KernelEvent): Objective 
     case 'complete_waves':
       return event.type === 'ReinforcementSpawned' ? applyProgress(o, 1) : o;
     case 'heal_sustain':
-      return event.type === 'HealApplied' ? applyProgress(o, Math.max(1, event.payload['finalHpDelta'] ?? 1)) : o;
+      // §8.3 sustain counts only HP actually RESTORED: an overheal-discarded
+      // heal (finalHpDelta 0) contributes nothing — casting at full HP does
+      // not inflate the mission.
+      return event.type === 'HealApplied' && (event.payload['finalHpDelta'] ?? 0) > 0
+        ? applyProgress(o, Math.max(1, event.payload['finalHpDelta'] ?? 1))
+        : o;
     case 'protect_object':
     case 'survive_until':
       return o;
@@ -116,7 +121,10 @@ export function applyEventRecordProgress(o: Objective, record: EventRecordLike):
     case 'complete_waves':
       return record.type === 'ReinforcementSpawned' ? applyProgress(o, 1) : o;
     case 'heal_sustain':
-      return record.type === 'HealApplied' ? applyProgress(o, Math.max(1, record.amount ?? 1)) : o;
+      // §8.3 sustain counts only actually-restored HP (see applyEventProgress).
+      return record.type === 'HealApplied' && (record.amount ?? 0) > 0
+        ? applyProgress(o, Math.max(1, record.amount ?? 1))
+        : o;
     case 'protect_object':
     case 'survive_until':
       return o;

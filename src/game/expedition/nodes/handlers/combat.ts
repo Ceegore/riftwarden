@@ -18,6 +18,8 @@ const BATTLE_GOLD_SPAN = 26;
 const ELITE_GOLD_MIN = 90;
 const ELITE_GOLD_SPAN = 51;
 const LOOT_CHANCE_PERMILLE = 350;
+/** §9: instability a DEFEAT costs (a lost fight pays nothing and hurts). */
+const DEFEAT_INSTABILITY_DELTA = 5;
 
 function rewardSeed(state: NodeRunState, nodeId: string): number {
   return fnv1a32([state.runId, nodeId, state.contentRevision, 'reward']);
@@ -69,7 +71,7 @@ function makeCombatHandler(
   rewardCategoryKey: string,
   hasLootChance: boolean,
 ): NodeHandler {
-  const actions = ['ENTER', 'ENGAGE', 'CLAIM_REWARD', 'DECLINE'];
+  const actions = ['ENTER', 'ENGAGE', 'ENGAGE_DEFEAT', 'CLAIM_REWARD', 'DECLINE'];
   return {
     type,
     allowedActions: actions,
@@ -83,6 +85,15 @@ function makeCombatHandler(
       assertVisitOpen(state, definition.nodeId);
       if (hasCommittedAction(state, definition.nodeId, ['DECLINE'])) return 'ACTION_LIMIT';
       if (request.action === 'ENGAGE') {
+        // §9 victory: exactly one, and only before any verdict is recorded — a
+        // defeat cannot be turned into a win (the deterministic sim already
+        // ruled it).
+        if (hasCommittedAction(state, definition.nodeId, ['ENGAGE', 'ENGAGE_DEFEAT', 'CLAIM_REWARD'])) return 'ACTION_LIMIT';
+        return null;
+      }
+      if (request.action === 'ENGAGE_DEFEAT') {
+        // §9 defeat: no rewards; RE-ENGAGE is a deterministic rewatch of the
+        // same lost sim (repeatable) — never a win.
         if (hasCommittedAction(state, definition.nodeId, ['ENGAGE', 'CLAIM_REWARD'])) return 'ACTION_LIMIT';
         return null;
       }
@@ -98,6 +109,8 @@ function makeCombatHandler(
         if (!hasCommittedAction(state, definition.nodeId, ['ENGAGE'])) return 'PREREQUISITE_MISSING';
         return null;
       }
+      // §9 retreat: allowed after a DEFEAT (ENGAGE_DEFEAT) — a lost fight is
+      // cleared by retreating; only a VICTORY (ENGAGE) or a claim locks DECLINE.
       if (request.action === 'DECLINE' && hasCommittedAction(state, definition.nodeId, ['ENGAGE', 'CLAIM_REWARD'])) return 'ACTION_LIMIT';
       if (request.action === 'ENTER' || request.action === 'DECLINE') {
         return null;
@@ -124,6 +137,12 @@ function makeCombatHandler(
         const killsExtra = (snapshot.rollSlots['gold'] ?? 0) % (rewardCount === 2 ? 4 : 8);
         commands.push({ kind: 'KILLS_EARNED', amount: killsBase + killsExtra });
         return applyOutcomeCommands(state, commands);
+      }
+      if (request.action === 'ENGAGE_DEFEAT') {
+        // §9 defeat: the live verdict pays NOTHING (no gold, loot or kills) and
+        // levies the instability penalty; the reward snapshot is untouched so a
+        // re-fought defeat (deterministic rewatch) behaves identically.
+        return applyOutcomeCommands(state, [{ kind: 'INSTABILITY_DELTA', amount: DEFEAT_INSTABILITY_DELTA }]);
       }
       if (request.action === 'CLAIM_REWARD') {
         if (request.optionId === undefined) {

@@ -254,6 +254,17 @@ test('content-driven battle launcher derives objectives via the adapter and reso
   for (const heal of healEntry.heals.slice(0, 7)) {
     assert.deepEqual(heal, ['unit_p', 150, 150]);
   }
+  // §7/§6 heal stream on the static report: the sustain battle's heals are
+  // real applied entries (delta > 0) with ZERO suppressed (no immune targets),
+  // and the field rides EVERY encounter's report entry.
+  assert.ok(Array.isArray(healEntry.healStream) && healEntry.healStream.length >= 7, 'healStream carries the applied heals');
+  const healApplied = healEntry.healStream.filter((h) => !h.blocked);
+  assert.ok(healApplied.length >= 7, 'applied heal-stream entries present');
+  assert.ok(healApplied.slice(0, 7).every((h) => h.targetId === 'unit_p' && h.delta === 150), 'first heal-stream entries are the full 150 lifesteal heals');
+  assert.equal(healEntry.healStream.filter((h) => h.blocked).length, 0, 'no suppressed heals in the sustain setup');
+  for (const key of Object.keys(byId)) {
+    assert.ok(Array.isArray(byId[key].healStream), `${key} report carries the healStream field`);
+  }
 });
 
 test('phase21-policy mass-sim evidence (all policy combos) is PASS with zero drift and zero gate violations', () => {

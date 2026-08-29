@@ -132,7 +132,7 @@ function run(): RunResult {
     // The stage-L fold consumes the PREVIOUS step's records: at output tick
     // T the persisted progress equals Σ deltas for heals applied at ticks ≤ T-2.
     const kernelProgress = (state.objectives ?? []).find((o) => o.kind === 'heal_sustain')?.progress ?? 0;
-    const oracleUpTo = healByTick.filter((h) => h.tick <= state.tick - 2).reduce((sum, h) => sum + Math.max(1, h.delta), 0);
+    const oracleUpTo = healByTick.filter((h) => h.tick <= state.tick - 2).reduce((sum, h) => sum + (h.delta > 0 ? h.delta : 0), 0);
     observations.push(Object.freeze({ tick: state.tick, kernelProgress, oracleProgress: oracleUpTo }));
     expect(kernelProgress, `kernel vs oracle at tick ${state.tick}`).toBe(oracleUpTo);
   }
@@ -167,7 +167,7 @@ describe('P21 §8 amount-fold heal oracle differential', () => {
     // it and post-window heals were all observed and folded.
     expect(a.observations.some((o) => o.tick < SOFT)).toBe(true);
     expect(a.observations.some((o) => o.tick > WINDOW_END)).toBe(true);
-    const total = a.oracleDeltas.reduce((sum, delta) => sum + Math.max(1, delta), 0);
+    const total = a.oracleDeltas.reduce((sum, delta) => sum + (delta > 0 ? delta : 0), 0);
     expect(total).toBe(1500); // 600 + 300 + 600
     const last = a.observations[a.observations.length - 1];
     expect(last?.kernelProgress).toBe(1500);

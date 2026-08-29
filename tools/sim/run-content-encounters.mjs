@@ -212,17 +212,28 @@ try {
     let state = { ...battle, authoritativeStreams: random.streams.snapshotAuthoritative() };
     let ticks = 0;
     let terminal = null;
+    // §7/§6 heal stream: applied heals (HealApplied finalHpDelta) and
+    // suppressed lifesteal (LifestealBlocked targetAmount) — the same surface
+    // the live host streams, so the report can assert heal-source metrics.
+    const healStream = [];
     // The survive fixture's window is 900 ticks; the cap must exceed the
     // longest mission window plus the resolving window (default 1500).
     for (let t = 0; t < 1500 && terminal === null; t++) {
       const r = battleKernel.stepBattle({ state, input, random, rules: {}, content: {}, systems });
       state = r.state;
       ticks += 1;
+      for (const event of r.events) {
+        if (event.type === 'HealApplied') {
+          healStream.push({ tick: state.tick, targetId: event.targetIds[0] ?? event.sourceId ?? '', delta: event.payload['finalHpDelta'] ?? 0, blocked: false });
+        } else if (event.type === 'LifestealBlocked') {
+          healStream.push({ tick: state.tick, targetId: event.targetIds[0] ?? '', delta: event.payload['targetAmount'] ?? 0, blocked: true });
+        }
+      }
       if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(state.phase.phase)) {
         terminal = { phase: state.phase.phase, reason: state.endReason };
       }
     }
-    return { state, ticks, terminal };
+    return { state, ticks, terminal, healStream };
   }
 
   const perEncounter = {};
@@ -312,6 +323,8 @@ try {
       hooks: hookLog.map((f) => [f.modifierId, f.hook, f.atTick]),
       bossPhase: phaseState,
       bossPhaseSecondary: phaseStateSecondary,
+      // §7/§6 heal stream (applied + blocked) for the static report.
+      healStream: a.healStream.slice(0, 12),
       checksum: checksumA,
       drift: checksumA !== checksumB,
       status: seeded && objectsPlaced && modifiersCommitted && hooksFired && wavesSpawned && objectivesComplete ? 'PASS' : 'FAIL',
@@ -546,6 +559,7 @@ try {
         );
         let state = { ...buildHealBattle(), authoritativeStreams: healRandom.streams.snapshotAuthoritative() };
         const heals = [];
+        const healStream = [];
         let ticks = 0;
         for (let t = 0; t < 800 && !['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(state.phase.phase); t++) {
           const r = api.battleKernel.stepBattle({ state, input, random: healRandom, rules: {}, content: {}, systems: healSystems });
@@ -554,6 +568,9 @@ try {
           for (const event of r.events) {
             if (event.type === 'HealApplied' && event.targetIds.length === 1) {
               heals.push([event.targetIds[0], event.payload['rawAmount'] ?? 0, event.payload['finalHpDelta'] ?? 0]);
+              healStream.push({ tick: state.tick, targetId: event.targetIds[0], delta: event.payload['finalHpDelta'] ?? 0, blocked: false });
+            } else if (event.type === 'LifestealBlocked') {
+              healStream.push({ tick: state.tick, targetId: event.targetIds[0] ?? '', delta: event.payload['targetAmount'] ?? 0, blocked: true });
             }
           }
         }
@@ -561,6 +578,7 @@ try {
           state,
           ticks,
           heals,
+          healStream,
           terminal: { phase: state.phase.phase, reason: state.endReason },
         };
       };
@@ -597,6 +615,9 @@ try {
         objectivesComplete: healObjectiveDone,
         healSustainRealCombat: healOk,
         heals: a.heals.slice(0, 12),
+        // §7/§6 heal stream: real applied heals, zero suppressed (no immune
+        // targets in this sustain setup) — tooling pins the source metrics.
+        healStream: a.healStream.slice(0, 12),
         checksum: api.snapshot.createSnapshot(a.state).checksum,
         drift: false,
         status: healOk ? 'PASS' : 'FAIL',

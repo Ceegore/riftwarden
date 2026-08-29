@@ -100,4 +100,60 @@ describe('phase21 battle verdict gating', () => {
     const again = exp.resolveBattle(true);
     expect(again.state.revision).toBe(revision);
   });
+
+  it('a VICTORY ENGAGE pays the reward exactly once and locks re-engagement', () => {
+    let exp = advanceToCombat(206);
+    const nodeId = exp.currentNodeId;
+    const goldBefore = exp.state.gold;
+    const killsBefore = exp.state.killsEarned;
+    exp = exp.enter('tx-victory-enter');
+    // Enter leaves gold/kills untouched (instability +5 only).
+    expect(exp.state.gold).toBe(goldBefore);
+    exp = exp.act({ transactionId: 'tx-victory-engage', nodeId, action: 'ENGAGE' });
+    expect(exp.state.ledger['tx-victory-engage']?.status).toBe('COMMITTED');
+    expect(exp.state.gold).toBeGreaterThan(goldBefore);
+    expect(exp.state.killsEarned).toBeGreaterThan(killsBefore);
+    // A victory is terminal: neither a second ENGAGE nor an ENGAGE_DEFEAT is
+    // allowed after it, and DECLINE is locked too.
+    exp = exp.act({ transactionId: 'tx-victory-2', nodeId, action: 'ENGAGE' });
+    expect(exp.state.ledger['tx-victory-2']?.status).toBe('REJECTED');
+    exp = exp.act({ transactionId: 'tx-victory-defeat', nodeId, action: 'ENGAGE_DEFEAT' });
+    expect(exp.state.ledger['tx-victory-defeat']?.status).toBe('REJECTED');
+    exp = exp.act({ transactionId: 'tx-victory-decline', nodeId, action: 'DECLINE' });
+    expect(exp.state.ledger['tx-victory-decline']?.status).toBe('REJECTED');
+  });
+
+  it('a DEFEAT ENGAGE pays nothing, levies instability, re-engages as a deterministic rewatch and retreats', () => {
+    let exp = advanceToCombat(207);
+    const nodeId = exp.currentNodeId;
+    const goldBefore = exp.state.gold;
+    const instBefore = exp.state.instability;
+    exp = exp.enter('tx-defeat-enter');
+    expect(exp.state.instability).toBe(instBefore + 5); // battle enter penalty
+    // First defeat: committed, NO reward, +5 instability (the defeat penalty).
+    exp = exp.act({ transactionId: 'tx-defeat-1', nodeId, action: 'ENGAGE_DEFEAT' });
+    expect(exp.state.ledger['tx-defeat-1']?.status).toBe('COMMITTED');
+    expect((exp.state.ledger['tx-defeat-1']?.outcomeIds ?? []).length).toBeGreaterThan(0);
+    expect(exp.state.gold).toBe(goldBefore);
+    expect(exp.state.killsEarned).toBe(0);
+    expect(exp.state.instability).toBe(instBefore + 5 + 5);
+    // RE-ENGAGE: a lost fight is a deterministic rewatch of the same seed —
+    // repeatable, pays nothing again, and the sim verdict is unchanged (a
+    // defeat can never flip into a win at the contract level).
+    exp = exp.act({ transactionId: 'tx-defeat-2', nodeId, action: 'ENGAGE_DEFEAT' });
+    expect(exp.state.ledger['tx-defeat-2']?.status).toBe('COMMITTED');
+    expect(exp.state.gold).toBe(goldBefore);
+    expect(exp.state.killsEarned).toBe(0);
+    expect(exp.state.instability).toBe(instBefore + 5 + 10);
+    // A victory ENGAGE is rejected after the defeat (no flipping a loss).
+    exp = exp.act({ transactionId: 'tx-defeat-victory', nodeId, action: 'ENGAGE' });
+    expect(exp.state.ledger['tx-defeat-victory']?.status).toBe('REJECTED');
+    // RETREAT: DECLINE is allowed after a defeat and clears the node.
+    exp = exp.act({ transactionId: 'tx-defeat-retreat', nodeId, action: 'DECLINE' }).resolve();
+    expect(exp.state.visits[nodeId]?.status).toBe('RESOLVED');
+    const next = exp.reachableNodes[0];
+    if (next !== undefined) {
+      expect(exp.advance(next).currentNodeId).toBe(next);
+    }
+  });
 });
