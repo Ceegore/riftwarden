@@ -13,6 +13,7 @@ import type { TickInput } from '../../src/game/sim/core/tick-input.js';
 import type { BattleModel } from '../../src/game/sim/core/battle-model.js';
 import { battle, entity, randomSession } from './test-helpers.js';
 import { asX100 } from '../../src/game/sim/geometry/x100.js';
+import type { Wave } from '../../src/game/sim/world/reinforcement-system.js';
 
 /**
  * Phase 21 §8 composite survive+kill timing fuzz.
@@ -231,25 +232,107 @@ describe('P21 §8 composite survive+kill timing fuzz', () => {
   });
 
   it('clean-room oracle: evaluateComposite("all") equals objectiveAllowsBattleEnd and drives the gate', { timeout: 60_000 }, () => {
-    const composite: CompositeCondition = Object.freeze({ id: 'composite_mission', mode: 'all', objectiveIds: Object.freeze(['obj_survive', 'obj_kill']) });
+    // complete_waves is folded into the composite oracle as a third part: the
+    // whole mission ('all') is closed only when survive AND kill AND waves are.
+    const composite: CompositeCondition = Object.freeze({ id: 'composite_mission', mode: 'all', objectiveIds: Object.freeze(['obj_survive', 'obj_kill', 'obj_waves']) });
     let sawOpen = 0;
     let sawClosed = 0;
     for (let i = 0; i < 20_000; i++) {
       const survive = i % 3 === 0;
       const kill = i % 5 === 0;
-      const objectives: readonly Objective[] = createObjectives(survive, kill);
-      const oracle = survive && kill;
+      const waves = i % 4 === 0;
+      const objectives: readonly Objective[] = createObjectives(survive, kill, waves);
+      const oracle = survive && kill && waves;
       expect(evaluateComposite(composite, objectives), `case ${String(i)}`).toBe(oracle);
       expect(objectiveAllowsBattleEnd(objectives), `case ${String(i)} runtime gate`).toBe(oracle);
       if (oracle) sawClosed += 1;
       else sawOpen += 1;
     }
-    // Both open and closed states are exercised non-trivially (closed = both
-    // parts complete, i%15===0 across the 20k sweep).
+    // Both open and closed states are exercised non-trivially (closed = all three
+    // parts complete, i%60===0 across the 20k sweep).
     expect(sawOpen).toBeGreaterThan(5000);
-    expect(sawClosed).toBeGreaterThan(1000);
+    expect(sawClosed).toBeGreaterThan(300);
     // An unknown objective id in the composite is a content error.
-    expect(() => evaluateComposite({ ...composite, objectiveIds: Object.freeze(['obj_missing']) }, createObjectives(true, true))).toThrow(/P21_OBJECTIVE_INVALID/);
+    expect(() => evaluateComposite({ ...composite, objectiveIds: Object.freeze(['obj_missing']) }, createObjectives(true, true, true))).toThrow(/P21_OBJECTIVE_INVALID/);
+  });
+
+  it('complete_waves closes the composite gate alongside the survive window (no early end)', { timeout: 120_000 }, () => {
+    // A composite mission may be survive_until + complete_waves. The waves
+    // objective gates the terminal exactly like a kill part: the survive window
+    // alone must never end the battle while the declared waves are still open,
+    // and the waves alone must never win before the window elapses.
+    const cases: ReadonlyArray<{ id: string; surviveTicks: number; waveTick: number; longPole: 'survive' | 'waves' }> = Object.freeze([
+      // waves complete early, the window is the long pole: the gate holds the VICTORY until the window elapses.
+      Object.freeze({ id: 'waves_early', surviveTicks: 200, waveTick: 40, longPole: 'survive' }),
+      // window completes early, waves open until 150: the gate holds the VICTORY until the waves land.
+      Object.freeze({ id: 'waves_last', surviveTicks: 40, waveTick: 150, longPole: 'waves' }),
+    ]);
+    for (const c of cases) {
+      const objectives: readonly Objective[] = Object.freeze([
+        Object.freeze({ id: 'obj_survive', kind: 'survive_until', targetId: null, required: c.surviveTicks, progress: 0, complete: false }),
+        Object.freeze({ id: 'obj_waves', kind: 'complete_waves', targetId: null, required: 1, progress: 0, complete: false }),
+      ]);
+      const waves: readonly Wave[] = Object.freeze([
+        Object.freeze({ id: `wave_${c.id}`, scheduledTick: c.waveTick, side: 'enemy', entityIds: Object.freeze([`${c.id}_spawn_0`]), spawnProfile: 'wave_encounter', capPolicy: 'BLOCK' }),
+      ]);
+      const systems: readonly KernelSystem[] = Object.freeze([
+        ...createPhase17Systems({ speedsX100PerSecond: {} }),
+        // No spawnBodies: waves only emit ReinforcementSpawned + advance the cursor,
+        // which drives the complete_waves objective via previous-tick events.
+        ...createPhase21Systems({ objectives, waves }),
+      ]);
+      const terminalReasons: (string | null)[] = [];
+      const terminalTicks: number[] = [];
+      for (let rep = 0; rep < 2; rep++) {
+        const state = wavesBattle(`phase21-composite-waves-${c.id}`);
+        const random = randomSession();
+        let current = state;
+        let firstSurvive: number | null = null;
+        let firstWaves: number | null = null;
+        let firstAll: number | null = null;
+        let terminal: { phase: string; reason: string | null } | null = null;
+        let terminalTick = -1;
+        for (let t = 0; t < HARD_LIMIT; t++) {
+          const r = stepBattle({ state: current, input, random, rules: {}, content: {}, systems });
+          current = r.state;
+          const objectivesNow = current.objectives ?? [];
+          const survive = objectivesNow.find((o) => o.kind === 'survive_until');
+          const wavesO = objectivesNow.find((o) => o.kind === 'complete_waves');
+          if (survive?.complete === true && firstSurvive === null) firstSurvive = current.tick;
+          if (wavesO?.complete === true && firstWaves === null) firstWaves = current.tick;
+          if (objectiveAllowsBattleEnd(objectivesNow) && firstAll === null) firstAll = current.tick;
+          if (['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(current.phase.phase)) {
+            terminal = { phase: current.phase.phase, reason: current.endReason };
+            terminalTick = current.tick;
+            break;
+          }
+        }
+        expect(terminal?.phase, c.id).toBe('VICTORY');
+        // Either force may win the same-tick tie (survive vs waves block ordering);
+        // the gate simply requires a mission terminal, not a specific reason.
+        expect(['survive_complete', 'waves_complete'], c.id).toContain(terminal?.reason ?? null);
+        expect(firstAll, c.id).not.toBeNull();
+        if (firstAll === null) throw new Error(`${c.id} never completed`);
+        expect(firstSurvive, c.id).not.toBeNull();
+        expect(firstWaves, c.id).not.toBeNull();
+        if (firstSurvive === null || firstWaves === null) throw new Error(`${c.id} part never completed`);
+        // NO EARLY END: the terminal lands when ALL parts are complete, and the
+        // long-pole part — the one that held the composite open — is what
+        // actually closed it (firstAll must be the later completion).
+        const expectedClose = c.longPole === 'survive' ? firstSurvive : firstWaves;
+        expect(firstAll, c.id).toBe(expectedClose);
+        expect(terminalTick, c.id).toBeGreaterThanOrEqual(firstAll);
+        expect(terminalTick - firstAll, c.id).toBeLessThanOrEqual(5);
+        // Both parts genuinely closed before the terminal (nothing late-dropped).
+        expect(terminalTick, c.id).toBeGreaterThanOrEqual(firstSurvive);
+        expect(terminalTick, c.id).toBeGreaterThanOrEqual(firstWaves);
+        terminalReasons.push(terminal?.reason ?? null);
+        terminalTicks.push(terminalTick);
+      }
+      // Deterministic outcome across re-runs.
+      expect(terminalReasons[0]).toBe(terminalReasons[1]);
+      expect(terminalTicks[0]).toBe(terminalTicks[1]);
+    }
   });
 
   it('the composite hold survives snapshot resume byte-for-byte (mid-window resume)', { timeout: 120_000 }, () => {
@@ -315,10 +398,23 @@ describe('P21 §8 composite survive+kill timing fuzz', () => {
   });
 });
 
-/** Deterministic pair factory: both parts complete in every combination. */
-function createObjectives(survive: boolean, kill: boolean): readonly Objective[] {
+/** Deterministic pair factory: every part completes in every combination. */
+function createObjectives(survive: boolean, kill: boolean, waves: boolean): readonly Objective[] {
   return Object.freeze([
     Object.freeze({ id: 'obj_survive', kind: 'survive_until', targetId: null, required: 600, progress: survive ? 600 : 300, complete: survive }),
     Object.freeze({ id: 'obj_kill', kind: 'kill_regulars', targetId: null, required: 2, progress: kill ? 2 : 1, complete: kill }),
+    Object.freeze({ id: 'obj_waves', kind: 'complete_waves', targetId: null, required: 2, progress: waves ? 2 : 1, complete: waves }),
   ]);
+}
+
+/** A stall battle (no attack params, no movement) with both sides alive: a
+ * survive/gate-composite fixture where the objective force resolves the end. */
+function wavesBattle(simId: string): BattleModel {
+  const player = migrateEntity({ entity: entity('unit_p', { side: 'player', lane: 'middle', x100: 1800, maxLp: 1000, lp: 1000 }), radiusX100: 100 });
+  const enemy = migrateEntity({ entity: entity('unit_e0', { side: 'enemy', lane: 'middle', x100: 6200, maxLp: 1000, lp: 1000 }), radiusX100: 100 });
+  return battle({
+    simulationVersion: simId,
+    entities: Object.freeze([player, enemy]),
+    abilities: Object.freeze([]),
+  });
 }

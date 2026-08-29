@@ -195,6 +195,23 @@ test('content-driven battle launcher derives objectives via the adapter and reso
   // §9 boss-phase teeth: content phases drive a real p1→p2→p3 descent across
   // the boss's HP (a Lamport-style phase commit on each boundary).
   assert.equal(byId['encounter_fixture_boss_object'].phasesDescended, true);
+  // §9 outbound surface: the report exposes the modifier hook log and the boss
+  // phase at the terminal, and the teeth run leaves a full phase trace.
+  // The main-run boss actually descends (defeat_boss kills the boss), so the
+  // surfaced phase must be a real phase with a consistent visited trail.
+  const bossPhase = byId['encounter_fixture_boss_object'].bossPhase;
+  assert.equal(typeof bossPhase, 'object');
+  assert.ok(['phase_ash_1', 'phase_ash_2', 'phase_ash_3'].includes(bossPhase.phaseId));
+  assert.equal(typeof bossPhase.transition, 'boolean');
+  assert.ok(bossPhase.visited.length >= 2, 'multiple visited phases in the main-run descent');
+  assert.equal(typeof bossPhase.visited[0], 'string');
+  assert.ok(Array.isArray(byId['encounter_fixture_boss_object'].phaseTrace));
+  assert.ok(byId['encounter_fixture_first'].hooks.length > 0, 'non-empty hook log surfaced');
+  assert.equal(byId['encounter_fixture_first'].bossPhase, null);
+  for (const event of byId['encounter_fixture_boss_object'].phaseTrace) {
+    assert.match(event[0], /^(PhaseTransitionPlanned|BossPhaseStarted|BossPhaseCompleted|BossTelegraphStarted)$/);
+    assert.equal(typeof event[1], 'number');
+  }
 });
 
 test('phase21-policy mass-sim evidence (all policy combos) is PASS with zero drift and zero gate violations', () => {

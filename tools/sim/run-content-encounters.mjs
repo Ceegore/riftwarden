@@ -12,7 +12,11 @@
 //     reinforcement waves spawn their referenced compositions at their ticks;
 //   - ZERO DRIFT: two identical runs of the same encounter are byte-identical
 //     (same snapshot checksum, same terminal phase/reason);
-//   - NO INVARIANT ERRORS across the whole launch.
+//   - NO INVARIANT ERRORS across the whole launch;
+//   - OUTBOUND SURFACE: per encounter it reports the modifier hook log (for
+//     hook-driven telegraphs) and the boss phase at the terminal, and the
+//     boss teeth run emits the full phase trace (planned/started/completed
+//     with their ticks) so a frontend can render content boss scripting.
 // Report is written to --out (default docs/reports/phase21-content-encounters.json).
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
@@ -260,6 +264,13 @@ try {
     if (!wavesSpawned) seededFailures += 1;
     const objectivesComplete = a.state.objectives?.every((o) => o.complete) ?? true;
     if (!objectivesComplete) seededFailures += 1;
+    // §9 outbound surface: the modifier hook log (for hook-driven telegraphs) and
+    // the boss phase at the terminal (for rendering the current phase/transition).
+    const phaseState = a.state.bossPhase === undefined ? null : Object.freeze({
+      phaseId: a.state.bossPhase.phaseId,
+      visited: Object.freeze([...a.state.bossPhase.visited]),
+      transition: a.state.bossPhase.transition !== null,
+    });
     perEncounter[encounter.id] = {
       objective: encounter.objective,
       objectivesSeeded: seeded,
@@ -271,6 +282,7 @@ try {
       ticks: a.ticks,
       objectivesComplete,
       hooks: hookLog.map((f) => [f.modifierId, f.hook, f.atTick]),
+      bossPhase: phaseState,
       checksum: checksumA,
       drift: checksumA !== checksumB,
       status: seeded && objectsPlaced && modifiersCommitted && hooksFired && wavesSpawned && objectivesComplete ? 'PASS' : 'FAIL',
@@ -314,6 +326,7 @@ try {
     if (launch.bossPhaseDefinitions.length > 0) {
       const defs = launch.bossPhaseDefinitions;
       const bossId = defs[0].bossId;
+      const phaseTrace = [];
       const teethSystems = Object.freeze([...api.phase21Systems.createPhase21Systems({
         bossObjects: launch.bossObjects,
         objectives: launch.objectives,
@@ -336,6 +349,11 @@ try {
         for (let t = 0; t < cap; t++) {
           const r = api.battleKernel.stepBattle({ state: current, input, random: teethRandom, rules: {}, content: {}, systems: teethSystems });
           current = r.state;
+          for (const event of r.events) {
+            if (['PhaseTransitionPlanned', 'BossPhaseCompleted', 'BossPhaseStarted', 'BossTelegraphStarted'].includes(event.type)) {
+              phaseTrace.push([event.type, current.tick, event.contentIds.join('/')]);
+            }
+          }
           if (current.bossPhase?.phaseId === phaseId) return { reached: true, state: current };
         }
         return { reached: false, state: current };
@@ -347,6 +365,9 @@ try {
       const phasesDescended = p2.reached && p3.reached;
       if (!phasesDescended) seededFailures += 1;
       perEncounter[phasesEncounter.id].phasesDescended = phasesDescended;
+      // The full descent trail: a frontend can render the telegraphs/commits as
+      // hook-driven boss scripting (planned -> started/completed with the tick).
+      perEncounter[phasesEncounter.id].phaseTrace = phaseTrace;
       perEncounter[phasesEncounter.id].status = perEncounter[phasesEncounter.id].status === 'PASS' && phasesDescended ? 'PASS' : 'FAIL';
     }
   }
