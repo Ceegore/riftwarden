@@ -77,6 +77,43 @@ function humanize(key) {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+/**
+ * Parameterized UI templates (LOCALE_BOOTSTRAP_PARAMS). The bootstrap bundle is
+ * a stopgap: every key maps to a readable fallback. Keys listed here get a REAL
+ * compiled template (`text {arg} text`) with declared parameter kinds, so the
+ * dev bundle renders parameterized UI identically to the compiled pipeline
+ * instead of throwing L10N_RUNTIME_EXTRA_PARAMETER.
+ */
+const PARAM_TEMPLATES = Object.freeze({
+  'ui.phase21.outbound.count': Object.freeze({ template: '{count} encounters · {failed} failed', parameters: Object.freeze({ count: 'number', failed: 'number' }) }),
+  'ui.phase21.meta.objective': Object.freeze({ template: 'objective {objective}', parameters: Object.freeze({ objective: 'string' }) }),
+  'ui.phase21.meta.terminal': Object.freeze({ template: 'objective {objective} · {phase} · {ticks} ticks', parameters: Object.freeze({ objective: 'string', phase: 'string', ticks: 'number' }) }),
+  'ui.phase21.meta.terminal_reason': Object.freeze({ template: 'objective {objective} · {phase} ({reason}) · {ticks} ticks', parameters: Object.freeze({ objective: 'string', phase: 'string', reason: 'string', ticks: 'number' }) }),
+  'ui.phase21.telegraph.pending': Object.freeze({ template: 'telegraph → {phase} · resolves in {ticks} ticks', parameters: Object.freeze({ phase: 'string', ticks: 'number' }) }),
+  'ui.phase21.telegraph.resolved': Object.freeze({ template: 'telegraph → {phase} · resolved @ {tick}', parameters: Object.freeze({ phase: 'string', tick: 'number' }) }),
+  'ui.phase21.hook.at': Object.freeze({ template: '{hook} @ {tick}', parameters: Object.freeze({ hook: 'string', tick: 'number' }) }),
+  'ui.phase21.trace.at': Object.freeze({ template: '@ {tick}', parameters: Object.freeze({ tick: 'number' }) }),
+});
+
+/** Compiles an ICU-ish template (`text {arg} text`) into compiled AST nodes + declared parameter kinds. */
+function compileTemplate(template, parameters) {
+  const ast = [];
+  const re = /\{([a-z][a-z0-9_]*)\}/g;
+  let last = 0;
+  let match;
+  while ((match = re.exec(template)) !== null) {
+    const name = match[1];
+    if (name !== undefined && !Object.hasOwn(parameters, name)) throw new Error(`bootstrap template ${template} references undeclared param {${name}}`);
+    const before = template.slice(last, match.index);
+    if (before.length > 0) ast.push({ t: 'text', v: before });
+    if (name !== undefined) ast.push({ t: 'arg', n: name });
+    last = re.lastIndex;
+  }
+  const tail = template.slice(last);
+  if (tail.length > 0) ast.push({ t: 'text', v: tail });
+  return Object.freeze({ ast: Object.freeze(ast), parameters: Object.freeze({ ...parameters }) });
+}
+
 const keys = new Set();
 for (const value of collectValues('labelKey="([^"]+)"')) keys.add(value);
 for (const value of collectValues('nameKey="([^"]+)"')) keys.add(value);
@@ -95,16 +132,37 @@ for (const value of collectValues("'ui\\.[a-z0-9_.-]+'")) keys.add(value);
 for (const value of expandDynamicKeys()) keys.add(value);
 const ALL_KEYS = [...keys].sort();
 
+function nodeToTs(node) {
+  if (node.t === 'text') return `{ t: 'text' as const, v: ${JSON.stringify(node.v)} }`;
+  return `{ t: 'arg' as const, n: ${JSON.stringify(node.n)} }`;
+}
+
+function parametersToTs(parameters) {
+  const entries = Object.entries(parameters).map(([name, kind]) => ` ${JSON.stringify(name)}: '${kind}'`).join(',');
+  return entries.length === 0 ? '{}' : `{${entries} }`;
+}
+
 const generatedAt = new Date().toISOString();
 const body = ALL_KEYS
-  .map(
-    (key) => `  ${JSON.stringify(key)}: Object.freeze({
+  .map((key) => {
+    const param = PARAM_TEMPLATES[key];
+    if (param === undefined) {
+      return `  ${JSON.stringify(key)}: Object.freeze({
     ast: Object.freeze([{ t: 'text' as const, v: ${JSON.stringify(humanize(key))} }]),
     parameters: Object.freeze({}),
     budget: '0',
     compactKey: null,
-  }),`,
-  )
+  }),`;
+    }
+    const compiled = compileTemplate(param.template, param.parameters);
+    const astTs = compiled.ast.map(nodeToTs).join(', ');
+    return `  ${JSON.stringify(key)}: Object.freeze({
+    ast: Object.freeze([${astTs}]),
+    parameters: Object.freeze(${parametersToTs(compiled.parameters)}),
+    budget: '0',
+    compactKey: null,
+  }),`;
+  })
   .join('\n');
 
 const content = `/**

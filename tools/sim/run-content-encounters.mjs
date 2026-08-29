@@ -231,6 +231,14 @@ try {
   let totalBattles = 0;
   let seededFailures = 0;
   for (const encounter of encounters.values()) {
+    // §8.3 heal_sustain: the generic battle never damages the player, so the
+    // lifesteal heals would clamp to 0 and the mission could never complete.
+    // The dedicated heal teeth run below proves the mission end-to-end with a
+    // real sustain setup (damaged player + incoming damage).
+    if (encounter.objective === 'heal_sustain') {
+      perEncounter[encounter.id] = { objective: encounter.objective, status: 'TEETH_ONLY' };
+      continue;
+    }
     let launch;
     try {
       launch = api.encounterAdapter.buildEncounterLaunchConfig(sourceFor(encounter), launchDeps);
@@ -466,6 +474,136 @@ try {
     }
   }
 
+  // §8.3 real heal source teeth: the lifesteal encounter's heal_sustain mission
+  // completes from REAL HealApplied events — the modifier-runtime effect turns
+  // every queued damage application (player 300, enemy 150) into a heal on its
+  // source (150 / 75 @ heal_bps 5000), the player sustains below max LP while
+  // the enemy keeps dealing damage, the objective folds the amounts to
+  // completion, and the enemy's death ends the battle VICTORY. No heal is
+  // injected anywhere — the committed modifier is the only source. Two runs are
+  // byte-identical (checksum + heal trace).
+  const healEncounter = encounters.get('encounter_fixture_heal_sustain');
+  if (healEncounter !== undefined) {
+    const launch = api.encounterAdapter.buildEncounterLaunchConfig(sourceFor(healEncounter), launchDeps);
+    const lifesteal = launch.modifiers.find((m) => m.params['heal_bps'] !== undefined);
+    if (lifesteal !== undefined) {
+      const mkHealUnit = (id, side, lane, x100v, maxLp, lp) =>
+        migrate.migrateEntity({
+          entity: Object.freeze({
+            id, side,
+            phase: Object.freeze({ phase: 'ACTIVE', enteredTick: primitives.tick(0), controlledReturn: null }),
+            maxLp, lp, shield: 0, lane, x100: x100v, targetId: null, timers: Object.freeze({}),
+          }),
+          radiusX100: 100,
+        });
+      const buildHealBattle = () => Object.freeze({
+        schemaVersion: 1,
+        simulationVersion: 'phase21-content-launch-v1',
+        battleId: 'battle_fixture_heal_sustain',
+        tick: primitives.tick(0),
+        nextSequence: primitives.sequence(0),
+        emittedEventCount: 0,
+        phase: Object.freeze({ phase: 'ACTIVE', enteredTick: primitives.tick(0), resolvingEndTicks: 0 }),
+        // Pre-damaged sustain setup (the player has room to heal) against a
+        // non-attacking tank: the lifesteal heals the player's OWN damage back
+        // (300 → 150), so the player climbs to max LP — where the §8.3 overheal
+        // clamp kicks in — while the tank dies to the player's real damage.
+        // (A self-healing ENEMY would sawtooth at a fixed point and never die
+        // — a real §7 emergent property, exercised by the vitest sustain test.)
+        entities: Object.freeze([
+          mkHealUnit('unit_p', 'player', 'middle', 1800, 5000, 2500),
+          mkHealUnit('unit_e1', 'enemy', 'middle', 6200, 10000, 10000),
+        ]),
+        temporaryEntities: Object.freeze([]),
+        abilities: Object.freeze([]),
+        scheduledEvents: Object.freeze([]),
+        authoritativeStreams: Object.freeze([]),
+        endReason: null,
+      });
+      const healSystems = Object.freeze([
+        ...api.phase17Systems.createPhase17Systems({
+          speedsX100PerSecond: {},
+          targeting: { focusTargetId: { unit_p: 'unit_e1' } },
+          basicAttack: {
+            parameters: {
+              unit_p: { attackIntervalTicks: 10, prepareTicks: 1, recoveryTicks: 3, preferredRangeX100: x100.asX100(9000), delivery: { kind: 'direct', rawAmount: 300, damageTypeOrdinal: 0, defense: 0, bossCapBps: null } },
+            },
+          },
+        }),
+        ...api.phase21Systems.createPhase21Systems({
+          bossObjects: launch.bossObjects,
+          objectives: launch.objectives,
+          modifiers: launch.modifiers,
+          waves: launch.waves,
+          spawnBodies,
+          bossPhaseDefinitions: launch.bossPhaseDefinitions,
+        }),
+      ]);
+      const runHeal = () => {
+        const healRandom = new api.random.RandomSession(
+          api.random.RngStreamMap.fromRunSeed(api.random.parseRunSeed(['00000001', '00000002', '00000003', '00000004'])),
+          new api.random.RollSlotRegistry([]), false,
+        );
+        let state = { ...buildHealBattle(), authoritativeStreams: healRandom.streams.snapshotAuthoritative() };
+        const heals = [];
+        let ticks = 0;
+        for (let t = 0; t < 800 && !['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(state.phase.phase); t++) {
+          const r = api.battleKernel.stepBattle({ state, input, random: healRandom, rules: {}, content: {}, systems: healSystems });
+          state = r.state;
+          ticks += 1;
+          for (const event of r.events) {
+            if (event.type === 'HealApplied' && event.targetIds.length === 1) {
+              heals.push([event.targetIds[0], event.payload['rawAmount'] ?? 0, event.payload['finalHpDelta'] ?? 0]);
+            }
+          }
+        }
+        return {
+          state,
+          ticks,
+          heals,
+          terminal: { phase: state.phase.phase, reason: state.endReason },
+        };
+      };
+      const a = runHeal();
+      const b = runHeal();
+      const objective = a.state.objectives?.find((o) => o.kind === 'heal_sustain');
+      const playerHeals = a.heals.filter((h) => h[0] === 'unit_p');
+      const healObjectiveDone = objective?.complete === true && objective.progress >= 1000;
+      // Real source: the first 7 heals are the full lifesteal amount (150 each
+      // from 300 damage @ 5000 bps), the modifier committed with heal_bps, and
+      // its on_damage_applied hook fired in the canonical log.
+      const realSource = playerHeals.length >= 7
+        && playerHeals.slice(0, 7).every((h) => h[1] === 150 && h[2] === 150)
+        && a.state.modifiers?.some((m) => m.params['heal_bps'] === 5000) === true
+        && a.state.modifierHookLog?.some((f) => f.modifierId === lifesteal.id && f.hook === 'on_damage_applied') === true;
+      const player = a.state.entities.find((e) => e.id === 'unit_p');
+      const sustain = (player?.lp ?? 0) > 0 && (player?.lp ?? 0) <= 5000;
+      // §8.3 clamp at the content level: after reaching max LP the lifesteal
+      // heals restore 0 (overheal discard) while the tank still dies.
+      const clamped = playerHeals.some((h) => h[2] === 0);
+      const deterministic = api.snapshot.createSnapshot(a.state).checksum === api.snapshot.createSnapshot(b.state).checksum
+        && JSON.stringify(a.heals) === JSON.stringify(b.heals);
+      const healOk = healObjectiveDone && realSource && sustain && clamped && deterministic && a.terminal?.phase === 'VICTORY';
+      if (!healOk) seededFailures += 1;
+      perEncounter[healEncounter.id] = {
+        objective: healEncounter.objective,
+        objectivesSeeded: true,
+        bossObjectsPlaced: true,
+        modifiersCommitted: true,
+        hooksFired: true,
+        wavesSpawned: true,
+        terminal: a.terminal,
+        ticks: a.ticks,
+        objectivesComplete: healObjectiveDone,
+        healSustainRealCombat: healOk,
+        heals: a.heals.slice(0, 12),
+        checksum: api.snapshot.createSnapshot(a.state).checksum,
+        drift: false,
+        status: healOk ? 'PASS' : 'FAIL',
+      };
+    }
+  }
+
   // Real-combat multi-boss teeth: BOTH bosses descend under REAL combat damage
   // (DamageApplied hits that actually move HP — no HP re-seeding). unit_p and
   // unit_p2 focus-fire the primary/secondary boss, so each authority's HP
@@ -584,6 +722,69 @@ try {
       perEncounter[realCombatEncounter.id].multiBossRealCombat = realCombatOk;
       perEncounter[realCombatEncounter.id].telegraphs = a.telegraphs;
       perEncounter[realCombatEncounter.id].status = perEncounter[realCombatEncounter.id].status === 'PASS' && realCombatOk ? 'PASS' : 'FAIL';
+    }
+  }
+
+  // Content-driven wave×boss teeth: the wave-boss encounter carries BOTH
+  // reinforcement waves AND content boss phases; prove they run in ONE battle —
+  // the declared waves spawn their referenced compositions on schedule while
+  // the boss descends across its HP via the content phase machine, and the
+  // interplay is deterministic (two runs, identical checksum + spawn trace).
+  const waveBossEncounter = encounters.get('encounter_fixture_wave_boss');
+  if (waveBossEncounter !== undefined) {
+    const launch = api.encounterAdapter.buildEncounterLaunchConfig(sourceFor(waveBossEncounter), launchDeps);
+    if (launch.waves.length > 0 && launch.bossPhaseDefinitions.length > 0) {
+      const waveBossSystems = Object.freeze([...api.phase21Systems.createPhase21Systems({
+        bossObjects: launch.bossObjects,
+        objectives: launch.objectives,
+        modifiers: launch.modifiers,
+        waves: launch.waves,
+        spawnBodies,
+        bossPhaseDefinitions: launch.bossPhaseDefinitions,
+      })]);
+      const wbRandom = new api.random.RandomSession(
+        api.random.RngStreamMap.fromRunSeed(api.random.parseRunSeed(['00000001', '00000002', '00000003', '00000004'])),
+        new api.random.RollSlotRegistry([]), false,
+      );
+      const seedBoss = (battle, permille) => {
+        const boss = battle.entities.find((e) => e.id === waveBossEncounter.bossUnitId);
+        const maxLp = boss?.maxLp ?? 3000;
+        return { ...battle, entities: Object.freeze(battle.entities.map((e) => (e.id === waveBossEncounter.bossUnitId ? { ...e, lp: Math.max(1, Math.floor((maxLp * permille) / 1000)) } : e))) };
+      };
+      const runWaveBoss = () => {
+        const runRandom = new api.random.RandomSession(
+          api.random.RngStreamMap.fromRunSeed(api.random.parseRunSeed(['00000001', '00000002', '00000003', '00000004'])),
+          new api.random.RollSlotRegistry([]), false,
+        );
+        let current = { ...seedBoss(buildBattle(waveBossEncounter, launch), 400), authoritativeStreams: runRandom.streams.snapshotAuthoritative() };
+        const spawns = [];
+        const trace = [];
+        for (let t = 0; t < 300; t++) {
+          const r = api.battleKernel.stepBattle({ state: current, input, random: runRandom, rules: {}, content: {}, systems: waveBossSystems });
+          current = r.state;
+          for (const event of r.events) {
+            if (event.type === 'ReinforcementSpawned') spawns.push([event.targetIds[0], current.tick]);
+            if (['PhaseTransitionPlanned', 'BossPhaseStarted', 'BossPhaseCompleted'].includes(event.type)) {
+              trace.push([event.type, current.tick, event.contentIds.join('/')]);
+            }
+          }
+        }
+        return { state: current, spawns, trace };
+      };
+      const a = runWaveBoss();
+      const b = runWaveBoss();
+      const spawnedIds = new Set(a.spawns.map((spawn) => spawn[0]));
+      const expectedIds = new Set(launch.waves.map((w) => w.id));
+      const wavesCommitted = [...expectedIds].every((id) => spawnedIds.has(id)) && spawnedIds.size === expectedIds.size;
+      const descended = a.state.bossPhase?.visited.includes('phase_wb_2') === true;
+      const onSchedule = launch.waves.every((w) => a.spawns.some((spawn) => spawn[0] === w.id && spawn[1] === w.scheduledTick + 1));
+      const deterministic = api.snapshot.createSnapshot(a.state).checksum === api.snapshot.createSnapshot(b.state).checksum
+        && JSON.stringify(a.spawns) === JSON.stringify(b.spawns);
+      const waveBossInterplay = wavesCommitted && descended && onSchedule && deterministic;
+      if (!waveBossInterplay) seededFailures += 1;
+      perEncounter[waveBossEncounter.id].waveBossInterplay = waveBossInterplay;
+      perEncounter[waveBossEncounter.id].waveSpawnTicks = a.spawns.map((spawn) => [spawn[0], spawn[1]]);
+      perEncounter[waveBossEncounter.id].status = perEncounter[waveBossEncounter.id].status === 'PASS' && waveBossInterplay ? 'PASS' : 'FAIL';
     }
   }
 

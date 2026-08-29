@@ -2,6 +2,13 @@ import { describe, expect, it } from 'vitest';
 import { createSimBattleHost, resolveExpeditionEncounter, sourceForEncounter } from '../../src/features/battle/sim/sim-battle-host.js';
 import { encounterOutboundFromBattle, presentPhase21Report, type Phase21OutboundReport } from '../../src/features/battle/outbound/phase21-outbound-presenter.js';
 import { buildEncounterLaunchConfig } from '../../src/game/sim/boss/encounter-adapter.js';
+import {
+  CONTENT_ENCOUNTERS,
+  encounterById,
+  isBossEncounter,
+  isDuoEncounter,
+  resolveEncounterForNode,
+} from '../../src/game/content/runtime/encounter-registry.js';
 
 /**
  * Phase 21 §9 expedition battle wiring.
@@ -74,6 +81,37 @@ describe('P21 §9 expedition battle wiring', () => {
   it('keeps the stand-in feed for node types the expedition cannot resolve', () => {
     expect(resolveExpeditionEncounter('merchant', 'any')).toBeNull();
     expect(resolveExpeditionEncounter('boss', '')).toBeNull();
+  });
+
+  it('resolves via the content runtime registry, payloadKey-first, from real content', () => {
+    // The registry is the compiled-content projection: every registered
+    // encounter resolves by id and is frozen.
+    expect(CONTENT_ENCOUNTERS.size).toBe(8);
+    for (const entry of CONTENT_ENCOUNTERS.values()) {
+      expect(Object.isFrozen(entry)).toBe(true);
+      expect(encounterById(entry.id)?.id).toBe(entry.id);
+    }
+    expect(encounterById('missing_encounter')).toBeNull();
+
+    // PAYLOAD-KEY-FIRST: a payload key that names an encounter wins over the
+    // node family (a boss node carrying the object encounter plays THAT one).
+    const byKey = resolveEncounterForNode('boss', 'encounter_fixture_boss_object');
+    expect(byKey?.id).toBe('encounter_fixture_boss_object');
+    expect(isBossEncounter(byKey ?? CONTENT_ENCOUNTERS.get('encounter_fixture_first')!)).toBe(true);
+    expect(isDuoEncounter(byKey ?? CONTENT_ENCOUNTERS.get('encounter_fixture_boss_object')!)).toBe(false);
+
+    // NODE-FAMILY FALLBACK: deterministic content classification, canonical
+    // id order — boss → duo, elite → single-boss, battle → non-boss.
+    const boss = resolveEncounterForNode('boss', 'enemy_fixture_echo');
+    expect(boss?.id).toBe('encounter_fixture_boss_duo');
+    expect(isDuoEncounter(boss ?? CONTENT_ENCOUNTERS.get('encounter_fixture_first')!)).toBe(true);
+    const elite = resolveEncounterForNode('elite', 'enemy_fixture_echo');
+    expect(elite?.id).toBe('encounter_fixture_boss_object');
+    expect(isBossEncounter(elite ?? CONTENT_ENCOUNTERS.get('encounter_fixture_first')!)).toBe(true);
+    expect(isDuoEncounter(elite ?? CONTENT_ENCOUNTERS.get('encounter_fixture_first')!)).toBe(false);
+    const battle = resolveEncounterForNode('battle', 'enemy_fixture_echo');
+    expect(battle?.id).toBe('encounter_fixture_first');
+    expect(isBossEncounter(battle ?? CONTENT_ENCOUNTERS.get('encounter_fixture_first')!)).toBe(false);
   });
 
   it('the resolved source builds a valid launch config (adapter path is live)', () => {

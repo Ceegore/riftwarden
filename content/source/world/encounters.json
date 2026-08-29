@@ -274,6 +274,89 @@
       "allowedModes": [
         "campaign"
       ]
+    },
+    {
+      "id": "encounter_fixture_wave_boss",
+      "regionId": "region_fixture",
+      "kind": "boss",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [],
+      "reinforcementWaves": [
+        {
+          "atSeconds": 1,
+          "encounterId": "encounter_fixture_first"
+        },
+        {
+          "atSeconds": 4,
+          "encounterId": "encounter_fixture_first"
+        }
+      ],
+      "objective": "defeat_boss",
+      "bossPhases": [
+        {
+          "id": "phase_wb_1",
+          "priority": 1,
+          "minHpPermille": 501,
+          "maxHpPermille": 1001
+        },
+        {
+          "id": "phase_wb_2",
+          "priority": 2,
+          "minHpPermille": 251,
+          "maxHpPermille": 501,
+          "invulnerableTicks": 5
+        },
+        {
+          "id": "phase_wb_3",
+          "priority": 3,
+          "minHpPermille": 0,
+          "maxHpPermille": 251
+        }
+      ],
+      "bossUnitId": "boss_ash_unit",
+      "survivalDurationSeconds": null,
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_wave_boss.preview",
+      "allowedModes": [
+        "campaign"
+      ]
+    },
+    {
+      "id": "encounter_fixture_heal_sustain",
+      "regionId": "region_fixture",
+      "kind": "survival",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [
+        "mod_fixture_lifesteal"
+      ],
+      "reinforcementWaves": [],
+      "objective": "heal_sustain",
+      "healSustainCount": 1000,
+      "bossPhases": [],
+      "bossPhasesSecondary": [],
+      "bossUnitId": null,
+      "bossUnitIdSecondary": null,
+      "survivalDurationSeconds": null,
+      "bossObjects": [],
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_heal_sustain.preview",
+      "allowedModes": [
+        "campaign"
+      ]
     }
   ]
 }

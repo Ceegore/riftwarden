@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { phaseTrailOf, presentPhase21Report, type EncounterOutbound, type Phase21OutboundReport } from '../../src/features/battle/outbound/phase21-outbound-presenter.js';
+import { collapsePresentationOf, encounterOutboundFromBattle, phaseTrailOf, presentPhase21Report, type EncounterOutbound, type Phase21OutboundReport } from '../../src/features/battle/outbound/phase21-outbound-presenter.js';
+import { COLLAPSE_WINDOW_TICKS } from '../../src/game/sim/combat/battle-end-resolver.js';
 
 function bossReport(): Phase21OutboundReport {
   return Object.freeze({
@@ -157,6 +158,54 @@ describe('phase21 outbound presenter', () => {
     expect(phaseTrailOf({ phaseId: 'phase_ash_1', visited: ['phase_ash_1'], transition: false })).toEqual([
       Object.freeze({ phaseId: 'phase_ash_1', active: true }),
     ]);
+  });
+
+  it('derives the §10 collapse presentation from the raw live state', () => {
+    // Inactive (no collapse state yet): window closed, no endcap activity.
+    expect(collapsePresentationOf({ tick: 100 })).toEqual(Object.freeze({
+      active: false, sinceTick: null, remainingTicks: 0, healFactorBps: 5000,
+      endcapWarned: false, endcapCollapseTicks: 0, ticksToWarning: 300,
+    }));
+    // Active window: since 90, snapshot tick 92 → 90 + 450 − 92 = 448 left.
+    expect(collapsePresentationOf({ tick: 92, timeCollapseSinceTick: 90 })).toEqual(Object.freeze({
+      active: true, sinceTick: 90, remainingTicks: 90 + COLLAPSE_WINDOW_TICKS - 92, healFactorBps: 5000,
+      endcapWarned: false, endcapCollapseTicks: 0, ticksToWarning: 300,
+    }));
+    // Window elapsed: the exact boundary tick is outside [since, since + 450).
+    expect(collapsePresentationOf({ tick: 90 + COLLAPSE_WINDOW_TICKS, timeCollapseSinceTick: 90 }).active).toBe(false);
+    // §9.4 endcap warned: 200 ticks into the 300-tick collapse countdown.
+    expect(collapsePresentationOf({ tick: 500, noProgressTicks: 300, riftCollapseTicks: 200, riftCollapseWarningEmitted: true })).toMatchObject({
+      endcapWarned: true, endcapCollapseTicks: 200, ticksToWarning: 0,
+    });
+    // Pre-warning countdown: 250 no-progress ticks → 50 until the warning.
+    expect(collapsePresentationOf({ tick: 500, noProgressTicks: 250 })).toMatchObject({
+      endcapWarned: false, endcapCollapseTicks: 0, ticksToWarning: 50,
+    });
+  });
+
+  it('carries the collapse presentation through the live bridge into the row', () => {
+    const entry = encounterOutboundFromBattle({
+      encounterId: 'encounter_fixture_waves',
+      objective: 'complete_waves',
+      tick: 92,
+      phase: { phase: 'ACTIVE', endReason: null },
+      bossPhase: null,
+      modifierHookLog: [],
+      events: [],
+      timeCollapseSinceTick: 90,
+      noProgressTicks: 12,
+      riftCollapseTicks: 0,
+      riftCollapseWarningEmitted: false,
+    });
+    expect(entry.collapse).toMatchObject({ active: true, sinceTick: 90, endcapCollapseTicks: 0, ticksToWarning: 288 });
+    const rows = presentPhase21Report(Object.freeze({
+      gate: 'G21-LIVE-BRIDGE',
+      status: 'PASS',
+      drift: 0,
+      seededFailures: 0,
+      perEncounter: Object.freeze({ encounter_fixture_waves: entry }),
+    }));
+    expect(rows[0]?.collapse?.active).toBe(true);
   });
 
   it('normalizes a FAIL row and an object-form terminal', () => {

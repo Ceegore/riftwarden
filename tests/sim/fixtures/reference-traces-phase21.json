@@ -7,6 +7,7 @@
     "D:modifier.d0.commit",
     "D:modifier.h0.hook_eval",
     "H:phase19.z9.modifier_damage_scale",
+    "H:phase21.z8.modifier_lifesteal",
     "K:boss.object.k1.place",
     "K:boss.object.k2.cleanup",
     "K:reinforcement.k1.spawn",

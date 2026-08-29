@@ -3,6 +3,7 @@ import type { KernelEventInput } from '../events/event-types.js';
 import type { EventType } from '../events/event-spec.js';
 import type { ModifierDefinition } from './modifier-system.js';
 import { applyHookBps, battleStartHooks, createModifierHookCollection, evaluateModifierHooks, hookBpsScale, type ModifierHookFiring } from './modifier-system.js';
+import type { PendingCombatApplication } from '../combat/combat-application.js';
 
 /**
  * Phase 21 §7 modifier-hook runtime (T04). The authority defines hooks but the
@@ -90,6 +91,50 @@ export function createModifierDamageScaleSystem(config: ModifierHookRuntimeConfi
         return Object.freeze({ ...application, rawAmount: scaled });
       });
       if (changed) context.commands.push({ kind: 'set_combat_applications', applications: Object.freeze(next) });
+    },
+  });
+}
+
+/**
+ * Stage H: §7 `on_damage_applied` LIFESTEAL effect — the real heal source a
+ * content `heal_sustain` mission consumes. When any committed modifier declares
+ * a `heal_bps` param on `on_damage_applied`, every queued damage application
+ * additionally queues a heal on its attacker sized by the hooks' composite
+ * `heal_bps` scale (composed multiplicatively like `damage_bps`). The heal
+ * carries `healFactorBps: 10000`, so the stage-I pipeline applies the standard
+ * §8.3 clamps: collapse-window halving, max-LP room and overheal discard. Its
+ * id sorts after `phase19.z9.modifier_damage_scale`, so the heal is sized from
+ * the SCALED damage the battle actually deals.
+ */
+export function createModifierLifestealSystem(config: ModifierHookRuntimeConfig = {}): KernelSystem {
+  return Object.freeze({
+    id: 'phase21.z8.modifier_lifesteal',
+    stage: 'H',
+    run(context: TickContext): void {
+      const defs: readonly ModifierDefinition[] | undefined = context.state.modifiers ?? config.modifiers;
+      if (defs === undefined || defs.length === 0) return;
+      const active = defs.some((d) => d.hooks.includes('on_damage_applied') && d.params['heal_bps'] !== undefined);
+      if (!active) return;
+      const scale = hookBpsScale(defs, 'on_damage_applied', 'heal_bps');
+      const pending = context.state.pendingCombatApplications;
+      if (pending === undefined || pending.length === 0) return;
+      const heals: readonly PendingCombatApplication[] = Object.freeze(
+        pending
+          .filter((application): application is Extract<PendingCombatApplication, { kind: 'damage' }> =>
+            application.kind === 'damage' && application.rawAmount > 0)
+          .map((application) => Object.freeze({
+            kind: 'heal' as const,
+            sourceId: application.sourceId,
+            targetId: application.sourceId,
+            effectId: 'lifesteal',
+            attackInstanceId: application.attackInstanceId,
+            effectIndex: application.effectIndex,
+            rawAmount: applyHookBps(application.rawAmount, scale),
+            healFactorBps: 10000,
+          })),
+      );
+      if (heals.length === 0) return;
+      context.commands.push({ kind: 'set_combat_applications', applications: Object.freeze([...pending, ...heals]) });
     },
   });
 }

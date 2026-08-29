@@ -160,9 +160,9 @@ test('content-driven battle launcher derives objectives via the adapter and reso
   assert.equal(report.invariantErrors, 0);
   assert.equal(report.drift, 0);
   assert.equal(report.seededFailures, 0);
-  assert.equal(report.encounters, 6);
+  assert.equal(report.encounters, 8);
   const byId = report.perEncounter;
-  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object', 'encounter_fixture_boss_duo']) {
+  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object', 'encounter_fixture_boss_duo', 'encounter_fixture_wave_boss', 'encounter_fixture_heal_sustain']) {
     assert.equal(byId[key].status, 'PASS', key);
     assert.equal(byId[key].objectivesSeeded, true, key);
     assert.equal(byId[key].bossObjectsPlaced, true, key);
@@ -176,12 +176,12 @@ test('content-driven battle launcher derives objectives via the adapter and reso
   assert.equal(byId['encounter_fixture_boss_duo'].objective, 'defeat_boss');
   assert.equal(byId['encounter_fixture_protect_object'].objective, 'protect_object');
   // §7/§8 wiring: modifiers are committed and declared waves enter the cursor.
-  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object', 'encounter_fixture_boss_duo']) {
+  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object', 'encounter_fixture_boss_duo', 'encounter_fixture_wave_boss']) {
     assert.equal(byId[key].modifiersCommitted, true, key);
     assert.equal(byId[key].wavesSpawned, true, key);
   }
   // §8: every mission objective must actually complete (the gate is strict).
-  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object', 'encounter_fixture_boss_duo']) {
+  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object', 'encounter_fixture_boss_duo', 'encounter_fixture_wave_boss', 'encounter_fixture_heal_sustain']) {
     assert.equal(byId[key].objectivesComplete, true, key);
   }
   // The survive window must actually elapse: terminal is VICTORY survive_complete.
@@ -231,6 +231,29 @@ test('content-driven battle launcher derives objectives via the adapter and reso
   const duoTraceBosses = new Set(byId['encounter_fixture_boss_duo'].phaseTrace.map((event) => event[2].split('/')[0]));
   assert.ok(duoTraceBosses.has('boss_ash_unit'));
   assert.ok(duoTraceBosses.has('boss_ember_unit'));
+  // §8/§10 content-driven wave×boss teeth: the wave-boss encounter runs BOTH
+  // reinforcement waves AND content boss phases in one battle — the declared
+  // waves spawn their referenced compositions exactly on schedule (observed
+  // scheduledTick + 1) while the boss descends via the content phase machine,
+  // deterministically.
+  assert.equal(byId['encounter_fixture_wave_boss'].objective, 'defeat_boss');
+  assert.equal(byId['encounter_fixture_wave_boss'].waveBossInterplay, true);
+  const spawnByWave = new Map(byId['encounter_fixture_wave_boss'].waveSpawnTicks);
+  assert.equal(spawnByWave.get('encounter_fixture_wave_boss_wave_0'), 31); // atSeconds 1 → 30 ticks
+  assert.equal(spawnByWave.get('encounter_fixture_wave_boss_wave_1'), 121); // atSeconds 4 → 120 ticks
+  // §8.3 real heal source teeth: the lifesteal encounter's heal_sustain mission
+  // completes from REAL HealApplied events (the modifier-runtime `heal_bps`
+  // effect, 300 damage → 150 heal), the player sustains below max and the
+  // enemy's death ends the battle VICTORY — deterministically, no injected heal.
+  const healEntry = byId['encounter_fixture_heal_sustain'];
+  assert.equal(healEntry.objective, 'heal_sustain');
+  assert.equal(healEntry.healSustainRealCombat, true);
+  assert.equal(healEntry.terminal.phase, 'VICTORY');
+  assert.equal(healEntry.ticks, 467);
+  assert.ok(healEntry.heals.length >= 7, 'at least 7 lifesteal heals observed');
+  for (const heal of healEntry.heals.slice(0, 7)) {
+    assert.deepEqual(heal, ['unit_p', 150, 150]);
+  }
 });
 
 test('phase21-policy mass-sim evidence (all policy combos) is PASS with zero drift and zero gate violations', () => {

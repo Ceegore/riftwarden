@@ -200,4 +200,45 @@ describe('P21 §9 outbound live battle bridge', () => {
     expect(row.terminalReason).toBeNull();
     expect(row.encounterId).toBe('encounter_fixture_boss_object');
   });
+
+  it('bridges the §10 rift-collapse state into the outbound collapse readout', { timeout: 60_000 }, () => {
+    const systems = buildSystems();
+    let state = buildBattle();
+    const random = randomSession();
+    for (let t = 0; t < 12; t++) {
+      const r = stepBattle({ state, input, random, rules: {}, content: {}, systems });
+      state = r.state;
+    }
+    // The live battle's collapse state (window opened at the soft limit,
+    // §9.4 counters) flows into the outbound entry and the panel row.
+    const entry: EncounterOutbound = encounterOutboundFromBattle({
+      encounterId: 'encounter_fixture_waves',
+      objective: 'complete_waves',
+      tick: state.tick,
+      phase: { phase: state.phase.phase, endReason: state.endReason },
+      bossPhase: state.bossPhase ?? null,
+      modifierHookLog: state.modifierHookLog ?? [],
+      events: [],
+      timeCollapseSinceTick: 0,
+      noProgressTicks: 250,
+      riftCollapseTicks: 0,
+      riftCollapseWarningEmitted: false,
+    });
+    expect(entry.collapse).toMatchObject({
+      active: true,
+      sinceTick: 0,
+      healFactorBps: 5000,
+      endcapWarned: false,
+      endcapCollapseTicks: 0,
+      ticksToWarning: 50,
+    });
+    const rows = presentPhase21Report(Object.freeze({
+      gate: 'G21-LIVE-BRIDGE',
+      status: 'PASS',
+      drift: 0,
+      seededFailures: 0,
+      perEncounter: Object.freeze({ encounter_fixture_waves: entry }),
+    }));
+    expect(rows[0]?.collapse?.active).toBe(true);
+  });
 });

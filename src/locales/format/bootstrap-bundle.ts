@@ -1,7 +1,7 @@
 /**
  * GENERATED FILE — do not edit by hand.
  * Regenerate with: node tools/sim/write-locale-bootstrap.mjs
- * Generated at: 2026-08-29T17:58:46.490Z
+ * Generated at: 2026-08-29T18:47:29.448Z
  *
  * Bootstrap locale bundle (LOCALE_BOOTSTRAP_CONTRACT): a stopgap bundle that
  * lets the app boot in a browser before the real localization compiler
@@ -1469,21 +1469,51 @@ const MESSAGES: Readonly<Record<string, import('./compiled-types.js').CompiledMe
     budget: '0',
     compactKey: null,
   }),
+  "ui.phase21.collapse.active": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Active" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.collapse.countdown": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Countdown" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.collapse.warning": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "Warning" }]),
+    parameters: Object.freeze({}),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.hook.at": Object.freeze({
+    ast: Object.freeze([{ t: 'arg' as const, n: "hook" }, { t: 'text' as const, v: " @ " }, { t: 'arg' as const, n: "tick" }]),
+    parameters: Object.freeze({ "hook": 'string', "tick": 'number' }),
+    budget: '0',
+    compactKey: null,
+  }),
   "ui.phase21.meta.objective": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "Objective" }]),
-    parameters: Object.freeze({}),
+    ast: Object.freeze([{ t: 'text' as const, v: "objective " }, { t: 'arg' as const, n: "objective" }]),
+    parameters: Object.freeze({ "objective": 'string' }),
     budget: '0',
     compactKey: null,
   }),
-  "ui.phase21.outbound.encounters": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "Encounters" }]),
-    parameters: Object.freeze({}),
+  "ui.phase21.meta.terminal": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "objective " }, { t: 'arg' as const, n: "objective" }, { t: 'text' as const, v: " · " }, { t: 'arg' as const, n: "phase" }, { t: 'text' as const, v: " · " }, { t: 'arg' as const, n: "ticks" }, { t: 'text' as const, v: " ticks" }]),
+    parameters: Object.freeze({ "objective": 'string', "phase": 'string', "ticks": 'number' }),
     budget: '0',
     compactKey: null,
   }),
-  "ui.phase21.outbound.failed": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "Failed" }]),
-    parameters: Object.freeze({}),
+  "ui.phase21.meta.terminal_reason": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "objective " }, { t: 'arg' as const, n: "objective" }, { t: 'text' as const, v: " · " }, { t: 'arg' as const, n: "phase" }, { t: 'text' as const, v: " (" }, { t: 'arg' as const, n: "reason" }, { t: 'text' as const, v: ") · " }, { t: 'arg' as const, n: "ticks" }, { t: 'text' as const, v: " ticks" }]),
+    parameters: Object.freeze({ "objective": 'string', "phase": 'string', "reason": 'string', "ticks": 'number' }),
+    budget: '0',
+    compactKey: null,
+  }),
+  "ui.phase21.outbound.count": Object.freeze({
+    ast: Object.freeze([{ t: 'arg' as const, n: "count" }, { t: 'text' as const, v: " encounters · " }, { t: 'arg' as const, n: "failed" }, { t: 'text' as const, v: " failed" }]),
+    parameters: Object.freeze({ "count": 'number', "failed": 'number' }),
     budget: '0',
     compactKey: null,
   }),
@@ -1499,27 +1529,21 @@ const MESSAGES: Readonly<Record<string, import('./compiled-types.js').CompiledMe
     budget: '0',
     compactKey: null,
   }),
-  "ui.phase21.telegraph.prefix": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "Prefix" }]),
-    parameters: Object.freeze({}),
+  "ui.phase21.telegraph.pending": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "telegraph → " }, { t: 'arg' as const, n: "phase" }, { t: 'text' as const, v: " · resolves in " }, { t: 'arg' as const, n: "ticks" }, { t: 'text' as const, v: " ticks" }]),
+    parameters: Object.freeze({ "phase": 'string', "ticks": 'number' }),
     budget: '0',
     compactKey: null,
   }),
-  "ui.phase21.telegraph.resolved_at": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "Resolved At" }]),
-    parameters: Object.freeze({}),
+  "ui.phase21.telegraph.resolved": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "telegraph → " }, { t: 'arg' as const, n: "phase" }, { t: 'text' as const, v: " · resolved @ " }, { t: 'arg' as const, n: "tick" }]),
+    parameters: Object.freeze({ "phase": 'string', "tick": 'number' }),
     budget: '0',
     compactKey: null,
   }),
-  "ui.phase21.telegraph.resolves_in": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "Resolves In" }]),
-    parameters: Object.freeze({}),
-    budget: '0',
-    compactKey: null,
-  }),
-  "ui.phase21.ticks": Object.freeze({
-    ast: Object.freeze([{ t: 'text' as const, v: "Ticks" }]),
-    parameters: Object.freeze({}),
+  "ui.phase21.trace.at": Object.freeze({
+    ast: Object.freeze([{ t: 'text' as const, v: "@ " }, { t: 'arg' as const, n: "tick" }]),
+    parameters: Object.freeze({ "tick": 'number' }),
     budget: '0',
     compactKey: null,
   }),

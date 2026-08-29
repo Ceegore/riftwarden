@@ -31,7 +31,7 @@ export function Phase21OutboundPanel({ report }: Phase21OutboundPanelProps): JSX
       <div className="rw-phase21-outbound-head">
         <strong><LocalizedText messageKey="ui.phase21.outbound.title" /></strong>
         <span className="rw-type-numeric">
-          {`${String(rows.length)} `}<LocalizedText messageKey="ui.phase21.outbound.encounters" />{` · ${String(failed)} `}<LocalizedText messageKey="ui.phase21.outbound.failed" />
+          <LocalizedText messageKey="ui.phase21.outbound.count" params={{ count: rows.length, failed }} />
         </span>
       </div>
       {rows.map((row) => <EncounterRow key={row.encounterId} row={row} />)}
@@ -47,11 +47,21 @@ function EncounterRow({ row }: { readonly row: EncounterPresentation }): JSX.Ele
         <span className={row.status === 'PASS' ? 'rw-phase21-ok' : 'rw-phase21-bad'}>{row.status}</span>
       </header>
       <div className="rw-phase21-encounter-meta">
-        <LocalizedText messageKey="ui.phase21.meta.objective" /> {row.objective}
-        {row.terminalPhase !== null && (
-          <> · {row.terminalPhase}{row.terminalReason == null ? '' : ` (${row.terminalReason})`} · {String(row.ticks)} <LocalizedText messageKey="ui.phase21.ticks" /></>
-        )}
+        {row.terminalPhase === null
+          ? <LocalizedText messageKey="ui.phase21.meta.objective" params={{ objective: row.objective }} />
+          : row.terminalReason == null
+            ? <LocalizedText messageKey="ui.phase21.meta.terminal" params={{ objective: row.objective, phase: row.terminalPhase, ticks: row.ticks }} />
+            : <LocalizedText messageKey="ui.phase21.meta.terminal_reason" params={{ objective: row.objective, phase: row.terminalPhase, reason: row.terminalReason, ticks: row.ticks }} />}
       </div>
+      {row.collapse !== undefined && (row.collapse.active || row.collapse.endcapWarned || row.collapse.ticksToWarning < 300) && (
+        <div className={row.collapse.active ? 'rw-phase21-collapse rw-phase21-collapse-active' : 'rw-phase21-collapse'} aria-label="rift collapse state">
+          {row.collapse.active
+            ? <LocalizedText messageKey="ui.phase21.collapse.active" params={{ ticks: row.collapse.remainingTicks, factorBps: row.collapse.healFactorBps }} />
+            : row.collapse.endcapWarned
+              ? <LocalizedText messageKey="ui.phase21.collapse.warning" params={{ ticks: row.collapse.endcapCollapseTicks, window: 300 }} />
+              : <LocalizedText messageKey="ui.phase21.collapse.countdown" params={{ ticks: row.collapse.ticksToWarning, window: 300 }} />}
+        </div>
+      )}
       {row.isBossPhase && (
         <ol className="rw-phase21-phases" aria-label="boss phase trail">
           {row.phaseTrail.map((step) => (
@@ -78,10 +88,9 @@ function EncounterRow({ row }: { readonly row: EncounterPresentation }): JSX.Ele
         <ul className="rw-phase21-telegraphs" aria-label="boss phase telegraph countdowns">
           {row.telegraphs.map((telegraph) => (
             <li key={`${telegraph.phaseId}:${String(telegraph.plannedTick)}`}>
-              <LocalizedText messageKey="ui.phase21.telegraph.prefix" /> <code>{telegraph.phaseId}</code>
               {telegraph.resolved
-                ? <> · <LocalizedText messageKey="ui.phase21.telegraph.resolved_at" /> {String(telegraph.resolveTick)}</>
-                : <> · <LocalizedText messageKey="ui.phase21.telegraph.resolves_in" /> {String(telegraph.countdown)} <LocalizedText messageKey="ui.phase21.ticks" /></>}
+                ? <LocalizedText messageKey="ui.phase21.telegraph.resolved" params={{ phase: telegraph.phaseId, tick: telegraph.resolveTick }} />
+                : <LocalizedText messageKey="ui.phase21.telegraph.pending" params={{ phase: telegraph.phaseId, ticks: telegraph.countdown }} />}
             </li>
           ))}
         </ul>
@@ -90,7 +99,7 @@ function EncounterRow({ row }: { readonly row: EncounterPresentation }): JSX.Ele
         <ul className="rw-phase21-hooks" aria-label="modifier hook telegraphs">
           {row.hookTrace.map((hook, i) => (
             <li key={`${hook.modifierId}:${hook.hook}:${String(i)}`}>
-              <code>{hook.modifierId}</code> {hook.hook} @ {String(hook.atTick)}
+              <code>{hook.modifierId}</code> <LocalizedText messageKey="ui.phase21.hook.at" params={{ hook: hook.hook, tick: hook.atTick }} />
             </li>
           ))}
         </ul>
@@ -101,7 +110,7 @@ function EncounterRow({ row }: { readonly row: EncounterPresentation }): JSX.Ele
             <li key={`${String(event.tick)}:${event.type}:${String(i)}`}>
               {TRACE_KEYS[event.type] !== undefined
                 ? <LocalizedText messageKey={TRACE_KEYS[event.type] ?? 'ui.phase21.trace.planned'} />
-                : event.type} <code>{event.detail}</code> @ {String(event.tick)}
+                : event.type} <code>{event.detail}</code> <LocalizedText messageKey="ui.phase21.trace.at" params={{ tick: event.tick }} />
             </li>
           ))}
         </ul>

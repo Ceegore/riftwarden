@@ -6,7 +6,7 @@ import type { BossPhaseSnapshot, BossPhaseState, PhaseDefinition } from '../boss
 import { createBossPhaseSnapshot, detectTransition, phaseInvulnerableTicks, validateBossPhases } from '../boss/boss-phase-system.js';
 import type { ModifierDefinition } from '../world/modifier-system.js';
 import { applyHookBps, createModifierCollection, hookBpsScale, validateEncounter } from '../world/modifier-system.js';
-import { createModifierDamageScaleSystem, createModifierHookSystem } from '../world/modifier-runtime.js';
+import { createModifierDamageScaleSystem, createModifierHookSystem, createModifierLifestealSystem } from '../world/modifier-runtime.js';
 import type { Hazard } from '../world/hazard-system.js';
 import { createHazardCollection } from '../world/hazard-system.js';
 import type { Objective } from '../objectives/combat-objective.js';
@@ -27,7 +27,10 @@ import { createBossObjectCleanupSystem, createBossObjectPlacementSystem } from '
  * - stage H: `modifier.z9.damage_scale` rewrites the queued damage applications
  *   by the committed `on_damage_applied` hooks' composite `damage_bps` — it
  *   sorts after the projectile/ability dispatchers so every queued hit is
- *   scaled before the stage-I pipeline consumes it (§7).
+ *   scaled before the stage-I pipeline consumes it (§7);
+ *   `phase21.z8.modifier_lifesteal` turns the same hook's composite `heal_bps`
+ *   into real heals on the attackers (the §8.3 heal source a `heal_sustain`
+ *   mission consumes), sized from the scaled damage.
  * - stage C: `hazard.c1.advance` walks the scheduled→telegraph→resolve→expire
  *   lifecycle and emits the telegraph/resolve events at their boundary ticks.
  * - stage K: `reinforcement.k1.spawn` commits due waves into the wave cursor
@@ -263,6 +266,7 @@ export function createPhase21Systems(config: Phase21RuntimeConfig = {}): readonl
     createModifierCommitSystem(config),
     createModifierHookSystem(config),
     createModifierDamageScaleSystem(config),
+    createModifierLifestealSystem(config),
     createBossPhaseDetectSystem(config),
     createHazardAdvanceSystem(),
     createReinforcementSystem(config),

@@ -36,6 +36,17 @@
       "params": {
         "damage_bps": 12500
       }
+    },
+    {
+      "id": "mod_fixture_lifesteal",
+      "previewDisclosureKey": "content.modifier.mod_fixture_lifesteal.preview",
+      "hooks": [
+        "on_damage_applied"
+      ],
+      "incompatibilityTags": [],
+      "params": {
+        "heal_bps": 5000
+      }
     }
   ]
 }

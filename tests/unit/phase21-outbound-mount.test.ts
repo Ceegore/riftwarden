@@ -19,11 +19,16 @@ import type { LiveOutboundInput, Phase21OutboundReport } from '../../src/feature
  * missing key is a L10N runtime error, so rendering IS the battery).
  */
 
-/** Minimal en bundle carrying every `ui.phase21.*` key the panel renders. */
+/** Minimal en bundle carrying every `ui.phase21.*` key the panel renders — the
+ * parameterized messages declare their parameter kinds exactly like the
+ * compiled pipeline, so passing the panel's params validates. */
 const text = (v: string): CompiledNode => ({ t: 'text' as const, v });
+const arg = (n: string): CompiledNode => ({ t: 'arg' as const, n });
 
-function msg(ast: readonly CompiledNode[]): CompiledMessage {
-  return { ast, parameters: {}, budget: '0', compactKey: null };
+type ParamKinds = Record<string, 'string' | 'number'>;
+
+function msg(ast: readonly CompiledNode[], parameters: ParamKinds = {}): CompiledMessage {
+  return { ast, parameters, budget: '0', compactKey: null };
 }
 
 function enBundle(): CompiledBundle {
@@ -33,14 +38,18 @@ function enBundle(): CompiledBundle {
     kind: 'release_locale_bundle',
     messages: Object.freeze({
       'ui.phase21.outbound.title': msg([text('Phase 21 content launch')]),
-      'ui.phase21.outbound.encounters': msg([text('encounters')]),
-      'ui.phase21.outbound.failed': msg([text('failed')]),
-      'ui.phase21.meta.objective': msg([text('objective')]),
-      'ui.phase21.ticks': msg([text('ticks')]),
+      'ui.phase21.outbound.count': msg([arg('count'), text(' encounters · '), arg('failed'), text(' failed')], { count: 'number', failed: 'number' }),
+      'ui.phase21.meta.objective': msg([text('objective '), arg('objective')], { objective: 'string' }),
+      'ui.phase21.meta.terminal': msg([text('objective '), arg('objective'), text(' · '), arg('phase'), text(' · '), arg('ticks'), text(' ticks')], { objective: 'string', phase: 'string', ticks: 'number' }),
+      'ui.phase21.meta.terminal_reason': msg([text('objective '), arg('objective'), text(' · '), arg('phase'), text(' ('), arg('reason'), text(') · '), arg('ticks'), text(' ticks')], { objective: 'string', phase: 'string', reason: 'string', ticks: 'number' }),
       'ui.phase21.phase.current': msg([text('(current)')]),
-      'ui.phase21.telegraph.prefix': msg([text('telegraph →')]),
-      'ui.phase21.telegraph.resolves_in': msg([text('resolves in')]),
-      'ui.phase21.telegraph.resolved_at': msg([text('resolved @')]),
+      'ui.phase21.telegraph.pending': msg([text('telegraph → '), arg('phase'), text(' · resolves in '), arg('ticks'), text(' ticks')], { phase: 'string', ticks: 'number' }),
+      'ui.phase21.telegraph.resolved': msg([text('telegraph → '), arg('phase'), text(' · resolved @ '), arg('tick')], { phase: 'string', tick: 'number' }),
+      'ui.phase21.hook.at': msg([arg('hook'), text(' @ '), arg('tick')], { hook: 'string', tick: 'number' }),
+      'ui.phase21.collapse.active': msg([text('rift collapse — healing halved ('), arg('factorBps'), text('/10000), window ends in '), arg('ticks'), text(' ticks')], { ticks: 'number', factorBps: 'number' }),
+      'ui.phase21.collapse.warning': msg([text('no progress — collapse countdown '), arg('ticks'), text('/'), arg('window')], { ticks: 'number', window: 'number' }),
+      'ui.phase21.collapse.countdown': msg([text('no progress — warning in '), arg('ticks'), text('/'), arg('window'), text(' ticks')], { ticks: 'number', window: 'number' }),
+      'ui.phase21.trace.at': msg([text('@ '), arg('tick')], { tick: 'number' }),
       'ui.phase21.trace.planned': msg([text('planned')]),
       'ui.phase21.trace.telegraph': msg([text('telegraph')]),
       'ui.phase21.trace.exited': msg([text('exited')]),
@@ -104,6 +113,12 @@ const LIVE_INPUT: LiveOutboundInput = Object.freeze({
     // Mid-flight telegraph: planned at 92, resolves at 136 → 44 ticks remain.
     Object.freeze({ type: 'BossTelegraphStarted', tick: 92, contentIds: Object.freeze(['boss_ash_unit', 'phase_duo_p3']), resolveTick: 136 }),
   ]),
+  // §10: collapse window opened at tick 90 (soft limit), 3 ticks elapsed — the
+  // panel must render the healing-halved readout with the remaining window.
+  timeCollapseSinceTick: 90,
+  noProgressTicks: 0,
+  riftCollapseTicks: 0,
+  riftCollapseWarningEmitted: false,
 });
 
 const STATIC_REPORT: Phase21OutboundReport = Object.freeze({
@@ -177,6 +192,10 @@ describe('P21 §9 outbound panel mount', () => {
     expect(html).toContain('boss phase trail (secondary)');
     expect(html).toContain('phase_duo_q1');
     expect(html).toContain('phase_duo_q2 (current)');
+    // §10 collapse readout: window active since tick 90 → halved heals with
+    // 90 + 450 − 92 = 448 ticks remaining.
+    expect(html).toContain('rw-phase21-collapse');
+    expect(html).toContain('rift collapse — healing halved (5000/10000), window ends in 448 ticks');
   });
 
   it('renders every visible word from the ui.phase21 locale keys (missing key = runtime error)', () => {
@@ -194,6 +213,33 @@ describe('P21 §9 outbound panel mount', () => {
     expect(html).toContain('entered');
     // Rendering above would throw L10N_RUNTIME_MISSING_KEY for any key the
     // panel references but the bundle does not declare — the battery holds.
+  });
+
+  it('renders the §9.4 no-progress endcap warning and pre-warning countdown', () => {
+    // Endcap warned: 200 ticks into the 300-tick collapse countdown (no §10
+    // window state — the endcap path is the no-progress timeout, not the limit).
+    const { timeCollapseSinceTick: _since, ...noWindow } = LIVE_INPUT;
+    const warnedInput: LiveOutboundInput = Object.freeze({
+      ...noWindow,
+      noProgressTicks: 300,
+      riftCollapseTicks: 200,
+      riftCollapseWarningEmitted: true,
+    });
+    const warnedHtml = renderLive(warnedInput);
+    expect(warnedHtml).toContain('rw-phase21-collapse');
+    expect(warnedHtml).toContain('no progress — collapse countdown 200/300');
+    // Pre-warning: 250 no-progress ticks → 50 ticks until the warning fires.
+    const countdownInput: LiveOutboundInput = Object.freeze({
+      ...noWindow,
+      noProgressTicks: 250,
+      riftCollapseTicks: 0,
+      riftCollapseWarningEmitted: false,
+    });
+    const countdownHtml = renderLive(countdownInput);
+    expect(countdownHtml).toContain('no progress — warning in 50/300 ticks');
+    // Fresh battle (0 no-progress ticks, no window): no collapse readout at all.
+    const freshHtml = renderLive(Object.freeze({ ...noWindow, noProgressTicks: 0 }));
+    expect(freshHtml).not.toContain('rw-phase21-collapse');
   });
 
   it('a non-boss battle renders a row without phase machinery', () => {

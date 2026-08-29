@@ -10,13 +10,13 @@
  *
  * The host is browser-safe (the sim kernel is pure TS, no node: imports) and
  * stateless: every `run()` replays the deterministic fixture seed, so two runs
- * are byte-identical. Encounter content is the REAL fixture source
- * (content/source/world/*.json) imported directly — the same files the content
- * launcher reads — so the panel renders content, not a stand-in.
+ * are byte-identical. Encounter content comes from the CONTENT RUNTIME
+ * registry (`encounter-registry.ts`) — the same data the content compiler
+ * emits into content/generated/* — resolved payloadKey-first from the node, so
+ * the panel renders real content, not a stand-in.
  */
 
-import { buildEncounterLaunchConfig, type ContentBossObjectEntry, type ContentModifierSource, type EncounterObjectiveKind, type EncounterObjectiveSource, type EncounterWaveSource } from '../../../game/sim/boss/encounter-adapter.js';
-import type { ContentBossPhaseSource } from '../../../game/sim/boss/boss-phase-content-adapter.js';
+import { buildEncounterLaunchConfig, type EncounterObjectiveSource } from '../../../game/sim/boss/encounter-adapter.js';
 import type { BossPhaseSnapshot, PhaseDefinition } from '../../../game/sim/boss/boss-phase-system.js';
 import { buildBossObject, buildBossObjectBody } from '../../../game/sim/boss/boss-object-manager.js';
 import { migrateEntity } from '../../../game/sim/core/migrate.js';
@@ -36,57 +36,21 @@ import type { BattleModel } from '../../../game/sim/core/battle-model.js';
 import type { LiveOutboundInput } from '../outbound/phase21-outbound-presenter.js';
 import type { Lane } from '../../../game/sim/geometry/x100.js';
 import type { Wave } from '../../../game/sim/world/reinforcement-system.js';
+import {
+  CONTENT_ENCOUNTERS,
+  CONTENT_MODIFIERS,
+  encounterById,
+  resolveEncounterForNode,
+  unitById,
+  type ContentEncounterEntry,
+} from '../../../game/content/runtime/encounter-registry.js';
 
-import encountersData from '../../../../content/source/world/encounters.json';
-import modifiersData from '../../../../content/source/world/modifiers.json';
-import unitsData from '../../../../content/source/units/units.json';
-
-/** The flattened fixture encounter entry (the shape `encounters.json` carries). */
-export interface FixtureEnemySlot {
-  readonly unitId: string;
-  readonly lane: Lane;
-}
-export interface FixtureEncounterEntry {
-  readonly id: string;
-  readonly objective: EncounterObjectiveKind;
-  readonly enemySlots: readonly FixtureEnemySlot[];
-  readonly modifierIds?: readonly string[];
-  readonly reinforcementWaves?: readonly EncounterWaveSource[];
-  readonly bossUnitId?: string | null;
-  readonly bossUnitIdSecondary?: string | null;
-  readonly survivalDurationSeconds?: number | null;
-  readonly healSustainCount?: number | null;
-  readonly bossPhases?: readonly ContentBossPhaseSource[];
-  readonly bossPhasesSecondary?: readonly ContentBossPhaseSource[];
-  readonly bossObjects?: readonly ContentBossObjectEntry[];
-}
-interface FixtureModifierEntry extends ContentModifierSource {
-  readonly id: string;
-}
-interface FixtureUnitEntry {
-  readonly id: string;
-  readonly baseStats: { readonly maxHp: number };
-  readonly collisionRadiusX100: number;
-}
-
-type EncounterEnvelope = { readonly entities: readonly FixtureEncounterEntry[] };
-type ModifierEnvelope = { readonly entities: readonly FixtureModifierEntry[] };
-type UnitEnvelope = { readonly entities: readonly FixtureUnitEntry[] };
-
-const FIXTURE_ENCOUNTERS: ReadonlyMap<string, FixtureEncounterEntry> = new Map(
-  (encountersData as unknown as EncounterEnvelope).entities.map((e) => [e.id, Object.freeze(e)] as const),
-);
-const FIXTURE_MODIFIERS: ReadonlyMap<string, ContentModifierSource> = new Map(
-  (modifiersData as unknown as ModifierEnvelope).entities.map((e) => [e.id, Object.freeze(e)] as const),
-);
-const FIXTURE_UNITS: ReadonlyMap<string, FixtureUnitEntry> = new Map(
-  (unitsData as unknown as UnitEnvelope).entities.map((e) => [e.id, Object.freeze(e)] as const),
-);
+export type { ContentEncounterEntry as FixtureEncounterEntry } from '../../../game/content/runtime/encounter-registry.js';
 
 const input: TickInput = Object.freeze({ paused: false, decisions: Object.freeze([]), contentVersion: 'content_fixture' });
 
-/** Flattens the fixture entry into the adapter's `EncounterObjectiveSource` (mirrors the launcher's `sourceFor`). */
-export function sourceForEncounter(entry: FixtureEncounterEntry): EncounterObjectiveSource {
+/** Flattens the content entry into the adapter's `EncounterObjectiveSource` (mirrors the launcher's `sourceFor`). */
+export function sourceForEncounter(entry: ContentEncounterEntry): EncounterObjectiveSource {
   return Object.freeze({
     encounterId: entry.id,
     objective: entry.objective,
@@ -104,21 +68,13 @@ export function sourceForEncounter(entry: FixtureEncounterEntry): EncounterObjec
 }
 
 /**
- * Resolves an expedition battle node to its fixture encounter. The expedition's
- * battle nodes carry an enemy payload key; when the node type maps to a known
- * phase21 fixture encounter the host runs THAT battle, otherwise `null` (the
- * caller keeps its honest stand-in feed).
+ * Resolves an expedition battle node to a real content encounter via the
+ * content runtime registry (payloadKey-first, then node-family classification).
+ * Unknown node types and empty payload keys resolve to `null` (the caller keeps
+ * its honest stand-in feed).
  */
-export function resolveExpeditionEncounter(nodeType: string, payloadKey: string): Readonly<FixtureEncounterEntry> | null {
-  if (payloadKey === '') return null;
-  const byNode: Readonly<Record<string, string>> = Object.freeze({
-    boss: 'encounter_fixture_boss_duo',
-    elite: 'encounter_fixture_boss_object',
-    battle: 'encounter_fixture_first',
-  });
-  const id = byNode[nodeType];
-  if (id === undefined) return null;
-  return FIXTURE_ENCOUNTERS.get(id) ?? null;
+export function resolveExpeditionEncounter(nodeType: string, payloadKey: string): Readonly<ContentEncounterEntry> | null {
+  return resolveEncounterForNode(nodeType, payloadKey);
 }
 
 function mkEntity(id: string, side: 'player' | 'enemy', lane: Lane, x100v: number, maxLp = 1000): ReturnType<typeof migrateEntity> {
@@ -141,11 +97,11 @@ function mkEntity(id: string, side: 'player' | 'enemy', lane: Lane, x100v: numbe
 
 /** §8 content spawnBodies resolver (mirrors the launcher): wave bodies come from the referenced encounter's slots + unit stats. */
 function spawnBodiesFor(wave: Wave): readonly { entityId: string; lane: Lane; x100: number; radiusX100: number; maxLp: number }[] {
-  const template = FIXTURE_ENCOUNTERS.get(wave.spawnProfile);
-  if (template === undefined) throw new Error(`wave spawnProfile ${wave.spawnProfile} has no encounter`);
+  const template = encounterById(wave.spawnProfile);
+  if (template === null) throw new Error(`wave spawnProfile ${wave.spawnProfile} has no encounter`);
   return Object.freeze(template.enemySlots.map((slot, index) => {
-    const unit = FIXTURE_UNITS.get(slot.unitId);
-    if (unit === undefined) throw new Error(`wave unit ${slot.unitId} has no unit content`);
+    const unit = unitById(slot.unitId);
+    if (unit === null) throw new Error(`wave unit ${slot.unitId} has no unit content`);
     const entityId = wave.entityIds[index];
     if (entityId === undefined) throw new Error(`wave ${wave.spawnProfile} missing body id at ${String(index)}`);
     return Object.freeze({
@@ -180,7 +136,7 @@ function bossPhaseSnapshotsFor(defs: readonly PhaseDefinition[]): readonly { ent
   return out;
 }
 
-function buildBattle(entry: FixtureEncounterEntry, launch: ReturnType<typeof buildEncounterLaunchConfig>): BattleModel {
+function buildBattle(entry: ContentEncounterEntry, launch: ReturnType<typeof buildEncounterLaunchConfig>): BattleModel {
   const player = mkEntity('unit_p', 'player', 'middle', 1800, 1000);
   const enemies = entry.enemySlots.map((slot, index) => mkEntity(slot.unitId, 'enemy', slot.lane, 6200 + index * 400, 1000));
   const entities = [player, ...enemies];
@@ -245,7 +201,7 @@ function systemsFor(launch: ReturnType<typeof buildEncounterLaunchConfig>): read
   ]);
 }
 
-function liveFrom(state: BattleModel, events: readonly { type: string; tick: number; contentIds: readonly string[]; resolveTick?: number }[], entry: FixtureEncounterEntry): LiveOutboundInput {
+function liveFrom(state: BattleModel, events: readonly { type: string; tick: number; contentIds: readonly string[]; resolveTick?: number }[], entry: ContentEncounterEntry): LiveOutboundInput {
   return Object.freeze({
     encounterId: entry.id,
     objective: entry.objective,
@@ -264,11 +220,18 @@ function liveFrom(state: BattleModel, events: readonly { type: string; tick: num
       contentIds: Object.freeze([...e.contentIds]),
       ...(e.resolveTick === undefined ? {} : { resolveTick: e.resolveTick }),
     }))),
+    // §10 rift-collapse surface: the window start and the §9.4 no-progress
+    // endcap counters, so the panel can render the collapse warning / healing-
+    // halved readout live (the window key stays absent until the soft limit).
+    ...(state.timeCollapseSinceTick === undefined ? {} : { timeCollapseSinceTick: state.timeCollapseSinceTick }),
+    noProgressTicks: state.globalNoProgressTicks ?? 0,
+    riftCollapseTicks: state.riftCollapseTicks ?? 0,
+    riftCollapseWarningEmitted: state.riftCollapseWarningEmitted ?? false,
   });
 }
 
 export interface SimBattleHostConfig {
-  readonly encounter: Readonly<FixtureEncounterEntry>;
+  readonly encounter: Readonly<ContentEncounterEntry>;
   /** Tick cap (default 1500 — every fixture mission resolves within it). */
   readonly maxTicks?: number;
 }
@@ -301,18 +264,18 @@ interface BattleRunner {
   readonly step: () => LiveOutboundInput;
 }
 
-function launchFor(entry: FixtureEncounterEntry): { readonly launch: ReturnType<typeof buildEncounterLaunchConfig>; readonly systems: readonly KernelSystem[] } {
+function launchFor(entry: ContentEncounterEntry): { readonly launch: ReturnType<typeof buildEncounterLaunchConfig>; readonly systems: readonly KernelSystem[] } {
   const source = sourceForEncounter(entry);
   const deps = Object.freeze({
-    modifiers: FIXTURE_MODIFIERS,
-    encounters: new Map([...FIXTURE_ENCOUNTERS.entries()].map(([id, e]) => [id, { enemySlots: e.enemySlots }] as const)),
+    modifiers: CONTENT_MODIFIERS,
+    encounters: new Map([...CONTENT_ENCOUNTERS.entries()].map(([id, e]) => [id, { enemySlots: e.enemySlots }] as const)),
   });
   const launch = buildEncounterLaunchConfig(source, deps);
   return Object.freeze({ launch, systems: systemsFor(launch) });
 }
 
 /** Deterministic per-tick runner shared by the monolithic run and the live handle. */
-function createBattleRunner(entry: FixtureEncounterEntry, launch: ReturnType<typeof buildEncounterLaunchConfig>, systems: readonly KernelSystem[]): BattleRunner {
+function createBattleRunner(entry: ContentEncounterEntry, launch: ReturnType<typeof buildEncounterLaunchConfig>, systems: readonly KernelSystem[]): BattleRunner {
   const random = new RandomSession(RngStreamMap.fromRunSeed(parseRunSeed(['00000001', '00000002', '00000003', '00000004'])), new RollSlotRegistry([]), false);
   let state: BattleModel = { ...buildBattle(entry, launch), authoritativeStreams: random.streams.snapshotAuthoritative() };
   const events: { type: string; tick: number; contentIds: readonly string[]; resolveTick?: number }[] = [];
@@ -343,7 +306,7 @@ function createBattleRunner(entry: FixtureEncounterEntry, launch: ReturnType<typ
   });
 }
 
-/** Runs the real kernel battle for one fixture encounter and exposes the outbound sense. */
+/** Runs the real kernel battle for one content encounter and exposes the outbound sense. */
 export function createSimBattleHost(config: SimBattleHostConfig): SimBattleHost {
   const entry = config.encounter;
   const { launch, systems } = launchFor(entry);
