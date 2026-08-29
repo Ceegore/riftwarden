@@ -37,6 +37,17 @@ export const MODIFIER_HOOKS = [
 ] as const;
 
 /** §7: the content modifier surface mirrors `ModifierDefinition` 1:1 (stable id, preview key, hooks, incompatibility tags, deterministic integer params). */
+/** §4: one content boss-phase entry (mirrors the sim `PhaseDefinition` surface; `bossId` derives from the encounter's `bossUnitId`, `previewKey` from `phase_${id}`). */
+export const BossPhaseSourceSchema = z.object({
+  id: ContentIdSchema,
+  priority: z.number().int().nonnegative(),
+  minHpPermille: z.number().int().min(0).max(1000),
+  maxHpPermille: z.number().int().min(1).max(1001),
+  transitionTicks: z.number().int().positive().optional(),
+  invulnerableTicks: z.number().int().nonnegative().optional(),
+  transitionLocked: z.boolean().optional(),
+}).strict();
+
 export const ModifierSourceSchema = z.object({
   id: ContentIdSchema,
   /** UI disclosure key; the sim's §7 `previewKey` (id-form) is derived as `preview_${id}` (the trace/mass-sim convention). */
@@ -55,6 +66,8 @@ export const EncounterSourceSchema = z.object({
   reinforcementWaves: z.array(z.object({ atSeconds: z.number().nonnegative(), encounterId: ContentIdSchema }).strict()),
   /** §P21-T03: `protect_object` missions protect the linked boss objects (their `objectiveLink` names the derived objective). */
   objective: z.enum(["defeat_all", "survive", "defeat_boss", "protect_object", "complete_waves"]),
+  /** §4: content boss phases (`PhaseDefinition` surface) the battle descends across the boss's HP. */
+  bossPhases: z.array(BossPhaseSourceSchema).default([]),
   /** §P21-T03: the battle entity id of the boss for `defeat_boss` missions (the `kill_boss` objective target). */
   bossUnitId: ContentIdSchema.nullable().default(null),
   /** §P21-T03: survival duration in seconds for `survive` missions (converted to ticks at the kernel tick rate). */

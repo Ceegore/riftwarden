@@ -95,6 +95,24 @@ try {
       survivalDurationSeconds: encounter.survivalDurationSeconds ?? null,
       modifierIds: Object.freeze(encounter.modifierIds ?? []),
       reinforcementWaves: Object.freeze(encounter.reinforcementWaves ?? []),
+      bossPhases: Object.freeze(encounter.bossPhases ?? []),
+    });
+  }
+
+  /** §4: initial BossPhaseSnapshot (entry phase at full HP) for a content phase set. */
+  function bossPhaseSnapshotFor(launch) {
+    const defs = launch.bossPhaseDefinitions;
+    if (defs.length === 0) return undefined;
+    const bossId = defs[0]
+      .bossId;
+    const entry = defs.find((p) => p.maxHpPermille === 1001) ?? defs[0];
+    return Object.freeze({
+      entityId: bossId,
+      bossId,
+      phaseId: entry.id,
+      transition: null,
+      visited: Object.freeze([entry.id]),
+      invulnerableUntilTick: null,
     });
   }
 
@@ -130,6 +148,7 @@ try {
       phase: Object.freeze({ phase: 'ACTIVE', enteredTick: primitives.tick(0), resolvingEndTicks: 0 }),
       entities: Object.freeze(entities),
       temporaryEntities: Object.freeze(temps),
+      ...(launch.bossPhaseDefinitions.length > 0 ? { bossPhase: bossPhaseSnapshotFor(launch) } : {}),
       // The standard ability surface (empty here) — its presence enables the
       // kernel's previous-tick history tracking that objective resolution folds.
       abilities: Object.freeze([]),
@@ -163,6 +182,7 @@ try {
         modifiers: launch.modifiers,
         waves: launch.waves,
         spawnBodies,
+        bossPhaseDefinitions: launch.bossPhaseDefinitions,
       }),
     ]);
   }
@@ -281,6 +301,53 @@ try {
       if (!teethOk) seededFailures += 1;
       perEncounter['encounter_fixture_protect_object'].teeth = teethOk;
       perEncounter['encounter_fixture_protect_object'].status = perEncounter['encounter_fixture_protect_object'].status === 'PASS' && teethOk ? 'PASS' : 'FAIL';
+    }
+  }
+
+  // Dedicated boss-phase teeth run: prove the content phases drive a real
+  // descent across the boss's HP. With only the phase21 systems wired (no
+  // combat), the seeded boss HP stays fixed, so each p1->p2->p3 transition
+  // commits deterministically at its content tick window.
+  const phasesEncounter = encounters.get('encounter_fixture_boss_object');
+  if (phasesEncounter !== undefined) {
+    const launch = api.encounterAdapter.buildEncounterLaunchConfig(sourceFor(phasesEncounter), launchDeps);
+    if (launch.bossPhaseDefinitions.length > 0) {
+      const defs = launch.bossPhaseDefinitions;
+      const bossId = defs[0].bossId;
+      const teethSystems = Object.freeze([...api.phase21Systems.createPhase21Systems({
+        bossObjects: launch.bossObjects,
+        objectives: launch.objectives,
+        modifiers: launch.modifiers,
+        waves: launch.waves,
+        spawnBodies,
+        bossPhaseDefinitions: launch.bossPhaseDefinitions,
+      })]);
+      const teethRandom = new api.random.RandomSession(
+        api.random.RngStreamMap.fromRunSeed(api.random.parseRunSeed(['00000001', '00000002', '00000003', '00000004'])),
+        new api.random.RollSlotRegistry([]), false,
+      );
+      const seedBoss = (battle, permille) => {
+        const boss = battle.entities.find((e) => e.id === bossId);
+        const maxLp = boss?.maxLp ?? 3000;
+        return { ...battle, entities: Object.freeze(battle.entities.map((e) => (e.id === bossId ? { ...e, lp: Math.max(1, Math.floor((maxLp * permille) / 1000)) } : e))) };
+      };
+      const stepUntil = (_start, phaseId, cap) => {
+        let current = { ..._start, authoritativeStreams: teethRandom.streams.snapshotAuthoritative() };
+        for (let t = 0; t < cap; t++) {
+          const r = api.battleKernel.stepBattle({ state: current, input, random: teethRandom, rules: {}, content: {}, systems: teethSystems });
+          current = r.state;
+          if (current.bossPhase?.phaseId === phaseId) return { reached: true, state: current };
+        }
+        return { reached: false, state: current };
+      };
+      // Descend p1 -> p2: seed at 40% HP (permille 400, inside p2's [251,501)).
+      const p2 = stepUntil(seedBoss(buildBattle(phasesEncounter, launch), 400), 'phase_ash_2', 120);
+      // Descend p2 -> p3: drop to 12% HP (permille 120, inside p3's [0,251)).
+      const p3 = p2.reached ? stepUntil(seedBoss(p2.state, 120), 'phase_ash_3', 200) : { reached: false };
+      const phasesDescended = p2.reached && p3.reached;
+      if (!phasesDescended) seededFailures += 1;
+      perEncounter[phasesEncounter.id].phasesDescended = phasesDescended;
+      perEncounter[phasesEncounter.id].status = perEncounter[phasesEncounter.id].status === 'PASS' && phasesDescended ? 'PASS' : 'FAIL';
     }
   }
 

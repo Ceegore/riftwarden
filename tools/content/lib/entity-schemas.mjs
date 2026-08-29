@@ -63,6 +63,16 @@ const ReinforcementWave = z.object({
   encounterId: ContentId,
 }).strict();
 
+const BossPhase = z.object({
+  id: ContentId,
+  priority: z.number().int().nonnegative(),
+  minHpPermille: z.number().int().min(0).max(1000),
+  maxHpPermille: z.number().int().min(1).max(1001),
+  transitionTicks: z.number().int().positive().optional(),
+  invulnerableTicks: z.number().int().nonnegative().optional(),
+  transitionLocked: z.boolean().optional(),
+}).strict();
+
 const NodeRule = z.object({
   nodeType: z.string().min(1),
   minimum: z.number().int().nonnegative(),
@@ -163,6 +173,7 @@ export const ENTITY_SCHEMAS = Object.freeze({
     modifierIds: z.array(ContentId),
     reinforcementWaves: z.array(ReinforcementWave),
     objective: z.enum(["defeat_all", "survive", "defeat_boss", "protect_object", "complete_waves"]),
+    bossPhases: z.array(BossPhase).default([]),
     bossUnitId: ContentId.nullable().default(null),
     survivalDurationSeconds: z.number().nonnegative().nullable().default(null),
     bossObjects: z.array(z.object({

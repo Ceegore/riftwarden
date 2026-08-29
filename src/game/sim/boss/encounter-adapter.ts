@@ -9,6 +9,8 @@ import { validateWave } from '../world/reinforcement-system.js';
 import type { Lane } from '../geometry/x100.js';
 import type { BossObjectContent, BossObjectSpec, DamagePolicy } from './boss-object-manager.js';
 import { validateBossObjectContent } from './boss-object-manager.js';
+import type { PhaseDefinition } from './boss-phase-system.js';
+import { bossPhasesFromEncounterContent, type ContentBossPhaseSource } from './boss-phase-content-adapter.js';
 
 /**
  * Phase 21 §6 content adapter (T03). Maps the flattened content entries the
@@ -69,9 +71,7 @@ export function bossObjectFromContent(entry: ContentBossObjectEntry): BossObject
 export function bossObjectsFromContent(entries: readonly ContentBossObjectEntry[]): readonly BossObjectContent[] {
   const seen = new Set<string>();
   return Object.freeze(entries.map((entry) => {
-    if (seen.has(entry.entityId)) {
-      throw new KernelInvariantError('P21_OBJECT_INVALID', { reason: 'duplicate-entry-id', entityId: entry.entityId });
-    }
+    if (seen.has(entry.entityId)) throw new KernelInvariantError('P21_OBJECT_INVALID', { reason: 'duplicate-entry-id', entityId: entry.entityId });
     seen.add(entry.entityId);
     return bossObjectFromContent(entry);
   }));
@@ -103,8 +103,10 @@ export interface EncounterObjectiveSource {
   readonly survivalDurationSeconds: number | null;
   /** §7: content modifier ids (`EncounterSourceSchema.modifierIds`), resolved against the modifier registry. */
   readonly modifierIds: readonly string[];
-  /** §8: reinforcement waves (`EncounterSourceSchema.reinforcementWaves`), resolved against the encounter registry. */
+  /** §8: reinforcement waves and §4 boss phases across the boss's HP. */
   readonly reinforcementWaves: readonly EncounterWaveSource[];
+  /** §4: content boss phases (`EncounterSourceSchema.bossPhases`). */
+  readonly bossPhases: readonly ContentBossPhaseSource[];
 }
 
 /** §8: one reinforcement-wave declaration (`EncounterSourceSchema.reinforcementWaves` element). */
@@ -269,6 +271,7 @@ export interface EncounterLaunchConfig {
   readonly modifiers: readonly ModifierDefinition[];
   /** §8: resolved reinforcement waves committed by the stage-K system. */
   readonly waves: readonly Wave[];
+  readonly bossPhaseDefinitions: readonly PhaseDefinition[];
 }
 
 /** Content registries the launch derivation resolves ids against (pure, no fs). */
@@ -286,13 +289,11 @@ export function buildEncounterLaunchConfig(source: EncounterObjectiveSource, dep
     blockedStatusTargets: blockedStatusTargetsFromContent(source.bossObjects),
     modifiers: modifiersFromEncounterContent(source.modifierIds, deps.modifiers),
     waves: wavesFromEncounterContent(source.reinforcementWaves, deps.encounters, source.encounterId),
+    bossPhaseDefinitions: bossPhasesFromEncounterContent(source.bossPhases, source.bossUnitId),
   });
 }
 
-/** Duration to kernel ticks via the canonical seconds→ticks conversion. */
-function secondsToTicks(seconds: number): number {
-  if (!Number.isSafeInteger(seconds) || seconds <= 0) {
-    throw new KernelInvariantError('P21_OBJECTIVE_INVALID', { reason: 'survive-duration-invalid', survivalDurationSeconds: seconds });
-  }
+const secondsToTicks = (seconds: number): number => {
+  if (!Number.isSafeInteger(seconds) || seconds <= 0) throw new KernelInvariantError('P21_OBJECTIVE_INVALID', { reason: 'survive-duration-invalid', survivalDurationSeconds: seconds });
   return numberSecondsToTicks(seconds).ticks;
-}
+};

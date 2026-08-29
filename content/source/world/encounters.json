@@ -150,6 +150,27 @@
       "modifierIds": [],
       "reinforcementWaves": [],
       "objective": "defeat_boss",
+      "bossPhases": [
+        {
+          "id": "phase_ash_1",
+          "priority": 1,
+          "minHpPermille": 501,
+          "maxHpPermille": 1001
+        },
+        {
+          "id": "phase_ash_2",
+          "priority": 2,
+          "minHpPermille": 251,
+          "maxHpPermille": 501,
+          "invulnerableTicks": 5
+        },
+        {
+          "id": "phase_ash_3",
+          "priority": 3,
+          "minHpPermille": 0,
+          "maxHpPermille": 251
+        }
+      ],
       "bossUnitId": "boss_ash_unit",
       "survivalDurationSeconds": null,
       "bossObjects": [

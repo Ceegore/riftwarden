@@ -13,6 +13,7 @@ import { migrateEntity } from '../../src/game/sim/core/migrate.js';
 import type { TickInput } from '../../src/game/sim/core/tick-input.js';
 import type { BattleModel } from '../../src/game/sim/core/battle-model.js';
 import type { PhaseDefinition } from '../../src/game/sim/boss/boss-phase-system.js';
+import type { ContentBossPhaseSource } from '../../src/game/sim/boss/boss-phase-content-adapter.js';
 import { buildBossObject, buildBossObjectBody } from '../../src/game/sim/boss/boss-object-manager.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -51,6 +52,9 @@ function sourceOf(id: string): EncounterObjectiveSource {
     survivalDurationSeconds: parsed.survivalDurationSeconds,
     modifierIds: parsed.modifierIds,
     reinforcementWaves: parsed.reinforcementWaves,
+    // The zod output is structurally the flattened ContentBossPhaseSource shape;
+    // a cast is the documented schema->adapter seam (id-branding differs).
+    bossPhases: parsed.bossPhases as readonly ContentBossPhaseSource[],
   };
 }
 
@@ -349,7 +353,42 @@ describe('P21 content boss-object adapter (§6)', () => {
     expect(terminalObjective?.complete).toBe(false);
   });
 
+  it('derives validated PhaseDefinitions from content boss phases (bossId/previewKey derived)', () => {
+    const source = fixtureSource('encounter_fixture_boss_object');
+    expect(source.bossPhases.length).toBeGreaterThan(0);
+    const config = buildEncounterLaunchConfig(source, deps());
+    const defs = config.bossPhaseDefinitions;
+    expect(defs.map((d) => d.id)).toEqual(['phase_ash_1', 'phase_ash_2', 'phase_ash_3']);
+    expect(defs[0]).toMatchObject({ id: 'phase_ash_1', bossId: 'boss_ash_unit', minHpPermille: 501, maxHpPermille: 1001, previewKey: 'preview_phase_ash_1' });
+    expect(defs[1]?.invulnerableTicks).toBe(5);
+    // Full [0,1001) coverage is enforced: the boss can always descend phases.
+    expect(config.bossPhaseDefinitions.every((d) => Object.isFrozen(d))).toBe(true);
+    expect(Object.isFrozen(config.bossPhaseDefinitions)).toBe(true);
+  });
+
+  it('defaults empty bossPhases to no definitions', () => {
+    const source = fixtureSource('encounter_fixture_first');
+    expect(source.bossPhases).toEqual([]);
+    expect(buildEncounterLaunchConfig(source, deps()).bossPhaseDefinitions).toEqual([]);
+  });
+
+  it('content boss phases without a bossUnitId is a content error', () => {
+    // Reaching the phase guard requires a non-boss mission (a `defeat_boss`
+    // objective rejects a null bossUnitId first), so inject phases onto a
+    // survive encounter that declares none.
+    const source = fixtureSource('encounter_fixture_survive');
+    const phaseSource: ContentBossPhaseSource = Object.freeze({ id: 'phase_probe_1', priority: 1, minHpPermille: 501, maxHpPermille: 1001 });
+    let caught: unknown = null;
+    try {
+      buildEncounterLaunchConfig({ ...source, bossUnitId: null, bossPhases: [phaseSource] }, deps());
+    } catch (error) { caught = error; }
+    expect(caught).toBeInstanceOf(Error);
+    expect((caught as Error).message).toBe('P21_PHASE_INVALID');
+    expect((caught as { details?: { reason?: string } }).details?.reason).toBe('boss-phases-without-boss-unit');
+  });
+
   it('derives the damage-policy map and the blocked status set', () => {
+
     const { entries } = bossObjectEncounter();
     const policies = bossObjectPoliciesFromContent(entries);
     expect(policies.get('obj_ash_core')).toBe('normal');

@@ -192,6 +192,9 @@ test('content-driven battle launcher derives objectives via the adapter and reso
   assert.equal(byId['encounter_fixture_waves'].terminal.phase, 'VICTORY');
   // protect_object teeth: the enemy destroys the protected body → forced DEFEAT.
   assert.equal(byId['encounter_fixture_protect_object'].teeth, true);
+  // §9 boss-phase teeth: content phases drive a real p1→p2→p3 descent across
+  // the boss's HP (a Lamport-style phase commit on each boundary).
+  assert.equal(byId['encounter_fixture_boss_object'].phasesDescended, true);
 });
 
 test('phase21-policy mass-sim evidence (all policy combos) is PASS with zero drift and zero gate violations', () => {
