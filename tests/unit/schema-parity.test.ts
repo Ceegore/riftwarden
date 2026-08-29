@@ -163,6 +163,17 @@ const BATTERIES: Battery[] = [
       { label: "enemySlots[0].eliteId null allowed", op: "set", path: "enemySlots.0.eliteId", value: null },
       { label: "reinforcementWaves[0].atSeconds negative", op: "set", path: "reinforcementWaves", value: [{ atSeconds: -1, encounterId: "enc_1" }] },
       { label: "objective enum violation", op: "set", path: "objective", value: "win" },
+      { label: "objective complete_waves valid", op: "set", path: "objective", value: "complete_waves" },
+      { label: "objective heal invalid", op: "set", path: "objective", value: "heal" },
+      { label: "bossPhases empty", op: "set", path: "bossPhases", value: [] },
+      { label: "bossPhases entry missing id", op: "set", path: "bossPhases", value: [{ priority: 1, minHpPermille: 0, maxHpPermille: 1001 }] },
+      { label: "bossPhases entry negative priority", op: "set", path: "bossPhases", value: [{ id: "phase_p", priority: -1, minHpPermille: 0, maxHpPermille: 1001 }] },
+      { label: "bossPhases entry min below range", op: "set", path: "bossPhases", value: [{ id: "phase_p", priority: 1, minHpPermille: -1, maxHpPermille: 1001 }] },
+      { label: "bossPhases entry max above range", op: "set", path: "bossPhases", value: [{ id: "phase_p", priority: 1, minHpPermille: 0, maxHpPermille: 1002 }] },
+      { label: "bossPhases entry transitionTicks zero", op: "set", path: "bossPhases", value: [{ id: "phase_p", priority: 1, minHpPermille: 0, maxHpPermille: 1001, transitionTicks: 0 }] },
+      { label: "bossPhases entry invulnerableTicks negative", op: "set", path: "bossPhases", value: [{ id: "phase_p", priority: 1, minHpPermille: 0, maxHpPermille: 1001, invulnerableTicks: -1 }] },
+      { label: "bossPhases entry transitionLocked wrong type", op: "set", path: "bossPhases", value: [{ id: "phase_p", priority: 1, minHpPermille: 0, maxHpPermille: 1001, transitionLocked: "yes" }] },
+      { label: "bossPhases entry unknown field", op: "set", path: "bossPhases", value: [{ id: "phase_p", priority: 1, minHpPermille: 0, maxHpPermille: 1001, bogus: 1 }] },
       { label: "empty allowedModes", op: "set", path: "allowedModes", value: [] },
       { label: "allowedModes entry violation", op: "set", path: "allowedModes", value: ["hardcore"] },
     ],
@@ -298,3 +309,69 @@ for (const battery of BATTERIES) {
     }
   });
 }
+
+/**
+ * Mirror-drift round-trip guard. A content entity is parsed through ONE
+ * mirror (which applies `.default([])` coercion), serialized back to JSON, then
+ * re-parsed through the OTHER mirror. If a field, enum or range drifts between
+ * the .ts source and the .mjs mirror, the round-trip accepts in one direction
+ * but rejects in the other — this suite crosses the guard in BOTH directions
+ * for the boss-phase and mission-kind surfaces added in the Phase 21 round.
+ */
+function firstEntityWith(ids: readonly string[]): Entity {
+  const envelope = JSON.parse(fs.readFileSync(path.join(sourceRoot, "world/encounters.json"), "utf8")) as { entities: Entity[] };
+  for (const id of ids) {
+    const entity = envelope.entities.find((e) => (e as Entity)["id"] === id);
+    if (entity) return entity;
+  }
+  throw new Error(`encounters fixture missing ${ids.join(" or ")}`);
+}
+
+describe("schema parity: mirror-drift round-trip guard", () => {
+  const tsEnc = EncounterSourceSchema;
+  const rawMjs = ENTITY_SCHEMAS["encounter"];
+  if (rawMjs === undefined) throw new Error("no .mjs encounter schema");
+  const mjsEnc = rawMjs;
+  const cases = Object.freeze([
+    { id: "encounter_fixture_boss_object", reason: "boss-phases" },
+    { id: "encounter_fixture_waves", reason: "complete_waves" },
+  ]);
+  for (const c of cases) {
+    it(`round-trips ${c.reason} (${c.id}) through both mirrors in both directions`, () => {
+      const raw = firstEntityWith([c.id]);
+      // Both mirrors accept the raw content entity as authored.
+      expect(accepts(tsEnc, raw), `.ts accepted ${c.id}`).toBe(true);
+      expect(accepts(mjsEnc, raw), `.mjs accepted ${c.id}`).toBe(true);
+      // .ts -> JSON -> .mjs (and back): the coerced output parses in the other
+      // mirror, so the field shapes cannot have drifted.
+      const tsOut = tsEnc.parse(raw);
+      const normalizer = (value: unknown): unknown => JSON.parse(JSON.stringify(value));
+      expect(accepts(mjsEnc, normalizer(tsOut)), `.mjs re-accepted .ts output of ${c.id}`).toBe(true);
+      const mjsResult = mjsEnc.safeParse(raw);
+      expect(mjsResult.success, `.mjs successfully parsed ${c.id}`).toBe(true);
+      if (mjsResult.success) {
+        expect(accepts(tsEnc, normalizer(mjsResult.data)), `.ts re-accepted .mjs output of ${c.id}`).toBe(true);
+      }
+    });
+
+    it(`round-trip preserves the merged boss-phase/mission surfaces (${c.id})`, () => {
+      const raw = firstEntityWith([c.id]);
+      const tsOut = tsEnc.parse(raw) as { bossPhases: unknown[]; objective: string; bossUnitId: string | null };
+      const mjsResult = mjsEnc.safeParse(raw);
+      expect(mjsResult.success).toBe(true);
+      if (!mjsResult.success) throw new Error(`.mjs rejected ${c.id}`);
+      const mjsData = mjsResult.data as { bossPhases: unknown[]; objective: string };
+      // The two mirrors see the same boss-phase count and objective kind — the
+      // guard that keeps them from drifting apart on the new surface.
+      expect(mjsData.bossPhases.length).toBe(tsOut.bossPhases.length);
+      expect(mjsData.objective).toBe(tsOut.objective);
+      if (tsOut.bossPhases.length > 0) {
+        const tsPhase = tsOut.bossPhases[0] as { id: string; minHpPermille: number; maxHpPermille: number };
+        const mjsPhase = mjsData.bossPhases[0] as { id: string; minHpPermille: number; maxHpPermille: number };
+        expect(mjsPhase.id).toBe(tsPhase.id);
+        expect(mjsPhase.minHpPermille).toBe(tsPhase.minHpPermille);
+        expect(mjsPhase.maxHpPermille).toBe(tsPhase.maxHpPermille);
+      }
+    });
+  }
+});
