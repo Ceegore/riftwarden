@@ -89,6 +89,24 @@ export function engageGateReason(verdict: BattleVerdict): string | null {
 }
 
 /**
+ * §9 ENGAGE gate wiring — the ONE place the battle screen's action list maps
+ * an ENGAGE action through the live-battle verdict. Pure and exported so the
+ * component test can pin every verdict × present combination; NodeScreen
+ * applies it verbatim to its action definitions. The stand-in feed (no live
+ * battle for the node) keeps the legacy always-available affordance.
+ */
+export function gateEngageAction<T extends {
+  readonly action: string;
+  readonly available: boolean;
+  readonly descriptionKey?: string;
+}>(action: T, liveBattlePresent: boolean, verdict: BattleVerdict): T {
+  if (action.action !== 'ENGAGE' || !liveBattlePresent) return action;
+  if (engageAvailableFor(verdict)) return action;
+  const reason = engageGateReason(verdict);
+  return { ...action, available: false, ...(reason === null ? {} : { descriptionKey: reason }) };
+}
+
+/**
  * §10 soft-limit precedence — the ONE place the host builds the battle-end
  * config. A boss-family encounter gets the 3600 boss default when no override
  * is declared, but the encounter's content `softLimitSeconds` ALWAYS wins.

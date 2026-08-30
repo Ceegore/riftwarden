@@ -217,6 +217,22 @@ test('content-driven battle launcher derives objectives via the adapter and reso
   assert.ok(collapseEntry.counterAtDeath < collapseEntry.requirement, 'the requirement is NOT bankable');
   assert.equal(collapseEntry.softLimitTicks, 1800, 'the content soft-limit override (60s → 1800 ticks) drives the window');
   assert.ok(collapseEntry.ticks > 1800 && collapseEntry.ticks < 2250, 'the death lands inside the overridden §10 window');
+  // §10 launcher/host battle-end PARITY: every report entry carries the exact
+  // battleEnd config the launcher ran under (bossBattle + override + the
+  // effective soft limit) — the vitest parity fuzz proves host
+  // (`battleEndConfigFor`) === launcher on the same content; these pins anchor
+  // the known fixtures so a drift in either side is caught in the node gate.
+  for (const key of Object.keys(byId)) {
+    assert.ok(byId[key].battleEnd && typeof byId[key].battleEnd.softLimitTicks === 'number', `${key} report carries battleEnd`);
+    assert.equal(typeof byId[key].battleEnd.bossBattle, 'boolean', `${key} battleEnd.bossBattle`);
+  }
+  assert.equal(byId['encounter_fixture_first'].battleEnd.bossBattle, false, 'defeat_all is not a boss battle');
+  assert.equal(byId['encounter_fixture_first'].battleEnd.softLimitTicks, 2700, 'normal default soft limit');
+  assert.equal(byId['encounter_fixture_boss_object'].battleEnd.bossBattle, true, 'defeat_boss IS a boss battle');
+  assert.equal(byId['encounter_fixture_boss_object'].battleEnd.softLimitTicks, 3600, 'boss default soft limit');
+  assert.equal(byId['encounter_fixture_sustain_collapse'].battleEnd.bossBattle, false, 'sustain fixture is not a boss battle');
+  assert.equal(byId['encounter_fixture_sustain_collapse'].battleEnd.softLimitTicksOverride, 1800, 'the content override rides the config');
+  assert.equal(byId['encounter_fixture_sustain_collapse'].battleEnd.softLimitTicks, 1800, 'the override wins over the normal default');
   // §8.3 sustain POLICY pass: every heal_sustain encounter's contract is
   // validated at launch time (positive requirement, positive composite heal
   // scale, a damageable target) — both sustain encounters must be clean.

@@ -14,7 +14,7 @@ import { VictoryPanel } from '../../features/battle/outbound/VictoryPanel.js';
 import { MissionBountyDisclosure } from '../../features/battle/outbound/MissionBountyDisclosure.js';
 import type { LiveOutboundInput } from '../../features/battle/outbound/phase21-outbound-presenter.js';
 import { DEFEAT_INSTABILITY_DELTA, INSTABILITY_CEILING, MAX_REENGAGE_ATTEMPTS, bountyPreviewForEncounterObjective } from '../../game/expedition/nodes/handlers/combat.js';
-import { battleResultOf, createLiveSimBattle, engageAvailableFor, engageGateReason, resolveExpeditionEncounter, type BattleVerdict, type FixtureEncounterEntry, type LiveSimBattleHandle } from '../../features/battle/sim/sim-battle-host.js';
+import { battleResultOf, createLiveSimBattle, gateEngageAction, resolveExpeditionEncounter, type BattleVerdict, type FixtureEncounterEntry, type LiveSimBattleHandle } from '../../features/battle/sim/sim-battle-host.js';
 import { loadA11ySettings } from '../../game/settings/a11y-settings.js';
 import type { UnitRenderData } from '../../features/battle/battle-renderer.js';
 import type { NodeActionRequest } from '../../game/expedition/nodes/types.js';
@@ -385,17 +385,11 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
   // live battle for the node) keeps the legacy always-available affordance.
   // §9 ENGAGE gate UX: the victory ENGAGE is disabled while the live battle is
   // still running or after a lost/aborted fight — and the description shows WHY
-  // (the gate reason) so the lockout is never silent.
-  const nodeActions = actionsForType(currentNodeType, snapshot).map((actionDef) => {
-    if (actionDef.action !== 'ENGAGE') return actionDef;
-    const gated = liveBattlePresent && !engageAvailableFor(liveVerdict);
-    const reason = gated ? engageGateReason(liveVerdict) : null;
-    return {
-      ...actionDef,
-      available: !gated,
-      ...(reason === null ? {} : { descriptionKey: reason }),
-    };
-  });
+  // (the gate reason) so the lockout is never silent. The mapping lives in the
+  // host's exported `gateEngageAction` seam (pinned by the component test).
+  const nodeActions = actionsForType(currentNodeType, snapshot).map((actionDef) =>
+    gateEngageAction(actionDef, liveBattlePresent, liveVerdict),
+  );
   const reducedMotion = loadA11ySettings().reducedMotion;
 
   return (

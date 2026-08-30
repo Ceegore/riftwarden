@@ -271,6 +271,48 @@ describe('phase21 battle verdict gating', () => {
     expect(bountyForKinds(after?.completedKinds ?? [])).toBe(bountyBefore);
   });
 
+  it('the save codec CONTRACT: ledger completedKinds round-trips valid values and rejects malformed shapes', () => {
+    // §9.5 codec contract: the ledger record's completedKinds must be a STRING
+    // LIST — the codec round-trips valid values (including empty and
+    // forward-compatible unknown kinds, which pay 0) and rejects every
+    // malformed shape with INVALID_FIELD instead of silently dropping or
+    // crashing the restore.
+    const commitWith = (completedKinds: readonly string[]): { serialized: string; decoded: NodeRunState } => {
+      let exp = advanceToCombat(213);
+      const nodeId = exp.currentNodeId;
+      exp = exp.enter('tx-codec-enter').act({
+        transactionId: 'tx-codec-engage',
+        nodeId,
+        action: 'ENGAGE',
+        completedKinds,
+      });
+      const serialized = encodeExpeditionSave(exp);
+      return { serialized, decoded: decodeExpeditionSave(JSON.parse(serialized)).state };
+    };
+    // Empty list: round-trips as present-empty.
+    expect(commitWith([]).decoded.ledger['tx-codec-engage']?.completedKinds).toEqual([]);
+    // Unknown kinds (forward compatibility): preserved, pay 0 — never dropped.
+    expect(commitWith(['future_kind']).decoded.ledger['tx-codec-engage']?.completedKinds).toEqual(['future_kind']);
+    // The ENCODE side must also carry them through canonicalJson byte-identically.
+    const mixed = commitWith(['kill_boss', 'survive_until']);
+    expect(mixed.decoded.ledger['tx-codec-engage']?.completedKinds).toEqual(['kill_boss', 'survive_until']);
+    expect(mixed.serialized).toContain('"completedKinds":["kill_boss","survive_until"]');
+
+    // Malformed shapes: decode a save whose ledger record carries a NON-ARRAY
+    // completedKinds or non-string entries — both must throw INVALID_FIELD.
+    const poke = (completedKinds: unknown): void => {
+      const value = JSON.parse(mixed.serialized) as Record<string, unknown>;
+      const state = value['state'] as Record<string, unknown>;
+      const ledger = state['ledger'] as Record<string, unknown>;
+      const record = ledger['tx-codec-engage'] as Record<string, unknown>;
+      record['completedKinds'] = completedKinds;
+      expect(() => decodeExpeditionSave(value)).toThrow('INVALID_FIELD');
+    };
+    poke([1, 2]);
+    poke('heal_sustain');
+    poke(42);
+  });
+
   it('a re-engage is rejected at the instability ceiling', () => {
     const DEF: NodeDefinition = Object.freeze({ nodeId: 'n1', type: 'battle', contentRevision: '32.0', payloadKey: 'e' });
     const defeatState = (instability: number, rewatches = 0): NodeRunState => {
@@ -328,11 +370,14 @@ describe('phase21 battle verdict gating', () => {
     const mBefore = multi.state.gold;
     const multiPaid = multi.enter('tx-multi-enter').act({ transactionId: 'tx-multi-engage', nodeId: mId, action: 'ENGAGE', completedKinds: ['kill_boss', 'survive_until', 'not_a_kind'] });
     expect(multiPaid.state.gold - mBefore).toBeGreaterThanOrEqual(45 + 25);
-    // A defeat ENGAGE never pays the bounty (it pays nothing at all).
+    // A defeat ENGAGE never pays the bounty (it pays nothing at all) and its
+    // ledger record NEVER claims completed kinds (a lost fight cannot report
+    // completed objectives — the ledger would lie about it).
     const defeat = advanceToCombat(210);
     const dId = defeat.currentNodeId;
     const dBefore = defeat.state.gold;
     const lost = defeat.enter('tx-lost-enter').act({ transactionId: 'tx-lost-engage', nodeId: dId, action: 'ENGAGE_DEFEAT', completedKinds: ['heal_sustain'] });
     expect(lost.state.gold).toBe(dBefore);
+    expect((lost.state.ledger['tx-lost-engage'] as { completedKinds?: readonly string[] }).completedKinds).toBeUndefined();
   });
 });

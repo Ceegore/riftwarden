@@ -137,9 +137,11 @@ export function commitNodeAction(
     action: request.action,
     status: 'COMMITTED',
     outcomeIds: committed.outcomeIds,
-    // §9.5: persist the completed objective kinds on a victory ENGAGE so the
-    // battle-result screen can derive and show the bounty durably.
-    ...(request.completedKinds === undefined ? {} : { completedKinds: request.completedKinds }),
+    // §9.5: persist the completed objective kinds ONLY on a VICTORY ENGAGE so
+    // the battle-result screen can derive and show the bounty durably — a
+    // DEFEAT/retreat record must never claim completed kinds (the ledger would
+    // lie about a lost fight). The UI only sends them with ENGAGE anyway.
+    ...(request.action === 'ENGAGE' && request.completedKinds !== undefined ? { completedKinds: request.completedKinds } : {}),
   };
   const withLedger = recordResult(committed.state, result);
   const visitAfter = withLedger.visits[request.nodeId];

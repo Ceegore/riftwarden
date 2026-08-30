@@ -89,6 +89,25 @@ try {
       radiusX100: 100,
     });
 
+  /**
+   * §10 launcher boss classification. For every VALID encounter this agrees
+   * with the host's `isBossEncounter` (a `defeat_boss` mission without a boss
+   * unit is a content error, so the two formulas coincide on reachable
+   * content) — the parity fuzz pins that identity across all real content.
+   */
+  function bossBattleFor(encounter) {
+    return encounter.objective === 'defeat_boss' || (encounter.bossUnitId ?? null) !== null;
+  }
+
+  /** §10 the battle-end config the launcher RUNS under — reported per encounter so the tooling pins launcher === host. */
+  function battleEndFor(launch, boss) {
+    return Object.freeze({
+      bossBattle: boss,
+      ...(launch.softLimitTicks === null ? {} : { softLimitTicksOverride: launch.softLimitTicks }),
+      softLimitTicks: launch.softLimitTicks ?? (boss ? 3600 : 2700),
+    });
+  }
+
   function sourceFor(encounter) {
     return Object.freeze({
       encounterId: encounter.id,
@@ -269,7 +288,9 @@ try {
     // The content-derived objective ids/kinds/requirements must land in the
     // battle state exactly as the adapter derived them (the wiring proof).
     const expectedObjectives = launch.objectives.map((o) => [o.id, o.kind, o.targetId, o.required]);
-    const systems = systemsFor(launch, encounter.objective === 'defeat_boss' || (encounter.bossUnitId ?? null) !== null);
+    const boss = bossBattleFor(encounter);
+    const battleEnd = battleEndFor(launch, boss);
+    const systems = systemsFor(launch, boss);
     const a = runOne(buildBattle(encounter, launch), systems);
     const b = runOne(buildBattle(encounter, launch), systems);
     totalBattles += 1;
@@ -329,6 +350,10 @@ try {
     if (victoryBounty < objectiveBounty) seededFailures += 1; // pays less than disclosed → design bug
     perEncounter[encounter.id] = {
       objective: encounter.objective,
+      // §10 battle-end surface: the exact config the launcher ran under — the
+      // tooling pins assert launcher === host (`battleEndConfigFor`) on the
+      // same content, so a boss-default/override drift cannot hide.
+      battleEnd,
       objectiveBounty,
       victoryBounty,
       objectivesSeeded: seeded,
@@ -624,6 +649,7 @@ try {
       if (!healOk) seededFailures += 1;
       perEncounter[healEncounter.id] = {
         objective: healEncounter.objective,
+        battleEnd: battleEndFor(launch, bossBattleFor(healEncounter)),
         objectiveBounty: api.bountyPreview.bountyPreviewForEncounterObjective(healEncounter.objective),
         victoryBounty: api.bountyPreview.bountyForKinds((a.state.objectives ?? []).filter((o) => o.complete).map((o) => o.kind)),
         objectivesSeeded: true,
@@ -765,6 +791,10 @@ try {
       if (!collapseOk) seededFailures += 1;
       perEncounter[collapseEncounter.id] = {
         objective: collapseEncounter.objective,
+        // §10 battle-end surface (this sustain fixture is NOT a boss):
+        // bossBattle false, override 1800 → effective 1800 (the reported
+        // config the tooling pins against the host's battleEndConfigFor).
+        battleEnd: battleEndFor(launch, bossBattleFor(collapseEncounter)),
         objectiveBounty: api.bountyPreview.bountyPreviewForEncounterObjective(collapseEncounter.objective),
         victoryBounty: api.bountyPreview.bountyForKinds((a.state.objectives ?? []).filter((o) => o.complete).map((o) => o.kind)),
         objectivesSeeded: true,
