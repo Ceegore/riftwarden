@@ -11,6 +11,7 @@ import { ScreenFrame } from '../../ui/layout/ScreenFrame.js';
 import { BottomActionBar } from '../../ui/layout/BottomActionBar.js';
 import { useExpedition } from '../../features/expedition/useExpedition.js';
 import type { NodeActionRequest } from '../../game/expedition/nodes/types.js';
+import { bountyForKinds } from '../../game/expedition/nodes/handlers/combat.js';
 import { actionTransactionId } from '../../features/expedition/transaction-ids.js';
 
 export interface RewardChoiceScreenProps {
@@ -27,6 +28,17 @@ export function RewardChoiceScreen({ onDone }: RewardChoiceScreenProps): JSX.Ele
     return Object.values(snapshot.state.ledger).some(
       (entry) => entry.nodeId === snapshot.currentNodeId && entry.action === 'CLAIM_REWARD' && entry.status === 'COMMITTED',
     );
+  }, [snapshot]);
+
+  // §9.5 objective bounty: the victory ENGAGE persisted its completed kinds on
+  // the ledger record, so the reward screen derives and shows the bounty too —
+  // durably (it survives a reload; the amount is the contract's, never the UI's).
+  const bounty = useMemo(() => {
+    if (!snapshot) return 0;
+    const engage = Object.values(snapshot.state.ledger).find(
+      (entry) => entry.nodeId === snapshot.currentNodeId && entry.action === 'ENGAGE' && entry.status === 'COMMITTED',
+    );
+    return engage === undefined ? 0 : bountyForKinds(engage.completedKinds ?? []);
   }, [snapshot]);
 
   const handleClaim = useCallback((optionId: string) => {
@@ -71,6 +83,7 @@ export function RewardChoiceScreen({ onDone }: RewardChoiceScreenProps): JSX.Ele
       <div className="rw-expedition-resources">
         <ResourcePill icon="◆" value={snapshot.gold} nameKey="ui.resource.gold" />
       </div>
+      {bounty > 0 && <StatRow label="Objective bounty" value={`+${String(bounty)} gold`} />}
       {actionError && <p role="alert">{actionError}</p>}
       {rewardIds.map((id) => (
         <div key={id}>

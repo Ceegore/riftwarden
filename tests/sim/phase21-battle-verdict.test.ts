@@ -168,6 +168,25 @@ describe('phase21 battle verdict gating', () => {
     }
   });
 
+  it('the bounty is FLAT per completed kind — correct because the fold clamps at required (completion is binary)', () => {
+    // §9.5 decision (pinned): the objective bounty is a per-kind mission-
+    // COMPLETION reward, not a throughput meter scaled by HP. That is exactly
+    // right for heal_sustain because applyProgress clamps the counter at
+    // `required`: a mission is either incomplete (pays nothing) or has banked
+    // >= required (pays the flat kind amount) — a "partial-heal completion"
+    // always lands exactly at required, so a scaled bounty would be identical.
+    expect(bountyForKinds(['heal_sustain'])).toBe(10); // flat, regardless of the final heal size
+    // A partial mission (progress < required) is NOT complete → its kind never
+    // enters the list → it pays nothing.
+    const partial = Object.freeze({ id: 'o', kind: 'heal_sustain', targetId: null, required: 100, progress: 72, complete: false });
+    expect(partial.complete).toBe(false);
+    expect(bountyForKinds(partial.complete ? [partial.kind] : [])).toBe(0);
+    // A clipped completion (the last heal banks exactly the remaining need)
+    // IS complete and pays the same flat amount as a full over-bank.
+    const clipped = Object.freeze({ id: 'o', kind: 'heal_sustain', targetId: null, required: 100, progress: 100, complete: true });
+    expect(bountyForKinds([clipped.kind])).toBe(bountyForKinds(['heal_sustain']));
+  });
+
   it('a mission victory ENGAGE persists the completed kinds so the result screen can derive the bounty', () => {
     // §9.5 the post-ENGAGE result screen reads the last committed ledger record
     // to derive the bounty durably (across reloads) — the completed kinds must

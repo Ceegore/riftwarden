@@ -178,15 +178,19 @@ try {
     });
   }
 
-  function systemsFor(launch) {
+  function systemsFor(launch, boss) {
     const damagePolicies = new Map(launch.bossObjectPolicies);
     return Object.freeze([
       ...api.phase17Systems.createPhase17Systems({
         speedsX100PerSecond: {},
         bossObjectPolicies: damagePolicies,
-        // §10 content soft-limit override: the encounter's `softLimitSeconds`
-        // opens the collapse window at its tick instead of the 2700/3600 default.
-        ...(launch.softLimitTicks === null ? {} : { battleEnd: { softLimitTicksOverride: launch.softLimitTicks } }),
+        // §10 soft-limit precedence (mirrors the live host): a boss-family
+        // encounter gets the 3600 boss default when no override is declared,
+        // but the content `softLimitSeconds` ALWAYS wins over it.
+        battleEnd: {
+          ...(boss ? { bossBattle: true } : {}),
+          ...(launch.softLimitTicks === null ? {} : { softLimitTicksOverride: launch.softLimitTicks }),
+        },
         basicAttack: {
           parameters: {
             unit_p: {
@@ -265,7 +269,7 @@ try {
     // The content-derived objective ids/kinds/requirements must land in the
     // battle state exactly as the adapter derived them (the wiring proof).
     const expectedObjectives = launch.objectives.map((o) => [o.id, o.kind, o.targetId, o.required]);
-    const systems = systemsFor(launch);
+    const systems = systemsFor(launch, encounter.objective === 'defeat_boss' || (encounter.bossUnitId ?? null) !== null);
     const a = runOne(buildBattle(encounter, launch), systems);
     const b = runOne(buildBattle(encounter, launch), systems);
     totalBattles += 1;
@@ -314,8 +318,19 @@ try {
       visited: Object.freeze([...a.state.bossPhaseSecondary.visited]),
       transition: a.state.bossPhaseSecondary.transition !== null,
     });
+    // §9.5 objective bounty teeth: the DISCLOSED bounty (from the encounter's
+    // mission objective) and the ACTUAL victory bounty (bountyForKinds over the
+    // completed kinds) ride the report so content can never pay less in gold
+    // than it announced. Equal for every single-objective mission by
+    // construction (a completed kind pays exactly the disclosed amount).
+    const victoryKinds = (a.state.objectives ?? []).filter((o) => o.complete).map((o) => o.kind);
+    const objectiveBounty = api.bountyPreview.bountyPreviewForEncounterObjective(encounter.objective);
+    const victoryBounty = api.bountyPreview.bountyForKinds(victoryKinds);
+    if (victoryBounty < objectiveBounty) seededFailures += 1; // pays less than disclosed → design bug
     perEncounter[encounter.id] = {
       objective: encounter.objective,
+      objectiveBounty,
+      victoryBounty,
       objectivesSeeded: seeded,
       bossObjectsPlaced: objectsPlaced,
       modifiersCommitted,
@@ -353,7 +368,7 @@ try {
           Object.freeze({ kind: 'damage', sourceId: 'unit_enemy_attacker', targetId: protectedBody.entityId, effectId: 'ef_kill', attackInstanceId: 1, effectIndex: 0, rawAmount: 10000, damageTypeOrdinal: 0, defense: 0, coverReductionBps: 0, bossCapBps: null }),
         ]),
       };
-      const systems = systemsFor(launch);
+      const systems = systemsFor(launch, protectEncounter.objective === 'defeat_boss' || (protectEncounter.bossUnitId ?? null) !== null);
       const result = runOne(state, systems);
       const teethOk = result.terminal?.phase === 'DEFEAT' && result.terminal?.reason === 'protect_object_failed';
       if (!teethOk) seededFailures += 1;
@@ -609,6 +624,8 @@ try {
       if (!healOk) seededFailures += 1;
       perEncounter[healEncounter.id] = {
         objective: healEncounter.objective,
+        objectiveBounty: api.bountyPreview.bountyPreviewForEncounterObjective(healEncounter.objective),
+        victoryBounty: api.bountyPreview.bountyForKinds((a.state.objectives ?? []).filter((o) => o.complete).map((o) => o.kind)),
         objectivesSeeded: true,
         bossObjectsPlaced: true,
         modifiersCommitted: true,
@@ -683,7 +700,8 @@ try {
           speedsX100PerSecond: {},
           targeting: { focusTargetId: { unit_p: 'unit_e1', unit_e1: 'unit_p' } },
           // §10 the content soft-limit override is what these teeth prove: the
-          // window must open at the encounter's tick, not the 2700 default.
+          // window must open at the encounter's tick, not the 2700/3600 default
+          // (this is a sustain fixture, not a boss — no bossBattle flag).
           ...(launch.softLimitTicks === null ? {} : { battleEnd: { softLimitTicksOverride: launch.softLimitTicks } }),
           basicAttack: {
             parameters: {
@@ -747,6 +765,8 @@ try {
       if (!collapseOk) seededFailures += 1;
       perEncounter[collapseEncounter.id] = {
         objective: collapseEncounter.objective,
+        objectiveBounty: api.bountyPreview.bountyPreviewForEncounterObjective(collapseEncounter.objective),
+        victoryBounty: api.bountyPreview.bountyForKinds((a.state.objectives ?? []).filter((o) => o.complete).map((o) => o.kind)),
         objectivesSeeded: true,
         bossObjectsPlaced: true,
         modifiersCommitted: true,
@@ -764,7 +784,7 @@ try {
         inWindowDeath,
         counterAtDeath: counter,
         requirement: 80000,
-        // §10 the content override: 60s → 900 ticks, not the 2700 default.
+        // §10 the content override: 60s → 1800 ticks (30 tps), not the 2700 default.
         softLimitTicks: launch.softLimitTicks,
         healStream: a.healStream.slice(0, 12),
         checksum: api.snapshot.createSnapshot(a.state).checksum,

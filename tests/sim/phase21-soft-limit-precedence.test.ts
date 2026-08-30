@@ -78,6 +78,41 @@ describe('P21 §10 soft-limit override precedence', () => {
     // override demonstrably took precedence over the boss default.
   });
 
+  it('an override exactly equal to the boss default is honored (no drift to the normal default)', () => {
+    // A content override that happens to equal the boss soft limit must still
+    // resolve to THAT tick — never silently falling through to 2700.
+    expect(SOFT_LIMIT_BOSS_TICKS).not.toBe(SOFT_LIMIT_NORMAL_TICKS);
+    expect(softLimitTicks({ bossBattle: true, softLimitTicksOverride: SOFT_LIMIT_BOSS_TICKS })).toBe(SOFT_LIMIT_BOSS_TICKS);
+    // The adapter maps softLimitSeconds 120 (→ 3600 ticks at 30 tps) to the
+    // same value the boss default would have produced.
+    const source: EncounterObjectiveSource = Object.freeze({
+      encounterId: 'enc_precedence_120', objective: 'defeat_boss', bossObjects: Object.freeze([]), enemySlotCount: 0,
+      bossUnitId: 'b', bossUnitIdSecondary: null, survivalDurationSeconds: null, healSustainCount: null,
+      softLimitSeconds: 120, modifierIds: Object.freeze([]), reinforcementWaves: Object.freeze([]),
+      bossPhases: Object.freeze([]), bossPhasesSecondary: Object.freeze([]),
+    });
+    const launch = buildEncounterLaunchConfig(source, Object.freeze({ modifiers: new Map(), encounters: new Map() }));
+    expect(launch.softLimitTicks).toBe(SOFT_LIMIT_BOSS_TICKS);
+  });
+
+  it('an override of 1 tick and the exact collapseTick boundary resolve deterministically', () => {
+    const one = { softLimitTicksOverride: 1 };
+    expect(softLimitTicks(one)).toBe(1);
+    const decision = (tick: number) => resolveBattleEnd({ tick, entities: BOTH_ALIVE, phase: { phase: 'ACTIVE' } }, one, 0).action;
+    // Window OPENS at tick 1 but no collapse lands at the boundary tick itself.
+    expect(decision(1)).toBe('none');
+    // An interval in (1 + 90 = 91): collapse damage fires.
+    expect(decision(91)).toBe('collapse_damage');
+    // The last inside-window interval (1 + 360 = 361, collapseTick 360): collapse.
+    expect(decision(361)).toBe('collapse_damage');
+    // EXACT window end (collapseTick === COLLAPSE_WINDOW_TICKS = 450): the
+    // resolver requests the end instead of firing more collapse damage.
+    expect(decision(1 + COLLAPSE_WINDOW_TICKS)).toBe('request_end');
+    // The tick just before the end (collapseTick 449) is inside the window but
+    // not on an interval → no action.
+    expect(decision(1 + COLLAPSE_WINDOW_TICKS - 1)).toBe('none');
+  });
+
   it('the adapter maps content softLimitSeconds into the override ticks', () => {
     const source: EncounterObjectiveSource = Object.freeze({
       encounterId: 'enc_precedence_boss',

@@ -184,6 +184,21 @@ test('content-driven battle launcher derives objectives via the adapter and reso
   for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_protect_object', 'encounter_fixture_boss_duo', 'encounter_fixture_wave_boss', 'encounter_fixture_heal_sustain']) {
     assert.equal(byId[key].objectivesComplete, true, key);
   }
+  // §9.5 objective-bounty teeth: every encounter discloses its objective
+  // bounty (defeat_all 5, survive/waves/heal 10, defeat_boss 15, protect
+  // ranked per-object) and the victory Bounty paid equals it for every
+  // single-objective mission (never pays LESS than disclosed).
+  for (const key of ['encounter_fixture_first', 'encounter_fixture_survive', 'encounter_fixture_waves', 'encounter_fixture_boss_object', 'encounter_fixture_boss_duo', 'encounter_fixture_wave_boss', 'encounter_fixture_heal_sustain', 'encounter_fixture_sustain_collapse']) {
+    assert.ok(typeof byId[key].objectiveBounty === 'number', `${key} report discloses objectiveBounty`);
+    assert.ok(typeof byId[key].victoryBounty === 'number', `${key} report carries victoryBounty`);
+    if (byId[key].objectivesComplete) assert.ok(byId[key].victoryBounty >= byId[key].objectiveBounty, `${key} pays >= what it discloses`);
+  }
+  assert.equal(byId['encounter_fixture_first'].objectiveBounty, 5, 'defeat_all bounty 5');
+  assert.equal(byId['encounter_fixture_boss_object'].objectiveBounty, 15, 'defeat_boss bounty 15');
+  assert.equal(byId['encounter_fixture_wave_boss'].objectiveBounty, 15, 'content boss bounty 15');
+  assert.equal(byId['encounter_fixture_heal_sustain'].objectiveBounty, 10, 'heal_sustain bounty 10');
+  assert.equal(byId['encounter_fixture_heal_sustain'].victoryBounty, 10, 'heal_sustain victory pays 10');
+  assert.equal(byId['encounter_fixture_sustain_collapse'].objectiveBounty, 10, 'collapse sustain discloses 10');
   // §10 sustain × collapse TIPPING teeth: the 80000-requirement encounter is
   // NOT bankable by the pre-window grind, so it loses IN the window — the
   // content soft-limit override (softLimitSeconds 60 → 1800 ticks) opens the
