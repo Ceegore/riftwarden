@@ -112,17 +112,25 @@ function decodeVisit(value: unknown, nodeId: string): NodeVisitState {
 
 function decodeTransaction(value: unknown, transactionId: string): TransactionRecord {
   const entry = record(value, `ledger.${transactionId}`);
-  closedKeys(entry, ['action', 'nodeId', 'outcomeIds', 'status', 'transactionId'], ['reason'], `ledger.${transactionId}`);
+  closedKeys(entry, ['action', 'nodeId', 'outcomeIds', 'status', 'transactionId'], ['completedKinds', 'reason'], `ledger.${transactionId}`);
   const status = stringValue(entry['status'], `ledger.${transactionId}.status`);
   if (!['COMMITTED', 'REJECTED', 'FAILED'].includes(status)) throw new SaveError('INVALID_ENUM', { field: `ledger.${transactionId}.status` });
   const reason = entry['reason'];
   if (reason !== undefined && typeof reason !== 'string') throw new SaveError('INVALID_FIELD', { field: `ledger.${transactionId}.reason` });
+  const completedKinds = entry['completedKinds'];
+  if (completedKinds !== undefined && !Array.isArray(completedKinds)) {
+    throw new SaveError('INVALID_FIELD', { field: `ledger.${transactionId}.completedKinds` });
+  }
   return {
     transactionId: stringValue(entry['transactionId'], `ledger.${transactionId}.transactionId`),
     nodeId: stringValue(entry['nodeId'], `ledger.${transactionId}.nodeId`),
     action: stringValue(entry['action'], `ledger.${transactionId}.action`),
     status: status as TransactionRecord['status'],
     outcomeIds: stringList(entry['outcomeIds'], `ledger.${transactionId}.outcomeIds`),
+    // §9.5: the victory ENGAGE's completed objective kinds ride the ledger
+    // record so the post-ENGAGE reward screen derives the bounty after a
+    // reload — the codec must round-trip them (validated string list).
+    ...(completedKinds === undefined ? {} : { completedKinds: stringList(completedKinds, `ledger.${transactionId}.completedKinds`) }),
     ...(reason === undefined ? {} : { reason }),
   };
 }

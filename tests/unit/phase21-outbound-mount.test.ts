@@ -318,8 +318,14 @@ describe('P21 §9 outbound panel mount', () => {
     expect(html).toContain('rw-victory-panel');
     expect(html).toContain('Victory — the node is cleared.');
     expect(html).toContain('Objective bounty +25 gold (kill_boss, survive_until) on ENGAGE.');
+    // §9.5 per-kind breakdown: one line per paying kind with the contract
+    // amount — unknown kinds are omitted (kill_boss 15 + survive_until 10).
+    expect(html).toContain('rw-victory-bounty-breakdown');
+    expect(html).toContain('kill_boss: +15 gold');
+    expect(html).toContain('survive_until: +10 gold');
     // A zero bounty shows the victory without the bounty line.
     expect(renderVictory(0, [])).not.toContain('Objective bounty');
+    expect(renderVictory(0, [])).not.toContain('rw-victory-bounty-breakdown');
   });
 
   it('a non-boss battle renders a row without phase machinery', () => {

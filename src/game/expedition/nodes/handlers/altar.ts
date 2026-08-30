@@ -8,6 +8,7 @@
 import { ExpeditionError, type NodeRejectionCode } from '../../expedition-error.js';
 import { applyOutcomeCommands } from '../../outcome-commands.js';
 import { relicGrantVerdict } from '../../run-economy.js';
+import { INSTABILITY_CEILING } from './combat.js';
 import type { NodeHandler } from '../registry.js';
 import type { NodeDefinition, NodePreviewData } from '../types.js';
 import { assertVisitOpen, enterCommands, hasCommittedAction, previewOf } from './common.js';
@@ -38,7 +39,9 @@ export const altarHandler: NodeHandler = {
     }
     if (relicGrantVerdict(state, definition.payloadKey, state.modeId) === 'RELIC_CAP') return 'RELIC_CAP';
     if (relicGrantVerdict(state, definition.payloadKey, state.modeId) === 'DUPLICATE') return 'REWARD_DUPLICATE';
-    if (state.instability + ALTAR_DOWNSIDE_INSTABILITY > 100) return 'OPTION_UNAVAILABLE';
+    // §9: the altar's downside honours the SAME instability ceiling the combat
+    // re-engage tax honours (one shared bound, never a drifting literal).
+    if (state.instability + ALTAR_DOWNSIDE_INSTABILITY > INSTABILITY_CEILING) return 'OPTION_UNAVAILABLE';
     return null;
   },
   commit(definition, request, state) {

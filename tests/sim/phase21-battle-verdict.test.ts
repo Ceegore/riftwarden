@@ -9,9 +9,10 @@ import { describe, expect, it } from 'vitest';
 import { createExpedition } from '../../src/game/expedition/expedition-runner.js';
 import { generateMap } from '../../src/game/expedition/map-generator.js';
 import type { ExpeditionMap, MapProfile } from '../../src/game/expedition/types.js';
-import { battleResultOf, engageAvailableFor } from '../../src/features/battle/sim/sim-battle-host.js';
+import { battleResultOf, engageAvailableFor, engageGateReason } from '../../src/features/battle/sim/sim-battle-host.js';
 import type { LiveOutboundInput } from '../../src/features/battle/outbound/phase21-outbound-presenter.js';
-import { battleHandler, bountyForKinds } from '../../src/game/expedition/nodes/handlers/combat.js';
+import { battleHandler, bountyBreakdownForKinds, bountyForKinds } from '../../src/game/expedition/nodes/handlers/combat.js';
+import { decodeExpeditionSave, encodeExpeditionSave, restoreExpeditionSave } from '../../src/game/expedition/expedition-save.js';
 import { createNodeRunState, openVisit } from '../../src/game/expedition/nodes/run-state.js';
 import type { NodeDefinition, NodeRunState } from '../../src/game/expedition/nodes/types.js';
 
@@ -68,6 +69,15 @@ describe('phase21 battle verdict gating', () => {
     expect(engageAvailableFor('active')).toBe(false);
     expect(engageAvailableFor('defeat')).toBe(false);
     expect(engageAvailableFor('abort')).toBe(false);
+  });
+
+  it('the ENGAGE gate UX reason explains each blocked verdict (never a silent lockout)', () => {
+    // The disabled ENGAGE button renders the reason — each non-victory verdict
+    // maps to an explicit, actionable message; a terminal VICTORY unlocks it.
+    expect(engageGateReason('victory')).toBeNull();
+    expect(engageGateReason('active')).toBe('Battle in progress — ENGAGE unlocks on victory');
+    expect(engageGateReason('defeat')).toBe('The battle was lost — re-engage or retreat');
+    expect(engageGateReason('abort')).toBe('The battle aborted — retreat to continue');
   });
 
   it('a WON battle resolves the node so advancement works', () => {
@@ -208,6 +218,57 @@ describe('phase21 battle verdict gating', () => {
     expect(record.status).toBe('COMMITTED');
     expect(record.completedKinds).toEqual(['heal_sustain', 'survive_until']);
     expect(bountyForKinds(record.completedKinds ?? [])).toBe(20);
+    // §9.5 per-kind breakdown: exactly one entry per paying kind, in input
+    // order, with the contract amount — unknown kinds are omitted entirely.
+    expect(bountyBreakdownForKinds(['kill_boss', 'survive_until', 'not_a_kind'])).toEqual([
+      Object.freeze({ kind: 'kill_boss', amount: 15 }),
+      Object.freeze({ kind: 'survive_until', amount: 10 }),
+    ]);
+    expect(bountyBreakdownForKinds([])).toEqual([]);
+    expect(bountyBreakdownForKinds(['unknown_kind'])).toEqual([]);
+  });
+
+  it('the reward-screen bounty survives a save → reload round trip (reload continuity)', () => {
+    // The reward screen derives the bounty from the committed ENGAGE's
+    // completed kinds on the ledger. A RELOAD must preserve that: the save
+    // codec used to REJECT ledger records carrying completedKinds (UNKNOWN_FIELD),
+    // which crashed the restore of any victory-ENGAGE run — the codec now
+    // round-trips them, so the reward screen shows the same bounty before and
+    // after the reload.
+    let exp = advanceToCombat(212);
+    const nodeId = exp.currentNodeId;
+    exp = exp.enter('tx-reload-enter').act({
+      transactionId: 'tx-reload-engage',
+      nodeId,
+      action: 'ENGAGE',
+      completedKinds: ['heal_sustain', 'survive_until'],
+    });
+    const goldBefore = exp.state.gold;
+    // The reward screen's derivation (same expression RewardChoiceScreen uses).
+    const engage = Object.values(exp.state.ledger).find(
+      (entry) => entry.nodeId === exp.currentNodeId && entry.action === 'ENGAGE' && entry.status === 'COMMITTED',
+    );
+    expect(engage).toBeDefined();
+    const bountyBefore = bountyForKinds(engage?.completedKinds ?? []);
+    expect(bountyBefore).toBe(20);
+
+    // Serialize → decode (the codec previously threw UNKNOWN_FIELD here) →
+    // restore against the same deterministic map.
+    const serialized = encodeExpeditionSave(exp);
+    const decoded = decodeExpeditionSave(JSON.parse(serialized));
+    const reloadedTx = decoded.state.ledger['tx-reload-engage'];
+    expect(reloadedTx?.status).toBe('COMMITTED');
+    expect(reloadedTx?.completedKinds).toEqual(['heal_sustain', 'survive_until']);
+    expect(bountyForKinds(reloadedTx?.completedKinds ?? [])).toBe(bountyBefore);
+    const restored = restoreExpeditionSave(serialized, mapFor(212));
+    expect(restored.state.ledger['tx-reload-engage']?.completedKinds).toEqual(['heal_sustain', 'survive_until']);
+    expect(restored.state.gold).toBe(goldBefore);
+    expect(restored.currentNodeId).toBe(nodeId);
+    // The derived bounty after the reload is byte-identical to before it.
+    const after = Object.values(restored.state.ledger).find(
+      (entry) => entry.nodeId === restored.currentNodeId && entry.action === 'ENGAGE' && entry.status === 'COMMITTED',
+    );
+    expect(bountyForKinds(after?.completedKinds ?? [])).toBe(bountyBefore);
   });
 
   it('a re-engage is rejected at the instability ceiling', () => {

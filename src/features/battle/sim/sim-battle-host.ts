@@ -75,6 +75,35 @@ export function engageAvailableFor(verdict: BattleVerdict): boolean {
   return verdict === 'victory';
 }
 
+/**
+ * §9 ENGAGE gate UX: WHY the victory ENGAGE is currently unavailable (null
+ * when it IS available). The disabled button shows this reason so the player
+ * never stares at a silent lockout — a fight still running, a lost fight, or
+ * an aborted one each explain themselves.
+ */
+export function engageGateReason(verdict: BattleVerdict): string | null {
+  if (verdict === 'victory') return null;
+  if (verdict === 'active') return 'Battle in progress — ENGAGE unlocks on victory';
+  if (verdict === 'defeat') return 'The battle was lost — re-engage or retreat';
+  return 'The battle aborted — retreat to continue';
+}
+
+/**
+ * §10 soft-limit precedence — the ONE place the host builds the battle-end
+ * config. A boss-family encounter gets the 3600 boss default when no override
+ * is declared, but the encounter's content `softLimitSeconds` ALWAYS wins.
+ * Pure and exported so the parity fuzz can pin host === adapter === resolver.
+ */
+export function battleEndConfigFor(
+  entry: Readonly<ContentEncounterEntry>,
+  launch: ReturnType<typeof buildEncounterLaunchConfig>,
+): Readonly<{ bossBattle?: boolean; softLimitTicksOverride?: number }> {
+  return Object.freeze({
+    ...(isBossEncounter(entry) ? { bossBattle: true } : {}),
+    ...(launch.softLimitTicks === null ? {} : { softLimitTicksOverride: launch.softLimitTicks }),
+  });
+}
+
 const input: TickInput = Object.freeze({ paused: false, decisions: Object.freeze([]), contentVersion: 'content_fixture' });
 
 /** Flattens the content entry into the adapter's `EncounterObjectiveSource` (mirrors the launcher's `sourceFor`). */
@@ -219,10 +248,7 @@ function systemsFor(entry: ContentEncounterEntry, launch: ReturnType<typeof buil
       // §10 soft-limit precedence: a boss-family encounter gets the 3600 boss
       // default when no override is declared, but the encounter's content
       // `softLimitSeconds` ALWAYS wins (never overridden by the boss default).
-      battleEnd: {
-        ...(isBossEncounter(entry) ? { bossBattle: true } : {}),
-        ...(launch.softLimitTicks === null ? {} : { softLimitTicksOverride: launch.softLimitTicks }),
-      },
+      battleEnd: battleEndConfigFor(entry, launch),
       basicAttack: {
         parameters: {
           unit_p: {

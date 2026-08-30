@@ -11,7 +11,7 @@ import { StatRow } from '../../ui/components/StatRow.js';
 import { ScreenFrame } from '../../ui/layout/ScreenFrame.js';
 import { BottomActionBar } from '../../ui/layout/BottomActionBar.js';
 import { useExpedition } from '../../features/expedition/useExpedition.js';
-import { bountyForKinds } from '../../game/expedition/nodes/handlers/combat.js';
+import { bountyBreakdownForKinds, bountyForKinds } from '../../game/expedition/nodes/handlers/combat.js';
 
 export interface BattleResultScreenProps {
   readonly onContinue: () => void;
@@ -42,6 +42,9 @@ export function BattleResultScreen({ onContinue }: BattleResultScreenProps): JSX
       securedCount: snapshot.securedLoot.length,
       unsecuredCount: snapshot.unsecuredLoot.length,
       bounty,
+      // §9.5 per-kind breakdown: the same persisted kinds, one row per kind that
+      // pays — so the player sees exactly what each completed mission kind earned.
+      bountyBreakdown: lastTx?.action === 'ENGAGE' ? bountyBreakdownForKinds(lastTx.completedKinds ?? []) : [],
     };
   }, [snapshot]);
 
@@ -66,6 +69,9 @@ export function BattleResultScreen({ onContinue }: BattleResultScreenProps): JSX
       <StatRow label="Action" value={result.action} />
       <StatRow label="Result" value={result.status} />
       {result.bounty > 0 && <StatRow label="Objective bounty" value={`+${String(result.bounty)} gold`} />}
+      {result.bountyBreakdown.map((entry) => (
+        <StatRow key={entry.kind} label={`${entry.kind} bounty`} value={`+${String(entry.amount)} gold`} />
+      ))}
       <StatRow label="Secured loot" value={String(result.securedCount)} />
       <StatRow label="Unsecured loot" value={String(result.unsecuredCount)} />
 

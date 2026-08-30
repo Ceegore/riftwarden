@@ -45,6 +45,21 @@ export function bountyForKinds(kinds: readonly string[]): number {
 }
 
 /**
+ * §9.5 per-kind bounty BREAKDOWN: one entry per completed kind that actually
+ * pays (unknown kinds contribute nothing and are omitted), in input order. The
+ * UI renders each entry so the player sees exactly which mission kinds earned
+ * what — the amounts stay the contract's, never the UI's.
+ */
+export function bountyBreakdownForKinds(kinds: readonly string[]): ReadonlyArray<{ readonly kind: string; readonly amount: number }> {
+  const entries: Array<{ kind: string; amount: number }> = [];
+  for (const kind of kinds) {
+    const amount = MISSION_BOUNTY_BY_KIND[kind] ?? 0;
+    if (amount > 0) entries.push({ kind, amount });
+  }
+  return Object.freeze(entries);
+}
+
+/**
  * §9.5 pre-ENGAGE disclosure: maps each ENCOUNTER objective to the objective
  * KIND its single-objective mission derives, so the UI can disclose the bounty
  * the victory would grant before the player commits ENGAGE (the actual grant is
