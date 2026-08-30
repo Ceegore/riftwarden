@@ -14,7 +14,7 @@ import { VictoryPanel } from '../../features/battle/outbound/VictoryPanel.js';
 import { MissionBountyDisclosure } from '../../features/battle/outbound/MissionBountyDisclosure.js';
 import type { LiveOutboundInput } from '../../features/battle/outbound/phase21-outbound-presenter.js';
 import { DEFEAT_INSTABILITY_DELTA, INSTABILITY_CEILING, MAX_REENGAGE_ATTEMPTS, bountyPreviewForEncounterObjective } from '../../game/expedition/nodes/handlers/combat.js';
-import { battleResultOf, createLiveSimBattle, resolveExpeditionEncounter, type BattleVerdict, type FixtureEncounterEntry, type LiveSimBattleHandle } from '../../features/battle/sim/sim-battle-host.js';
+import { battleResultOf, createLiveSimBattle, engageAvailableFor, resolveExpeditionEncounter, type BattleVerdict, type FixtureEncounterEntry, type LiveSimBattleHandle } from '../../features/battle/sim/sim-battle-host.js';
 import { loadA11ySettings } from '../../game/settings/a11y-settings.js';
 import type { UnitRenderData } from '../../features/battle/battle-renderer.js';
 import type { NodeActionRequest } from '../../game/expedition/nodes/types.js';
@@ -375,12 +375,18 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
   const { gold, instability } = snapshot;
   const defeated = combat && liveVerdict === 'defeat';
   const victorious = combat && liveVerdict === 'victory';
-  // §9 ENGAGE lockout: a terminal DEFEAT from the live battle gates the win
-  // path — the node's reward is lost and only a retreat (DECLINE) clears it.
-  const nodeActions = defeated
-    ? actionsForType(currentNodeType, snapshot).map((actionDef) =>
-      actionDef.action === 'ENGAGE' ? { ...actionDef, available: false } : actionDef)
-    : actionsForType(currentNodeType, snapshot);
+  // A live kernel battle exists only when the node's encounter resolved (the
+  // stand-in feed has no battle to wait for, so its ENGAGE stays available).
+  const liveBattlePresent = encounter !== null;
+  // §9 ENGAGE gate: the victory ENGAGE may only be committed when the LIVE
+  // battle has actually reached a terminal VICTORY — never mid-battle (an
+  // ACTIVE fight hasn't been won yet) and never after a DEFEAT/abort (the
+  // node's reward is lost; only a retreat clears it). The stand-in feed (no
+  // live battle for the node) keeps the legacy always-available affordance.
+  const nodeActions = actionsForType(currentNodeType, snapshot).map((actionDef) =>
+    actionDef.action === 'ENGAGE'
+      ? { ...actionDef, available: !liveBattlePresent || engageAvailableFor(liveVerdict) }
+      : actionDef);
   const reducedMotion = loadA11ySettings().reducedMotion;
 
   return (

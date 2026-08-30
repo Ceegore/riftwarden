@@ -9,7 +9,7 @@ import { describe, expect, it } from 'vitest';
 import { createExpedition } from '../../src/game/expedition/expedition-runner.js';
 import { generateMap } from '../../src/game/expedition/map-generator.js';
 import type { ExpeditionMap, MapProfile } from '../../src/game/expedition/types.js';
-import { battleResultOf } from '../../src/features/battle/sim/sim-battle-host.js';
+import { battleResultOf, engageAvailableFor } from '../../src/features/battle/sim/sim-battle-host.js';
 import type { LiveOutboundInput } from '../../src/features/battle/outbound/phase21-outbound-presenter.js';
 import { battleHandler, bountyForKinds } from '../../src/game/expedition/nodes/handlers/combat.js';
 import { createNodeRunState, openVisit } from '../../src/game/expedition/nodes/run-state.js';
@@ -59,6 +59,15 @@ describe('phase21 battle verdict gating', () => {
     expect(battleResultOf(phase('VICTORY'))).toBe('victory');
     expect(battleResultOf(phase('DEFEAT'))).toBe('defeat');
     expect(battleResultOf(phase('DRAW_ABORT'))).toBe('abort');
+  });
+
+  it('the victory ENGAGE is gated on a terminal live VICTORY (never mid-battle)', () => {
+    // §9 the win path may only be committed once the live battle actually won
+    // — a mid-battle (active) or lost/aborted fight must not pay the reward.
+    expect(engageAvailableFor('victory')).toBe(true);
+    expect(engageAvailableFor('active')).toBe(false);
+    expect(engageAvailableFor('defeat')).toBe(false);
+    expect(engageAvailableFor('abort')).toBe(false);
   });
 
   it('a WON battle resolves the node so advancement works', () => {

@@ -65,6 +65,16 @@ export function battleResultOf(input: LiveOutboundInput): BattleVerdict {
   return 'active';
 }
 
+/**
+ * §9 ENGAGE availability: the victory ENGAGE may only be committed once the
+ * LIVE battle has actually reached a terminal VICTORY — committing mid-battle
+ * (or after a defeat/abort) would grant the reward for a fight that was never
+ * won. The battle screen disables ENGAGE until `engageAvailableFor` is true.
+ */
+export function engageAvailableFor(verdict: BattleVerdict): boolean {
+  return verdict === 'victory';
+}
+
 const input: TickInput = Object.freeze({ paused: false, decisions: Object.freeze([]), contentVersion: 'content_fixture' });
 
 /** Flattens the content entry into the adapter's `EncounterObjectiveSource` (mirrors the launcher's `sourceFor`). */
@@ -286,7 +296,9 @@ function liveFrom(state: BattleModel, events: readonly { type: string; tick: num
 
 export interface SimBattleHostConfig {
   readonly encounter: Readonly<ContentEncounterEntry>;
-  /** Tick cap (default 1500 — every fixture mission resolves within it). */
+  /** Tick cap (default 2100 — covers every fixture mission, including the
+   * sustain-collapse fixture which resolves at ~1985; the live handle is
+   * uncapped and always runs to the terminal). */
   readonly maxTicks?: number;
 }
 
@@ -381,7 +393,7 @@ export function createSimBattleHost(config: SimBattleHostConfig): SimBattleHost 
   const entry = config.encounter;
   const { launch, systems } = launchFor(entry);
   const runner = createBattleRunner(entry, launch, systems);
-  const maxTicks = config.maxTicks ?? 1500;
+  const maxTicks = config.maxTicks ?? 2100;
   return Object.freeze({
     encounterId: entry.id,
     objective: entry.objective,
