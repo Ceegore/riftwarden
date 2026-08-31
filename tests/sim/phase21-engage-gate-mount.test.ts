@@ -272,6 +272,39 @@ describe('P21 §9 ENGAGE-gate component wiring', () => {
     expect(out.bounty).toBe(bountyForKinds(['kill_boss']));
   });
 
+  it('after a mid-fight REFRESH the restored NodeScreen re-creates the same live battle and keeps ENGAGE gated', () => {
+    // §9 mid-fight refresh: ENTER is committed and persisted (visit COMMITTED,
+    // REWARD snapshot placed, no ENGAGE claimed); a page refresh drops the
+    // in-memory manager and restores from the persisted save. NodeScreen then
+    // re-resolves the encounter and re-creates the live battle from the
+    // restored node — the gate must re-lock with the in-progress reason and
+    // the re-created mid-battle UI must be byte-identical to the pre-refresh
+    // render (a refresh never changes the fight).
+    const mgr = enteredCombatManager(306);
+    const before = mgr.snapshot();
+    const renderNode = (): string => renderToStaticMarkup(createElement(LocaleProvider, {
+      controller: controller(),
+      children: createElement(NodeScreen, { onResolved: () => undefined }),
+    }));
+    const beforeHtml = renderNode();
+    expect(beforeHtml).toContain('Battle in progress — ENGAGE unlocks on victory');
+    // The persisted mid-battle state really is only the ENTER commit.
+    expect(Object.values(before.state.ledger).some((e) => e.action === 'ENGAGE')).toBe(false);
+
+    // REFRESH: restore from the persisted save (what continueRun does on boot).
+    const restored = RunManager.restore();
+    expect(restored).not.toBeNull();
+    expect(restored?.snapshot().currentNodeId).toBe(before.currentNodeId);
+    expect(restored?.snapshot().gold).toBe(before.gold);
+    expect(restored?.snapshot().killsEarned).toBe(before.killsEarned);
+    expect(restored?.snapshot().state.visits[before.currentNodeId]?.status).toBe('COMMITTED');
+
+    const afterHtml = renderNode();
+    // The re-created battle gates identically: same disabled ENGAGE, same
+    // reason, same disclosure — byte-identical mid-battle UI across the reload.
+    expect(afterHtml).toBe(beforeHtml);
+  });
+
   it('the gate seam maps every verdict × live-battle combination', () => {
     const engage = Object.freeze({ action: 'ENGAGE', available: true });
     const decline = Object.freeze({ action: 'DECLINE', available: true });

@@ -220,10 +220,30 @@ function buildBattle(entry: ContentEncounterEntry, launch: ReturnType<typeof bui
   // at its lifesteal amount and never die, so the tank keeps the sustain loop
   // one-directional and the mission reaches a real VICTORY elimination. Both
   // runs stay deterministic (the fixture seed defines every HP).
+  // §8.3/§10 sustain-COLLAPSE: a requirement above the bankable ceiling (the
+  // collapse fixture needs 80000 HP, ≫ the ~40k pre-window grind) would never
+  // complete under the generic passive setup — the objective gate keeps
+  // VICTORY blocked and the objective-gated endcap never fires, so the battle
+  // would run forever with no terminal. The collapse fixture therefore gets
+  // the launcher's collapse-teeth setup: a damaged player against an ATTACKING
+  // near-immortal tank, so the in-window heal halving + collapse damage drive
+  // the player's net intake negative and kill them → the design's only loss
+  // path, a real DEFEAT. Keyed on content shape (heal_sustain + a soft-limit
+  // override), never the fixture id.
   const sustain = entry.objective === 'heal_sustain';
-  const player = mkEntity('unit_p', 'player', 'middle', 1800, sustain ? 5000 : 1000, sustain ? 2500 : 1000);
+  // A soft-limit OVERRIDE (a real seconds value) marks the sustain-collapse
+  // fixture — an absent key (undefined) is the plain sustain mission. The
+  // override fixture's player starts damaged against a near-immortal tank
+  // (100000 LP) so the in-window halving + collapse damage drive the net
+  // intake negative and kill them → the design's only loss path, a real
+  // DEFEAT; the plain sustain battle uses a durable tank (10000 LP) the
+  // player out-heals to a real VICTORY.
+  const softLimitOverride = sustain && entry.softLimitSeconds !== null && entry.softLimitSeconds !== undefined;
+  const sustainTankLp = softLimitOverride ? 100000 : 10000;
+  const sustainStartLp = softLimitOverride ? 1500 : 2500;
+  const player = mkEntity('unit_p', 'player', 'middle', 1800, sustain ? 5000 : 1000, sustain ? sustainStartLp : 1000);
   const enemies = entry.enemySlots.map((slot, index) =>
-    mkEntity(slot.unitId, 'enemy', slot.lane, 6200 + index * 400, sustain ? 10000 : 1000));
+    mkEntity(slot.unitId, 'enemy', slot.lane, 6200 + index * 400, sustain ? sustainTankLp : 1000));
   const entities = [player, ...enemies];
   const temps: ReturnType<typeof buildBossObject>[] = [];
   if (launch.bossObjects.length > 0) {
@@ -259,24 +279,31 @@ function buildBattle(entry: ContentEncounterEntry, launch: ReturnType<typeof bui
 }
 
 function systemsFor(entry: ContentEncounterEntry, launch: ReturnType<typeof buildEncounterLaunchConfig>): readonly KernelSystem[] {
+  // §8.3/§10 sustain-collapse: the tank must ATTACK the player (rawAmount 150
+  // — the net-negative in-window intake) and both sides focus-fire each other
+  // deterministically, mirroring the launcher's collapse teeth exactly.
+  const softLimitOverride = entry.objective === 'heal_sustain' && entry.softLimitSeconds !== null && entry.softLimitSeconds !== undefined;
+  const tankId = entry.enemySlots[0]?.unitId ?? '';
+  const attackFor = (rawAmount: number) => Object.freeze({
+    attackIntervalTicks: 10,
+    prepareTicks: 1,
+    recoveryTicks: 3,
+    preferredRangeX100: asX100(9000),
+    delivery: { kind: 'direct' as const, rawAmount, damageTypeOrdinal: 0, defense: 0, bossCapBps: null },
+  });
   return Object.freeze([
     ...createPhase17Systems({
       speedsX100PerSecond: {},
       bossObjectPolicies: launch.bossObjectPolicies,
+      ...(softLimitOverride ? { targeting: { focusTargetId: Object.freeze({ unit_p: tankId, [tankId]: 'unit_p' }) } } : {}),
       // §10 soft-limit precedence: a boss-family encounter gets the 3600 boss
       // default when no override is declared, but the encounter's content
       // `softLimitSeconds` ALWAYS wins (never overridden by the boss default).
       battleEnd: battleEndConfigFor(entry, launch),
       basicAttack: {
-        parameters: {
-          unit_p: {
-            attackIntervalTicks: 10,
-            prepareTicks: 1,
-            recoveryTicks: 3,
-            preferredRangeX100: asX100(9000),
-            delivery: { kind: 'direct', rawAmount: 250, damageTypeOrdinal: 0, defense: 0, bossCapBps: null },
-          },
-        },
+        parameters: Object.freeze(softLimitOverride
+          ? { unit_p: attackFor(300), [tankId]: attackFor(150) }
+          : { unit_p: attackFor(250) }),
       },
     }),
     ...createPhase21Systems({
