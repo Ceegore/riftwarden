@@ -301,7 +301,11 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
       return;
     }
     const nodeId = snapshot.currentNodeId;
-    const txId = actionTransactionId(snapshot.state.runId, nodeId, 'ENGAGE_DEFEAT', 'none');
+    // §9 escalation: each re-engage is a DISTINCT committed rewatch — the
+    // transaction id must vary per attempt or the 2nd/3rd clicks would replay
+    // the first record (the ledger's exactly-once) and the escalating 5×k tax
+    // + cap would be unreachable through the button.
+    const txId = actionTransactionId(snapshot.state.runId, nodeId, 'ENGAGE_DEFEAT', `re-${String(reengageCount + 1)}`);
     try {
       const outcome = act({ transactionId: txId, nodeId, action: 'ENGAGE_DEFEAT' });
       if (outcome?.status !== 'COMMITTED') {

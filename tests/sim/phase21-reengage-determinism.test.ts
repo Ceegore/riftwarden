@@ -17,11 +17,12 @@
  *      identical fight, so the reward stays a pure function of the snapshot.
  */
 import { describe, expect, it } from 'vitest';
-import { createExpedition } from '../../src/game/expedition/expedition-runner.js';
+import { createExpedition, restoreExpedition } from '../../src/game/expedition/expedition-runner.js';
 import { generateMap } from '../../src/game/expedition/map-generator.js';
 import type { ExpeditionMap, MapProfile } from '../../src/game/expedition/types.js';
 import { createLiveSimBattle, resolveExpeditionEncounter } from '../../src/features/battle/sim/sim-battle-host.js';
 import { MAX_REENGAGE_ATTEMPTS } from '../../src/game/expedition/nodes/handlers/combat.js';
+import { decodeExpeditionSave, encodeExpeditionSave, restoreExpeditionSave } from '../../src/game/expedition/expedition-save.js';
 import type { RewardSnapshot } from '../../src/game/expedition/nodes/types.js';
 import type { LiveOutboundInput } from '../../src/features/battle/outbound/phase21-outbound-presenter.js';
 
@@ -98,11 +99,42 @@ describe('P21 §9 re-engage × reward-snapshot determinism', () => {
     expect(a.rollSlots).toEqual(b.rollSlots);
   });
 
+  it('the REWARD snapshot is byte-identical across an ENGAGE_DEFEAT rewatch AND the restore (a save after a rewatch never re-rolls)', () => {
+    // The mid-fight-save test pins ENGAGE→CLAIM; this pins the same
+    // determinism when the save lands AFTER an ENGAGE_DEFEAT rewatch: the
+    // persisted REWARD snapshot must survive the rewatch AND the restore
+    // byte-identically, and a further rewatch on the RESTORED run still leaves
+    // it untouched.
+    const seed = 803;
+    let exp = walkToCombat(seed);
+    const nodeId = exp.currentNodeId;
+    exp = exp.enter('re-bc-enter');
+    const snap0 = rewardOf(exp, nodeId);
+    // One rewatch commits (the escalating +5 first tax)…
+    exp = exp.act({ transactionId: 're-bc-lost-1', nodeId, action: 'ENGAGE_DEFEAT' });
+    expect(exp.state.ledger['re-bc-lost-1']?.status).toBe('COMMITTED');
+    expect(rewardOf(exp, nodeId)).toEqual(snap0);
+    // …SAVE at the rewatch boundary…
+    const serialized = encodeExpeditionSave(exp);
+    const decoded = decodeExpeditionSave(JSON.parse(serialized));
+    expect(decoded.state.snapshots[nodeId]).toEqual(snap0);
+    // …RESTORE (both the codec path and the runner path agree)…
+    const restored = restoreExpeditionSave(serialized, mapFor(seed));
+    expect(rewardOf(restored, nodeId)).toEqual(snap0);
+    const runner = restoreExpedition(decoded.state, mapFor(seed), decoded.currentNodeId);
+    expect(rewardOf(runner, nodeId)).toEqual(snap0);
+    // …and a SECOND rewatch on the RESTORED run still cannot touch it.
+    const again = restored.act({ transactionId: 're-bc-lost-2', nodeId, action: 'ENGAGE_DEFEAT' });
+    expect(again.state.ledger['re-bc-lost-2']?.status).toBe('COMMITTED');
+    expect(rewardOf(again, nodeId)).toEqual(snap0);
+    expect(again.state.instability).toBe(exp.state.instability + 10); // 5 + 10 escalated
+  });
+
   it('the re-watched battle is a deterministic re-simulation: two live handles step identically', { timeout: 60_000 }, () => {
     // Two independent handles for the SAME encounter run the identical kernel
     // battle tick-for-tick to the identical terminal — the rewatch can never
     // re-litigate the deterministic outcome.
-    let exp = walkToCombat(804);
+    const exp = walkToCombat(804);
     const encounter = resolveExpeditionEncounter(exp.definition.type, exp.definition.payloadKey);
     if (encounter === null) throw new Error('no encounter');
     const a = createLiveSimBattle({ encounter });
