@@ -27,7 +27,8 @@ import { LocaleController } from '../../src/locales/locale-state.js';
 import { createLocaleRegistry } from '../../src/locales/registry.js';
 import type { CompiledBundle, CompiledMessage, CompiledNode } from '../../src/locales/format/compiled-types.js';
 import { RunManager } from '../../src/game/expedition/run-manager.js';
-import { mainPath } from '../../src/game/expedition/expedition-runner.js';
+import { mainPath, restoreExpedition } from '../../src/game/expedition/expedition-runner.js';
+import { decodeExpeditionSave, encodeExpeditionSave, restoreExpeditionSave } from '../../src/game/expedition/expedition-save.js';
 import { enterTransactionId, actionTransactionId } from '../../src/features/expedition/transaction-ids.js';
 import { createInitialProfile, ensureStarterHero, saveProfile, loadOrCreateProfile } from '../../src/game/profile/profile-store.js';
 import { loadFormationState, saveFormationState, clearFormationState } from '../../src/game/formations/formation-store.js';
@@ -249,5 +250,114 @@ describe('P21 §9 full settlement ledger through the end screen', () => {
     const reloaded = loadOrCreateProfile();
     for (const id of claimed) expect(reloaded.items[id]?.owned, id).toBe(true);
     expect(reloaded.wallet.gold).toBe(walletAfter);
+  });
+
+  it('claim → RUN-STATE CODEC round-trip keeps EXACTLY the claimed loot: encode → decode → restore → re-settle grants each kept id once', { timeout: 60_000 }, () => {
+    // The profile-layer durability is pinned above; this is the RUN-STATE
+    // codec seam: a claim committed on the ledger lands in `unsecuredLoot` /
+    // `securedLoot`, and `encodeExpeditionSave → decode → restore` must keep
+    // those pools byte-identical — a reload can never lose a claimed reward
+    // id nor duplicate one. Re-settling the RESTORED state keeps exactly the
+    // claimed ids once (one GRANT_ITEM per kept reward), and the restored
+    // runner re-encodes to the SAME byte string (the codec is a fixed point
+    // even with loot pools populated).
+    const mgr = finishedVictoryManager(720);
+    const snap = mgr.snapshot();
+    const claimed = [...snap.state.securedLoot, ...snap.state.unsecuredLoot];
+    expect(claimed.length).toBeGreaterThan(0);
+
+    // Build a runner from the manager's state and encode it (the exact save
+    // the store persists).
+    const runner = restoreExpedition(snap.state, mgr.map, snap.currentNodeId);
+    const serialized = encodeExpeditionSave(runner);
+    const decoded = decodeExpeditionSave(JSON.parse(serialized));
+    // The loot pools survive byte-identically.
+    expect(decoded.state.securedLoot).toEqual(snap.state.securedLoot);
+    expect(decoded.state.unsecuredLoot).toEqual(snap.state.unsecuredLoot);
+    expect([...decoded.state.securedLoot, ...decoded.state.unsecuredLoot]).toEqual(claimed);
+
+    // Restore the saved run and re-settle: the restored state keeps EXACTLY
+    // the claimed ids, once each.
+    const restored = restoreExpeditionSave(serialized, mgr.map);
+    const { requests, settlement } = buildSettlementRequests(restored.state, 'victory');
+    expect(settlement.keptLoot).toEqual(claimed);
+    const lootGrants = requests.filter((r) => r.kind === 'GRANT_ITEM');
+    expect(lootGrants.length).toBe(claimed.length);
+    for (const id of claimed) {
+      expect(settlement.keptLoot.filter((k) => k === id).length, id).toBe(1);
+    }
+
+    // The restored runner re-encodes byte-identically (fixed point with loot).
+    expect(encodeExpeditionSave(restored)).toBe(serialized);
+
+    // And the restored run still settles to the same wallet outcome as the
+    // live run: each kept id granted once.
+    let profile = loadOrCreateProfile();
+    for (const req of requests) profile = commitTransaction(profile, req).profile;
+    saveProfile(profile);
+    for (const id of claimed) expect(profile.items[id]?.owned, id).toBe(true);
+  });
+
+  it('a MID-WALK claim survives a run-state codec cut and later claims keep the union exactly once', { timeout: 60_000 }, () => {
+    // The strongest claim×codec pin: cut the run between the FIRST claim and
+    // the REST of the walk. The restored run must keep the already-claimed id
+    // (never lost, never duplicated), and claims made AFTER the restore must
+    // join the union exactly once each — the final loot pools equal the
+    // clean-room union of all claimed ids with no repeats. The walk runs on
+    // the RUNNER (the manager is a thin autosaving facade over the same
+    // runner state — the codec seam is runner-level).
+    const mgr = RunManager.create(721, 500);
+    const path = mainPath(mgr.map);
+    const runId = mgr.snapshot().state.runId;
+    let runner = restoreExpedition(mgr.snapshot().state, mgr.map, mgr.snapshot().currentNodeId);
+    const claimedIds: string[] = [];
+    let cut = false;
+    for (let guard = 0; guard < path.length; guard += 1) {
+      const nodeId = runner.currentNodeId;
+      const type = runner.definition.type;
+      runner = runner.enter(enterTransactionId(runId, nodeId));
+      if (type === 'battle' || type === 'elite' || type === 'boss') {
+        runner = runner.act({
+          transactionId: actionTransactionId(runId, nodeId, 'ENGAGE', 'none'),
+          nodeId,
+          action: 'ENGAGE',
+          completedKinds: ['kill_regulars'],
+        });
+        const reward = runner.state.snapshots[nodeId];
+        if (reward !== undefined && reward.kind === 'REWARD' && reward.rewardIds[0] !== undefined) {
+          const optionId = reward.rewardIds[0];
+          runner = runner.act({ transactionId: actionTransactionId(runId, nodeId, 'CLAIM_REWARD', optionId), nodeId, action: 'CLAIM_REWARD', optionId });
+          claimedIds.push(optionId);
+        }
+        // Cut ONCE after the first claim: codec round-trip the run state.
+        if (!cut && claimedIds.length === 1) {
+          const snapNow = runner.state;
+          const midSave = encodeExpeditionSave(runner);
+          const midRestored = restoreExpeditionSave(midSave, mgr.map);
+          expect(midRestored.state.unsecuredLoot).toEqual(snapNow.unsecuredLoot);
+          expect(midRestored.state.securedLoot).toEqual(snapNow.securedLoot);
+          runner = midRestored;
+          cut = true;
+        }
+      } else {
+        runner = runner.act({ transactionId: actionTransactionId(runId, nodeId, 'DECLINE', 'none'), nodeId, action: 'DECLINE' });
+      }
+      runner = runner.resolve();
+      const next = path[guard + 1];
+      if (next === undefined) break;
+      runner = runner.advance(next);
+    }
+    expect(cut).toBe(true);
+    // UNION EXACTLY ONCE: no duplicates, no losses.
+    expect(claimedIds.length).toBeGreaterThan(1);
+    expect(new Set(claimedIds).size).toBe(claimedIds.length);
+    const finalPool = [...runner.state.securedLoot, ...runner.state.unsecuredLoot];
+    for (const id of claimedIds) {
+      expect(finalPool.filter((k) => k === id).length, id).toBe(1);
+    }
+    // The whole walked + cut run is itself a codec fixed point.
+    const finalSave = encodeExpeditionSave(runner);
+    const finalRestored = restoreExpeditionSave(finalSave, mgr.map);
+    expect(encodeExpeditionSave(finalRestored)).toBe(finalSave);
   });
 });

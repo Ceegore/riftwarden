@@ -31,13 +31,14 @@ import { describe, expect, it } from 'vitest';
 import { generateMap } from '../../src/game/expedition/map-generator.js';
 import type { ExpeditionMap, MapProfile } from '../../src/game/expedition/types.js';
 import { RunManager } from '../../src/game/expedition/run-manager.js';
-import { createExpedition } from '../../src/game/expedition/expedition-runner.js';
+import { createExpedition, mainPath } from '../../src/game/expedition/expedition-runner.js';
+import { enterTransactionId, actionTransactionId } from '../../src/features/expedition/transaction-ids.js';
 import { fnv1a32 } from '../../src/game/expedition/stable.js';
 import { commitNodeAction } from '../../src/game/expedition/nodes/node-transaction.js';
 import { decodeExpeditionSave, encodeExpeditionSave, restoreExpeditionSave } from '../../src/game/expedition/expedition-save.js';
 import { anchorStoryHandlers } from '../../src/game/expedition/nodes/handlers/anchor.js';
 import { createNodeRunState, openVisit } from '../../src/game/expedition/nodes/run-state.js';
-import { INSTABILITY_CEILING, battleHandler } from '../../src/game/expedition/nodes/handlers/combat.js';
+import { INSTABILITY_CEILING, MAX_REENGAGE_ATTEMPTS, battleHandler } from '../../src/game/expedition/nodes/handlers/combat.js';
 import type { NodeActionRequest, NodeDefinition, TransactionRecord } from '../../src/game/expedition/nodes/types.js';
 
 // RunManager persists through the store — provide the same localStorage mock
@@ -402,6 +403,97 @@ describe('P21 §9 full-run instability ledger differential (clean-room oracle)',
     expect(cuts).toBeGreaterThan(0); // the restore cuts really were exercised
     // The final scalar agrees with the fold over the final restored ledger.
     expect(mgr.snapshot().state.instability).toBe(foldInstability(mgr.map, mgr.snapshot().state.ledger));
+  });
+
+  it('the WORST-CASE re-engage bleed folds EXACTLY: every combat node exhausts its re-engage budget, the anchor −8 buys it back at the gold cost, and gold/instability both match the clean-room ledger', () => {
+    // §9 T5 (re-engage budget / bleed economics): pin the player's TOTAL cost
+    // of the recovery mechanic end-to-end across a full main-path walk (seed
+    // 902 = battle,battle,battle,anchor,battle,boss). Every combat node takes
+    // the FULL legal re-engage stack (5, 10, 15 per node — the ceiling gates
+    // whatever would pass 100); the anchor commits ONE SERVICE (−8 at the 30
+    // gold cost). TWO clean-room folds must hold at every step:
+    //
+    //   instability === max(0, …) over the committed ledger (enter deltas +
+    //     escalating 5×k defeat taxes − service reductions);
+    //   gold === startGold − 30 × committed services (defeats pay nothing,
+    //     victories pay nothing here — every fight is lost by design, so the
+    //     bleed is the pure cost of the mechanic).
+    //
+    // The economics are BOUNDED: the total tax is a pure fold of the capped
+    // escalation (≤ 30 per node), gold never goes negative (a service is
+    // refused at INSUFFICIENT_GOLD), and instability never exceeds the bound.
+    store.clear();
+    const seed = 902;
+    let mgr = RunManager.create(seed, 300);
+    const path = mainPath(mgr.map);
+    const runId = mgr.snapshot().state.runId;
+    const GOLD = (type: string): number => (type === 'merchant' || type === 'anchor' ? -30 : 0);
+    const goldFold = (ledger: Readonly<Record<string, TransactionRecord>>, map: ExpeditionMap): number =>
+      Object.values(ledger).reduce((gold, entry) => {
+        if (entry.status !== 'COMMITTED' || entry.action !== 'SERVICE') return gold;
+        return gold + GOLD(typeOf(map, entry.nodeId));
+      }, 300);
+    let totalTaxPaid = 0;
+    let servicesCommitted = 0;
+    let ceilingGated = 0;
+    for (let guard = 0; guard < path.length; guard += 1) {
+      const snap = mgr.snapshot();
+      const nodeId = snap.currentNodeId;
+      const type = snap.currentNodeType;
+      mgr.enter(enterTransactionId(runId, nodeId));
+      expect(mgr.snapshot().state.instability).toBe(foldInstability(mgr.map, mgr.snapshot().state.ledger));
+      if (type === 'battle' || type === 'elite' || type === 'boss') {
+        // Exhaust the re-engage budget: attempts 1..3 while the ceiling lets.
+        for (let attempt = 1; attempt <= MAX_REENGAGE_ATTEMPTS; attempt += 1) {
+          const record = mgr.act({ transactionId: actionTransactionId(runId, nodeId, 'ENGAGE_DEFEAT', `bleed-${String(guard)}-${String(attempt)}`), nodeId, action: 'ENGAGE_DEFEAT' });
+          if (record.status === 'REJECTED') {
+            // Either the cap (attempt 4) or the CEILING gated the tax — the
+            // ceiling gates exactly when the next tax would pass 100.
+            if (attempt <= MAX_REENGAGE_ATTEMPTS) ceilingGated += 1;
+            break;
+          }
+          expect(record.status).toBe('COMMITTED');
+          totalTaxPaid += 5 * attempt;
+          expect(mgr.snapshot().state.instability).toBe(foldInstability(mgr.map, mgr.snapshot().state.ledger));
+        }
+        // Retreat clears the node (the gate is never a soft-lock).
+        mgr.act({ transactionId: actionTransactionId(runId, nodeId, 'DECLINE', `bleed-d-${String(guard)}`), nodeId, action: 'DECLINE' });
+      } else if (type === 'anchor' && servicesCommitted === 0) {
+        // ONE anchor service: −8 instability at the 30 gold cost.
+        const record = mgr.act({ transactionId: actionTransactionId(runId, nodeId, 'SERVICE', 'bleed-s'), nodeId, action: 'SERVICE' });
+        expect(record.status).toBe('COMMITTED');
+        servicesCommitted += 1;
+      } else {
+        mgr.act({ transactionId: actionTransactionId(runId, nodeId, 'DECLINE', `bleed-x-${String(guard)}`), nodeId, action: 'DECLINE' });
+      }
+      expect(mgr.snapshot().state.instability).toBe(foldInstability(mgr.map, mgr.snapshot().state.ledger));
+      expect(mgr.snapshot().state.gold).toBe(goldFold(mgr.snapshot().state.ledger, mgr.map));
+      expect(mgr.snapshot().state.gold).toBeGreaterThanOrEqual(0);
+      expect(mgr.snapshot().state.instability).toBeLessThanOrEqual(INSTABILITY_CEILING + 5);
+      // A deterministic restore cut mid-walk: the fold holds on the restored ledger.
+      if (guard === 3) {
+        const restored = RunManager.restore();
+        expect(restored).not.toBeNull();
+        if (restored === null) throw new Error('restore failed');
+        mgr = restored;
+        expect(mgr.snapshot().state.instability).toBe(foldInstability(mgr.map, mgr.snapshot().state.ledger));
+        expect(mgr.snapshot().state.gold).toBe(goldFold(mgr.snapshot().state.ledger, mgr.map));
+      }
+      mgr.resolve();
+      const next = path[guard + 1];
+      if (next === undefined) break;
+      mgr.advance(next);
+    }
+    // The bleed is BOUNDED and exact: the total tax equals the clean-room
+    // escalation fold, the service cost is exactly 30, and the final scalars
+    // agree with the ledger.
+    expect(servicesCommitted).toBe(1);
+    expect(totalTaxPaid).toBeGreaterThanOrEqual(3 * 5 + 2 * 10 + 15); // at least one full + partial stacks
+    expect(mgr.snapshot().state.gold).toBe(300 - 30 * servicesCommitted);
+    expect(mgr.snapshot().state.gold).toBeGreaterThanOrEqual(0);
+    expect(mgr.snapshot().state.instability).toBe(foldInstability(mgr.map, mgr.snapshot().state.ledger));
+    // The ceiling genuinely gated at least one re-engage across the walk.
+    expect(ceilingGated).toBeGreaterThan(0);
   });
 
   it('the fold honors the floor clamp exactly as the transaction service does (anchor enter at low instability)', () => {
