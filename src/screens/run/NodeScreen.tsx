@@ -194,11 +194,18 @@ export function NodeScreen({ onResolved, nextHint }: NodeScreenProps): JSX.Eleme
   const enterCommitted = snapshot?.state.ledger[enterTxId]?.status === 'COMMITTED';
   // §9: an ENGAGE_DEFEAT rewatch commits a ledger action but does NOT resolve
   // the node — it keeps the acting phase open for further rewatches / retreat.
-  const committedAction = snapshot === null
+  // The durable "last committed action" is the VISIT's transactionId (set on
+  // every commit) — NOT an insertion-order scan of the ledger map, whose key
+  // order is canonicalized (sorted) by the save codec and therefore not a
+  // contract. The ledger keyed by that id is the exact committed record.
+  const lastCommittedTxId = snapshot === null ? undefined : snapshot.state.visits[snapshot.currentNodeId]?.transactionId;
+  const committedAction = snapshot === null || lastCommittedTxId === undefined
     ? undefined
-    : Object.values(snapshot.state.ledger).find(
-      (entry) => entry.nodeId === snapshot.currentNodeId && entry.status === 'COMMITTED' && entry.action !== 'ENTER' && entry.action !== 'ENGAGE_DEFEAT',
-    );
+    : (() => {
+      const record = snapshot.state.ledger[lastCommittedTxId];
+      if (record === undefined || record.action === 'ENTER' || record.action === 'ENGAGE_DEFEAT') return undefined;
+      return record;
+    })();
   const reengageCount = snapshot === null
     ? 0
     : Object.values(snapshot.state.ledger).filter(

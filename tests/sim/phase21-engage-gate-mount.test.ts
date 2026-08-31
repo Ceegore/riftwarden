@@ -15,6 +15,7 @@
  */
 import { describe, expect, it } from 'vitest';
 import { createElement } from 'react';
+import type { JSX } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { LocaleProvider } from '../../src/locales/locale-context.js';
 import { LocaleController } from '../../src/locales/locale-state.js';
@@ -22,8 +23,10 @@ import { createLocaleRegistry } from '../../src/locales/registry.js';
 import type { CompiledBundle, CompiledMessage, CompiledNode } from '../../src/locales/format/compiled-types.js';
 import { RunManager } from '../../src/game/expedition/run-manager.js';
 import { actionTransactionId, enterTransactionId } from '../../src/features/expedition/transaction-ids.js';
-import { gateEngageAction } from '../../src/features/battle/sim/sim-battle-host.js';
+import { createLiveSimBattle, gateEngageAction, resolveExpeditionEncounter } from '../../src/features/battle/sim/sim-battle-host.js';
+import { bountyForKinds } from '../../src/game/expedition/nodes/handlers/combat.js';
 import { NodeScreen } from '../../src/screens/run/NodeScreen.js';
+import { BattleResultScreen } from '../../src/screens/run/BattleResultScreen.js';
 import { RewardChoiceScreen } from '../../src/screens/run/RewardChoiceScreen.js';
 
 // NodeScreen reads the expedition store + a11y store through localStorage —
@@ -114,6 +117,27 @@ function enteredCombatManager(seed: number): RunManager {
   return mgr;
 }
 
+/** Walks a real RunManager to the BOSS node (mandatory role) and ENTERs it. */
+function enteredBossManager(seed: number): RunManager {
+  let mgr = RunManager.create(seed, 200);
+  let guard = 0;
+  while (mgr.snapshot().currentNodeType !== 'boss' && guard < 80) {
+    const snap = mgr.snapshot();
+    const next = snap.reachableNodes[0];
+    if (next === undefined) throw new Error('dead-end before boss');
+    mgr.enter(enterTransactionId(snap.state.runId, snap.currentNodeId));
+    mgr.resolve();
+    mgr.advance(next);
+    guard += 1;
+  }
+  const snap = mgr.snapshot();
+  if (snap.currentNodeType !== 'boss') {
+    throw new Error(`no boss node reached for seed ${String(seed)}`);
+  }
+  mgr.enter(enterTransactionId(snap.state.runId, snap.currentNodeId));
+  return mgr;
+}
+
 describe('P21 §9 ENGAGE-gate component wiring', () => {
   it('the victory ENGAGE button is disabled mid-battle and explains itself', () => {
     enteredCombatManager(301);
@@ -160,6 +184,92 @@ describe('P21 §9 ENGAGE-gate component wiring', () => {
     expect(html).toContain('+15 gold');
     // The claim affordances for the persisted reward snapshot render too.
     expect(html).toContain('Claim');
+  });
+
+  it('the victory-reward FLOW renders S53 result then S54 reward with the same persisted bounty', () => {
+    // §9.5 Task 2: after a victory ENGAGE the flow is NodeScreen → S53
+    // BattleResultScreen → S54 RewardChoiceScreen. Both screens derive the
+    // bounty from the SAME persisted ENGAGE record — the result screen shows
+    // the total + per-kind rows, then the reward screen shows the same total +
+    // per-kind rows + the claim affordances.
+    const mgr = enteredCombatManager(303);
+    const snap = mgr.snapshot();
+    mgr.act({
+      transactionId: actionTransactionId(snap.state.runId, snap.currentNodeId, 'ENGAGE', 'none'),
+      nodeId: snap.currentNodeId,
+      action: 'ENGAGE',
+      completedKinds: ['kill_boss', 'survive_until'],
+    });
+    const renderFlow = (screen: JSX.Element): string => renderToStaticMarkup(createElement(LocaleProvider, {
+      controller: controller(),
+      children: screen,
+    }));
+    // S53: the result screen reads the visit's last committed transaction.
+    const resultHtml = renderFlow(createElement(BattleResultScreen, { onContinue: () => undefined }));
+    expect(resultHtml).toContain('Battle Result');
+    expect(resultHtml).toContain('ENGAGE');
+    expect(resultHtml).toContain('COMMITTED');
+    expect(resultHtml).toContain('Objective bounty');
+    expect(resultHtml).toContain('+25 gold'); // kill_boss 15 + survive_until 10
+    expect(resultHtml).toContain('kill_boss bounty');
+    expect(resultHtml).toContain('+15 gold');
+    expect(resultHtml).toContain('survive_until bounty');
+    expect(resultHtml).toContain('+10 gold');
+    // S54: the reward screen derives the SAME bounty from the persisted kinds.
+    const rewardHtml = renderFlow(createElement(RewardChoiceScreen, { onDone: () => undefined }));
+    expect(rewardHtml).toContain('Choose Reward');
+    expect(rewardHtml).toContain('Objective bounty');
+    expect(rewardHtml).toContain('+25 gold');
+    expect(rewardHtml).toContain('kill_boss');
+    expect(rewardHtml).toContain('+15 gold');
+    expect(rewardHtml).toContain('survive_until');
+    expect(rewardHtml).toContain('+10 gold');
+    // The claim affordances render (reward snapshot materialized at ENTER).
+    expect(rewardHtml).toContain('Claim');
+  });
+
+  it('a BOSS node (duo encounter via classification) gates ENGAGE and discloses the kill_boss bounty', () => {
+    // §9 Task 5: the boss node resolves its content encounter by classification
+    // (the duo encounter — a boss with a secondary authority). The screen gates
+    // ENGAGE mid-battle and discloses the mission's kill_boss bounty (15).
+    const mgr = enteredBossManager(304);
+    const snap = mgr.snapshot();
+    const encounter = resolveExpeditionEncounter(snap.currentNodeType, snap.currentNodePayloadKey);
+    expect(encounter).not.toBeNull();
+    expect(encounter?.objective).toBe('defeat_boss');
+    const html = renderToStaticMarkup(createElement(LocaleProvider, {
+      controller: controller(),
+      children: createElement(NodeScreen, { onResolved: () => undefined }),
+    }));
+    // Mid-battle gate on the boss fight.
+    expect(html).toContain('Battle in progress — ENGAGE unlocks on victory');
+    // The disclosure announces the kill_boss bounty (contract amount).
+    expect(html).toContain('rw-mission-bounty');
+    expect(html).toContain('On victory: +15 objective bounty (defeat_boss).');
+  });
+
+  it('the live duo battle runs to VICTORY with the kill_boss projection paying bounty 15', { timeout: 60_000 }, () => {
+    // §9 Task 5 (live teeth): the boss node's REAL content battle — stepped to
+    // its terminal through the live handle — completes the kill_boss objective
+    // and the outbound carries the contract bounty (15), exactly what the
+    // disclosure announced before ENGAGE.
+    const mgr = enteredBossManager(305);
+    const snap = mgr.snapshot();
+    const encounter = resolveExpeditionEncounter(snap.currentNodeType, snap.currentNodePayloadKey);
+    if (encounter === null) throw new Error('boss node resolved no encounter');
+    const handle = createLiveSimBattle({ encounter });
+    let out = handle.snapshot();
+    let guard = 0;
+    while (!['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(out.phase.phase) && guard < 800) {
+      out = handle.step();
+      guard += 1;
+    }
+    expect(out.phase.phase).toBe('VICTORY');
+    const killBoss = (out.objectives ?? []).find((o) => o.kind === 'kill_boss');
+    expect(killBoss?.complete).toBe(true);
+    // The live bounty equals the disclosed 15 — the wallet pays what was shown.
+    expect(out.bounty).toBe(15);
+    expect(out.bounty).toBe(bountyForKinds(['kill_boss']));
   });
 
   it('the gate seam maps every verdict × live-battle combination', () => {

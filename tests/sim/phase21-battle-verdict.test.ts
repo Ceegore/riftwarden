@@ -313,6 +313,33 @@ describe('phase21 battle verdict gating', () => {
     poke(42);
   });
 
+  it('the VISIT transactionId is the durable last-committed action — even after a codec reorder', () => {
+    // §9 audit: the battle screen's "last committed action" must come from the
+    // VISIT's transactionId (set on every commit), never from an
+    // insertion-order scan of the ledger map — the save codec canonicalizes
+    // (sorts) map keys, so the ledger's insertion order is NOT a contract.
+    let exp = advanceToCombat(215);
+    const nodeId = exp.currentNodeId;
+    exp = exp.enter('tx-last-enter');
+    // The REWARD snapshot is materialized at ENTER — read the first reward id.
+    const rewardIds = exp.state.snapshots[nodeId]?.kind === 'REWARD'
+      ? (exp.state.snapshots[nodeId] as { rewardIds: readonly string[] }).rewardIds
+      : [];
+    const optionId = rewardIds[0];
+    if (optionId === undefined) throw new Error('no reward ids materialized');
+    exp = exp.act({ transactionId: 'tx-last-engage', nodeId, action: 'ENGAGE', completedKinds: ['heal_sustain'] });
+    exp = exp.act({ transactionId: 'tx-last-claim', nodeId, action: 'CLAIM_REWARD', optionId });
+    expect(exp.state.visits[nodeId]?.transactionId).toBe('tx-last-claim');
+    const last = exp.state.ledger[exp.state.visits[nodeId]?.transactionId ?? ''];
+    expect(last?.action).toBe('CLAIM_REWARD');
+    // After a save → decode (which SORTS the ledger keys), the visit marker
+    // still names the same last-committed record.
+    const decoded = decodeExpeditionSave(JSON.parse(encodeExpeditionSave(exp))).state;
+    const decodedLast = decoded.ledger[decoded.visits[nodeId]?.transactionId ?? ''];
+    expect(decodedLast?.action).toBe('CLAIM_REWARD');
+    expect(decodedLast).toEqual(exp.state.ledger['tx-last-claim']);
+  });
+
   it('a re-engage is rejected at the instability ceiling', () => {
     const DEF: NodeDefinition = Object.freeze({ nodeId: 'n1', type: 'battle', contentRevision: '32.0', payloadKey: 'e' });
     const defeatState = (instability: number, rewatches = 0): NodeRunState => {

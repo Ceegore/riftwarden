@@ -33,9 +33,10 @@ import type { ExpeditionMap, MapProfile } from '../../src/game/expedition/types.
 import { createExpedition } from '../../src/game/expedition/expedition-runner.js';
 import { fnv1a32 } from '../../src/game/expedition/stable.js';
 import { commitNodeAction } from '../../src/game/expedition/nodes/node-transaction.js';
+import { decodeExpeditionSave, encodeExpeditionSave, restoreExpeditionSave } from '../../src/game/expedition/expedition-save.js';
 import { anchorStoryHandlers } from '../../src/game/expedition/nodes/handlers/anchor.js';
 import { createNodeRunState, openVisit } from '../../src/game/expedition/nodes/run-state.js';
-import { INSTABILITY_CEILING } from '../../src/game/expedition/nodes/handlers/combat.js';
+import { INSTABILITY_CEILING, battleHandler } from '../../src/game/expedition/nodes/handlers/combat.js';
 import type { NodeActionRequest, NodeDefinition, TransactionRecord } from '../../src/game/expedition/nodes/types.js';
 
 const PROFILE: MapProfile = {
@@ -154,7 +155,10 @@ function policyAction(
 }
 
 /** Walks one full map and returns { finalInstability, committed action counts }. */
-function walkRun(seed: number): { readonly finalInstability: number; readonly committed: Readonly<Record<string, number>> } {
+function walkRun(
+  seed: number,
+  checkpoint?: (exp: ReturnType<typeof createExpedition>) => void,
+): { readonly finalInstability: number; readonly committed: Readonly<Record<string, number>> } {
   let exp = createExpedition(mapFor(seed), { startGold: 200 });
   const committed: Record<string, number> = {};
   let step = 0;
@@ -179,6 +183,7 @@ function walkRun(seed: number): { readonly finalInstability: number; readonly co
       exp = exp.act({ transactionId: `tx-${String(seed)}-d-${String(step)}`, nodeId, action: 'DECLINE' });
       expect(exp.state.instability).toBe(foldInstability(exp.map, exp.state.ledger));
     }
+    checkpoint?.(exp);
     exp = exp.resolve();
     const next = exp.reachableNodes[0];
     if (next === undefined) break;
@@ -215,6 +220,116 @@ describe('P21 §9 full-run instability ledger differential (clean-room oracle)',
     expect(defeats).toBeGreaterThan(0);
     expect(services).toBeGreaterThan(0);
     expect(accepts).toBeGreaterThan(0);
+  });
+
+  it('the save boundary preserves the SCALAR, the full state and the canonicalized ledger at EVERY step', () => {
+    // §9 Task 3 (boundary contract): instability is a PERSISTED SCALAR — the
+    // codec never re-derives it from the ledger, and the ledger's map keys are
+    // canonicalized (sorted) by canonicalJson, so its insertion order is NOT a
+    // contract. Across every mid-run save the durable truths are: the scalar,
+    // the full deep state, and the ledger as a canonicalized multiset.
+    let checkpoints = 0;
+    walkRun(108, (exp) => {
+      const serialized = encodeExpeditionSave(exp);
+      const decoded = decodeExpeditionSave(JSON.parse(serialized));
+      // The scalar + the full state survive byte-identically.
+      expect(decoded.state).toEqual(exp.state);
+      const restored = restoreExpeditionSave(serialized, exp.map);
+      expect(restored.state.instability).toBe(exp.state.instability);
+      expect(restored.state).toEqual(exp.state);
+      // The ledger survives as a canonicalized multiset: same records, sorted
+      // key set (the codec's canonical order — NOT the commit order).
+      const sorted = (keys: readonly string[]): readonly string[] => [...keys].sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
+      expect(sorted(Object.keys(decoded.state.ledger))).toEqual(sorted(Object.keys(exp.state.ledger)));
+      for (const [txId, record] of Object.entries(exp.state.ledger)) {
+        expect(decoded.state.ledger[txId]).toEqual(record);
+      }
+      checkpoints += 1;
+    });
+    expect(checkpoints).toBeGreaterThan(3); // the boundary really was exercised
+  });
+
+  it('the ONLY order-sensitive commit is the anchor pre-clamp — pinned by the exact boundary delta', () => {
+    // §9 Task 3 (finding): the oracle fold matches the runner in COMMIT order
+    // (the pre-clamp ≡ fold-clamp identity), so the fold is byte-identical
+    // across the boundary EXACTLY when no floor clamp fires. The anchor ENTER
+    // is the only committed delta that can cross 0 (services are refused below
+    // the floor). Craft the sequence [battle ENTER +5, anchor ENTER −10 at 9]:
+    // the runner lands at 0; the SORTED (canonical) ledger folds the anchor
+    // −10 first (clamped to 0) then +5 → 5 — the difference is EXACTLY the
+    // pre-clamp amount, which is why instability is a scalar, never a
+    // re-derivation from the ledger.
+    const anchorHandler = anchorStoryHandlers[0];
+    if (anchorHandler === undefined) throw new Error('anchor handler missing');
+    const battleHandlerDef: NodeDefinition = Object.freeze({ nodeId: 'n_battle', type: 'battle', contentRevision: '32.0', payloadKey: '' });
+    const anchorDef: NodeDefinition = Object.freeze({ nodeId: 'n_anchor', type: 'anchor', contentRevision: '32.0', payloadKey: '' });
+    let state = createNodeRunState({ runId: 'r1', modeId: 'm', contentRevision: '32.0', seed: 1, mapHash: 'h', gold: 500 });
+    state = openVisit(state, 'n_battle', 0);
+    state = openVisit(state, 'n_anchor', 0);
+    state = { ...state, instability: 4 };
+    const map = { nodes: Object.freeze([
+      Object.freeze({ id: 'n_battle', type: 'battle' }),
+      Object.freeze({ id: 'n_anchor', type: 'anchor' }),
+    ]) } as unknown as ExpeditionMap;
+    // Battle ENTER first: 4 + 5 = 9, then the anchor ENTER clamps −10 → 0.
+    const battle = commitNodeAction(state, Object.freeze({ transactionId: 'tx-battle', nodeId: 'n_battle', action: 'ENTER' }), battleHandlerDef, battleHandler.validate, battleHandler.commit);
+    expect(battle.state.instability).toBe(9);
+    const anchored = commitNodeAction(battle.state, Object.freeze({ transactionId: 'tx-anchor', nodeId: 'n_anchor', action: 'ENTER' }), anchorDef, anchorHandler.validate, anchorHandler.commit);
+    expect(anchored.state.instability).toBe(0);
+    // COMMIT order folds to the scalar (the differential identity).
+    expect(foldInstability(map, anchored.state.ledger)).toBe(0);
+    // The codec's canonical (sorted) order folds differently — by EXACTLY the
+    // pre-clamp amount — pinned as the documented contract.
+    const decoded = decodeExpeditionSave({
+      schemaVersion: 1,
+      currentNodeId: 'n_anchor',
+      state: anchored.state,
+    }).state;
+    const canonicalOrder = Object.values(decoded.ledger).sort((a, b) => (a.transactionId < b.transactionId ? -1 : a.transactionId > b.transactionId ? 1 : 0));
+    const sortedLedger: Record<string, TransactionRecord> = {};
+    for (const record of canonicalOrder) sortedLedger[record.transactionId] = record;
+    expect(foldInstability(map, sortedLedger)).toBe(5);
+    // The scalar survives the boundary regardless of the fold.
+    expect(decoded.instability).toBe(0);
+  });
+
+  it('a saved mid-run walk CONTINUES from the restore with the fold matching every further step', () => {
+    // §9 Task 3 (continuation): restore at a mid-run checkpoint, then keep
+    // driving the RESTORED runner — the differential must hold for the
+    // replayed run exactly as it did for the live one (same policy, same
+    // seeds, same folds). The restored runner is a full ExpeditionRunner, so
+    // the walk just continues on it.
+    const seed = 109;
+    let exp = createExpedition(mapFor(seed), { startGold: 200 });
+    let step = 0;
+    let guard = 0;
+    let restored = false;
+    while (exp.reachableNodes.length > 0 && guard < 300) {
+      const type = exp.definition.type;
+      const nodeId = exp.currentNodeId;
+      exp = exp.enter(`r-${String(seed)}-e-${String(step)}`);
+      const action = policyAction(seed, nodeId, type, exp.state.gold, exp.state.instability, `r-${String(seed)}-a-${String(step)}`);
+      exp = exp.act(action);
+      expect(exp.state.instability).toBe(foldInstability(exp.map, exp.state.ledger));
+      if ((type === 'battle' || type === 'elite' || type === 'boss') && action.action === 'ENGAGE_DEFEAT') {
+        exp = exp.act({ transactionId: `r-${String(seed)}-d-${String(step)}`, nodeId, action: 'DECLINE' });
+        expect(exp.state.instability).toBe(foldInstability(exp.map, exp.state.ledger));
+      }
+      // Restore ONCE mid-run (after step 3) and continue on the restored runner.
+      if (!restored && step === 3) {
+        const serialized = encodeExpeditionSave(exp);
+        exp = restoreExpeditionSave(serialized, exp.map);
+        restored = true;
+      }
+      expect(exp.state.instability).toBe(foldInstability(exp.map, exp.state.ledger));
+      exp = exp.resolve();
+      const next = exp.reachableNodes[0];
+      if (next === undefined) break;
+      exp = exp.advance(next);
+      step += 1;
+      guard += 1;
+    }
+    expect(restored).toBe(true);
   });
 
   it('the fold honors the floor clamp exactly as the transaction service does (anchor enter at low instability)', () => {
