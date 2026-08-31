@@ -272,6 +272,50 @@ describe('P21 §9 ENGAGE-gate component wiring', () => {
     expect(out.bounty).toBe(bountyForKinds(['kill_boss']));
   });
 
+  it('the reward FLOW renders the same bounty after a mid-flow RELOAD (persisted kinds, no re-battle)', () => {
+    // §9 victory-reload render seam: the ENGAGE + its completedKinds are on the
+    // ledger; a reload mid-flow (before the reward screens) restores the run and
+    // BOTH S53/S54 must derive the SAME bounty from the persisted record — the
+    // reload never re-battles (the visit is already past ENGAGE, still
+    // COMMITTED with the durable last-commit marker).
+    const mgr = enteredCombatManager(307);
+    const snap = mgr.snapshot();
+    mgr.act({
+      transactionId: actionTransactionId(snap.state.runId, snap.currentNodeId, 'ENGAGE', 'none'),
+      nodeId: snap.currentNodeId,
+      action: 'ENGAGE',
+      completedKinds: ['kill_boss', 'survive_until'],
+    });
+    // RELOAD: restore from the persisted save (the manager's boot path).
+    const restored = RunManager.restore();
+    expect(restored).not.toBeNull();
+    const rSnap = restored?.snapshot();
+    const rNodeId = rSnap?.currentNodeId ?? '';
+    const engageTx = actionTransactionId(rSnap?.state.runId ?? '', rNodeId, 'ENGAGE', 'none');
+    // The persisted ENGAGE + kinds + the durable last-commit marker survived.
+    expect(rSnap?.state.ledger[engageTx]?.completedKinds).toEqual(['kill_boss', 'survive_until']);
+    expect(rSnap?.state.visits[rNodeId]?.status).toBe('COMMITTED');
+    expect(rSnap?.state.visits[rNodeId]?.transactionId).toBe(engageTx);
+    const renderFlow = (screen: JSX.Element): string => renderToStaticMarkup(createElement(LocaleProvider, {
+      controller: controller(),
+      children: screen,
+    }));
+    // S53: the result screen derives the bounty from the RESTORED record.
+    const resultHtml = renderFlow(createElement(BattleResultScreen, { onContinue: () => undefined }));
+    expect(resultHtml).toContain('Objective bounty');
+    expect(resultHtml).toContain('+25 gold'); // kill_boss 15 + survive_until 10
+    expect(resultHtml).toContain('kill_boss bounty');
+    expect(resultHtml).toContain('survive_until bounty');
+    // S54: the reward screen shows the same total + per-kind rows + the claim
+    // affordances (the REWARD snapshot materialized at ENTER survived too).
+    const rewardHtml = renderFlow(createElement(RewardChoiceScreen, { onDone: () => undefined }));
+    expect(rewardHtml).toContain('Objective bounty');
+    expect(rewardHtml).toContain('+25 gold');
+    expect(rewardHtml).toContain('kill_boss');
+    expect(rewardHtml).toContain('survive_until');
+    expect(rewardHtml).toContain('Claim');
+  });
+
   it('after a mid-fight REFRESH the restored NodeScreen re-creates the same live battle and keeps ENGAGE gated', () => {
     // §9 mid-fight refresh: ENTER is committed and persisted (visit COMMITTED,
     // REWARD snapshot placed, no ENGAGE claimed); a page refresh drops the

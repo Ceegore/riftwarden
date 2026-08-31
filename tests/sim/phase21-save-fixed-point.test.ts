@@ -19,7 +19,20 @@ import { createExpedition } from '../../src/game/expedition/expedition-runner.js
 import { generateMap } from '../../src/game/expedition/map-generator.js';
 import type { ExpeditionMap, MapProfile } from '../../src/game/expedition/types.js';
 import { decodeExpeditionSave, encodeExpeditionSave, restoreExpeditionSave } from '../../src/game/expedition/expedition-save.js';
+import { readMeta, restoreStoredExpedition, saveExpedition } from '../../src/game/expedition/expedition-store.js';
 import type { ExpeditionRunner } from '../../src/game/expedition/expedition-runner.js';
+
+// The store-layer fixed-point tests drive `expedition-store` (saveExpedition /
+// restoreStoredExpedition), which persist through localStorage.
+const store = new Map<string, string>();
+(globalThis as { localStorage: unknown }).localStorage = {
+  getItem(key: string) { return store.get(String(key)) ?? null; },
+  setItem(key: string, value: string) { store.set(String(key), String(value)); },
+  removeItem(key: string) { store.delete(String(key)); },
+  clear() { store.clear(); },
+  get length() { return store.size; },
+  key(index: number) { return [...store.keys()][index] ?? null; },
+};
 
 const PROFILE: MapProfile = {
   id: 'exp-fixedpoint.v1',
@@ -115,6 +128,8 @@ function restoreChain(seed: number, runner: ExpeditionRunner): void {
   }
 }
 
+const STORE_KEY = 'rw.expedition.v1';
+
 describe('P21 §9.5 monolithic save fixed-point battery', () => {
   it('a full mixed-ledger run is a fixed point: encode → decode → re-encode is byte-identical', () => {
     for (const seed of [501, 502, 503]) {
@@ -165,5 +180,56 @@ describe('P21 §9.5 monolithic save fixed-point battery', () => {
     const s1 = encodeExpeditionSave(exp);
     expect(reencode(s1)).toBe(s1);
     restoreChain(seed, exp);
+  });
+
+  it('the STORE layer is a fixed point: saveExpedition → restoreStoredExpedition → saveExpedition keeps the payload byte-identical', () => {
+    for (const seed of [509, 510]) {
+      const runner = walkRun(seed);
+      // saveExpedition writes the serialized save + the meta envelope.
+      saveExpedition(runner);
+      const first = store.get(STORE_KEY);
+      if (first === undefined) throw new Error('saveExpedition wrote nothing');
+      const meta = readMeta();
+      expect(meta?.mapSeed).toBe(runner.state.seed);
+      expect(meta?.mapHash).toBe(runner.state.mapHash);
+      expect(meta?.profileId).toBe(runner.state.modeId);
+      // restoreStoredExpedition (mapHash-guarded) rebuilds the runner from the
+      // stored payload; re-encoding it reproduces the EXACT stored string.
+      const restored = restoreStoredExpedition(mapFor(seed));
+      expect(restored).not.toBeNull();
+      if (restored === null) throw new Error('store restore failed');
+      expect(encodeExpeditionSave(restored)).toBe(first);
+      // save → restore → save: the stored payload is a FIXED POINT.
+      saveExpedition(restored);
+      expect(store.get(STORE_KEY)).toBe(first);
+      const meta2 = readMeta();
+      expect(meta2?.runId).toBe(meta?.runId);
+      expect(meta2?.mapSeed).toBe(meta?.mapSeed);
+      expect(meta2?.mapHash).toBe(meta?.mapHash);
+    }
+  });
+
+  it('the store fixed point holds for a MID-BATTLE save and a COMMITTED-VICTORY save', () => {
+    const seed = 511;
+    const walked = walkToCombat(seed);
+    const nodeId = walked.currentNodeId;
+    // Mid-battle: only the ENTER commit + the REWARD snapshot.
+    const mid = walked.enter('fp-store-mid-enter');
+    saveExpedition(mid);
+    const firstMid = store.get(STORE_KEY);
+    const restoredMid = restoreStoredExpedition(mapFor(seed));
+    if (restoredMid === null || firstMid === undefined) throw new Error('mid-battle store restore failed');
+    expect(encodeExpeditionSave(restoredMid)).toBe(firstMid);
+    // Committed victory: the ENGAGE + completedKinds on the ledger.
+    const victory = mid.act({ transactionId: 'fp-store-engage', nodeId, action: 'ENGAGE', completedKinds: ['kill_regulars'] });
+    saveExpedition(victory);
+    const firstVictory = store.get(STORE_KEY);
+    const restoredVictory = restoreStoredExpedition(mapFor(seed));
+    if (restoredVictory === null || firstVictory === undefined) throw new Error('victory store restore failed');
+    expect(encodeExpeditionSave(restoredVictory)).toBe(firstVictory);
+    expect(restoredVictory.state.ledger['fp-store-engage']?.completedKinds).toEqual(['kill_regulars']);
+    // And re-saving the restored victory is byte-identical again.
+    saveExpedition(restoredVictory);
+    expect(store.get(STORE_KEY)).toBe(firstVictory);
   });
 });
