@@ -190,6 +190,64 @@ function auditGrant(entry: Readonly<ContentEncounterEntry>, kinds: readonly stri
   auditGrantCell(familyFor(entry), familySeedFor(familyFor(entry)), kinds, bounty, entry.id);
 }
 
+/**
+ * LOOT-LEG grid cell: on a REAL battle node with the given loot-roll outcome,
+ * committing `kinds` grants unsecured loot EXACTLY when (and only when) the
+ * persisted `loot` slot decides the 35% roll — and the loot id is the
+ * node-pinned `reward:nodeId:loot`, never a kind or an id from another node.
+ * Drives every encounter's completed kinds against both loot branches, so the
+ * grid's LOOT leg is proven cell-by-cell alongside the gold/kills legs.
+ */
+function auditLootCell(seed: number, kinds: readonly string[], label: string): void {
+  const walked = walkToFamily(seed, 'battle');
+  if (walked === null) throw new Error(`no battle node for ${label}`);
+  let exp = walked;
+  const nodeId = exp.currentNodeId;
+  exp = exp.enter(`sw-loot-${label}`);
+  const snap = exp.state.snapshots[nodeId];
+  if (snap === undefined || snap.kind !== 'REWARD') throw new Error(`no REWARD snapshot at ${nodeId}`);
+  const lootSlot = snap.rollSlots['loot'] ?? 0;
+  const grantsLoot = lootSlot < 350; // the 35% column roll, per §23.3
+  const lootBefore = exp.state.unsecuredLoot;
+  const goldBefore = exp.state.gold;
+  // The ENGAGE must carry its OWN transaction id (the ENTER above already
+  // consumed `sw-loot-<label>` — reusing it would replay the ENTER record).
+  const tx = `sw-loot-engage-${label}`;
+  const committed = exp.act({ transactionId: tx, nodeId, action: 'ENGAGE', completedKinds: kinds });
+  expect(committed.state.ledger[tx]?.status).toBe('COMMITTED');
+  const expectedLootId = `reward:${nodeId}:loot`;
+  if (grantsLoot) {
+    // Exactly ONCE, and it is the node-pinned id.
+    expect(committed.state.unsecuredLoot.length, `${label} loot granted once`).toBe(lootBefore.length + 1);
+    expect(committed.state.unsecuredLoot).toContain(expectedLootId);
+    expect(committed.state.unsecuredLoot.filter((id) => id === expectedLootId).length).toBe(1);
+  } else {
+    // The roll missed → NOTHING loot-ish entered the pool.
+    expect(committed.state.unsecuredLoot, `${label} loot denied`).toEqual(lootBefore);
+  }
+  // Gold/kills still hold on the same cell (the loot leg does not disturb them).
+  expect(committed.state.gold - goldBefore).toBe(baseGoldFor('battle', snap.rollSlots) + bountyForKinds(kinds));
+  // EXACTLY-ONCE: a replay grants no second loot id.
+  const replay = committed.act({ transactionId: tx, nodeId, action: 'ENGAGE', completedKinds: kinds });
+  expect(replay.state.unsecuredLoot).toEqual(committed.state.unsecuredLoot);
+}
+
+/** Deterministic battle seed whose persisted loot roll lands the 35% chance. */
+function battleSeedWithLoot(granted: boolean, start: number): number {
+  for (let seed = start; seed <= 4000; seed += 1) {
+    // Scan reads the persisted reward snapshot WITHOUT committing any ENGAGE
+    // (enter only) — the guard uses the SAME slot the live ENGAGE would.
+    const walked = walkToFamily(seed, 'battle');
+    if (walked === null) continue;
+    const entered = walked.enter(`sw-lootscan-${String(seed)}`);
+    const snap = entered.state.snapshots[entered.currentNodeId];
+    if (snap !== undefined && snap.kind === 'REWARD') {
+      if ((snap.rollSlots['loot'] ?? 0) < 350 === granted) return seed;
+    }
+  }
+  throw new Error(`no battle seed with loot granted = ${String(granted)}`);
+}
+
 describe('P21 §9.5 wallet audit sweep across all nine content encounters', () => {
   it('every encounter reaches a terminal and the victory bounty equals the contract (disclosure == grant)', { timeout: 60_000 }, () => {
     const entries = [...CONTENT_ENCOUNTERS.values()];
@@ -286,5 +344,20 @@ describe('P21 §9.5 wallet audit sweep across all nine content encounters', () =
         }
       }
     }
+  });
+
+  it('the LOOT leg is family-pure cell-by-cell: every kinds set grants the node-pinned loot id exactly on the 35% roll, and nothing on a miss', { timeout: 60_000 }, () => {
+    // Two battle seeds per loot outcome pin BOTH branches of the column roll
+    // across all nine encounters' completed-kind sets.
+    const grantedSeeds = [battleSeedWithLoot(true, 901), battleSeedWithLoot(true, 2201)];
+    const deniedSeeds = [battleSeedWithLoot(false, 901), battleSeedWithLoot(false, 2201)];
+    for (const entry of CONTENT_ENCOUNTERS.values()) {
+      const kinds = kindsFor(entry);
+      for (const seed of grantedSeeds) auditLootCell(seed, kinds, `granted@${String(seed)}:${entry.id}`);
+      for (const seed of deniedSeeds) auditLootCell(seed, kinds, `denied@${String(seed)}:${entry.id}`);
+    }
+    // Sanity: the grid really exercised BOTH column outcomes.
+    expect(grantedSeeds.length).toBe(2);
+    expect(deniedSeeds.length).toBe(2);
   });
 });
