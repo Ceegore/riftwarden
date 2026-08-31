@@ -212,4 +212,42 @@ describe('P21 §9 full settlement ledger through the end screen', () => {
     expect(RunManager.active).toBeNull();
     expect(RunManager.hasSave()).toBe(false);
   });
+
+  it('the settlement keeps EXACTLY the claimed reward loot, grants each item once, and the claimed loot + gold survive a durable reload', { timeout: 60_000 }, () => {
+    // The S54 reward CLAIM (which must precede `.finish()` — the finished run
+    // rejects all mutations) lands each claimed reward id in the run's loot
+    // pools. This pins the settlement-ledger AGREEMENT: the victory settlement
+    // keeps EXACTLY those claimed ids (once each) and emits one GRANT_ITEM per
+    // kept reward; the grants make every claimed id an owned profile item; and
+    // because the end screen PERSISTS via `saveProfile`, a second
+    // `loadOrCreateProfile` (a return-to-HQ relaunch) re-reads the durable
+    // layer and the claimed loot + kept gold survive intact.
+    const mgr = finishedVictoryManager(719);
+    const snap = mgr.snapshot();
+    const claimed = [...snap.state.securedLoot, ...snap.state.unsecuredLoot];
+    expect(claimed.length).toBeGreaterThan(0);
+
+    // AGREEMENT: keptLoot === the claimed reward ids, each exactly once.
+    const { requests, settlement } = buildSettlementRequests(snap.state, 'victory');
+    expect(settlement.keptLoot).toEqual(claimed);
+    const lootGrants = requests.filter((r) => r.kind === 'GRANT_ITEM');
+    expect(lootGrants.length).toBe(claimed.length);
+    for (const id of claimed) {
+      expect(settlement.keptLoot.filter((k) => k === id).length, id).toBe(1);
+    }
+
+    // GRANT: each claimed reward becomes an owned item exactly once.
+    let profile = loadOrCreateProfile();
+    for (const req of requests) profile = commitTransaction(profile, req).profile;
+    saveProfile(profile);
+    for (const id of claimed) expect(profile.items[id]?.owned, id).toBe(true);
+    const walletAfter = profile.wallet.gold;
+
+    // SECOND LOAD: `loadOrCreateProfile` re-reads the DURABLE profile layer
+    // the end screen persisted — the claimed loot + kept gold were genuinely
+    // written, not left only in memory.
+    const reloaded = loadOrCreateProfile();
+    for (const id of claimed) expect(reloaded.items[id]?.owned, id).toBe(true);
+    expect(reloaded.wallet.gold).toBe(walletAfter);
+  });
 });

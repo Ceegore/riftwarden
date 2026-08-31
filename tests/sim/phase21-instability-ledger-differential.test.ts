@@ -30,6 +30,7 @@
 import { describe, expect, it } from 'vitest';
 import { generateMap } from '../../src/game/expedition/map-generator.js';
 import type { ExpeditionMap, MapProfile } from '../../src/game/expedition/types.js';
+import { RunManager } from '../../src/game/expedition/run-manager.js';
 import { createExpedition } from '../../src/game/expedition/expedition-runner.js';
 import { fnv1a32 } from '../../src/game/expedition/stable.js';
 import { commitNodeAction } from '../../src/game/expedition/nodes/node-transaction.js';
@@ -38,6 +39,18 @@ import { anchorStoryHandlers } from '../../src/game/expedition/nodes/handlers/an
 import { createNodeRunState, openVisit } from '../../src/game/expedition/nodes/run-state.js';
 import { INSTABILITY_CEILING, battleHandler } from '../../src/game/expedition/nodes/handlers/combat.js';
 import type { NodeActionRequest, NodeDefinition, TransactionRecord } from '../../src/game/expedition/nodes/types.js';
+
+// RunManager persists through the store — provide the same localStorage mock
+// the other manager-driving phase21 files use.
+const store = new Map<string, string>();
+(globalThis as { localStorage: unknown }).localStorage = {
+  getItem(key: string) { return store.get(String(key)) ?? null; },
+  setItem(key: string, value: string) { store.set(String(key), String(value)); },
+  removeItem(key: string) { store.delete(String(key)); },
+  clear() { store.clear(); },
+  get length() { return store.size; },
+  key(index: number) { return [...store.keys()][index] ?? null; },
+};
 
 const PROFILE: MapProfile = {
   id: 'exp-ledger-diff.v1',
@@ -330,6 +343,65 @@ describe('P21 §9 full-run instability ledger differential (clean-room oracle)',
       guard += 1;
     }
     expect(restored).toBe(true);
+  });
+
+  it('the MANAGER instability equals the clean-room fold with save/restore cuts at random steps every step of the way', () => {
+    // §9 Task 4 (manager layer): the differential, proven at the runner layer
+    // above, must also hold through the REAL `RunManager` — the autosaving
+    // facade React uses — across save/restore cuts. Every manager mutation
+    // persists through the store; a restore returns a fresh manager over the
+    // SAME persisted state. The SAME clean-room oracle must reproduce the
+    // scalar after the restore as exactly as it does for the uninterrupted run.
+    store.clear();
+    let mgr = RunManager.create(910, 200);
+    let step = 0;
+    let guard = 0;
+    let cuts = 0;
+    while (mgr.snapshot().reachableNodes.length > 0 && guard < 300) {
+      const snap = mgr.snapshot();
+      const type = snap.currentNodeType;
+      const nodeId = snap.currentNodeId;
+      // ENTER (unique, monotone — never reuses a pre-restore id), then decide
+      // the action from the POST-enter state — the same policy walkRun uses,
+      // so the chosen action is always legal for the node (an anchor entered
+      // at low instability picks SECURE, never a rejected SERVICE).
+      mgr.enter(`mgr-tx-enter-${String(step)}`);
+      expect(mgr.snapshot().state.instability).toBe(foldInstability(mgr.map, mgr.snapshot().state.ledger));
+      const entered = mgr.snapshot();
+      const action = policyAction(910, nodeId, type, entered.state.gold, entered.state.instability, `mgr-tx-act-${String(step)}`);
+      mgr.act(action);
+      expect(mgr.snapshot().state.instability).toBe(foldInstability(mgr.map, mgr.snapshot().state.ledger));
+      // A lost fight keeps the node COMMITTED — the retreat (DECLINE) clears it.
+      if ((type === 'battle' || type === 'elite' || type === 'boss') && action.action === 'ENGAGE_DEFEAT') {
+        mgr.act({ transactionId: `mgr-tx-dec-${String(step)}`, nodeId, action: 'DECLINE' });
+        expect(mgr.snapshot().state.instability).toBe(foldInstability(mgr.map, mgr.snapshot().state.ledger));
+      }
+      expect(mgr.snapshot().state.instability).toBe(foldInstability(mgr.map, mgr.snapshot().state.ledger));
+
+      // RESOLVE, then a DETERMINISTIC save/restore cut on a seeded subset of steps.
+      mgr.resolve();
+      if (step >= 1 && step % 5 === 2) {
+        const beforeNode = mgr.snapshot().currentNodeId;
+        const beforeInst = mgr.snapshot().state.instability;
+        const restored = RunManager.restore();
+        expect(restored).not.toBeNull();
+        if (restored === null) throw new Error('manager restore failed');
+        mgr = restored;
+        expect(mgr.snapshot().currentNodeId).toBe(beforeNode);
+        expect(mgr.snapshot().state.instability).toBe(beforeInst);
+        // The RESTORED scalar still equals the clean-room fold of the restored ledger.
+        expect(mgr.snapshot().state.instability).toBe(foldInstability(mgr.map, mgr.snapshot().state.ledger));
+        cuts += 1;
+      }
+      const next = mgr.snapshot().reachableNodes[0];
+      if (next === undefined) break;
+      mgr.advance(next);
+      step += 1;
+      guard += 1;
+    }
+    expect(cuts).toBeGreaterThan(0); // the restore cuts really were exercised
+    // The final scalar agrees with the fold over the final restored ledger.
+    expect(mgr.snapshot().state.instability).toBe(foldInstability(mgr.map, mgr.snapshot().state.ledger));
   });
 
   it('the fold honors the floor clamp exactly as the transaction service does (anchor enter at low instability)', () => {
