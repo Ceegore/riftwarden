@@ -29,7 +29,7 @@ import { RunManager } from '../../src/game/expedition/run-manager.js';
 import { mainPath } from '../../src/game/expedition/expedition-runner.js';
 import { enterTransactionId, actionTransactionId } from '../../src/features/expedition/transaction-ids.js';
 import { createInitialProfile, ensureStarterHero, saveProfile } from '../../src/game/profile/profile-store.js';
-import { loadMasteryState, clearMasteryState, saveMasteryState } from '../../src/game/mastery/mastery-store.js';
+import { loadMasteryState, clearMasteryState, saveMasteryState, processedCombatKillsForRun } from '../../src/game/mastery/mastery-store.js';
 import { loadFormationState, saveFormationState, clearFormationState } from '../../src/game/formations/formation-store.js';
 import { loadAllPersistentState, applyExpeditionTracking, clearAllPersistentState } from '../../src/game/expedition/settlement-bridge.js';
 import { buildSettlementRequests } from '../../src/game/expedition/expedition-settlement.js';
@@ -175,5 +175,66 @@ describe('P21 §9 settlement through the real manager', () => {
     expect(a.outcome).toBe('victory');
     expect(a.requests.map((r) => r.transactionId)).toEqual(b.requests.map((r) => r.transactionId));
     expect(a.settlement.keptGold).toBeGreaterThanOrEqual(0);
+  });
+
+  it('a run driven to an actual terminal .finish() settles with the mastery scalars + markers + settlement marker all agreeing with killsEarned', { timeout: 60_000 }, () => {
+    // The manager's `.finish()` marks the run finished; the END screen then
+    // runs the EXACT settlement over the finished state. This test pins the
+    // full close: `masteryKillsApplied` (the per-ENGAGE bridge) + the durable
+    // `processedCombatKillsForRun` markers + the `runId:settlement` marker all
+    // agree with `killsEarned` at close — no gap, no double-count.
+    const { mgr, heroId } = managerWithHero(6004);
+    walkVictories(mgr);
+    const pre = mgr.snapshot();
+    expect(pre.state.killsEarned).toBeGreaterThan(0);
+    // The per-ENGAGE bridge already caught up live (hero tracked from the start).
+    expect(pre.state.masteryKillsApplied).toBe(pre.state.killsEarned);
+
+    // TERMINAL: finish the run through the manager (runStatus → finished).
+    mgr.finish();
+    expect(mgr.snapshot().runStatus).toBe('finished');
+    // A finished run rejects further mutations.
+    expect(() => { mgr.enter('post-finish-enter'); }).toThrow('RUN_ALREADY_FINISHED');
+
+    // SETTLE the finished state with the END screen's exact path.
+    const settled = settleManager(mgr, 'mission_act1');
+    // At close: applied + remaining == earned. Here remaining is 0 (fully
+    // bridged), so the hero kills equal the run's killsEarned and the fold of
+    // the durable markers (per-ENGAGE, no settlement marker) equals it too.
+    expect(settled.mastery.heroes[heroId]?.kills).toBe(pre.state.killsEarned);
+    expect(settled.mastery.processedCombatTransactions?.[`${pre.state.runId}:settlement`]).toBeUndefined();
+    expect(processedCombatKillsForRun(settled.mastery, pre.state.runId)).toBe(pre.state.killsEarned);
+    // The THREE views of the ledger agree at close:
+    //   scalar masteryKillsApplied == earned, markers fold == earned.
+    const markerTotal = processedCombatKillsForRun(settled.mastery, pre.state.runId);
+    expect(markerTotal).toBe(pre.state.killsEarned);
+    expect(settled.mastery.heroes[heroId]?.kills).toBe(markerTotal);
+
+    // The LATE-HERO close: combat before any hero ⇒ scalar stayed 0 ⇒ the
+    // settlement remainder is exactly killsEarned and folds with ONE marker.
+    const late = managerWithoutHero(6005);
+    walkVictories(late);
+    const latePre = late.snapshot();
+    expect(latePre.state.killsEarned).toBeGreaterThan(0);
+    expect(latePre.state.masteryKillsApplied).toBe(0);
+    const profile = ensureStarterHero(createInitialProfile());
+    saveProfile(profile);
+    const lateHeroId = Object.values(profile.heroes).find((h) => h.unlocked)?.id;
+    if (lateHeroId === undefined) throw new Error('no starter hero');
+    const formation = loadFormationState();
+    saveFormationState({ ...formation, placement: { ...formation.placement, middle_center: lateHeroId } });
+    late.finish();
+    expect(late.snapshot().runStatus).toBe('finished');
+    const lateSettled = settleManager(late, 'mission_act1');
+    expect(lateSettled.mastery.heroes[lateHeroId]?.kills).toBe(latePre.state.killsEarned);
+    expect(lateSettled.mastery.processedCombatTransactions?.[`${latePre.state.runId}:settlement`]).toBe(latePre.state.killsEarned);
+    expect(processedCombatKillsForRun(lateSettled.mastery, latePre.state.runId)).toBe(latePre.state.killsEarned);
+
+    // RESETTLE the finished run: the durable settlement marker already covers
+    // the total ⇒ remainder 0 ⇒ nothing double-applies, no second marker.
+    saveMasteryState(lateSettled.mastery);
+    const resettled = settleManager(late, 'mission_act1');
+    expect(resettled.mastery.heroes[lateHeroId]?.kills).toBe(latePre.state.killsEarned);
+    expect(resettled.mastery.processedCombatTransactions?.[`${latePre.state.runId}:settlement`]).toBe(latePre.state.killsEarned);
   });
 });

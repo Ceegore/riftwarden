@@ -164,4 +164,60 @@ describe('P21 §9 ENGAGE after a mid-battle reload', () => {
     const reEntered = walkToCombat(seed).enter('mr-snap-enter-2');
     expect(reEntered.state.snapshots[nodeId]).toEqual(before);
   });
+
+  it('a save taken BETWEEN ENGAGE and CLAIM restores the identical reward snapshot ids (no re-roll) and the same bounty', { timeout: 60_000 }, () => {
+    const seed = 703;
+    let exp = walkToCombat(seed);
+    const nodeId = exp.currentNodeId;
+    const type = exp.definition.type;
+    exp = exp.enter('mr-bc-enter');
+    // Victory ENGAGE with the deterministic completed kinds (the fight is
+    // decided; the claim is still pending).
+    const encounter = resolveExpeditionEncounter(type, exp.definition.payloadKey);
+    if (encounter === null) throw new Error(`no encounter at ${nodeId}`);
+    const handle = createLiveSimBattle({ encounter });
+    let out = handle.snapshot();
+    let guard = 0;
+    while (!['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(out.phase.phase) && guard < 2000) {
+      out = handle.step();
+      guard += 1;
+    }
+    expect(out.phase.phase).toBe('VICTORY');
+    const kinds = (out.objectives ?? []).filter((o) => o.complete).map((o) => o.kind);
+    const bounty = out.bounty ?? bountyForKinds(kinds);
+    exp = exp.act({ transactionId: 'mr-bc-engage', nodeId, action: 'ENGAGE', completedKinds: kinds });
+    expect(exp.state.ledger['mr-bc-engage']?.status).toBe('COMMITTED');
+    // The REWARD snapshot is still there (the claim has not happened yet).
+    const snapBefore = exp.state.snapshots[nodeId];
+    if (snapBefore === undefined || snapBefore.kind !== 'REWARD') throw new Error('no reward snapshot after ENGAGE');
+    const goldAfterEngage = exp.state.gold;
+
+    // SAVE → RESTORE at the ENGAGE→CLAIM boundary.
+    const restored = restoreExpeditionSave(encodeExpeditionSave(exp), mapFor(seed));
+    const snapAfter = restored.state.snapshots[nodeId];
+    // The SAME snapshot ids — the reload never re-rolls the reward ids.
+    expect(snapAfter).toEqual(snapBefore);
+    expect(snapAfter?.kind).toBe('REWARD');
+    if (snapAfter === undefined || snapAfter.kind !== 'REWARD') throw new Error('restored snapshot lost');
+    expect(snapAfter.rewardIds).toEqual(snapBefore.rewardIds);
+    expect(snapAfter.rollSlots).toEqual(snapBefore.rollSlots);
+    // The ENGAGE + its kinds survived; gold is the post-ENGAGE amount.
+    expect(restored.state.ledger['mr-bc-engage']?.completedKinds).toEqual(kinds);
+    expect(restored.state.gold).toBe(goldAfterEngage);
+    // The bounty the reward screen would derive is unchanged.
+    expect(bountyForKinds(restored.state.ledger['mr-bc-engage']?.completedKinds ?? [])).toBe(bounty);
+
+    // CLAIMING the restored snapshot's FIRST reward id grants the node-pinned
+    // loot exactly once — the deterministic reward the pre-save state promised.
+    const optionId = snapAfter.rewardIds[0];
+    if (optionId === undefined) throw new Error('no reward id to claim');
+    const lootBefore = restored.state.unsecuredLoot;
+    const claimed = restored.act({ transactionId: 'mr-bc-claim', nodeId, action: 'CLAIM_REWARD', optionId });
+    expect(claimed.state.ledger['mr-bc-claim']?.status).toBe('COMMITTED');
+    expect(claimed.state.unsecuredLoot.length).toBe(lootBefore.length + 1);
+    expect(claimed.state.unsecuredLoot).toContain(optionId);
+    // A replay of the claim grants nothing.
+    const replayed = claimed.act({ transactionId: 'mr-bc-claim', nodeId, action: 'CLAIM_REWARD', optionId });
+    expect(replayed.state.unsecuredLoot).toEqual(claimed.state.unsecuredLoot);
+  });
 });

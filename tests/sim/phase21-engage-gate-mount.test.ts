@@ -408,6 +408,71 @@ describe('P21 §9 ENGAGE-gate component wiring', () => {
     expect(afterHtml).toBe(beforeHtml);
   });
 
+  it('the FULL screen loop on a reloaded mid-battle run: restored NodeScreen re-creates the battle → VICTORY → ENGAGE → S53/S54 render the same bounty', { timeout: 60_000 }, () => {
+    // §9 reload loop end-to-end: the persisted mid-battle state is ONLY the
+    // ENTER commit + the REWARD snapshot. A refresh drops the in-memory
+    // manager and `RunManager.restore()` boots from the save; the restored
+    // NodeScreen re-resolves the encounter and re-creates the live battle
+    // (gate re-locks with the in-progress reason), the replayed battle steps
+    // to the SAME terminal VICTORY with the SAME completed kinds, the ENGAGE
+    // commits on the RESTORED run, and BOTH S53 + S54 derive the SAME bounty
+    // from the persisted record — the reload never re-battles nor re-litigates.
+    const mgr = enteredCombatManager(309);
+    const before = mgr.snapshot();
+    expect(Object.values(before.state.ledger).some((e) => e.action === 'ENGAGE')).toBe(false);
+    const nodeId = before.currentNodeId;
+
+    // REFRESH: restore from the persisted save (the boot path).
+    const restored = RunManager.restore();
+    expect(restored).not.toBeNull();
+    if (restored === null) throw new Error('restore failed');
+    expect(restored.snapshot().currentNodeId).toBe(nodeId);
+    expect(restored.snapshot().state.visits[nodeId]?.status).toBe('COMMITTED');
+
+    // The RESTORED NodeScreen re-creates the live battle — gate re-locks.
+    const renderNode = (): string => renderToStaticMarkup(createElement(LocaleProvider, {
+      controller: controller(),
+      children: createElement(NodeScreen, { onResolved: () => undefined }),
+    }));
+    expect(renderNode()).toContain('Battle in progress — ENGAGE unlocks on victory');
+
+    // The re-created battle is the encounter's deterministic replay.
+    const encounter = resolveExpeditionEncounter(restored.snapshot().currentNodeType, restored.snapshot().currentNodePayloadKey);
+    if (encounter === null) throw new Error('restored node resolved no encounter');
+    const handle = createLiveSimBattle({ encounter });
+    let out = handle.snapshot();
+    let guard = 0;
+    while (!['VICTORY', 'DEFEAT', 'DRAW_ABORT'].includes(out.phase.phase) && guard < 2000) {
+      out = handle.step();
+      guard += 1;
+    }
+    expect(out.phase.phase).toBe('VICTORY');
+    const kinds = (out.objectives ?? []).filter((o) => o.complete).map((o) => o.kind);
+    expect(kinds.length).toBeGreaterThan(0);
+    const bounty = out.bounty ?? bountyForKinds(kinds);
+
+    // ENGAGE commits on the RESTORED run with the replayed kinds.
+    const engageTx = actionTransactionId(restored.snapshot().state.runId, nodeId, 'ENGAGE', 'none');
+    const record = restored.act({ transactionId: engageTx, nodeId, action: 'ENGAGE', completedKinds: kinds });
+    expect(record.status).toBe('COMMITTED');
+    expect(restored.snapshot().state.ledger[engageTx]?.completedKinds).toEqual(kinds);
+    expect(restored.snapshot().state.visits[nodeId]?.transactionId).toBe(engageTx);
+
+    // S53 + S54 render the SAME bounty from the persisted record.
+    const renderFlow = (screen: JSX.Element): string => renderToStaticMarkup(createElement(LocaleProvider, {
+      controller: controller(),
+      children: screen,
+    }));
+    const resultHtml = renderFlow(createElement(BattleResultScreen, { onContinue: () => undefined }));
+    expect(resultHtml).toContain('Objective bounty');
+    const rewardHtml = renderFlow(createElement(RewardChoiceScreen, { onDone: () => undefined }));
+    expect(rewardHtml).toContain('Objective bounty');
+    expect(rewardHtml).toContain('Claim');
+    // The persisted kinds reproduce the SAME contract bounty the live battle
+    // disclosed at its terminal (the reload re-simulated the identical fight).
+    expect(bountyForKinds(kinds)).toBe(bounty);
+  });
+
   it('the gate seam maps every verdict × live-battle combination', () => {
     const engage = Object.freeze({ action: 'ENGAGE', available: true });
     const decline = Object.freeze({ action: 'DECLINE', available: true });

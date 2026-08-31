@@ -69,6 +69,22 @@ export class RunManager {
     return instance;
   }
 
+  /**
+   * Boot a manager on a PREDEFINED map (host/test seam: content hosts that
+   * already hold a map — e.g. a battle node relabeled to a specific encounter
+   * payload — can launch the manager on it without re-generating). The store
+   * restore path (`restore()`) still regenerates the map deterministically and
+   * the mapHash guard rejects any tampered/relabeled map, so this seam cannot
+   * smuggle a mismatched map past persistence.
+   */
+  static boot(map: ExpeditionMap, startGold = 100): RunManager {
+    instance?.dispose();
+    const runner = createAndSaveExpedition(map, { startGold });
+    instance = new RunManager(runner, map);
+    notifyActiveListeners();
+    return instance;
+  }
+
   /** Restore from the stored save. Returns null when no valid save exists. */
   static restore(): RunManager | null {
     const meta = readMeta();

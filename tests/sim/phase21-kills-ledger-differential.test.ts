@@ -162,6 +162,83 @@ describe('P21 §9 kill-total ledger differential', () => {
     }
   });
 
+  it('a FULL-GRAPH multi-fight walk (side branches included — battle/elite/boss mixed) keeps the kills fold exact at every step', () => {
+    // The main-path walk proves the fold on the guaranteed chain; this walk
+    // covers EVERY node of the map. The greedy-last rule (take the LAST
+    // unvisited reachable node) threads every side branch (ids sort after the
+    // main-path ids), so elite nodes — which only spawn as side-branch normal
+    // slots — genuinely appear alongside battle and the level-5 boss. Victories
+    // and defeats are mixed per step; the clean-room fold over ALL committed
+    // ENGAGEs must equal `killsEarned` after every enter/act/resolve/advance.
+    for (const seed of [500, 503, 508]) {
+      const map = mapFor(seed);
+      let exp = createExpedition(map, { startGold: 300 });
+      const nodeTypes = new Map<string, string>();
+      const visited = new Set<string>();
+      let victories = 0;
+      let defeats = 0;
+      let eliteFights = 0;
+      let guard = 0;
+      const assertFold = (label: string): void => {
+        expect(exp.state.killsEarned, `${label} killsEarned === oracle fold (seed ${String(seed)})`).toBe(oracleKillsFold(exp.state, nodeTypes));
+      };
+      while (guard < 200) {
+        const type = exp.definition.type;
+        const nodeId = exp.currentNodeId;
+        visited.add(nodeId);
+        nodeTypes.set(nodeId, type);
+        exp = exp.enter(`kg-${String(seed)}-e-${String(guard)}`);
+        assertFold(`after ENTER ${nodeId}`);
+        if (type === 'battle' || type === 'elite' || type === 'boss') {
+          if (type === 'elite') eliteFights += 1;
+          const victory = guard % 3 !== 0;
+          exp = exp.act({
+            transactionId: `kg-${String(seed)}-a-${String(guard)}`,
+            nodeId,
+            action: victory ? 'ENGAGE' : 'ENGAGE_DEFEAT',
+            ...(victory ? { completedKinds: ['kill_regulars'] } : {}),
+          });
+          assertFold(`after ${victory ? 'ENGAGE' : 'ENGAGE_DEFEAT'} ${nodeId}`);
+          if (victory) victories += 1;
+          else defeats += 1;
+          // Replay the verdict (idempotent — nothing may move) and, for a
+          // defeat, retreat (also nothing).
+          exp = exp.act({
+            transactionId: `kg-${String(seed)}-a-${String(guard)}`,
+            nodeId,
+            action: victory ? 'ENGAGE' : 'ENGAGE_DEFEAT',
+            ...(victory ? { completedKinds: ['kill_regulars'] } : {}),
+          });
+          assertFold(`after verdict replay ${nodeId}`);
+          if (!victory) {
+            exp = exp.act({ transactionId: `kg-${String(seed)}-d-${String(guard)}`, nodeId, action: 'DECLINE' });
+            assertFold(`after retreat ${nodeId}`);
+          }
+        } else {
+          exp = exp.act({ transactionId: `kg-${String(seed)}-a-${String(guard)}`, nodeId, action: 'DECLINE' });
+          assertFold(`after DECLINE ${nodeId}`);
+        }
+        exp = exp.resolve();
+        assertFold(`after resolve ${nodeId}`);
+        // Greedy-last: take the LAST unvisited reachable node (side-branch ids
+        // sort after main-path ids) so every branch is threaded; when nothing
+        // is reachable the full graph is exhausted.
+        const candidates = exp.reachableNodes.filter((id) => !visited.has(id));
+        const next = candidates[candidates.length - 1];
+        if (next === undefined) break;
+        exp = exp.advance(next);
+        guard += 1;
+      }
+      // The walk genuinely covered the map: multiple fights, at least one
+      // elite side-branch fight and at least one defeat, all families mixed.
+      expect(visited.size).toBeGreaterThanOrEqual(7);
+      expect(victories).toBeGreaterThanOrEqual(2);
+      expect(eliteFights).toBeGreaterThanOrEqual(1);
+      expect(defeats).toBeGreaterThanOrEqual(1);
+      expect(exp.state.killsEarned).toBe(oracleKillsFold(exp.state, nodeTypes));
+    }
+  });
+
   it('a defeat and a retreat add ZERO kills (the fold counts only victory ENGAGEs)', () => {
     let exp = createExpedition(mapFor(610), { startGold: 300 });
     let guard = 0;
