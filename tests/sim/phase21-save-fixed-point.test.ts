@@ -21,6 +21,7 @@ import type { ExpeditionMap, MapProfile } from '../../src/game/expedition/types.
 import { decodeExpeditionSave, encodeExpeditionSave, restoreExpeditionSave } from '../../src/game/expedition/expedition-save.js';
 import { readMeta, restoreStoredExpedition, saveExpedition } from '../../src/game/expedition/expedition-store.js';
 import type { ExpeditionRunner } from '../../src/game/expedition/expedition-runner.js';
+import type { MapNode, MapEdge, NodeType, NodeRole, NodeId } from '../../src/game/expedition/types.js';
 
 // The store-layer fixed-point tests drive `expedition-store` (saveExpedition /
 // restoreStoredExpedition), which persist through localStorage.
@@ -129,6 +130,69 @@ function restoreChain(seed: number, runner: ExpeditionRunner): void {
 }
 
 const STORE_KEY = 'rw.expedition.v1';
+const SYNTH_PROFILE: MapProfile = {
+  id: 'exp-synth.v1',
+  logicalLevels: 6,
+  targetVisited: [5, 8] as const,
+  mandatoryRoles: ['anchor', 'preparation', 'boss'],
+  attemptCap: 50,
+  fallbackTemplateId: 'fallback.v1',
+};
+
+/** A valid map for exporting `type` at the start node, chain n0→…→n5 (boss). */
+function syntheticMapFor(type: NodeType): ExpeditionMap {
+  // Each start-node previewKey must be a legal payload for its handler.
+  const previewKey: string =
+    type === 'event' ? 'event-01'
+    : type === 'story' ? 'chapter-01'
+    : type === 'treasure' ? 'treasure'
+    : type === 'workshop' ? 'iron_sword'
+    : type === 'altar' ? 'relic_undertaker'
+    : `${type}.synth`;
+  const roles: readonly NodeRole[] = ['start', 'preparation', 'anchor', 'normal', 'normal', 'boss'];
+  const types: readonly NodeType[] = ['boss', 'elite', 'event', 'merchant', 'scout', 'boss'];
+  const nodes: MapNode[] = [0, 1, 2, 3, 4, 5].map((level, index): MapNode => {
+    const id = `n${String(index)}`;
+    return {
+      id,
+      level,
+      type: index === 0 ? type : (types[index] ?? 'battle'),
+      role: roles[index] ?? 'normal',
+      previewKey: index === 0 ? previewKey : `${id}.preview`,
+      instabilityDelta: 0,
+    };
+  });
+  const edges: MapEdge[] = [0, 1, 2, 3, 4].map((from, index): MapEdge => ({
+    id: `e${String(index)}`,
+    from: `n${String(from)}`,
+    to: `n${String(from + 1)}`,
+  }));
+  return {
+    profileId: SYNTH_PROFILE.id,
+    seed: 77_001,
+    contentRevision: '32.0',
+    nodes,
+    edges,
+    startNodeId: 'n0' as NodeId,
+    bossNodeId: 'n5' as NodeId,
+    usedFallback: false,
+    attempts: Math.max(6, SYNTH_PROFILE.targetVisited[0]),
+    mapHash: `synth-${type}`,
+  };
+}
+
+/** The terminal action for each handler (always legal on a fresh OPEN visit). */
+function synthTerminalAction(type: NodeType): string {
+  switch (type) {
+    case 'battle':
+    case 'elite':
+    case 'boss': return 'ENGAGE';
+    case 'treasure': return 'TAKE';
+    case 'scout': return 'REVEAL_PATH';
+    case 'story': return 'CONTINUE';
+    default: return 'DECLINE';
+  }
+}
 
 describe('P21 §9.5 monolithic save fixed-point battery', () => {
   it('a full mixed-ledger run is a fixed point: encode → decode → re-encode is byte-identical', () => {
@@ -231,5 +295,32 @@ describe('P21 §9.5 monolithic save fixed-point battery', () => {
     // And re-saving the restored victory is byte-identical again.
     saveExpedition(restoredVictory);
     expect(store.get(STORE_KEY)).toBe(firstVictory);
+  });
+
+  it('the store fixed point holds under EVERY one of the 12 node handlers', { timeout: 60_000 }, () => {
+    const all: readonly NodeType[] = ['battle', 'elite', 'boss', 'event', 'merchant', 'recruitment', 'treasure', 'workshop', 'altar', 'scout', 'anchor', 'story'];
+    for (const type of all) {
+      store.clear();
+      const map = syntheticMapFor(type);
+      let exp = createExpedition(map, { startGold: 500 });
+      const nodeId = exp.currentNodeId;
+      exp = exp.enter(`synth-e-${type}`).act({ transactionId: `synth-a-${type}`, nodeId, action: synthTerminalAction(type) }).resolve();
+      // Enter + a handOFF terminal committed for THIS handler.
+      expect(exp.state.ledger[`synth-e-${type}`]?.status).toBe('COMMITTED');
+      // The start-node snapshot carries the handler's persisted shape (REWARD /
+      // OFFERS / EVENT / none) — whatever it is must round-trip byte-identically.
+      saveExpedition(exp);
+      const first = store.get(STORE_KEY);
+      if (first === undefined) throw new Error(`store save wrote nothing for ${type}`);
+      const restored = restoreStoredExpedition(map);
+      if (restored === null) throw new Error(`store restore failed for ${type}`);
+      expect(encodeExpeditionSave(restored), `${type} restored encodes === stored`).toBe(first);
+      saveExpedition(restored);
+      expect(store.get(STORE_KEY), `${type} re-save byte-identical`).toBe(first);
+      // The meta envelope survives too.
+      const meta = readMeta();
+      expect(meta?.mapHash).toBe(map.mapHash);
+      expect(meta?.mapSeed).toBe(map.seed);
+    }
   });
 });

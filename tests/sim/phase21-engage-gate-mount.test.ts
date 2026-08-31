@@ -316,6 +316,65 @@ describe('P21 §9 ENGAGE-gate component wiring', () => {
     expect(rewardHtml).toContain('Claim');
   });
 
+  it('a reward CLAIM on the reloaded run grants the loot once and never double-grants (component-level)', () => {
+    // §9 component-level claim after a mid-flow reload: the ENGAGE is
+    // persisted; on reload the active manager is RESTORED. The RewardChoiceScreen
+    // renders the Claim affordances for the restored reward snapshot, and a
+    // CLAIM through the RESTORED run grants the node's loot EXACTLY once — a
+    // replay of the same claim and a second distinct claim are both rejected,
+    // and the claimed loot survives another save/restore.
+    const mgr = enteredCombatManager(308);
+    const snap = mgr.snapshot();
+    const engageTx = actionTransactionId(snap.state.runId, snap.currentNodeId, 'ENGAGE', 'none');
+    mgr.act({ transactionId: engageTx, nodeId: snap.currentNodeId, action: 'ENGAGE', completedKinds: ['kill_regulars'] });
+
+    // RELOAD (mid-flow, before the claim): boot path restores the active manager.
+    const restored = RunManager.restore();
+    expect(restored).not.toBeNull();
+    const rSnap = restored?.snapshot();
+    const rNodeId = rSnap?.currentNodeId ?? '';
+    const rSnp = rSnap?.state.snapshots[rNodeId];
+    if (restored === null || rSnap === undefined || rSnp === undefined || rSnp.kind !== 'REWARD') {
+      throw new Error('restored run has no reward snapshot');
+    }
+    const optionId = rSnp.rewardIds[0];
+    if (optionId === undefined) throw new Error('no option id');
+    const lootBefore = rSnap.state.unsecuredLoot;
+
+    // The screen renders the Claim affordance for the restored reward.
+    const html = renderToStaticMarkup(createElement(LocaleProvider, {
+      controller: controller(),
+      children: createElement(RewardChoiceScreen, { onDone: () => undefined }),
+    }));
+    expect(html).toContain('Choose Reward');
+    expect(html).toContain('Claim');
+
+    // CLAIM through the RESTORED run grants the node-pinned loot exactly once.
+    const claimTx = actionTransactionId(rSnap.state.runId, rNodeId, 'CLAIM_REWARD', optionId);
+    restored.act({ transactionId: claimTx, nodeId: rNodeId, action: 'CLAIM_REWARD', optionId });
+    const claimed = restored.snapshot();
+    expect(claimed.state.unsecuredLoot.length).toBe(lootBefore.length + 1);
+    // The claimed reward ids ARE the node-pinned `reward:<nodeId>:<index>`. ✅
+    expect(claimed.state.unsecuredLoot).toContain(optionId);
+
+    // REPLAY of the same claim → nothing (exactly-once across the reload).
+    restored.act({ transactionId: claimTx, nodeId: rNodeId, action: 'CLAIM_REWARD', optionId });
+    expect(restored.snapshot().state.unsecuredLoot).toEqual(claimed.state.unsecuredLoot);
+    expect(restored.snapshot().state.gold).toBe(claimed.state.gold);
+
+    // A SECOND distinct claim on the restored run is REJECTED and grants nothing.
+    const secondTx = actionTransactionId(rSnap.state.runId, rNodeId, 'CLAIM_REWARD', 'other');
+    const secondRecord = restored.act({ transactionId: secondTx, nodeId: rNodeId, action: 'CLAIM_REWARD', optionId });
+    expect(secondRecord?.status).toBe('REJECTED');
+    expect(restored.snapshot().state.unsecuredLoot).toEqual(claimed.state.unsecuredLoot);
+    expect(restored.snapshot().state.gold).toBe(claimed.state.gold);
+
+    // DURABILITY: the claimed loot survives a second save/restore.
+    const restored2 = RunManager.restore();
+    expect(restored2?.snapshot().state.unsecuredLoot).toEqual(claimed.state.unsecuredLoot);
+    expect(restored2?.snapshot().state.gold).toBe(claimed.state.gold);
+  });
+
   it('after a mid-fight REFRESH the restored NodeScreen re-creates the same live battle and keeps ENGAGE gated', () => {
     // §9 mid-fight refresh: ENTER is committed and persisted (visit COMMITTED,
     // REWARD snapshot placed, no ENGAGE claimed); a page refresh drops the

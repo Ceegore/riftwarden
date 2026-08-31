@@ -232,6 +232,41 @@ function auditLootCell(seed: number, kinds: readonly string[], label: string): v
   expect(replay.state.unsecuredLoot).toEqual(committed.state.unsecuredLoot);
 }
 
+/**
+ * KILLS-FOLD grid cell: committing `kinds` on a REAL node of `family` adds
+ * EXACTLY the family's deterministic kills amount (battle 3+slot%4, elite /
+ * boss 5+slot%8) — independent of the completed-kind set (the kills leg and
+ * the bounty leg are orthogonal), moved exactly once (replay + a second
+ * ENGAGE add nothing). This is the kills leg proven cell-by-cell across the
+ * family × encounter grid, alongside the gold and loot legs.
+ */
+function auditKillsCell(family: 'battle' | 'elite' | 'boss', seed: number, kinds: readonly string[], label: string): void {
+  const walked = walkToFamily(seed, family);
+  if (walked === null) throw new Error(`no ${family} node for ${label}`);
+  let exp = walked;
+  const nodeId = exp.currentNodeId;
+  exp = exp.enter(`sw-kills-${label}`);
+  const snap = exp.state.snapshots[nodeId];
+  if (snap === undefined || snap.kind !== 'REWARD') throw new Error(`no REWARD snapshot at ${nodeId}`);
+  const familyIsBattle = family === 'battle';
+  const expectedKills = (familyIsBattle ? 3 : 5) + ((snap.rollSlots['gold'] ?? 0) % (familyIsBattle ? 4 : 8));
+  const killsBefore = exp.state.killsEarned;
+  const bountyBefore = exp.state.gold;
+  const tx = `sw-kills-engage-${label}`;
+  const committed = exp.act({ transactionId: tx, nodeId, action: 'ENGAGE', completedKinds: kinds });
+  expect(committed.state.ledger[tx]?.status, `${label} engages`).toBe('COMMITTED');
+  // KILLS: exactly the family amount, independent of the kinds carried.
+  expect(committed.state.killsEarned - killsBefore, `${label} kills = family fold`).toBe(expectedKills);
+  // The bounty STILL arrives alongside (kills ≠ bounty, both move on one cell).
+  expect(committed.state.gold - bountyBefore).toBe(baseGoldFor(family, snap.rollSlots) + bountyForKinds(kinds));
+  // EXACTLY-ONCE: replay grants no second kills, and a second ENGAGE is rejected.
+  const replay = committed.act({ transactionId: tx, nodeId, action: 'ENGAGE', completedKinds: kinds });
+  expect(replay.state.killsEarned, `${label} replay kills`).toBe(committed.state.killsEarned);
+  const second = committed.act({ transactionId: `sw-kills-engage2-${label}`, nodeId, action: 'ENGAGE', completedKinds: kinds });
+  expect(second.state.ledger[`sw-kills-engage2-${label}`]?.status, `${label} second engage`).toBe('REJECTED');
+  expect(second.state.killsEarned, `${label} second kills`).toBe(committed.state.killsEarned);
+}
+
 /** Deterministic battle seed whose persisted loot roll lands the 35% chance. */
 function battleSeedWithLoot(granted: boolean, start: number): number {
   for (let seed = start; seed <= 4000; seed += 1) {
@@ -359,5 +394,35 @@ describe('P21 §9.5 wallet audit sweep across all nine content encounters', () =
     // Sanity: the grid really exercised BOTH column outcomes.
     expect(grantedSeeds.length).toBe(2);
     expect(deniedSeeds.length).toBe(2);
+  });
+
+  it('the KILLS fold is dense cell-by-cell: every family × every encounter kinds set adds the family kills fold, exactly once', { timeout: 60_000 }, () => {
+    // Invert the family-anchored audit for the KILLS leg: every family × every
+    // encounter's completed kinds, on a real node of that family, moves the
+    // kills ledger by EXACTLY the family's deterministic fold — independent of
+    // the kinds (kills ≠ bounty), once only. Two seeds per family prove the
+    // fold varies with the node slot while the formula holds in every cell;
+    // both a victory with completed kinds AND an empty-kind ENGAGE land the
+    // same kills (the kinds never leak into the kills leg).
+    const families = ['battle', 'elite', 'boss'] as const;
+    const seeds: Readonly<Record<'battle' | 'elite' | 'boss', readonly number[]>> = {
+      battle: [familySeedFor('battle'), familySeed('battle', 1401)],
+      elite: [familySeedFor('elite'), familySeed('elite', 1401)],
+      boss: [familySeedFor('boss'), familySeed('boss', 1401)],
+    };
+    let cells = 0;
+    for (const family of families) {
+      for (const seed of seeds[family]) {
+        for (const entry of CONTENT_ENCOUNTERS.values()) {
+          auditKillsCell(family, seed, kindsFor(entry), `${family}@${String(seed)}:${entry.id}`);
+          cells += 1;
+        }
+        // Empty-kind ENGAGE: the kills fold is kind-blind.
+        auditKillsCell(family, seed, [], `${family}@${String(seed)}:empty`);
+        cells += 1;
+      }
+    }
+    // 3 families × 2 seeds × (9 encounters + empty) cells.
+    expect(cells).toBe(3 * 2 * 10);
   });
 });
