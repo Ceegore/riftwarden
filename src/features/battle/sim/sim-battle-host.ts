@@ -22,6 +22,7 @@ import type { BossPhaseSnapshot, PhaseDefinition } from '../../../game/sim/boss/
 import { buildBossObject, buildBossObjectBody } from '../../../game/sim/boss/boss-object-manager.js';
 import { migrateEntity } from '../../../game/sim/core/migrate.js';
 import { roundDivHalfAwayFromZero } from '../../../game/sim/math/rounding.js';
+import { numberSecondsToTicks } from '../../../game/sim/math/time-and-speed.js';
 import { stepBattle } from '../../../game/sim/core/battle-kernel.js';
 import { sequence, tick } from '../../../game/sim/core/primitives.js';
 import { createPhase17Systems } from '../../../game/sim/core/phase17-systems.js';
@@ -278,6 +279,11 @@ function buildBattle(entry: ContentEncounterEntry, launch: ReturnType<typeof bui
   });
 }
 
+/** Recovery ticks of the sustain-collapse tank attack (the §10 collapse
+ * test rig mirrors the launcher's teeth exactly — derived via
+ * numberSecondsToTicks, never a drifting literal). */
+const TANK_ATTACK_RECOVERY_TICKS: number = numberSecondsToTicks(0.1).ticks;
+
 function systemsFor(entry: ContentEncounterEntry, launch: ReturnType<typeof buildEncounterLaunchConfig>): readonly KernelSystem[] {
   // §8.3/§10 sustain-collapse: the tank must ATTACK the player (rawAmount 150
   // — the net-negative in-window intake) and both sides focus-fire each other
@@ -287,7 +293,7 @@ function systemsFor(entry: ContentEncounterEntry, launch: ReturnType<typeof buil
   const attackFor = (rawAmount: number) => Object.freeze({
     attackIntervalTicks: 10,
     prepareTicks: 1,
-    recoveryTicks: 3,
+    recoveryTicks: TANK_ATTACK_RECOVERY_TICKS,
     preferredRangeX100: asX100(9000),
     delivery: { kind: 'direct' as const, rawAmount, damageTypeOrdinal: 0, defense: 0, bossCapBps: null },
   });
