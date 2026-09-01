@@ -1,0 +1,80 @@
+[
+  {
+    "letter": "A",
+    "priority": 0,
+    "key": "finalize_previous",
+    "description": "Vorherigen Tick abschließen, immutable input übernehmen, Pause prüfen"
+  },
+  {
+    "letter": "B",
+    "priority": 10,
+    "key": "timers",
+    "description": "Dauer, Cooldown, Charge, Lebenszeit dekrementieren; Ablauf markieren"
+  },
+  {
+    "letter": "C",
+    "priority": 20,
+    "key": "periodic",
+    "description": "Periodische Status- und feste Weltereignisse fällig stellen"
+  },
+  {
+    "letter": "D",
+    "priority": 30,
+    "key": "triggers",
+    "description": "Phasen-, Schwellen-, Once- und Reaktionstrigger planen"
+  },
+  {
+    "letter": "E",
+    "priority": 40,
+    "key": "targeting",
+    "description": "Ziele validieren, Locks respektieren, Query neu bewerten"
+  },
+  {
+    "letter": "F",
+    "priority": 50,
+    "key": "movement",
+    "description": "Lanewechsel, Bewegung, Collision und Stopdistanz"
+  },
+  {
+    "letter": "G",
+    "priority": 60,
+    "key": "cast_progress",
+    "description": "Angriffs- und Castvorbereitung fortschreiben"
+  },
+  {
+    "letter": "H",
+    "priority": 70,
+    "key": "resolve_committed",
+    "description": "Treffer, Projektile, AoE, Heilung, Schilde, Kontrolle, Dispel einreihen"
+  },
+  {
+    "letter": "I",
+    "priority": 80,
+    "key": "apply_effects",
+    "description": "Schaden, Heilung, Schilde und Status anwenden"
+  },
+  {
+    "letter": "J",
+    "priority": 90,
+    "key": "death_resolution",
+    "description": "Null-LP, Prevention, Revive, OnDefeated und Remove auflösen"
+  },
+  {
+    "letter": "K",
+    "priority": 100,
+    "key": "spawn",
+    "description": "Summons, Constructs und Reinforcements spawnen"
+  },
+  {
+    "letter": "L",
+    "priority": 110,
+    "key": "end_resolution",
+    "description": "Bossphase, Objective, Sieg/Niederlage/Doppelniederlage"
+  },
+  {
+    "letter": "M",
+    "priority": 120,
+    "key": "snapshot",
+    "description": "Snapshot/Hash, RenderEvents und Statistikakkumulator"
+  }
+]

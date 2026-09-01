@@ -37,10 +37,31 @@ export interface NativeSaveWriteResult {
   readonly sha256: string;
 }
 
+export interface NativeSaveEnvelopePayload {
+  readonly family: 'profile' | 'run' | 'settings' | 'battle';
+  readonly commitId: number;
+  readonly envelopeJson: string;
+  readonly expectedSha256: string;
+}
+
+export interface NativeSaveInspectResult {
+  readonly activeSlot: 'A' | 'B' | 'C';
+  readonly commitId: number;
+  readonly slots: readonly ('A' | 'B' | 'C')[];
+}
+
+export interface NativeSaveLoadResult {
+  readonly envelopeJson: string;
+}
+
 export interface NativeSaveStorePlugin {
   getBridgeInfo(): Promise<BridgeInfo>;
   read(options: NativeSaveReadOptions): Promise<NativeSaveReadResult>;
   writeAtomic(options: NativeSaveWriteOptions): Promise<NativeSaveWriteResult>;
+  commit(options: NativeSaveEnvelopePayload): Promise<{ readonly slot: 'A' | 'B' | 'C' }>;
+  load(options: { readonly family: 'profile' | 'run' | 'settings' | 'battle' }): Promise<NativeSaveLoadResult>;
+  inspect(options: { readonly family: 'profile' | 'run' | 'settings' | 'battle' }): Promise<NativeSaveInspectResult>;
+  cleanupOrphans(): Promise<{ readonly removed: readonly string[] }>;
 }
 
 export interface SaveTransferPickResult {

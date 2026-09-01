@@ -1,0 +1,393 @@
+{
+  "schemaVersion": 1,
+  "entityType": "encounter",
+  "entities": [
+    {
+      "id": "encounter_fixture_first",
+      "regionId": "region_fixture",
+      "kind": "normal",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [
+        "mod_fixture_frenzy",
+        "mod_fixture_onslaught"
+      ],
+      "reinforcementWaves": [],
+      "objective": "defeat_all",
+      "bossUnitId": null,
+      "survivalDurationSeconds": null,
+      "bossObjects": [],
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_first.preview",
+      "allowedModes": [
+        "campaign"
+      ]
+    },
+    {
+      "id": "encounter_fixture_protect_object",
+      "regionId": "region_fixture",
+      "kind": "boss",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [],
+      "reinforcementWaves": [],
+      "objective": "protect_object",
+      "bossUnitId": null,
+      "survivalDurationSeconds": null,
+      "bossObjects": [
+        {
+          "entityId": "obj_ash_heart",
+          "side": "player",
+          "ownerId": "player_garrison",
+          "sourceId": "content_ash",
+          "slotId": "boss_slot_0",
+          "lane": "middle",
+          "x100": 5000,
+          "targetable": true,
+          "objectiveLink": "obj_protect_heart",
+          "damagePolicy": "normal",
+          "statusPolicy": "allow",
+          "cleanupPolicy": "on_battle_end",
+          "fallback": "FAIL",
+          "maxLp": 500,
+          "radiusX100": 110
+        }
+      ],
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_protect_object.preview",
+      "allowedModes": [
+        "campaign"
+      ]
+    },
+    {
+      "id": "encounter_fixture_survive",
+      "regionId": "region_fixture",
+      "kind": "survival",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [
+        "mod_fixture_vanguard"
+      ],
+      "reinforcementWaves": [
+        {
+          "atSeconds": 10,
+          "encounterId": "encounter_fixture_first"
+        }
+      ],
+      "objective": "survive",
+      "bossUnitId": null,
+      "survivalDurationSeconds": 30,
+      "bossObjects": [],
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_survive.preview",
+      "allowedModes": [
+        "campaign"
+      ]
+    },
+    {
+      "id": "encounter_fixture_waves",
+      "regionId": "region_fixture",
+      "kind": "survival",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [],
+      "reinforcementWaves": [
+        {
+          "atSeconds": 5,
+          "encounterId": "encounter_fixture_first"
+        },
+        {
+          "atSeconds": 15,
+          "encounterId": "encounter_fixture_first"
+        }
+      ],
+      "objective": "complete_waves",
+      "bossUnitId": null,
+      "survivalDurationSeconds": null,
+      "bossObjects": [],
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_waves.preview",
+      "allowedModes": [
+        "campaign"
+      ]
+    },
+    {
+      "id": "encounter_fixture_boss_object",
+      "regionId": "region_fixture",
+      "kind": "boss",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [],
+      "reinforcementWaves": [],
+      "objective": "defeat_boss",
+      "bossPhases": [
+        {
+          "id": "phase_ash_1",
+          "priority": 1,
+          "minHpPermille": 501,
+          "maxHpPermille": 1001
+        },
+        {
+          "id": "phase_ash_2",
+          "priority": 2,
+          "minHpPermille": 251,
+          "maxHpPermille": 501,
+          "invulnerableTicks": 5
+        },
+        {
+          "id": "phase_ash_3",
+          "priority": 3,
+          "minHpPermille": 0,
+          "maxHpPermille": 251
+        }
+      ],
+      "bossUnitId": "boss_ash_unit",
+      "survivalDurationSeconds": null,
+      "bossObjects": [
+        {
+          "entityId": "obj_ash_core",
+          "side": "enemy",
+          "ownerId": "boss_ash_unit",
+          "sourceId": "content_ash",
+          "slotId": "boss_slot_0",
+          "lane": "middle",
+          "x100": 5000,
+          "targetable": true,
+          "objectiveLink": null,
+          "damagePolicy": "normal",
+          "statusPolicy": "allow",
+          "cleanupPolicy": "on_battle_end",
+          "fallback": "FAIL",
+          "maxLp": 800,
+          "radiusX100": 120
+        },
+        {
+          "entityId": "obj_ash_ward",
+          "side": "enemy",
+          "ownerId": "boss_ash_unit",
+          "sourceId": "content_ash",
+          "slotId": "boss_slot_1",
+          "lane": "top",
+          "x100": 7600,
+          "targetable": true,
+          "objectiveLink": null,
+          "damagePolicy": "shield_only",
+          "statusPolicy": "block",
+          "cleanupPolicy": "on_battle_end",
+          "fallback": "FAIL",
+          "maxLp": 600,
+          "radiusX100": 110
+        }
+      ],
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_boss_object.preview",
+      "allowedModes": [
+        "campaign"
+      ]
+    },
+    {
+      "id": "encounter_fixture_boss_duo",
+      "regionId": "region_fixture",
+      "kind": "boss",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [],
+      "reinforcementWaves": [],
+      "objective": "defeat_boss",
+      "bossPhases": [
+        {
+          "id": "phase_duo_p1",
+          "priority": 1,
+          "minHpPermille": 501,
+          "maxHpPermille": 1001
+        },
+        {
+          "id": "phase_duo_p2",
+          "priority": 2,
+          "minHpPermille": 251,
+          "maxHpPermille": 501,
+          "invulnerableTicks": 5
+        },
+        {
+          "id": "phase_duo_p3",
+          "priority": 3,
+          "minHpPermille": 0,
+          "maxHpPermille": 251
+        }
+      ],
+      "bossUnitId": "boss_ash_unit",
+      "bossPhasesSecondary": [
+        {
+          "id": "phase_duo_q1",
+          "priority": 1,
+          "minHpPermille": 601,
+          "maxHpPermille": 1001
+        },
+        {
+          "id": "phase_duo_q2",
+          "priority": 2,
+          "minHpPermille": 0,
+          "maxHpPermille": 601
+        }
+      ],
+      "bossUnitIdSecondary": "boss_ember_unit",
+      "survivalDurationSeconds": null,
+      "bossObjects": [],
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_boss_duo.preview",
+      "allowedModes": [
+        "campaign"
+      ]
+    },
+    {
+      "id": "encounter_fixture_wave_boss",
+      "regionId": "region_fixture",
+      "kind": "boss",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [],
+      "reinforcementWaves": [
+        {
+          "atSeconds": 1,
+          "encounterId": "encounter_fixture_first"
+        },
+        {
+          "atSeconds": 4,
+          "encounterId": "encounter_fixture_first"
+        }
+      ],
+      "objective": "defeat_boss",
+      "bossPhases": [
+        {
+          "id": "phase_wb_1",
+          "priority": 1,
+          "minHpPermille": 501,
+          "maxHpPermille": 1001
+        },
+        {
+          "id": "phase_wb_2",
+          "priority": 2,
+          "minHpPermille": 251,
+          "maxHpPermille": 501,
+          "invulnerableTicks": 5
+        },
+        {
+          "id": "phase_wb_3",
+          "priority": 3,
+          "minHpPermille": 0,
+          "maxHpPermille": 251
+        }
+      ],
+      "bossUnitId": "boss_ash_unit",
+      "survivalDurationSeconds": null,
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_wave_boss.preview",
+      "allowedModes": [
+        "campaign"
+      ]
+    },
+    {
+      "id": "encounter_fixture_heal_sustain",
+      "regionId": "region_fixture",
+      "kind": "survival",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [
+        "mod_fixture_lifesteal"
+      ],
+      "reinforcementWaves": [],
+      "objective": "heal_sustain",
+      "healSustainCount": 1000,
+      "bossPhases": [],
+      "bossPhasesSecondary": [],
+      "bossUnitId": null,
+      "bossUnitIdSecondary": null,
+      "survivalDurationSeconds": null,
+      "bossObjects": [],
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_heal_sustain.preview",
+      "allowedModes": [
+        "campaign"
+      ]
+    },
+    {
+      "id": "encounter_fixture_sustain_collapse",
+      "regionId": "region_fixture",
+      "kind": "survival",
+      "enemySlots": [
+        {
+          "unitId": "enemy_fixture_echo",
+          "lane": "middle",
+          "depth": "front",
+          "eliteId": null
+        }
+      ],
+      "modifierIds": [
+        "mod_fixture_lifesteal"
+      ],
+      "reinforcementWaves": [],
+      "objective": "heal_sustain",
+      "healSustainCount": 80000,
+      "softLimitSeconds": 60,
+      "bossPhases": [],
+      "bossPhasesSecondary": [],
+      "bossUnitId": null,
+      "bossUnitIdSecondary": null,
+      "survivalDurationSeconds": null,
+      "bossObjects": [],
+      "rewardTableId": "reward_fixture_basic",
+      "previewDisclosureKey": "content.encounter.encounter_fixture_sustain_collapse.preview",
+      "allowedModes": [
+        "campaign"
+      ]
+    }
+  ]
+}

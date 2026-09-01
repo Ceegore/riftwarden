@@ -1,0 +1,34 @@
+{
+  "vectors": [
+    {
+      "canonical": "{\"a\":2,\"z\":1}",
+      "id": "key-order",
+      "input": {
+        "a": 2,
+        "z": 1
+      }
+    },
+    {
+      "canonical": "{\"a\":true,\"b\":[3,{\"x\":1,\"y\":2}]}",
+      "id": "nested",
+      "input": {
+        "a": true,
+        "b": [
+          3,
+          {
+            "x": 1,
+            "y": 2
+          }
+        ]
+      }
+    },
+    {
+      "canonical": "{\"a\":\"\\n\",\"ä\":\"✓\"}",
+      "id": "unicode",
+      "input": {
+        "a": "\n",
+        "ä": "✓"
+      }
+    }
+  ]
+}

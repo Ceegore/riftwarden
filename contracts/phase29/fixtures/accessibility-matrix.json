@@ -1,0 +1,19 @@
+{
+  "inputs": [
+    "TOUCH",
+    "KEYBOARD",
+    "GAMEPAD",
+    "TALKBACK",
+    "VOICEOVER"
+  ],
+  "textScalePercent": [
+    100,
+    200
+  ],
+  "requirements": [
+    "NO_COLOR_ONLY",
+    "NO_AUDIO_ONLY",
+    "NO_CANVAS_ONLY",
+    "FOCUS_ORDER"
+  ]
+}

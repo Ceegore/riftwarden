@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 1,
+  "family": "ascensionRanks",
+  "category": "supplementaryAuthoritative",
+  "expectedCount": 10,
+  "entries": [
+    {
+      "slotId": "ascensionRanks:001",
+      "authorityLabel": "Rang 1 - Der erste Schritt",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "27.3",
+        "lineStart": 1750,
+        "lineEnd": 1750,
+        "lineSha256": "f48d8a31c0c63962c49d6478fd6dfa61d5dc546b3d3024f4069c3861a442d620"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "ascensionRanks:002",
+      "authorityLabel": "Rang 2 - Früher Ärger",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "27.3",
+        "lineStart": 1751,
+        "lineEnd": 1751,
+        "lineSha256": "207ea6d1436814acf74fdf3cf2f54ea33eb709c81976fe99668bf12625b314f4"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "ascensionRanks:003",
+      "authorityLabel": "Rang 3 - Unruhiger Boden",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "27.3",
+        "lineStart": 1752,
+        "lineEnd": 1752,
+        "lineSha256": "f8cd5842e4c2db794d146e75141b24098c7d1b714653d6d259e1cebcd1ec8103"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "ascensionRanks:004",
+      "authorityLabel": "Rang 4 - Neue Tricks",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "27.3",
+        "lineStart": 1753,
+        "lineEnd": 1753,
+        "lineSha256": "7f7155ba4a9dea290918e6aec056927426ff7817f265f51a5e4d61a11248c721"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "ascensionRanks:005",
+      "authorityLabel": "Rang 5 - Champions",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "27.3",
+        "lineStart": 1754,
+        "lineEnd": 1754,
+        "lineSha256": "70bfd71174b1c1973d9d3bc757892b65eab0f407e81c2abe5cef857f1e379105"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "ascensionRanks:006",
+      "authorityLabel": "Rang 6 - Knappe Auswahl",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "27.3",
+        "lineStart": 1755,
+        "lineEnd": 1755,
+        "lineSha256": "e71f2a1975de6607f66b82816806ef300b0901450f498a3a3b5a938eb2203e6d"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "ascensionRanks:007",
+      "authorityLabel": "Rang 7 - Organisierte Gegner",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "27.3",
+        "lineStart": 1756,
+        "lineEnd": 1756,
+        "lineSha256": "3ac550c79c632e9ec4bb44020c22ccd324bcf4cc2b659a0dff76758445b3a588"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "ascensionRanks:008",
+      "authorityLabel": "Rang 8 - Instabil",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "27.3",
+        "lineStart": 1757,
+        "lineEnd": 1757,
+        "lineSha256": "782b188cb91c950f7bc7d57d1fb5196ceeb0c0d2e6a4eceb6c2232dc388ef8ce"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "ascensionRanks:009",
+      "authorityLabel": "Rang 9 - Zweite Vorstellung",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "27.3",
+        "lineStart": 1758,
+        "lineEnd": 1758,
+        "lineSha256": "5dbf655577a50c3f5146b20982c6276b152a03405d2b1768de060f08998599de"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "ascensionRanks:010",
+      "authorityLabel": "Rang 10 - Die große Verknotung",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "27.3",
+        "lineStart": 1759,
+        "lineEnd": 1759,
+        "lineSha256": "f2190803f6a32a0f5358c157981bec8eefbb921cffd92f57304be9222b4f0c6d"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    }
+  ]
+}

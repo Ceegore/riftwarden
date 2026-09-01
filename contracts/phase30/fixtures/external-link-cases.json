@@ -1,0 +1,19 @@
+[
+  {
+    "url": "https://support.example.invalid",
+    "release": false,
+    "allowed": false
+  },
+  {
+    "url": "http://example.com",
+    "allowed": false
+  },
+  {
+    "url": "javascript:alert(1)",
+    "allowed": false
+  },
+  {
+    "url": "https://approved.example.com/privacy",
+    "allowed": true
+  }
+]

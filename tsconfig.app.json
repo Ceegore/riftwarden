@@ -25,6 +25,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
+      "pixi.js": [
+        "src/features/battle-render/pixi-types.d.ts"
+      ],
       "@app/*": [
         "src/app/*"
       ],
@@ -64,7 +67,15 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
+    "content/schemas/**/*.ts",
     "tests/**/*.ts",
     "tests/**/*.tsx"
+  ],
+  "exclude": [
+    "tests/rules/type-fixtures/**/*.ts",
+    "tests/math/type-fixtures/**/*.ts",
+    "tests/random/type-fixtures/**/*.ts",
+    "tests/replay/type-fixtures/**/*.ts",
+    "tests/sim/type-fixtures/**/*.ts"
   ]
 }

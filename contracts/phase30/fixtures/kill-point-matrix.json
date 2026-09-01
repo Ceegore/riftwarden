@@ -1,0 +1,38 @@
+[
+  {
+    "flow": "settings-apply",
+    "point": "before-temp"
+  },
+  {
+    "flow": "settings-apply",
+    "point": "after-temp"
+  },
+  {
+    "flow": "settings-apply",
+    "point": "before-replace"
+  },
+  {
+    "flow": "settings-apply",
+    "point": "after-replace"
+  },
+  {
+    "flow": "settings-apply",
+    "point": "before-publish"
+  },
+  {
+    "flow": "first-run",
+    "point": "before-settings"
+  },
+  {
+    "flow": "first-run",
+    "point": "after-settings"
+  },
+  {
+    "flow": "first-run",
+    "point": "before-completion"
+  },
+  {
+    "flow": "first-run",
+    "point": "after-completion"
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "originalAuthority": {
+    "developmentPlanV2": "69bcb6aab1d82a319331e3ec446ec3918502bee5f1ff19d74598ed40c107c4e6",
+    "gddV5": "f550bdf33f3c23787156c0b138f42d29958c84e1dcda562010fbb0874f9d6ed9"
+  },
+  "packageSourceCopies": {
+    "inputs/sources/DEVELOPMENT_PLAN_V2_PHASE10_EXTRACT.md": "993203d6c66fcd24cf897728964b37ec6d80b9a86c9c1c4dcb004de9b126b058",
+    "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md": "bd66585dcd836f77a511e64e579d48b7925f2985be19c12662635d9811994e73",
+    "inputs/sources/GDD_V5_GLOBAL_AUTHORITY_EXTRACT.md": "432bbd30888bab76531e6a2278ddebfbcbce227d0b6d4df9910060e323a66cf8",
+    "inputs/sources/DEVELOPMENT_PLAN_V2_PHASE11_EXTRACT.md": "a508f0389b5e93e5dee6d10c57456dfda94b17d0d2a0e54eea6425a5d216b1b7",
+    "inputs/sources/GDD_V5_PHASE11_AUTHORITY_EXTRACT.md": "d1a2ed688e690e1939aaf0bcf3e131cd9aa214494dfd3441d53188ad0eadc5ce"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "simulationTicksPerSecond": 30,
+  "renderTargetFramesPerSecond": 60,
+  "maxCatchUpTicksPerRenderFrame": 8,
+  "positionScaleX100": 100,
+  "positionMinX100": 0,
+  "positionMaxX100": 10000,
+  "milliValueScale": 1000,
+  "basisPointsScale": 10000,
+  "basisPointsNormalMin": 0,
+  "basisPointsNormalMax": 50000,
+  "phaseTransitionDefaultTicks": 45,
+  "resolvingEndMaxTicks": 3,
+  "maxSafeInteger": 9007199254740991
+}

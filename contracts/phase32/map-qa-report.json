@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "phase": 32,
+  "kind": "full-generator-qa",
+  "contentRevision": "32.0",
+  "kernelSha256": "1528487bbce2dad4a9f18e525c73d895431b2ed96d352f1057f8d6339a73d01a",
+  "profiles": 80,
+  "mapsPerProfile": 1250,
+  "generated": 100000,
+  "expected": 100000,
+  "failures": [],
+  "failureCount": 0,
+  "zeroStructuralViolations": true,
+  "typeCoverage": [
+    "altar",
+    "anchor",
+    "battle",
+    "boss",
+    "elite",
+    "event",
+    "merchant",
+    "recruitment",
+    "scout",
+    "treasure",
+    "workshop"
+  ],
+  "missingTypes": [
+    "story"
+  ],
+  "allTypesReachable": false,
+  "parallelMergeStable": true,
+  "parallelDivergence": {
+    "profileId": "",
+    "seed": -1
+  }
+}

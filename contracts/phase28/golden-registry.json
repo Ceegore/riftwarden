@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "gate": "G28",
+  "generatedBy": "tools/sim/phase28-golden-harness.mjs --write",
+  "note": "Baselines are canonical deterministic-map semantics of the expedition contract layer. Changes require an explicit --write review; CI never writes.",
+  "profileId": "slice.act1.standard",
+  "contentRevision": "test-content-revision",
+  "gateSampleMaps": 10000,
+  "kernelSha256": "b879b0b1d6ff53a09c35e18f25499ca58346979d5537a09182e9e9da9e02052d",
+  "entries": [
+    {
+      "caseId": "golden-00",
+      "seed": 1000,
+      "profileId": "slice.act1.standard",
+      "mapHash": "e69192b759b2bbb420179eada9a614acfec950a838dfb76c02586334eec2ee05",
+      "nodeCount": 9,
+      "edgeCount": 11,
+      "mainPathLength": 6,
+      "startNodeId": "n0_420",
+      "bossNodeId": "n5_876",
+      "bossReachable": true,
+      "usedFallback": false,
+      "attempts": 1,
+      "roles": {
+        "anchor": true,
+        "preparation": true,
+        "boss": true
+      }
+    },
+    {
+      "caseId": "golden-01",
+      "seed": 1001,
+      "profileId": "slice.act1.standard",
+      "mapHash": "7b112d1680cd8bc56d75dc5320b1252b54e6b1fe3244fa68a5e81da25a3777bd",
+      "nodeCount": 9,
+      "edgeCount": 11,
+      "mainPathLength": 6,
+      "startNodeId": "n0_771",
+      "bossNodeId": "n5_919",
+      "bossReachable": true,
+      "usedFallback": false,
+      "attempts": 1,
+      "roles": {
+        "anchor": true,
+        "preparation": true,
+        "boss": true
+      }
+    },
+    {
+      "caseId": "golden-02",
+      "seed": 1002,
+      "profileId": "slice.act1.standard",
+      "mapHash": "9a572541d781d30ace5a2d692b802b9b7eee52565209c7bdd829b8e6f1cbd307",
+      "nodeCount": 7,
+      "edgeCount": 7,
+      "mainPathLength": 6,
+      "startNodeId": "n0_329",
+      "bossNodeId": "n5_932",
+      "bossReachable": true,
+      "usedFallback": false,
+      "attempts": 1,
+      "roles": {
+        "anchor": true,
+        "preparation": true,
+        "boss": true
+      }
+    },
+    {
+      "caseId": "golden-03",
+      "seed": 1003,
+      "profileId": "slice.act1.standard",
+      "mapHash": "512e614d2ad473541d849eb9198f960025ffef626dd7592a5b4ca4aba311cbc3",
+      "nodeCount": 10,
+      "edgeCount": 13,
+      "mainPathLength": 6,
+      "startNodeId": "n0_227",
+      "bossNodeId": "n5_594",
+      "bossReachable": true,
+      "usedFallback": false,
+      "attempts": 1,
+      "roles": {
+        "anchor": true,
+        "preparation": true,
+        "boss": true
+      }
+    },
+    {
+      "caseId": "golden-04",
+      "seed": 1004,
+      "profileId": "slice.act1.standard",
+      "mapHash": "b6654506b274b3e83bdca33ce04d58ace7f173b73d1c773928e50e470633bde3",
+      "nodeCount": 10,
+      "edgeCount": 13,
+      "mainPathLength": 6,
+      "startNodeId": "n0_857",
+      "bossNodeId": "n5_477",
+      "bossReachable": true,
+      "usedFallback": false,
+      "attempts": 1,
+      "roles": {
+        "anchor": true,
+        "preparation": true,
+        "boss": true
+      }
+    },
+    {
+      "caseId": "golden-05",
+      "seed": 1005,
+      "profileId": "slice.act1.standard",
+      "mapHash": "b8c63bf9b46f5f394df917d429b4d0ccfb266e82489aa03a9a29ee01f1564092",
+      "nodeCount": 10,
+      "edgeCount": 13,
+      "mainPathLength": 6,
+      "startNodeId": "n0_015",
+      "bossNodeId": "n5_389",
+      "bossReachable": true,
+      "usedFallback": false,
+      "attempts": 1,
+      "roles": {
+        "anchor": true,
+        "preparation": true,
+        "boss": true
+      }
+    },
+    {
+      "caseId": "golden-06",
+      "seed": 1006,
+      "profileId": "slice.act1.standard",
+      "mapHash": "80f17e55c0b386fe7e7ad7652a8926728ac7f8e0c48c5313a23656634f086d00",
+      "nodeCount": 11,
+      "edgeCount": 15,
+      "mainPathLength": 6,
+      "startNodeId": "n0_355",
+      "bossNodeId": "n5_086",
+      "bossReachable": true,
+      "usedFallback": false,
+      "attempts": 1,
+      "roles": {
+        "anchor": true,
+        "preparation": true,
+        "boss": true
+      }
+    },
+    {
+      "caseId": "golden-07",
+      "seed": 1007,
+      "profileId": "slice.act1.standard",
+      "mapHash": "b1215f9882ace07cfc61781c929c7bb54fd5bdefa2c377ab58ace49a7b195edc",
+      "nodeCount": 9,
+      "edgeCount": 11,
+      "mainPathLength": 6,
+      "startNodeId": "n0_853",
+      "bossNodeId": "n5_743",
+      "bossReachable": true,
+      "usedFallback": false,
+      "attempts": 1,
+      "roles": {
+        "anchor": true,
+        "preparation": true,
+        "boss": true
+      }
+    },
+    {
+      "caseId": "golden-08",
+      "seed": 1008,
+      "profileId": "slice.act1.standard",
+      "mapHash": "f678fadd8bfb0f16805071d350e776de87e7e558c1e8fdf3805c39d40a5c9b52",
+      "nodeCount": 11,
+      "edgeCount": 15,
+      "mainPathLength": 6,
+      "startNodeId": "n0_595",
+      "bossNodeId": "n5_928",
+      "bossReachable": true,
+      "usedFallback": false,
+      "attempts": 1,
+      "roles": {
+        "anchor": true,
+        "preparation": true,
+        "boss": true
+      }
+    },
+    {
+      "caseId": "golden-09",
+      "seed": 1009,
+      "profileId": "slice.act1.standard",
+      "mapHash": "3c46e77769946002bebff164d66e6768ee936e7fb36afdf9de49980c6f098c35",
+      "nodeCount": 10,
+      "edgeCount": 13,
+      "mainPathLength": 6,
+      "startNodeId": "n0_994",
+      "bossNodeId": "n5_396",
+      "bossReachable": true,
+      "usedFallback": false,
+      "attempts": 1,
+      "roles": {
+        "anchor": true,
+        "preparation": true,
+        "boss": true
+      }
+    },
+    {
+      "caseId": "golden-10",
+      "seed": 1010,
+      "profileId": "slice.act1.standard",
+      "mapHash": "ce7df37bc0907836a945c97f1d21d551ef1a3768763df65cbbd70b762a292964",
+      "nodeCount": 10,
+      "edgeCount": 13,
+      "mainPathLength": 6,
+      "startNodeId": "n0_397",
+      "bossNodeId": "n5_031",
+      "bossReachable": true,
+      "usedFallback": false,
+      "attempts": 1,
+      "roles": {
+        "anchor": true,
+        "preparation": true,
+        "boss": true
+      }
+    },
+    {
+      "caseId": "golden-11",
+      "seed": 1011,
+      "profileId": "slice.act1.standard",
+      "mapHash": "c936bd7e4c81565df1a17eaeed0cf78222a70a8dbd70261b61b3ff4bb293e7ae",
+      "nodeCount": 11,
+      "edgeCount": 15,
+      "mainPathLength": 6,
+      "startNodeId": "n0_927",
+      "bossNodeId": "n5_490",
+      "bossReachable": true,
+      "usedFallback": false,
+      "attempts": 1,
+      "roles": {
+        "anchor": true,
+        "preparation": true,
+        "boss": true
+      }
+    }
+  ]
+}

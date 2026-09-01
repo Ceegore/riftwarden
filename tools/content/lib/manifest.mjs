@@ -1,0 +1,7 @@
+import crypto from "node:crypto"; import fs from "node:fs/promises"; import path from "node:path";
+import { canonicalJson, stableCompare } from "./canonical-json.mjs"; import { fail } from "./diagnostic.mjs";
+export const sha256=(bytes)=>crypto.createHash("sha256").update(bytes).digest("hex");
+export async function createManifest(outDir,{simulationVersion,localeVersions,validationProfile}){ const names=(await fs.readdir(outDir)).filter((n)=>n.endsWith(".json")&&n!=="manifest.json").sort(stableCompare); const files=[]; const counts={};
+ for(const name of names){ const bytes=await fs.readFile(path.join(outDir,name)); const value=JSON.parse(bytes); files.push({path:name,sha256:sha256(bytes),byteLength:bytes.length,entityType:value.entityType}); counts[value.entityType]=(counts[value.entityType]??0)+value.entities.length; }
+ const contentVersion=sha256(Buffer.from(canonicalJson(files.map(({path,sha256,byteLength,entityType})=>({path,sha256,byteLength,entityType}))))); return {schemaVersion:1,contentVersion,simulationVersion,localeVersions,validationProfile,counts,files}; }
+export async function verifyManifest(outDir,manifest){ const recreated=await createManifest(outDir,manifest); if(recreated.contentVersion!==manifest.contentVersion)fail("P09_CONTENT_VERSION","Content version mismatch"); if(JSON.stringify(recreated.files)!==JSON.stringify(manifest.files))fail("P09_MANIFEST_HASH","Manifest files mismatch"); if(JSON.stringify(recreated.counts)!==JSON.stringify(manifest.counts))fail("P09_MANIFEST_COUNT","Manifest counts mismatch"); return true; }

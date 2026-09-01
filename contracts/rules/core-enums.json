@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "enums": {
+    "Side": [
+      "player",
+      "enemy"
+    ],
+    "Lane": [
+      "top",
+      "middle",
+      "bottom"
+    ],
+    "Depth": [
+      "front",
+      "middle",
+      "back"
+    ],
+    "UnitCategory": [
+      "hero",
+      "troop",
+      "summon",
+      "enemy",
+      "boss",
+      "boss_object"
+    ],
+    "RoleTag": [
+      "defender",
+      "fighter",
+      "breaker",
+      "duelist",
+      "marksman",
+      "mage",
+      "healer",
+      "support",
+      "summoner",
+      "controller",
+      "constructor"
+    ],
+    "DamageType": [
+      "physical",
+      "magical",
+      "true"
+    ],
+    "TargetKind": [
+      "enemy_unit",
+      "allied_unit",
+      "self",
+      "ground_position",
+      "summon_slot",
+      "boss_object"
+    ],
+    "AbilityKind": [
+      "passive",
+      "basic_attack",
+      "signature",
+      "level3_once",
+      "boss",
+      "modifier",
+      "item"
+    ],
+    "StatusKind": [
+      "shield",
+      "attack_up",
+      "attack_speed_up",
+      "move_speed_up",
+      "resistance_up",
+      "regeneration",
+      "burn",
+      "poison",
+      "slow",
+      "weaken",
+      "silence",
+      "stun",
+      "mark",
+      "confusion"
+    ],
+    "StackPolicy": [
+      "replace_if_stronger",
+      "refresh_duration",
+      "extend_duration_capped",
+      "independent_by_source",
+      "no_reapply"
+    ],
+    "Difficulty": [
+      "explorer",
+      "normal",
+      "veteran"
+    ],
+    "RunMode": [
+      "campaign",
+      "campaign_replay",
+      "ascension",
+      "beyond",
+      "endless"
+    ],
+    "QualityTier": [
+      "auto",
+      "high",
+      "medium",
+      "low"
+    ],
+    "SaveCommitReason": [
+      "profile_change",
+      "node_entered",
+      "decision_committed",
+      "battle_started",
+      "battle_snapshot",
+      "battle_finished",
+      "reward_committed",
+      "run_finished",
+      "settings_changed",
+      "manual_backup"
+    ],
+    "RecoveryReason": [
+      "none",
+      "newest_slot_invalid",
+      "run_invalid",
+      "content_mismatch",
+      "migration_failed",
+      "renderer_unavailable",
+      "insufficient_storage"
+    ]
+  }
+}

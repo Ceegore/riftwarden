@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "roundingSeed": "0x12345678",
+  "mulDivSeed": "0x00000007",
+  "minimumCasesPerInvariant": 1000,
+  "failurePersistenceRequired": true
+}

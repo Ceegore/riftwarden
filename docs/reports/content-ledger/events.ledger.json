@@ -1,0 +1,1058 @@
+{
+  "schemaVersion": 1,
+  "family": "events",
+  "category": "gateCritical",
+  "expectedCount": 30,
+  "entries": [
+    {
+      "slotId": "events:001",
+      "authorityLabel": "Verlassene Waffenkammer",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.2",
+        "lineStart": 1083,
+        "lineEnd": 1083,
+        "lineSha256": "aed43ad800d88791e0e1a6585866f322a720c69d152a4ee3380324a077d1f3b9"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:002",
+      "authorityLabel": "Der verwundete Söldner",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.3",
+        "lineStart": 1090,
+        "lineEnd": 1090,
+        "lineSha256": "7e426ad6169e78cfb80ded98c7d15958eaf822563a6ee120685da60f45ca186f"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:003",
+      "authorityLabel": "Flüsternder Altar",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.4",
+        "lineStart": 1097,
+        "lineEnd": 1097,
+        "lineSha256": "f546840062f95f732edc59fc36ff57afde74f87c8791fa48b2b5e15a55033ff8"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:004",
+      "authorityLabel": "Pips hervorragende Abkürzung",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.5",
+        "lineStart": 1104,
+        "lineEnd": 1104,
+        "lineSha256": "f55ab55f7c7b3131cf1d403d406dae57ecfc35937ffc6119a9dc3764964d6a56"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:005",
+      "authorityLabel": "Der beleidigte Händler",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.6",
+        "lineStart": 1111,
+        "lineEnd": 1111,
+        "lineSha256": "e0171582641a3f51a7aa40f73eeb45b3ee70b2e72061851d4da65563d0444b2f"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:006",
+      "authorityLabel": "Die riesige Picknickdecke",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.7",
+        "lineStart": 1118,
+        "lineEnd": 1118,
+        "lineSha256": "1fbd4b494ef9c08c3092f3d9990dbb01159365008ccd88c80de13fb2e9ac7b82"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:007",
+      "authorityLabel": "Falsch zusammengesetztes Skelett",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.8",
+        "lineStart": 1125,
+        "lineEnd": 1125,
+        "lineSha256": "229e15cd90f89b6d7433e560a0284dffaac917eef6a76e2290ebc7ac3fdf726f"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:008",
+      "authorityLabel": "Der rauchende Wegweiser",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.9",
+        "lineStart": 1132,
+        "lineEnd": 1132,
+        "lineSha256": "9af137764fe17db89614db767a83aef65ae42c610e9cb0f97f1f39334cc017fb"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:009",
+      "authorityLabel": "Die letzte Parade",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.10",
+        "lineStart": 1139,
+        "lineEnd": 1139,
+        "lineSha256": "94b3b569586a7b3abee175f06d59302c6c45fc537219eaf55ecc1f379c134c64"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:010",
+      "authorityLabel": "Krone im Staub",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.11",
+        "lineStart": 1146,
+        "lineEnd": 1146,
+        "lineSha256": "4d4c7027a67a8477d3e0fbc1f34d1ea0c8f607f02eefedd9697e583691a734f0"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:011",
+      "authorityLabel": "Hungrige Ranken",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.12",
+        "lineStart": 1153,
+        "lineEnd": 1153,
+        "lineSha256": "cd8675007e6e520c3d815db49af616997d8c0ed2062f37c5351dfc49533e11b4"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:012",
+      "authorityLabel": "Das höfliche Wolfsrudel",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.13",
+        "lineStart": 1160,
+        "lineEnd": 1160,
+        "lineSha256": "91b454a4a3d15784ea43de2cccaa6907061f3f4b7f29edbecf6812abd88744c0"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:013",
+      "authorityLabel": "Schlafende Heilblüte",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.14",
+        "lineStart": 1167,
+        "lineEnd": 1167,
+        "lineSha256": "73889f980f29451cd3dda56fab4991a45cf2462a2a514b541d3f3e8b98ac4f72"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:014",
+      "authorityLabel": "Pollenorakel",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.15",
+        "lineStart": 1174,
+        "lineEnd": 1174,
+        "lineSha256": "5331a013830afb00db0c73797a2abec7cab9d29abaf44a8b5d96ebdb01b33d86"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:015",
+      "authorityLabel": "Der unmögliche Teich",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.16",
+        "lineStart": 1181,
+        "lineEnd": 1181,
+        "lineSha256": "9c2c5849b336032b1486f3e19f810c042a11eb7ce19310cd37f6df58fc1be33c"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:016",
+      "authorityLabel": "Streikende Zahnräder",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.17",
+        "lineStart": 1188,
+        "lineEnd": 1188,
+        "lineSha256": "cac6353d09e99bf294a049c86cad04a1c0ef51a51442280dc816a218abc03e96"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:017",
+      "authorityLabel": "Der viel zu große Knopf",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.18",
+        "lineStart": 1195,
+        "lineEnd": 1195,
+        "lineSha256": "d88096f08bc0185aee6f1709719be48c1d7209f488c195902a0f576ba8d297fc"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:018",
+      "authorityLabel": "Runenprüfstelle",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.19",
+        "lineStart": 1202,
+        "lineEnd": 1202,
+        "lineSha256": "6b4a86e1fdcb58e2c473ed5a2859a60179b1be111c9b6fe0a7a0aec9f85340c2"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:019",
+      "authorityLabel": "Abgekühlter Ofenkern",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.20",
+        "lineStart": 1209,
+        "lineEnd": 1209,
+        "lineSha256": "ac5a32d3862c58eeac6f913aff14205bb0d1ea5c82992740acbb20a12c3d56cf"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:020",
+      "authorityLabel": "Mechaniker ohne Plan",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.21",
+        "lineStart": 1216,
+        "lineEnd": 1216,
+        "lineSha256": "c6059f20a81ad7e09a742e10c84fa72fa4b74beb4842d1f3bce8c4880926f1b9"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:021",
+      "authorityLabel": "Die Tür von gestern",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.22",
+        "lineStart": 1223,
+        "lineEnd": 1223,
+        "lineSha256": "0e3d2492abdd94624fdadb634caa4c2735642e603f493f3a52414317d1b4ddc7"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:022",
+      "authorityLabel": "Drei identische Pips",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.23",
+        "lineStart": 1230,
+        "lineEnd": 1230,
+        "lineSha256": "c2f6f879d75565ba4ff83538c35a31ddacf8603982c7a2bc2e3d01e8ba7ca0ae"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:023",
+      "authorityLabel": "Redigierte Schatzkarte",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.24",
+        "lineStart": 1237,
+        "lineEnd": 1237,
+        "lineSha256": "74b71742870bb2b144c06bab931ea328d434eaa77ec86a80177ae1e7a2d415e8"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:024",
+      "authorityLabel": "Stillgelegte Zukunft",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.25",
+        "lineStart": 1244,
+        "lineEnd": 1244,
+        "lineSha256": "dc3710315783ba8d52f2e93c2915df5dd7cc440c1de3b41f3d4256817c0333b8"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:025",
+      "authorityLabel": "Der Spiegel, der zuerst blinzelt",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.26",
+        "lineStart": 1251,
+        "lineEnd": 1251,
+        "lineSha256": "d7a0a57b9a6187625356699c2932887241326f3980a7ddfbe9e998de25383b39"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:026",
+      "authorityLabel": "Anker mit Schluckauf",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.27",
+        "lineStart": 1258,
+        "lineEnd": 1258,
+        "lineSha256": "d017541b690aa06fd45fc88acee1ba4e387a9ded44826e55dc05a315ca2c1b0f"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:027",
+      "authorityLabel": "Die singende Rüstung",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.28",
+        "lineStart": 1265,
+        "lineEnd": 1265,
+        "lineSha256": "2b11f41d1728852897981abb06a67e496866bc2089e6f31c88b915d6d514656e"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:028",
+      "authorityLabel": "Riftpost ohne Empfänger",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.29",
+        "lineStart": 1272,
+        "lineEnd": 1272,
+        "lineSha256": "e35e902b26c02047e127367ee52e8ab284aa37143ead6f3b47f2d80a396b9744"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:029",
+      "authorityLabel": "Tauschbörse der Echos",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.30",
+        "lineStart": 1279,
+        "lineEnd": 1279,
+        "lineSha256": "512aab6f263630b2c383986d85fbe8f696faea557efffbcf195da6d903dfead1"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "events:030",
+      "authorityLabel": "Die letzte sichere Bank",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "20.31",
+        "lineStart": 1286,
+        "lineEnd": 1286,
+        "lineSha256": "009376c8a7c2febdd033a1b2b2170d1e4cd5eef7bcf1c9c7e9c6bc8146955f85"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "phase": 42,
+  "gate": "G42",
+  "evidence": {
+    "constants": "contracts/phase42/phase42-constants.json",
+    "modules": [],
+    "auditReports": [
+      "contracts/phase42/privacy-audit-report.md",
+      "contracts/phase42/license-compliance-report.md",
+      "contracts/phase42/network-audit-report.md"
+    ]
+  },
+  "hardBlockers": [
+    "P42_G42_G41_GATE_BLOCKED",
+    "P42_G42_NO_PRIVACY_AUDIT_EXECUTED",
+    "P42_G42_NO_LICENSE_COMPLIANCE_REVIEW",
+    "P42_G42_NO_NETWORK_AUDIT_EXECUTED",
+    "P42_G42_NO_OFFLINE_FUNCTIONALITY_EVIDENCE",
+    "P42_G42_NO_INDEPENDENT_SECURITY_REVIEW"
+  ]
+}

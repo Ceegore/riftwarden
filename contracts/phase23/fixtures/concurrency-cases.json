@@ -1,0 +1,31 @@
+{
+  "cases": [
+    {
+      "id": "mixed-no-loss",
+      "requests": [
+        "profile",
+        "reward",
+        "settings",
+        "run",
+        "purchase"
+      ]
+    },
+    {
+      "expectedWrittenWaitingTick": 210,
+      "id": "snapshot-coalesce",
+      "ticks": [
+        150,
+        151,
+        180,
+        210
+      ]
+    },
+    {
+      "id": "different-family-no-coalesce",
+      "requests": [
+        "battle:profile-a:150",
+        "battle:profile-b:180"
+      ]
+    }
+  ]
+}

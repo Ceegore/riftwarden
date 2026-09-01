@@ -14,7 +14,7 @@ concurrency:
 
 env:
   CI: 'true'
-  RIFTWARDEN_IMPLEMENTATION_PHASE: '3'
+  RIFTWARDEN_IMPLEMENTATION_PHASE: '17'
 
 jobs:
   active_security:
@@ -84,7 +84,47 @@ jobs:
           pnpm verify:phase02
       - name: Frozen dependency install
         run: pnpm install --frozen-lockfile
-      - run: pnpm test:sim:mass
+      - run: pnpm sim:mass
+
+  crossruntime_drift:
+    name: Nightly / cross-runtime-drift
+    if: vars.RIFTWARDEN_PHASE_14_SIM_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout exact PR head
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Set up exact Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - name: Enable Corepack and verify tool versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          corepack enable
+          node --version
+          pnpm --version
+          pnpm verify:repo
+          pnpm verify:phase02
+      - name: Frozen dependency install
+        run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium firefox webkit
+      - name: Run cross-runtime matrix (fails on engine drift)
+        run: pnpm sim:crossruntime:browsers
+      - name: Upload cross-runtime evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: riftwarden-nightly-crossruntime-${{ github.run_id }}-${{ github.run_attempt }}
+          path: docs/reports/phase14-crossruntime.json
+          if-no-files-found: warn
+          include-hidden-files: false
+          retention-days: 30
 
   dungeon_fuzzing:
     name: Nightly / dungeon-fuzzing

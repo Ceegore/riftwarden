@@ -1,0 +1,10 @@
+{
+  "presets": [
+    "standard",
+    "defensive",
+    "offensive",
+    "custom"
+  ],
+  "missingPolicy": "skip_and_report",
+  "substitution": false
+}

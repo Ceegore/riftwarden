@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "phase": 39,
+  "contentRevision": "39.0",
+  "sampleRate": 48000,
+  "bitDepth": 24,
+  "formatWeb": "ogg-vorbis",
+  "formatIos": "aac-lc-m4a",
+  "buses": {
+    "master": {
+      "defaultVolume": 80,
+      "label": "Master"
+    },
+    "music": {
+      "defaultVolume": 65,
+      "label": "Music"
+    },
+    "sfx": {
+      "defaultVolume": 80,
+      "label": "Sfx"
+    },
+    "voice": {
+      "defaultVolume": 80,
+      "label": "Voice"
+    },
+    "ui": {
+      "defaultVolume": 70,
+      "label": "Ui"
+    },
+    "ambient": {
+      "defaultVolume": 55,
+      "label": "Ambient"
+    }
+  },
+  "polyphony": {
+    "high": 24,
+    "medium": 16,
+    "low": 10
+  },
+  "cooldownMs": 60,
+  "crossfadeMs": {
+    "min": 600,
+    "max": 1000
+  },
+  "mixSpec": {
+    "musicLufs": -16,
+    "maxTruePeak": -1,
+    "sidechainMusicDb": 3,
+    "sidechainVoiceDb": 5
+  },
+  "localeParity": [
+    "de",
+    "en"
+  ]
+}

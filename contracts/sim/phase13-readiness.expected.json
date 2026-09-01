@@ -1,0 +1,16 @@
+{
+  "realG13Proven": false,
+  "mathRulesApiVerified": false,
+  "prngReplayApiVerified": false,
+  "contentTypesVerified": false,
+  "traceabilityLoaded": false,
+  "crossRuntimeEvidenceComplete": false,
+  "expectedBlockers": [
+    "P14_G13_NOT_PROVEN",
+    "P14_RULES_API_UNVERIFIED",
+    "P14_PRNG_REPLAY_API_UNVERIFIED",
+    "P14_CONTENT_TYPES_UNVERIFIED",
+    "P14_TRACEABILITY_MISSING",
+    "P14_CROSSRUNTIME_EVIDENCE_MISSING"
+  ]
+}

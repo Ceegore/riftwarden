@@ -1,0 +1,24 @@
+{
+  "expectation": "previous_manifest_and_slot_remain_loadable_until_manifest_commit",
+  "platforms": [
+    "web-qa",
+    "android-api24",
+    "android-current",
+    "ios15",
+    "ios-current"
+  ],
+  "steps": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ]
+}

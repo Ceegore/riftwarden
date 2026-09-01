@@ -11,6 +11,19 @@ import { validateEnvironment } from './tools/env/contracts.mjs';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 
+// Path aliases — must stay in sync with vitest.config.ts and tsconfig paths.
+const aliases = {
+  '@app': path.join(root, 'src/app'),
+  '@audio': path.join(root, 'src/audio'),
+  '@features': path.join(root, 'src/features'),
+  '@game': path.join(root, 'src/game'),
+  '@locales': path.join(root, 'src/locales'),
+  '@platform': path.join(root, 'src/platform'),
+  '@screens': path.join(root, 'src/screens'),
+  '@storage': path.join(root, 'src/storage'),
+  '@ui': path.join(root, 'src/ui'),
+};
+
 function sourceRevision() {
   try {
     return execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim();
@@ -47,6 +60,7 @@ export default defineConfig(({ mode }) => {
       sourcemap: env.channel === 'qa' ? 'hidden' : env.channel === 'dev',
       emptyOutDir: true,
     },
+    resolve: { alias: aliases },
     define: {
       __RW_BUILD_MANIFEST__: JSON.stringify({
         channel: env.channel,

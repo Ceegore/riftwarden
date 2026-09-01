@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vitest/config';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const aliases = {
+const aliasRoots = {
   '@app': path.join(root, 'src/app'),
   '@audio': path.join(root, 'src/audio'),
   '@features': path.join(root, 'src/features'),
@@ -14,6 +14,10 @@ const aliases = {
   '@storage': path.join(root, 'src/storage'),
   '@ui': path.join(root, 'src/ui'),
 };
+const aliases = Object.entries(aliasRoots).map(([find, replacement]) => ({
+  find: new RegExp(`^${find}/`),
+  replacement: `${replacement.replaceAll('\\\\', '/')}/`,
+}));
 
 export default defineConfig({
   resolve: { alias: aliases },
@@ -37,6 +41,38 @@ export default defineConfig({
     passWithNoTests: false,
     projects: [
       { test: { name: 'unit', include: ['tests/unit/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'rules', include: ['tests/rules/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'math', include: ['tests/math/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'random', include: ['tests/random/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'replay', include: ['tests/replay/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'kernel', include: ['tests/sim/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
+      { test: { name: 'phase15', include: ['tests/phase15/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase16', include: ['tests/sim/phase16-*.test.ts', 'tests/sim/reference-traces-phase16.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase17', include: ['tests/sim/phase17-*.test.ts', 'tests/sim/reference-traces-phase17*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase18', include: ['tests/sim/phase18-*.test.ts', 'tests/sim/reference-traces-phase18.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase19', include: ['tests/sim/phase19-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase20', include: ['tests/sim/phase20-*.test.ts', 'tests/sim/reference-traces-phase20.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase21', include: ['tests/sim/phase21-*.test.ts', 'tests/sim/reference-traces-phase21.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase22', include: ['tests/sim/phase22-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase23', include: ['tests/sim/phase23-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase24', include: ['tests/sim/phase24-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase25', include: ['tests/sim/phase25-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase26', include: ['tests/sim/phase26-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase27', include: ['tests/sim/phase27-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase28', include: ['tests/sim/phase28-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase29', include: ['tests/sim/phase29-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase30', include: ['tests/sim/phase30-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase31', include: ['tests/sim/phase31-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase32', include: ['tests/sim/phase32-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'], testTimeout: 15000 } },
+      { test: { name: 'phase33', include: ['tests/sim/phase33-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
+      { test: { name: 'phase34', include: ['tests/sim/phase34-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
+      { test: { name: 'phase35', include: ['tests/sim/phase35-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
+      { test: { name: 'phase36', include: ['tests/sim/phase36-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
+      { test: { name: 'phase37', include: ['tests/sim/phase37-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
+      { test: { name: 'phase38', include: ['tests/sim/phase38-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
+      { test: { name: 'phase39', include: ['tests/sim/phase39-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
+      { test: { name: 'phase40', include: ['tests/sim/phase40-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs', 'tests/setup/localstorage-mock.mjs'] } },
+      { test: { name: 'phase41', include: ['tests/sim/phase41-*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'simulation', include: ['tests/simulation/**/*.test.ts'], sequence: { concurrent: false }, setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
       { test: { name: 'integration', include: ['tests/integration/**/*.test.ts'], setupFiles: ['tests/setup/inject-build-manifest.mjs'] } },
     ],

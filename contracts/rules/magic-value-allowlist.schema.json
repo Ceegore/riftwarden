@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "riftwarden.phase11.magic-value-allowlist",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "entries"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "literal",
+          "lineSha256",
+          "helperTraceId",
+          "owner",
+          "reason",
+          "expiresOn"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "literal": {
+            "type": "number"
+          },
+          "lineSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "helperTraceId": {
+            "type": "string",
+            "pattern": "^P11-"
+          },
+          "owner": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 10
+          },
+          "expiresOn": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    }
+  }
+}

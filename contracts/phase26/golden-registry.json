@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "gate": "G26",
+  "generatedBy": "tools/sim/phase26-golden-harness.mjs --write",
+  "note": "Baselines are canonical speed/pause semantics of the HUD contract layer. Changes require an explicit --write review; CI never writes.",
+  "tickRate": 30,
+  "totalTicks": 400,
+  "controllerSha256": "3f2e6f1a3199e21abb1fabb9a87b50d64fa9a2a83e1f2ee4312506196ce38745",
+  "entries": [
+    {
+      "id": "baseline-unpaused",
+      "speed": 100,
+      "pauseAtTick": null,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": null,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    },
+    {
+      "id": "speed-pause-50-at-0",
+      "speed": 50,
+      "pauseAtTick": 0,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": 0,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    },
+    {
+      "id": "speed-pause-50-at-1",
+      "speed": 50,
+      "pauseAtTick": 1,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": 1,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    },
+    {
+      "id": "speed-pause-50-at-17",
+      "speed": 50,
+      "pauseAtTick": 17,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": 17,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    },
+    {
+      "id": "speed-pause-50-at-300",
+      "speed": 50,
+      "pauseAtTick": 300,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": 300,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    },
+    {
+      "id": "speed-pause-100-at-0",
+      "speed": 100,
+      "pauseAtTick": 0,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": 0,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    },
+    {
+      "id": "speed-pause-100-at-1",
+      "speed": 100,
+      "pauseAtTick": 1,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": 1,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    },
+    {
+      "id": "speed-pause-100-at-17",
+      "speed": 100,
+      "pauseAtTick": 17,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": 17,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    },
+    {
+      "id": "speed-pause-100-at-300",
+      "speed": 100,
+      "pauseAtTick": 300,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": 300,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    },
+    {
+      "id": "speed-pause-200-at-0",
+      "speed": 200,
+      "pauseAtTick": 0,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": 0,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    },
+    {
+      "id": "speed-pause-200-at-1",
+      "speed": 200,
+      "pauseAtTick": 1,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": 1,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    },
+    {
+      "id": "speed-pause-200-at-17",
+      "speed": 200,
+      "pauseAtTick": 17,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": 17,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    },
+    {
+      "id": "speed-pause-200-at-300",
+      "speed": 200,
+      "pauseAtTick": 300,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": 300,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    },
+    {
+      "id": "speed-pause-300-at-0",
+      "speed": 300,
+      "pauseAtTick": 0,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": 0,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    },
+    {
+      "id": "speed-pause-300-at-1",
+      "speed": 300,
+      "pauseAtTick": 1,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": 1,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    },
+    {
+      "id": "speed-pause-300-at-17",
+      "speed": 300,
+      "pauseAtTick": 17,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": 17,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    },
+    {
+      "id": "speed-pause-300-at-300",
+      "speed": 300,
+      "pauseAtTick": 300,
+      "expected": "SAME_CHECKPOINT_AND_END_HASH",
+      "presentedTicks": 400,
+      "pauseConfirmTick": 300,
+      "endHash": "0000000000000000000000000000000000000000000000000000000000000399",
+      "sequenceSha256": "61c7e6234e65fb5cce2355ea19e2867337eab0f6ef7092bc7e646da03f05ab8e"
+    }
+  ]
+}

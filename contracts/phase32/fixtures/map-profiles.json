@@ -1,0 +1,402 @@
+[
+  {
+    "mission": 1,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 1,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 1,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 1,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 2,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 2,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 2,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 2,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 3,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 3,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 3,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 3,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 4,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 4,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 4,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 4,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 5,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 5,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 5,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 5,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 6,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 6,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 6,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 6,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 7,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 7,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 7,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 7,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 8,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 8,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 8,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 8,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 9,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 9,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 9,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 9,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 10,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 10,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 10,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 10,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 11,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 11,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 11,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 11,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 12,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 12,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 12,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 12,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 13,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 13,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 13,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 13,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 14,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 14,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 14,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 14,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 15,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 15,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 15,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 15,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 16,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 16,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 16,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 16,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 17,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 17,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 17,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 17,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 18,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 18,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 18,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 18,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 19,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 19,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 19,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 19,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 20,
+    "mode": "NORMAL",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 20,
+    "mode": "NORMAL",
+    "unlockProfile": "FULL"
+  },
+  {
+    "mission": 20,
+    "mode": "ASCENSION",
+    "unlockProfile": "MINIMAL"
+  },
+  {
+    "mission": 20,
+    "mode": "ASCENSION",
+    "unlockProfile": "FULL"
+  }
+]

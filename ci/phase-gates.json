@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "currentImplementationPhase": 3,
+  "currentImplementationPhase": 17,
   "checks": [
     {
       "id": "bootstrap-versions",
@@ -103,6 +103,54 @@
       "ownerPhase": 4,
       "requiredFromPhase": 4,
       "command": "pnpm android:debug:smoke"
+    },
+    {
+      "id": "rules-gates",
+      "ownerPhase": 11,
+      "requiredFromPhase": 11,
+      "command": "pnpm test:rules && pnpm rules:audit && pnpm rules:validate-snapshots"
+    },
+    {
+      "id": "math-gates",
+      "ownerPhase": 12,
+      "requiredFromPhase": 12,
+      "command": "pnpm test:math && pnpm math:audit && pnpm math:validate-readiness"
+    },
+    {
+      "id": "random-gates",
+      "ownerPhase": 13,
+      "requiredFromPhase": 13,
+      "command": "pnpm test:random && pnpm random:audit && pnpm random:slots && pnpm random:golden && pnpm random:validate-readiness"
+    },
+    {
+      "id": "sim-gates",
+      "ownerPhase": 14,
+      "requiredFromPhase": 14,
+      "command": "pnpm test:kernel && pnpm kernel:audit && pnpm kernel:validate-readiness"
+    },
+    {
+      "id": "phase15-gates",
+      "ownerPhase": 15,
+      "requiredFromPhase": 15,
+      "command": "pnpm test:phase15 && pnpm phase15:validate-readiness"
+    },
+    {
+      "id": "phase16-gates",
+      "ownerPhase": 16,
+      "requiredFromPhase": 16,
+      "command": "pnpm test:phase16 && pnpm phase16:validate-readiness"
+    },
+    {
+      "id": "phase17-gates",
+      "ownerPhase": 17,
+      "requiredFromPhase": 17,
+      "command": "pnpm test:phase17 && pnpm phase17:validate-readiness"
+    },
+    {
+      "id": "crossruntime-gates",
+      "ownerPhase": 14,
+      "requiredFromPhase": 14,
+      "command": "pnpm sim:crossruntime:browsers"
     }
   ]
 }

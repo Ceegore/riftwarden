@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "phase": 41,
+  "gate": "G41",
+  "evidence": {
+    "constants": "contracts/phase41/phase41-constants.json",
+    "modules": [
+      "src/game/performance/auto-quality.ts",
+      "src/game/performance/gpu-budget.ts",
+      "src/game/performance/memory-profiler.ts"
+    ],
+    "tests": []
+  },
+  "hardBlockers": [
+    "P41_G41_G40_GATE_BLOCKED",
+    "P41_G41_NO_DEVICE_FRAME_TIME_MEASUREMENTS",
+    "P41_G41_NO_THERMAL_THROTTLE_DEVICE_EVIDENCE",
+    "P41_G41_NO_BUNDLE_ANALYSIS_REPORT",
+    "P41_G41_NO_MEMORY_LEAK_DETECTION_RUN"
+  ]
+}

@@ -1,0 +1,8 @@
+import test from "node:test";import assert from "node:assert/strict";import fs from "node:fs/promises";import path from "node:path";import { starterRoot } from "./test-helpers.mjs";
+async function files(dir){const out=[];for(const e of await fs.readdir(dir,{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isDirectory())out.push(...await files(p));else out.push(p);}return out;}
+test("source JSON has no comments",async()=>{for(const p of await files(path.join(starterRoot,"content/source"))){const t=await fs.readFile(p,"utf8");assert.equal(/^\s*\/\//m.test(t)||/\/\*/.test(t),false,p);}});
+test("no network APIs in content tools",async()=>{for(const p of await files(path.join(starterRoot,"tools/content"))){const t=await fs.readFile(p,"utf8");assert.equal(/\b(fetch|XMLHttpRequest|WebSocket)\s*\(/.test(t),false,p);}});
+test("no Math.random or Date.now",async()=>{for(const p of await files(path.join(starterRoot,"tools/content"))){const t=await fs.readFile(p,"utf8");assert.equal(/Math\.random|Date\.now/.test(t),false,p);}});
+test("source and generated paths disjoint",()=>assert.notEqual(path.resolve(starterRoot,"content/source"),path.resolve(starterRoot,"content/generated")));
+test("human source fixtures under 300 lines",async()=>{for(const p of await files(path.join(starterRoot,"content/source"))){const n=(await fs.readFile(p,"utf8")).split(/\r?\n/).length;assert.ok(n<=300,`${p}:${n}`);}});
+test("no localized display strings in source fields",async()=>{for(const p of await files(path.join(starterRoot,"content/source"))){const t=await fs.readFile(p,"utf8");assert.equal(/"(displayName|title|body|description)"\s*:/.test(t),false,p);}});

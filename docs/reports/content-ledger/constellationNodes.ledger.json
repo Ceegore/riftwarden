@@ -1,0 +1,988 @@
+{
+  "schemaVersion": 1,
+  "family": "constellationNodes",
+  "category": "gateCritical",
+  "expectedCount": 28,
+  "entries": [
+    {
+      "slotId": "constellationNodes:001",
+      "authorityLabel": "A1 – Erster Funke",
+      "authorityId": "A1",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1776,
+        "lineEnd": 1776,
+        "lineSha256": "22cefb21b68a8231b0501761f25203094704271922fb12e60812aa1a3d358ef6"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:002",
+      "authorityLabel": "A2 – Routenleser",
+      "authorityId": "A2",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1777,
+        "lineEnd": 1777,
+        "lineSha256": "db78e6db0f93076316128d2e4dc55a339009725fedb10ef7995719b69bfe7c34"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:003",
+      "authorityLabel": "A3 – Kleine Reserve",
+      "authorityId": "A3",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1778,
+        "lineEnd": 1778,
+        "lineSha256": "f76f7afdedeadbe9a7ebc190c568934debd2fc7bf7b426b520d3bb0d4f37d33f"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:004",
+      "authorityLabel": "A4 – Bunte Banner",
+      "authorityId": "A4",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1779,
+        "lineEnd": 1779,
+        "lineSha256": "ea35d32ae3194ac82f8a996bb72c79c80a1e36d996833758d2399ae73fc5dac7"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:005",
+      "authorityLabel": "B1 – Händlergeduld",
+      "authorityId": "B1",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1780,
+        "lineEnd": 1780,
+        "lineSha256": "2b79e15ad668b88ecbc81ba1634fb6d73bb0401e61ab476fda261972635af852"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:006",
+      "authorityLabel": "B2 – Offene Rekrutierung",
+      "authorityId": "B2",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1781,
+        "lineEnd": 1781,
+        "lineSha256": "d9d7e528ec9d679538432eabb0a955ac06eeeb91a8d030b1f2e3bfca10446307"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:007",
+      "authorityLabel": "B3 – Sicherer Eliteweg",
+      "authorityId": "B3",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1782,
+        "lineEnd": 1782,
+        "lineSha256": "02af5cf9dc7171e8001c9264a68aabdc961a031c60111884fb708ef6c5519fca"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:008",
+      "authorityLabel": "B4 – Neue Begegnungen",
+      "authorityId": "B4",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1783,
+        "lineEnd": 1783,
+        "lineSha256": "c043eec5296dc202bd5b8e441dec931db0c6cf0002111e9ce106ab3d7e878e84"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:009",
+      "authorityLabel": "C1 – Reliktblick",
+      "authorityId": "C1",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1784,
+        "lineEnd": 1784,
+        "lineSha256": "570c5fd89da16596e21125650a15e10d60a1925d82191f3b3d62d86928fca156"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:010",
+      "authorityLabel": "C2 – Polierter Start",
+      "authorityId": "C2",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1785,
+        "lineEnd": 1785,
+        "lineSha256": "9ac6c08446655ff65de4da62ff5b781e62b8ad30a671ebb1af4d03e992891569"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:011",
+      "authorityLabel": "C3 – Kontrollierter Lohn",
+      "authorityId": "C3",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1786,
+        "lineEnd": 1786,
+        "lineSha256": "c4e6499c91fd12b705e8a28dd0c1cbbdaf87fd3374dbb3d988b46375b707c4a1"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:012",
+      "authorityLabel": "C4 – Championarchiv",
+      "authorityId": "C4",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1787,
+        "lineEnd": 1787,
+        "lineSha256": "0d76086457f105fc7f97bdac68a2608bec7b4a955d4c3ee4a02f67baaad4ffcf"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:013",
+      "authorityLabel": "D1 – Ankerschild",
+      "authorityId": "D1",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1788,
+        "lineEnd": 1788,
+        "lineSha256": "1bcbfbd7594289c5b96d4c91cc2782528e54a7cdb29db9048223acbf907f7330"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:014",
+      "authorityLabel": "D2 – Zusätzliche Wahl",
+      "authorityId": "D2",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1789,
+        "lineEnd": 1789,
+        "lineSha256": "8c2810990bbd1164ff3806cd7605c255129d971997001e7c5f625660bfccba6c"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:015",
+      "authorityLabel": "D3 – Pips Rückfrage",
+      "authorityId": "D3",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1790,
+        "lineEnd": 1790,
+        "lineSha256": "e1722d17394fd2e5a7e458e120ceda31af7904ce32a8dbe4f370ea30d17cccda"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:016",
+      "authorityLabel": "D4 – Meisterliche Echos",
+      "authorityId": "D4",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1791,
+        "lineEnd": 1791,
+        "lineSha256": "4a0d19e3873d1b28e34adeb4a09ac773f6168dfc04a0b15d94de4b976ae62c67"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:017",
+      "authorityLabel": "E1 – Riftversicherung",
+      "authorityId": "E1",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1792,
+        "lineEnd": 1792,
+        "lineSha256": "b66ecee95a57b348e9a260debe5b2fec6002e6144cd46c29d62976ac112436bb"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:018",
+      "authorityLabel": "E2 – Breite Auswahl",
+      "authorityId": "E2",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1793,
+        "lineEnd": 1793,
+        "lineSha256": "acc6dc14db0e86ff4c82b7d1cc320caf4e9c84451ec2fdf60766c057d205806d"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:019",
+      "authorityLabel": "E3 – Stabiler Kern",
+      "authorityId": "E3",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1794,
+        "lineEnd": 1794,
+        "lineSha256": "cf06cc3ef5a9aecc928861bdc5ac8ce58fd1befb921229a7dd36510c28408ea8"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:020",
+      "authorityLabel": "E4 – Kuratorenschatten",
+      "authorityId": "E4",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1795,
+        "lineEnd": 1795,
+        "lineSha256": "2f6db6566feec510dabd4fbf22d8565525b44734bcdfd1bae3210cbca80ec983"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:021",
+      "authorityLabel": "F1 – Schneller Aufbau",
+      "authorityId": "F1",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1796,
+        "lineEnd": 1796,
+        "lineSha256": "2d77e1aa79ba90ff6d622dd246893957f926e533d959be925b9def83f9491baf"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:022",
+      "authorityLabel": "F2 – Rudelproviant",
+      "authorityId": "F2",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1797,
+        "lineEnd": 1797,
+        "lineSha256": "6036bd57f098da9c74a89bf4ba4b08ede67affd5ef56160f0937781ab6f12e08"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:023",
+      "authorityLabel": "F3 – Geklärte Essenz",
+      "authorityId": "F3",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1798,
+        "lineEnd": 1798,
+        "lineSha256": "d18841b4a2838965304c9477128f3b654b49df5cb49cbbfe57adb19db2e50ff7"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:024",
+      "authorityLabel": "F4 – Jenseitsfarben",
+      "authorityId": "F4",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1799,
+        "lineEnd": 1799,
+        "lineSha256": "6233b96d05db94eff54520a71f533f399cabeca58acb367a4a5244d847582b78"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:025",
+      "authorityLabel": "G1 – Vierter Blick",
+      "authorityId": "G1",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1800,
+        "lineEnd": 1800,
+        "lineSha256": "a0c76802357aedcc52b148ed01f502e6f4605d176deeeaaa90c9f63d7b3832a3"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:026",
+      "authorityLabel": "G2 – Kompakter Marsch",
+      "authorityId": "G2",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1801,
+        "lineEnd": 1801,
+        "lineSha256": "232c4ab160388756a0aab13771e652c674701e10812d0362e80f6c050118b606"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:027",
+      "authorityLabel": "G3 – Ankermeister",
+      "authorityId": "G3",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1802,
+        "lineEnd": 1802,
+        "lineSha256": "510012096f09b7e5a3f5e96537ff08eea25d76f1b3908ef790336ff3cea2ac84"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "constellationNodes:028",
+      "authorityLabel": "G4 – Riftwarden-Siegel",
+      "authorityId": "G4",
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "28",
+        "lineStart": 1803,
+        "lineEnd": 1803,
+        "lineSha256": "6247d8d1ec21587765dbdba0d24a73581dc6454cb213ca68b5597d7a14a30f72"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    }
+  ]
+}

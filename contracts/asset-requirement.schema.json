@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "kind",
+    "status",
+    "ownerPhase"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "visual",
+        "audio",
+        "voice",
+        "telegraph",
+        "codex",
+        "icon",
+        "animation"
+      ]
+    },
+    "status": {
+      "enum": [
+        "PLANNED",
+        "REQUIRED_PRESENT",
+        "PRESENT_VERIFIED"
+      ]
+    },
+    "ownerPhase": {
+      "type": "integer",
+      "minimum": 10
+    },
+    "path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

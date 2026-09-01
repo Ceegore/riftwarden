@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "phase": 26,
+  "gate": "G26",
+  "evidence": {
+    "constants": "contracts/phase26/phase26-constants.json",
+    "pauseSpeed": {
+      "path": "src/game/hud/pause-controller.ts",
+      "fixture": "contracts/phase26/fixtures/speed-pause-matrix.json",
+      "cases": 16
+    },
+    "stableOrder": {
+      "path": "src/game/hud/stable-order.ts",
+      "fixture": "contracts/phase26/fixtures/semantic-order-golden.json"
+    },
+    "liveRegion": {
+      "path": "src/game/hud/live-region.ts",
+      "fixture": "contracts/phase26/fixtures/live-region-matrix.json",
+      "announce": 4
+    },
+    "timeFormat": {
+      "path": "src/game/hud/time-format.ts",
+      "fixture": "contracts/phase26/fixtures/warning-timeline-boundaries.json",
+      "maxErrorMs": 100
+    },
+    "selection": {
+      "path": "src/game/hud/selection.ts",
+      "fixture": "contracts/phase26/fixtures/selection-fallback-matrix.json",
+      "cases": 3
+    },
+    "mutationGuard": "src/game/hud/mutation-guard.ts",
+    "types": "src/game/hud/types.ts",
+    "layouts": {
+      "fixture": "contracts/phase26/fixtures/layout-visual-matrix.json",
+      "layouts": 4
+    },
+    "tests": {
+      "contracts": "tests/sim/phase26-contracts.test.ts",
+      "pauseSpeed": "tests/sim/phase26-pause-speed.test.ts",
+      "stableOrder": "tests/sim/phase26-stable-order.test.ts",
+      "liveRegion": "tests/sim/phase26-live-region.test.ts",
+      "timeSelection": "tests/sim/phase26-time-selection.test.ts"
+    }
+  },
+  "hardBlockers": [
+    "P26_G26_REAL_G25_NOT_PROVEN",
+    "P26_G26_UI_DEVICE_RENDER_NOT_RUN",
+    "P26_G26_A11Y_SCREENREADER_EVIDENCE_MISSING",
+    "P26_G26_VISUAL_GOLDENS_DEVICE_MISSING",
+    "P26_G26_E2E_BROWSER_EVIDENCE_MISSING",
+    "P26_G26_PERFORMANCE_DEVICE_MEASURE_MISSING"
+  ]
+}

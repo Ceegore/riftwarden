@@ -48,6 +48,9 @@ Thumbs.db
 google-services.json
 GoogleService-Info.plist
 
+# Freebuff client local data
+.freebuff/
+
 # Signed/store/native artifacts
 *.apk
 *.aab
@@ -56,6 +59,10 @@ GoogleService-Info.plist
 *.dSYM/
 DerivedData/
 android/.gradle/
+
+# CI scratch output (committed report: docs/reports/ci-gate-map.md)
+artifacts/ci/
+artifacts/provenance/
 android/local.properties
 ios/App/Pods/
 

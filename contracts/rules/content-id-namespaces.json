@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "prefixes": [
+    "hero_",
+    "troop_",
+    "summon_",
+    "enemy_",
+    "boss_",
+    "ability_",
+    "attack_",
+    "status_",
+    "trait_",
+    "synergy_",
+    "item_",
+    "talisman_",
+    "kit_",
+    "banner_",
+    "relic_",
+    "mission_",
+    "encounter_",
+    "event_",
+    "modifier_",
+    "achievement_",
+    "mastery_",
+    "screen_",
+    "audio_",
+    "visual_"
+  ]
+}

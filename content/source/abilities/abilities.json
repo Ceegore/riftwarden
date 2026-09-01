@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "entityType": "ability",
+  "entities": [
+    {
+      "id": "attack_fixture_hero_basic",
+      "ownerId": "hero_fixture_warden",
+      "kind": "basic_attack",
+      "triggerType": "always",
+      "targetProfileId": "target_nearest_enemy",
+      "chargeSeconds": null,
+      "cooldownSeconds": null,
+      "castSeconds": 0.2,
+      "recoverySeconds": 0.8,
+      "interruptPolicy": "interruptible",
+      "usesPerBattle": null,
+      "effects": [
+        {
+          "type": "damage",
+          "magnitude": 100000,
+          "scalingSource": "attack_power",
+          "damageType": "physical",
+          "durationSeconds": null,
+          "radiusX100": null,
+          "statusId": null,
+          "summonId": null,
+          "sourceAttribution": "owner"
+        }
+      ],
+      "telegraphId": "visual_fixture_telegraph",
+      "visibilityTextKey": "content.ability.attack_fixture_hero_basic.visibility",
+      "invalidTargetPolicy": "wait",
+      "logTags": [
+        "basic_attack"
+      ],
+      "deprecated": false,
+      "replacementId": null
+    },
+    {
+      "id": "attack_fixture_enemy_basic",
+      "ownerId": "enemy_fixture_echo",
+      "kind": "basic_attack",
+      "triggerType": "always",
+      "targetProfileId": "target_nearest_enemy",
+      "chargeSeconds": null,
+      "cooldownSeconds": null,
+      "castSeconds": 0.2,
+      "recoverySeconds": 0.8,
+      "interruptPolicy": "interruptible",
+      "usesPerBattle": null,
+      "effects": [
+        {
+          "type": "damage",
+          "magnitude": 100000,
+          "scalingSource": "attack_power",
+          "damageType": "physical",
+          "durationSeconds": null,
+          "radiusX100": null,
+          "statusId": null,
+          "summonId": null,
+          "sourceAttribution": "owner"
+        }
+      ],
+      "telegraphId": "visual_fixture_telegraph",
+      "visibilityTextKey": "content.ability.attack_fixture_enemy_basic.visibility",
+      "invalidTargetPolicy": "wait",
+      "logTags": [
+        "basic_attack"
+      ],
+      "deprecated": false,
+      "replacementId": null
+    }
+  ]
+}

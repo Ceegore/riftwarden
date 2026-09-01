@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "source": "Development Plan V2 Phase 10 + explicit GDD V5 counts",
+  "gateCritical": {
+    "heroes": 10,
+    "troops": 18,
+    "summons": 14,
+    "enemies": 28,
+    "minibosses": 4,
+    "bosses": 4,
+    "modifiers": 18,
+    "events": 30,
+    "equipment": 42,
+    "relics": 36,
+    "missions": 20,
+    "constellationNodes": 28,
+    "achievements": 36
+  },
+  "supplementaryAuthoritative": {
+    "statuses": 15,
+    "synergies": 8,
+    "eliteAttributes": 12,
+    "champions": 8,
+    "battleVariants": 7,
+    "ascensionRanks": 10,
+    "regions": 4,
+    "doctrines": 6,
+    "masteryObjectives": 50
+  },
+  "totals": {
+    "gateCritical": 288,
+    "supplementaryAuthoritative": 120,
+    "allNamedSlots": 408
+  },
+  "forbiddenBuckets": [
+    "misc",
+    "unknown",
+    "other",
+    "unclassified"
+  ]
+}

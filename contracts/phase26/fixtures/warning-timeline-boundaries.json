@@ -1,0 +1,25 @@
+{
+  "tickRate": 30,
+  "cases": [
+    {
+      "current": 100,
+      "due": 100,
+      "expectedSeconds": 0
+    },
+    {
+      "current": 100,
+      "due": 101,
+      "expectedSeconds": 0.03333333333333333
+    },
+    {
+      "current": 100,
+      "due": 130,
+      "expectedSeconds": 1
+    },
+    {
+      "current": 131,
+      "due": 130,
+      "expectedSeconds": 0
+    }
+  ]
+}

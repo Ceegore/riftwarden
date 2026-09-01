@@ -1,0 +1,533 @@
+{
+  "schemaVersion": 1,
+  "family": "statuses",
+  "category": "supplementaryAuthoritative",
+  "expectedCount": 15,
+  "entries": [
+    {
+      "slotId": "statuses:001",
+      "authorityLabel": "Schild",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "8",
+        "lineStart": 187,
+        "lineEnd": 187,
+        "lineSha256": "3f0f57d7e3843cddaf0043b4546c741c0c4aef65768c2427cbdf4d9e42efa501"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "statuses:002",
+      "authorityLabel": "Verstärkter Angriff",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "8",
+        "lineStart": 188,
+        "lineEnd": 188,
+        "lineSha256": "982af3431c81d84d741281232fe8ba01987fd67b5b85d5972e0088a0ac4c4cc3"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "statuses:003",
+      "authorityLabel": "Eile",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "8",
+        "lineStart": 189,
+        "lineEnd": 189,
+        "lineSha256": "532523aed0bd18b9b2b1b3fecdab6b834704b6b5e0cb2a5f7efe7d423c381063"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "statuses:004",
+      "authorityLabel": "Hast",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "8",
+        "lineStart": 190,
+        "lineEnd": 190,
+        "lineSha256": "55b36a679c63780cd586b551e8fd221a021a337f79bc3a10834dd66bf184d884"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "statuses:005",
+      "authorityLabel": "Widerstandskraft",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "8",
+        "lineStart": 191,
+        "lineEnd": 191,
+        "lineSha256": "5a0a4566f5260436436389c939d3e54c0b80906fa386abb548f4696bfc50315e"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "statuses:006",
+      "authorityLabel": "Regeneration",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "8",
+        "lineStart": 192,
+        "lineEnd": 192,
+        "lineSha256": "72210fa68eb613154dc529392099ac7749e84c3ecefcb2bda297f76eeb871c25"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "statuses:007",
+      "authorityLabel": "Brennen",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "8",
+        "lineStart": 193,
+        "lineEnd": 193,
+        "lineSha256": "50128dc9d84757c8b87e3007982744934e3dee043164333632c34b1b430ef03f"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "statuses:008",
+      "authorityLabel": "Gift",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "8",
+        "lineStart": 194,
+        "lineEnd": 194,
+        "lineSha256": "a87746a38efce9cea4f1860f82be370b503c9d8155f6764ee0ab5decf6271744"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "statuses:009",
+      "authorityLabel": "Verlangsamung",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "8",
+        "lineStart": 195,
+        "lineEnd": 195,
+        "lineSha256": "57b2ccc998c8c0f228419478ad83ec7a73504c4acfaac74c940098ce1359c5e1"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "statuses:010",
+      "authorityLabel": "Schwächung",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "8",
+        "lineStart": 196,
+        "lineEnd": 196,
+        "lineSha256": "c88a953811ac396cffa7ce2ff891ef4f0e2a4d52bd6fd33d9d0f291e95f11e82"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "statuses:011",
+      "authorityLabel": "Stille",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "8",
+        "lineStart": 197,
+        "lineEnd": 197,
+        "lineSha256": "1c79b78a03650b657cbe8f8f100b0beb1f20d1c843c20a8c9835cfb1c348383c"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "statuses:012",
+      "authorityLabel": "Betäubung",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "8",
+        "lineStart": 198,
+        "lineEnd": 198,
+        "lineSha256": "fb295236d33fcec5e62363c0d9550a8431972fc27050142523a4e4ddf59353db"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "statuses:013",
+      "authorityLabel": "Markierung",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "8",
+        "lineStart": 199,
+        "lineEnd": 199,
+        "lineSha256": "ff9370929ef06444e2507ee5aef43897fe8beeea3a5677eeaa0067849a5383e6"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "statuses:014",
+      "authorityLabel": "Verwirrung",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "8",
+        "lineStart": 200,
+        "lineEnd": 200,
+        "lineSha256": "adf49c674815d24368acea8ab86a850bfbc2d99eda3e0a6c6f877412c99beb55"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "statuses:015",
+      "authorityLabel": "Unverwundbar",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "8",
+        "lineStart": 201,
+        "lineEnd": 201,
+        "lineSha256": "aebddc8ba7a84ef7053f926e87ce9914e81320c2901db555759a4939368e22a1"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    }
+  ]
+}

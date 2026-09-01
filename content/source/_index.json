@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "validationProfile": "fixture",
+  "simulationVersion": 9001,
+  "localeVersions": {
+    "de": "fixture-de-v1",
+    "en": "fixture-en-v1"
+  },
+  "files": [
+    {
+      "path": "units/units.json",
+      "entityType": "unit"
+    },
+    {
+      "path": "abilities/abilities.json",
+      "entityType": "ability"
+    },
+    {
+      "path": "statuses/statuses.json",
+      "entityType": "status"
+    },
+    {
+      "path": "targets/targets.json",
+      "entityType": "targetProfile"
+    },
+    {
+      "path": "world/encounters.json",
+      "entityType": "encounter"
+    },
+    {
+      "path": "world/modifiers.json",
+      "entityType": "modifier"
+    },
+    {
+      "path": "world/missions.json",
+      "entityType": "mission"
+    },
+    {
+      "path": "world/events.json",
+      "entityType": "event"
+    },
+    {
+      "path": "progression/rewards.json",
+      "entityType": "rewardTable"
+    },
+    {
+      "path": "progression/items.json",
+      "entityType": "item"
+    },
+    {
+      "path": "progression/relics.json",
+      "entityType": "relic"
+    },
+    {
+      "path": "presentation/screens.json",
+      "entityType": "screen"
+    },
+    {
+      "path": "presentation/visuals.json",
+      "entityType": "visual"
+    },
+    {
+      "path": "presentation/audio.json",
+      "entityType": "audio"
+    }
+  ]
+}

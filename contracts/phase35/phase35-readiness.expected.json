@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "phase": 35,
+  "gate": "G35",
+  "evidence": {
+    "modules": [
+      "src/game/codex/codex-store.ts",
+      "src/game/codex/types.ts",
+      "src/game/achievements/achievement-store.ts",
+      "src/game/achievements/achievement-definitions.ts",
+      "src/game/achievements/types.ts",
+      "src/game/mastery/mastery-store.ts",
+      "src/game/mastery/types.ts",
+      "src/game/records/records-store.ts",
+      "src/game/records/types.ts",
+      "src/game/story/story-store.ts",
+      "src/game/story/types.ts",
+      "src/screens/hq/ArchiveHubScreen.tsx",
+      "src/screens/hq/CodexListScreen.tsx",
+      "src/screens/hq/CodexDetailsScreen.tsx",
+      "src/screens/hq/AchievementsScreen.tsx",
+      "src/screens/hq/MasteryScreen.tsx",
+      "src/screens/hq/RecordsStatisticsScreen.tsx",
+      "src/screens/hq/StoryArchiveScreen.tsx"
+    ],
+    "tests": [
+      "tests/sim/phase35-domain.test.ts"
+    ]
+  },
+  "hardBlockers": [
+    "P35_G35_G34_GATE_BLOCKED",
+    "P35_G35_CODEX_DISCOVERY_DEVICE_NOT_PROVEN",
+    "P35_G35_ACHIEVEMENT_TRACKING_NOT_REVIEWED"
+  ]
+}

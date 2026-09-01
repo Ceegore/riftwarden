@@ -1,0 +1,1268 @@
+{
+  "schemaVersion": 1,
+  "family": "relics",
+  "category": "gateCritical",
+  "expectedCount": 36,
+  "entries": [
+    {
+      "slotId": "relics:001",
+      "authorityLabel": "Aschenkrone",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1372,
+        "lineEnd": 1372,
+        "lineSha256": "e7808a314877dfd4192b7afe2a92e2770d7ad05ddd289378ce18a01ecd295fd7"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:002",
+      "authorityLabel": "Rußlaterne",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1373,
+        "lineEnd": 1373,
+        "lineSha256": "a624672ee80a5c2321891bdb325e75d31559d7751d8b408c7a07fdb57c938b16"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:003",
+      "authorityLabel": "Letzter Salut",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1374,
+        "lineEnd": 1374,
+        "lineSha256": "310cb761acc19d125195094fca19d4d57aa6f446925715632a578564680c2565"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:004",
+      "authorityLabel": "Dornenherz",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1375,
+        "lineEnd": 1375,
+        "lineSha256": "c54c5e01a61f2aeaec35fd68f6452f68920e624fa89f99dcc0ddb2f17fb24eb8"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:005",
+      "authorityLabel": "Samenbeutel",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1376,
+        "lineEnd": 1376,
+        "lineSha256": "177768e88e1925fa86cf9820c292c063d799654c452d3f4bdf95984177758ec1"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:006",
+      "authorityLabel": "Pollenmantel",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1377,
+        "lineEnd": 1377,
+        "lineSha256": "a62143467c8d7f19957f309b88a63c35b21a0ee21d3ad795dd57b1f3ec7ea320"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:007",
+      "authorityLabel": "Sauberer Bauplan",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1378,
+        "lineEnd": 1378,
+        "lineSha256": "495c4a48e3201f61346674e61760b04f3e3598d867680b99ff526b70bb32cbb3"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:008",
+      "authorityLabel": "Notfallniet",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1379,
+        "lineEnd": 1379,
+        "lineSha256": "e4e50a106ec71494fe2e99741c2baac800151460e6ec3ab7d9a3f5526a3f332f"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:009",
+      "authorityLabel": "Überdruckventil",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1380,
+        "lineEnd": 1380,
+        "lineSha256": "e18b0ddc58b3813707b39ab9ed7c5bfbfb52e3274ceb3c33559476c54ea8ff7d"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:010",
+      "authorityLabel": "Offene Fußnote",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1381,
+        "lineEnd": 1381,
+        "lineSha256": "2a92789bf639a2b2fdf348d1be1d2b2ccac866a7a5afc6c3de0d28d9ce27eddc"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:011",
+      "authorityLabel": "Spiegelstück",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1382,
+        "lineEnd": 1382,
+        "lineSha256": "74ab58c4c1fea2a4669a250ea1a4c43d8e5e78a6bdca3c06e185479654d6a4c1"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:012",
+      "authorityLabel": "Zeitkrümel",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1383,
+        "lineEnd": 1383,
+        "lineSha256": "51ff781517cce561005778a86d7eb7e0c29bb3caee200b3ce5cb9171ecc5c5df"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:013",
+      "authorityLabel": "Rudelzeichen",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1384,
+        "lineEnd": 1384,
+        "lineSha256": "2f37892b04139cda9ad8cb4c5ac5c8b6c262dc84f8ca7838ffc6c49e91961f10"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:014",
+      "authorityLabel": "Knochenvertrag",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1385,
+        "lineEnd": 1385,
+        "lineSha256": "94806790d086cc187bcf0279f14ca7fc7984740b6bdf91115b7f29e462a36c10"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:015",
+      "authorityLabel": "Dämonensiegel",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1386,
+        "lineEnd": 1386,
+        "lineSha256": "652fd856a83e96f7097949c102c2fca60f7b2caac29d054d196bea0c043c2fff"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:016",
+      "authorityLabel": "Morgenrest",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1387,
+        "lineEnd": 1387,
+        "lineSha256": "c392454e6b9e6df5da176dfef878cc41bb0d48c63728ade7a28b3e5841623eb9"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:017",
+      "authorityLabel": "Glasgebet",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1388,
+        "lineEnd": 1388,
+        "lineSha256": "aae0728e497fd49a495773614f5c9c14004b9aadc7f2783a7266f41bcaaa9e1d"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:018",
+      "authorityLabel": "Stiller Kreis",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1389,
+        "lineEnd": 1389,
+        "lineSha256": "74187f2537719dd6cbd78b1d1449390371832113daea4e52aed11c094a6a688c"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:019",
+      "authorityLabel": "Jagdfeder",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1390,
+        "lineEnd": 1390,
+        "lineSha256": "adc653858159b4ae0f0bc5d893a93d775cc520970f5454b6f7b4439d2cd733b1"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:020",
+      "authorityLabel": "Risskompass",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1391,
+        "lineEnd": 1391,
+        "lineSha256": "e76a486bc85945c9c0a297ccd0abf05c9d9be483b07325aa359df8c1860f4b99"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:021",
+      "authorityLabel": "Kettenlöser",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1392,
+        "lineEnd": 1392,
+        "lineSha256": "9e1b5e640f2c245e0b3a53c9121206cb8e8a12a77a19b05d3deca80008f7d78f"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:022",
+      "authorityLabel": "Händlerglocke",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1393,
+        "lineEnd": 1393,
+        "lineSha256": "a27d4ee96d214ff92550a647ff6cf62abde366705fe799ffb0197255d6b63f76"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:023",
+      "authorityLabel": "Goldener Flicken",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1394,
+        "lineEnd": 1394,
+        "lineSha256": "9d9fb2ea5c93d2986f3d1d465ecede4d21ddc82ff0bd995d02d2c2b063226a90"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:024",
+      "authorityLabel": "Sicherungswachs",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1395,
+        "lineEnd": 1395,
+        "lineSha256": "9ceb3a824b4c3f50f2cbaf2cc697f5e12d819b79308b4b60f03c1acf8c9f79b4"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:025",
+      "authorityLabel": "Instabilitätsventil",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1396,
+        "lineEnd": 1396,
+        "lineSha256": "b4b8787dd81a41658d0a9760134fe8660665e09cc82b50e31fbccd87fd53793c"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:026",
+      "authorityLabel": "Riftpflaster",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1397,
+        "lineEnd": 1397,
+        "lineSha256": "c0783a270979669e439ed126820a74fda6761942029eae92093e3d2807c13489"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:027",
+      "authorityLabel": "Kurze Abkürzung",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1398,
+        "lineEnd": 1398,
+        "lineSha256": "29bca17644839145cb0aa6e366e0f8f4f34525addefa0eaa5819544c542cf722"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:028",
+      "authorityLabel": "Echolupe",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1399,
+        "lineEnd": 1399,
+        "lineSha256": "a38785b2cfccfb05cfdf4eda0a87d83ec3f72b346e967e942e5e6415859d1575"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:029",
+      "authorityLabel": "Klarer Takt",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1400,
+        "lineEnd": 1400,
+        "lineSha256": "5b167a1644b39ff1e0ff4528420dd86ee9a2e294556d0b37cd8a185e3b8450af"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:030",
+      "authorityLabel": "Zweite Meinung",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1401,
+        "lineEnd": 1401,
+        "lineSha256": "84aa4b89831253c07cb00b098ffc768073945dd6062b9c57380072291a61d739"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:031",
+      "authorityLabel": "Popcornfunke",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1402,
+        "lineEnd": 1402,
+        "lineSha256": "4f4ca2878585a8f726e58c1ac6cbefaf4c8d6951fb58830d76a5edbb427b0918"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:032",
+      "authorityLabel": "Schutzlack",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1403,
+        "lineEnd": 1403,
+        "lineSha256": "b4aadeaa9ce390cc99fe54f08e91e210e2dbf0da94c332b496a74680f131fbd2"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:033",
+      "authorityLabel": "Leihwolf",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1404,
+        "lineEnd": 1404,
+        "lineSha256": "ecd4a5525d82b929c1d0be0579c68b2365a52dc5f82dc1917f7c193d061e5c3e"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:034",
+      "authorityLabel": "Archivstempel",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1405,
+        "lineEnd": 1405,
+        "lineSha256": "616f26c87475395d7825b1497251ac6d2b4eb2c1eb0f1f34de42d69733829de5"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:035",
+      "authorityLabel": "Unfertiger Titel",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1406,
+        "lineEnd": 1406,
+        "lineSha256": "b56b8a6363c79e98fca8a2fb5d3d5544df09b1973ff437167c40fcd4da310f4a"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    },
+    {
+      "slotId": "relics:036",
+      "authorityLabel": "Pips Plan B",
+      "authorityId": null,
+      "subtype": null,
+      "sourceLocator": {
+        "file": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+        "chapter": "22",
+        "lineStart": 1407,
+        "lineEnd": 1407,
+        "lineSha256": "c1ca107a0e11b6c9b4d8f8303e2f706ca5fbdbf92991036461f9faf1f2550d0a"
+      },
+      "runtimeId": null,
+      "status": "UNEXTRACTED",
+      "extractor": null,
+      "extractedAt": null,
+      "sourceOutputPath": null,
+      "review": {
+        "reviewer": null,
+        "reviewedAt": null,
+        "verdict": "PENDING",
+        "defectIds": []
+      },
+      "fidelity": {
+        "numericFacts": null,
+        "textFactsSha256": null,
+        "secondsConversion": "CENTRAL_COMPILER_ONLY"
+      },
+      "localization": {
+        "deKey": null,
+        "enKey": null,
+        "enStatus": "NOT_STARTED"
+      },
+      "assetRequirements": []
+    }
+  ]
+}

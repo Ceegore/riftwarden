@@ -1,0 +1,14 @@
+{
+  "cases": [
+    "webgl2",
+    "validated_webgl1",
+    "no_context",
+    "restore_once",
+    "restore_twice_fail"
+  ],
+  "forbidden": [
+    "canvas",
+    "webgpu",
+    "network_asset_fetch"
+  ]
+}

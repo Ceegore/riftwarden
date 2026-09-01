@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "v2",
+  "ids": [
+    {
+      "id": "hero_ardyn",
+      "type": "hero",
+      "status": "active",
+      "replacementId": null
+    }
+  ]
+}

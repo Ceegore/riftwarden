@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "authorityFile": "inputs/sources/GDD_V5_PHASE10_AUTHORITY_EXTRACT.md",
+  "authoritySha256": "bd66585dcd836f77a511e64e579d48b7925f2985be19c12662635d9811994e73",
+  "families": [
+    {
+      "family": "heroes",
+      "category": "gateCritical",
+      "expectedCount": 10,
+      "file": "heroes.ledger.json"
+    },
+    {
+      "family": "troops",
+      "category": "gateCritical",
+      "expectedCount": 18,
+      "file": "troops.ledger.json"
+    },
+    {
+      "family": "summons",
+      "category": "gateCritical",
+      "expectedCount": 14,
+      "file": "summons.ledger.json"
+    },
+    {
+      "family": "enemies",
+      "category": "gateCritical",
+      "expectedCount": 28,
+      "file": "enemies.ledger.json"
+    },
+    {
+      "family": "minibosses",
+      "category": "gateCritical",
+      "expectedCount": 4,
+      "file": "minibosses.ledger.json"
+    },
+    {
+      "family": "bosses",
+      "category": "gateCritical",
+      "expectedCount": 4,
+      "file": "bosses.ledger.json"
+    },
+    {
+      "family": "modifiers",
+      "category": "gateCritical",
+      "expectedCount": 18,
+      "file": "modifiers.ledger.json"
+    },
+    {
+      "family": "events",
+      "category": "gateCritical",
+      "expectedCount": 30,
+      "file": "events.ledger.json"
+    },
+    {
+      "family": "equipment",
+      "category": "gateCritical",
+      "expectedCount": 42,
+      "file": "equipment.ledger.json"
+    },
+    {
+      "family": "relics",
+      "category": "gateCritical",
+      "expectedCount": 36,
+      "file": "relics.ledger.json"
+    },
+    {
+      "family": "missions",
+      "category": "gateCritical",
+      "expectedCount": 20,
+      "file": "missions.ledger.json"
+    },
+    {
+      "family": "constellationNodes",
+      "category": "gateCritical",
+      "expectedCount": 28,
+      "file": "constellationNodes.ledger.json"
+    },
+    {
+      "family": "achievements",
+      "category": "gateCritical",
+      "expectedCount": 36,
+      "file": "achievements.ledger.json"
+    },
+    {
+      "family": "statuses",
+      "category": "supplementaryAuthoritative",
+      "expectedCount": 15,
+      "file": "statuses.ledger.json"
+    },
+    {
+      "family": "synergies",
+      "category": "supplementaryAuthoritative",
+      "expectedCount": 8,
+      "file": "synergies.ledger.json"
+    },
+    {
+      "family": "eliteAttributes",
+      "category": "supplementaryAuthoritative",
+      "expectedCount": 12,
+      "file": "eliteAttributes.ledger.json"
+    },
+    {
+      "family": "champions",
+      "category": "supplementaryAuthoritative",
+      "expectedCount": 8,
+      "file": "champions.ledger.json"
+    },
+    {
+      "family": "battleVariants",
+      "category": "supplementaryAuthoritative",
+      "expectedCount": 7,
+      "file": "battleVariants.ledger.json"
+    },
+    {
+      "family": "ascensionRanks",
+      "category": "supplementaryAuthoritative",
+      "expectedCount": 10,
+      "file": "ascensionRanks.ledger.json"
+    },
+    {
+      "family": "regions",
+      "category": "supplementaryAuthoritative",
+      "expectedCount": 4,
+      "file": "regions.ledger.json"
+    },
+    {
+      "family": "doctrines",
+      "category": "supplementaryAuthoritative",
+      "expectedCount": 6,
+      "file": "doctrines.ledger.json"
+    },
+    {
+      "family": "masteryObjectives",
+      "category": "supplementaryAuthoritative",
+      "expectedCount": 50,
+      "file": "masteryObjectives.ledger.json"
+    }
+  ]
+}

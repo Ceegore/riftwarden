@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "devOnly": true,
+  "simulationVersion": "phase13-fixture-v1",
+  "slots": [
+    {
+      "key": "fixture.uniform.primary",
+      "owner": "phase13-fixture",
+      "stream": "encounter",
+      "purpose": "uniform boundary tests",
+      "introducedSimulationVersion": "phase13-fixture-v1",
+      "status": "ACTIVE"
+    },
+    {
+      "key": "fixture.weighted.primary",
+      "owner": "phase13-fixture",
+      "stream": "rewards",
+      "purpose": "weighted choice tests",
+      "introducedSimulationVersion": "phase13-fixture-v1",
+      "status": "ACTIVE"
+    },
+    {
+      "key": "fixture.shuffle.primary",
+      "owner": "phase13-fixture",
+      "stream": "map",
+      "purpose": "shuffle tests",
+      "introducedSimulationVersion": "phase13-fixture-v1",
+      "status": "ACTIVE"
+    },
+    {
+      "key": "fixture.event.primary",
+      "owner": "phase13-fixture",
+      "stream": "eventChoices",
+      "purpose": "event stream tests",
+      "introducedSimulationVersion": "phase13-fixture-v1",
+      "status": "ACTIVE"
+    },
+    {
+      "key": "fixture.cosmetic.primary",
+      "owner": "phase13-fixture",
+      "stream": "combatCosmetic",
+      "purpose": "cosmetic isolation tests",
+      "introducedSimulationVersion": "phase13-fixture-v1",
+      "status": "ACTIVE"
+    }
+  ]
+}

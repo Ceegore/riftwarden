@@ -1,0 +1,16 @@
+[
+  {
+    "base": 100,
+    "levelPermille": 1200,
+    "equipmentFlat": 15,
+    "otherPermille": 1100,
+    "expected": 148
+  },
+  {
+    "base": 1,
+    "levelPermille": 1000,
+    "equipmentFlat": 0,
+    "otherPermille": 1000,
+    "expected": 1
+  }
+]

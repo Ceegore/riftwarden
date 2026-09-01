@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "phase": 48,
+  "gate": "G48",
+  "evidence": {
+    "checklist": "docs/reports/phase48-checklist.md",
+    "modules": []
+  },
+  "hardBlockers": [
+    "P48_G48_G47_GATE_BLOCKED",
+    "P48_G48_NO_STORE_SUBMISSION",
+    "P48_G48_NO_REVIEW_APPROVAL",
+    "P48_G48_NO_STAGED_ROLLOUT"
+  ]
+}

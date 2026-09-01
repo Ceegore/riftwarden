@@ -3,6 +3,41 @@
   "channel": "release",
   "files": [
     {
+      "path": "assets/browserAll-BHuoRmMa.js",
+      "sha256": "782c89db472be23d1e58ea219364afadbfeb2d114a9cc41edfab606f6d9fc28a",
+      "bytes": 42605
+    },
+    {
+      "path": "assets/BufferResource-CluQgx5g.js",
+      "sha256": "fdf4ff39e37547851b426eb52016a57adafc124c5305b60304a68276b43d91c2",
+      "bytes": 10524
+    },
+    {
+      "path": "assets/CanvasPool-DZR3PYsI.js",
+      "sha256": "0ab0ba212fea7dcd260600dcca3e3ed0da1bf3b2475ae90daf1f10a175ab384e",
+      "bytes": 756
+    },
+    {
+      "path": "assets/CanvasRenderer-BkcC1aqx.js",
+      "sha256": "a5698e16b1348939c700d02bc52ad579e9d58ba7d4979225e0b546638ea5bb14",
+      "bytes": 87447
+    },
+    {
+      "path": "assets/canvasUtils-DxcfMng6.js",
+      "sha256": "ae71f1c0ae2e31224f860fd4fcdc118600e0fcbcc29321f7c07b07f0ce5e378a",
+      "bytes": 6021
+    },
+    {
+      "path": "assets/fonts/licenses/README.md",
+      "sha256": "a11c81b46787e061c1662799051da93e73c873cb29447b5b1d9c68f98e48998f",
+      "bytes": 96
+    },
+    {
+      "path": "assets/fonts/README.md",
+      "sha256": "a8c02e26f45a7155750499980c1fed85948a259ee4d7cb993d9c99790863b8fa",
+      "bytes": 430
+    },
+    {
       "path": "assets/generated/.gitkeep",
       "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
       "bytes": 1
@@ -13,19 +48,54 @@
       "bytes": 157
     },
     {
-      "path": "assets/index-BAuJ4WDo.css",
-      "sha256": "a09a0b28a8271f90fc461020a1e3d735a0e83e1112121b2756597ece1248e8d2",
-      "bytes": 7546
+      "path": "assets/Geometry-DIdn9f72.js",
+      "sha256": "e1967ec805e2c70c1020b20e76d8803a270128799144bf02b67457ebdc1cdac0",
+      "bytes": 101815
     },
     {
-      "path": "assets/index-DImpWw-3.js",
-      "sha256": "44c38a8e7e94023cca3dfa3645f22b3a4db13458377ec8642b0276ebd940d945",
-      "bytes": 190889
+      "path": "assets/getPo2TextureFromSource-tj933Nd9.js",
+      "sha256": "c2629e705a0b3ecd6818523bcb2fe519bed3507cb7e375851447f713e70caf1c",
+      "bytes": 25099
+    },
+    {
+      "path": "assets/getTextureBatchBindGroup-CJ2RQC6t.js",
+      "sha256": "57b0c4056296fbb62725b016fee86e0d24571e16969939676aa9184659f3be23",
+      "bytes": 342
+    },
+    {
+      "path": "assets/index-BYdM-Pa8.css",
+      "sha256": "2744c691766b55582fe318e65d08cfacb770449c90b9b2b4087f25d4b6507c4c",
+      "bytes": 12153
+    },
+    {
+      "path": "assets/index-CXCyY7Lm.js",
+      "sha256": "4d03f193f9a83369c84483b6966dc6f1d75b70e6dc988ecd36ac25d9b95e3358",
+      "bytes": 601562
+    },
+    {
+      "path": "assets/init-ztwV6NF1.js",
+      "sha256": "a26f53f80d02db4734a23ba72920229c14764a0ec35747fcfd6ed749b17e385e",
+      "bytes": 15281
+    },
+    {
+      "path": "assets/RenderTargetSystem-VroGzENA.js",
+      "sha256": "c832200cbb5c8d045803c0f5c925cdff3cc5267af76f2780cd53b8d52713650d",
+      "bytes": 71064
+    },
+    {
+      "path": "assets/web-BvA_K31u.js",
+      "sha256": "17ec1fc592a10045035e68540d6784f3a93fe6cd30dd275d49c457ac4f571fd8",
+      "bytes": 123
+    },
+    {
+      "path": "assets/webworkerAll-sUc2I01k.js",
+      "sha256": "15467265b1dd5d94768ab188d1da52a2ff046f6fb07b68a96b704ca349d98c54",
+      "bytes": 73
     },
     {
       "path": "index.html",
-      "sha256": "72b59f3e95da1e59b20c70fbd2b3f52455b5295142120f3a6611da6985e8c971",
-      "bytes": 702
+      "sha256": "b1aa5bee1be6715c28f131e1ebbdddbf8ed37a39a904df15c36aa0d7463ae8c2",
+      "bytes": 1400
     }
   ]
 }

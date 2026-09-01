@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "phase": 24,
+  "gate": "G24",
+  "evidence": {
+    "schemas": {
+      "settings": "src/game/save/schema/settings-schema.ts",
+      "profile": "src/game/save/schema/profile-save.ts",
+      "run": "src/game/save/schema/run-save.ts",
+      "fixture": "contracts/phase24/fixtures/schema-cases.json"
+    },
+    "migrations": {
+      "path": "src/game/save/migrations/migrations.ts",
+      "edges": "src/game/save/migrations/settings-migrations.ts",
+      "fixture": "contracts/phase24/fixtures/migration-cases.json"
+    },
+    "commitMatrix": {
+      "path": "src/game/save/save-service.ts",
+      "coordinator": "src/game/save/commit-coordinator.ts",
+      "fixture": "contracts/phase24/fixtures/commit-matrix.json"
+    },
+    "battleResume": {
+      "path": "src/game/save/battle-resume.ts",
+      "intervalTicks": 150,
+      "fixture": "contracts/phase24/fixtures/battle-resume-golden.json"
+    },
+    "transfer": {
+      "path": "src/game/save/transfer/transfer-policy.ts",
+      "quarantine": "src/game/save/transfer/quarantine.ts",
+      "maxTotalBytes": 10485760,
+      "maxEntryBytes": 8388608,
+      "fixture": "contracts/phase24/fixtures/transfer-malicious-corpus.json"
+    },
+    "recovery": {
+      "path": "src/game/save/recovery/recovery-engine.ts",
+      "diagnostics": "src/game/save/recovery/diagnostics.ts",
+      "fixture": "contracts/phase24/fixtures/recovery-matrix.json"
+    },
+    "tests": {
+      "schemaMigration": "tests/sim/phase24-schema-migration.test.ts",
+      "serviceTransferRecovery": "tests/sim/phase24-service-transfer-recovery.test.ts"
+    }
+  },
+  "hardBlockers": [
+    "P24_G24_REAL_G23_NOT_PROVEN",
+    "P24_G24_NATIVE_TRANSFER_DEVICE_EVIDENCE_MISSING",
+    "P24_G24_BATTLE_RESUME_DEVICE_EVIDENCE_MISSING",
+    "P24_G24_RECOVERY_UX_DEVICE_EVIDENCE_MISSING"
+  ]
+}

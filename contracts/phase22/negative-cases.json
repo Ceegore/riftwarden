@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    "invalid_seed",
+    "content_version_mismatch",
+    "duplicate_entity_id",
+    "negative_hp",
+    "event_cap_exceeded",
+    "battle_limit_exceeded",
+    "golden_hash_divergence",
+    "worker_merge_nondeterminism",
+    "dom_import_detected",
+    "silent_baseline_update"
+  ]
+}

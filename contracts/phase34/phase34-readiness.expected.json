@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "phase": 34,
+  "gate": "G34",
+  "evidence": {
+    "modules": [
+      "src/screens/hq/HqOverviewScreen.tsx",
+      "src/screens/hq/HeroHallScreen.tsx",
+      "src/screens/hq/HeroDetailsScreen.tsx",
+      "src/screens/hq/BarracksScreen.tsx",
+      "src/screens/hq/WorkshopScreen.tsx",
+      "src/screens/hq/ItemDetailsScreen.tsx",
+      "src/screens/hq/TroopDetailsScreen.tsx",
+      "src/screens/hq/GlobalHelpScreen.tsx",
+      "src/screens/hq/hq-screen-modules.ts",
+      "src/screens/PostBootScreen.tsx",
+      "src/screens/screen-modules.ts",
+      "src/screens/screen-renderer.tsx",
+      "src/screens/screen-resolver.ts",
+      "src/app/navigation/ScreenNavigator.tsx",
+      "src/app/navigation/route-helpers.ts"
+    ],
+    "tests": [
+      "tests/sim/phase34-flow.test.ts",
+      "tests/sim/phase34-hq.test.ts"
+    ]
+  },
+  "hardBlockers": [
+    "P34_G34_G33_GATE_BLOCKED",
+    "P34_G34_HQ_DEVICE_RENDER_NOT_RUN",
+    "P34_G34_NEW_GAME_FLOW_DEVICE_NOT_PROVEN"
+  ]
+}

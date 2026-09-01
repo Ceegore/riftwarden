@@ -1,0 +1,348 @@
+{
+  "schemaVersion": 1,
+  "officialReqIdsStatus": "NOT_PROVIDED_IN_HANDOFF",
+  "entries": [
+    {
+      "key": "simulationTicksPerSecond",
+      "owner": "technical-rules.ts",
+      "source": "GDD 51.1/51.3/73.2",
+      "value": 30,
+      "helperTestId": "P11-CONTRACT-TECH-SIMULATIONTICKSPERSECOND"
+    },
+    {
+      "key": "renderTargetFramesPerSecond",
+      "owner": "technical-rules.ts",
+      "source": "GDD 51.1/51.3/73.2",
+      "value": 60,
+      "helperTestId": "P11-CONTRACT-TECH-RENDERTARGETFRAMESPERSECOND"
+    },
+    {
+      "key": "maxCatchUpTicksPerRenderFrame",
+      "owner": "technical-rules.ts",
+      "source": "GDD 51.1/51.3/73.2",
+      "value": 8,
+      "helperTestId": "P11-CONTRACT-TECH-MAXCATCHUPTICKSPERRENDERFRAME"
+    },
+    {
+      "key": "positionScaleX100",
+      "owner": "technical-rules.ts",
+      "source": "GDD 51.1/51.3/73.2",
+      "value": 100,
+      "helperTestId": "P11-CONTRACT-TECH-POSITIONSCALEX100"
+    },
+    {
+      "key": "positionMinX100",
+      "owner": "technical-rules.ts",
+      "source": "GDD 51.1/51.3/73.2",
+      "value": 0,
+      "helperTestId": "P11-CONTRACT-TECH-POSITIONMINX100"
+    },
+    {
+      "key": "positionMaxX100",
+      "owner": "technical-rules.ts",
+      "source": "GDD 51.1/51.3/73.2",
+      "value": 10000,
+      "helperTestId": "P11-CONTRACT-TECH-POSITIONMAXX100"
+    },
+    {
+      "key": "milliValueScale",
+      "owner": "technical-rules.ts",
+      "source": "GDD 51.1/51.3/73.2",
+      "value": 1000,
+      "helperTestId": "P11-CONTRACT-TECH-MILLIVALUESCALE"
+    },
+    {
+      "key": "basisPointsScale",
+      "owner": "technical-rules.ts",
+      "source": "GDD 51.1/51.3/73.2",
+      "value": 10000,
+      "helperTestId": "P11-CONTRACT-TECH-BASISPOINTSSCALE"
+    },
+    {
+      "key": "basisPointsNormalMin",
+      "owner": "technical-rules.ts",
+      "source": "GDD 51.1/51.3/73.2",
+      "value": 0,
+      "helperTestId": "P11-CONTRACT-TECH-BASISPOINTSNORMALMIN"
+    },
+    {
+      "key": "basisPointsNormalMax",
+      "owner": "technical-rules.ts",
+      "source": "GDD 51.1/51.3/73.2",
+      "value": 50000,
+      "helperTestId": "P11-CONTRACT-TECH-BASISPOINTSNORMALMAX"
+    },
+    {
+      "key": "phaseTransitionDefaultTicks",
+      "owner": "technical-rules.ts",
+      "source": "GDD 51.1/51.3/73.2",
+      "value": 45,
+      "helperTestId": "P11-CONTRACT-TECH-PHASETRANSITIONDEFAULTTICKS"
+    },
+    {
+      "key": "resolvingEndMaxTicks",
+      "owner": "technical-rules.ts",
+      "source": "GDD 51.1/51.3/73.2",
+      "value": 3,
+      "helperTestId": "P11-CONTRACT-TECH-RESOLVINGENDMAXTICKS"
+    },
+    {
+      "key": "maxSafeInteger",
+      "owner": "technical-rules.ts",
+      "source": "GDD 51.1/51.3/73.2",
+      "value": 9007199254740991,
+      "helperTestId": "P11-CONTRACT-TECH-MAXSAFEINTEGER"
+    },
+    {
+      "key": "supportedLocales",
+      "owner": "ui-rules.ts",
+      "source": "GDD 6.7/42/73.1/73.2",
+      "value": [
+        "de",
+        "en"
+      ],
+      "helperTestId": "P11-CONTRACT-UI-SUPPORTEDLOCALES"
+    },
+    {
+      "key": "battleSpeedRatios",
+      "owner": "ui-rules.ts",
+      "source": "GDD 6.7/42/73.1/73.2",
+      "value": [
+        {
+          "numerator": 1,
+          "denominator": 2
+        },
+        {
+          "numerator": 1,
+          "denominator": 1
+        },
+        {
+          "numerator": 2,
+          "denominator": 1
+        },
+        {
+          "numerator": 3,
+          "denominator": 1
+        }
+      ],
+      "helperTestId": "P11-CONTRACT-UI-BATTLESPEEDRATIOS"
+    },
+    {
+      "key": "battleSpeedAffectsAuthoritativeOutcome",
+      "owner": "ui-rules.ts",
+      "source": "GDD 6.7/42/73.1/73.2",
+      "value": false,
+      "helperTestId": "P11-CONTRACT-UI-BATTLESPEEDAFFECTSAUTHORITATIVEOUTCOME"
+    },
+    {
+      "key": "localizedNamesAreAuthoritativeSortKeys",
+      "owner": "ui-rules.ts",
+      "source": "GDD 6.7/42/73.1/73.2",
+      "value": false,
+      "helperTestId": "P11-CONTRACT-UI-LOCALIZEDNAMESAREAUTHORITATIVESORTKEYS"
+    },
+    {
+      "key": "autosaveRotationSlots",
+      "owner": "save-rules.ts",
+      "source": "GDD 42/73.1",
+      "value": 3,
+      "helperTestId": "P11-CONTRACT-SAVE-AUTOSAVEROTATIONSLOTS"
+    },
+    {
+      "key": "manualProfileBackupSlots",
+      "owner": "save-rules.ts",
+      "source": "GDD 42/73.1",
+      "value": 1,
+      "helperTestId": "P11-CONTRACT-SAVE-MANUALPROFILEBACKUPSLOTS"
+    },
+    {
+      "key": "atomicWriteRequired",
+      "owner": "save-rules.ts",
+      "source": "GDD 42/73.1",
+      "value": true,
+      "helperTestId": "P11-CONTRACT-SAVE-ATOMICWRITEREQUIRED"
+    },
+    {
+      "key": "checksumBeforeReplace",
+      "owner": "save-rules.ts",
+      "source": "GDD 42/73.1",
+      "value": true,
+      "helperTestId": "P11-CONTRACT-SAVE-CHECKSUMBEFOREREPLACE"
+    },
+    {
+      "key": "fallbackToPreviousValidSlot",
+      "owner": "save-rules.ts",
+      "source": "GDD 42/73.1",
+      "value": true,
+      "helperTestId": "P11-CONTRACT-SAVE-FALLBACKTOPREVIOUSVALIDSLOT"
+    },
+    {
+      "key": "migrationDirection",
+      "owner": "save-rules.ts",
+      "source": "GDD 42/73.1",
+      "value": "forward",
+      "helperTestId": "P11-CONTRACT-SAVE-MIGRATIONDIRECTION"
+    },
+    {
+      "key": "migrationIdempotent",
+      "owner": "save-rules.ts",
+      "source": "GDD 42/73.1",
+      "value": true,
+      "helperTestId": "P11-CONTRACT-SAVE-MIGRATIONIDEMPOTENT"
+    },
+    {
+      "key": "backupBeforeMigration",
+      "owner": "save-rules.ts",
+      "source": "GDD 42/73.1",
+      "value": true,
+      "helperTestId": "P11-CONTRACT-SAVE-BACKUPBEFOREMIGRATION"
+    },
+    {
+      "key": "internetRequired",
+      "owner": "save-rules.ts",
+      "source": "GDD 42/73.1",
+      "value": false,
+      "helperTestId": "P11-CONTRACT-SAVE-INTERNETREQUIRED"
+    },
+    {
+      "key": "deviceIdDependency",
+      "owner": "save-rules.ts",
+      "source": "GDD 42/73.1",
+      "value": false,
+      "helperTestId": "P11-CONTRACT-SAVE-DEVICEIDDEPENDENCY"
+    },
+    {
+      "key": "wallClockProgression",
+      "owner": "save-rules.ts",
+      "source": "GDD 42/73.1",
+      "value": false,
+      "helperTestId": "P11-CONTRACT-SAVE-WALLCLOCKPROGRESSION"
+    },
+    {
+      "key": "formationLanes",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 3,
+      "helperTestId": "P11-CONTRACT-GAME-FORMATIONLANES"
+    },
+    {
+      "key": "formationDepths",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 3,
+      "helperTestId": "P11-CONTRACT-GAME-FORMATIONDEPTHS"
+    },
+    {
+      "key": "maxRegularUnitsPerSide",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 7,
+      "helperTestId": "P11-CONTRACT-GAME-MAXREGULARUNITSPERSIDE"
+    },
+    {
+      "key": "maxHeroesPerPlayerGroup",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 3,
+      "helperTestId": "P11-CONTRACT-GAME-MAXHEROESPERPLAYERGROUP"
+    },
+    {
+      "key": "maxCopiesPerTroopType",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 3,
+      "helperTestId": "P11-CONTRACT-GAME-MAXCOPIESPERTROOPTYPE"
+    },
+    {
+      "key": "maxActiveSummonsPerSide",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 6,
+      "helperTestId": "P11-CONTRACT-GAME-MAXACTIVESUMMONSPERSIDE"
+    },
+    {
+      "key": "baseActiveRelics",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 6,
+      "helperTestId": "P11-CONTRACT-GAME-BASEACTIVERELICS"
+    },
+    {
+      "key": "deepEndlessActiveRelics",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 8,
+      "helperTestId": "P11-CONTRACT-GAME-DEEPENDLESSACTIVERELICS"
+    },
+    {
+      "key": "absoluteMaxActiveRelics",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 8,
+      "helperTestId": "P11-CONTRACT-GAME-ABSOLUTEMAXACTIVERELICS"
+    },
+    {
+      "key": "heroLevelMin",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 1,
+      "helperTestId": "P11-CONTRACT-GAME-HEROLEVELMIN"
+    },
+    {
+      "key": "heroLevelMax",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 3,
+      "helperTestId": "P11-CONTRACT-GAME-HEROLEVELMAX"
+    },
+    {
+      "key": "permanentEquipmentSlotsPerHero",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 2,
+      "helperTestId": "P11-CONTRACT-GAME-PERMANENTEQUIPMENTSLOTSPERHERO"
+    },
+    {
+      "key": "formationPresetCount",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 4,
+      "helperTestId": "P11-CONTRACT-GAME-FORMATIONPRESETCOUNT"
+    },
+    {
+      "key": "normalRiftCollapseStartTicks",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 2700,
+      "helperTestId": "P11-CONTRACT-GAME-NORMALRIFTCOLLAPSESTARTTICKS"
+    },
+    {
+      "key": "eliteRiftCollapseStartTicks",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 2700,
+      "helperTestId": "P11-CONTRACT-GAME-ELITERIFTCOLLAPSESTARTTICKS"
+    },
+    {
+      "key": "bossRiftCollapseStartTicks",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 3600,
+      "helperTestId": "P11-CONTRACT-GAME-BOSSRIFTCOLLAPSESTARTTICKS"
+    },
+    {
+      "key": "riftCollapseDurationTicks",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 450,
+      "helperTestId": "P11-CONTRACT-GAME-RIFTCOLLAPSEDURATIONTICKS"
+    },
+    {
+      "key": "absoluteBattleAbortTicks",
+      "owner": "game-rules.ts",
+      "source": "GDD 6/9/48/73.1",
+      "value": 5400,
+      "helperTestId": "P11-CONTRACT-GAME-ABSOLUTEBATTLEABORTTICKS"
+    }
+  ]
+}

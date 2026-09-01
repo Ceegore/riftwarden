@@ -1,0 +1,11 @@
+{
+  "cases": [
+    "secure_success",
+    "secure_duplicate",
+    "storage_failure",
+    "retreat_confirm",
+    "retreat_cancel",
+    "resume_after_commit",
+    "formation_return"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "phase": 36,
+  "gate": "G36",
+  "evidence": {
+    "modules": [
+      "src/game/expedition/settlement-bridge.ts",
+      "src/screens/hq/AscensionRanksScreen.tsx",
+      "src/screens/hq/ConstellationScreen.tsx",
+      "src/screens/hq/CyclePreparationScreen.tsx",
+      "src/screens/hq/BeyondSetupScreen.tsx",
+      "src/screens/hq/EndlessSetupScreen.tsx",
+      "src/screens/hq/RiftChamberScreen.tsx",
+      "src/screens/run/EndlessCheckpointScreen.tsx"
+    ],
+    "tests": [
+      "tests/sim/phase36-screens.test.ts"
+    ]
+  },
+  "hardBlockers": [
+    "P36_G36_G35_GATE_BLOCKED",
+    "P36_G36_ASCENSION_BALANCE_NOT_REVIEWED",
+    "P36_G36_CONSTELLATION_SKILL_TREE_NOT_FINALIZED",
+    "P36_G36_ENDLESS_MODE_NOT_PLAYTESTED"
+  ]
+}

@@ -1,0 +1,492 @@
+{
+  "entries": [
+    {
+      "checkpoints": [
+        {
+          "checksum": "e4a9a71763467c882222acc424a523cb9c1810b1332de4cdf9f85d7e7d453ed3",
+          "tick": 30
+        },
+        {
+          "checksum": "bd06af60c917668be5273d187bb5408c294b0fb8464b1e1547197866b52d29f2",
+          "tick": 60
+        }
+      ],
+      "contentVersion": "content_fixture",
+      "endHash": "bd06af60c917668be5273d187bb5408c294b0fb8464b1e1547197866b52d29f2",
+      "endReason": null,
+      "endTick": 60,
+      "eventCount": 0,
+      "id": "golden_basic_001",
+      "outcome": null,
+      "purpose": "physical armor defeat end",
+      "scenario": "phase15",
+      "seed": [
+        "1e781b20",
+        "21781fd9",
+        "20781e46",
+        "237822ff"
+      ],
+      "simulationVersion": "phase15-fixture-v1",
+      "startHash": "c215cd27d75cadbd615ee2c4f3fd727c7a0d26ee06a18ca93628f08730b7a90a",
+      "terminal": false
+    },
+    {
+      "checkpoints": [
+        {
+          "checksum": "4b54356d18581e4a45d69cc1b2114ce82941f38b28d9d94622d6f629e1dfc731",
+          "tick": 30
+        },
+        {
+          "checksum": "4478f0d1235dfc03e1a4134825d36d765c634e86854addae20e7b558a462957f",
+          "tick": 60
+        }
+      ],
+      "contentVersion": "content_fixture",
+      "endHash": "4478f0d1235dfc03e1a4134825d36d765c634e86854addae20e7b558a462957f",
+      "endReason": null,
+      "endTick": 60,
+      "eventCount": 6,
+      "id": "golden_lane_002",
+      "outcome": null,
+      "purpose": "lanes switch empty lane protection",
+      "scenario": "phase16",
+      "seed": [
+        "b76905ab",
+        "b869073e",
+        "b96908d1",
+        "ba690a64"
+      ],
+      "simulationVersion": "phase16-fixture-v1",
+      "startHash": "0ead5e17e88af78b217b82a218da741a841c17be482f99dc62ef08694f4b755e",
+      "terminal": false
+    },
+    {
+      "checkpoints": [
+        {
+          "checksum": "0a1457bd3cd9e83d130d95b6c100184841ecf156a2b57d976e8aa62e737af493",
+          "tick": 30
+        },
+        {
+          "checksum": "35271c3079578e1bc7f1063a0bcde32fff04564d655f162a0b34054e0c2e531f",
+          "tick": 60
+        }
+      ],
+      "contentVersion": "content_fixture",
+      "endHash": "35271c3079578e1bc7f1063a0bcde32fff04564d655f162a0b34054e0c2e531f",
+      "endReason": null,
+      "endTick": 60,
+      "eventCount": 14,
+      "id": "golden_status_003",
+      "outcome": null,
+      "purpose": "all stack policies cleanse periodic",
+      "scenario": "phase18",
+      "seed": [
+        "c4b90c84",
+        "c7b9113d",
+        "c6b90faa",
+        "c1b907cb"
+      ],
+      "simulationVersion": "phase18-fixture-v1",
+      "startHash": "2ce71c0efc4c5c09e436f2a8c635ed19da5c002ea6516a8230e953bd7ef5c9bb",
+      "terminal": false
+    },
+    {
+      "checkpoints": [
+        {
+          "checksum": "7487884a7c01eed79d74344aa8edadd211d2597781d29c1b6ad2fa3f2ff96cf3",
+          "tick": 30
+        },
+        {
+          "checksum": "3c7b09c4ed404a2796cbe57a009f37157b6067fd3472dfb76a1d03f12ffbef2e",
+          "tick": 60
+        }
+      ],
+      "contentVersion": "content_fixture",
+      "endHash": "3c7b09c4ed404a2796cbe57a009f37157b6067fd3472dfb76a1d03f12ffbef2e",
+      "endReason": null,
+      "endTick": 60,
+      "eventCount": 4,
+      "id": "golden_summon_004",
+      "outcome": null,
+      "purpose": "six slots multispawn replace expiration",
+      "scenario": "phase20",
+      "seed": [
+        "4f6c9b3c",
+        "526c9ff5",
+        "516c9e62",
+        "4c6c9683"
+      ],
+      "simulationVersion": "phase20-fixture-v1",
+      "startHash": "663c804f708afb1f265ce9af3abd8f8cfe07b5df35c98ea18d968c9c58a432ff",
+      "terminal": false
+    },
+    {
+      "checkpoints": [
+        {
+          "checksum": "be7daf6063cf8945f99a624aa4e1868459a660bb790a97be798c2361082fbad2",
+          "tick": 2700
+        },
+        {
+          "checksum": "f05d0f4a489a0593377b75b8769cd44c3f55f993775df6a009651f4cac8a067c",
+          "tick": 2730
+        },
+        {
+          "checksum": "404ef4cde55c28475b84b63a190de0cb9e3dea3735bf6249a95fbdf9b653badc",
+          "tick": 2760
+        },
+        {
+          "checksum": "4eb31689473df5c3cf56222cfa869eb2bfa6a97201f2e1d871083b875fd9ba27",
+          "tick": 2790
+        },
+        {
+          "checksum": "bbc7713a39ece3f7de03c7c4fc20461e2ef25b9f92abdd7a75f850e4f9206fcb",
+          "tick": 2820
+        },
+        {
+          "checksum": "4a63f963188e2f756c3b45d014276e0d2753ab5025f81665bf9be51d1e638d6f",
+          "tick": 2850
+        },
+        {
+          "checksum": "960c5aa1613c03520895b63992186e20e4cb686f7b0919f9f70dee8d9da7c677",
+          "tick": 2880
+        },
+        {
+          "checksum": "909e4e31f1089d034214149d0303e593bbf40d81b15ee92abdd3a018a3ac6f89",
+          "tick": 2910
+        },
+        {
+          "checksum": "83bef503ed99a9957d5b050d54ac70e6fd4e44fd53b2f6ddf9ce7ee2229bc99b",
+          "tick": 2940
+        },
+        {
+          "checksum": "ce2af17b2654a96a40589315a0a0e25a4243369ee962e25e2ebe3aefcf442934",
+          "tick": 2970
+        }
+      ],
+      "contentVersion": "content_fixture",
+      "endHash": "6535246fffe05f76bcb003ec8fc5220a514738607b511f202be3e5b2bf9afb4d",
+      "endReason": null,
+      "endTick": 2980,
+      "eventCount": 26,
+      "id": "golden_revive_005",
+      "outcome": null,
+      "purpose": "revive simultaneous death draw",
+      "scenario": "phase17jl",
+      "seed": [
+        "fdc81819",
+        "fac81360",
+        "fbc814f3",
+        "00c81cd2"
+      ],
+      "simulationVersion": "phase17jl-fixture-v1",
+      "startHash": "ff10a3f6c6a78f35a7eb7a0b1415e2363839aae2910f6e6440088c5bcb5d373c",
+      "terminal": false
+    },
+    {
+      "checkpoints": [
+        {
+          "checksum": "6b4507834e3fbb4436cd1c563112f6ce7a035c39208d23b71e6274bededcde28",
+          "tick": 30
+        },
+        {
+          "checksum": "cb5fdb9387becb6ec786381c6fcc2abdf0cf47fae4e42c1ca07a61d4de772953",
+          "tick": 60
+        }
+      ],
+      "contentVersion": "content_fixture",
+      "endHash": "cb5fdb9387becb6ec786381c6fcc2abdf0cf47fae4e42c1ca07a61d4de772953",
+      "endReason": null,
+      "endTick": 60,
+      "eventCount": 19,
+      "id": "golden_projectile_006",
+      "outcome": null,
+      "purpose": "target loss homing phase transition",
+      "scenario": "phase17",
+      "seed": [
+        "c762f952",
+        "c662f7bf",
+        "c562f62c",
+        "c462f499"
+      ],
+      "simulationVersion": "phase17-fixture-v1",
+      "startHash": "70314c2f3fd70f329ba1aeb4fc49e2ceaed2634583e05d3daed276545d5b090c",
+      "terminal": false
+    },
+    {
+      "checkpoints": [
+        {
+          "checksum": "3af6b522458a88cc1cf19b52bce98351ff0a6003c1741fc7035abd86c9262a00",
+          "tick": 30
+        },
+        {
+          "checksum": "45298d38727f1ebe4ec1ad08cea88648de19cdc5bd3ebbf6952fb22480d57051",
+          "tick": 60
+        }
+      ],
+      "contentVersion": "content_fixture",
+      "endHash": "45298d38727f1ebe4ec1ad08cea88648de19cdc5bd3ebbf6952fb22480d57051",
+      "endReason": null,
+      "endTick": 60,
+      "eventCount": 9,
+      "id": "golden_boss_ash_101",
+      "outcome": null,
+      "purpose": "ash boss all phases normal ascension",
+      "scenario": "phase21",
+      "seed": [
+        "c21def2d",
+        "bf1dea74",
+        "c01dec07",
+        "bd1de74e"
+      ],
+      "simulationVersion": "phase21-fixture-v1",
+      "startHash": "334bd48ac537b24c15519879dfaa6a7dc92dbd5701afa84807da8dfb18a14d7b",
+      "terminal": false
+    },
+    {
+      "checkpoints": [
+        {
+          "checksum": "dd7b5333808e44d7cc45ed231e836dc687d7220c3ab9c5ab121b65718f6d4f2c",
+          "tick": 30
+        },
+        {
+          "checksum": "a6ab8967f99f83faca56f14322783f8e20ca809a3ac1009d1fb4b4aae734d7b0",
+          "tick": 60
+        }
+      ],
+      "contentVersion": "content_fixture",
+      "endHash": "a6ab8967f99f83faca56f14322783f8e20ca809a3ac1009d1fb4b4aae734d7b0",
+      "endReason": null,
+      "endTick": 60,
+      "eventCount": 9,
+      "id": "golden_boss_thorn_102",
+      "outcome": null,
+      "purpose": "plant slots shield vulnerability",
+      "scenario": "phase21",
+      "seed": [
+        "133d91f1",
+        "103d8d38",
+        "113d8ecb",
+        "163d96aa"
+      ],
+      "simulationVersion": "phase21-fixture-v1",
+      "startHash": "ba1cd89145b4e8cf7d6156eae05db36aa56104588e7a6702b60e033b85c2e2d8",
+      "terminal": false
+    },
+    {
+      "checkpoints": [
+        {
+          "checksum": "c11fc28ccd611e9b9a603874462f97272edb5e853ee720da7323673de5c55cfe",
+          "tick": 30
+        },
+        {
+          "checksum": "c627d5b21a1635c025e622f6d3c9a1eac05cee18581bb0fc2b6b9f801049021a",
+          "tick": 60
+        }
+      ],
+      "contentVersion": "content_fixture",
+      "endHash": "c627d5b21a1635c025e622f6d3c9a1eac05cee18581bb0fc2b6b9f801049021a",
+      "endReason": null,
+      "endTick": 60,
+      "eventCount": 9,
+      "id": "golden_boss_smith_103",
+      "outcome": null,
+      "purpose": "construct slots overheat",
+      "scenario": "phase21",
+      "seed": [
+        "eefa9ee4",
+        "f1faa39d",
+        "f0faa20a",
+        "ebfa9a2b"
+      ],
+      "simulationVersion": "phase21-fixture-v1",
+      "startHash": "066efedb1544d2f6cb8fd156dca3654d44cfb5049e7c340a1b3994341293dc9c",
+      "terminal": false
+    },
+    {
+      "checkpoints": [
+        {
+          "checksum": "7642af947d12551e8721b128750eb34148d749fbac3c920d13a0b3e884c80fb6",
+          "tick": 30
+        },
+        {
+          "checksum": "bd1751915b06618b28e6e7415545ccae010c35373e2f16c4d03a8ba78d6f350d",
+          "tick": 60
+        }
+      ],
+      "contentVersion": "content_fixture",
+      "endHash": "bd1751915b06618b28e6e7415545ccae010c35373e2f16c4d03a8ba78d6f350d",
+      "endReason": null,
+      "endTick": 60,
+      "eventCount": 9,
+      "id": "golden_boss_heart_104",
+      "outcome": null,
+      "purpose": "four final phases curator rank10",
+      "scenario": "phase21",
+      "seed": [
+        "b9a1999e",
+        "b8a1980b",
+        "b7a19678",
+        "bea1a17d"
+      ],
+      "simulationVersion": "phase21-fixture-v1",
+      "startHash": "174e5c67cd1a0346f042c55b64c9eb4dfe16f42126bbcda653865422030c7833",
+      "terminal": false
+    },
+    {
+      "checkpoints": [
+        {
+          "checksum": "e616493984485d193f84605c45ff4c406852473c87f4a96ab10a66b3fab332c0",
+          "tick": 2700
+        },
+        {
+          "checksum": "c03ecb96eabf4d9c9a8733a7f27b99b59fad08cad4c6078e79e5ad55e2f6bf85",
+          "tick": 2730
+        },
+        {
+          "checksum": "1ecf6a92cce83172eede5cb20e5d86185aed3b8a79f8d37704bdf845e1dcc7e8",
+          "tick": 2760
+        },
+        {
+          "checksum": "643d2ebb61598755c197377028143ff00b4971b13021c911deb7aff7ba2a9882",
+          "tick": 2790
+        },
+        {
+          "checksum": "be7815f924222380ba22b348257819884863f666803f1db8b7ed4e1fcd21db6d",
+          "tick": 2820
+        },
+        {
+          "checksum": "2acfcd3089664cd111713b14b7acf37ec1960fa7ae3941921e60711ef669c189",
+          "tick": 2850
+        },
+        {
+          "checksum": "ef50de297bf33248a727ebf343974afa626e6131468a9b1d4d6540b3e2c3fe28",
+          "tick": 2880
+        },
+        {
+          "checksum": "9d4b4115baa4bdef3552fbf9c295f9d263f6b18503ad6213a133a98b384a353d",
+          "tick": 2910
+        },
+        {
+          "checksum": "745f829170ac466f9410d093ce6599f362cb122789aa969b14b6f08b339225fb",
+          "tick": 2940
+        },
+        {
+          "checksum": "a54f84e4c8d5de7d96d3c6f97bca6aa764c4b662431a6dd0c0272faa5d8716aa",
+          "tick": 2970
+        },
+        {
+          "checksum": "9d6b8d81fb908bf736e21b79dc6bed11d2891198bc314f96b34dc726cd840d55",
+          "tick": 3000
+        },
+        {
+          "checksum": "754280b63682e21def01f81b82a29cd7b8c1023f544e88518a60538a8536660c",
+          "tick": 3030
+        },
+        {
+          "checksum": "2414510e83c3e972fc73bea67cce619a0c609edf0be1f22f3b6abfd4034d1f11",
+          "tick": 3060
+        },
+        {
+          "checksum": "bab6a087c7f674e2e27c3caff94cd47b7d70555dd914adb9efaf43f160b1181a",
+          "tick": 3090
+        },
+        {
+          "checksum": "55bce396ecf96bf54aa303fde324aa98b2cd3fe52d983a5acaca8211d5e77f16",
+          "tick": 3120
+        },
+        {
+          "checksum": "01524a9b8243522893a9d749c09030a05648d881649007ddb48558e1bb85e569",
+          "tick": 3150
+        },
+        {
+          "checksum": "9ddcc1774c370eb4f91b64e6777ec2f3dc1924579d5a89187cf096d965f54b89",
+          "tick": 3154
+        }
+      ],
+      "contentVersion": "content_fixture",
+      "endHash": "9ddcc1774c370eb4f91b64e6777ec2f3dc1924579d5a89187cf096d965f54b89",
+      "endReason": "chapter76_timeout",
+      "endTick": 3154,
+      "eventCount": 31,
+      "id": "golden_timeout_201",
+      "outcome": "VICTORY",
+      "purpose": "stall collapse timeout tiebreak",
+      "scenario": "phase17jl",
+      "seed": [
+        "0a18dd6f",
+        "0b18df02",
+        "0c18e095",
+        "0518d590"
+      ],
+      "simulationVersion": "phase17jl-fixture-v1",
+      "startHash": "a8add3b6c41bc740c9d8482db7c3460bf6891062013ff3f2923d613148187936",
+      "terminal": true
+    },
+    {
+      "checkpoints": [
+        {
+          "checksum": "69b5e501b9b5c574c67e9c059a34ebf93babd956e35fac4423173186c483902c",
+          "tick": 2700
+        },
+        {
+          "checksum": "993d043c296db94ab2397b4df562f835f6461d9539bd59ea76b928914983f407",
+          "tick": 2730
+        },
+        {
+          "checksum": "dd87efe853b7467fd84b7c65170fe17b8d73208c8d68285f12afe8d15b80b5e7",
+          "tick": 2760
+        },
+        {
+          "checksum": "1f9b4cd7f76fc331afd2461cbfa43a83fe37265a812d97fedd121c70c0c714ea",
+          "tick": 2790
+        },
+        {
+          "checksum": "be68d01bd2eb7c5204b14b2b25b2f7b3a281dc225199ffe8308f8abf0f58c90e",
+          "tick": 2820
+        },
+        {
+          "checksum": "fc0d69efb61fe68dc6688f8dbc62b184c9e2ef6ac8a0bd1f2873c885da121084",
+          "tick": 2850
+        },
+        {
+          "checksum": "e7dc233d38f8c65c3e0ca63ffdeb327d4b428d03aec4aefc707a8d2bc81addf8",
+          "tick": 2880
+        },
+        {
+          "checksum": "eb588f24970a15dac68982a6308a39e0e2a0db52a52a53a7199674c43fbbc2c8",
+          "tick": 2910
+        },
+        {
+          "checksum": "26ac7b1d353616c6b8ee6e6df955085958d880b85810c11a9d0635222171951a",
+          "tick": 2940
+        },
+        {
+          "checksum": "be5e0177b3283008a74f097c47e674d0be98e7006152b4f6255934f6e1f7ad52",
+          "tick": 2970
+        }
+      ],
+      "contentVersion": "content_fixture",
+      "endHash": "ae929ace3d1548c33871d2e8bc58fab9db6eb85b8a849ce8dc2e0587a962f6bc",
+      "endReason": null,
+      "endTick": 2980,
+      "eventCount": 26,
+      "id": "golden_save_301",
+      "outcome": null,
+      "purpose": "snapshot cast projectile spawn resume",
+      "scenario": "phase17jl",
+      "seed": [
+        "64fdd2b8",
+        "67fdd771",
+        "66fdd5de",
+        "69fdda97"
+      ],
+      "simulationVersion": "phase17jl-fixture-v1",
+      "startHash": "71f36c2fbf25a96cc429a1a48f20cfc0ba8752daa0fe329ef452b2a6b25cec75",
+      "terminal": false
+    }
+  ],
+  "gate": "G22",
+  "generatedBy": "tools/sim/golden-harness.mjs --write",
+  "note": "Baselines are real repository output. Changes require an explicit --write review; CI never writes.",
+  "schemaVersion": 1
+}

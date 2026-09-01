@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "ticksPerSecond": 30,
+  "hardBattleLimitTicks": 5400,
+  "checkpointIntervalTicks": 30,
+  "maxEventsPerBattle": 10000,
+  "minimumPropertyCasesPerInvariant": 1000,
+  "massSimulationFightsPerRc": 100000,
+  "criticalBranchCoverageBps": 9500,
+  "goldenSeedCount": 12
+}

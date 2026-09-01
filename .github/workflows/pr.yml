@@ -14,7 +14,7 @@ concurrency:
 
 env:
   CI: 'true'
-  RIFTWARDEN_IMPLEMENTATION_PHASE: '3'
+  RIFTWARDEN_IMPLEMENTATION_PHASE: '17'
 
 jobs:
   bootstrap_versions:
@@ -115,6 +115,62 @@ jobs:
     with:
       gate: content-reproducibility
 
+  rules_gates:
+    name: PR / rules-gates
+    if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_11_RULES_ENABLED == 'true'
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: rules-gates
+
+  math_gates:
+    name: PR / math-gates
+    if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_12_MATH_ENABLED == 'true'
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: math-gates
+
+  random_gates:
+    name: PR / random-gates
+    if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_13_RANDOM_ENABLED == 'true'
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: random-gates
+
+  sim_gates:
+    name: PR / sim-gates
+    if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_14_SIM_ENABLED == 'true'
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: sim-gates
+
+  phase15_gates:
+    name: PR / phase15-gates
+    if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_15_MOVEMENT_ENABLED == 'true'
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: phase15-gates
+
+  phase16_gates:
+    name: PR / phase16-gates
+    if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_16_TARGETING_ENABLED == 'true'
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: phase16-gates
+
+  phase17_gates:
+    name: PR / phase17-gates
+    if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_17_COMBAT_ENABLED == 'true'
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: phase17-gates
+
+  crossruntime_gates:
+    name: PR / crossruntime-gates
+    if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_14_SIM_ENABLED == 'true'
+    uses: ./.github/workflows/reusable-node-gate.yml
+    with:
+      gate: crossruntime-gates
+
   asset_manifest_validate:
     name: PR / asset-manifest-validate
     if: github.event.pull_request.draft == false && vars.RIFTWARDEN_PHASE_38_ASSETS_ENABLED == 'true'
@@ -155,6 +211,14 @@ jobs:
       - localization_parity
       - content_validate
       - content_reproducibility
+      - rules_gates
+      - math_gates
+      - random_gates
+      - sim_gates
+      - phase15_gates
+      - phase16_gates
+      - phase17_gates
+      - crossruntime_gates
       - asset_manifest_validate
       - native_config_diff
       - android_debug_smoke
@@ -171,4 +235,4 @@ jobs:
       - name: Assert active and phased results
         env:
           NEEDS_JSON: ${{ toJSON(needs) }}
-        run: node tools/ci/assert-needs-results.mjs --phase 3
+        run: node tools/ci/assert-needs-results.mjs --phase 17

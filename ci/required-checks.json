@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "implementationPhase": 3,
+  "implementationPhase": 17,
   "branchProtectionRequiredContexts": [
     "PR / workflow-security",
     "PR / dependency-security",
@@ -48,6 +48,46 @@
     {
       "job": "android_debug_smoke",
       "activationPhase": 4,
+      "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "rules_gates",
+      "activationPhase": 11,
+      "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "math_gates",
+      "activationPhase": 12,
+      "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "random_gates",
+      "activationPhase": 13,
+      "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "sim_gates",
+      "activationPhase": 14,
+      "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "phase15_gates",
+      "activationPhase": 15,
+      "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "phase16_gates",
+      "activationPhase": 16,
+      "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "phase17_gates",
+      "activationPhase": 17,
+      "expectedBeforeActivation": "skipped"
+    },
+    {
+      "job": "crossruntime_gates",
+      "activationPhase": 14,
       "expectedBeforeActivation": "skipped"
     }
   ],

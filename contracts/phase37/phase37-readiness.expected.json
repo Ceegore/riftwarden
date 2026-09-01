@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "phase": 37,
+  "gate": "G37",
+  "evidence": {
+    "modules": [
+      "src/game/equipment/equipment-definitions.ts",
+      "src/game/equipment/equipment-store.ts",
+      "src/game/equipment/types.ts",
+      "src/game/kits/kit-store.ts",
+      "src/game/kits/types.ts",
+      "src/game/banners/banner-store.ts",
+      "src/game/banners/types.ts",
+      "src/game/formations/formation-store.ts",
+      "src/game/formations/types.ts",
+      "src/features/battle/BattleCanvas.tsx",
+      "src/features/battle/battle-renderer.ts",
+      "src/features/battle/battle-animation.ts",
+      "src/screens/hq/EquipmentScreen.tsx",
+      "src/screens/hq/KitAssemblyScreen.tsx",
+      "src/screens/hq/BannerSetupScreen.tsx",
+      "src/screens/hq/FormationScreen.tsx",
+      "src/features/expedition/transaction-ids.ts",
+      "tests/e2e/expedition/app-flow.smoke.spec.ts"
+    ],
+    "tests": [
+      "tests/sim/phase37-domain.test.ts",
+      "tests/sim/phase37-determinism.test.ts"
+    ]
+  },
+  "hardBlockers": [
+    "P37_G37_G36_GATE_BLOCKED",
+    "P37_G37_PIXI_DEVICE_RENDER_NOT_RUN",
+    "P37_G37_EQUIPMENT_BALANCE_NOT_REVIEWED",
+    "P37_G37_BROWSER_SMOKE_DEVICE_NOT_RUN"
+  ]
+}

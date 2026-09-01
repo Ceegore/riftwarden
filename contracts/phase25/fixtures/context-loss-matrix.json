@@ -1,0 +1,16 @@
+{
+  "scenarios": [
+    "during_cast",
+    "during_projectile",
+    "during_spawn",
+    "during_battle_end"
+  ],
+  "required": [
+    "prevent_default",
+    "freeze",
+    "snapshot_request",
+    "teardown",
+    "rebuild_from_snapshot",
+    "same_end_hash_or_safe_recovery"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "revision": 31,
+  "currencies": {
+    "gold": 0,
+    "riftEssence": 0
+  },
+  "heroes": {},
+  "troops": {},
+  "items": {},
+  "activeBannerId": null,
+  "transactionLedger": {}
+}

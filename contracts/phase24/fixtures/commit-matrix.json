@@ -1,0 +1,23 @@
+{
+  "reasons": [
+    "profile_change",
+    "node_entered",
+    "decision_committed",
+    "battle_started",
+    "battle_snapshot",
+    "battle_finished",
+    "reward_committed",
+    "run_finished",
+    "settings_changed",
+    "manual_backup"
+  ],
+  "faults": [
+    "before_slot_write",
+    "after_slot_write",
+    "before_manifest_commit",
+    "after_manifest_commit",
+    "duplicate_event",
+    "background",
+    "disk_full"
+  ]
+}

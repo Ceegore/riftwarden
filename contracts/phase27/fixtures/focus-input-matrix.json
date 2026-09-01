@@ -1,0 +1,10 @@
+{
+  "modes": [
+    "touch-tap",
+    "touch-drag",
+    "keyboard",
+    "gamepad",
+    "screenreader"
+  ],
+  "dragOnlyForbidden": true
+}

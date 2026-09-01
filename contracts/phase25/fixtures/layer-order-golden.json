@@ -1,0 +1,36 @@
+{
+  "layers": [
+    {
+      "id": 0,
+      "name": "background"
+    },
+    {
+      "id": 1,
+      "name": "ground"
+    },
+    {
+      "id": 2,
+      "name": "back_units"
+    },
+    {
+      "id": 3,
+      "name": "main_units"
+    },
+    {
+      "id": 4,
+      "name": "projectiles"
+    },
+    {
+      "id": 5,
+      "name": "effects"
+    },
+    {
+      "id": 6,
+      "name": "readability"
+    },
+    {
+      "id": 7,
+      "name": "debug"
+    }
+  ]
+}

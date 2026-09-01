@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "entityType": "screen",
+  "entities": [
+    {
+      "id": "screen_fixture_codex",
+      "screenKey": "codex.unit_detail",
+      "titleKey": "ui.codex.unit_detail.title",
+      "iconVisualId": "visual_fixture_unit",
+      "happyPathTestId": "E2E-FIXTURE-CODEX"
+    }
+  ]
+}

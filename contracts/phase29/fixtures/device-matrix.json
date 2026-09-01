@@ -1,0 +1,15 @@
+{
+  "android": [
+    "MINIMUM_DEVICE",
+    "TARGET_DEVICE"
+  ],
+  "ios": [
+    "MINIMUM_DEVICE_IF_AVAILABLE",
+    "TARGET_DEVICE_IF_AVAILABLE"
+  ],
+  "runs": [
+    "COLD_LOAD",
+    "WARM_LOAD",
+    "THIRTY_MINUTE_REPEAT"
+  ]
+}

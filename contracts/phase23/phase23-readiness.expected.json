@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "phase": 23,
+  "gate": "G23",
+  "evidence": {
+    "canonical": {
+      "path": "src/game/save/canonical-json.ts",
+      "vectorFixture": "contracts/phase23/fixtures/canonical-vectors.json",
+      "negativeFixture": "contracts/phase23/fixtures/negative-cases.json"
+    },
+    "envelope": {
+      "path": "src/game/save/save-envelope.ts",
+      "magic": "RIFTWARDEN_SAVE",
+      "formatVersion": 1,
+      "hashAlgorithm": "sha256"
+    },
+    "slotProtocol": {
+      "path": "src/game/save/native-save-store.ts",
+      "slots": [
+        "A",
+        "B",
+        "C"
+      ],
+      "faultSteps": 12,
+      "maxConcurrentWrites": 1
+    },
+    "coordinator": {
+      "path": "src/game/save/save-write-coordinator.ts",
+      "snapshotCoalescing": true
+    },
+    "webParity": {
+      "path": "src/game/save/web-qa-store.ts",
+      "sameSlotRotation": true,
+      "sameErrorCodes": true
+    },
+    "nativePlugins": {
+      "android": "android/app/src/main/java/com/ceegore/riftwarden/plugins/NativeSaveStorePlugin.java",
+      "ios": "ios/App/App/Plugins/NativeSaveStorePlugin.swift",
+      "requiredMethods": [
+        "getBridgeInfo",
+        "read",
+        "writeAtomic",
+        "commit",
+        "load",
+        "inspect",
+        "cleanupOrphans"
+      ]
+    },
+    "tests": {
+      "core": "tests/sim/phase23-save-core.test.ts",
+      "fixtures": "tests/sim/phase23-contract-fixtures.test.ts"
+    }
+  },
+  "hardBlockers": [
+    "P23_G23_REAL_G22_NOT_PROVEN",
+    "P23_G23_ANDROID_DEVICE_EVIDENCE_MISSING",
+    "P23_G23_IOS_DEVICE_EVIDENCE_MISSING",
+    "P23_G23_NATIVE_COMPILE_NOT_VERIFIED"
+  ]
+}

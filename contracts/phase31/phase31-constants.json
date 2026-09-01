@@ -1,0 +1,14 @@
+{
+  "heroCount": 10,
+  "troopTypeCount": 18,
+  "itemCount": 42,
+  "bannerCount": 6,
+  "heroLevelMin": 1,
+  "heroLevelMax": 3,
+  "contractLevelMin": 1,
+  "contractLevelMax": 3,
+  "copyLimitPerTroopType": 3,
+  "activeBannerLimit": 1,
+  "currencyMin": 0,
+  "masteryDetailPhase": 35
+}

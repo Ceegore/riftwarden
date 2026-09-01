@@ -1,0 +1,1012 @@
+[
+  {
+    "eventId": "event-01",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-01-a",
+        "labelKey": "event.01.a",
+        "cost": {
+          "gold": 5
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e01-risk"
+        ]
+      },
+      {
+        "optionId": "event-01-b",
+        "labelKey": "event.01.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e01-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-02",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-02-a",
+        "labelKey": "event.02.a",
+        "cost": {
+          "gold": 10
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e02-risk"
+        ]
+      },
+      {
+        "optionId": "event-02-b",
+        "labelKey": "event.02.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e02-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-03",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-03-a",
+        "labelKey": "event.03.a",
+        "cost": {
+          "gold": 15
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e03-risk"
+        ]
+      },
+      {
+        "optionId": "event-03-b",
+        "labelKey": "event.03.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e03-reward"
+        ]
+      },
+      {
+        "optionId": "event-03-c",
+        "labelKey": "event.03.c",
+        "cost": {
+          "instability": 2
+        },
+        "preview": [
+          "VISIBLE_TRADEOFF"
+        ],
+        "rollSlots": []
+      }
+    ]
+  },
+  {
+    "eventId": "event-04",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-04-a",
+        "labelKey": "event.04.a",
+        "cost": {
+          "gold": 0
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e04-risk"
+        ]
+      },
+      {
+        "optionId": "event-04-b",
+        "labelKey": "event.04.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e04-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-05",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-05-a",
+        "labelKey": "event.05.a",
+        "cost": {
+          "gold": 5
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e05-risk"
+        ]
+      },
+      {
+        "optionId": "event-05-b",
+        "labelKey": "event.05.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e05-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-06",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-06-a",
+        "labelKey": "event.06.a",
+        "cost": {
+          "gold": 10
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e06-risk"
+        ]
+      },
+      {
+        "optionId": "event-06-b",
+        "labelKey": "event.06.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e06-reward"
+        ]
+      },
+      {
+        "optionId": "event-06-c",
+        "labelKey": "event.06.c",
+        "cost": {
+          "instability": 2
+        },
+        "preview": [
+          "VISIBLE_TRADEOFF"
+        ],
+        "rollSlots": []
+      }
+    ]
+  },
+  {
+    "eventId": "event-07",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-07-a",
+        "labelKey": "event.07.a",
+        "cost": {
+          "gold": 15
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e07-risk"
+        ]
+      },
+      {
+        "optionId": "event-07-b",
+        "labelKey": "event.07.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e07-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-08",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-08-a",
+        "labelKey": "event.08.a",
+        "cost": {
+          "gold": 0
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e08-risk"
+        ]
+      },
+      {
+        "optionId": "event-08-b",
+        "labelKey": "event.08.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e08-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-09",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-09-a",
+        "labelKey": "event.09.a",
+        "cost": {
+          "gold": 5
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e09-risk"
+        ]
+      },
+      {
+        "optionId": "event-09-b",
+        "labelKey": "event.09.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e09-reward"
+        ]
+      },
+      {
+        "optionId": "event-09-c",
+        "labelKey": "event.09.c",
+        "cost": {
+          "instability": 2
+        },
+        "preview": [
+          "VISIBLE_TRADEOFF"
+        ],
+        "rollSlots": []
+      }
+    ]
+  },
+  {
+    "eventId": "event-10",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-10-a",
+        "labelKey": "event.10.a",
+        "cost": {
+          "gold": 10
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e10-risk"
+        ]
+      },
+      {
+        "optionId": "event-10-b",
+        "labelKey": "event.10.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e10-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-11",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-11-a",
+        "labelKey": "event.11.a",
+        "cost": {
+          "gold": 15
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e11-risk"
+        ]
+      },
+      {
+        "optionId": "event-11-b",
+        "labelKey": "event.11.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e11-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-12",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-12-a",
+        "labelKey": "event.12.a",
+        "cost": {
+          "gold": 0
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e12-risk"
+        ]
+      },
+      {
+        "optionId": "event-12-b",
+        "labelKey": "event.12.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e12-reward"
+        ]
+      },
+      {
+        "optionId": "event-12-c",
+        "labelKey": "event.12.c",
+        "cost": {
+          "instability": 2
+        },
+        "preview": [
+          "VISIBLE_TRADEOFF"
+        ],
+        "rollSlots": []
+      }
+    ]
+  },
+  {
+    "eventId": "event-13",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-13-a",
+        "labelKey": "event.13.a",
+        "cost": {
+          "gold": 5
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e13-risk"
+        ]
+      },
+      {
+        "optionId": "event-13-b",
+        "labelKey": "event.13.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e13-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-14",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-14-a",
+        "labelKey": "event.14.a",
+        "cost": {
+          "gold": 10
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e14-risk"
+        ]
+      },
+      {
+        "optionId": "event-14-b",
+        "labelKey": "event.14.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e14-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-15",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-15-a",
+        "labelKey": "event.15.a",
+        "cost": {
+          "gold": 15
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e15-risk"
+        ]
+      },
+      {
+        "optionId": "event-15-b",
+        "labelKey": "event.15.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e15-reward"
+        ]
+      },
+      {
+        "optionId": "event-15-c",
+        "labelKey": "event.15.c",
+        "cost": {
+          "instability": 2
+        },
+        "preview": [
+          "VISIBLE_TRADEOFF"
+        ],
+        "rollSlots": []
+      }
+    ]
+  },
+  {
+    "eventId": "event-16",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-16-a",
+        "labelKey": "event.16.a",
+        "cost": {
+          "gold": 0
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e16-risk"
+        ]
+      },
+      {
+        "optionId": "event-16-b",
+        "labelKey": "event.16.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e16-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-17",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-17-a",
+        "labelKey": "event.17.a",
+        "cost": {
+          "gold": 5
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e17-risk"
+        ]
+      },
+      {
+        "optionId": "event-17-b",
+        "labelKey": "event.17.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e17-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-18",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-18-a",
+        "labelKey": "event.18.a",
+        "cost": {
+          "gold": 10
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e18-risk"
+        ]
+      },
+      {
+        "optionId": "event-18-b",
+        "labelKey": "event.18.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e18-reward"
+        ]
+      },
+      {
+        "optionId": "event-18-c",
+        "labelKey": "event.18.c",
+        "cost": {
+          "instability": 2
+        },
+        "preview": [
+          "VISIBLE_TRADEOFF"
+        ],
+        "rollSlots": []
+      }
+    ]
+  },
+  {
+    "eventId": "event-19",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-19-a",
+        "labelKey": "event.19.a",
+        "cost": {
+          "gold": 15
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e19-risk"
+        ]
+      },
+      {
+        "optionId": "event-19-b",
+        "labelKey": "event.19.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e19-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-20",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-20-a",
+        "labelKey": "event.20.a",
+        "cost": {
+          "gold": 0
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e20-risk"
+        ]
+      },
+      {
+        "optionId": "event-20-b",
+        "labelKey": "event.20.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e20-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-21",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-21-a",
+        "labelKey": "event.21.a",
+        "cost": {
+          "gold": 5
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e21-risk"
+        ]
+      },
+      {
+        "optionId": "event-21-b",
+        "labelKey": "event.21.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e21-reward"
+        ]
+      },
+      {
+        "optionId": "event-21-c",
+        "labelKey": "event.21.c",
+        "cost": {
+          "instability": 2
+        },
+        "preview": [
+          "VISIBLE_TRADEOFF"
+        ],
+        "rollSlots": []
+      }
+    ]
+  },
+  {
+    "eventId": "event-22",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-22-a",
+        "labelKey": "event.22.a",
+        "cost": {
+          "gold": 10
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e22-risk"
+        ]
+      },
+      {
+        "optionId": "event-22-b",
+        "labelKey": "event.22.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e22-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-23",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-23-a",
+        "labelKey": "event.23.a",
+        "cost": {
+          "gold": 15
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e23-risk"
+        ]
+      },
+      {
+        "optionId": "event-23-b",
+        "labelKey": "event.23.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e23-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-24",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-24-a",
+        "labelKey": "event.24.a",
+        "cost": {
+          "gold": 0
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e24-risk"
+        ]
+      },
+      {
+        "optionId": "event-24-b",
+        "labelKey": "event.24.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e24-reward"
+        ]
+      },
+      {
+        "optionId": "event-24-c",
+        "labelKey": "event.24.c",
+        "cost": {
+          "instability": 2
+        },
+        "preview": [
+          "VISIBLE_TRADEOFF"
+        ],
+        "rollSlots": []
+      }
+    ]
+  },
+  {
+    "eventId": "event-25",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-25-a",
+        "labelKey": "event.25.a",
+        "cost": {
+          "gold": 5
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e25-risk"
+        ]
+      },
+      {
+        "optionId": "event-25-b",
+        "labelKey": "event.25.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e25-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-26",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-26-a",
+        "labelKey": "event.26.a",
+        "cost": {
+          "gold": 10
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e26-risk"
+        ]
+      },
+      {
+        "optionId": "event-26-b",
+        "labelKey": "event.26.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e26-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-27",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-27-a",
+        "labelKey": "event.27.a",
+        "cost": {
+          "gold": 15
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e27-risk"
+        ]
+      },
+      {
+        "optionId": "event-27-b",
+        "labelKey": "event.27.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e27-reward"
+        ]
+      },
+      {
+        "optionId": "event-27-c",
+        "labelKey": "event.27.c",
+        "cost": {
+          "instability": 2
+        },
+        "preview": [
+          "VISIBLE_TRADEOFF"
+        ],
+        "rollSlots": []
+      }
+    ]
+  },
+  {
+    "eventId": "event-28",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-28-a",
+        "labelKey": "event.28.a",
+        "cost": {
+          "gold": 0
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e28-risk"
+        ]
+      },
+      {
+        "optionId": "event-28-b",
+        "labelKey": "event.28.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e28-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-29",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-29-a",
+        "labelKey": "event.29.a",
+        "cost": {
+          "gold": 5
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e29-risk"
+        ]
+      },
+      {
+        "optionId": "event-29-b",
+        "labelKey": "event.29.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e29-reward"
+        ]
+      }
+    ]
+  },
+  {
+    "eventId": "event-30",
+    "prerequisites": [],
+    "options": [
+      {
+        "optionId": "event-30-a",
+        "labelKey": "event.30.a",
+        "cost": {
+          "gold": 10
+        },
+        "preview": [
+          "VISIBLE_SAFE_OUTCOME"
+        ],
+        "rollSlots": [
+          "e30-risk"
+        ]
+      },
+      {
+        "optionId": "event-30-b",
+        "labelKey": "event.30.b",
+        "cost": {},
+        "preview": [
+          "VISIBLE_RISK"
+        ],
+        "rollSlots": [
+          "e30-reward"
+        ]
+      },
+      {
+        "optionId": "event-30-c",
+        "labelKey": "event.30.c",
+        "cost": {
+          "instability": 2
+        },
+        "preview": [
+          "VISIBLE_TRADEOFF"
+        ],
+        "rollSlots": []
+      }
+    ]
+  }
+]

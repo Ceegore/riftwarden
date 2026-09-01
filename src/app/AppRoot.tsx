@@ -31,7 +31,6 @@ export interface AppRootProps {
   ) => () => void;
   readonly renderTerminal: (step: Exclude<BootTerminalStep, 'RECOVERY_REQUIRED'>) => ReactElement;
   readonly recordBoundaryError: (error: unknown) => void;
-  readonly onSystemAction: (action: SystemActionModel) => void;
 }
 
 export function AppRoot({
@@ -40,7 +39,6 @@ export function AppRoot({
   subscribeBootEvents,
   renderTerminal,
   recordBoundaryError,
-  onSystemAction,
 }: AppRootProps) {
   const [boot, dispatch] = useReducer(
     reduceBootState,
@@ -76,6 +74,28 @@ export function AppRoot({
       window.clearInterval(timer);
     };
   }, [boot.enteredAtMonotonicMs, monotonicNow]);
+
+  // Handle system actions (retry/restart) by dispatching to the boot reducer.
+  const onSystemAction = useMemo(() => {
+    const now = monotonicNow();
+    return (action: SystemActionModel): void => {
+      switch (action.id) {
+        case 'retry_boot_step':
+          dispatch({ type: 'RETRY_REQUESTED', monotonicMs: now });
+          break;
+        case 'safe_restart':
+          dispatch({ type: 'RESET_REQUESTED', monotonicMs: now });
+          break;
+        case 'continue':
+        case 'open_diagnostics_summary':
+        case 'export_diagnostics':
+        case 'load_backup':
+        case 'repair_save':
+        case 'resume_battle':
+          break;
+      }
+    };
+  }, [monotonicNow]);
 
   const content = useMemo(() => {
     if (boot.step === 'RECOVERY_REQUIRED') {

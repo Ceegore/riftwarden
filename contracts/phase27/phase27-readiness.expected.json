@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "phase": 27,
+  "gate": "G27",
+  "evidence": {
+    "constants": "contracts/phase27/phase27-constants.json",
+    "rules": {
+      "fixture": "contracts/phase27/fixtures/formation-rule-matrix.json",
+      "path": "src/game/formation/validator.ts"
+    },
+    "warnings": {
+      "fixture": "contracts/phase27/fixtures/warning-matrix.json",
+      "path": "src/game/formation/validator.ts"
+    },
+    "presets": {
+      "fixture": "contracts/phase27/fixtures/preset-roundtrip.json",
+      "path": "src/game/formation/presets.ts"
+    },
+    "disclosure": {
+      "fixture": "contracts/phase27/fixtures/prebattle-disclosure-matrix.json",
+      "path": "src/game/formation/disclosure.ts"
+    },
+    "atomicStart": {
+      "fixture": "contracts/phase27/fixtures/atomic-start-matrix.json",
+      "path": "src/game/formation/start-guard.ts"
+    },
+    "inputA11y": {
+      "fixture": "contracts/phase27/fixtures/focus-input-matrix.json",
+      "path": "src/game/formation/types.ts"
+    },
+    "modules": [
+      "src/game/formation/types.ts",
+      "src/game/formation/model.ts",
+      "src/game/formation/validator.ts",
+      "src/game/formation/presets.ts",
+      "src/game/formation/draft-store.ts",
+      "src/game/formation/start-guard.ts",
+      "src/game/formation/disclosure.ts",
+      "src/game/formation/formation-error.ts"
+    ],
+    "tests": [
+      "tests/sim/phase27-contracts.test.ts",
+      "tests/sim/phase27-validator.test.ts",
+      "tests/sim/phase27-draft-store.test.ts",
+      "tests/sim/phase27-presets-guard.test.ts"
+    ]
+  },
+  "hardBlockers": [
+    "P27_G27_G26_NOT_PROVEN",
+    "P27_G27_UI_DEVICE_RENDER_NOT_RUN",
+    "P27_G27_A11Y_SCREENREADER_EVIDENCE_MISSING",
+    "P27_G27_VISUAL_GOLDENS_DEVICE_MISSING",
+    "P27_G27_E2E_BROWSER_EVIDENCE_MISSING",
+    "P27_G27_PERFORMANCE_DEVICE_MEASURE_MISSING"
+  ]
+}

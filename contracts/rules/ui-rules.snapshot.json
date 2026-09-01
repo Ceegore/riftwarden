@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "supportedLocales": [
+    "de",
+    "en"
+  ],
+  "battleSpeedRatios": [
+    {
+      "numerator": 1,
+      "denominator": 2
+    },
+    {
+      "numerator": 1,
+      "denominator": 1
+    },
+    {
+      "numerator": 2,
+      "denominator": 1
+    },
+    {
+      "numerator": 3,
+      "denominator": 1
+    }
+  ],
+  "battleSpeedAffectsAuthoritativeOutcome": false,
+  "localizedNamesAreAuthoritativeSortKeys": false
+}

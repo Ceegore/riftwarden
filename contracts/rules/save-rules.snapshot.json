@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "autosaveRotationSlots": 3,
+  "manualProfileBackupSlots": 1,
+  "atomicWriteRequired": true,
+  "checksumBeforeReplace": true,
+  "fallbackToPreviousValidSlot": true,
+  "migrationDirection": "forward",
+  "migrationIdempotent": true,
+  "backupBeforeMigration": true,
+  "internetRequired": false,
+  "deviceIdDependency": false,
+  "wallClockProgression": false
+}

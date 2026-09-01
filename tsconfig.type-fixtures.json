@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "allowImportingTsExtensions": false,
+    "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "lib": [
+      "ES2023",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    "moduleDetection": "force",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2023",
+    "useUnknownInCatchVariables": true,
+    "verbatimModuleSyntax": true
+  },
+  "include": [
+    "src/game/rules/**/*.ts",
+    "src/game/sim/math/**/*.ts",
+    "src/game/sim/random/**/*.ts",
+    "src/game/replay/**/*.ts",
+    "src/game/sim/core/**/*.ts",
+    "src/game/sim/events/**/*.ts",
+    "src/game/sim/scheduler/**/*.ts",
+    "src/game/sim/snapshot/**/*.ts",
+    "tests/rules/type-fixtures/**/*.ts",
+    "tests/math/type-fixtures/**/*.ts",
+    "tests/random/type-fixtures/**/*.ts",
+    "tests/replay/type-fixtures/**/*.ts",
+    "tests/sim/type-fixtures/**/*.ts"
+  ]
+}

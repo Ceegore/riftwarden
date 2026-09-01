@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "phase": 41,
+  "contentRevision": "41.0",
+  "frameBudgetsMs": {
+    "high": 16.67,
+    "medium": 33.33,
+    "low": 50
+  },
+  "sampleWindows": {
+    "high": 60,
+    "medium": 30,
+    "low": 20
+  },
+  "qualityCooldownFrames": 120,
+  "gpuBudgets": {
+    "low": {
+      "drawCalls": 50,
+      "textures": 8,
+      "shaderSwitches": 3
+    },
+    "medium": {
+      "drawCalls": 150,
+      "textures": 16,
+      "shaderSwitches": 6
+    },
+    "high": {
+      "drawCalls": 400,
+      "textures": 32,
+      "shaderSwitches": 12
+    }
+  },
+  "saveWarnBytes": 50000,
+  "saveLimitBytes": 250000
+}

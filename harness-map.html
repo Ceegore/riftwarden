@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" data-rw-dev-only>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Riftwarden Map Visual Harness (dev-only)</title>
+    <style>
+      body {
+        margin: 0;
+        background: #0d1117;
+      }
+      #maps {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 8px;
+      }
+      .map-card {
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        overflow: hidden;
+        width: 620px;
+        height: 420px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="maps"></div>
+    <script type="module" src="/src/screens/dev/map-render-main.ts"></script>
+  </body>
+</html>

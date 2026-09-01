@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "entityType": "status",
+  "entities": [
+    {
+      "id": "status_fixture_mark",
+      "kind": "mark",
+      "stackPolicy": "refresh_duration",
+      "maxStacks": 1,
+      "durationCapSeconds": 3,
+      "dispelCategory": "negative",
+      "bossPolicy": "duration_reduced",
+      "statModifiers": [],
+      "periodicEffects": [],
+      "deprecated": false,
+      "replacementId": null
+    }
+  ]
+}

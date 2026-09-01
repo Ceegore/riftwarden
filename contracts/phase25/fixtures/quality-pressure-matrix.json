@@ -1,0 +1,14 @@
+{
+  "droppable": [
+    "decorative_particle",
+    "damage_number",
+    "trail",
+    "screen_effect"
+  ],
+  "protected": [
+    "telegraph",
+    "warning",
+    "accessibility_signal",
+    "entity_readability"
+  ]
+}

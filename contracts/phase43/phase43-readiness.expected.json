@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "phase": 43,
+  "gate": "G43",
+  "evidence": {
+    "checklist": "docs/reports/phase43-checklist.md",
+    "modules": []
+  },
+  "hardBlockers": [
+    "P43_G43_G42_GATE_BLOCKED",
+    "P43_G43_NO_PLAY_CONSOLE_ACCESS",
+    "P43_G43_NO_REAL_ANDROID_DEVICE",
+    "P43_G43_NO_SIGNED_AAB_PRODUCED",
+    "P43_G43_NO_INTERNAL_TEST_TRACK_INSTALL"
+  ]
+}

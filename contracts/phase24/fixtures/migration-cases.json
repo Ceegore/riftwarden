@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "from": 1,
+      "to": 2,
+      "expect": "success"
+    },
+    {
+      "from": 1,
+      "to": 1,
+      "expect": "current"
+    },
+    {
+      "from": 99,
+      "to": 2,
+      "expect": "FUTURE_SCHEMA"
+    },
+    {
+      "from": 1,
+      "to": 3,
+      "missingEdge": 2,
+      "expect": "MIGRATION_GAP"
+    }
+  ]
+}

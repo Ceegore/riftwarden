@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "phase": 40,
+  "contentRevision": "40.0",
+  "touchTargetMin": {
+    "normal": 44,
+    "large": 48
+  },
+  "touchSpacingMin": 8,
+  "textScales": [
+    100,
+    125,
+    150,
+    175,
+    200
+  ],
+  "contrastRatioMin": {
+    "normal": 4.5,
+    "high": 7
+  },
+  "inputRepeatDelayMin": 100,
+  "maxFocusDepth": 50,
+  "semanticActions": [
+    "confirm",
+    "back",
+    "cancel",
+    "menu",
+    "up",
+    "down",
+    "left",
+    "right",
+    "nextTab",
+    "prevTab",
+    "skip",
+    "pause",
+    "shoulderLeft",
+    "shoulderRight"
+  ]
+}

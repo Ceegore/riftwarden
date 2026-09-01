@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "entityType": "relic",
+  "entities": [
+    {
+      "id": "relic_fixture_echo",
+      "displayNameKey": "content.relic.relic_fixture_echo.name",
+      "rarity": "common",
+      "effectAbilityIds": [
+        "attack_fixture_hero_basic"
+      ],
+      "maxCopies": 1,
+      "durationScope": "run",
+      "poolTags": [
+        "fixture"
+      ],
+      "unlockCondition": "fixture",
+      "merchantValue": 5
+    }
+  ]
+}

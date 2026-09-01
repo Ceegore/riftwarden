@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "phase": 20,
+  "gate": "G20",
+  "evidence": {
+    "massSim": {
+      "path": "docs/reports/phase20-mass-sim.json",
+      "minBattles": 2000,
+      "requiredStatus": "PASS"
+    },
+    "crossRuntime": {
+      "path": "docs/reports/phase14-crossruntime.json",
+      "section": "phase20",
+      "requiredEngines": [
+        "chromium",
+        "firefox",
+        "webkit"
+      ],
+      "deviceRuntimes": [
+        "android_webview",
+        "ios_wkwebview"
+      ]
+    },
+    "referenceTrace": {
+      "path": "tests/sim/fixtures/reference-traces-phase20.json"
+    },
+    "modules": [
+      "src/game/sim/synergy/synergy-counter.ts",
+      "src/game/sim/synergy/synergy-runtime.ts",
+      "src/game/sim/summon/temporary-entity.ts",
+      "src/game/sim/summon/temporary-registry.ts",
+      "src/game/sim/summon/summon-manager.ts",
+      "src/game/sim/summon/summon-lifecycle.ts",
+      "src/game/sim/summon/construct-manager.ts",
+      "src/game/sim/core/phase20-systems.ts"
+    ]
+  },
+  "hardBlockers": [
+    "P20_G20_G19_NOT_PROVEN",
+    "P20_G20_DEVICE_PERF_MISSING"
+  ]
+}

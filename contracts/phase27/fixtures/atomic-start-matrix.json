@@ -1,0 +1,16 @@
+{
+  "cases": [
+    {
+      "id": "double-start",
+      "invocations": 2,
+      "expectedCommits": 1,
+      "expectedBattles": 1
+    },
+    {
+      "id": "save-failure",
+      "invocations": 1,
+      "expectedCommits": 0,
+      "stayOnScreen": true
+    }
+  ]
+}

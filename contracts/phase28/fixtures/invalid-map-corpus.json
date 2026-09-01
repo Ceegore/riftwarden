@@ -1,0 +1,12 @@
+{
+  "cases": [
+    "unreachable_boss",
+    "missing_anchor",
+    "missing_preparation",
+    "duplicate_node_id",
+    "edge_to_missing_node",
+    "visit_length_below_min",
+    "visit_length_above_max",
+    "attempt_cap_exceeded"
+  ]
+}

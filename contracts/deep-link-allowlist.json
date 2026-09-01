@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "scheme": "riftwarden",
+  "approved": false,
+  "destinations": [],
+  "testOnlyFixtureDestinations": [
+    "title"
+  ],
+  "externalContentLoading": false
+}

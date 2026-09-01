@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "code": "P09_TEST_WARNING",
+      "sourcePath": "fixture.json",
+      "entityId": null,
+      "reason": "Temporary test exception with review",
+      "owner": "qa",
+      "expiresOn": "2099-12-31"
+    }
+  ]
+}

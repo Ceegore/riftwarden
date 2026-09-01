@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "simulationVersion": "phase17-fixture-v1",
+  "pipelineCallOrder": [
+    "A:noop.finalize_previous",
+    "B:noop.timers",
+    "C:noop.periodic",
+    "D:noop.triggers",
+    "E:phase16.e1.targeting",
+    "F:phase15.f1.lane_change",
+    "F:phase15.f2.movement",
+    "F:phase15.f3.anti_stuck",
+    "G:phase17.g1.basic_attack",
+    "H:phase17.h1.projectile",
+    "I:phase17.i1.combat_application",
+    "J:phase17.j1.defeat_resolver",
+    "K:phase15.k1.spawn",
+    "L:phase15.l.endcap",
+    "L:phase17.l1.battle_end",
+    "M:noop.snapshot"
+  ],
+  "checkpoints": [
+    {
+      "tick": 30,
+      "checksum": "b50fe36ce527eee4b543c7661cab87fbd231cf4a0cd3db732ed1e831f996777b"
+    },
+    {
+      "tick": 60,
+      "checksum": "d89cbba1995cbbaa471db6a27e27668046be154b075711fa747c3f1665c19641"
+    }
+  ],
+  "finalSnapshotChecksum": "d89cbba1995cbbaa471db6a27e27668046be154b075711fa747c3f1665c19641"
+}

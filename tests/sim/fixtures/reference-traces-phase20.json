@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "simulationVersion": "phase20-fixture-v1",
+  "pipelineCallOrder": [
+    "D:phase20.d1.synergy_commit",
+    "K:phase20.k0.temporary_expiry",
+    "K:phase20.k1.summon_commit"
+  ],
+  "checkpoints": [
+    {
+      "tick": 30,
+      "checksum": "dbec2f6b7b0387006580bf8e2f70c5f7bed044ea889482678a49f241af94775e"
+    },
+    {
+      "tick": 60,
+      "checksum": "c198fb36a8dfc724a830d0399f5c26734885dbcc3b7f9d9e820c1d8814272c86"
+    }
+  ],
+  "finalSnapshotChecksum": "c198fb36a8dfc724a830d0399f5c26734885dbcc3b7f9d9e820c1d8814272c86"
+}

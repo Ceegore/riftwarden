@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "phase": 19,
+  "gate": "G19",
+  "evidence": {
+    "massSim": {
+      "path": "docs/reports/phase19-mass-sim.json",
+      "minBattles": 5000,
+      "requiredStatus": "PASS"
+    },
+    "crossRuntime": {
+      "path": "docs/reports/phase14-crossruntime.json",
+      "section": "phase19",
+      "requiredEngines": [
+        "chromium",
+        "firefox",
+        "webkit"
+      ],
+      "deviceRuntimes": [
+        "android_webview",
+        "ios_wkwebview"
+      ]
+    },
+    "referenceTrace": {
+      "path": "tests/sim/fixtures/reference-traces-phase19.json"
+    },
+    "coverage": {
+      "module": "src/game/sim/ability/ability-coverage.ts"
+    }
+  },
+  "hardBlockers": [
+    "P19_G19_NOT_REPRODUCED",
+    "P19_G19_DEVICE_PERF_MISSING"
+  ]
+}

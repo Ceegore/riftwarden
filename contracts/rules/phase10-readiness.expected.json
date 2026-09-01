@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "expectedStatus": "BLOCKED",
+  "expectedUnextractedSlots": 408,
+  "realGateRequired": "G10"
+}

@@ -1,0 +1,19 @@
+{
+  "profiles": [
+    {
+      "id": "slice.act1.standard",
+      "logicalLevels": 6,
+      "targetVisited": [
+        5,
+        8
+      ],
+      "mandatoryRoles": [
+        "anchor",
+        "preparation",
+        "boss"
+      ],
+      "attemptCap": 50,
+      "fallbackTemplateId": "slice.act1.safe"
+    }
+  ]
+}

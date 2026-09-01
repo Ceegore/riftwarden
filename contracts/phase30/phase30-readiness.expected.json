@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "phase": 30,
+  "gate": "G30",
+  "evidence": {
+    "constants": "contracts/phase30/phase30-constants.json",
+    "routeMatrix": {
+      "fixture": "contracts/phase30/fixtures/route-matrix.json",
+      "path": "src/game/app-shell/route-resolver.ts"
+    },
+    "continueMatrix": {
+      "fixture": "contracts/phase30/fixtures/continue-save-matrix.json",
+      "path": "src/game/app-shell/continue-resolver.ts"
+    },
+    "settingsCases": {
+      "fixture": "contracts/phase30/fixtures/settings-cases.json",
+      "path": "src/game/app-shell/settings-domain.ts"
+    },
+    "linkCases": {
+      "fixture": "contracts/phase30/fixtures/external-link-cases.json",
+      "path": "src/game/app-shell/external-link-policy.ts"
+    },
+    "hqCapabilities": {
+      "fixture": "contracts/phase30/fixtures/hq-capabilities.json",
+      "path": "src/game/app-shell/hq-capabilities.ts"
+    },
+    "killPoints": {
+      "fixture": "contracts/phase30/fixtures/kill-point-matrix.json",
+      "path": "src/game/app-shell/first-run.ts"
+    },
+    "visualMatrix": "contracts/phase30/fixtures/visual-matrix.json",
+    "modules": [
+      "src/game/app-shell/types.ts",
+      "src/game/app-shell/app-shell-error.ts",
+      "src/game/app-shell/route-resolver.ts",
+      "src/game/app-shell/settings-domain.ts",
+      "src/game/app-shell/external-link-policy.ts",
+      "src/game/app-shell/hq-capabilities.ts",
+      "src/game/app-shell/action-ledger.ts",
+      "src/game/app-shell/first-run.ts",
+      "src/game/app-shell/continue-resolver.ts"
+    ],
+    "tests": [
+      "tests/sim/phase30-contracts.test.ts",
+      "tests/sim/phase30-settings.test.ts",
+      "tests/sim/phase30-flow-ledger.test.ts"
+    ]
+  },
+  "hardBlockers": [
+    "P30_G30_G29_NOT_PROVEN",
+    "P30_G30_ARCHITECTURE_GO_MISSING",
+    "P30_G30_UI_DEVICE_RENDER_NOT_RUN",
+    "P30_G30_A11Y_SCREENREADER_EVIDENCE_MISSING",
+    "P30_G30_VISUAL_GOLDENS_DEVICE_MISSING",
+    "P30_G30_E2E_BROWSER_EVIDENCE_MISSING",
+    "P30_G30_PERFORMANCE_DEVICE_MEASURE_MISSING",
+    "P30_G30_LEGAL_TEXTS_NOT_PROVIDED",
+    "P30_G30_RELEASE_URL_ALLOWLIST_NOT_VALIDATED"
+  ]
+}

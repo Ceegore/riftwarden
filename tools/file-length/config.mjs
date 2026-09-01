@@ -9,6 +9,7 @@ export const GENERATED_PREFIXES = Object.freeze([
   'content/generated/',
   'public/assets/generated/',
   'docs/reports/generated/',
+  'docs/reports/content-ledger/',
   'docs/requirements/generated/',
   'docs/requirements/requirements/_staging/',
   'docs/requirements/requirements/',
@@ -22,6 +23,12 @@ export const GENERATED_PREFIXES = Object.freeze([
   'src/screens/dev/',
   'src/app/navigation/generated/',
   'tests/navigation/fixtures/',
+  'inputs/sources/',
+  'contracts/rules/',
+  'contracts/math/',
+  'contracts/random/',
+  'contracts/sim/',
+  'contracts/phase32/fixtures/',
 ]);
 
 // Individual generated files (not prefixes) that bypass the line gate.
@@ -37,6 +44,8 @@ export const GENERATED_FILES = Object.freeze([
   'docs/reports/build-release-hashes.json',
   'docs/reports/postinstall-audit.json',
   'docs/reports/native-toolchains.json',
+  'docs/reports/requirement-traceability.json',
+  'docs/reports/phase14-crossruntime.json',
   'docs/requirements/tests.json',
   'docs/requirements/traceability.json',
   'docs/requirements/source-findings.json',
@@ -45,6 +54,9 @@ export const GENERATED_FILES = Object.freeze([
   'docs/requirements/external-decisions.json',
   'docs/requirements/chapter-dispositions.json',
   'docs/requirements/source-headings.json',
+  'contracts/phase32/golden-registry.json',
+  'contracts/phase32/map-qa-report.json',
+  'src/locales/format/bootstrap-bundle.ts',
 ]);
 
 export const GENERATED_CONTRACT_MARKER = 'GENERATED_DIRECTORY_CONTRACT';

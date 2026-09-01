@@ -1,0 +1,11 @@
+{
+  "id": "golden_save_301",
+  "cuts": [
+    "cast_commit",
+    "projectile_in_flight",
+    "spawn_commit",
+    "tick_150",
+    "tick_300"
+  ],
+  "expected": "same_end_hash_and_relevant_event_log"
+}

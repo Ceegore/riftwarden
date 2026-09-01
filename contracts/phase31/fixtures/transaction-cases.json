@@ -1,0 +1,36 @@
+[
+  {
+    "id": "buy-copy-ok",
+    "kind": "BUY_COPY",
+    "balance": 100,
+    "cost": 30,
+    "expectedBalance": 70,
+    "expected": "COMMITTED"
+  },
+  {
+    "id": "insufficient",
+    "kind": "BUY_COPY",
+    "balance": 20,
+    "cost": 30,
+    "expectedBalance": 20,
+    "expected": "REJECTED"
+  },
+  {
+    "id": "duplicate-callback",
+    "kind": "POLISH",
+    "balance": 100,
+    "cost": 25,
+    "repeat": 2,
+    "expectedBalance": 75,
+    "expected": "COMMITTED_ONCE"
+  },
+  {
+    "id": "commit-failure",
+    "kind": "EQUIP",
+    "balance": 100,
+    "cost": 0,
+    "injectFailure": true,
+    "expectedBalance": 100,
+    "expected": "FAILED_NO_MUTATION"
+  }
+]

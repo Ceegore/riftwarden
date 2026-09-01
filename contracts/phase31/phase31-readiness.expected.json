@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "phase": 31,
+  "gate": "G31",
+  "evidence": {
+    "constants": "contracts/phase31/phase31-constants.json",
+    "transactionCases": {
+      "fixture": "contracts/phase31/fixtures/transaction-cases.json",
+      "path": "src/game/profile/transaction-service.ts"
+    },
+    "killPoints": {
+      "fixture": "contracts/phase31/fixtures/kill-point-matrix.json",
+      "path": "src/game/profile/transaction-flow.ts"
+    },
+    "derivedStats": {
+      "fixture": "contracts/phase31/fixtures/derived-stat-cases.json",
+      "path": "src/game/profile/derived-stats.ts"
+    },
+    "compatibility": {
+      "fixture": "contracts/phase31/fixtures/compatibility-cases.json",
+      "path": "src/game/profile/compatibility.ts"
+    },
+    "collectionState": {
+      "fixture": "contracts/phase31/fixtures/collection-state-cases.json",
+      "path": "src/game/profile/collection-state.ts"
+    },
+    "profileShapes": {
+      "minimal": "contracts/phase31/fixtures/profile-minimal.json",
+      "full": "contracts/phase31/fixtures/profile-full-shape.json",
+      "path": "src/game/profile/profile-validator.ts"
+    },
+    "screenMatrix": "contracts/phase31/fixtures/screen-matrix.json",
+    "goldenRegistry": "contracts/phase31/golden-registry.json",
+    "modules": [
+      "src/game/profile/types.ts",
+      "src/game/profile/integer.ts",
+      "src/game/profile/profile-error.ts",
+      "src/game/profile/profile-validator.ts",
+      "src/game/profile/derived-stats.ts",
+      "src/game/profile/transaction-service.ts",
+      "src/game/profile/transaction-flow.ts",
+      "src/game/profile/collection-state.ts",
+      "src/game/profile/compatibility.ts"
+    ],
+    "tests": [
+      "tests/sim/phase31-contracts.test.ts",
+      "tests/sim/phase31-profile-validator.test.ts",
+      "tests/sim/phase31-transaction.test.ts",
+      "tests/sim/phase31-collection.test.ts"
+    ],
+    "e2eSpec": "tests/e2e/battle/context-loss-harness.spec.ts"
+  },
+  "hardBlockers": [
+    "P31_G31_G30_NOT_PROVEN",
+    "P31_G31_UI_DEVICE_RENDER_NOT_RUN",
+    "P31_G31_A11Y_SCREENREADER_EVIDENCE_MISSING",
+    "P31_G31_VISUAL_GOLDENS_DEVICE_MISSING",
+    "P31_G31_E2E_BROWSER_EVIDENCE_MISSING",
+    "P31_G31_PERFORMANCE_DEVICE_MEASURE_MISSING",
+    "P31_G31_RELEASE_COUNT_CONTENT_NOT_SHIPPED",
+    "P31_G31_SAVE_MIGRATION_NOT_RUN"
+  ]
+}

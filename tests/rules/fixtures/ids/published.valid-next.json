@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "v2",
+  "ids": [
+    {
+      "id": "hero_ardyn",
+      "type": "hero",
+      "status": "active",
+      "replacementId": null
+    },
+    {
+      "id": "item_old_blade",
+      "type": "item",
+      "status": "deprecated",
+      "replacementId": "item_new_blade"
+    },
+    {
+      "id": "item_new_blade",
+      "type": "item",
+      "status": "active",
+      "replacementId": null
+    }
+  ]
+}

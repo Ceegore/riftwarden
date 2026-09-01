@@ -4,6 +4,7 @@
   color-scheme: dark;
   font-family: system-ui, sans-serif;
   --rw-color-background: oklch(0.14 0.03 295);
+  --rw-text-scale: 1;
 }
 
 html,
@@ -11,4 +12,71 @@ body,
 #root {
   min-height: 100%;
   margin: 0;
+}
+
+/* Phase 40: Accessibility CSS class hooks */
+
+/* Text scale */
+.rw-ts-100 { --rw-text-scale: 1; }
+.rw-ts-125 { --rw-text-scale: 1.25; }
+.rw-ts-150 { --rw-text-scale: 1.5; }
+.rw-ts-175 { --rw-text-scale: 1.75; }
+.rw-ts-200 { --rw-text-scale: 2; }
+
+html:where(.rw-ts-125) { font-size: 125%; }
+html:where(.rw-ts-150) { font-size: 150%; }
+html:where(.rw-ts-175) { font-size: 175%; }
+html:where(.rw-ts-200) { font-size: 200%; }
+
+/* Reduced motion */
+html.rw-reduced-motion *,
+html.rw-reduced-motion *::before,
+html.rw-reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* High contrast */
+html.rw-high-contrast {
+  --rw-contrast-ratio: 7;
+}
+html.rw-high-contrast :focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
+html.rw-high-contrast button,
+html.rw-high-contrast a,
+html.rw-high-contrast [role="button"],
+html.rw-high-contrast [role="tab"],
+html.rw-high-contrast [role="option"] {
+  outline: 1px solid rgba(255, 255, 255, 0.3);
+}
+html.rw-high-contrast .rw-game-card {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Screen reader mode: visually hidden spans become visible helpers */
+html.rw-screen-reader .rw-visually-hidden {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+}
+
+/* Color-blind filters */
+html.rw-cb-protanopia canvas,
+html.rw-cb-protanopia img {
+  filter: url(#protanopia-filter);
+}
+html.rw-cb-deuteranopia canvas,
+html.rw-cb-deuteranopia img {
+  filter: url(#deuteranopia-filter);
+}
+html.rw-cb-tritanopia canvas,
+html.rw-cb-tritanopia img {
+  filter: url(#tritanopia-filter);
 }

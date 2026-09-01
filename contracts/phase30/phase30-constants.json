@@ -1,0 +1,37 @@
+{
+  "contractVersion": 1,
+  "phase": 30,
+  "screenIds": [
+    "S02",
+    "S03",
+    "S04",
+    "S05",
+    "S06",
+    "S07",
+    "S08",
+    "S10",
+    "S60",
+    "S61",
+    "S62",
+    "S63",
+    "S64",
+    "S65"
+  ],
+  "languages": [
+    "de",
+    "en",
+    "pseudo"
+  ],
+  "textScales": [
+    100,
+    125,
+    150,
+    175,
+    200
+  ],
+  "allowedSchemes": [
+    "https"
+  ],
+  "gate": "G30",
+  "status": "NOT_PROVEN"
+}

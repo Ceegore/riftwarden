@@ -1,13 +1,36 @@
-.rw-button { min-block-size:48px; min-inline-size:48px; border-radius:var(--rw-radius-control); border:var(--rw-border-control-width) solid var(--rw-color-border); padding-inline:var(--rw-space-16); font:inherit; color:var(--rw-color-text-primary); background:var(--rw-color-panel-raised); transition:box-shadow var(--rw-motion-instant); }
-.rw-button--primary { min-block-size:56px; color:var(--rw-color-bg-deep); background:var(--rw-color-gold); }
+.rw-button { min-block-size:calc(48px * var(--rw-text-scale,1)); min-inline-size:calc(48px * var(--rw-text-scale,1)); border-radius:var(--rw-radius-control); border:var(--rw-border-control-width) solid var(--rw-color-border); padding-inline:calc(var(--rw-space-16) * var(--rw-text-scale,1)); font:inherit; color:var(--rw-color-text-primary); background:var(--rw-color-panel-raised); transition:box-shadow var(--rw-motion-instant); }
+.rw-button--primary { min-block-size:calc(56px * var(--rw-text-scale,1)); color:var(--rw-color-bg-deep); background:var(--rw-color-gold); }
 .rw-button--danger { background:var(--rw-color-danger); color:var(--rw-color-bg-void); }
 .rw-button:active { box-shadow:none; }
 .rw-button:disabled { color:var(--rw-color-text-disabled); }
 .rw-button:focus-visible,.rw-focusable:focus-visible { outline:var(--rw-focus-ring-width) solid var(--rw-color-gold-bright); outline-offset:var(--rw-focus-ring-offset); }
-.rw-game-card { border-radius:var(--rw-radius-panel); border:var(--rw-border-control-width) solid var(--rw-color-border); background:var(--rw-color-panel); padding:var(--rw-space-16); min-inline-size:0; }
+.rw-game-card { border-radius:var(--rw-radius-panel); border:var(--rw-border-control-width) solid var(--rw-color-border); background:var(--rw-color-panel); padding:calc(var(--rw-space-16) * var(--rw-text-scale,1)); min-inline-size:0; }
 .rw-game-card[aria-selected='true'] { border-color:var(--rw-color-rift-violet); }
 .rw-stat-row,.rw-resource-pill { display:flex; align-items:center; justify-content:space-between; gap:var(--rw-space-12); }
-.rw-resource-pill { border-radius:var(--rw-radius-control); padding:var(--rw-space-8) var(--rw-space-12); background:var(--rw-color-panel-raised); }
+.rw-resource-pill { border-radius:var(--rw-radius-control); padding:calc(var(--rw-space-8) * var(--rw-text-scale,1)) calc(var(--rw-space-12) * var(--rw-text-scale,1)); background:var(--rw-color-panel-raised); }
+
+/* Phase 40: High-contrast overrides via tokens. */
+html.rw-high-contrast {
+  --rw-color-border: #ffffff;
+  --rw-color-text-primary: #ffffff;
+  --rw-color-text-secondary: #ffffff;
+  --rw-color-text-disabled: #d8d8d8;
+  --rw-color-panel: #000000;
+  --rw-color-panel-raised: #111111;
+}
+html.rw-high-contrast .rw-button,
+html.rw-high-contrast .rw-game-card,
+html.rw-high-contrast .rw-resource-pill {
+  border-width: 2px;
+}
+html.rw-high-contrast .rw-game-card[aria-selected='true'] {
+  border-color: var(--rw-color-gold-bright);
+  background: #222222;
+}
+html.rw-high-contrast .rw-stat-row {
+  border-block-end: 1px solid rgba(255, 255, 255, 0.4);
+  padding-block: var(--rw-space-4);
+}
 .rw-tabs { display:flex; overflow:auto; gap:var(--rw-space-8); }
 .rw-tooltip { z-index:var(--rw-z-popover); }
 .rw-modal-backdrop { position:fixed; inset:0; z-index:var(--rw-z-modal-backdrop); background:var(--rw-color-bg-void); }
@@ -15,3 +38,14 @@
 .rw-toast-region { position:fixed; z-index:var(--rw-z-toast); inset-block-end:var(--rw-space-24); inset-inline:var(--rw-space-24); }
 .rw-visually-hidden { position:absolute; inline-size:1px; block-size:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
 @media (prefers-reduced-motion:reduce) { .rw-button { transition:opacity var(--rw-motion-fast); transform:none; } }
+
+/* Phase 21 §9 outbound panel: hook-driven boss scripting surfaced on the battle screen. */
+.rw-phase21-outbound { display:grid; gap:var(--rw-space-8); inline-size:100%; }
+.rw-phase21-outbound-head { display:flex; align-items:baseline; justify-content:space-between; gap:var(--rw-space-12); color:var(--rw-color-text-secondary); }
+.rw-phase21-encounter { border-radius:var(--rw-radius-control); border:var(--rw-border-control-width) solid var(--rw-color-border); background:var(--rw-color-panel-raised); padding:var(--rw-space-12); }
+.rw-phase21-encounter-head { display:flex; align-items:center; justify-content:space-between; gap:var(--rw-space-12); }
+.rw-phase21-encounter-meta { color:var(--rw-color-text-secondary); font-size:0.9em; }
+.rw-phase21-ok { color:var(--rw-color-success); }
+.rw-phase21-bad { color:var(--rw-color-danger); }
+.rw-phase21-phases,.rw-phase21-hooks,.rw-phase21-trace { margin-block:var(--rw-space-8) 0; padding-inline-start:var(--rw-space-16); color:var(--rw-color-text-secondary); }
+.rw-phase21-active { color:var(--rw-color-text-primary); font-weight:600; }

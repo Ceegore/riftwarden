@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "phase": 39,
+  "gate": "G39",
+  "evidence": {
+    "constants": "contracts/phase39/phase39-constants.json",
+    "modules": [
+      "src/game/content/audio/audio-manifest-types.ts",
+      "src/game/content/audio/music-director.ts",
+      "src/game/content/audio/voice-runtime.ts",
+      "src/game/content/audio/bus-mixer.ts",
+      "src/game/content/audio/index.ts"
+    ],
+    "tests": []
+  },
+  "hardBlockers": [
+    "P39_G39_G38_GATE_BLOCKED",
+    "P39_G39_NO_PRODUCTION_AUDIO_FILES",
+    "P39_G39_NO_DE_EN_VOICE_RECORDINGS",
+    "P39_G39_NO_MUSIC_TRACKS_PRODUCED",
+    "P39_G39_NO_GAMEAUDIOSESSION_NATIVE_CODE",
+    "P39_G39_NO_DEVICE_MIX_ABNAHME",
+    "P39_G39_NO_HAPTIC_PATTERNS_DESIGNED",
+    "P39_G39_LICENSE_REPORT_MISSING"
+  ]
+}

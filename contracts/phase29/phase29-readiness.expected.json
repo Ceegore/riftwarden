@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "phase": 29,
+  "gate": "G29",
+  "evidence": {
+    "constants": "contracts/phase29/phase29-constants.json",
+    "routes": {
+      "fixture": "contracts/phase29/fixtures/e2e-route-matrix.json",
+      "path": "src/game/slice/route-machine.ts"
+    },
+    "goldenSeeds": {
+      "fixture": "contracts/phase29/fixtures/golden-seeds.json",
+      "path": "src/game/slice/hash-matrix.ts"
+    },
+    "killPoints": {
+      "fixture": "contracts/phase29/fixtures/kill-point-matrix.json",
+      "path": "src/game/slice/commit-ledger.ts"
+    },
+    "deviceMatrix": "contracts/phase29/fixtures/device-matrix.json",
+    "a11yMatrix": "contracts/phase29/fixtures/accessibility-matrix.json",
+    "modules": [
+      "src/game/slice/types.ts",
+      "src/game/slice/slice-error.ts",
+      "src/game/slice/route-machine.ts",
+      "src/game/slice/slice-validator.ts",
+      "src/game/slice/commit-ledger.ts",
+      "src/game/slice/hash-matrix.ts"
+    ],
+    "tests": [
+      "tests/sim/phase29-contracts.test.ts",
+      "tests/sim/phase29-slice-ledger-matrix.test.ts"
+    ],
+    "e2eSpec": "tests/e2e/battle/context-loss-harness.spec.ts"
+  },
+  "hardBlockers": [
+    "P29_G29_G28_NOT_PROVEN",
+    "P29_G29_UI_DEVICE_RENDER_NOT_RUN",
+    "P29_G29_A11Y_SCREENREADER_EVIDENCE_MISSING",
+    "P29_G29_VISUAL_GOLDENS_DEVICE_MISSING",
+    "P29_G29_E2E_BROWSER_EVIDENCE_MISSING",
+    "P29_G29_PERFORMANCE_DEVICE_MEASURE_MISSING"
+  ]
+}

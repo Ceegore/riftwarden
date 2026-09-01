@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "phase": 31,
+  "kind": "derived-stats-golden",
+  "sourceSha256": "b2ef7f81cd51df02bd0b8bd6d8fbfc9eec96e7096e2622e7e1c5c36769e21371",
+  "pinnedCases": [
+    {
+      "caseId": "case-00",
+      "base": 100,
+      "levelPermille": 1200,
+      "equipmentFlat": 15,
+      "otherPermille": 1100,
+      "result": 148,
+      "safeInteger": true
+    },
+    {
+      "caseId": "case-01",
+      "base": 1,
+      "levelPermille": 1000,
+      "equipmentFlat": 0,
+      "otherPermille": 1000,
+      "result": 1,
+      "safeInteger": true
+    }
+  ],
+  "sweep": {
+    "count": 10000,
+    "failures": 0,
+    "firstFailure": {
+      "index": -1,
+      "expected": 0,
+      "actual": 0,
+      "stage": "none"
+    }
+  }
+}

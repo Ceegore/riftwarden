@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "phase": 18,
+  "gate": "G17",
+  "evidence": {
+    "massSim": {
+      "path": "docs/reports/phase17-mass-sim.json",
+      "minBattles": 10000,
+      "requiredStatus": "PASS"
+    },
+    "crossRuntime": {
+      "path": "docs/reports/phase14-crossruntime.json",
+      "sections": [
+        "phase17",
+        "phase17jl"
+      ],
+      "requiredEngines": [
+        "chromium",
+        "firefox",
+        "webkit"
+      ],
+      "deviceRuntimes": [
+        "android_webview",
+        "ios_wkwebview"
+      ]
+    }
+  },
+  "hardBlockers": [
+    "P18_G17_NOT_REPRODUCED",
+    "P18_G17_DEVICE_PERF_MISSING"
+  ]
+}
